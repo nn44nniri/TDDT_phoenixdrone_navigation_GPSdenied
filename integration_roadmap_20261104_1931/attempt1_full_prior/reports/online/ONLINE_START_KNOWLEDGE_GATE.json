@@ -1,0 +1,471 @@
+{
+  "ok": true,
+  "status": "READY",
+  "reason": "VALID_FINALIZED_SETD_PRIOR_READY",
+  "checks": {
+    "setd_integrity_valid": true,
+    "setd_package_id_present": true,
+    "finalization_ok": true,
+    "finalization_committed": true,
+    "handoff_hash_verified": true
+  },
+  "setd_integrity_valid": true,
+  "offline_control_coverage_complete": false,
+  "mission_certification_status": "NOT_FULLY_CERTIFIED",
+  "missing_control_phases": [
+    "hover",
+    "vertical_landing"
+  ],
+  "control_knowledge_valid_by_phase": {
+    "approach": true,
+    "climb": true,
+    "cruise": true,
+    "hover": false,
+    "transition_back": true,
+    "transition_forward": true,
+    "turn": true,
+    "vertical_landing": false,
+    "vertical_takeoff": true
+  },
+  "legacy_valid_setd": false,
+  "manifest_path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/knowledge/handoff/offline_latest.json.gz",
+  "manifest": {
+    "schema": "TDOC-offline-online-knowledge-handoff-v1",
+    "source_learning_mode": "OFFLINE_SE",
+    "source_transaction_id": "mission-offline-0320",
+    "source_version": "TDOC-runtime-v1",
+    "created_at": "2026-11-04T20:58:11.444095+00:00",
+    "valid_setd": false,
+    "setd_integrity_valid": true,
+    "offline_control_coverage_complete": false,
+    "control_knowledge_valid": false,
+    "control_knowledge_valid_by_phase": {
+      "approach": true,
+      "climb": true,
+      "cruise": true,
+      "hover": false,
+      "transition_back": true,
+      "transition_forward": true,
+      "turn": true,
+      "vertical_landing": false,
+      "vertical_takeoff": true
+    },
+    "source_control_knowledge_valid_claim": false,
+    "knowledge_quality": {
+      "closed_loop_effect_cycles": 243,
+      "control_knowledge_valid": false,
+      "control_knowledge_valid_inputs": {
+        "all_required_control_phases": false,
+        "contract": "Layer5-offline-control-validity-monotonic-v1",
+        "explicit_inputs_complete": true,
+        "false_to_true_upgrade_allowed": false,
+        "global_control_evidence": true,
+        "monotonic_input_ready": false,
+        "phase_control_coverage_present": true,
+        "supplied_tdoc_control_valid": false,
+        "supplied_tdoc_control_valid_present": true
+      },
+      "control_learning_cycles": 243,
+      "control_learning_semantics": "only same-cycle L4 verified + L5 FINAL + accepted Layer2 control effect counts; HOLD/state-propagation is excluded",
+      "control_readiness_semantics": "requires explicit TDOC control-validity=true + explicit complete required-phase same-cycle joint proof + global verified/FINAL/control-effect evidence with zero FF runtime errors; missing inputs and explicit false are fail-closed, and Layer5 may only downgrade true to false",
+      "final_authorized_cycles": 243,
+      "full_fidelity_runtime_error_cycles": 0,
+      "joint_control_proof_cycles": 243,
+      "live_capability_registry": {
+        "authority": "runtime transaction results; reports audit-only",
+        "episode_id": "OFFLINE_SE-001",
+        "mission_version": "RTMO-11PHASE-v2",
+        "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/rtmo/capability_registry.json.gz",
+        "run_id": "offline-6f12420525664f468b1bc58d4020e07f",
+        "schema": "TDOC-RTMO-live-capability-registry-v1",
+        "sha256": "4980912fc7647b535c52423efab748d1c0f2c9b69ce515c3275b6e53820fba91"
+      },
+      "non_control_learning_cycles": 77,
+      "phase_control_coverage": {
+        "all_required_control_phases": false,
+        "coverage": {
+          "approach": {
+            "control_capable": true,
+            "control_effect_cycles": 16,
+            "cycles": 28,
+            "joint_proof_cycles": 16,
+            "l5_final_cycles": 16,
+            "verified_cycles": 16
+          },
+          "climb": {
+            "control_capable": true,
+            "control_effect_cycles": 22,
+            "cycles": 26,
+            "joint_proof_cycles": 22,
+            "l5_final_cycles": 22,
+            "verified_cycles": 22
+          },
+          "cruise": {
+            "control_capable": true,
+            "control_effect_cycles": 70,
+            "cycles": 90,
+            "joint_proof_cycles": 70,
+            "l5_final_cycles": 70,
+            "verified_cycles": 70
+          },
+          "hover": {
+            "control_capable": false,
+            "control_effect_cycles": 0,
+            "cycles": 6,
+            "joint_proof_cycles": 0,
+            "l5_final_cycles": 0,
+            "verified_cycles": 0
+          },
+          "transition_back": {
+            "control_capable": true,
+            "control_effect_cycles": 100,
+            "cycles": 121,
+            "joint_proof_cycles": 100,
+            "l5_final_cycles": 100,
+            "verified_cycles": 100
+          },
+          "transition_forward": {
+            "control_capable": true,
+            "control_effect_cycles": 12,
+            "cycles": 20,
+            "joint_proof_cycles": 12,
+            "l5_final_cycles": 12,
+            "verified_cycles": 12
+          },
+          "turn": {
+            "control_capable": true,
+            "control_effect_cycles": 18,
+            "cycles": 22,
+            "joint_proof_cycles": 18,
+            "l5_final_cycles": 18,
+            "verified_cycles": 18
+          },
+          "vertical_landing": {
+            "control_capable": false,
+            "control_effect_cycles": 0,
+            "cycles": 0,
+            "joint_proof_cycles": 0,
+            "l5_final_cycles": 0,
+            "verified_cycles": 0
+          },
+          "vertical_takeoff": {
+            "control_capable": true,
+            "control_effect_cycles": 5,
+            "cycles": 6,
+            "joint_proof_cycles": 5,
+            "l5_final_cycles": 5,
+            "verified_cycles": 5
+          }
+        },
+        "missing_control_phases": [
+          "hover",
+          "vertical_landing"
+        ],
+        "required_control_phases": [
+          "vertical_takeoff",
+          "hover",
+          "transition_forward",
+          "climb",
+          "cruise",
+          "turn",
+          "approach",
+          "transition_back",
+          "vertical_landing"
+        ],
+        "schema": "TDOC-offline-phase-control-coverage-v1"
+      },
+      "safety_hold_cycles": 77,
+      "safety_knowledge_valid": true,
+      "verified_candidate_cycles": 243
+    },
+    "phase_control_coverage": {
+      "all_required_control_phases": false,
+      "coverage": {
+        "approach": {
+          "control_capable": true,
+          "control_effect_cycles": 16,
+          "cycles": 28,
+          "joint_proof_cycles": 16,
+          "l5_final_cycles": 16,
+          "verified_cycles": 16
+        },
+        "climb": {
+          "control_capable": true,
+          "control_effect_cycles": 22,
+          "cycles": 26,
+          "joint_proof_cycles": 22,
+          "l5_final_cycles": 22,
+          "verified_cycles": 22
+        },
+        "cruise": {
+          "control_capable": true,
+          "control_effect_cycles": 70,
+          "cycles": 90,
+          "joint_proof_cycles": 70,
+          "l5_final_cycles": 70,
+          "verified_cycles": 70
+        },
+        "hover": {
+          "control_capable": false,
+          "control_effect_cycles": 0,
+          "cycles": 6,
+          "joint_proof_cycles": 0,
+          "l5_final_cycles": 0,
+          "verified_cycles": 0
+        },
+        "transition_back": {
+          "control_capable": true,
+          "control_effect_cycles": 100,
+          "cycles": 121,
+          "joint_proof_cycles": 100,
+          "l5_final_cycles": 100,
+          "verified_cycles": 100
+        },
+        "transition_forward": {
+          "control_capable": true,
+          "control_effect_cycles": 12,
+          "cycles": 20,
+          "joint_proof_cycles": 12,
+          "l5_final_cycles": 12,
+          "verified_cycles": 12
+        },
+        "turn": {
+          "control_capable": true,
+          "control_effect_cycles": 18,
+          "cycles": 22,
+          "joint_proof_cycles": 18,
+          "l5_final_cycles": 18,
+          "verified_cycles": 18
+        },
+        "vertical_landing": {
+          "control_capable": false,
+          "control_effect_cycles": 0,
+          "cycles": 0,
+          "joint_proof_cycles": 0,
+          "l5_final_cycles": 0,
+          "verified_cycles": 0
+        },
+        "vertical_takeoff": {
+          "control_capable": true,
+          "control_effect_cycles": 5,
+          "cycles": 6,
+          "joint_proof_cycles": 5,
+          "l5_final_cycles": 5,
+          "verified_cycles": 5
+        }
+      },
+      "missing_control_phases": [
+        "hover",
+        "vertical_landing"
+      ],
+      "required_control_phases": [
+        "vertical_takeoff",
+        "hover",
+        "transition_forward",
+        "climb",
+        "cruise",
+        "turn",
+        "approach",
+        "transition_back",
+        "vertical_landing"
+      ],
+      "schema": "TDOC-offline-phase-control-coverage-v1"
+    },
+    "phase_control_coverage_complete": false,
+    "phase_coverage_consistent": false,
+    "handoff_validity_invariant": {
+      "contract": "TDOC-offline-handoff-validity-invariant-v1",
+      "rule": "control_knowledge_valid_implies_all_required_control_phases",
+      "holds": true,
+      "source_claim_downgraded": false,
+      "online_start_authority": "SETD_INTEGRITY_ONLY",
+      "runtime_control_authority": "RTMO_PHASE_LOCAL_CURRENT_AND_NEXT"
+    },
+    "ledger_record_hash": "9681c27513a8bb1df0968a71697ac4d8b729e2e077413a94eb5eea9271fb4c38",
+    "layer_hashes": {
+      "layer2": "6fca57db7819dcfc9e7c5e169b503edc6bee25dda16d36747416c275f9f925aa",
+      "layer3": "609ea614d73380ea24414e0a7ab3b28aece4572d29f73a9fb3ca449916c64156",
+      "layer4": "184389cbb9c61baaa3340b59da84f186ec4aa7b7653f219b2966069282b26d93",
+      "layer5": "045b5813b873bdae03beaebcefab3e2dd2702e60fc7cc15006bea67ac4de9ee9",
+      "layer6": null,
+      "layer7": null
+    },
+    "layer5_root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer5_v20260911_1510",
+    "setd": {
+      "ok": true,
+      "package_id": "SETD_E-19416e55184140f0_1793825891292670",
+      "episode_id": "E-19416e55184140f0",
+      "experience_count": 500,
+      "last_record_hash": "ad48a25e9268f9afdf28e35b3119ce5ad388065c148a75c095a828c8e9bb4ee4",
+      "package_manifest": "setd/packages/SETD_E-19416e55184140f0_1793825891292670/manifest.json",
+      "package_manifest_sha256": "ae308184afae121e30a69783bb0a478088e11d29cde2d50a381758701756abbc",
+      "knowledge_version": null,
+      "knowledge_hash": null,
+      "reference_bundle": {}
+    },
+    "kstore_fingerprint": {
+      "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/layer5/kstore",
+      "file_count": 452,
+      "total_bytes": 728620,
+      "sha256": "8c0b85c753b251b66de9adb29af5be92d48ad2fe787d75c7a60d3a27a478cfe2",
+      "compressed_at_rest": true
+    },
+    "finalization": {
+      "committed": true,
+      "ok": true,
+      "reason": null
+    },
+    "reuse_contract": {
+      "required_for_online_training": true,
+      "read_only_online_load": true,
+      "online_retraining_episodes": 0,
+      "persistent_learning_authority": "Layer7",
+      "layer5_online_persistent_write": false,
+      "online_start_authority": "SETD_INTEGRITY_ONLY",
+      "mission_certification_source": "offline_control_coverage_complete",
+      "runtime_release_authority": "RTMO_PHASE_LOCAL_CURRENT_AND_NEXT",
+      "climate_time_alignment": {
+        "basis": "active_offline_forcing_window_start",
+        "configured_layer3_epoch": "2026-08-24T11:00:00",
+        "effective_climate_epoch": "2026-10-28T16:00:00",
+        "forcing_start": "2026-10-28T16:00:00",
+        "forcing_end": "2026-10-29T15:00:00",
+        "epoch_rebased_to_forcing_start": true,
+        "elapsed_s": 0.0,
+        "safety_semantics": "offline_rebase_only_when_layer3_epoch_outside_forcing; no_end_clamp",
+        "forcing_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/internet_datasets/climate_twin/openmeteo_24h.csv",
+        "forcing_file_sha256": "441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc"
+      }
+    },
+    "handoff_hash": "59df29fc4d50ad78be9fa407f19e295ad782e4779143e6a9bb703bd13a8201f4",
+    "knowledge_id": "SETD:SETD_E-19416e55184140f0_1793825891292670:59df29fc4d50ad78",
+    "knowledge_version": "TDOC-runtime-v1",
+    "ok": true
+  },
+  "knowledge_assessment": {
+    "schema": "TDOC-offline-knowledge-assessment-v1",
+    "integrity": {
+      "handoff_hash_verified": true,
+      "existing_handoff_gate_ok": true,
+      "declared_setd_integrity_valid": true,
+      "setd_package_id": "SETD_E-19416e55184140f0_1793825891292670",
+      "finalization_ok": true,
+      "finalization_committed": true,
+      "package_bytes_verified_here": false,
+      "verification_scope": "caller-supplied handoff checks; package/forcing/version/freshness checks remain separate"
+    },
+    "quality": {
+      "classification": "PARTIAL_OFFLINE_CONTROL_PROOF",
+      "count_source": "manifest_claim",
+      "joint_control_proof_cycles": 243,
+      "timeline_rows": null,
+      "reported_counters": {
+        "safety_hold_cycles": 77,
+        "verified_candidate_cycles": 243,
+        "final_authorized_cycles": 243,
+        "closed_loop_effect_cycles": 243,
+        "joint_control_proof_cycles": 243,
+        "control_learning_cycles": 243,
+        "non_control_learning_cycles": 77,
+        "full_fidelity_runtime_error_cycles": 0
+      },
+      "reported_safety_knowledge_valid": true,
+      "reported_control_knowledge_valid": false,
+      "proof_definition": "same-cycle L4 verified + L5 FINAL + Layer2 control effect; phase labels/HOLD/geometry alone are not proof"
+    },
+    "coverage": {
+      "required_control_phases": [
+        "vertical_takeoff",
+        "hover",
+        "transition_forward",
+        "climb",
+        "cruise",
+        "turn",
+        "approach",
+        "transition_back",
+        "vertical_landing"
+      ],
+      "joint_proof_cycles_by_phase": {
+        "vertical_takeoff": 5,
+        "hover": 0,
+        "transition_forward": 12,
+        "climb": 22,
+        "cruise": 70,
+        "turn": 18,
+        "approach": 16,
+        "transition_back": 100,
+        "vertical_landing": 0
+      },
+      "assessed_complete": false,
+      "missing_control_phases": [
+        "hover",
+        "vertical_landing"
+      ],
+      "unknown_control_phases": [],
+      "declared_complete": false,
+      "declared_missing_control_phases": [
+        "hover",
+        "vertical_landing"
+      ]
+    },
+    "consistency_issues": [],
+    "legacy_flags": {
+      "valid_setd": false,
+      "setd_integrity_valid": true,
+      "control_knowledge_valid": false,
+      "offline_control_coverage_complete": false
+    },
+    "claims_trust": "handoff_hash_verified",
+    "actuation_authority": false,
+    "online_matching_offline_sample_required": false,
+    "runtime_control_authority": "fresh Layer2/Layer3 -> Layer4 -> Layer5 -> Layer6 -> Layer7 under TDOC"
+  },
+  "readiness_scope": "ONLINE_KNOWLEDGE_START_ONLY; not flight/control readiness",
+  "actuation_authority": false,
+  "setd_precheck": {
+    "checks": {
+      "setd_loaded": true,
+      "setd_identity_match": true
+    },
+    "blockers": [],
+    "expected_package_id": "SETD_E-19416e55184140f0_1793825891292670",
+    "actual_package_id": "SETD_E-19416e55184140f0_1793825891292670",
+    "control_knowledge_valid": false,
+    "offline_control_coverage_complete": false,
+    "mission_certification_status": "NOT_FULLY_CERTIFIED",
+    "missing_control_phases": [
+      "hover",
+      "vertical_landing"
+    ],
+    "phase_local_runtime_authority": "RTMO_CURRENT_AND_NEXT_PHASE"
+  },
+  "knowledge_policy_gate": {
+    "ok": true,
+    "status": "READY",
+    "reason": "OPTIONAL_POLICY_AVAILABLE",
+    "readiness_scope": "OFFLINE_KNOWLEDGE_STARTUP_ONLY; not flight/control readiness",
+    "policy_required_for_startup": false,
+    "policy_available": true,
+    "artifact_path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/knowledge/policy/online_policy.json.gz",
+    "artifact_hash": "7d9f739178d46d0f603df8286ee10a8ae0348e7792c4c4baf3cdbc7aa5de7a87",
+    "policy_diagnostics": {
+      "availability": "AVAILABLE",
+      "available": true,
+      "offline_prior_only": true,
+      "actuation_authority": false,
+      "ok": true,
+      "status": "READY",
+      "reason": null,
+      "reasons": [],
+      "artifact_path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/knowledge/policy/online_policy.json.gz",
+      "artifact_hash": "7d9f739178d46d0f603df8286ee10a8ae0348e7792c4c4baf3cdbc7aa5de7a87"
+    },
+    "actuation_authority": false,
+    "flight_ready": false,
+    "reused": true,
+    "compiled": false,
+    "handoff_hash": "59df29fc4d50ad78be9fa407f19e295ad782e4779143e6a9bb703bd13a8201f4"
+  },
+  "policy_required_for_startup": false,
+  "policy_available": true
+}

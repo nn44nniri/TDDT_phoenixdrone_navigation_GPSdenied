@@ -1,0 +1,4947 @@
+{
+  "schema": "TDOC-offline-validation-v1",
+  "OFFLINE_MISSION_VALID": false,
+  "OFFLINE_KNOWLEDGE_VALID": true,
+  "OFFLINE_CONTROL_READY": false,
+  "route_admission_status": "STRICT_ADMITTED",
+  "route_control_readiness_eligible": true,
+  "knowledge_quality": {
+    "safety_hold_cycles": 77,
+    "verified_candidate_cycles": 243,
+    "final_authorized_cycles": 243,
+    "closed_loop_effect_cycles": 243,
+    "joint_control_proof_cycles": 243,
+    "control_learning_cycles": 243,
+    "non_control_learning_cycles": 77,
+    "full_fidelity_runtime_error_cycles": 0,
+    "phase_control_coverage": {
+      "schema": "TDOC-offline-phase-control-coverage-v1",
+      "required_control_phases": [
+        "vertical_takeoff",
+        "hover",
+        "transition_forward",
+        "climb",
+        "cruise",
+        "turn",
+        "approach",
+        "transition_back",
+        "vertical_landing"
+      ],
+      "coverage": {
+        "vertical_takeoff": {
+          "cycles": 6,
+          "verified_cycles": 5,
+          "l5_final_cycles": 5,
+          "control_effect_cycles": 5,
+          "joint_proof_cycles": 5,
+          "control_capable": true
+        },
+        "hover": {
+          "cycles": 6,
+          "verified_cycles": 0,
+          "l5_final_cycles": 0,
+          "control_effect_cycles": 0,
+          "joint_proof_cycles": 0,
+          "control_capable": false
+        },
+        "transition_forward": {
+          "cycles": 20,
+          "verified_cycles": 12,
+          "l5_final_cycles": 12,
+          "control_effect_cycles": 12,
+          "joint_proof_cycles": 12,
+          "control_capable": true
+        },
+        "climb": {
+          "cycles": 26,
+          "verified_cycles": 22,
+          "l5_final_cycles": 22,
+          "control_effect_cycles": 22,
+          "joint_proof_cycles": 22,
+          "control_capable": true
+        },
+        "cruise": {
+          "cycles": 90,
+          "verified_cycles": 70,
+          "l5_final_cycles": 70,
+          "control_effect_cycles": 70,
+          "joint_proof_cycles": 70,
+          "control_capable": true
+        },
+        "turn": {
+          "cycles": 22,
+          "verified_cycles": 18,
+          "l5_final_cycles": 18,
+          "control_effect_cycles": 18,
+          "joint_proof_cycles": 18,
+          "control_capable": true
+        },
+        "approach": {
+          "cycles": 28,
+          "verified_cycles": 16,
+          "l5_final_cycles": 16,
+          "control_effect_cycles": 16,
+          "joint_proof_cycles": 16,
+          "control_capable": true
+        },
+        "transition_back": {
+          "cycles": 121,
+          "verified_cycles": 100,
+          "l5_final_cycles": 100,
+          "control_effect_cycles": 100,
+          "joint_proof_cycles": 100,
+          "control_capable": true
+        },
+        "vertical_landing": {
+          "cycles": 0,
+          "verified_cycles": 0,
+          "l5_final_cycles": 0,
+          "control_effect_cycles": 0,
+          "joint_proof_cycles": 0,
+          "control_capable": false
+        }
+      },
+      "missing_control_phases": [
+        "hover",
+        "vertical_landing"
+      ],
+      "all_required_control_phases": false
+    },
+    "safety_knowledge_valid": true,
+    "control_knowledge_valid": false,
+    "control_learning_semantics": "only same-cycle L4 verified + L5 FINAL + accepted Layer2 control effect counts; HOLD/state-propagation is excluded"
+  },
+  "reasons": [
+    "phase_control_coverage_incomplete"
+  ],
+  "OFFLINE_KNOWLEDGE_VALID_SCOPE": "finalized handoff and loaded SETD identity; policy/control quality excluded",
+  "OFFLINE_PIPELINE_READY": true,
+  "OFFLINE_POLICY_AVAILABLE": true,
+  "knowledge_assessment": {
+    "schema": "TDOC-offline-knowledge-assessment-v1",
+    "integrity": {
+      "handoff_hash_verified": true,
+      "existing_handoff_gate_ok": true,
+      "declared_setd_integrity_valid": true,
+      "setd_package_id": "SETD_E-19416e55184140f0_1793825891292670",
+      "finalization_ok": true,
+      "finalization_committed": true,
+      "package_bytes_verified_here": false,
+      "verification_scope": "caller-supplied handoff checks; package/forcing/version/freshness checks remain separate"
+    },
+    "quality": {
+      "classification": "PARTIAL_OFFLINE_CONTROL_PROOF",
+      "count_source": "manifest_claim",
+      "joint_control_proof_cycles": 243,
+      "timeline_rows": null,
+      "reported_counters": {
+        "safety_hold_cycles": 77,
+        "verified_candidate_cycles": 243,
+        "final_authorized_cycles": 243,
+        "closed_loop_effect_cycles": 243,
+        "joint_control_proof_cycles": 243,
+        "control_learning_cycles": 243,
+        "non_control_learning_cycles": 77,
+        "full_fidelity_runtime_error_cycles": 0
+      },
+      "reported_safety_knowledge_valid": true,
+      "reported_control_knowledge_valid": false,
+      "proof_definition": "same-cycle L4 verified + L5 FINAL + Layer2 control effect; phase labels/HOLD/geometry alone are not proof"
+    },
+    "coverage": {
+      "required_control_phases": [
+        "vertical_takeoff",
+        "hover",
+        "transition_forward",
+        "climb",
+        "cruise",
+        "turn",
+        "approach",
+        "transition_back",
+        "vertical_landing"
+      ],
+      "joint_proof_cycles_by_phase": {
+        "vertical_takeoff": 5,
+        "hover": 0,
+        "transition_forward": 12,
+        "climb": 22,
+        "cruise": 70,
+        "turn": 18,
+        "approach": 16,
+        "transition_back": 100,
+        "vertical_landing": 0
+      },
+      "assessed_complete": false,
+      "missing_control_phases": [
+        "hover",
+        "vertical_landing"
+      ],
+      "unknown_control_phases": [],
+      "declared_complete": false,
+      "declared_missing_control_phases": [
+        "hover",
+        "vertical_landing"
+      ]
+    },
+    "consistency_issues": [],
+    "legacy_flags": {
+      "valid_setd": false,
+      "setd_integrity_valid": true,
+      "control_knowledge_valid": false,
+      "offline_control_coverage_complete": false
+    },
+    "claims_trust": "handoff_hash_verified",
+    "actuation_authority": false,
+    "online_matching_offline_sample_required": false,
+    "runtime_control_authority": "fresh Layer2/Layer3 -> Layer4 -> Layer5 -> Layer6 -> Layer7 under TDOC"
+  },
+  "knowledge_finalization": {
+    "ok": true,
+    "committed": true,
+    "status": "READY",
+    "readiness_scope": "OFFLINE_SETD_HANDOFF_ONLY; not control/flight readiness",
+    "layer5_finalization": {
+      "schema": "KStore-manifest-v2",
+      "backend": "FILE",
+      "setd_pointer": "SETD_KSTORE.json",
+      "setd_pointer_sha256": "156ad704df8b9031b03a91dcd28e5638b11d0240f6682bb6eb5aa90a82886d86",
+      "package_id": "SETD_E-19416e55184140f0_1793825891292670",
+      "package_manifest": "setd/packages/SETD_E-19416e55184140f0_1793825891292670/manifest.json",
+      "package_manifest_sha256": "ae308184afae121e30a69783bb0a478088e11d29cde2d50a381758701756abbc",
+      "episode_id": "E-19416e55184140f0",
+      "experience_count": 500,
+      "last_sequence": 500,
+      "last_record_hash": "ad48a25e9268f9afdf28e35b3119ce5ad388065c148a75c095a828c8e9bb4ee4",
+      "ss_manifest": "ss/SS_MANIFEST.json",
+      "ss_manifest_sha256": "5c4aa6567c1136a65a887a5422d91879704d5fc76e196edee06069ec123792d7",
+      "committed": true,
+      "committed_at": 1793825891.3158867,
+      "layout": "segmented-ss+multi-file-setd-v2",
+      "knowledge_quality": {
+        "safety_hold_cycles": 77,
+        "verified_candidate_cycles": 243,
+        "final_authorized_cycles": 243,
+        "closed_loop_effect_cycles": 243,
+        "joint_control_proof_cycles": 243,
+        "control_learning_cycles": 243,
+        "non_control_learning_cycles": 77,
+        "full_fidelity_runtime_error_cycles": 0,
+        "phase_control_coverage": {
+          "schema": "TDOC-offline-phase-control-coverage-v1",
+          "required_control_phases": [
+            "vertical_takeoff",
+            "hover",
+            "transition_forward",
+            "climb",
+            "cruise",
+            "turn",
+            "approach",
+            "transition_back",
+            "vertical_landing"
+          ],
+          "coverage": {
+            "vertical_takeoff": {
+              "cycles": 6,
+              "verified_cycles": 5,
+              "l5_final_cycles": 5,
+              "control_effect_cycles": 5,
+              "joint_proof_cycles": 5,
+              "control_capable": true
+            },
+            "hover": {
+              "cycles": 6,
+              "verified_cycles": 0,
+              "l5_final_cycles": 0,
+              "control_effect_cycles": 0,
+              "joint_proof_cycles": 0,
+              "control_capable": false
+            },
+            "transition_forward": {
+              "cycles": 20,
+              "verified_cycles": 12,
+              "l5_final_cycles": 12,
+              "control_effect_cycles": 12,
+              "joint_proof_cycles": 12,
+              "control_capable": true
+            },
+            "climb": {
+              "cycles": 26,
+              "verified_cycles": 22,
+              "l5_final_cycles": 22,
+              "control_effect_cycles": 22,
+              "joint_proof_cycles": 22,
+              "control_capable": true
+            },
+            "cruise": {
+              "cycles": 90,
+              "verified_cycles": 70,
+              "l5_final_cycles": 70,
+              "control_effect_cycles": 70,
+              "joint_proof_cycles": 70,
+              "control_capable": true
+            },
+            "turn": {
+              "cycles": 22,
+              "verified_cycles": 18,
+              "l5_final_cycles": 18,
+              "control_effect_cycles": 18,
+              "joint_proof_cycles": 18,
+              "control_capable": true
+            },
+            "approach": {
+              "cycles": 28,
+              "verified_cycles": 16,
+              "l5_final_cycles": 16,
+              "control_effect_cycles": 16,
+              "joint_proof_cycles": 16,
+              "control_capable": true
+            },
+            "transition_back": {
+              "cycles": 121,
+              "verified_cycles": 100,
+              "l5_final_cycles": 100,
+              "control_effect_cycles": 100,
+              "joint_proof_cycles": 100,
+              "control_capable": true
+            },
+            "vertical_landing": {
+              "cycles": 0,
+              "verified_cycles": 0,
+              "l5_final_cycles": 0,
+              "control_effect_cycles": 0,
+              "joint_proof_cycles": 0,
+              "control_capable": false
+            }
+          },
+          "missing_control_phases": [
+            "hover",
+            "vertical_landing"
+          ],
+          "all_required_control_phases": false
+        },
+        "safety_knowledge_valid": true,
+        "control_knowledge_valid": false,
+        "control_learning_semantics": "only same-cycle L4 verified + L5 FINAL + accepted Layer2 control effect counts; HOLD/state-propagation is excluded",
+        "live_capability_registry": {
+          "schema": "TDOC-RTMO-live-capability-registry-v1",
+          "run_id": "offline-6f12420525664f468b1bc58d4020e07f",
+          "episode_id": "OFFLINE_SE-001",
+          "mission_version": "RTMO-11PHASE-v2",
+          "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/rtmo/capability_registry.json.gz",
+          "sha256": "4980912fc7647b535c52423efab748d1c0f2c9b69ce515c3275b6e53820fba91",
+          "authority": "runtime transaction results; reports audit-only"
+        },
+        "control_knowledge_valid_inputs": {
+          "contract": "Layer5-offline-control-validity-monotonic-v1",
+          "global_control_evidence": true,
+          "supplied_tdoc_control_valid_present": true,
+          "supplied_tdoc_control_valid": false,
+          "phase_control_coverage_present": true,
+          "all_required_control_phases": false,
+          "explicit_inputs_complete": true,
+          "monotonic_input_ready": false,
+          "false_to_true_upgrade_allowed": false
+        },
+        "control_readiness_semantics": "requires explicit TDOC control-validity=true + explicit complete required-phase same-cycle joint proof + global verified/FINAL/control-effect evidence with zero FF runtime errors; missing inputs and explicit false are fail-closed, and Layer5 may only downgrade true to false"
+      },
+      "ok": true,
+      "kstore_sync": {
+        "changed_files": 21,
+        "raw_bytes_processed": 101025,
+        "gzip_bytes_written": 27013,
+        "persistent_compressed": true,
+        "jsonl_chunked": true,
+        "working_root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/.transient/tdoc-layer5-_xlljxmn",
+        "persistent_root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/layer5/kstore"
+      },
+      "kstore_fingerprint": {
+        "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/layer5/kstore",
+        "file_count": 452,
+        "total_bytes": 728620,
+        "sha256": "8c0b85c753b251b66de9adb29af5be92d48ad2fe787d75c7a60d3a27a478cfe2",
+        "compressed_at_rest": true
+      }
+    },
+    "setd": {
+      "ok": true,
+      "manifest": {
+        "backend": "FILE",
+        "committed": true,
+        "committed_at": 1793825891.3158867,
+        "episode_id": "E-19416e55184140f0",
+        "experience_count": 500,
+        "knowledge_quality": {
+          "closed_loop_effect_cycles": 243,
+          "control_knowledge_valid": false,
+          "control_knowledge_valid_inputs": {
+            "all_required_control_phases": false,
+            "contract": "Layer5-offline-control-validity-monotonic-v1",
+            "explicit_inputs_complete": true,
+            "false_to_true_upgrade_allowed": false,
+            "global_control_evidence": true,
+            "monotonic_input_ready": false,
+            "phase_control_coverage_present": true,
+            "supplied_tdoc_control_valid": false,
+            "supplied_tdoc_control_valid_present": true
+          },
+          "control_learning_cycles": 243,
+          "control_learning_semantics": "only same-cycle L4 verified + L5 FINAL + accepted Layer2 control effect counts; HOLD/state-propagation is excluded",
+          "control_readiness_semantics": "requires explicit TDOC control-validity=true + explicit complete required-phase same-cycle joint proof + global verified/FINAL/control-effect evidence with zero FF runtime errors; missing inputs and explicit false are fail-closed, and Layer5 may only downgrade true to false",
+          "final_authorized_cycles": 243,
+          "full_fidelity_runtime_error_cycles": 0,
+          "joint_control_proof_cycles": 243,
+          "live_capability_registry": {
+            "authority": "runtime transaction results; reports audit-only",
+            "episode_id": "OFFLINE_SE-001",
+            "mission_version": "RTMO-11PHASE-v2",
+            "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/rtmo/capability_registry.json.gz",
+            "run_id": "offline-6f12420525664f468b1bc58d4020e07f",
+            "schema": "TDOC-RTMO-live-capability-registry-v1",
+            "sha256": "4980912fc7647b535c52423efab748d1c0f2c9b69ce515c3275b6e53820fba91"
+          },
+          "non_control_learning_cycles": 77,
+          "phase_control_coverage": {
+            "all_required_control_phases": false,
+            "coverage": {
+              "approach": {
+                "control_capable": true,
+                "control_effect_cycles": 16,
+                "cycles": 28,
+                "joint_proof_cycles": 16,
+                "l5_final_cycles": 16,
+                "verified_cycles": 16
+              },
+              "climb": {
+                "control_capable": true,
+                "control_effect_cycles": 22,
+                "cycles": 26,
+                "joint_proof_cycles": 22,
+                "l5_final_cycles": 22,
+                "verified_cycles": 22
+              },
+              "cruise": {
+                "control_capable": true,
+                "control_effect_cycles": 70,
+                "cycles": 90,
+                "joint_proof_cycles": 70,
+                "l5_final_cycles": 70,
+                "verified_cycles": 70
+              },
+              "hover": {
+                "control_capable": false,
+                "control_effect_cycles": 0,
+                "cycles": 6,
+                "joint_proof_cycles": 0,
+                "l5_final_cycles": 0,
+                "verified_cycles": 0
+              },
+              "transition_back": {
+                "control_capable": true,
+                "control_effect_cycles": 100,
+                "cycles": 121,
+                "joint_proof_cycles": 100,
+                "l5_final_cycles": 100,
+                "verified_cycles": 100
+              },
+              "transition_forward": {
+                "control_capable": true,
+                "control_effect_cycles": 12,
+                "cycles": 20,
+                "joint_proof_cycles": 12,
+                "l5_final_cycles": 12,
+                "verified_cycles": 12
+              },
+              "turn": {
+                "control_capable": true,
+                "control_effect_cycles": 18,
+                "cycles": 22,
+                "joint_proof_cycles": 18,
+                "l5_final_cycles": 18,
+                "verified_cycles": 18
+              },
+              "vertical_landing": {
+                "control_capable": false,
+                "control_effect_cycles": 0,
+                "cycles": 0,
+                "joint_proof_cycles": 0,
+                "l5_final_cycles": 0,
+                "verified_cycles": 0
+              },
+              "vertical_takeoff": {
+                "control_capable": true,
+                "control_effect_cycles": 5,
+                "cycles": 6,
+                "joint_proof_cycles": 5,
+                "l5_final_cycles": 5,
+                "verified_cycles": 5
+              }
+            },
+            "missing_control_phases": [
+              "hover",
+              "vertical_landing"
+            ],
+            "required_control_phases": [
+              "vertical_takeoff",
+              "hover",
+              "transition_forward",
+              "climb",
+              "cruise",
+              "turn",
+              "approach",
+              "transition_back",
+              "vertical_landing"
+            ],
+            "schema": "TDOC-offline-phase-control-coverage-v1"
+          },
+          "safety_hold_cycles": 77,
+          "safety_knowledge_valid": true,
+          "verified_candidate_cycles": 243
+        },
+        "last_record_hash": "ad48a25e9268f9afdf28e35b3119ce5ad388065c148a75c095a828c8e9bb4ee4",
+        "last_sequence": 500,
+        "layout": "segmented-ss+multi-file-setd-v2",
+        "package_id": "SETD_E-19416e55184140f0_1793825891292670",
+        "package_manifest": "setd/packages/SETD_E-19416e55184140f0_1793825891292670/manifest.json",
+        "package_manifest_sha256": "ae308184afae121e30a69783bb0a478088e11d29cde2d50a381758701756abbc",
+        "schema": "KStore-manifest-v2",
+        "setd_pointer": "SETD_KSTORE.json",
+        "setd_pointer_sha256": "156ad704df8b9031b03a91dcd28e5638b11d0240f6682bb6eb5aa90a82886d86",
+        "ss_manifest": "ss/SS_MANIFEST.json",
+        "ss_manifest_sha256": "5c4aa6567c1136a65a887a5422d91879704d5fc76e196edee06069ec123792d7"
+      },
+      "knowledge": {
+        "created_at": 1793825891.29267,
+        "episode_id": "E-19416e55184140f0",
+        "experience_count": 500,
+        "last_record_hash": "ad48a25e9268f9afdf28e35b3119ce5ad388065c148a75c095a828c8e9bb4ee4",
+        "model_version": "PHX-forward-unvalidated-qLPV",
+        "policy_version": "L5-policy-v1",
+        "schema": "SETD-KStore-v2",
+        "source_ss_manifest_sha256": "5c4aa6567c1136a65a887a5422d91879704d5fc76e196edee06069ec123792d7",
+        "knowledge": {
+          "policy_version": "L5-policy-v1",
+          "source": "Layer5 single-episode Fast/Meso/Slow aggregation",
+          "episode_summary": {
+            "bounded_ram": true,
+            "fast_count": 320,
+            "full_episode_in_ram": false,
+            "meso": [
+              {
+                "J_C_max": 5.295827091272971,
+                "J_C_mean": 3.255836263578685,
+                "confidence_mean": 0.32221009074176205,
+                "count": 3,
+                "index": 43,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999991935,
+                "objective_mean": {
+                  "consistency": 8.551805513590827,
+                  "control_effort": 0.0,
+                  "energy": 3.690573859434146e-07,
+                  "margin": 0.0,
+                  "mission": 74.12481018062698,
+                  "risk": 0.3333333333333333,
+                  "sensitivity": 0.16665016471378516,
+                  "time": 7.480949369880791,
+                  "uncertainty": 99.23107981163606
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0001",
+                  null,
+                  null
+                ],
+                "sha256": "ae27611a2b12d2a9318493b4bebd350ce2d74bf9b1ddfe61909dd31b89ee1c72"
+              },
+              {
+                "J_C_max": 4.758532761751578,
+                "J_C_mean": 3.406343046822125,
+                "confidence_mean": 0.6444188709895298,
+                "count": 3,
+                "index": 44,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999317,
+                "objective_mean": {
+                  "consistency": 12.736020336320086,
+                  "control_effort": 0.0,
+                  "energy": 0.0259265266140778,
+                  "margin": 0.0,
+                  "mission": 149.90912253307766,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.3333199252922642,
+                  "time": 17.102601916172652,
+                  "uncertainty": 198.49293227529273
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  null,
+                  "C0003",
+                  "C0001"
+                ],
+                "sha256": "eab362cbbdec40eed4dabae65c3e4fbc5f5f55ebe425628ab604b716266f5dda"
+              },
+              {
+                "J_C_max": 4.7792443723513225,
+                "J_C_mean": 2.0923543198275008,
+                "confidence_mean": 0.9666296264565234,
+                "count": 3,
+                "index": 45,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999993855,
+                "objective_mean": {
+                  "consistency": 11.075359939730378,
+                  "control_effort": 0.0,
+                  "energy": 0.025941563964248848,
+                  "margin": 0.0,
+                  "mission": 227.44367868672637,
+                  "risk": 1.0,
+                  "sensitivity": 0.49997032426673593,
+                  "time": 21.01534004446626,
+                  "uncertainty": 292.62144190254827
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0001",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "b75f0cd32174ae60320617dd3384b32988290a5b54d3a7da5fdd6a46d0db4ff2"
+              },
+              {
+                "J_C_max": 5.454010364000851,
+                "J_C_mean": 2.9735610830961607,
+                "confidence_mean": 0.966715334035788,
+                "count": 3,
+                "index": 46,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999997218,
+                "objective_mean": {
+                  "consistency": 12.744741068940666,
+                  "control_effort": 0.0,
+                  "energy": 0.036580196135853095,
+                  "margin": 0.0,
+                  "mission": 298.7998481778426,
+                  "risk": 1.0,
+                  "sensitivity": 0.49866249180350114,
+                  "time": 28.615744711770347,
+                  "uncertainty": 303.73082839870176
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0001"
+                ],
+                "sha256": "3870ae6899ca4cee6aa038be92673e66095d314687e9133d2e709a366e38170c"
+              },
+              {
+                "J_C_max": 11.756235354270693,
+                "J_C_mean": 7.877822582341007,
+                "confidence_mean": 0.9666274237361885,
+                "count": 3,
+                "index": 47,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.999999999999474,
+                "objective_mean": {
+                  "consistency": 34.76512157194675,
+                  "control_effort": 0.0,
+                  "energy": 0.04725119415487787,
+                  "margin": 0.0,
+                  "mission": 353.22077582779747,
+                  "risk": 1.0,
+                  "sensitivity": 0.49999999371555914,
+                  "time": 27.56163919864744,
+                  "uncertainty": 294.3071202934503
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0001",
+                  "C0001",
+                  "C0003"
+                ],
+                "sha256": "ba96436b1171cf71c9c62dcf176a03d4cace84c7965ec6685b0ab2218d11fda3"
+              },
+              {
+                "J_C_max": 2.373297574384526,
+                "J_C_mean": 1.1841597096592618,
+                "confidence_mean": 0.6444174621955752,
+                "count": 3,
+                "index": 48,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999059,
+                "objective_mean": {
+                  "consistency": 4.9904652419604485,
+                  "control_effort": 0.0,
+                  "energy": 0.05183128497127392,
+                  "margin": 0.0,
+                  "mission": 226.94250758689708,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.3333333311862915,
+                  "time": 24.000090730070415,
+                  "uncertainty": 202.3559399564277
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  null,
+                  "C0003"
+                ],
+                "sha256": "fd915e86e71c433675d59dbfcecbe22390a9e4ee74a78e0f6c734c778c71ce92"
+              },
+              {
+                "J_C_max": 5.4564045584218075,
+                "J_C_mean": 3.978392213076078,
+                "confidence_mean": 0.644417551248016,
+                "count": 3,
+                "index": 49,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999923982,
+                "objective_mean": {
+                  "consistency": 14.568121879336411,
+                  "control_effort": 0.0,
+                  "energy": 0.05185883955823772,
+                  "margin": 0.0,
+                  "mission": 202.33423190128516,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.3333333311874275,
+                  "time": 20.905103913533043,
+                  "uncertainty": 201.68804584290856
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  null
+                ],
+                "sha256": "a1f6a3c38161c6781b36f163b61a5de54f76d3cb0e9daa04780ccaecafa9e107"
+              },
+              {
+                "J_C_max": 4.979336992094017,
+                "J_C_mean": 3.858795537311141,
+                "confidence_mean": 0.9666264424110492,
+                "count": 3,
+                "index": 50,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999997257,
+                "objective_mean": {
+                  "consistency": 18.638224260163486,
+                  "control_effort": 0.0,
+                  "energy": 0.07778621973812572,
+                  "margin": 0.0,
+                  "mission": 298.0959063725485,
+                  "risk": 1.0,
+                  "sensitivity": 0.49999999678105767,
+                  "time": 32.79423988531136,
+                  "uncertainty": 301.6655263531734
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "4b9d2c11862d9d6ac506445bb66531c8689f2f877c42bdef5d628a2d2466f2c7"
+              },
+              {
+                "J_C_max": 2.137147813587371,
+                "J_C_mean": 0.8116478885607984,
+                "confidence_mean": 0.9778574618946928,
+                "count": 3,
+                "index": 51,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999997432,
+                "objective_mean": {
+                  "consistency": 4.291862522683724,
+                  "control_effort": 0.0,
+                  "energy": 0.02593916936693197,
+                  "margin": 0.0,
+                  "mission": 325.10503596648823,
+                  "risk": 1.0,
+                  "sensitivity": 0.33152707376206064,
+                  "time": 29.00878105662122,
+                  "uncertainty": 305.48690650842076
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "7ce16b3bcddbbc237854f3e43070b3a00c8da36e86df041590b44ec1c8a4febb"
+              },
+              {
+                "J_C_max": 9.335104377237624,
+                "J_C_mean": 5.857998239126213,
+                "confidence_mean": 0.9666276435054632,
+                "count": 3,
+                "index": 52,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999996446,
+                "objective_mean": {
+                  "consistency": 25.06954114324599,
+                  "control_effort": 0.0,
+                  "energy": 0.06250712034495978,
+                  "margin": 0.0,
+                  "mission": 406.92695354933045,
+                  "risk": 1.0,
+                  "sensitivity": 0.4999999952468903,
+                  "time": 35.14832962792991,
+                  "uncertainty": 292.6580851731059
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0001"
+                ],
+                "sha256": "c075c9864265ad8a89b857a2079c8ad4359f2f9fabfbad8ab8b8bd4bef15fd02"
+              },
+              {
+                "J_C_max": 12.797935473785742,
+                "J_C_mean": 6.507393741592252,
+                "confidence_mean": 0.9666272583831328,
+                "count": 3,
+                "index": 53,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999997586,
+                "objective_mean": {
+                  "consistency": 28.7173157432364,
+                  "control_effort": 0.0,
+                  "energy": 0.04724475174565039,
+                  "margin": 0.0,
+                  "mission": 447.8811364179511,
+                  "risk": 1.0,
+                  "sensitivity": 0.4999999937132145,
+                  "time": 33.98790113404578,
+                  "uncertainty": 295.54726970398264
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0001",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "cd0fa983f4513a64e5d9d7c5f35e4bf223666913b855cee783bd914686967bf2"
+              },
+              {
+                "J_C_max": 1.8384052432152296,
+                "J_C_mean": 1.1718342389556657,
+                "confidence_mean": 0.0,
+                "count": 3,
+                "index": 54,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999998915,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null,
+                  null
+                ],
+                "sha256": "61125c2745bf919a754bb28d26e2556de3dde5819d35657377ff62eb030b27f4"
+              },
+              {
+                "J_C_max": 3.834724128306887,
+                "J_C_mean": 2.7699216108572156,
+                "confidence_mean": 0.6444171702551048,
+                "count": 3,
+                "index": 55,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999993974,
+                "objective_mean": {
+                  "consistency": 9.882138824846539,
+                  "control_effort": 0.0,
+                  "energy": 0.05185332531148032,
+                  "margin": 0.0,
+                  "mission": 263.6538081161662,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.3333333311872021,
+                  "time": 30.309195795610126,
+                  "uncertainty": 204.54549305089412
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  null,
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "91fb88f8fff5bed773e00d3e1f88b95eafe7a9b8151af5bdad2931a6772128c2"
+              },
+              {
+                "J_C_max": 5.01611444560796,
+                "J_C_mean": 2.4829563549277043,
+                "confidence_mean": 0.9777387436198822,
+                "count": 3,
+                "index": 56,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999747,
+                "objective_mean": {
+                  "consistency": 12.47926382826751,
+                  "control_effort": 0.0,
+                  "energy": 0.051874784671293764,
+                  "margin": 0.0,
+                  "mission": 395.6142410688112,
+                  "risk": 1.0,
+                  "sensitivity": 0.3333257980256814,
+                  "time": 34.54432025884298,
+                  "uncertainty": 296.5118377951177
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "97ed7fe4b77ca8063797a9be323407ca09ace2c8db67324c8b69b29da88a42bf"
+              },
+              {
+                "J_C_max": 3.6019486050527747,
+                "J_C_mean": 2.312535284799095,
+                "confidence_mean": 0.9666812311381154,
+                "count": 3,
+                "index": 57,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999974176,
+                "objective_mean": {
+                  "consistency": 9.757680577123574,
+                  "control_effort": 0.0,
+                  "energy": 0.051842674289839775,
+                  "margin": 0.0,
+                  "mission": 466.77866159037376,
+                  "risk": 1.0,
+                  "sensitivity": 0.4991813829916869,
+                  "time": 42.00933377685587,
+                  "uncertainty": 300.05696568207634
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "e08b3f56ffad7da0115bbbae7dcaa6b652ef93c32925f1359ee5cacff0032f2b"
+              },
+              {
+                "J_C_max": 12.416418586096194,
+                "J_C_mean": 8.530694880416293,
+                "confidence_mean": 0.9666276269920188,
+                "count": 3,
+                "index": 58,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.999999999999838,
+                "objective_mean": {
+                  "consistency": 37.61331136963303,
+                  "control_effort": 0.0,
+                  "energy": 0.06252488597545287,
+                  "margin": 0.0,
+                  "mission": 524.6136158827264,
+                  "risk": 1.0,
+                  "sensitivity": 0.4999999952491239,
+                  "time": 39.29580179538728,
+                  "uncertainty": 292.7819351817135
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0001",
+                  "C0003"
+                ],
+                "sha256": "b74c6c58951d31f7b70344ea5104fff2bb8cf9b460b79db046bdcc1258bba01d"
+              },
+              {
+                "J_C_max": 1.988965841281212,
+                "J_C_mean": 1.0283715468263777,
+                "confidence_mean": 0.3222086723830028,
+                "count": 3,
+                "index": 59,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999438,
+                "objective_mean": {
+                  "consistency": 1.2880039053972014,
+                  "control_effort": 0.0,
+                  "energy": 0.010651211935313503,
+                  "margin": 0.0,
+                  "mission": 178.48903220324576,
+                  "risk": 0.3333333333333333,
+                  "sensitivity": 0.1666666640570522,
+                  "time": 13.599929686293905,
+                  "uncertainty": 101.61909893801224
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  null,
+                  null
+                ],
+                "sha256": "05dfa7c0281b1afb702d4737f0cdd3629c3f5b3c1d7dc96ca21613be6309f0b0"
+              },
+              {
+                "J_C_max": 2.1969247740952396,
+                "J_C_mean": 2.0988040029201156,
+                "confidence_mean": 0.0,
+                "count": 3,
+                "index": 60,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999662,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null,
+                  null
+                ],
+                "sha256": "9b6096306b023cf6da953b8bb5a446ce96ff7142f11efc29261f7e269aabd1ba"
+              },
+              {
+                "J_C_max": 2.2795212395731888,
+                "J_C_mean": 2.2317504407257998,
+                "confidence_mean": 0.0,
+                "count": 3,
+                "index": 61,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999993471,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null,
+                  null
+                ],
+                "sha256": "d1af9fd0e1bc6763c4aa43ade1cee086093df65daaceacf316a595c0952b09f3"
+              },
+              {
+                "J_C_max": 2.5848794169139224,
+                "J_C_mean": 2.311396893755132,
+                "confidence_mean": 0.3222087116431605,
+                "count": 3,
+                "index": 62,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999293,
+                "objective_mean": {
+                  "consistency": 4.14747526842754,
+                  "control_effort": 0.0,
+                  "energy": 0.02592840732308353,
+                  "margin": 0.0,
+                  "mission": 161.14278341152246,
+                  "risk": 0.3333333333333333,
+                  "sensitivity": 0.16666666559367316,
+                  "time": 18.716293628531538,
+                  "uncertainty": 101.32387941268661
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  null,
+                  null,
+                  "C0003"
+                ],
+                "sha256": "106cecd62427d9884b78a063b4a4f531a4d32e73104cd1c01148633064306e81"
+              },
+              {
+                "J_C_max": 5.819497354676577,
+                "J_C_mean": 4.293617040667968,
+                "confidence_mean": 0.9666274435395447,
+                "count": 3,
+                "index": 63,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.999999999999806,
+                "objective_mean": {
+                  "consistency": 21.98163036920019,
+                  "control_effort": 0.0,
+                  "energy": 0.0778290870269225,
+                  "margin": 0.0,
+                  "mission": 467.6009566940535,
+                  "risk": 1.0000250757199578,
+                  "sensitivity": 0.49999999678281415,
+                  "time": 38.37162963700436,
+                  "uncertainty": 294.1600616186656
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "25110207efb9c19e4f6bc08a5e9a712d9dc3b17c1f5c9a04f8b952ed884191f9"
+              },
+              {
+                "J_C_max": 3.5186401473193514,
+                "J_C_mean": 1.3249037228559857,
+                "confidence_mean": 0.9666920614378306,
+                "count": 3,
+                "index": 64,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.999999999999955,
+                "objective_mean": {
+                  "consistency": 5.755414736296234,
+                  "control_effort": 0.0,
+                  "energy": 0.0409368704699156,
+                  "margin": 0.0,
+                  "mission": 525.3057605196058,
+                  "risk": 1.0,
+                  "sensitivity": 0.49902084125594,
+                  "time": 41.10437585676041,
+                  "uncertainty": 299.1005873135357
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "267f75cb2e82e2bf63a535e60b29e976b32d62d89d71aa8d765652be40903b5c"
+              },
+              {
+                "J_C_max": 8.279000065581624,
+                "J_C_mean": 7.044736873584932,
+                "confidence_mean": 0.9666275572355039,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999997773,
+                "objective_mean": {
+                  "consistency": 30.65450079671037,
+                  "control_effort": 0.0,
+                  "energy": 0.0777953603009112,
+                  "margin": 0.0,
+                  "mission": 588.0318325307592,
+                  "risk": 1.0,
+                  "sensitivity": 0.4999999967814229,
+                  "time": 46.21399256098437,
+                  "uncertainty": 293.30434281578675
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "0599912f6da2c6495c4da820a5792fbf5aa68b61c82a6d96701d388050904b37"
+              },
+              {
+                "J_C_max": 3.1718189653182076,
+                "J_C_mean": 1.487439348565901,
+                "confidence_mean": 0.6444177448535428,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999998912,
+                "objective_mean": {
+                  "consistency": 6.008292796362714,
+                  "control_effort": 0.0,
+                  "energy": 0.051820169662174384,
+                  "margin": 0.0,
+                  "mission": 405.49255751213667,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.33333333118583086,
+                  "time": 29.638991136271265,
+                  "uncertainty": 200.23600544784364
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  null
+                ],
+                "sha256": "e2f0c1e5073759665ebc11abcd9221cbce73d31fded44f97fa95b15d7c8a5e20"
+              },
+              {
+                "J_C_max": 2.179825453326219,
+                "J_C_mean": 1.6260501556884164,
+                "confidence_mean": 0.0,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999749,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null,
+                  null
+                ],
+                "sha256": "d720e11923cf96662ecc556e445aff66515d0e436cbe358b69b7167a97e79ff9"
+              },
+              {
+                "J_C_max": 0.5900829050659728,
+                "J_C_mean": 0.579137886659823,
+                "confidence_mean": 0.0,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999419,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null,
+                  null
+                ],
+                "sha256": "052bcf24fdd1130c48a63b623ecd68c6ed97d1161cd2a85adbc31f6002e2b650"
+              },
+              {
+                "J_C_max": 0.6644994167850763,
+                "J_C_mean": 0.6579084147740742,
+                "confidence_mean": 0.32220508836665945,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999998765,
+                "objective_mean": {
+                  "consistency": 1.0253215471601211,
+                  "control_effort": 0.0,
+                  "energy": 4.154107271789921e-08,
+                  "margin": 0.0,
+                  "mission": 177.8885479686658,
+                  "risk": 0.3333333333333333,
+                  "sensitivity": 0.16666515763832324,
+                  "time": 29.806170236714745,
+                  "uncertainty": 129.25243039028285
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  null,
+                  null,
+                  "C0003"
+                ],
+                "sha256": "8f0a6735cb424efb355e9a0d875470f80e5fcd81a7f8bf2e607b580a0d745fd6"
+              },
+              {
+                "J_C_max": 6.907126937575066,
+                "J_C_mean": 3.912798879083227,
+                "confidence_mean": 0.9777338511875067,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999997317,
+                "objective_mean": {
+                  "consistency": 18.896603426846426,
+                  "control_effort": 0.0,
+                  "energy": 0.051872453527059104,
+                  "margin": 0.0,
+                  "mission": 493.4067948626958,
+                  "risk": 1.0005291313659872,
+                  "sensitivity": 0.33333079585526093,
+                  "time": 54.92291316683841,
+                  "uncertainty": 330.70616534312535
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "c9d07eeb8ea3e19e77c327faaab0e398e8ea8c05b166d8d5920f288c95dceee6"
+              },
+              {
+                "J_C_max": 3.145129410881802,
+                "J_C_mean": 1.7647592784016497,
+                "confidence_mean": 0.6444103559650977,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999996911,
+                "objective_mean": {
+                  "consistency": 3.3144079148337826,
+                  "control_effort": 0.0,
+                  "energy": 6.614857733722753e-08,
+                  "margin": 0.0,
+                  "mission": 308.4009690024743,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.33332860801746533,
+                  "time": 48.6213460221721,
+                  "uncertainty": 258.0142520689934
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  null,
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "6b42391cd3b7c75f9e47f5a6303657190a00d9a84e1935bf7c7f626862f85a14"
+              },
+              {
+                "J_C_max": 1.4472449459430214,
+                "J_C_mean": 1.2100169589879262,
+                "confidence_mean": 0.6444110506714,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.999999999999528,
+                "objective_mean": {
+                  "consistency": 3.3487860036766843,
+                  "control_effort": 0.0,
+                  "energy": 7.010709516962341e-08,
+                  "margin": 0.0,
+                  "mission": 285.35817196421885,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.3333280600929065,
+                  "time": 45.9289286837849,
+                  "uncertainty": 253.07791734646278
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  null,
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "eb8a662014167ac0f40f3b86e5d497105f6e31c80ce9ba7d821c5ca2f8df6676"
+              },
+              {
+                "J_C_max": 4.470277627866637,
+                "J_C_mean": 2.1914762114699506,
+                "confidence_mean": 0.6444107414803675,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999995397,
+                "objective_mean": {
+                  "consistency": 3.223456655377945,
+                  "control_effort": 0.0,
+                  "energy": 6.369512188047122e-08,
+                  "margin": 0.0,
+                  "mission": 260.5818587133426,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.3333226793102697,
+                  "time": 36.429391050140175,
+                  "uncertainty": 258.0872409433441
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  null,
+                  "C0003"
+                ],
+                "sha256": "e7761a8b669c6507d6b266d8ecb026e51581a81fc3e53faeeca9a55478b9e15e"
+              },
+              {
+                "J_C_max": 5.122712831156537,
+                "J_C_mean": 3.0364747529954785,
+                "confidence_mean": 0.6444131716625514,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999964038,
+                "objective_mean": {
+                  "consistency": 6.170483055274671,
+                  "control_effort": 0.0,
+                  "energy": 0.010664400219467676,
+                  "margin": 0.0,
+                  "mission": 238.23757089836326,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.33332874790398087,
+                  "time": 29.21137959759244,
+                  "uncertainty": 236.82657609116725
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  null
+                ],
+                "sha256": "2ff48abe7ffbe20295514b5e38ed048dc78abdaf520cdaf5dc93397e2f03511e"
+              },
+              {
+                "J_C_max": 1.8840090697053669,
+                "J_C_mean": 1.2269380508837524,
+                "confidence_mean": 0.9666172680681584,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999367,
+                "objective_mean": {
+                  "consistency": 5.6551805730412585,
+                  "control_effort": 0.0,
+                  "energy": 0.010657898395627792,
+                  "margin": 0.0,
+                  "mission": 321.00508907200265,
+                  "risk": 1.0,
+                  "sensitivity": 0.49999218936955864,
+                  "time": 47.702121849914725,
+                  "uncertainty": 374.3768031155398
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "49405cb80463fe8afd492dc31e30e3022f05fe89ea0e299cf55f0d0f82a9d14e"
+              },
+              {
+                "J_C_max": 5.0447735690037785,
+                "J_C_mean": 2.5147437101264636,
+                "confidence_mean": 0.9888494345596556,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999007,
+                "objective_mean": {
+                  "consistency": 12.528784437615851,
+                  "control_effort": 0.0,
+                  "energy": 0.06252508855369777,
+                  "margin": 0.0,
+                  "mission": 295.9949759033244,
+                  "risk": 1.0,
+                  "sensitivity": 0.16666666405755656,
+                  "time": 28.149756669050028,
+                  "uncertainty": 295.9027737080322
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "e93dc0d42f1bb08372b20db849d17e2096415bb7f209a31b9edb08013a26ab50"
+              },
+              {
+                "J_C_max": 7.243618675282032,
+                "J_C_mean": 3.52461014034702,
+                "confidence_mean": 0.9666555937786849,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.999999999999281,
+                "objective_mean": {
+                  "consistency": 15.044456008854226,
+                  "control_effort": 0.0,
+                  "energy": 0.036577220068701725,
+                  "margin": 0.0,
+                  "mission": 358.39200283647136,
+                  "risk": 1.0,
+                  "sensitivity": 0.4995678266328815,
+                  "time": 31.226156349293085,
+                  "uncertainty": 299.1153424202985
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0001"
+                ],
+                "sha256": "933016be470a3e873fd331a0656030f8bb2392c1ee621dd2c20d96e6ae15032c"
+              },
+              {
+                "J_C_max": 10.91141821473886,
+                "J_C_mean": 8.098483130581016,
+                "confidence_mean": 0.9666275778775019,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999072,
+                "objective_mean": {
+                  "consistency": 35.14889552190265,
+                  "control_effort": 0.0,
+                  "energy": 0.047233599038633146,
+                  "margin": 0.0,
+                  "mission": 420.9142796543853,
+                  "risk": 1.0,
+                  "sensitivity": 0.49999999371122533,
+                  "time": 32.18224665517786,
+                  "uncertainty": 293.15106299500593
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0001",
+                  "C0001",
+                  "C0003"
+                ],
+                "sha256": "ae6c3c4c94139d1ade8e92a5cd82b696fbcea45230ed0371d8f57d70ec3fbb5a"
+              },
+              {
+                "J_C_max": 5.188105951666946,
+                "J_C_mean": 2.125029821330487,
+                "confidence_mean": 0.6444176861419632,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999962121,
+                "objective_mean": {
+                  "consistency": 9.599352150258294,
+                  "control_effort": 0.0,
+                  "energy": 0.0365945495412689,
+                  "margin": 0.0,
+                  "mission": 259.8662317419164,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.33333332965202944,
+                  "time": 41.644492625697154,
+                  "uncertainty": 200.67710919981516
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  null,
+                  "C0003"
+                ],
+                "sha256": "2a2373b23a447aab55ef439df3f16bb00106d770c7247bfa26ac53d86ec54688"
+              },
+              {
+                "J_C_max": 2.438671933353556,
+                "J_C_mean": 2.022305847985732,
+                "confidence_mean": 0.9666202274374951,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999997878,
+                "objective_mean": {
+                  "consistency": 9.3455252960115,
+                  "control_effort": 0.0,
+                  "energy": 0.020483624209410727,
+                  "margin": 0.0,
+                  "mission": 327.0374335593616,
+                  "risk": 1.0,
+                  "sensitivity": 0.49999003620109206,
+                  "time": 51.22232723196888,
+                  "uncertainty": 353.2581177522456
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "af4747846499318d6a1beebe5aba06e1d1d20c2234b17b19ed59b24e43ebfff7"
+              },
+              {
+                "J_C_max": 9.404277820628794,
+                "J_C_mean": 7.598954818145527,
+                "confidence_mean": 0.6444179994229533,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999998512,
+                "objective_mean": {
+                  "consistency": 28.094711071297823,
+                  "control_effort": 0.0,
+                  "energy": 0.05185298604634458,
+                  "margin": 0.0,
+                  "mission": 192.0452383065073,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.333333331187181,
+                  "time": 40.83213391902645,
+                  "uncertainty": 198.32673410132824
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  null,
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "1d92e3d9db4f07724e8c9126e04c4d199c26805a0b958f5c84187cbea14eaf57"
+              },
+              {
+                "J_C_max": 8.422265219448033,
+                "J_C_mean": 4.353531479183192,
+                "confidence_mean": 0.9666233216431613,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999996841,
+                "objective_mean": {
+                  "consistency": 20.398521315118266,
+                  "control_effort": 0.0,
+                  "energy": 0.051862627897993084,
+                  "margin": 0.0,
+                  "mission": 266.148292591865,
+                  "risk": 1.0,
+                  "sensitivity": 0.4999892377314305,
+                  "time": 35.19122788142057,
+                  "uncertainty": 330.450809786073
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "7d57cafd48ca83f1904f4523f6c2c2a87dfd8cbe2a2f5baf1b79b9a1ade29a73"
+              },
+              {
+                "J_C_max": 0.8399500748863642,
+                "J_C_mean": 0.5624141886253705,
+                "confidence_mean": 0.9666299483586461,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.999999999999856,
+                "objective_mean": {
+                  "consistency": 2.7922235379461497,
+                  "control_effort": 0.0,
+                  "energy": 0.025930460733937784,
+                  "margin": 0.0,
+                  "mission": 322.49519878322377,
+                  "risk": 1.0,
+                  "sensitivity": 0.49994849880577924,
+                  "time": 30.03318403470566,
+                  "uncertainty": 301.1199046735204
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "00c2d83ae5919f072412af52a35bb3de07a83d87c284682279e113c59714dbc6"
+              },
+              {
+                "J_C_max": 9.395754598698216,
+                "J_C_mean": 7.977996450439183,
+                "confidence_mean": 0.6444182347262012,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999742,
+                "objective_mean": {
+                  "consistency": 22.959445087565136,
+                  "control_effort": 0.0,
+                  "energy": 0.051839154809145506,
+                  "margin": 0.0,
+                  "mission": 224.96845072368055,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.3333333311866038,
+                  "time": 33.26153112132386,
+                  "uncertainty": 196.56196015969033
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  null,
+                  "C0003"
+                ],
+                "sha256": "76956845b1481b4df6c24a32f9863cd0c3da491dfad1400dab4e8e767523b2fc"
+              },
+              {
+                "J_C_max": 17.43934802972333,
+                "J_C_mean": 12.984898228889367,
+                "confidence_mean": 0.9666272228300226,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.999999999999553,
+                "objective_mean": {
+                  "consistency": 62.43649853635858,
+                  "control_effort": 0.0,
+                  "energy": 0.04722805493584338,
+                  "margin": 0.0,
+                  "mission": 256.3332799284307,
+                  "risk": 1.0,
+                  "sensitivity": 0.4999999937081882,
+                  "time": 41.03816579051515,
+                  "uncertainty": 295.8139202663137
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0001",
+                  "C0001",
+                  "C0003"
+                ],
+                "sha256": "fa254560a3145e646de2ba9e2325cb3385d0b4a8d6dd70f09f1c4aff42fea161"
+              },
+              {
+                "J_C_max": 7.500816121939739,
+                "J_C_mean": 3.031385363449638,
+                "confidence_mean": 0.9666303802016007,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999994357,
+                "objective_mean": {
+                  "consistency": 15.545531897635762,
+                  "control_effort": 0.0,
+                  "energy": 0.03658142856298895,
+                  "margin": 0.0,
+                  "mission": 286.4123912399083,
+                  "risk": 1.0,
+                  "sensitivity": 0.49995759797592726,
+                  "time": 29.291052106501393,
+                  "uncertainty": 293.3314990792067
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0001",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "b6fc36289e1a3771d608c847984933417a5ee2278b3ebeefe54da6daa4c99348"
+              },
+              {
+                "J_C_max": 2.884526793481283,
+                "J_C_mean": 2.4857929219397668,
+                "confidence_mean": 0.9666257562952884,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999408,
+                "objective_mean": {
+                  "consistency": 10.448799819832681,
+                  "control_effort": 0.0,
+                  "energy": 0.05186109957583557,
+                  "margin": 0.0,
+                  "mission": 374.1837768470038,
+                  "risk": 1.0,
+                  "sensitivity": 0.4999999944650116,
+                  "time": 28.844854978675574,
+                  "uncertainty": 306.8125526986524
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0006"
+                ],
+                "sha256": "3a08861762ef10b5bc976472c493aba899403aae893cfdf07cf20c5688ae35b2"
+              },
+              {
+                "J_C_max": 8.713815137321202,
+                "J_C_mean": 6.057064346869153,
+                "confidence_mean": 0.6444179024099148,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999998973,
+                "objective_mean": {
+                  "consistency": 25.37783602952293,
+                  "control_effort": 0.0,
+                  "energy": 0.05185792617816601,
+                  "margin": 0.0,
+                  "mission": 190.42829594790598,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.33333333118738856,
+                  "time": 40.28347150366892,
+                  "uncertainty": 199.05433185480368
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  null,
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "e4b52754d5df78c18b8d9d0a380aeb56f7913ab4811bcbdd03558e268a4fe398"
+              },
+              {
+                "J_C_max": 6.9079424733090455,
+                "J_C_mean": 3.8831178693463224,
+                "confidence_mean": 0.9666232580605955,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999998912,
+                "objective_mean": {
+                  "consistency": 18.19299287987187,
+                  "control_effort": 0.0,
+                  "energy": 0.051861013543922974,
+                  "margin": 0.0,
+                  "mission": 261.4717389185629,
+                  "risk": 1.0,
+                  "sensitivity": 0.4999882018271414,
+                  "time": 33.88300414215638,
+                  "uncertainty": 331.4456315092086
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "4d83a7ad548ba5f72e1447713dce92cff4f51f1b2024a3b8c8993cad8e5ec03a"
+              },
+              {
+                "J_C_max": 1.4004816401577673,
+                "J_C_mean": 0.7652059820987287,
+                "confidence_mean": 0.9666285747472866,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999295,
+                "objective_mean": {
+                  "consistency": 3.619877619120512,
+                  "control_effort": 0.0,
+                  "energy": 0.03659243331355925,
+                  "margin": 0.0,
+                  "mission": 316.6768902699641,
+                  "risk": 1.0,
+                  "sensitivity": 0.4999779324186439,
+                  "time": 29.4805255199561,
+                  "uncertainty": 296.7051822408922
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "9d88ca5317415cbd153b5cedef2303a556fb529bbe3a9b44ac43c73dfa30bc0f"
+              },
+              {
+                "J_C_max": 9.17279791896106,
+                "J_C_mean": 7.371190997128185,
+                "confidence_mean": 0.9513654394203305,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999997963,
+                "objective_mean": {
+                  "consistency": 32.07895372340602,
+                  "control_effort": 0.0,
+                  "energy": 0.021313337554721163,
+                  "margin": 0.0,
+                  "mission": 404.1977432197024,
+                  "risk": 1.0000188834144355,
+                  "sensitivity": 0.49999208797059036,
+                  "time": 30.60800464804149,
+                  "uncertainty": 293.19187737067375
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0001",
+                  "C0001",
+                  "C0001"
+                ],
+                "sha256": "f61b482455766e075164051fe746d8682a4f02de2663c62ebc48b30ea415f4c6"
+              },
+              {
+                "J_C_max": 15.85368532696196,
+                "J_C_mean": 9.056632026866142,
+                "confidence_mean": 0.6444183967705203,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999722,
+                "objective_mean": {
+                  "consistency": 41.80773644480417,
+                  "control_effort": 0.0,
+                  "energy": 0.03655400170927936,
+                  "margin": 0.0,
+                  "mission": 205.39998614072604,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.33333332964897144,
+                  "time": 43.4464382901471,
+                  "uncertainty": 195.34739659697703
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  null,
+                  "C0003",
+                  "C0001"
+                ],
+                "sha256": "e5e171a0e5becac5dba7adbac16502710e4cec79dcc1b068ccafe97b8c5c6e87"
+              },
+              {
+                "J_C_max": 18.050785318142886,
+                "J_C_mean": 9.24859380374274,
+                "confidence_mean": 0.9777374793813934,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999996293,
+                "objective_mean": {
+                  "consistency": 45.06422361341833,
+                  "control_effort": 0.0,
+                  "energy": 0.0472568069647647,
+                  "margin": 0.0,
+                  "mission": 287.74362185847826,
+                  "risk": 1.0,
+                  "sensitivity": 0.3333333296533308,
+                  "time": 36.600752885352094,
+                  "uncertainty": 302.22781262820865
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0001",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "fa3956f95447763ad3822c446589807ce55c6aa0d0d846bf0b27e72dc4a8e53b"
+              },
+              {
+                "J_C_max": 2.3408128625139057,
+                "J_C_mean": 1.1329143740294632,
+                "confidence_mean": 0.9666275423796445,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999293,
+                "objective_mean": {
+                  "consistency": 5.3866865886768664,
+                  "control_effort": 0.0,
+                  "energy": 0.06252493942486335,
+                  "margin": 0.0,
+                  "mission": 345.19146130778637,
+                  "risk": 1.0,
+                  "sensitivity": 0.4999999952479021,
+                  "time": 31.122843554803033,
+                  "uncertainty": 293.41652862667513
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "b1b0d80472e2bb68527a6f2d2be50c832df032855ea361e866d0cc6e023ef0a4"
+              },
+              {
+                "J_C_max": 9.938654870541363,
+                "J_C_mean": 5.130252708808802,
+                "confidence_mean": 0.6444175487292012,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999079,
+                "objective_mean": {
+                  "consistency": 19.57807162213764,
+                  "control_effort": 0.0,
+                  "energy": 0.05185285343654108,
+                  "margin": 0.0,
+                  "mission": 239.43274094452866,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.3333333311871776,
+                  "time": 35.48649236013884,
+                  "uncertainty": 201.70693733239025
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  null,
+                  "C0003"
+                ],
+                "sha256": "4b99c29e2be37e85e02417c74877eab79abe28eb48a1cd33f69df6d6dee40400"
+              },
+              {
+                "J_C_max": 9.946032628020674,
+                "J_C_mean": 6.780941016392243,
+                "confidence_mean": 0.6444185290120381,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999027,
+                "objective_mean": {
+                  "consistency": 29.643652570519528,
+                  "control_effort": 0.0,
+                  "energy": 0.025926039217839352,
+                  "margin": 0.0,
+                  "mission": 185.5877340700428,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.3333215908633648,
+                  "time": 30.991019289570556,
+                  "uncertainty": 200.2249779915604
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0001",
+                  null
+                ],
+                "sha256": "c47e2788ddb7d6b19dc1a4f7ad6b82afc5c17d74f733f647d24ab42d4915bc53"
+              },
+              {
+                "J_C_max": 8.898673980726874,
+                "J_C_mean": 8.260414316909467,
+                "confidence_mean": 0.9666274919222398,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999547,
+                "objective_mean": {
+                  "consistency": 38.97658256715155,
+                  "control_effort": 0.0,
+                  "energy": 0.05185282873338491,
+                  "margin": 0.0,
+                  "mission": 244.6246535970852,
+                  "risk": 1.0,
+                  "sensitivity": 0.49998823536974357,
+                  "time": 50.187886493931124,
+                  "uncertainty": 299.67489822706375
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0001"
+                ],
+                "sha256": "3ab6d2679980d51f76f56a31912487d85738b7ea2655c328ef28fd64733ebc60"
+              },
+              {
+                "J_C_max": 3.3909203814281903,
+                "J_C_mean": 2.030413098216527,
+                "confidence_mean": 0.9666241075065705,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999135,
+                "objective_mean": {
+                  "consistency": 9.837908109362974,
+                  "control_effort": 0.0,
+                  "energy": 0.051862701723362076,
+                  "margin": 0.0,
+                  "mission": 243.13726929309925,
+                  "risk": 1.0,
+                  "sensitivity": 0.49998783371313144,
+                  "time": 28.97498607367537,
+                  "uncertainty": 325.25884376881885
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "14eb38691833e391336ca7d8599e5a69a8d9ab635de9a3c15475269ab27624b3"
+              },
+              {
+                "J_C_max": 4.905132091496416,
+                "J_C_mean": 1.9312240375623644,
+                "confidence_mean": 0.9666277357342257,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999762,
+                "objective_mean": {
+                  "consistency": 8.327867390962528,
+                  "control_effort": 0.0,
+                  "energy": 0.036582300946027255,
+                  "margin": 0.0,
+                  "mission": 320.2082545692119,
+                  "risk": 1.0,
+                  "sensitivity": 0.49998653942503213,
+                  "time": 27.501933795425707,
+                  "uncertainty": 298.69428020167135
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "9de89eda46e986b2086bb035fbbae6c24a66489e16e17c5dea24588cea5f8ea7"
+              },
+              {
+                "J_C_max": 8.856571572926601,
+                "J_C_mean": 7.933881387717484,
+                "confidence_mean": 0.6291213637735232,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999184,
+                "objective_mean": {
+                  "consistency": 26.19422224847166,
+                  "control_effort": 0.0,
+                  "energy": 0.036563125703711175,
+                  "margin": 0.0,
+                  "mission": 219.07703942553067,
+                  "risk": 0.6666874489555773,
+                  "sensitivity": 0.33333332965101636,
+                  "time": 30.92472120218327,
+                  "uncertainty": 196.19186838448235
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0001",
+                  null,
+                  "C0003"
+                ],
+                "sha256": "b8047cb7e90530a02ecb19562aedea04a53ca34aca98565418f8454bccdee400"
+              },
+              {
+                "J_C_max": 16.26779413998866,
+                "J_C_mean": 11.36005387080275,
+                "confidence_mean": 0.9666265247477341,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999993208,
+                "objective_mean": {
+                  "consistency": 54.48874988288682,
+                  "control_effort": 0.0,
+                  "energy": 0.031964957200371236,
+                  "margin": 0.0,
+                  "mission": 239.07715229977936,
+                  "risk": 1.0,
+                  "sensitivity": 0.4999999921737429,
+                  "time": 36.47192979247992,
+                  "uncertainty": 301.0503044591923
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0001",
+                  "C0001",
+                  "C0003"
+                ],
+                "sha256": "46efeeb377305aab07d768db615821062a92be0b0df295eae969b7de0794ac21"
+              },
+              {
+                "J_C_max": 7.067462012414091,
+                "J_C_mean": 2.7694090893093573,
+                "confidence_mean": 0.9666275907805306,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999133,
+                "objective_mean": {
+                  "consistency": 14.386883239916854,
+                  "control_effort": 0.0,
+                  "energy": 0.04640933329520993,
+                  "margin": 0.0,
+                  "mission": 268.3147318148201,
+                  "risk": 1.0,
+                  "sensitivity": 0.4999999934902599,
+                  "time": 27.496386959890938,
+                  "uncertainty": 293.05440081282615
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0001",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "68140cdbda5148f1c5464bec5fdc5b37c2f2b8ef917185a6c02deb40b94b7426"
+              },
+              {
+                "J_C_max": 3.847913749178233,
+                "J_C_mean": 2.851577668029957,
+                "confidence_mean": 0.9391664442030714,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999999052,
+                "objective_mean": {
+                  "consistency": 11.975358615785257,
+                  "control_effort": 0.0,
+                  "energy": 0.0777815203344405,
+                  "margin": 0.0,
+                  "mission": 352.70803424376675,
+                  "risk": 1.000016761899303,
+                  "sensitivity": 0.49999999678086543,
+                  "time": 27.682107049968735,
+                  "uncertainty": 304.55798668700237
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "a868ab323a23743c8847ce07b5c6781ad3a21cc2f8572e1834aa23e143402022"
+              },
+              {
+                "J_C_max": 2.085301493085066,
+                "J_C_mean": 1.1378315413838607,
+                "confidence_mean": 0.9777365843160468,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999997738,
+                "objective_mean": {
+                  "consistency": 4.659728119920951,
+                  "control_effort": 0.0,
+                  "energy": 0.04723782120920937,
+                  "margin": 0.0,
+                  "mission": 399.11435520977295,
+                  "risk": 1.0,
+                  "sensitivity": 0.33333332965196694,
+                  "time": 35.81563223212928,
+                  "uncertainty": 308.9408034405802
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "d8fc2ae3bf3ae90734e39dfd1e5716d5c624c22babadbc5516e5e1a112ce5b8b"
+              },
+              {
+                "J_C_max": 8.951356111392995,
+                "J_C_mean": 5.739018173307426,
+                "confidence_mean": 0.644417910566666,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999990109,
+                "objective_mean": {
+                  "consistency": 26.897560877684043,
+                  "control_effort": 0.0,
+                  "energy": 0.05186574679338061,
+                  "margin": 0.0,
+                  "mission": 203.8774635636656,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.333333331187713,
+                  "time": 42.83809657525971,
+                  "uncertainty": 198.9931560802647
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  null,
+                  "C0003",
+                  "C0003"
+                ],
+                "sha256": "ceb1b97bcb48b807807d654c97e357f9304939e1e88241183d0b204fc8862302"
+              },
+              {
+                "J_C_max": 8.669189861882344,
+                "J_C_mean": 6.098983145727882,
+                "confidence_mean": 0.6444178255047605,
+                "count": 3,
+                "index": 65,
+                "kind": "MESO_AGGREGATE",
+                "mu_min": 0.9999999999998932,
+                "objective_mean": {
+                  "consistency": 26.81618911709946,
+                  "control_effort": 0.0,
+                  "energy": 0.051865320574559844,
+                  "margin": 0.0,
+                  "mission": 181.85607617707808,
+                  "risk": 0.6666666666666666,
+                  "sensitivity": 0.3333333311876951,
+                  "time": 35.19477623317776,
+                  "uncertainty": 199.63112037513295
+                },
+                "risk_max": 0.0,
+                "risk_mean": 0.0,
+                "selected_candidates": [
+                  "C0003",
+                  null,
+                  "C0003"
+                ],
+                "sha256": "bd808d58a4b597f03fd5286785739e32f2cdaacf75256b917120031c1dc8aa7e"
+              }
+            ],
+            "meso_count": 64,
+            "mrg": [
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 43,
+                "confidence_context": 0.32221009074176205,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "11425e8d38e15112be240b44946e7eb2af1c8d1f247b5dff03d43adf197a5a8a"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 44,
+                "confidence_context": 0.6444188709895298,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "add279324bd5c03dab6adc70ee3c8d5c1a4b13041b6a8545f7dd8d46791a8f47"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 45,
+                "confidence_context": 0.9666296264565234,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "7e840725b5a2ee67826cc6cf76d884e02a9164efa0b1dd956ffa1d13c7967118"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 46,
+                "confidence_context": 0.966715334035788,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "f897543bd283fafe3de2de55f2205db2d28087da3cc240ca2a0bd697b214ff09"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 47,
+                "confidence_context": 0.9666274237361885,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "50115f1998faa2566feed911aa6756b293047a9ad84d76cc58feed52d2f9d045"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 48,
+                "confidence_context": 0.6444174621955752,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "64d7e78d015953877b68896580f763f2417c94a79a5153b88e613a31f019671e"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 49,
+                "confidence_context": 0.644417551248016,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "967e9f27cad99516427943e49ec1cf5c9ce0228ad8bdb2042bd86235b0586406"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 50,
+                "confidence_context": 0.9666264424110492,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "c68092caff4d4f11af53484ec7e6878491e7189523550a3b3e23a417ab5602a0"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 51,
+                "confidence_context": 0.9778574618946928,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "edb67c6dcc2711d3c3e3b20ccc81d67f09ce95f2bc7d2a03fe3900bb790aa4e5"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 52,
+                "confidence_context": 0.9666276435054632,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "00f05e62ad46ad0640f99ddb6769fb736c1767a8f6cc7134807f3bda58a0560d"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 53,
+                "confidence_context": 0.9666272583831328,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "6bfbcc59ef1079a49523837259b50ea17e03c8a94d613b7d177386c564b199ac"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 54,
+                "confidence_context": 0.0,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": null,
+                "sha256": "1e3210ef816c9f615d814d209c87572023948a8f5bb9154a1c0f1b1550476a03"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 55,
+                "confidence_context": 0.6444171702551048,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "27bf5fed27acd9c92416feb694f855028c666ce35e3becad19cfcf36a179e719"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 56,
+                "confidence_context": 0.9777387436198822,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "f8dda677d472cd90710f63ef6a69750682beff418c13b01995be5e752f4da639"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 57,
+                "confidence_context": 0.9666812311381154,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "078c074d2ff7a42b74b6be2f7569f16553bc4fda70096f34de32f1504dfe837f"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 58,
+                "confidence_context": 0.9666276269920188,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "986f0cbb3ca3979cec4431c1bd6f16a032d4cf74f2566f33128486e619d45179"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 59,
+                "confidence_context": 0.3222086723830028,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "f248dad072698b17c60738467c830fc7d7266e0e9a15eef0093ff31d7981d220"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 60,
+                "confidence_context": 0.0,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": null,
+                "sha256": "b19125cf17866b25d6b957e6cbcca56693f18e0d75d7988b338a205bc593741a"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 61,
+                "confidence_context": 0.0,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": null,
+                "sha256": "5505c32413741713e58131b72d4b9a20d7c1323705922f8a133b46884405f8d5"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 62,
+                "confidence_context": 0.3222087116431605,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "a197fae84d37e9a67a97ba44f9748d325b4d1bf64eb9b2b71be5b0870fccfab5"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 63,
+                "confidence_context": 0.9666274435395447,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "533e8c62d7c3253b424aa3f283577a15d576a2ab59c96551332be9fd80563b56"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 64,
+                "confidence_context": 0.9666920614378306,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "1b08405ffd255f0a7b39e5069b0e8464760fb583d73359d33f4b01e2c95d7efc"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666275572355039,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "c044324e7e2c92da77b03bbb444033197cde508eed75d749d23431f76c5a7ee4"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.6444177448535428,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "b2eadd564dde0384c844d1056fb1e8ec9e425a2dc4c82da98d5fa3aa363a7cf5"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.0,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": null,
+                "sha256": "18130421a8480d00f28fee3e9237464a2408f62b236d13a902a1aa7069af8066"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.0,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": null,
+                "sha256": "18130421a8480d00f28fee3e9237464a2408f62b236d13a902a1aa7069af8066"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.32220508836665945,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "979316503a224e2bda048ed24b6604776cdf9cdbae0616c8b8853940bb854133"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9777338511875067,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "aa53a89538fab87c449c65b4db41eddb30d108d3749e473093869193a4162c60"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.6444103559650977,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "118791db269a072e893407151300e2523b0a0848bdf250b8bfc25d67e93dc65d"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.6444110506714,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "44f0b9d422bb66bcd007a8d7ed0ecd65a9cf1f6ae71aeacc6371f639f4485c1f"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.6444107414803675,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "55ad6e1c938ba7e07f01cc24bee2ae57c4b037161533d6fa23413bb856198a6f"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.6444131716625514,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "a02c70414b5c90abe54a011794a1a2d69a294becbcd9131b1822c60e82e9e061"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666172680681584,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "b12979180c102c9b4aad0b774832c1fcb5ee99bb1e86b9dc18eb77fecf33dfe1"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9888494345596556,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "3dfebc36ea22cba01b7ff5d1f57a160754740078f19eb0da47571bcce4d592f9"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666555937786849,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "397675925e86b6411e12847cd59d694fb5c692afbdf12308026c5233f5925318"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666275778775019,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "eb7d43d954e59b03fcb0149dcb2cff7f0f35d5d510ba1ff121eb68dc6aefc7de"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.6444176861419632,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "9c24f71a3cc158cdf6fb32a9ba3b9e23ae1080873bd274fc0b1a7ecb1f11ed15"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666202274374951,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "7b88d02aec5eb99c9d446db2deb8cc04465a94c32da71b3dc0300c18668b2d79"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.6444179994229533,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "6dd6d9b35a9e96254e6c196f2128cd9cb9c22ad4139f15ff42409e351fb80bfc"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666233216431613,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "c1f296e41d55ac3b340970d828d3787587550a2f4fd949703a54503f499a4764"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666299483586461,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "c124173dd86f7cf4f136ec37aaf401f65c19d7d267e4fc2db7f3822793a5dc9f"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.6444182347262012,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "8d3810b8118a03403834331d17954fb8ce857e7e7465a32c668b10363dd5ea30"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666272228300226,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "06d4a3df30670e31160e649378d73b7b3c81384f5466c82c1d33639b699615a4"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666303802016007,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "3bda9499272b8af63ae09bfa9f9fe5766cc04a1a1d77cfa59be8fbca0da36de5"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666257562952884,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "f6880243990790d6c8301fbec717cff0c1f55b0361f557f249b710a5c082b8a7"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.6444179024099148,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "76be94848288f8e2264e3fef46f972ddedb0a0d9e2fc5ada9599555c2dfb2cfe"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666232580605955,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "2bde65f1c3157c62dd30d79fd32719254a886e320e0bee22d0cfd533d3aa470b"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666285747472866,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "30cbcf6f457dec0e5648aa4532aa1eaf3e9dad9d850c09be3d001c2fa12187d0"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9513654394203305,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "46688a26fa6d5959dcd664f06ac32e1fcdd24a383a60e7d09151c384d6d7ba15"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.6444183967705203,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "669bddf570a4f72b910d855a701493c2d2cba0c581a8a1bcc38b1d55113136da"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9777374793813934,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "a85ee50777617b0cd0a52d4693a121b0da4faa543811a690b448901015c909ee"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666275423796445,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "0658ab544f31e40ca70eeb9563d50588f97860fd0ea12f8592d8b3ea257a995e"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.6444175487292012,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "42da69db16ea6e7f576527aa1c77b46be18e1d9d1fd7dabd1facdd2cf9f8e05f"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.6444185290120381,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "68c106a47539a767f785269578d56186355d2be395179c39c93ff14003470319"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666274919222398,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "22acef970d143419ef0e590ccaccf74740e6eaa9902e9972bb674efbc4e8fea7"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666241075065705,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "b497a6f89e40b456b9061471664c14732535112a796b2101509147962d8b9a85"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666277357342257,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "c638c8964b4596b1ab7e93845e31f138e9a5fbaa91f77b291e50a109a52d278a"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.6291213637735232,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "e0d6280b613437a1a9884e53eda6c16359be1c733c62ccbdbbd9eb558a703838"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666265247477341,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "fc69c1f2817364e54521e62c42207759ae7d0f5ed8fe2d83b0149a985df7b833"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9666275907805306,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "7eba6b96d761794405acbb26346bb072491bcbff5908e90055592112abc51bb2"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9391664442030714,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "87c7437d22b6ec47ecd3d1be98748be0d7f2f74b0af000ebf2f9c3608da2648e"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.9777365843160468,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "9b4e16f74ee8f9021cf88144c559fda89e6d4c6e05a8164195c7bf24f014c655"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.644417910566666,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "3934df6f0e7379dbe96c784f2d4f919be69121487c262bc35eb899a4957e1005"
+              },
+              {
+                "CRP_ref": null,
+                "SARG_ref": null,
+                "aggregate_index": 65,
+                "confidence_context": 0.6444178255047605,
+                "kind": "MRG",
+                "objective_weights": {},
+                "read_only": true,
+                "risk_context": 0.0,
+                "sha256": "7e520fc6694911434a9ad3d6b93e529fbdc51381b8e05267499fc40bdb0ea2ec"
+              }
+            ],
+            "slow": [
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              },
+              {
+                "J_C_max": null,
+                "J_C_mean": null,
+                "confidence_mean": null,
+                "count": 2,
+                "index": 33,
+                "kind": "SLOW_AGGREGATE",
+                "mu_min": null,
+                "objective_mean": {},
+                "risk_max": null,
+                "risk_mean": null,
+                "selected_candidates": [
+                  null,
+                  null
+                ],
+                "sha256": "0e0f00d300835a89dd157c8c43e902616757ca2fb5257df7808128ff6423a295"
+              }
+            ],
+            "slow_count": 32
+          },
+          "bounded_ram": true,
+          "full_episode_in_ram": false,
+          "decision_weights": {
+            "consistency": 0.1111111111111111,
+            "control_effort": 0.1111111111111111,
+            "energy": 0.1111111111111111,
+            "margin": 0.1111111111111111,
+            "mission": 0.1111111111111111,
+            "risk": 0.1111111111111111,
+            "sensitivity": 0.1111111111111111,
+            "time": 0.1111111111111111,
+            "uncertainty": 0.1111111111111111
+          },
+          "Theta5": {
+            "constraints": {},
+            "parameters": {},
+            "source": "configuration",
+            "version": "L5-policy-v1"
+          },
+          "CRP_SARG_TEP_references": {},
+          "knowledge_version": null,
+          "knowledge_hash": null,
+          "MRG_history": [
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 43,
+              "confidence_context": 0.32221009074176205,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "11425e8d38e15112be240b44946e7eb2af1c8d1f247b5dff03d43adf197a5a8a"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 44,
+              "confidence_context": 0.6444188709895298,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "add279324bd5c03dab6adc70ee3c8d5c1a4b13041b6a8545f7dd8d46791a8f47"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 45,
+              "confidence_context": 0.9666296264565234,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "7e840725b5a2ee67826cc6cf76d884e02a9164efa0b1dd956ffa1d13c7967118"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 46,
+              "confidence_context": 0.966715334035788,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "f897543bd283fafe3de2de55f2205db2d28087da3cc240ca2a0bd697b214ff09"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 47,
+              "confidence_context": 0.9666274237361885,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "50115f1998faa2566feed911aa6756b293047a9ad84d76cc58feed52d2f9d045"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 48,
+              "confidence_context": 0.6444174621955752,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "64d7e78d015953877b68896580f763f2417c94a79a5153b88e613a31f019671e"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 49,
+              "confidence_context": 0.644417551248016,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "967e9f27cad99516427943e49ec1cf5c9ce0228ad8bdb2042bd86235b0586406"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 50,
+              "confidence_context": 0.9666264424110492,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "c68092caff4d4f11af53484ec7e6878491e7189523550a3b3e23a417ab5602a0"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 51,
+              "confidence_context": 0.9778574618946928,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "edb67c6dcc2711d3c3e3b20ccc81d67f09ce95f2bc7d2a03fe3900bb790aa4e5"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 52,
+              "confidence_context": 0.9666276435054632,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "00f05e62ad46ad0640f99ddb6769fb736c1767a8f6cc7134807f3bda58a0560d"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 53,
+              "confidence_context": 0.9666272583831328,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "6bfbcc59ef1079a49523837259b50ea17e03c8a94d613b7d177386c564b199ac"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 54,
+              "confidence_context": 0.0,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": null,
+              "sha256": "1e3210ef816c9f615d814d209c87572023948a8f5bb9154a1c0f1b1550476a03"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 55,
+              "confidence_context": 0.6444171702551048,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "27bf5fed27acd9c92416feb694f855028c666ce35e3becad19cfcf36a179e719"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 56,
+              "confidence_context": 0.9777387436198822,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "f8dda677d472cd90710f63ef6a69750682beff418c13b01995be5e752f4da639"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 57,
+              "confidence_context": 0.9666812311381154,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "078c074d2ff7a42b74b6be2f7569f16553bc4fda70096f34de32f1504dfe837f"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 58,
+              "confidence_context": 0.9666276269920188,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "986f0cbb3ca3979cec4431c1bd6f16a032d4cf74f2566f33128486e619d45179"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 59,
+              "confidence_context": 0.3222086723830028,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "f248dad072698b17c60738467c830fc7d7266e0e9a15eef0093ff31d7981d220"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 60,
+              "confidence_context": 0.0,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": null,
+              "sha256": "b19125cf17866b25d6b957e6cbcca56693f18e0d75d7988b338a205bc593741a"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 61,
+              "confidence_context": 0.0,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": null,
+              "sha256": "5505c32413741713e58131b72d4b9a20d7c1323705922f8a133b46884405f8d5"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 62,
+              "confidence_context": 0.3222087116431605,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "a197fae84d37e9a67a97ba44f9748d325b4d1bf64eb9b2b71be5b0870fccfab5"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 63,
+              "confidence_context": 0.9666274435395447,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "533e8c62d7c3253b424aa3f283577a15d576a2ab59c96551332be9fd80563b56"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 64,
+              "confidence_context": 0.9666920614378306,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "1b08405ffd255f0a7b39e5069b0e8464760fb583d73359d33f4b01e2c95d7efc"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666275572355039,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "c044324e7e2c92da77b03bbb444033197cde508eed75d749d23431f76c5a7ee4"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.6444177448535428,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "b2eadd564dde0384c844d1056fb1e8ec9e425a2dc4c82da98d5fa3aa363a7cf5"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.0,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": null,
+              "sha256": "18130421a8480d00f28fee3e9237464a2408f62b236d13a902a1aa7069af8066"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.0,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": null,
+              "sha256": "18130421a8480d00f28fee3e9237464a2408f62b236d13a902a1aa7069af8066"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.32220508836665945,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "979316503a224e2bda048ed24b6604776cdf9cdbae0616c8b8853940bb854133"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9777338511875067,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "aa53a89538fab87c449c65b4db41eddb30d108d3749e473093869193a4162c60"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.6444103559650977,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "118791db269a072e893407151300e2523b0a0848bdf250b8bfc25d67e93dc65d"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.6444110506714,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "44f0b9d422bb66bcd007a8d7ed0ecd65a9cf1f6ae71aeacc6371f639f4485c1f"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.6444107414803675,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "55ad6e1c938ba7e07f01cc24bee2ae57c4b037161533d6fa23413bb856198a6f"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.6444131716625514,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "a02c70414b5c90abe54a011794a1a2d69a294becbcd9131b1822c60e82e9e061"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666172680681584,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "b12979180c102c9b4aad0b774832c1fcb5ee99bb1e86b9dc18eb77fecf33dfe1"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9888494345596556,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "3dfebc36ea22cba01b7ff5d1f57a160754740078f19eb0da47571bcce4d592f9"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666555937786849,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "397675925e86b6411e12847cd59d694fb5c692afbdf12308026c5233f5925318"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666275778775019,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "eb7d43d954e59b03fcb0149dcb2cff7f0f35d5d510ba1ff121eb68dc6aefc7de"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.6444176861419632,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "9c24f71a3cc158cdf6fb32a9ba3b9e23ae1080873bd274fc0b1a7ecb1f11ed15"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666202274374951,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "7b88d02aec5eb99c9d446db2deb8cc04465a94c32da71b3dc0300c18668b2d79"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.6444179994229533,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "6dd6d9b35a9e96254e6c196f2128cd9cb9c22ad4139f15ff42409e351fb80bfc"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666233216431613,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "c1f296e41d55ac3b340970d828d3787587550a2f4fd949703a54503f499a4764"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666299483586461,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "c124173dd86f7cf4f136ec37aaf401f65c19d7d267e4fc2db7f3822793a5dc9f"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.6444182347262012,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "8d3810b8118a03403834331d17954fb8ce857e7e7465a32c668b10363dd5ea30"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666272228300226,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "06d4a3df30670e31160e649378d73b7b3c81384f5466c82c1d33639b699615a4"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666303802016007,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "3bda9499272b8af63ae09bfa9f9fe5766cc04a1a1d77cfa59be8fbca0da36de5"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666257562952884,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "f6880243990790d6c8301fbec717cff0c1f55b0361f557f249b710a5c082b8a7"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.6444179024099148,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "76be94848288f8e2264e3fef46f972ddedb0a0d9e2fc5ada9599555c2dfb2cfe"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666232580605955,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "2bde65f1c3157c62dd30d79fd32719254a886e320e0bee22d0cfd533d3aa470b"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666285747472866,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "30cbcf6f457dec0e5648aa4532aa1eaf3e9dad9d850c09be3d001c2fa12187d0"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9513654394203305,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "46688a26fa6d5959dcd664f06ac32e1fcdd24a383a60e7d09151c384d6d7ba15"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.6444183967705203,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "669bddf570a4f72b910d855a701493c2d2cba0c581a8a1bcc38b1d55113136da"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9777374793813934,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "a85ee50777617b0cd0a52d4693a121b0da4faa543811a690b448901015c909ee"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666275423796445,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "0658ab544f31e40ca70eeb9563d50588f97860fd0ea12f8592d8b3ea257a995e"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.6444175487292012,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "42da69db16ea6e7f576527aa1c77b46be18e1d9d1fd7dabd1facdd2cf9f8e05f"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.6444185290120381,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "68c106a47539a767f785269578d56186355d2be395179c39c93ff14003470319"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666274919222398,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "22acef970d143419ef0e590ccaccf74740e6eaa9902e9972bb674efbc4e8fea7"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666241075065705,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "b497a6f89e40b456b9061471664c14732535112a796b2101509147962d8b9a85"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666277357342257,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "c638c8964b4596b1ab7e93845e31f138e9a5fbaa91f77b291e50a109a52d278a"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.6291213637735232,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "e0d6280b613437a1a9884e53eda6c16359be1c733c62ccbdbbd9eb558a703838"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666265247477341,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "fc69c1f2817364e54521e62c42207759ae7d0f5ed8fe2d83b0149a985df7b833"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9666275907805306,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "7eba6b96d761794405acbb26346bb072491bcbff5908e90055592112abc51bb2"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9391664442030714,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "87c7437d22b6ec47ecd3d1be98748be0d7f2f74b0af000ebf2f9c3608da2648e"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.9777365843160468,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "9b4e16f74ee8f9021cf88144c559fda89e6d4c6e05a8164195c7bf24f014c655"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.644417910566666,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "3934df6f0e7379dbe96c784f2d4f919be69121487c262bc35eb899a4957e1005"
+            },
+            {
+              "CRP_ref": null,
+              "SARG_ref": null,
+              "aggregate_index": 65,
+              "confidence_context": 0.6444178255047605,
+              "kind": "MRG",
+              "objective_weights": {},
+              "read_only": true,
+              "risk_context": 0.0,
+              "sha256": "7e520fc6694911434a9ad3d6b93e529fbdc51381b8e05267499fc40bdb0ea2ec"
+            }
+          ],
+          "episode_provenance": {
+            "EvidenceType": "offline_simulation_reference",
+            "authorized": true,
+            "candidateID": "C0003",
+            "confidence_components": {
+              "W_positive": 0.7500000000000001,
+              "normalization_valid": 1.0,
+              "q_F": 1.0,
+              "q_FF": 1.0,
+              "q_R": 0.0,
+              "q_S": 0.4999999967809681,
+              "q_U": 0.00030488258032777604,
+              "q_delta": 0.999999991,
+              "q_delta_meta": {
+                "best_level_score": 0.0,
+                "epsilon": 1e-06,
+                "first_move_effect": {
+                  "available": true,
+                  "component_overlap": [
+                    1.0,
+                    0.4482340040820778,
+                    1.0,
+                    1.0
+                  ],
+                  "first_move_a": [
+                    0.45,
+                    0.05790727549275797,
+                    0.4,
+                    0.0
+                  ],
+                  "first_move_b": [
+                    0.45,
+                    0.02595600995960288,
+                    0.4,
+                    0.0
+                  ],
+                  "manual_threshold_used": false,
+                  "method": "minimum_component_directional_overlap",
+                  "only_first_mpc_move": true,
+                  "verified_pair_required": true
+                },
+                "first_move_effect_equivalence": 0.4482340040820778,
+                "gap": 0.11111110977359595,
+                "level": 1,
+                "method": "lexicographic_first_discriminating_level_plus_first_move_effect_equivalence",
+                "objective_separation": 0.999999991,
+                "objectives": [
+                  "risk",
+                  "consistency",
+                  "margin"
+                ],
+                "runner_up_level_score": 0.11111110977359595
+              },
+              "q_mu": 0.9999999999999954,
+              "rho_raw": 0.7249695101029179
+            },
+            "decisionID": "L5D-1c6c6a8f564b4eef",
+            "decision_confidence": 0.966626013470557,
+            "decision_time_epoch_s": 1793825851.8832984,
+            "decision_weights": {
+              "consistency": 0.1111111111111111,
+              "control_effort": 0.1111111111111111,
+              "energy": 0.1111111111111111,
+              "margin": 0.1111111111111111,
+              "mission": 0.1111111111111111,
+              "risk": 0.1111111111111111,
+              "sensitivity": 0.1111111111111111,
+              "time": 0.1111111111111111,
+              "uncertainty": 0.1111111111111111
+            },
+            "direct_pwm": false,
+            "explanation_sha256": "3bb0e149668df9441db3ec93a8e218e43d43eec4ca14f3fad55e7effe109bcd0",
+            "humanApprover": null,
+            "layer6_must_revalidate": {
+              "acknowledgment": true,
+              "actuator": true,
+              "gateway": true,
+              "health": true,
+              "range": true,
+              "timing": true,
+              "unit": true
+            },
+            "modelSetID": "PHX-forward-unvalidated-qLPV",
+            "model_retraining": false,
+            "network_commit": false,
+            "policyDigest": "fc92821aa334e1b700e76a0d5ae39b4b6b54894d0bdc08cd2ddc41e24183063b",
+            "policyVersion": "L5-policy-v1",
+            "policy_compliant": true,
+            "safety_decision_not_execution_safety": true,
+            "snapshot_hash": "4ad3fbadac96d213a2e1843c80f86bc547a4446264d1d495baac621bb29eefba",
+            "snapshot_version": "L3-policy-slow-00053",
+            "source_layer": "Layer5",
+            "traceable": true
+          },
+          "knowledge_quality": {
+            "closed_loop_effect_cycles": 243,
+            "control_knowledge_valid": false,
+            "control_knowledge_valid_inputs": {
+              "all_required_control_phases": false,
+              "contract": "Layer5-offline-control-validity-monotonic-v1",
+              "explicit_inputs_complete": true,
+              "false_to_true_upgrade_allowed": false,
+              "global_control_evidence": true,
+              "monotonic_input_ready": false,
+              "phase_control_coverage_present": true,
+              "supplied_tdoc_control_valid": false,
+              "supplied_tdoc_control_valid_present": true
+            },
+            "control_learning_cycles": 243,
+            "control_learning_semantics": "only same-cycle L4 verified + L5 FINAL + accepted Layer2 control effect counts; HOLD/state-propagation is excluded",
+            "control_readiness_semantics": "requires explicit TDOC control-validity=true + explicit complete required-phase same-cycle joint proof + global verified/FINAL/control-effect evidence with zero FF runtime errors; missing inputs and explicit false are fail-closed, and Layer5 may only downgrade true to false",
+            "final_authorized_cycles": 243,
+            "full_fidelity_runtime_error_cycles": 0,
+            "joint_control_proof_cycles": 243,
+            "live_capability_registry": {
+              "authority": "runtime transaction results; reports audit-only",
+              "episode_id": "OFFLINE_SE-001",
+              "mission_version": "RTMO-11PHASE-v2",
+              "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/rtmo/capability_registry.json.gz",
+              "run_id": "offline-6f12420525664f468b1bc58d4020e07f",
+              "schema": "TDOC-RTMO-live-capability-registry-v1",
+              "sha256": "4980912fc7647b535c52423efab748d1c0f2c9b69ce515c3275b6e53820fba91"
+            },
+            "non_control_learning_cycles": 77,
+            "phase_control_coverage": {
+              "all_required_control_phases": false,
+              "coverage": {
+                "approach": {
+                  "control_capable": true,
+                  "control_effect_cycles": 16,
+                  "cycles": 28,
+                  "joint_proof_cycles": 16,
+                  "l5_final_cycles": 16,
+                  "verified_cycles": 16
+                },
+                "climb": {
+                  "control_capable": true,
+                  "control_effect_cycles": 22,
+                  "cycles": 26,
+                  "joint_proof_cycles": 22,
+                  "l5_final_cycles": 22,
+                  "verified_cycles": 22
+                },
+                "cruise": {
+                  "control_capable": true,
+                  "control_effect_cycles": 70,
+                  "cycles": 90,
+                  "joint_proof_cycles": 70,
+                  "l5_final_cycles": 70,
+                  "verified_cycles": 70
+                },
+                "hover": {
+                  "control_capable": false,
+                  "control_effect_cycles": 0,
+                  "cycles": 6,
+                  "joint_proof_cycles": 0,
+                  "l5_final_cycles": 0,
+                  "verified_cycles": 0
+                },
+                "transition_back": {
+                  "control_capable": true,
+                  "control_effect_cycles": 100,
+                  "cycles": 121,
+                  "joint_proof_cycles": 100,
+                  "l5_final_cycles": 100,
+                  "verified_cycles": 100
+                },
+                "transition_forward": {
+                  "control_capable": true,
+                  "control_effect_cycles": 12,
+                  "cycles": 20,
+                  "joint_proof_cycles": 12,
+                  "l5_final_cycles": 12,
+                  "verified_cycles": 12
+                },
+                "turn": {
+                  "control_capable": true,
+                  "control_effect_cycles": 18,
+                  "cycles": 22,
+                  "joint_proof_cycles": 18,
+                  "l5_final_cycles": 18,
+                  "verified_cycles": 18
+                },
+                "vertical_landing": {
+                  "control_capable": false,
+                  "control_effect_cycles": 0,
+                  "cycles": 0,
+                  "joint_proof_cycles": 0,
+                  "l5_final_cycles": 0,
+                  "verified_cycles": 0
+                },
+                "vertical_takeoff": {
+                  "control_capable": true,
+                  "control_effect_cycles": 5,
+                  "cycles": 6,
+                  "joint_proof_cycles": 5,
+                  "l5_final_cycles": 5,
+                  "verified_cycles": 5
+                }
+              },
+              "missing_control_phases": [
+                "hover",
+                "vertical_landing"
+              ],
+              "required_control_phases": [
+                "vertical_takeoff",
+                "hover",
+                "transition_forward",
+                "climb",
+                "cruise",
+                "turn",
+                "approach",
+                "transition_back",
+                "vertical_landing"
+              ],
+              "schema": "TDOC-offline-phase-control-coverage-v1"
+            },
+            "safety_hold_cycles": 77,
+            "safety_knowledge_valid": true,
+            "verified_candidate_cycles": 243
+          },
+          "tdoc_training_workflow": "run_training_workflows",
+          "offline_driver": "mission",
+          "climate_time_alignment": {
+            "basis": "active_offline_forcing_window_start",
+            "configured_layer3_epoch": "2026-08-24T11:00:00",
+            "effective_climate_epoch": "2026-10-28T16:00:00",
+            "elapsed_s": 0.0,
+            "epoch_rebased_to_forcing_start": true,
+            "forcing_end": "2026-10-29T15:00:00",
+            "forcing_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/internet_datasets/climate_twin/openmeteo_24h.csv",
+            "forcing_file_sha256": "441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc",
+            "forcing_start": "2026-10-28T16:00:00",
+            "safety_semantics": "offline_rebase_only_when_layer3_epoch_outside_forcing; no_end_clamp"
+          }
+        },
+        "content_sha256": "b3ec85c9716c8c8bd387f0e204e859b2a9473bab3295a31dfcfaaa0be87edf0e"
+      },
+      "reason": null,
+      "recovery": {
+        "performed": false,
+        "ok": true,
+        "action": "none"
+      }
+    },
+    "handoff": {
+      "schema": "TDOC-offline-online-knowledge-handoff-v1",
+      "source_learning_mode": "OFFLINE_SE",
+      "source_transaction_id": "mission-offline-0320",
+      "source_version": "TDOC-runtime-v1",
+      "created_at": "2026-11-04T20:58:11.444095+00:00",
+      "valid_setd": false,
+      "setd_integrity_valid": true,
+      "offline_control_coverage_complete": false,
+      "control_knowledge_valid": false,
+      "control_knowledge_valid_by_phase": {
+        "approach": true,
+        "climb": true,
+        "cruise": true,
+        "hover": false,
+        "transition_back": true,
+        "transition_forward": true,
+        "turn": true,
+        "vertical_landing": false,
+        "vertical_takeoff": true
+      },
+      "source_control_knowledge_valid_claim": false,
+      "knowledge_quality": {
+        "closed_loop_effect_cycles": 243,
+        "control_knowledge_valid": false,
+        "control_knowledge_valid_inputs": {
+          "all_required_control_phases": false,
+          "contract": "Layer5-offline-control-validity-monotonic-v1",
+          "explicit_inputs_complete": true,
+          "false_to_true_upgrade_allowed": false,
+          "global_control_evidence": true,
+          "monotonic_input_ready": false,
+          "phase_control_coverage_present": true,
+          "supplied_tdoc_control_valid": false,
+          "supplied_tdoc_control_valid_present": true
+        },
+        "control_learning_cycles": 243,
+        "control_learning_semantics": "only same-cycle L4 verified + L5 FINAL + accepted Layer2 control effect counts; HOLD/state-propagation is excluded",
+        "control_readiness_semantics": "requires explicit TDOC control-validity=true + explicit complete required-phase same-cycle joint proof + global verified/FINAL/control-effect evidence with zero FF runtime errors; missing inputs and explicit false are fail-closed, and Layer5 may only downgrade true to false",
+        "final_authorized_cycles": 243,
+        "full_fidelity_runtime_error_cycles": 0,
+        "joint_control_proof_cycles": 243,
+        "live_capability_registry": {
+          "authority": "runtime transaction results; reports audit-only",
+          "episode_id": "OFFLINE_SE-001",
+          "mission_version": "RTMO-11PHASE-v2",
+          "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/rtmo/capability_registry.json.gz",
+          "run_id": "offline-6f12420525664f468b1bc58d4020e07f",
+          "schema": "TDOC-RTMO-live-capability-registry-v1",
+          "sha256": "4980912fc7647b535c52423efab748d1c0f2c9b69ce515c3275b6e53820fba91"
+        },
+        "non_control_learning_cycles": 77,
+        "phase_control_coverage": {
+          "all_required_control_phases": false,
+          "coverage": {
+            "approach": {
+              "control_capable": true,
+              "control_effect_cycles": 16,
+              "cycles": 28,
+              "joint_proof_cycles": 16,
+              "l5_final_cycles": 16,
+              "verified_cycles": 16
+            },
+            "climb": {
+              "control_capable": true,
+              "control_effect_cycles": 22,
+              "cycles": 26,
+              "joint_proof_cycles": 22,
+              "l5_final_cycles": 22,
+              "verified_cycles": 22
+            },
+            "cruise": {
+              "control_capable": true,
+              "control_effect_cycles": 70,
+              "cycles": 90,
+              "joint_proof_cycles": 70,
+              "l5_final_cycles": 70,
+              "verified_cycles": 70
+            },
+            "hover": {
+              "control_capable": false,
+              "control_effect_cycles": 0,
+              "cycles": 6,
+              "joint_proof_cycles": 0,
+              "l5_final_cycles": 0,
+              "verified_cycles": 0
+            },
+            "transition_back": {
+              "control_capable": true,
+              "control_effect_cycles": 100,
+              "cycles": 121,
+              "joint_proof_cycles": 100,
+              "l5_final_cycles": 100,
+              "verified_cycles": 100
+            },
+            "transition_forward": {
+              "control_capable": true,
+              "control_effect_cycles": 12,
+              "cycles": 20,
+              "joint_proof_cycles": 12,
+              "l5_final_cycles": 12,
+              "verified_cycles": 12
+            },
+            "turn": {
+              "control_capable": true,
+              "control_effect_cycles": 18,
+              "cycles": 22,
+              "joint_proof_cycles": 18,
+              "l5_final_cycles": 18,
+              "verified_cycles": 18
+            },
+            "vertical_landing": {
+              "control_capable": false,
+              "control_effect_cycles": 0,
+              "cycles": 0,
+              "joint_proof_cycles": 0,
+              "l5_final_cycles": 0,
+              "verified_cycles": 0
+            },
+            "vertical_takeoff": {
+              "control_capable": true,
+              "control_effect_cycles": 5,
+              "cycles": 6,
+              "joint_proof_cycles": 5,
+              "l5_final_cycles": 5,
+              "verified_cycles": 5
+            }
+          },
+          "missing_control_phases": [
+            "hover",
+            "vertical_landing"
+          ],
+          "required_control_phases": [
+            "vertical_takeoff",
+            "hover",
+            "transition_forward",
+            "climb",
+            "cruise",
+            "turn",
+            "approach",
+            "transition_back",
+            "vertical_landing"
+          ],
+          "schema": "TDOC-offline-phase-control-coverage-v1"
+        },
+        "safety_hold_cycles": 77,
+        "safety_knowledge_valid": true,
+        "verified_candidate_cycles": 243
+      },
+      "phase_control_coverage": {
+        "all_required_control_phases": false,
+        "coverage": {
+          "approach": {
+            "control_capable": true,
+            "control_effect_cycles": 16,
+            "cycles": 28,
+            "joint_proof_cycles": 16,
+            "l5_final_cycles": 16,
+            "verified_cycles": 16
+          },
+          "climb": {
+            "control_capable": true,
+            "control_effect_cycles": 22,
+            "cycles": 26,
+            "joint_proof_cycles": 22,
+            "l5_final_cycles": 22,
+            "verified_cycles": 22
+          },
+          "cruise": {
+            "control_capable": true,
+            "control_effect_cycles": 70,
+            "cycles": 90,
+            "joint_proof_cycles": 70,
+            "l5_final_cycles": 70,
+            "verified_cycles": 70
+          },
+          "hover": {
+            "control_capable": false,
+            "control_effect_cycles": 0,
+            "cycles": 6,
+            "joint_proof_cycles": 0,
+            "l5_final_cycles": 0,
+            "verified_cycles": 0
+          },
+          "transition_back": {
+            "control_capable": true,
+            "control_effect_cycles": 100,
+            "cycles": 121,
+            "joint_proof_cycles": 100,
+            "l5_final_cycles": 100,
+            "verified_cycles": 100
+          },
+          "transition_forward": {
+            "control_capable": true,
+            "control_effect_cycles": 12,
+            "cycles": 20,
+            "joint_proof_cycles": 12,
+            "l5_final_cycles": 12,
+            "verified_cycles": 12
+          },
+          "turn": {
+            "control_capable": true,
+            "control_effect_cycles": 18,
+            "cycles": 22,
+            "joint_proof_cycles": 18,
+            "l5_final_cycles": 18,
+            "verified_cycles": 18
+          },
+          "vertical_landing": {
+            "control_capable": false,
+            "control_effect_cycles": 0,
+            "cycles": 0,
+            "joint_proof_cycles": 0,
+            "l5_final_cycles": 0,
+            "verified_cycles": 0
+          },
+          "vertical_takeoff": {
+            "control_capable": true,
+            "control_effect_cycles": 5,
+            "cycles": 6,
+            "joint_proof_cycles": 5,
+            "l5_final_cycles": 5,
+            "verified_cycles": 5
+          }
+        },
+        "missing_control_phases": [
+          "hover",
+          "vertical_landing"
+        ],
+        "required_control_phases": [
+          "vertical_takeoff",
+          "hover",
+          "transition_forward",
+          "climb",
+          "cruise",
+          "turn",
+          "approach",
+          "transition_back",
+          "vertical_landing"
+        ],
+        "schema": "TDOC-offline-phase-control-coverage-v1"
+      },
+      "phase_control_coverage_complete": false,
+      "phase_coverage_consistent": false,
+      "handoff_validity_invariant": {
+        "contract": "TDOC-offline-handoff-validity-invariant-v1",
+        "rule": "control_knowledge_valid_implies_all_required_control_phases",
+        "holds": true,
+        "source_claim_downgraded": false,
+        "online_start_authority": "SETD_INTEGRITY_ONLY",
+        "runtime_control_authority": "RTMO_PHASE_LOCAL_CURRENT_AND_NEXT"
+      },
+      "ledger_record_hash": "9681c27513a8bb1df0968a71697ac4d8b729e2e077413a94eb5eea9271fb4c38",
+      "layer_hashes": {
+        "layer2": "6fca57db7819dcfc9e7c5e169b503edc6bee25dda16d36747416c275f9f925aa",
+        "layer3": "609ea614d73380ea24414e0a7ab3b28aece4572d29f73a9fb3ca449916c64156",
+        "layer4": "184389cbb9c61baaa3340b59da84f186ec4aa7b7653f219b2966069282b26d93",
+        "layer5": "045b5813b873bdae03beaebcefab3e2dd2702e60fc7cc15006bea67ac4de9ee9",
+        "layer6": null,
+        "layer7": null
+      },
+      "layer5_root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer5_v20260911_1510",
+      "setd": {
+        "ok": true,
+        "package_id": "SETD_E-19416e55184140f0_1793825891292670",
+        "episode_id": "E-19416e55184140f0",
+        "experience_count": 500,
+        "last_record_hash": "ad48a25e9268f9afdf28e35b3119ce5ad388065c148a75c095a828c8e9bb4ee4",
+        "package_manifest": "setd/packages/SETD_E-19416e55184140f0_1793825891292670/manifest.json",
+        "package_manifest_sha256": "ae308184afae121e30a69783bb0a478088e11d29cde2d50a381758701756abbc",
+        "knowledge_version": null,
+        "knowledge_hash": null,
+        "reference_bundle": {}
+      },
+      "kstore_fingerprint": {
+        "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/layer5/kstore",
+        "file_count": 452,
+        "total_bytes": 728620,
+        "sha256": "8c0b85c753b251b66de9adb29af5be92d48ad2fe787d75c7a60d3a27a478cfe2",
+        "compressed_at_rest": true
+      },
+      "finalization": {
+        "committed": true,
+        "ok": true,
+        "reason": null
+      },
+      "reuse_contract": {
+        "required_for_online_training": true,
+        "read_only_online_load": true,
+        "online_retraining_episodes": 0,
+        "persistent_learning_authority": "Layer7",
+        "layer5_online_persistent_write": false,
+        "online_start_authority": "SETD_INTEGRITY_ONLY",
+        "mission_certification_source": "offline_control_coverage_complete",
+        "runtime_release_authority": "RTMO_PHASE_LOCAL_CURRENT_AND_NEXT",
+        "climate_time_alignment": {
+          "basis": "active_offline_forcing_window_start",
+          "configured_layer3_epoch": "2026-08-24T11:00:00",
+          "effective_climate_epoch": "2026-10-28T16:00:00",
+          "forcing_start": "2026-10-28T16:00:00",
+          "forcing_end": "2026-10-29T15:00:00",
+          "epoch_rebased_to_forcing_start": true,
+          "elapsed_s": 0.0,
+          "safety_semantics": "offline_rebase_only_when_layer3_epoch_outside_forcing; no_end_clamp",
+          "forcing_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/internet_datasets/climate_twin/openmeteo_24h.csv",
+          "forcing_file_sha256": "441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc"
+        }
+      },
+      "handoff_hash": "59df29fc4d50ad78be9fa407f19e295ad782e4779143e6a9bb703bd13a8201f4",
+      "knowledge_id": "SETD:SETD_E-19416e55184140f0_1793825891292670:59df29fc4d50ad78",
+      "knowledge_version": "TDOC-runtime-v1",
+      "ok": true,
+      "manifest_path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/knowledge/handoff/offline_latest.json.gz",
+      "knowledge_assessment": {
+        "schema": "TDOC-offline-knowledge-assessment-v1",
+        "integrity": {
+          "handoff_hash_verified": true,
+          "existing_handoff_gate_ok": true,
+          "declared_setd_integrity_valid": true,
+          "setd_package_id": "SETD_E-19416e55184140f0_1793825891292670",
+          "finalization_ok": true,
+          "finalization_committed": true,
+          "package_bytes_verified_here": false,
+          "verification_scope": "caller-supplied handoff checks; package/forcing/version/freshness checks remain separate"
+        },
+        "quality": {
+          "classification": "PARTIAL_OFFLINE_CONTROL_PROOF",
+          "count_source": "manifest_claim",
+          "joint_control_proof_cycles": 243,
+          "timeline_rows": null,
+          "reported_counters": {
+            "safety_hold_cycles": 77,
+            "verified_candidate_cycles": 243,
+            "final_authorized_cycles": 243,
+            "closed_loop_effect_cycles": 243,
+            "joint_control_proof_cycles": 243,
+            "control_learning_cycles": 243,
+            "non_control_learning_cycles": 77,
+            "full_fidelity_runtime_error_cycles": 0
+          },
+          "reported_safety_knowledge_valid": true,
+          "reported_control_knowledge_valid": false,
+          "proof_definition": "same-cycle L4 verified + L5 FINAL + Layer2 control effect; phase labels/HOLD/geometry alone are not proof"
+        },
+        "coverage": {
+          "required_control_phases": [
+            "vertical_takeoff",
+            "hover",
+            "transition_forward",
+            "climb",
+            "cruise",
+            "turn",
+            "approach",
+            "transition_back",
+            "vertical_landing"
+          ],
+          "joint_proof_cycles_by_phase": {
+            "vertical_takeoff": 5,
+            "hover": 0,
+            "transition_forward": 12,
+            "climb": 22,
+            "cruise": 70,
+            "turn": 18,
+            "approach": 16,
+            "transition_back": 100,
+            "vertical_landing": 0
+          },
+          "assessed_complete": false,
+          "missing_control_phases": [
+            "hover",
+            "vertical_landing"
+          ],
+          "unknown_control_phases": [],
+          "declared_complete": false,
+          "declared_missing_control_phases": [
+            "hover",
+            "vertical_landing"
+          ]
+        },
+        "consistency_issues": [],
+        "legacy_flags": {
+          "valid_setd": false,
+          "setd_integrity_valid": true,
+          "control_knowledge_valid": false,
+          "offline_control_coverage_complete": false
+        },
+        "claims_trust": "handoff_hash_verified",
+        "actuation_authority": false,
+        "online_matching_offline_sample_required": false,
+        "runtime_control_authority": "fresh Layer2/Layer3 -> Layer4 -> Layer5 -> Layer6 -> Layer7 under TDOC"
+      }
+    },
+    "knowledge_policy_compilation": {
+      "availability": "AVAILABLE",
+      "available": true,
+      "offline_prior_only": true,
+      "actuation_authority": false,
+      "ok": true,
+      "status": "COMPILED",
+      "artifact_path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/knowledge/policy/online_policy.json.gz",
+      "artifact_hash": "7d9f739178d46d0f603df8286ee10a8ae0348e7792c4c4baf3cdbc7aa5de7a87",
+      "accepted_rows": 243,
+      "phases": {
+        "approach": 16,
+        "climb": 22,
+        "cruise": 70,
+        "transition_back": 100,
+        "transition_forward": 12,
+        "turn": 18,
+        "vertical_takeoff": 5
+      }
+    },
+    "knowledge_policy_admission": {
+      "ok": true,
+      "status": "READY",
+      "reason": "OPTIONAL_POLICY_AVAILABLE",
+      "readiness_scope": "OFFLINE_KNOWLEDGE_STARTUP_ONLY; not flight/control readiness",
+      "policy_required_for_startup": false,
+      "policy_available": true,
+      "artifact_path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/knowledge/policy/online_policy.json.gz",
+      "artifact_hash": "7d9f739178d46d0f603df8286ee10a8ae0348e7792c4c4baf3cdbc7aa5de7a87",
+      "policy_diagnostics": {
+        "availability": "AVAILABLE",
+        "available": true,
+        "offline_prior_only": true,
+        "actuation_authority": false,
+        "ok": true,
+        "status": "COMPILED",
+        "artifact_path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/knowledge/policy/online_policy.json.gz",
+        "artifact_hash": "7d9f739178d46d0f603df8286ee10a8ae0348e7792c4c4baf3cdbc7aa5de7a87",
+        "accepted_rows": 243,
+        "phases": {
+          "approach": 16,
+          "climb": 22,
+          "cruise": 70,
+          "transition_back": 100,
+          "transition_forward": 12,
+          "turn": 18,
+          "vertical_takeoff": 5
+        }
+      },
+      "actuation_authority": false,
+      "flight_ready": false
+    },
+    "policy_available": true,
+    "actuation_authority": false
+  }
+}

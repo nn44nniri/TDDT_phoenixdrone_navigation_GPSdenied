@@ -1,0 +1,191 @@
+{
+  "MESA_NAV": {
+    "id": "MESA_NAV",
+    "type": "MESA_NAV",
+    "layer": 2,
+    "input_schema": "external_contract",
+    "output_schema": [
+      "position_d",
+      "position_e",
+      "position_n",
+      "velocity_d",
+      "velocity_e",
+      "velocity_n"
+    ],
+    "uncertainty_schema": [
+      "adjustment_factor",
+      "by_output",
+      "claim",
+      "novelty_distance",
+      "representation",
+      "source",
+      "tep_cell_id",
+      "type",
+      "variance_by_output"
+    ],
+    "clock": {
+      "timestamp": 59.001
+    },
+    "version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+    "health": {
+      "quality": 1.0,
+      "validity": 1.0,
+      "reliability": 0.9
+    },
+    "provenance": {
+      "source": "TDOC/Layer2Adapter/ISO-normalized",
+      "fmu": "MESA_NAV.fmu",
+      "fmu_sha256": "3cf10daa41be76b8ac19e663f76f6d417fb996478d8d0354826418c4264ecf37",
+      "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+      "tep_version": "2026-08-20-sim-v3-vtol",
+      "tep_maturity": "TEP_sim",
+      "formula_catalog_version": "unknown",
+      "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+      "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency",
+      "tdoc_mesa_mission_time_alignment": {
+        "schema": "TDOC-MESA-MissionTimeAlignment-v1",
+        "simulation_only": true,
+        "not_field_evidence": true,
+        "time_authority": "TDOC.reference_time_s",
+        "local_fmi_timestamp_s": 1.1079999999999997,
+        "mission_reference_time_s": 59.001,
+        "state_alignment_schema": "TDOC-MESA-simulation-state-alignment-v2"
+      },
+      "tdoc_simulation_state_alignment": {
+        "applied": true,
+        "schema": "TDOC-MESA-simulation-state-alignment-v2",
+        "source": "TDOC/Layer2Adapter/simulation-state-alignment",
+        "state_source": "offline_plant_state+MicroMet+Phoenix_phase_attitude",
+        "learning_mode": "OFFLINE_SE",
+        "simulation_only": true,
+        "not_field_evidence": true,
+        "not_gnss_denied_estimator_evidence": true,
+        "position_ned_m": [
+          4429271.612552557,
+          474734.891920595,
+          -1808.7297450280985
+        ],
+        "ground_velocity_ned_m_s": [
+          9.378476224960734,
+          7.383797357385555,
+          3.037276781278875
+        ],
+        "initial_attitude": null
+      }
+    },
+    "last_seen": 59.001,
+    "observed_at": "2026-11-04T20:06:39.774894+00:00",
+    "packet_hash": "ab7807becbb66470c4c0ff37e4147cca36d0f150a6f502ffe7e844cda91acb0c",
+    "accepted": true
+  },
+  "WingMPET": {
+    "id": "WingMPET",
+    "type": "WingMPET",
+    "layer": 2,
+    "input_schema": "external_contract",
+    "output_schema": [
+      "air_heading",
+      "airspeed_norm",
+      "flightpath_angle"
+    ],
+    "uncertainty_schema": [
+      "adjustment_factor",
+      "by_output",
+      "claim",
+      "novelty_distance",
+      "representation",
+      "source",
+      "tep_cell_id",
+      "type",
+      "variance_by_output"
+    ],
+    "clock": {
+      "timestamp": 59.001
+    },
+    "version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+    "health": {
+      "quality": 0.9999046225096642,
+      "validity": 1.0,
+      "reliability": 0.6406757086343993
+    },
+    "provenance": {
+      "source": "TDOC/Layer2Adapter/ISO-normalized",
+      "fmu": "WingMPET.fmu",
+      "fmu_sha256": "c838871e85f96987815795cea9a3c0ecd7d7c19c07c4e110bc436a2ac9986689",
+      "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+      "tep_version": "2026-09-15-sim-v4-vtol-phase-aware",
+      "tep_maturity": "TEP_sim",
+      "formula_catalog_version": "unknown",
+      "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+      "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency",
+      "tdoc_wing_mission_time_alignment": {
+        "schema": "TDOC-WingMPET-MissionTimeAlignment-v1",
+        "simulation_only": true,
+        "not_field_evidence": true,
+        "time_authority": "TDOC.reference_time_s",
+        "local_fmi_timestamp_s": 98.17600000001366,
+        "mission_reference_time_s": 59.001
+      }
+    },
+    "last_seen": 59.001,
+    "observed_at": "2026-11-04T20:06:39.775230+00:00",
+    "packet_hash": "fa188645fb27fb26ce3fdf116bd5edb70d4e7e6afcfda403c94227da2abf3df6",
+    "accepted": true
+  },
+  "MicroMetTwin": {
+    "id": "MicroMetTwin",
+    "type": "MicroMetTwin.fmu",
+    "layer": 2,
+    "input_schema": "external_contract",
+    "output_schema": [
+      "air_density",
+      "diagnostic_vertical_wind",
+      "longwave_radiation",
+      "precipitation_local",
+      "relative_humidity_local",
+      "shortwave_radiation",
+      "surface_pressure_pa",
+      "temperature_local",
+      "wind_direction_terrain_deg",
+      "wind_speed_3d",
+      "wind_speed_terrain",
+      "wind_u_3dw",
+      "wind_v_3dw"
+    ],
+    "uncertainty_schema": [
+      "availability",
+      "covariance",
+      "novelty_distance",
+      "runtime_gates",
+      "source",
+      "std",
+      "type",
+      "unquantified_outputs",
+      "variance"
+    ],
+    "clock": {
+      "timestamp": "2026-10-28T16:00:59"
+    },
+    "version": "MicroMetTwin.fmu",
+    "health": {
+      "quality": 0.995326926509,
+      "validity": 1.0,
+      "reliability": null
+    },
+    "provenance": {
+      "model": "MicroMetTwin.fmu",
+      "model_version": "MicroMetTwin.fmu",
+      "formalism": "micromet_formalism_v2.md",
+      "semantic_schema_version": "1.0",
+      "tep_version": "2026-08-21-climate-sim-prior-v4",
+      "tep_maturity": "TEP_sim",
+      "terrain_source": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/terrain_obstacles.tif",
+      "source_count": 5,
+      "architectural_boundary": "Layer 2 only; no topology/coupling/CoC"
+    },
+    "last_seen": "2026-10-28T16:00:59",
+    "observed_at": "2026-11-04T20:06:39.775484+00:00",
+    "packet_hash": "752c89b868bbdabe30621e0e8c64a34f1c7f83f914bcadd32839d76071d0aac6",
+    "accepted": true
+  }
+}
