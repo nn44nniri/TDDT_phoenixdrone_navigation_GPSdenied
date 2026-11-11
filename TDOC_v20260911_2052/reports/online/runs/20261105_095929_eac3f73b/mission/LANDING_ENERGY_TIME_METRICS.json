@@ -1,0 +1,116 @@
+{
+  "schema": "TDOC-online-landing-energy-time-v1",
+  "native_session_id": "f93e205443694a76b98fd07cb8ff5b02",
+  "landing_accuracy": {
+    "actual_horizontal_error_m": 7.267214367258886,
+    "tolerance_m": 25.0,
+    "within_tolerance": true,
+    "target_lonlat": [
+      -105.28,
+      40.025
+    ],
+    "actual_final_lonlat": [
+      -105.2799828,
+      40.0250641
+    ],
+    "target_to_actual_north_m": 7.117350927362318,
+    "target_to_actual_east_m": 1.4682371867204294,
+    "estimated_goal_error_m": 6.638334402824635,
+    "physical_contact_confirmed": true,
+    "FCU_on_ground": true,
+    "FCU_disarmed": true,
+    "position_sample": "final raw SIM_STATE after landing, not inferred touchdown instant",
+    "position_received_monotonic_s": 60983.426310053,
+    "physical_truth_used_for_navigation": false,
+    "GNSS_disabled_verified": true,
+    "approved_navigation_inputs_verified": true,
+    "vertical_landing_error_m": null,
+    "vertical_error_unavailable_reason": "No independently certified destination touchdown altitude/DEM datum and physical contact-surface equivalence"
+  },
+  "time": {
+    "control_duration_s": 445.07833300000004,
+    "control_duration_min": 7.4179722166666675,
+    "source_start_s": 84.095833,
+    "source_end_s": 529.174166,
+    "clock": "HIGHRES_IMU source time (FCU); first to last recorded control cycle",
+    "startup_calibration_and_shutdown_included": false,
+    "phase_interval_convention": "[current cycle, next cycle); last sample has zero duration"
+  },
+  "energy": {
+    "consumed_wh": 58.56206385454057,
+    "consumed_j": 210823.42987634605,
+    "covered_interval_wh": 58.56206385454057,
+    "coverage_s": 445.07833300000004,
+    "coverage_fraction": 1.0,
+    "minimum_coverage_for_total": 0.95,
+    "average_covered_power_w": 473.67713556244047,
+    "Wing_model_integral_wh": 9.760347975508,
+    "source": "SITL AP_BattMonitor telemetry; independent of Wing SOC=1 assumption",
+    "integration": "trapezoidal V*I on source-time intervals 0 < dt <= 0.5 s",
+    "scope": "recorded control interval, not entire powered session; SITL model, not calibrated hardware",
+    "no_data_is_not_zero_consumption": true
+  },
+  "phases": [
+    {
+      "phase": "vertical_takeoff",
+      "start_s": 0.0,
+      "end_s": 10.188333,
+      "duration_s": 10.188333,
+      "telemetry_energy_covered_wh": 1.269615288577092,
+      "energy_coverage_s": 10.188333,
+      "Wing_model_energy_wh": 0.21008719552100863,
+      "samples": 102,
+      "energy_coverage_fraction": 1.0,
+      "energy_used_wh": 1.269615288577092
+    },
+    {
+      "phase": "cruise_vtol",
+      "start_s": 10.188333,
+      "end_s": 417.9175,
+      "duration_s": 407.729167,
+      "telemetry_energy_covered_wh": 54.26536377040511,
+      "energy_coverage_s": 407.729167,
+      "Wing_model_energy_wh": 9.061987145305336,
+      "samples": 4083,
+      "energy_coverage_fraction": 1.0,
+      "energy_used_wh": 54.26536377040511
+    },
+    {
+      "phase": "vertical_landing",
+      "start_s": 417.9175,
+      "end_s": 432.0,
+      "duration_s": 14.082499999999982,
+      "telemetry_energy_covered_wh": 1.8695877746840566,
+      "energy_coverage_s": 14.082499999999982,
+      "Wing_model_energy_wh": 0.31077625974753076,
+      "samples": 141,
+      "energy_coverage_fraction": 1.0,
+      "energy_used_wh": 1.8695877746840566
+    },
+    {
+      "phase": "landing_flare",
+      "start_s": 432.0,
+      "end_s": 439.88916700000004,
+      "duration_s": 7.889167000000043,
+      "telemetry_energy_covered_wh": 1.050129110346532,
+      "energy_coverage_s": 7.889167000000043,
+      "Wing_model_energy_wh": 0.17559729257876633,
+      "samples": 79,
+      "energy_coverage_fraction": 1.0,
+      "energy_used_wh": 1.050129110346532
+    },
+    {
+      "phase": "contact_settle",
+      "start_s": 439.88916700000004,
+      "end_s": 445.07833300000004,
+      "duration_s": 5.189166,
+      "telemetry_energy_covered_wh": 0.10736791052777761,
+      "energy_coverage_s": 5.189166,
+      "Wing_model_energy_wh": 0.0019000823553589896,
+      "samples": 53,
+      "energy_coverage_fraction": 1.0,
+      "energy_used_wh": 0.10736791052777761
+    }
+  ],
+  "reporting_only": true
+}

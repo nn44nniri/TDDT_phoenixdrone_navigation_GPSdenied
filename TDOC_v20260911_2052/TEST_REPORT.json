@@ -1,0 +1,58 @@
+{
+  "schema": "TDOC-test-report-v2",
+  "integrated_release": "TDDT_integrated_fix_v1_21_layer6_online_v2",
+  "results": {
+    "tdoc": {
+      "total": 406,
+      "passed": 401,
+      "failed": 5,
+      "errors": 0,
+      "skipped": 0,
+      "evidence": "validation_v2/TDOC_REGRESSION.xml",
+      "failures": [
+        {
+          "test": "test_tdoc_applies_v2_identification_and_reports_nonzero_qLPV_capability",
+          "message": "assert False is True"
+        },
+        {
+          "test": "test_mission_summary_matches_realized_runtime_or_reset_state",
+          "message": "assert (False is True)"
+        },
+        {
+          "test": "test_release_gate_evidence_or_reset_audit_passes",
+          "message": "FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/work_v2/TDDT_integrated_fix_v1_21/TDOC_v20260911_2052/reports/validation/MISSION_FIX_RELEASE_GATE.json'"
+        },
+        {
+          "test": "test_rtmo_capability_manifest_is_evidence_based_and_fail_closed",
+          "message": "assert False is True"
+        },
+        {
+          "test": "test_rtmo_runtime_release_remains_phase_local_authority",
+          "message": "assert '\"actuation_release\":current_ok' in \"from __future__ import annotations\\nfrom dataclasses import dataclass\\nfrom pathlib import Path\\nfrom typing import A...acy report audit fallback + current execution profile'\\n    return CapabilityManifest(phases=phases,source=source)\\n\\n\""
+        }
+      ]
+    },
+    "selected": {
+      "total": 64,
+      "passed": 64,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "evidence": "validation_v2/SELECTED_REGRESSION.xml",
+      "failures": []
+    },
+    "layer6": {
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "evidence": "validation_v2/LAYER6_REGRESSION.xml",
+      "failures": []
+    }
+  },
+  "online_mission_status": "TESTED_BLOCKED_WAIT_L4_BOOTSTRAP_NOT_MISSION_COMPLETE",
+  "overlapping_test_counts": true,
+  "evidence_location": "../validation_v2",
+  "tests_run_with_restored_runtime_reports_before_slim_packaging": true
+}

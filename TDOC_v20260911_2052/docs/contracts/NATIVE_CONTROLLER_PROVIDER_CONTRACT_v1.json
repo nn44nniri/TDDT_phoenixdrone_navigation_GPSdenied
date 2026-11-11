@@ -1,0 +1,395 @@
+{
+  "schema": "TDDT-native-provider-contract-v1",
+  "revision": "phoenix-native-provider-r7.01-v1",
+  "request_schema": "TDDT-native-provider-request-v1",
+  "prediction_schema": "TDDT-native-provider-prediction-v1",
+  "api": "NativeControllerProvider.predict(request) -> prediction",
+  "request_fields": [
+    "schema",
+    "request_id",
+    "context",
+    "backend",
+    "pilot_plan",
+    "timing",
+    "initial_state",
+    "isolation"
+  ],
+  "context_fields": [
+    "snapshot_hash",
+    "candidate_hash",
+    "model_id",
+    "binding_hash",
+    "handoff_hash",
+    "forcing_sha256",
+    "snapshot_id",
+    "snapshot_version",
+    "candidate_id",
+    "phase",
+    "native_session_id",
+    "telemetry_session_id"
+  ],
+  "backend_fields": [
+    "arduplane_sha256",
+    "jsbsim_sha256",
+    "aircraft_sha256",
+    "defaults_sha256",
+    "gui_config_sha256",
+    "execution_path_sha256",
+    "parameter_snapshot_sha256",
+    "parameters",
+    "gui_gains",
+    "initial_mode",
+    "armed"
+  ],
+  "timing_fields": [
+    "plant_clock",
+    "clock_mapping_sha256",
+    "plant_start_bounds_s",
+    "prediction_dt_s",
+    "commit_segment_s",
+    "close_guard_s",
+    "execution_rate_hz",
+    "gui_rate_hz",
+    "gui_ttl_s",
+    "admission_deadline_unix_s",
+    "monotonic_domain_id"
+  ],
+  "state_field_keys": [
+    "status",
+    "value",
+    "components",
+    "units",
+    "frame",
+    "source",
+    "uncertainty"
+  ],
+  "source_field_keys": [
+    "kind",
+    "artifact_sha256",
+    "source_time_s",
+    "clock_domain"
+  ],
+  "prediction_fields": [
+    "schema",
+    "request_sha256",
+    "status",
+    "reason",
+    "isolation",
+    "samples",
+    "uncertainty"
+  ],
+  "sample_fields": [
+    "offset_s",
+    "mode",
+    "channels"
+  ],
+  "implemented_provider": false,
+  "qualification_granted": false,
+  "flight_authorized": false,
+  "offline_role": "prior_only_never_current_state",
+  "domain": "LAYER6_PILOT_NORMALIZED",
+  "pilot_order": [
+    "aileron",
+    "elevator",
+    "throttle",
+    "rudder"
+  ],
+  "pilot_ranges": [
+    [
+      -1,
+      1
+    ],
+    [
+      -1,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      -1,
+      1
+    ]
+  ],
+  "requested_modes": [
+    "QSTABILIZE",
+    "QHOVER",
+    "QLOITER",
+    "FBWA"
+  ],
+  "initial_modes": [
+    "MANUAL",
+    "QSTABILIZE",
+    "QHOVER",
+    "QLOITER",
+    "FBWA"
+  ],
+  "discrete": [
+    "ARM",
+    "DISARM",
+    "THROTTLE_ZERO",
+    "NEUTRAL_ATTITUDE"
+  ],
+  "mapping": {
+    "gui": "roll=a; pitch=e; throttle=t; yaw=r; virtual input bypasses gamepad expo/inversion",
+    "manual_control": "x=round(1000*clamp(e*max_pitch)); y=round(1000*clamp(a*max_roll)); z=round(1000*t); r=round(1000*clamp(r*max_yaw)); buttons=0",
+    "rounding": "Python round; clamp signed axes to [-1,1]",
+    "FCU": "Plane.manual_override: roll=packet.y; pitch=packet.x with reversed=true; throttle=packet.z; rudder=packet.r",
+    "post_mixer": "SERVO1/2 elevon, SERVO3/4 motor; exact FCU functions, trims, min/max and reversal from parameter snapshot",
+    "forbidden_equivalence": "pilot != PWM != mechanical angle != spool != RPM; PWM alone proves none of the latter",
+    "mode_discrete": "executor dispatches changed mode, then discrete actions, then continuous tick; action receipt is not mode/ARM completion"
+  },
+  "identity": {
+    "context_hash_fields": [
+      "snapshot_hash",
+      "candidate_hash",
+      "model_id",
+      "binding_hash",
+      "handoff_hash",
+      "forcing_sha256"
+    ],
+    "backend_hash_fields": [
+      "arduplane_sha256",
+      "jsbsim_sha256",
+      "aircraft_sha256",
+      "defaults_sha256",
+      "gui_config_sha256",
+      "execution_path_sha256",
+      "parameter_snapshot_sha256"
+    ],
+    "minimum_required_parameters": [
+      "SERVO1_FUNCTION",
+      "SERVO1_MIN",
+      "SERVO1_TRIM",
+      "SERVO1_MAX",
+      "SERVO1_REVERSED",
+      "SERVO2_FUNCTION",
+      "SERVO2_MIN",
+      "SERVO2_TRIM",
+      "SERVO2_MAX",
+      "SERVO2_REVERSED",
+      "SERVO3_FUNCTION",
+      "SERVO3_MIN",
+      "SERVO3_TRIM",
+      "SERVO3_MAX",
+      "SERVO3_REVERSED",
+      "SERVO4_FUNCTION",
+      "SERVO4_MIN",
+      "SERVO4_TRIM",
+      "SERVO4_MAX",
+      "SERVO4_REVERSED",
+      "RC_OVERRIDE_TIME",
+      "FS_GCS_ENABL",
+      "AHRS_EKF_TYPE",
+      "Q_ENABLE",
+      "Q_TAILSIT_ENABLE",
+      "RCMAP_ROLL",
+      "RCMAP_PITCH",
+      "RCMAP_THROTTLE",
+      "RCMAP_YAW"
+    ],
+    "parameters": "complete finite FCU parameter map; digest(parameters) == parameter_snapshot_sha256",
+    "comparison": "exact hashes rechecked by consumer; structural validation is not provenance verification"
+  },
+  "state": {
+    "initial_fields": [
+      "navigation",
+      "attitude_body",
+      "previous_pilot",
+      "controller",
+      "mixer",
+      "spool",
+      "actuator_dynamics",
+      "rc_override",
+      "motor_speed"
+    ],
+    "output_fields": [
+      "manual_control",
+      "post_mixer_pwm",
+      "plant_state",
+      "controller",
+      "spool",
+      "motor_speed"
+    ],
+    "vectors": {
+      "navigation": [
+        "NED_AND_BODY_FRD",
+        [
+          "pn",
+          "pe",
+          "pd",
+          "vn",
+          "ve",
+          "vd",
+          "qw",
+          "qx",
+          "qy",
+          "qz",
+          "p",
+          "q",
+          "r"
+        ],
+        [
+          "m",
+          "m",
+          "m",
+          "m/s",
+          "m/s",
+          "m/s",
+          "1",
+          "1",
+          "1",
+          "1",
+          "rad/s",
+          "rad/s",
+          "rad/s"
+        ]
+      ],
+      "attitude_body": [
+        "BODY_FRD_TO_NED",
+        [
+          "qw",
+          "qx",
+          "qy",
+          "qz",
+          "p",
+          "q",
+          "r"
+        ],
+        [
+          "1",
+          "1",
+          "1",
+          "1",
+          "rad/s",
+          "rad/s",
+          "rad/s"
+        ]
+      ],
+      "previous_pilot": [
+        "LAYER6_PILOT_NORMALIZED",
+        [
+          "aileron",
+          "elevator",
+          "throttle",
+          "rudder"
+        ],
+        [
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "motor_speed": [
+        "ROTOR_SHAFT",
+        [
+          "left",
+          "right"
+        ],
+        [
+          "rad/s",
+          "rad/s"
+        ]
+      ],
+      "manual_control": [
+        "MAVLINK_MANUAL_CONTROL",
+        [
+          "x",
+          "y",
+          "z",
+          "r"
+        ],
+        [
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "post_mixer_pwm": [
+        "ACTUATOR_CHANNELS",
+        [
+          "servo1",
+          "servo2",
+          "servo3",
+          "servo4"
+        ],
+        [
+          "us",
+          "us",
+          "us",
+          "us"
+        ]
+      ],
+      "plant_state": [
+        "NED_AND_BODY_FRD",
+        [
+          "pn",
+          "pe",
+          "pd",
+          "vn",
+          "ve",
+          "vd",
+          "qw",
+          "qx",
+          "qy",
+          "qz",
+          "p",
+          "q",
+          "r"
+        ],
+        [
+          "m",
+          "m",
+          "m",
+          "m/s",
+          "m/s",
+          "m/s",
+          "1",
+          "1",
+          "1",
+          "1",
+          "rad/s",
+          "rad/s",
+          "rad/s"
+        ]
+      ]
+    },
+    "internal_frames": {
+      "controller": "ARDUPILOT_INTERNAL",
+      "mixer": "ARDUPILOT_INTERNAL",
+      "spool": "ARDUPILOT_INTERNAL",
+      "actuator_dynamics": "ACTUATOR_INTERNAL",
+      "rc_override": "ARDUPILOT_RC_INTERNAL"
+    },
+    "controller_components": "integrators, filters, mode/transition timers and estimator/controller state; name and unit each observed component",
+    "spool_components": "desired/current spool, ramp/timers/arming state; do not infer from disarmed heartbeat or PWM",
+    "unknown": "value=null; source=UNAVAILABLE; explicit unbounded uncertainty and reason; never zero-fill",
+    "known": "observed/estimated value vector with provenance and bounded interval or explicit unbounded uncertainty",
+    "navigation": "MESA/L3 estimate only; FCU/JSBSim truth is evaluation-only and cannot replace navigation"
+  },
+  "timing": {
+    "plant_clock": "FCU_BOOT seconds; plant_start_bounds_s is an interval, never an invented exact send time",
+    "mapping": "clock_mapping_sha256 binds explicit native/FCU clock mapping; do not assume JSBSim clock equals FCU_BOOT",
+    "grid": "N commands; prediction_dt_s each; horizon=N*dt; samples offsets 0,dt,...,N*dt",
+    "commit": "0 < close_guard_s < commit_segment_s <= prediction_dt_s; commit is only first move",
+    "deadline": "UNIX_WALL admission deadline distinct from FCU_BOOT exposure and HOST_MONOTONIC TTL",
+    "cadence": "execution_rate_hz and gui_rate_hz explicit; gui_ttl_s=max(.15,3/execution_rate_hz); 30Hz is not 10Hz control",
+    "post_commit": "latch stop/cancel prevents replay; FCU override timeout, failsafe and mode still govern plant; no physical HOLD implied"
+  },
+  "isolation": "ISOLATED_REPLAY_ONLY; branch differs from mission session; restore/reference hash required; active mission never advanced",
+  "response": {
+    "statuses": [
+      "PREDICTED",
+      "UNAVAILABLE"
+    ],
+    "binding": "request_sha256 covers complete immutable request; plan/state/parameters/env cannot be substituted",
+    "evidence": "trace SHA256 + isolated branch session + initial reference hash; no ACK-as-prediction",
+    "uncertainty": "any unbounded initial state requires unbounded output uncertainty; bounded forecasts require independent R7.04/05 qualification",
+    "comparability": "same offsets, mode, units, frames and post-mixer channels; motor speed unavailable unless native/measured source exists",
+    "unavailable": "reason required; samples=[]; no synthetic nominal response"
+  },
+  "acceptance_boundary": "R7.01 validates structure only; replay R7.02; prediction R7.03; tolerance/validation R7.04; certificate R7.05; L4 integration R7.06; FINAL R7.07"
+}

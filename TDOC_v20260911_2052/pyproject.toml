@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tddt-tdoc"
+version = "2026.9.11.2052"
+description = "Trans-Domain Orchestration Core for Dynamic N-Twin TDDT"
+requires-python = ">=3.10"
+dependencies = ["PyYAML>=6.0", "numpy>=1.24", "pandas>=2.0", "plotly>=6.0", "pyproj>=3.5", "rasterio>=1.3", "shapely>=2.0", "pymavlink>=2.4.40"]
+
+[project.scripts]
+tddt-tdoc = "tddt_tdoc.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+tddt_tdoc = ["resources/phoenix_fourfoot/r3_01_v1/*.xml", "resources/phoenix_fourfoot/r3_01_v1/REFERENCE_MANIFEST.json", "resources/phoenix_fourfoot/r3_02_v1/*", "resources/phoenix_fourfoot/r3_03_v1/*", "resources/phoenix_fourfoot/r3_04_v1/*", "resources/phoenix_fourfoot/r3_05_v1/*", "resources/phoenix_fourfoot/r3_06_v1/*", "resources/native_binding/r4_01_v1/*", "resources/native_binding/r4_02_v1/*", "resources/native_binding/r4_04_v1/*"]

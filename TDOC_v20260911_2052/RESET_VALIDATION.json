@@ -1,0 +1,55 @@
+{
+  "schema": "TDOC-reset-v2",
+  "package": "2026.9.7.0608",
+  "executed_at": "2026-09-07T02:44:25.774375+00:00",
+  "dry_run": false,
+  "include_external": false,
+  "refresh_external_requested": false,
+  "policy": {
+    "deleted": "TDOC runtime/knowledge + generated reports/logs + provably-contained generated/downloaded external datasets including CRP/Map, SARG, Layer-2 TEP and all TDOC Open-Meteo horizons",
+    "preserved": [
+      "source code",
+      "configs",
+      "formalism/docs",
+      "region/region_v1.geojson",
+      "external library source roots",
+      "Twin/Climate library FMUs"
+    ],
+    "external_safety": "external generated data is removed only at explicit known dataset paths or when containment under its authoritative output/generated/resource root is provable",
+    "refresh_semantics": "refresh is opt-in; reset alone remains purge-only for clean/lightweight releases"
+  },
+  "items": [
+    {
+      "category": "tdoc.runtime_and_knowledge",
+      "path": "/mnt/data/tddt_integrated_2110/release/TDOC_v20260907_0608/runtime",
+      "action": "delete",
+      "existed": true,
+      "removed": true,
+      "bytes_before": 219889169,
+      "reason": null
+    },
+    {
+      "category": "tdoc.generated_reports",
+      "path": "/mnt/data/tddt_integrated_2110/release/TDOC_v20260907_0608/reports",
+      "action": "delete",
+      "existed": true,
+      "removed": true,
+      "bytes_before": 48946648,
+      "reason": null
+    },
+    {
+      "category": "tdoc.generated_logs",
+      "path": "/mnt/data/tddt_integrated_2110/release/TDOC_v20260907_0608/logs",
+      "action": "skip",
+      "existed": false,
+      "removed": false,
+      "bytes_before": 0,
+      "reason": "not present"
+    }
+  ],
+  "external_notes": [],
+  "deleted_bytes": 268835817,
+  "ok": true,
+  "errors": [],
+  "report_path": "/mnt/data/tddt_integrated_2110/release/TDOC_v20260907_0608/RESET_VALIDATION.json"
+}

@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sarg-dataset-builder"
+version = "2.1.0"
+description = "Strict FMI-only SARG builder using WingMPET and MESA-NAV twins"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "pandas>=2.0", "PyYAML>=6.0", "rasterio>=1.3", "plotly>=5.20"]
+
+[project.optional-dependencies]
+parquet = ["pyarrow>=14.0"]
+
+[project.scripts]
+sarg-build = "sarg_builder.cli:main"
+sarg-report = "sarg_builder.report_cli:main"
+
+[tool.setuptools.packages.find]
+include = ["sarg_builder*"]

@@ -1,0 +1,93 @@
+{
+  "schema": "TDOC-vtol-phase-evidence-v3",
+  "phases_seen": [
+    "on_ground",
+    "vertical_takeoff"
+  ],
+  "tdoc_substates_seen": [],
+  "starts_on_ground": true,
+  "touchdown_seen": false,
+  "final_agl_m": 4.0,
+  "final_goal_distance_m": 2370.0778437340336,
+  "all_required_phases_seen": false,
+  "all_required_control_phases": false,
+  "missing_control_phases": [
+    "vertical_takeoff",
+    "hover",
+    "transition_forward",
+    "climb",
+    "cruise",
+    "turn",
+    "approach",
+    "transition_back",
+    "vertical_landing"
+  ],
+  "phase_completion": {
+    "on_ground": {
+      "semantic_role": "passive_boundary",
+      "seen": true,
+      "completed": true
+    },
+    "vertical_takeoff": {
+      "semantic_role": "controlled_phase",
+      "seen": true,
+      "completed": false,
+      "joint_proof_cycles": 0
+    },
+    "hover": {
+      "semantic_role": "controlled_phase",
+      "seen": false,
+      "completed": false,
+      "joint_proof_cycles": 0
+    },
+    "transition_forward": {
+      "semantic_role": "controlled_phase",
+      "seen": false,
+      "completed": false,
+      "joint_proof_cycles": 0
+    },
+    "climb": {
+      "semantic_role": "controlled_phase",
+      "seen": false,
+      "completed": false,
+      "joint_proof_cycles": 0
+    },
+    "cruise": {
+      "semantic_role": "controlled_phase",
+      "seen": false,
+      "completed": false,
+      "joint_proof_cycles": 0
+    },
+    "turn": {
+      "semantic_role": "controlled_phase",
+      "seen": false,
+      "completed": false,
+      "joint_proof_cycles": 0
+    },
+    "approach": {
+      "semantic_role": "controlled_phase",
+      "seen": false,
+      "completed": false,
+      "joint_proof_cycles": 0
+    },
+    "transition_back": {
+      "semantic_role": "controlled_phase",
+      "seen": false,
+      "completed": false,
+      "joint_proof_cycles": 0
+    },
+    "vertical_landing": {
+      "semantic_role": "controlled_phase",
+      "seen": false,
+      "completed": false,
+      "joint_proof_cycles": 0
+    },
+    "touchdown": {
+      "semantic_role": "passive_boundary",
+      "seen": false,
+      "completed": false
+    }
+  },
+  "all_required_phases": false,
+  "all_required_phases_semantics": "strict: passive boundary evidence + same-cycle L4-verified/L5-FINAL/control-effect proof for every controlled phase"
+}

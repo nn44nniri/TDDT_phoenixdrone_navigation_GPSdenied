@@ -1,0 +1,534 @@
+{
+  "dataset": "SARG",
+  "version": 2,
+  "architecture_version": "SARG_Architecture_v2",
+  "created_utc": "2026-11-05T01:19:29.066920+00:00",
+  "origin": [
+    474395.80553868186,
+    4428910.218160756,
+    1800.079345703125
+  ],
+  "destination": [
+    476107.9860049116,
+    4430569.5253115585,
+    1635.9429931640625
+  ],
+  "scenario_count": 10,
+  "phase_count": 6,
+  "crp_cluster_count": 32,
+  "crp_cluster_count_total": 32,
+  "crp_cluster_count_in_region": 32,
+  "crp_cluster_count_catalog_only": 0,
+  "crp_cardinality_contract": "N_CRP = N_CRP,in-region",
+  "catalog_clusters_absent_from_region": [],
+  "record_count": 1920,
+  "expected_record_count": 1920,
+  "expected_record_count_formula": "10 * 6 * N_CRP,in-region",
+  "primary_key": [
+    "regime_id",
+    "phase_id",
+    "crp_id"
+  ],
+  "lookup_contract": {
+    "canonical_selector": "G_m^SARG = Select_SARG(r_m, s_m, k_m^*)",
+    "equivalent_layer3_notation": "G_m^SARG = Select_SARG(r_m, p_m, k_m)",
+    "phase_stage_equivalence": "s_m ≡ p_m",
+    "api_exact": "select(regime_id, phase_id, crp_id)",
+    "api_unknown_regime": "select_candidates(phase_id, crp_id, regime_ids=None)",
+    "unknown_regime_policy": "return_all_valid_candidates; never choose a regime implicitly",
+    "index_file": "sarg_lookup_index.csv",
+    "index_order": [
+      "regime_id",
+      "crp_local_index",
+      "phase_id"
+    ],
+    "index_columns": [
+      "regime_id",
+      "crp_local_index",
+      "phase_id",
+      "crp_id",
+      "record_id",
+      "row_offset"
+    ]
+  },
+  "expected_policy_count_formula": "10 * N_CRP,in-region",
+  "record_count_validated": true,
+  "missing_value": -9999.0,
+  "summary_reference_contract": {
+    "wing_fields": [
+      "energy_remaining_wh",
+      "min_obstacle_clearance_m",
+      "wing_confidence"
+    ],
+    "mesa_fields": [
+      "position_error_m",
+      "velocity_error_ms",
+      "heading_error_deg",
+      "position_sigma_m",
+      "wind_error_ms",
+      "mesa_confidence"
+    ],
+    "record_confidence_formula": "wing_confidence * mesa_confidence * crp_confidence",
+    "not_triggered_or_invalid_missing_value": -9999.0
+  },
+  "coordinate_reference": {
+    "geodetic_crs": "EPSG:4326",
+    "map_crs": "EPSG:32613",
+    "local_frame": "ENU",
+    "vertical_reference": "MSL",
+    "coordinate_order_geodetic": "longitude,latitude",
+    "linear_unit": "m",
+    "angular_unit": "deg"
+  },
+  "coordinate_frame": "ENU",
+  "map_crs": "EPSG:32613",
+  "geodetic_reference": "WGS 84 (EPSG:4326)",
+  "crs_validation": {
+    "status": "PASS",
+    "origin": {
+      "forward_error_m": 0.0,
+      "reverse_error_deg": 7.105427357601002e-15,
+      "map_tolerance_m": 0.05,
+      "geodetic_tolerance_deg": 1e-08,
+      "valid": true
+    },
+    "destination": {
+      "forward_error_m": 0.0,
+      "reverse_error_deg": 0.0,
+      "map_tolerance_m": 0.05,
+      "geodetic_tolerance_deg": 1e-08,
+      "valid": true
+    },
+    "map_tolerance_m": 0.05,
+    "geodetic_tolerance_deg": 1e-08,
+    "failure_status_code": "CRS_MISMATCH",
+    "canonical_policy": "CRS-mismatched records are rejected and never written to sarg_records.csv"
+  },
+  "region": {
+    "region_id": "Boulder expanded square example",
+    "source_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/region/region_v1.geojson",
+    "source_crs": "EPSG:4326",
+    "map_crs": "EPSG:32613",
+    "bounds_wgs84": [
+      -105.30999670363443,
+      40.00218350325587,
+      -105.26999890035525,
+      40.03281405830647
+    ],
+    "bounds_map": [
+      473539.5947014014,
+      4428034.472254758,
+      476963.99584308115,
+      4431445.291367799
+    ],
+    "origin_wgs84": [
+      -105.3,
+      40.01
+    ],
+    "destination_wgs84": [
+      -105.28,
+      40.025
+    ],
+    "origin_map": [
+      474395.80553868186,
+      4428910.218160756
+    ],
+    "destination_map": [
+      476107.9860049116,
+      4430569.5253115585
+    ]
+  },
+  "region_geometry_enforced": true,
+  "crp_region_filter": {
+    "method": "union_all_spatial_evidence_all_temporal_bands",
+    "source": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/CRP",
+    "evidence": [
+      {
+        "method": "cluster_raster_all_bands",
+        "source": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/CRP/crp_cluster_map.tif",
+        "band_count": 4,
+        "bands": {
+          "crp_cluster_id_00_06": [
+            0,
+            1,
+            4,
+            6,
+            8,
+            16,
+            18,
+            21,
+            22,
+            23,
+            25,
+            29,
+            31
+          ],
+          "crp_cluster_id_06_12": [
+            1,
+            4,
+            5,
+            9,
+            10,
+            11,
+            13,
+            26,
+            28
+          ],
+          "crp_cluster_id_12_18": [
+            3,
+            6,
+            8,
+            12,
+            16,
+            18,
+            21,
+            27,
+            29
+          ],
+          "crp_cluster_id_18_24": [
+            2,
+            7,
+            14,
+            15,
+            17,
+            19,
+            20,
+            24,
+            30
+          ]
+        },
+        "cluster_count": 32
+      },
+      {
+        "method": "cell_assignment_points",
+        "source": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/CRP/crp_cell_assignments.csv.gz",
+        "cluster_count": 32,
+        "cluster_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ]
+      }
+    ],
+    "raster_band_cluster_ids": {
+      "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/CRP/crp_cluster_map.tif": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ]
+    },
+    "input_cluster_count": 32,
+    "selected_cluster_count": 32,
+    "selected_cluster_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "missing_catalog_cluster_ids": [],
+    "complete_catalog_coverage": true,
+    "catalog_clusters_absent_from_region": [],
+    "region_spatial_coverage_complete": true,
+    "catalog_scope_matches_region": true,
+    "coverage_interpretation": "All CRP clusters with spatial evidence inside the GeoJSON region are selected; catalog-only clusters without regional evidence are excluded and audited."
+  },
+  "endpoint_source": {
+    "type": "geojson_wgs84",
+    "region_id": "Boulder expanded square example",
+    "source_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/region/region_v1.geojson",
+    "source_crs": "EPSG:4326",
+    "map_crs": "EPSG:32613",
+    "bounds_wgs84": [
+      -105.30999670363443,
+      40.00218350325587,
+      -105.26999890035525,
+      40.03281405830647
+    ],
+    "bounds_map": [
+      473539.5947014014,
+      4428034.472254758,
+      476963.99584308115,
+      4431445.291367799
+    ],
+    "origin_wgs84": [
+      -105.3,
+      40.01
+    ],
+    "destination_wgs84": [
+      -105.28,
+      40.025
+    ],
+    "origin_map": [
+      474395.80553868186,
+      4428910.218160756
+    ],
+    "destination_map": [
+      476107.9860049116,
+      4430569.5253115585
+    ]
+  },
+  "generation_mode": "FMI_ONLY_STRICT",
+  "calculation_boundary": {
+    "FMU_only": [
+      "trajectory propagation",
+      "goal geometry/progress",
+      "atmosphere",
+      "aerodynamics",
+      "flight envelope",
+      "terrain/obstacle safety",
+      "path/time/energy accumulation",
+      "objective",
+      "pitot residual/NIS",
+      "terrain-flow/map wind anchoring",
+      "pressure anchoring",
+      "robust weighting",
+      "observability",
+      "mode-aware VTOL mechanical constraints",
+      "covariance"
+    ],
+    "Python_orchestration_only": [
+      "read map/CRP/config",
+      "sample rasters",
+      "convert units/coordinates",
+      "select policy commands",
+      "schedule phases",
+      "accept/retry based on FMU flags",
+      "aggregate and serialize FMU outputs"
+    ],
+    "substitute_equations": false,
+    "mock_fallback": false
+  },
+  "inputs": {
+    "wingmpet_fmu": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/fmus/WingMPET.fmu",
+    "mesa_nav_fmu": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/fmus/MESA_NAV.fmu",
+    "drone_config": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/config/phoenix_drone_v3.yaml",
+    "map_path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map",
+    "crp_path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/CRP",
+    "region_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/region/region_v1.geojson"
+  },
+  "sha256": {
+    "wingmpet_fmu": "871d49ef11578aae1ac8d9f500ca55a75caed418a8577656dc5e2c49c403ad3a",
+    "mesa_nav_fmu": "52664359c35d31f1d14194f73b7359198a50ca4ed78f4a58a25f424572310f87",
+    "drone_config": "68f3f4e611e370aac01607345a3d972e4f6627ce9b75f8c82052bdcff4fbbd89"
+  },
+  "fmu_execution": {
+    "WingMPET": {
+      "mode": "strict_native_operations",
+      "identity": {
+        "formalism_version": 3.0,
+        "active_operation_count": 21.0,
+        "max_operation_code": 35.0
+      },
+      "operation_calls": 766483
+    },
+    "MESA_NAV": {
+      "mode": "strict_native_operations",
+      "identity": {
+        "formalism_version": 4.0,
+        "active_operation_count": 24.0,
+        "max_operation_code": 27.0
+      },
+      "operation_calls": 511163
+    },
+    "contract_profile": "PHOENIX_FA_20260820",
+    "contract_details": {
+      "retired_operations": {
+        "WingMPET": [
+          10,
+          26
+        ],
+        "MESA_NAV": [
+          8,
+          20
+        ]
+      },
+      "replacement_operations": {
+        "WingMPET.flight_envelope": 30,
+        "WingMPET.completeness": 34,
+        "MESA_NAV.wind_context_anchor": 11,
+        "MESA_NAV.mechanical_constraints": 24,
+        "MESA_NAV.completeness": 27,
+        "MESA_NAV.physical_ultrasonic_wind_optional": 23
+      },
+      "wind_semantics": "CRP wind is environmental/map context. It is not synthesized as a physical ULTRASONIC_WIND observation; operation 23 is reserved for a real/emulated-realistic sensor sample."
+    }
+  },
+  "fmi_operation_trace": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/SARG_v20260821_0945/generated/SARG/fmi_execution_trace.csv",
+  "crs_rejections": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/SARG_v20260821_0945/generated/SARG/crs_rejections.csv",
+  "map_inventory": [
+    {
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/CRP/crp_cluster_map.tif",
+      "size": 100307,
+      "driver": "GTiff",
+      "width": 343,
+      "height": 342,
+      "count": 4,
+      "crs": "EPSG:32613",
+      "bounds": [
+        473539.5947014014,
+        4428034.472254758,
+        476963.99584308115,
+        4431445.291367799
+      ]
+    },
+    {
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/climate_contexts.tif",
+      "size": 3280498,
+      "driver": "GTiff",
+      "width": 343,
+      "height": 342,
+      "count": 32,
+      "crs": "EPSG:32613",
+      "bounds": [
+        473539.5947014014,
+        4428034.472254758,
+        476963.99584308115,
+        4431445.291367799
+      ]
+    },
+    {
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/magnetic_anomaly.tif",
+      "size": 582734,
+      "driver": "GTiff",
+      "width": 343,
+      "height": 342,
+      "count": 4,
+      "crs": "EPSG:32613",
+      "bounds": [
+        473539.5947014014,
+        4428034.472254758,
+        476963.99584308115,
+        4431445.291367799
+      ]
+    },
+    {
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/terrain_obstacles.tif",
+      "size": 1978196,
+      "driver": "GTiff",
+      "width": 343,
+      "height": 342,
+      "count": 8,
+      "crs": "EPSG:32613",
+      "bounds": [
+        473539.5947014014,
+        4428034.472254758,
+        476963.99584308115,
+        4431445.291367799
+      ]
+    }
+  ],
+  "parquet": {
+    "written": false,
+    "path": null,
+    "error": "Unable to find a usable engine; tried using: 'pyarrow', 'fastparquet'.\nA suitable version of pyarrow or fastparquet is required for parquet support.\nTrying to import the above resulted in these errors:\n - `Import pyarrow` failed. pyarrow is required for parquet support. Use pip, conda, or your preferred package management tool to install the pyarrow package.\n - `Import fastparquet` failed. fastparquet is required for parquet support. Use pip, conda, or your preferred package management tool to install the fastparquet package."
+  },
+  "architecture_completeness": {
+    "ten_scenarios": true,
+    "dynamic_crp_count": true,
+    "six_phases": true,
+    "three_key_primary_key": true,
+    "runtime_lookup_index": true,
+    "sarg_records_csv": true,
+    "routes": true,
+    "status_codes": true,
+    "scenario_climate_contexts": true,
+    "crp_code_and_parameters_per_record": true,
+    "geojson_wgs84_region": true,
+    "origin_destination_from_geojson": true,
+    "crp_filtered_to_geojson": true,
+    "route_points_inside_geojson": true,
+    "explicit_geodetic_map_local_crs_contract": true,
+    "crs_roundtrip_validation": true,
+    "standalone_native_twin_execution": true,
+    "all_model_outputs_from_fmi": true
+  },
+  "software": {
+    "python": "3.13.5"
+  }
+}

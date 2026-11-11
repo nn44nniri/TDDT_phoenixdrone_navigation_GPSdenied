@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tdoc-iso-unit-converter"
+version = "2.2.0"
+description = "TDDT/ISO-oriented unit converter and aviation semantic adapters based on TDOC v2"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "TDDT"}]
+keywords = ["units", "ISO 80000", "aviation", "NED", "ENU", "MSL", "AGL", "FMI", "TDDT"]
+classifiers = ["Programming Language :: Python :: 3"]
+
+[project.optional-dependencies]
+geodesy = ["pyproj>=3.4"]
+
+[project.scripts]
+tdoc-convert = "tdoc_unit_converter.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

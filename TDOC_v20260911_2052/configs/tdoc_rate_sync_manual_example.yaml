@@ -1,0 +1,15 @@
+# Copy these values into configs/tdoc.yaml when rate_sync.mode=manual
+rate_sync:
+  enabled: true
+  mode: manual
+  manual:
+    tdoc_decision_hz: 1.0
+    ptlib_control_hz: 10.0
+    command_ttl_s: 8.0
+  safeguards:
+    preserve_commissioned_session: true
+    release_on_stale: true
+    rc_override_timeout_hint_s: 3.0
+    minimum_refreshes_per_override_timeout: 6
+    max_consecutive_stream_failures: 5
+    direct_pwm: false

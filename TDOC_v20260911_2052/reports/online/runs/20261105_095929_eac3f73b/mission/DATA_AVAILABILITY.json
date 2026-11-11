@@ -1,0 +1,49 @@
+{
+  "schema": "TDOC-online-data-availability-v1",
+  "navigation": {
+    "available": true,
+    "source": "MESA approved sensors"
+  },
+  "physical_pose": {
+    "available": true,
+    "scope": "validation/display only"
+  },
+  "candidate_FF_verified": {
+    "available": false,
+    "reason": "Realtime reduced candidates have no old FF verification certificate"
+  },
+  "seven_objective_costs": {
+    "available": false,
+    "reason": "Current MPC exposes scalar cost, not the legacy seven objectives"
+  },
+  "wind_counterfactual": {
+    "available": false,
+    "reason": "No same-command no-wind Native experiment was run"
+  },
+  "Online_CRP_SARG_selection": {
+    "available": false,
+    "reason": "Only compatible Offline prior context is loaded"
+  },
+  "terrain_constraint_execution": {
+    "available": false,
+    "reason": "This realtime control profile does not certify terrain/obstacle constraints"
+  },
+  "energy": {
+    "available": true,
+    "coverage_s": 445.07833300000004,
+    "source": "SITL AP_BattMonitor telemetry; independent of Wing SOC=1 assumption"
+  },
+  "temperature_humidity_pressure_in_snapshot": {
+    "available": false,
+    "reason": "Not published by current realtime climate packet"
+  },
+  "physical_weather_application": {
+    "scope": "Native adapter horizontal wind parameter readbacks only; no full atmosphere equivalence claim"
+  },
+  "terrain_visualization": {
+    "available": true,
+    "source": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/terrain_obstacles.tif",
+    "reason": null,
+    "used_for_control": false
+  }
+}

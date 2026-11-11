@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SARG pattern",
+  "type": "object",
+  "required": [
+    "sarg_id",
+    "crp_cluster_id",
+    "mission_stage",
+    "status_label",
+    "pattern_confidence"
+  ],
+  "properties": {
+    "sarg_id": {
+      "type": "string"
+    },
+    "crp_cluster_id": {
+      "type": "integer"
+    },
+    "mission_stage": {
+      "type": "string"
+    },
+    "status_label": {
+      "enum": [
+        "FMI_VALID",
+        "FMI_CONDITIONAL"
+      ]
+    },
+    "pattern_confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  },
+  "description": "Pattern status semantics reflect builder.py output; neither value authorizes native pilot execution."
+}

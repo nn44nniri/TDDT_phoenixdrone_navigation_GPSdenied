@@ -1,0 +1,1281 @@
+{
+  "schema": "TDOC-Layer6-contract-record-v1",
+  "version": "1.6.0",
+  "step": "R1.03",
+  "sources": {
+    "adapter": "TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer6.py",
+    "bridge": "TDOC_v20260911_2052/src/tddt_tdoc/layer6_bridge.py",
+    "client": "layer6_v20261007_1032/src/layer6/client.py",
+    "virtual": "layer6_v20261007_1032/src/layer6/virtual_pilot.py",
+    "envelope": "layer6_v20261007_1032/src/layer6/contracts.py",
+    "validation": "layer6_v20261007_1032/src/layer6/validation.py",
+    "service": "layer6_v20261007_1032/src/layer6/service.py",
+    "executor": "layer6_v20261007_1032/src/layer6/executor.py",
+    "feedback": "layer6_v20261007_1032/src/layer6/feedback.py",
+    "gui": "layer6_v20261007_1032/src/gui/phoenix_f310_gui.py",
+    "imu_consumer": "TDOC_v20260911_2052/src/tddt_tdoc/online_imu.py",
+    "health": "TDOC_v20260911_2052/src/tddt_tdoc/native_control_binding.py",
+    "config": "TDOC_v20260911_2052/configs/tdoc.yaml",
+    "gui_config": "layer6_v20261007_1032/gui/config/f310_phoenix.yaml",
+    "project": "layer6_v20261007_1032/pyproject.toml",
+    "link": "layer6_v20261007_1032/src/layer6/mavlink_link.py",
+    "telemetry": "layer6_v20261007_1032/src/layer6/telemetry.py",
+    "normalization": "layer6_v20261007_1032/src/layer6/telemetry_normalization.py",
+    "sender_contract": "layer6_v20261007_1032/src/layer6/telemetry_source.py",
+    "status": "layer6_v20261007_1032/src/layer6/status.py",
+    "correlation": "layer6_v20261007_1032/src/layer6/command_correlation.py",
+    "cancellation": "layer6_v20261007_1032/src/layer6/cancellation.py",
+    "segments": "layer6_v20261007_1032/src/layer6/segments.py",
+    "timeout_hold": "layer6_v20261007_1032/src/layer6/timeout_hold.py",
+    "native_session": "layer6_v20261007_1032/src/layer6/native_session.py"
+  },
+  "api": [
+    {
+      "method": "__init__",
+      "purpose": "ساخت Client با endpoint و گزینه‌های lifecycle؛ این audit آن را نمی‌سازد",
+      "unit_frame": "UDP 14661 intake و 14660 GUI؛ frame ندارد",
+      "time_tx": "timeout/startup_* ثانیه؛ start_if_needed=False در TDOC؛ tx ندارد",
+      "owner": "R6.05",
+      "evidence": [
+        "adapter:_get_client",
+        "client:Layer6Client"
+      ]
+    },
+    {
+      "method": "submit",
+      "purpose": "ارسال بستهٔ کامل پس از FINAL و verifier جاری؛ دریافت Layer6Ack",
+      "unit_frame": "u_cmd=[a,e,t,r] نرمال‌شده؛ pilot-domain",
+      "time_tx": "timeout ثانیه؛ ack.transaction_id باید برابر tx بسته باشد",
+      "owner": "R6/R7",
+      "evidence": [
+        "bridge:exchange",
+        "client:submit"
+      ]
+    },
+    {
+      "method": "cancel",
+      "purpose": "لغو همان transaction در service و GUI؛ امضای لازم از call site استخراج می‌شود",
+      "unit_frame": "tx شناسهٔ opaque؛ واحد و frame ندارد",
+      "time_tx": "transaction_id/reason keywords; None resolves service target; ok/raw.cancelled true only after service stop + matching GUI fence ACK; empty target reports cancelled=false",
+      "owner": "R6.01/R6.02",
+      "evidence": [
+        "bridge:cancel",
+        "bridge:exchange",
+        "adapter:_cancel_active",
+        "client:Layer6Client"
+      ]
+    },
+    {
+      "method": "gui_status",
+      "purpose": "Mapping وضعیت یا None؛ TDOC گزینهٔ include_imu_samples را نیز می‌فرستد",
+      "unit_frame": "واحد/frame هر کانال در جدول status",
+      "time_tx": "timeout ثانیه؛ history با زمان منبع؛ polling معادل نمونهٔ جدید نیست",
+      "owner": "R5.04 implemented; R5.05/R5.06 remain",
+      "evidence": [
+        "adapter:_status",
+        "bridge:exchange",
+        "client:gui_status",
+        "virtual:status"
+      ]
+    },
+    {
+      "method": "ensure_mavlink",
+      "purpose": "درخواست اتصال GUI و انتظار برای mavlink_connected",
+      "unit_frame": "اتصال؛ بدون مرجع navigation",
+      "time_tx": "timeout ثانیه؛ heartbeat صرفاً اتصال است",
+      "owner": "R6.05",
+      "evidence": [
+        "adapter:prepare_online_transport_session",
+        "client:ensure_mavlink"
+      ]
+    },
+    {
+      "method": "wait_fcu_ready",
+      "purpose": "انتظار برای mode پایدار و شناسهٔ FCU و armed معلوم",
+      "unit_frame": "mode و bool؛ frame ندارد",
+      "time_tx": "timeout ثانیه و stable_samples شمار نمونه؛ این متد freshness کامل را اثبات نمی‌کند",
+      "owner": "R5/R6.05",
+      "evidence": [
+        "adapter:prepare_online_transport_session",
+        "client:wait_fcu_ready"
+      ]
+    },
+    {
+      "method": "build_layer7_input",
+      "purpose": "ساخت Layer7Input و عبور PredictionEvidence و NetworkSnapshot اصلی",
+      "unit_frame": "pilot و physical telemetry با domain جدا؛ بدون جعل L3/L4",
+      "time_tx": "tx از ack یا بسته؛ timestamp فعلی زمان ساخت wall است، نه زمان observation",
+      "owner": "R8.01",
+      "evidence": [
+        "adapter:_evidence",
+        "bridge:exchange",
+        "client:build_layer7_input",
+        "feedback:build_layer7_input"
+      ]
+    },
+    {
+      "method": "stack_responding",
+      "purpose": "وجود پاسخ GUI؛ نه readiness پرواز",
+      "unit_frame": "bool؛ frame ندارد",
+      "time_tx": "timeout ثانیه؛ tx ندارد",
+      "owner": "R6.05",
+      "evidence": [
+        "adapter:prepare_online_transport_session",
+        "client:stack_responding"
+      ]
+    },
+    {
+      "method": "ensure_stack_started",
+      "purpose": "reuse پاسخ موجود یا start و انتظار پاسخ",
+      "unit_frame": "Mapping وضعیت GUI",
+      "time_tx": "timeout ثانیه و monotonic برای انتظار؛ owner stack در TDOC",
+      "owner": "R6.05",
+      "evidence": [
+        "adapter:prepare_online_transport_session",
+        "client:ensure_stack_started"
+      ]
+    },
+    {
+      "method": "stop_stack",
+      "purpose": "توقف stack متعلق به TDOC هنگام close",
+      "unit_frame": "lifecycle؛ frame ندارد",
+      "time_tx": "tx ندارد؛ نبود cancel می‌تواند پیش از stop خطا ایجاد کند",
+      "owner": "R6.05",
+      "evidence": [
+        "adapter:reset_online_session",
+        "client:stop_stack"
+      ]
+    },
+    {
+      "method": "close",
+      "purpose": "بستن socketهای Client؛ خودش stack را متوقف نمی‌کند",
+      "unit_frame": "transport resources؛ frame ندارد",
+      "time_tx": "بدون tx یا مهلت اجرای فرمان؛ معادل لغو latch نیست",
+      "owner": "R6.05",
+      "evidence": [
+        "adapter:reset_online_session",
+        "client:close"
+      ]
+    },
+    {
+      "method": "segment_status",
+      "purpose": "Read bounded local closure proof; no environment or flight readiness",
+      "unit_frame": "FCU_BOOT seconds intervals, no exact clock point",
+      "time_tx": "transaction_id + command_instance_id + request_id + peer; finite timeout seconds",
+      "owner": "R6.03",
+      "evidence": [
+        "bridge:_bounded_exchange",
+        "client:segment_status",
+        "virtual:segment_status",
+        "gui:_poll_virtual_pilot",
+        "segments:SegmentExecution"
+      ]
+    },
+    {
+      "method": "native_session_status",
+      "purpose": "Read exact local owned session and required native process roles; not flight readiness",
+      "unit_frame": "PID/start_ticks/uid + native session UUID; monotonic seconds, no navigation frame",
+      "time_tx": "local current process snapshot; no transaction release",
+      "owner": "R6.05",
+      "evidence": [
+        "adapter:prepare_online_transport_session",
+        "client:native_session_status",
+        "native_session:status"
+      ]
+    }
+  ],
+  "status": [
+    {
+      "field": "type",
+      "unit_frame": "string=status؛ بدون frame",
+      "requirement": "نوع پیام GUI؛ نسخهٔ schema نیست",
+      "time_tx": "نسخه و request correlation جدا لازم‌اند",
+      "owner": "R5.04",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "virtual:status"
+      ]
+    },
+    {
+      "field": "mavlink_connected",
+      "unit_frame": "bool؛ بدون frame",
+      "requirement": "وجود master در GUI؛ معادل heartbeat تازه نیست",
+      "time_tx": "freshness باید جدا بررسی شود",
+      "owner": "R5",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "adapter:_ingress_from_status"
+      ]
+    },
+    {
+      "field": "mavlink_endpoint",
+      "unit_frame": "string؛ بدون frame",
+      "requirement": "provenance اتصال GUI",
+      "time_tx": "فاقد زمان منبع",
+      "owner": "R6.05",
+      "evidence": [
+        "gui:_virtual_status_payload"
+      ]
+    },
+    {
+      "field": "target_system",
+      "unit_frame": "شناسهٔ صحیح MAVLink",
+      "requirement": "بزرگ‌تر از صفر در readiness",
+      "time_tx": "heartbeat واقعی و تازه لازم است",
+      "owner": "R6.05",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "client:wait_fcu_ready"
+      ]
+    },
+    {
+      "field": "target_component",
+      "unit_frame": "شناسهٔ صحیح MAVLink",
+      "requirement": "هویت component؛ دادهٔ navigation نیست",
+      "time_tx": "provenance اتصال",
+      "owner": "R6.05",
+      "evidence": [
+        "gui:_virtual_status_payload"
+      ]
+    },
+    {
+      "field": "mode",
+      "unit_frame": "string؛ QHOVER/FBWA/QSTABILIZE/QLOITER",
+      "requirement": "mode واقعی FCU؛ mode تصمیم باید با آن تطبیق کند",
+      "time_tx": "HEARTBEAT و پس از ارسال؛ mode درخواست‌شده evidence نیست",
+      "owner": "R5/R6",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "adapter:_confirmed",
+        "executor:accept"
+      ]
+    },
+    {
+      "field": "armed",
+      "unit_frame": "bool یا unavailable",
+      "requirement": "وضعیت واقعی FCU؛ true برای throttle مثبت و ARM",
+      "time_tx": "heartbeat تازه و post-command؛ اتصال مجوز ARM نیست",
+      "owner": "R5/R6",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "adapter:_confirmed"
+      ]
+    },
+    {
+      "field": "throttle",
+      "unit_frame": "[0,1]؛ pilot-domain GUI",
+      "requirement": "state رابط GUI؛ اندازه‌گیری موتور نیست",
+      "time_tx": "زمان GUI؛ به‌تنهایی execution را تأیید نمی‌کند",
+      "owner": "R6",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "adapter:_prepare_ground_arm"
+      ]
+    },
+    {
+      "field": "landed_state",
+      "unit_frame": "enum؛ ON_GROUND/IN_AIR/TAKEOFF/LANDING/UNDEFINED",
+      "requirement": "EXTENDED_SYS_STATE؛ حالت نامعلوم صریح باشد",
+      "time_tx": "شاهد تازهٔ تماس؛ airborne گزارش‌شده fallback را وتو می‌کند",
+      "owner": "R3/R6",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:drain",
+        "health:ground_contact"
+      ]
+    },
+    {
+      "field": "groundspeed_m_s",
+      "unit_frame": "m/s؛ اندازهٔ سرعت زمینی",
+      "requirement": "VFR_HUD؛ مرجع کنترل زمین، نه مشاهدهٔ MESA",
+      "time_tx": "نیازمند age معتبر؛ source_time در صورت وجود و receipt monotonic در telemetry_metadata منتشر می‌شوند",
+      "owner": "R5",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:drain",
+        "health:ground_contact"
+      ]
+    },
+    {
+      "field": "relative_altitude_m",
+      "unit_frame": "m؛ نسبت به مبدأ FCU؛ معادل AGL نیست",
+      "requirement": "GLOBAL_POSITION_INT.relative_alt / 1000",
+      "time_tx": "نیازمند age معتبر؛ source_time در صورت وجود و receipt monotonic در telemetry_metadata منتشر می‌شوند",
+      "owner": "R5",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:drain",
+        "health:ground_contact"
+      ]
+    },
+    {
+      "field": "vertical_speed_m_s",
+      "unit_frame": "m/s؛ climb مثبت به بالا",
+      "requirement": "VFR_HUD.climb؛ با velocity_d مثبت پایین تفکیک شود",
+      "time_tx": "نیازمند age معتبر؛ source_time در صورت وجود و receipt monotonic در telemetry_metadata منتشر می‌شوند",
+      "owner": "R5",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:drain",
+        "adapter:_snapshot"
+      ]
+    },
+    {
+      "field": "airspeed_m_s",
+      "unit_frame": "m/s؛ کمیت airspeed، نه بردار NED",
+      "requirement": "VFR_HUD؛ واحد SI",
+      "time_tx": "نیازمند age معتبر؛ source_time در صورت وجود و receipt monotonic در telemetry_metadata منتشر می‌شوند",
+      "owner": "R5",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:drain",
+        "adapter:_state"
+      ]
+    },
+    {
+      "field": "heading_deg",
+      "unit_frame": "deg؛ heading نمایش‌داده‌شدهٔ FCU",
+      "requirement": "VFR_HUD؛ با yaw رادیانی یکی نیست",
+      "time_tx": "نیازمند age معتبر؛ source_time در صورت وجود و receipt monotonic در telemetry_metadata منتشر می‌شوند",
+      "owner": "R5",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:drain",
+        "adapter:_snapshot"
+      ]
+    },
+    {
+      "field": "latitude_deg",
+      "unit_frame": "deg؛ WGS84",
+      "requirement": "GLOBAL_POSITION_INT.lat / 1e7؛ validation/bootstrap مصوب، نه تزریق navigation",
+      "time_tx": "نیازمند age معتبر؛ source_time در صورت وجود و receipt monotonic در telemetry_metadata منتشر می‌شوند",
+      "owner": "R5",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:drain",
+        "adapter:prepare_online_transport_session"
+      ]
+    },
+    {
+      "field": "longitude_deg",
+      "unit_frame": "deg؛ WGS84",
+      "requirement": "GLOBAL_POSITION_INT.lon / 1e7؛ validation/bootstrap مصوب",
+      "time_tx": "نیازمند age معتبر؛ source_time در صورت وجود و receipt monotonic در telemetry_metadata منتشر می‌شوند",
+      "owner": "R5",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:drain",
+        "adapter:prepare_online_transport_session"
+      ]
+    },
+    {
+      "field": "altitude_msl_m",
+      "unit_frame": "m؛ MSL",
+      "requirement": "GLOBAL_POSITION_INT.alt / 1000؛ جدا از relative و AGL",
+      "time_tx": "نیازمند age معتبر؛ source_time در صورت وجود و receipt monotonic در telemetry_metadata منتشر می‌شوند",
+      "owner": "R5",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:drain",
+        "adapter:_state"
+      ]
+    },
+    {
+      "field": "last_statustext",
+      "unit_frame": "string؛ diagnostic",
+      "requirement": "متن FCU؛ تصمیم یا approval نیست",
+      "time_tx": "زمان و tx فعلی همراه آن نیست",
+      "owner": "R5",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:drain"
+      ]
+    },
+    {
+      "field": "last_command_ack",
+      "unit_frame": "command/result صحیح MAVLink",
+      "requirement": "ACK فرمان FCU؛ نه ack intake و نه execution",
+      "time_tx": "transaction TDDT در این ACK وجود ندارد",
+      "owner": "R5",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:drain"
+      ]
+    },
+    {
+      "field": "attitude",
+      "unit_frame": "rad/rad/s; Hamilton quaternion BODY_FRD_TO_NED; Euler derived only from that quaternion",
+      "requirement": "real ATTITUDE_QUATERNION; separate display_attitude carries the VTOL display Euler; no Euler fallback",
+      "time_tx": "ATTITUDE_QUATERNION برای شرط فعال TDOC لازم است؛ نمای VTOL با بدنه تفکیک شود",
+      "owner": "R5.01/R5.03",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:drain",
+        "adapter:_fresh"
+      ]
+    },
+    {
+      "field": "battery",
+      "unit_frame": "V، A، درصد [0,100]",
+      "requirement": "SYS_STATUS؛ remaining_percent معتبر لازم است؛ missing به None",
+      "time_tx": "fresh SYS_STATUS تا 0.5s در ingress؛ health کامل جداست",
+      "owner": "R5",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:drain",
+        "adapter:_ingress_from_status"
+      ]
+    },
+    {
+      "field": "servo_output_raw",
+      "unit_frame": "µs؛ FCU output-domain کانال‌های servoN_raw",
+      "requirement": "PWM مشاهده‌شدهٔ خروجی FCU؛ نه اندازه‌گیری مستقیم زاویه یا RPM",
+      "time_tx": "SERVO_OUTPUT_RAW تازه؛ تبدیل با پارامتر نسخه‌دار FCU",
+      "owner": "R5/R7",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:drain",
+        "health:actuator_feedback"
+      ]
+    },
+    {
+      "field": "applied_pilot_command",
+      "unit_frame": "[a,e,t,r] نرمال؛ pilot-domain پس از GUI gain/quantization",
+      "requirement": "actual encoded MANUAL_CONTROL axes after GUI scaling/rounding; transport write evidence, not measured surface/RPM",
+      "time_tx": "بدون tx/first-send در producer فعلی؛ تطبیق 0.0011 در TDOC",
+      "owner": "R5.05/R7",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:send_manual",
+        "gui:control_tick",
+        "adapter:_confirmed"
+      ]
+    },
+    {
+      "field": "telemetry_buffer_samples",
+      "unit_frame": "count؛ deque محدود 4096",
+      "requirement": "فقط تعداد رکوردها؛ history واقعی از این شمار قابل استخراج نیست",
+      "time_tx": "رکورد داخلی timestamp_monotonic دریافت دارد؛ time_boot_ms نگه داشته نشده",
+      "owner": "R5.02",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:_record_telemetry"
+      ]
+    },
+    {
+      "field": "telemetry_latest_types",
+      "unit_frame": "list[str]؛ بدون frame",
+      "requirement": "فقط نام پیام‌ها؛ حضور نام کیفیت یا تازگی را ثابت نمی‌کند",
+      "time_tx": "مقادیر و source time هر کانال لازم است",
+      "owner": "R5.02",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:_record_telemetry"
+      ]
+    },
+    {
+      "field": "digital_pilot_active",
+      "unit_frame": "bool؛ GUI virtual_state",
+      "requirement": "فعال‌بودن GUI state؛ معادل service latch یا مجوز اجرا نیست",
+      "time_tx": "ttl GUI از monotonic؛ بدون correlation کافی",
+      "owner": "R6",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "gui:_poll_virtual_pilot"
+      ]
+    },
+    {
+      "field": "timestamp_monotonic",
+      "unit_frame": "s؛ monotonic میزبان GUI",
+      "requirement": "زمان ساخت status؛ نه زمان منبع telemetry",
+      "time_tx": "فقط همان دامنهٔ clock؛ جای plant_time_s نمی‌نشیند",
+      "owner": "R4.04/R5.05",
+      "evidence": [
+        "gui:_virtual_status_payload"
+      ]
+    },
+    {
+      "field": "schema",
+      "unit_frame": "string نسخه‌دار",
+      "requirement": "نیاز نسخه‌دارسازی status؛ نام دقیق schema باید در R5.04 تثبیت شود",
+      "time_tx": "schema فعلی هیچ کلید نسخه‌ای ندارد",
+      "owner": "R5.04",
+      "evidence": [
+        "gui:_virtual_status_payload"
+      ]
+    },
+    {
+      "field": "telemetry_age_s",
+      "unit_frame": "map[message → s]",
+      "requirement": "HEARTBEAT ≤2s؛ ATTITUDE/VFR_HUD/GLOBAL_POSITION_INT/QUATERNION ≤0.2s در config فعلی",
+      "time_tx": "مقادیر finite و غیرمنفی؛ limitهای config با fallback adapter تفکیک شوند",
+      "owner": "R5.03",
+      "evidence": [
+        "adapter:_fresh",
+        "config:telemetry_max_age_s:"
+      ]
+    },
+    {
+      "field": "telemetry_received_monotonic",
+      "unit_frame": "map[message → s]؛ monotonic میزبان",
+      "requirement": "ATTITUDE و SERVO_OUTPUT_RAW پس از first-send",
+      "time_tx": "هر دو timestamp ≥ command_first_sent_monotonic",
+      "owner": "R5.05",
+      "evidence": [
+        "adapter:_confirmed"
+      ]
+    },
+    {
+      "field": "plant_time_s",
+      "unit_frame": "s؛ FCU time_boot_ms / 1000 موردنیاز",
+      "requirement": "ساعت plant با epoch/reset معلوم؛ هیچ fallback wall/monotonic مجاز نیست",
+      "time_tx": "در producer فعلی وجود ندارد؛ continuity و reset باید اعتبارسنجی شوند",
+      "owner": "R4.04/R5.05",
+      "evidence": [
+        "adapter:_ingress_from_status",
+        "bridge:exchange"
+      ]
+    },
+    {
+      "field": "velocity_n_m_s",
+      "unit_frame": "m/s؛ NED north",
+      "requirement": "GLOBAL_POSITION_INT.vx / 100 موردنیاز؛ فعلاً اصلاً decode نمی‌شود",
+      "time_tx": "همان source time و freshness پیام؛ مرجع validation نه مشاهدهٔ MESA",
+      "owner": "R5.01/R5.03",
+      "evidence": [
+        "adapter:_state",
+        "link:drain"
+      ]
+    },
+    {
+      "field": "velocity_e_m_s",
+      "unit_frame": "m/s؛ NED east",
+      "requirement": "GLOBAL_POSITION_INT.vy / 100 موردنیاز؛ فعلاً decode نمی‌شود",
+      "time_tx": "همان source time پیام",
+      "owner": "R5.01/R5.03",
+      "evidence": [
+        "adapter:_state",
+        "link:drain"
+      ]
+    },
+    {
+      "field": "velocity_d_m_s",
+      "unit_frame": "m/s؛ NED down مثبت",
+      "requirement": "GLOBAL_POSITION_INT.vz / 100 موردنیاز؛ فعلاً decode نمی‌شود",
+      "time_tx": "با VFR_HUD.climb جایگزین نشود",
+      "owner": "R5.01/R5.03",
+      "evidence": [
+        "adapter:_state",
+        "link:drain"
+      ]
+    },
+    {
+      "field": "imu",
+      "unit_frame": "accel m/s²؛ gyro rad/s؛ BODY_FRD",
+      "requirement": "شش کانال finite، frame=BODY_FRD، source=MAVLink/SCALED_IMU و plant_time_s",
+      "time_tx": "SCALED_IMU age ≤0.15s؛ mg به m/s² با g استاندارد و mrad/s به rad/s در R5",
+      "owner": "R5.01/R5.03",
+      "evidence": [
+        "adapter:_state",
+        "adapter:_ingress_from_status",
+        "imu_consumer:canonical_imu"
+      ]
+    },
+    {
+      "field": "imu_samples",
+      "unit_frame": "SI/BODY_FRD; bounded latest 64 actual SCALED_IMU samples",
+      "requirement": "history واقعی، کران‌دار و دارای source/frame/plant_time_s هر نمونه",
+      "time_tx": "original time_boot_ms/plant_time_s, sequence and wire hash; include_imu_samples controls inclusion; oldest/newest/truncation explicit",
+      "owner": "R5.02/R5.06",
+      "evidence": [
+        "adapter:_status",
+        "imu_consumer:measured_intervals",
+        "virtual:status"
+      ]
+    },
+    {
+      "field": "ekf_status",
+      "unit_frame": "flags صحیح؛ بدون frame",
+      "requirement": "EKF_STATUS_REPORT؛ mask لازم 1+2+4+16+32؛ flag 1024 مردود",
+      "time_tx": "age SYS_STATUS و EKF_STATUS_REPORT هر دو ≤0.5s",
+      "owner": "R5.01",
+      "evidence": [
+        "health:fcu_estimator_ready"
+      ]
+    },
+    {
+      "field": "fcu_health",
+      "unit_frame": "bitmask صحیح؛ بدون frame",
+      "requirement": "SYS_STATUS sensors_present و sensors_health؛ PREARM_CHECK mask 268435456",
+      "time_tx": "سلامت صریح؛ باتری SYS_STATUS جای sensor-health را نمی‌گیرد",
+      "owner": "R5.01",
+      "evidence": [
+        "health:fcu_estimator_ready",
+        "link:drain"
+      ]
+    },
+    {
+      "field": "environment_contract",
+      "unit_frame": "binding_id و forcing SHA و ok؛ نسخه/مبدأ زمان",
+      "requirement": "مطابقت binding و forcing با قرارداد پذیرفته‌شده",
+      "time_tx": "0≤monotonic-now - updated_monotonic≤1s؛ readback واقعی اعمال forcing",
+      "owner": "R4.01-R4.05",
+      "evidence": [
+        "adapter:_environment_ready"
+      ]
+    },
+    {
+      "field": "applied_transaction_id",
+      "unit_frame": "opaque ID؛ بدون frame",
+      "requirement": "actual verified MANUAL_CONTROL socket write, matching command/instance/GUI activation; no polling or intake ACK substitution",
+      "time_tx": "ثابت برای همان latch؛ ACK intake جای آن نیست",
+      "owner": "R5.05",
+      "evidence": [
+        "adapter:_confirmed",
+        "correlation:record_send",
+        "correlation:snapshot"
+      ]
+    },
+    {
+      "field": "manual_sent_monotonic",
+      "unit_frame": "s؛ monotonic میزبان",
+      "requirement": "actual verified MANUAL_CONTROL socket write, matching command/instance/GUI activation; no polling or intake ACK substitution",
+      "time_tx": "مبنای مقایسهٔ first-send؛ نبودش را 0 قراردادن evidence واقعی نمی‌سازد",
+      "owner": "R5.05",
+      "evidence": [
+        "adapter:_confirmed",
+        "correlation:record_send",
+        "correlation:snapshot"
+      ]
+    },
+    {
+      "field": "command_first_sent_monotonic",
+      "unit_frame": "s؛ monotonic میزبان",
+      "requirement": "actual verified MANUAL_CONTROL socket write, matching command/instance/GUI activation; no polling or intake ACK substitution",
+      "time_tx": "بزرگ‌تر از manual_sent_monotonic قبلی؛ post-sample باید پس از آن باشد",
+      "owner": "R5.05",
+      "evidence": [
+        "adapter:_confirmed",
+        "correlation:record_send",
+        "correlation:snapshot"
+      ]
+    },
+    {
+      "field": "command_first_sent_plant_time_s",
+      "unit_frame": "s؛ همان دامنهٔ plant_time_s",
+      "requirement": "exact point remains null; verified pre-send/ordered-barrier source bounds exposed separately; no approximate anchor published as exact send time",
+      "time_tx": "post - sent باید در [segment, segment+0.05s] باشد و sent≥pre-plant",
+      "owner": "R5.05 producer bounds; R6.03/R8 temporal segment consumption",
+      "evidence": [
+        "bridge:exchange"
+      ]
+    },
+    {
+      "field": "telemetry_channels",
+      "unit_frame": "raw native units retained; separate contract normalized SI/BODY_FRD or BODY_FRD_TO_NED, actuator-channel/health domains explicit",
+      "requirement": "versioned status carries compact source/hash/availability summaries; full raw samples and normalized contracts remain in public telemetry_history",
+      "time_tx": "local monotonic domain plus receipt/source-progress freshness; absolute capture age and network latency unverified; health source time remains null; history R5.02 exposes parallel sample_contracts",
+      "owner": "R5.01/R5.02/R5.03 implemented; R5.04/R5.05/R5.06 remain open",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "link:received_channels",
+        "telemetry:ingest",
+        "telemetry:snapshot",
+        "normalization:normalize",
+        "normalization:evaluate",
+        "sender_contract:native_source_contract"
+      ]
+    },
+    {
+      "field": "schema_version",
+      "unit_frame": "status/schema metadata; clock domain or observation source explicitly labelled",
+      "requirement": "R5.04 versioned producer field; unavailable data remains null/empty; no flight release",
+      "time_tx": "request_id correlates only this read; source times and monotonic receipt are distinct; execution correlation unavailable",
+      "owner": "R5.04",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "status:project_status",
+        "status:status_response"
+      ]
+    },
+    {
+      "field": "request_id",
+      "unit_frame": "status/schema metadata; clock domain or observation source explicitly labelled",
+      "requirement": "R5.04 versioned producer field; unavailable data remains null/empty; no flight release",
+      "time_tx": "request_id correlates only this read; source times and monotonic receipt are distinct; execution correlation unavailable",
+      "owner": "R5.04",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "status:project_status",
+        "status:status_response"
+      ]
+    },
+    {
+      "field": "ok",
+      "unit_frame": "status/schema metadata; clock domain or observation source explicitly labelled",
+      "requirement": "R5.04 versioned producer field; unavailable data remains null/empty; no flight release",
+      "time_tx": "request_id correlates only this read; source times and monotonic receipt are distinct; execution correlation unavailable",
+      "owner": "R5.04",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "status:project_status",
+        "status:status_response"
+      ]
+    },
+    {
+      "field": "reason",
+      "unit_frame": "status/schema metadata; clock domain or observation source explicitly labelled",
+      "requirement": "R5.04 versioned producer field; unavailable data remains null/empty; no flight release",
+      "time_tx": "request_id correlates only this read; source times and monotonic receipt are distinct; execution correlation unavailable",
+      "owner": "R5.04",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "status:project_status",
+        "status:status_response"
+      ]
+    },
+    {
+      "field": "session_id",
+      "unit_frame": "status/schema metadata; clock domain or observation source explicitly labelled",
+      "requirement": "R5.04 versioned producer field; unavailable data remains null/empty; no flight release",
+      "time_tx": "request_id correlates only this read; source times and monotonic receipt are distinct; execution correlation unavailable",
+      "owner": "R5.04",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "status:project_status",
+        "status:status_response"
+      ]
+    },
+    {
+      "field": "monotonic_domain_id",
+      "unit_frame": "status/schema metadata; clock domain or observation source explicitly labelled",
+      "requirement": "R5.04 versioned producer field; unavailable data remains null/empty; no flight release",
+      "time_tx": "request_id correlates only this read; source times and monotonic receipt are distinct; execution correlation unavailable",
+      "owner": "R5.04",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "status:project_status",
+        "status:status_response"
+      ]
+    },
+    {
+      "field": "display_attitude",
+      "unit_frame": "status/schema metadata; clock domain or observation source explicitly labelled",
+      "requirement": "R5.04 versioned producer field; unavailable data remains null/empty; no flight release",
+      "time_tx": "request_id correlates only this read; source times and monotonic receipt are distinct; execution correlation unavailable",
+      "owner": "R5.04",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "status:project_status",
+        "status:status_response"
+      ]
+    },
+    {
+      "field": "imu_history",
+      "unit_frame": "status/schema metadata; clock domain or observation source explicitly labelled",
+      "requirement": "R5.04 versioned producer field; unavailable data remains null/empty; no flight release",
+      "time_tx": "request_id correlates only this read; source times and monotonic receipt are distinct; execution correlation unavailable",
+      "owner": "R5.04",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "status:project_status",
+        "status:status_response"
+      ]
+    },
+    {
+      "field": "telemetry_metadata",
+      "unit_frame": "status/schema metadata; clock domain or observation source explicitly labelled",
+      "requirement": "R5.04 versioned producer field; unavailable data remains null/empty; no flight release",
+      "time_tx": "request_id correlates only this read; source times and monotonic receipt are distinct; execution correlation unavailable",
+      "owner": "R5.04",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "status:project_status",
+        "status:status_response"
+      ]
+    },
+    {
+      "field": "plant_time_source",
+      "unit_frame": "status/schema metadata; clock domain or observation source explicitly labelled",
+      "requirement": "R5.04 versioned producer field; unavailable data remains null/empty; no flight release",
+      "time_tx": "request_id correlates only this read; source times and monotonic receipt are distinct; execution correlation unavailable",
+      "owner": "R5.04",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "status:project_status",
+        "status:status_response"
+      ]
+    },
+    {
+      "field": "flight_ready",
+      "unit_frame": "status/schema metadata; clock domain or observation source explicitly labelled",
+      "requirement": "R5.04 versioned producer field; unavailable data remains null/empty; no flight release",
+      "time_tx": "request_id correlates only this read; source times and monotonic receipt are distinct; execution correlation unavailable",
+      "owner": "R5.04",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "status:project_status",
+        "status:status_response"
+      ]
+    },
+    {
+      "field": "status_quality",
+      "unit_frame": "status/schema metadata; clock domain or observation source explicitly labelled",
+      "requirement": "R5.04 versioned producer field; unavailable data remains null/empty; no flight release",
+      "time_tx": "request_id correlates only this read; source times and monotonic receipt are distinct; execution correlation unavailable",
+      "owner": "R5.04",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "status:project_status",
+        "status:status_response"
+      ]
+    },
+    {
+      "field": "command_first_sent_plant_time_bounds",
+      "unit_frame": "host monotonic send completion; FCU_BOOT source-time interval, never an exact interpolated clock",
+      "requirement": "R5.05 scoped transport correlation; bounded witnesses; unsupported ordering or missing data remains unavailable",
+      "time_tx": "transaction/command instance/GUI activation/session and wire hash; ordered TIMESYNC echo barrier; post source timestamp and receipt",
+      "owner": "R5.05; R6.03/R8 consume timing uncertainty",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "correlation:record_send",
+        "correlation:observe",
+        "correlation:verified_send_bounds"
+      ]
+    },
+    {
+      "field": "command_correlation",
+      "unit_frame": "host monotonic send completion; FCU_BOOT source-time interval, never an exact interpolated clock",
+      "requirement": "R5.05 scoped transport correlation; bounded witnesses; unsupported ordering or missing data remains unavailable",
+      "time_tx": "transaction/command instance/GUI activation/session and wire hash; ordered TIMESYNC echo barrier; post source timestamp and receipt",
+      "owner": "R5.05; R6.03/R8 consume timing uncertainty",
+      "evidence": [
+        "gui:_virtual_status_payload",
+        "correlation:record_send",
+        "correlation:observe",
+        "correlation:verified_send_bounds"
+      ]
+    }
+  ],
+  "packet": [
+    {
+      "id": "D_exec",
+      "required": "u_cmd=[aileron,elevator,throttle,rudder]؛ ranges [-1,1],[-1,1],[0,1],[-1,1]؛ C_exec و S_safe و زمان‌ها؛ nu/provenance/confidence و targets حفظ شوند",
+      "actual": "envelope چهار فرمان را به GUI roll/pitch/throttle/yaw می‌برد؛ A_target/nu/provenance اثبات اجرای actuator نیستند و enforcement کامل نسخه در validate وجود ندارد",
+      "owner": "R7.05/R7.07",
+      "evidence": [
+        "envelope:from_dict",
+        "envelope:PilotCommand",
+        "adapter:invoke"
+      ]
+    },
+    {
+      "id": "aliases",
+      "required": "در TDOC، command→u_cmd، execution_constraints→C_exec، safety_policy→S_safe، apply_time→tau_apply و deadline_time→tau_deadline؛ conflict رد شود",
+      "actual": "فقط در adapter نرمال می‌شود؛ Client عمومی این پنج alias را خودش normalize نمی‌کند؛ envelope فقط first_move را نیز می‌پذیرد",
+      "owner": "R1.03/R7",
+      "evidence": [
+        "adapter:invoke",
+        "envelope:from_dict"
+      ]
+    },
+    {
+      "id": "safety_authority",
+      "required": "FINAL جاری، readiness و verifier مستقل native و psf/rta صریح برای Online؛ direct_pwm=false",
+      "actual": "TDOC gateهای سخت‌گیرانه دارد؛ Client/service مستقل FINAL/provider را اثبات نمی‌کند و validate فقط gateهای safety حاضر را بررسی می‌کند؛ demo gateها proof نیستند",
+      "owner": "R7.06/R7.07",
+      "evidence": [
+        "adapter:invoke",
+        "validation:validate",
+        "client:submit_command"
+      ]
+    },
+    {
+      "id": "mode_discrete",
+      "required": "QHOVER/FBWA/QSTABILIZE/QLOITER؛ ARM/DISARM/THROTTLE_ZERO/NEUTRAL_ATTITUDE؛ فقط تصمیم مجاز Layer5",
+      "actual": "executor mode/action را به GUI می‌فرستد؛ درخواست با mode/armed مشاهده‌شده باید تطبیق کند؛ MANUAL_CONTROL axes x=pitch,y=roll,z=throttle,r=yaw",
+      "owner": "R6/R7",
+      "evidence": [
+        "executor:accept",
+        "link:send_manual",
+        "adapter:_confirmed"
+      ]
+    },
+    {
+      "id": "pilot_transform",
+      "required": "pilot-domain نرمال به GUI؛ gain، clamp، round و ترتیب axes بخشی از binding مدل است",
+      "actual": "GUI axis را با max_* ضرب و در 1000 کوانتیزه می‌کند؛ config فعلی هر سه max را 1.0 دارد؛ applied_pilot_command بعد از این تبدیل است",
+      "owner": "R3/R7.01-R7.05",
+      "evidence": [
+        "gui:control_tick",
+        "link:send_manual",
+        "gui_config:max_pitch:"
+      ]
+    },
+    {
+      "id": "Layer7Input",
+      "required": "transaction_id/version/ExecutionEvidence/PredictionEvidence/NetworkSnapshot/DecisionTrace از همان چرخه",
+      "actual": "builder فعلی version=layer7-input-v1؛ L3/L4 دادهٔ caller را عبور می‌دهد و جعل نمی‌کند؛ absent به None می‌ماند؛ ساخت object proof اجرا نیست",
+      "owner": "R8.01",
+      "evidence": [
+        "feedback:build_layer7_input",
+        "client:build_layer7_input"
+      ]
+    },
+    {
+      "id": "ExecutionEvidence",
+      "required": "pilot درخواست‌شده و اعمال‌شده با domain یکسان؛ physical feedback جدا و دارای provenance؛ زمان observation واقعی",
+      "actual": "feedback u_applied را pilot می‌دهد؛ servo_output_raw در actuator_observed است؛ wind و health unavailable؛ timestamp زمان ساخت wall است؛ adapter شواهد tx/plant را اضافه می‌خواهد",
+      "owner": "R5/R8.01",
+      "evidence": [
+        "feedback:build_execution_evidence",
+        "feedback:current_state_from_gui",
+        "adapter:_evidence",
+        "health:actuator_feedback"
+      ]
+    },
+    {
+      "id": "feedback_doc_discrepancy",
+      "required": "مثال مستند Layer7 که u_applied را physical actuator نشان می‌دهد نباید با اجرای pilot-domain مخلوط شود",
+      "actual": "کد فعلی pilot→pilot را منتشر می‌کند؛ مقدار estimated از FCU PWM اندازه‌گیری مستقیم زاویه/RPM نیست؛ هماهنگی residual در R8 لازم است",
+      "owner": "R8.01/R8.02",
+      "evidence": [
+        "feedback:build_execution_evidence",
+        "health:actuator_feedback"
+      ]
+    }
+  ],
+  "clocks": [
+    {
+      "id": "TDOC_fast_window",
+      "required": "fast_dt_s=1.0s پنجرهٔ فعلی TDOC است؛ با 30Hz ارسال، هدف کنترل 10Hz و segment=0.1s یکی فرض نشود؛ p99 به حداقل 1000 نمونهٔ execution تأییدشده نیاز دارد",
+      "actual": "این مقادیر در config حاضرند؛ نگاشت پنجره‌ها و تحقق نرخ/latency هنوز باید در R8.04 با trace اندازه‌گیری شود؛ هیچ p99 زنده‌ای در R1.03 اندازه‌گیری نشده است",
+      "owner": "R8.04",
+      "evidence": [
+        "config:fast_dt_s:",
+        "config:min_executed_samples_for_p99_claim:"
+      ]
+    },
+    {
+      "id": "wall_epoch",
+      "required": "tau_apply و tau_deadline ثانیهٔ Unix wall؛ مقادیر finite و deadline>apply",
+      "actual": "TDOC بررسی می‌کند؛ validate Layer6 now=time.time است و packet deadline را چک می‌کند؛ زمان مأموریت/plant این clock نیست",
+      "owner": "R4.04/R6.03",
+      "evidence": [
+        "adapter:invoke",
+        "validation:validate",
+        "client:submit_command"
+      ]
+    },
+    {
+      "id": "host_monotonic",
+      "required": "timeout، receive، first-send و TTL باید دامنهٔ monotonic معلوم داشته باشند",
+      "actual": "per-message receipt and domain exposed; response timestamp never replaces observation time; execution first-send fields remain null for R5.05",
+      "owner": "R4.04/R5.05",
+      "evidence": [
+        "link:_record_telemetry",
+        "gui:_virtual_status_payload",
+        "virtual:wait_for",
+        "bridge:exchange"
+      ]
+    },
+    {
+      "id": "plant_segment",
+      "required": "segment=0.1s در plant؛ actual=post-first_sent؛ acceptance تا segment+0.05؛ sent≥pre",
+      "actual": "Producer supplies verified observed send-time bounds; exact first-send plant scalar remains null; existing Bridge exact-point gate rejects unavailable scalar until R6.03/R8 consume uncertainty",
+      "owner": "R5.05/R6.01/R6.03",
+      "evidence": [
+        "bridge:exchange",
+        "executor:tick",
+        "service:main",
+        "config:commit_segment_s:"
+      ]
+    },
+    {
+      "id": "cadence",
+      "required": "هدف کنترل 10Hz و segment 0.1s با 30Hz ارسال مستقل‌اند؛ p99 فقط با حجم نمونهٔ مصوب",
+      "actual": "config ارسال 30Hz؛ tick TTL=max(0.15,3/rate)؛ GUI update_hz=30؛ این مقادیر دستیابی به deadline یا p99 را ثابت نمی‌کنند",
+      "owner": "R6.03/R8.04",
+      "evidence": [
+        "executor:tick",
+        "gui_config:update_hz:",
+        "config:execution_rate_hz:"
+      ]
+    },
+    {
+      "id": "freshness",
+      "required": "fallback adapter telemetry=2s و heartbeat=2s؛ config واقعی telemetry=0.2s، IMU=0.15s؛ health=0.5s؛ forcing=1s",
+      "actual": "per-channel receipt/source-progress age and metadata now published; absolute capture age/latency unverified; invalid clocks yield unavailable age; R5.06 integrated acceptance pending",
+      "owner": "R5.03/R5.06",
+      "evidence": [
+        "adapter:_fresh",
+        "adapter:_ingress_from_status",
+        "adapter:_environment_ready",
+        "health:fcu_estimator_ready",
+        "config:imu_max_age_s:"
+      ]
+    }
+  ],
+  "transactions": [
+    {
+      "id": "identity",
+      "required": "tx بیرونی=tx بسته=ACK intake=applied_transaction_id؛ candidate با تصمیم verified یکسان",
+      "actual": "R5.05: Client assigns missing external tx before send, rejects conflicting IDs, matches ACK peer/tx/intake_request_id; service ACK command_instance_id must match actual GUI generation, which binds MANUAL_CONTROL OS writes and wire bytes",
+      "owner": "R5.05/R6/R8.01",
+      "evidence": [
+        "adapter:invoke",
+        "bridge:exchange",
+        "client:submit",
+        "envelope:from_dict"
+      ]
+    },
+    {
+      "id": "cancel_contract",
+      "required": "cancel(transaction_id=...,reason=...) باید فقط همان latch را ببندد؛ result.ok=true و result.raw.cancelled=true",
+      "actual": "R6.01: targeted transaction/instance -> service latch stop -> GUI replay fence/ACK; cancelled=true only with matching GUI confirmation. None snapshots service target; no target gives cancelled=false. No FCU stabilization claim.",
+      "owner": "R6.01/R6.02",
+      "evidence": [
+        "bridge:cancel",
+        "bridge:exchange",
+        "service:main",
+        "executor:tick",
+        "virtual:release",
+        "gui:_poll_virtual_pilot"
+      ]
+    },
+    {
+      "id": "post_command",
+      "required": "sample تازه و tx متناظر، first-send، ATTITUDE/SERVO received≥first-send و pilot error≤0.0011؛ mode/armed لازم تطبیق کند",
+      "actual": "R6.03 canonical bridge consumes verified start/close plant intervals and fresh post-closure snapshots; no exact scalar/full horizon/physical HOLD inferred",
+      "owner": "R6.03/R8.01",
+      "evidence": [
+        "adapter:_confirmed",
+        "bridge:exchange"
+      ]
+    },
+    {
+      "id": "status_request",
+      "required": "پاسخ status و history باید به request و حدود payload متصل باشد؛ زمان دریافت جای source time نیست",
+      "actual": "R5.02/R5.04: status/history responses match request_id/peer/schema and bounded payload; source clocks remain separate",
+      "owner": "R5.02/R5.04",
+      "evidence": [
+        "virtual:status",
+        "virtual:_send",
+        "gui:_send_virtual_status"
+      ]
+    },
+    {
+      "id": "lifecycle",
+      "required": "TDOC مالک جلسه/stack ایجادشده؛ cancel باید واقعی باشد و close معادل stop نیست",
+      "actual": "reset_online_session ابتدا cancel می‌خواهد؛ خطای cancel می‌تواند stop_owned_stack را skip کند ولی finally close اجرا می‌شود؛ در این گام اجرا نشده",
+      "owner": "R6.05",
+      "evidence": [
+        "adapter:reset_online_session",
+        "client:close"
+      ]
+    }
+  ],
+  "readiness": [
+    {
+      "id": "PACKAGE_API",
+      "required": "preflight برای وجود package/path/version/API؛ READY به معنی مجوز پرواز نیست",
+      "actual": "READY یا ONLINE_NOT_READY؛ انتظار root=layer6_v20261007_1032 و version=2026.10.7.0937؛ metadata فعلی همین است ولی cancel غایب؛ probe.online_ready صرفاً package scope دارد",
+      "owner": "R1.04/R6.05",
+      "evidence": [
+        "adapter:preflight",
+        "project:version=",
+        "config:expected_version: 2026.10.7.0937"
+      ]
+    },
+    {
+      "id": "TRANSPORT",
+      "required": "GUI/FCU، forcing و کانال‌های تازه؛ هیچ startup actuation از صرف اتصال",
+      "actual": "prepare_online_transport_session: READY/NOT_READY؛ _session_open فقط پس از کنترل‌ها true می‌شود؛ stage/error موجود است؛ runtime اینجا اجرا نشده",
+      "owner": "R4/R5/R6.05",
+      "evidence": [
+        "adapter:prepare_online_transport_session"
+      ]
+    },
+    {
+      "id": "CONTROL",
+      "required": "provider و گواهی اجرایی جاری + تمام gateهای Layer5؛ ARM فقط از D_exec جاری و کامل؛ startup/readiness هیچ فرمان کنترلی صادر نمی‌کند",
+      "actual": "nominal_control_ready فقط با True صریح پذیرفته می‌شود؛ ground_arm_bootstrap به DEFERRED_TO_CURRENT_D_EXEC تبدیل شده و _prepare_ground_arm پیش از هر I/O رد می‌شود",
+      "owner": "R7.07/R6.05",
+      "evidence": [
+        "adapter:prepare_online_control_session",
+        "adapter:_prepare_ground_arm"
+      ]
+    },
+    {
+      "id": "EXECUTION",
+      "required": "FINAL false→OBSERVATION_ONLY بدون actuation؛ FINAL معتبر→EXECUTED فقط با تأیید segment و لغو latch؛ خطا→FAILED/HOLD",
+      "actual": "FAILED route HOLD carries HOLD_UNVERIFIED, cancel outcome/errors and unknown actuation after attempted submission; zero throttle/ACK never certifies physical safety",
+      "owner": "R6/R8.01",
+      "evidence": [
+        "adapter:invoke",
+        "bridge:exchange"
+      ]
+    },
+    {
+      "id": "COMMISSION",
+      "required": "بارگذاری prior باید از صلاحیت تصمیم جاری جدا بماند",
+      "actual": "commission_online_control ممکن است READY برای binding prior برگرداند؛ actuation_executed=false و معنی read-only؛ تغییر وابستگی prior در R2 است",
+      "owner": "R2.01/R2.03",
+      "evidence": [
+        "adapter:commission_online_control"
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "id": "F01",
+      "required": "لغو هدف‌دار با توقف latch و تایید GUI؛ تداوم و lifecycle جدا پذیرفته شوند",
+      "actual": "R6.01/R6.02: targeted cancel and operation-bound retry/completion proof; repeat/lost-ACK/newer-command acceptance recorded. Segment/HOLD/lifecycle remain R6.03-R6.05.",
+      "owner": "R6.01/R6.02/R6.05",
+      "evidence": [
+        "adapter:preflight",
+        "bridge:cancel",
+        "client:Layer6Client"
+      ]
+    },
+    {
+      "id": "F06",
+      "required": "ثبت include_imu_samples و status نسخه‌دار",
+      "actual": "R5.04-R5.06: versioned real status and bounded IMU history; correlation uses verified plant interval, invalid observations/replay rejected at consumption; no flight release",
+      "owner": "R5.01-R5.06",
+      "evidence": [
+        "adapter:_status",
+        "client:gui_status",
+        "gui:_virtual_status_payload"
+      ]
+    },
+    {
+      "id": "F12",
+      "required": "مرز demo و مسیر تولیدی در قرارداد روشن باشد",
+      "actual": "run_demo_sequence دستورهای phase و safety literals خود را دارد؛ نتیجهٔ آن proof تصمیم L2-L7 و GNSS-denied نیست",
+      "owner": "R9.05",
+      "evidence": [
+        "client:run_demo_sequence",
+        "adapter:invoke"
+      ]
+    }
+  ],
+  "invariants": [
+    "TDOC مالک orchestration است؛ Layer5 تنها مرجع تصمیم اجرایی معتبر است و GUI تنها مالک MAVLink این مسیر است.",
+    "Offline فقط prior راهنماست؛ نیاز به نمونهٔ آفلاین نظیر به نظیر برای هر تصمیم Online تعریف نمی‌شود. state تازهٔ L2/L3 مبنا و تصمیم از حلقهٔ ۲ تا ۷ است.",
+    "integrity، نسخه، hash، مدل، forcing و freshness لازم‌اند؛ prior ناسازگار reuse نمی‌شود. اعتبار هویت prior معادل FINAL یا صلاحیت پرواز نیست.",
+    "CALL_SHAPE_COMPATIBLE فقط تطبیق signature است؛ readiness بسته، heartbeat، ACK intake و demo اثبات execution یا حلقهٔ تولیدی نیستند.",
+    "فرمان pilot-domain با actuator-domain متفاوت است. direct PWM، FINAL ساختگی، تزریق truth و فرمان خارج از تصمیم Layer5 مجاز نیست.",
+    "هیچ نمونهٔ گمشده، زمان، quaternion، health یا observation با مقدار پیش‌فرض یا truth پر نمی‌شود؛ نبود داده صریح می‌ماند.",
+    "در این ثبت قرارداد reset، دانلود، rebuild، آموزش، ساخت Client، شروع stack و ارسال فرمان اجرا نمی‌شود.",
+    "امضا و producer موجود از AST ثبت می‌شود؛ الزامات semantic از خواندن سورس آمده‌اند و به‌عنوان رفتار زندهٔ تأییدشده گزارش نمی‌شوند."
+  ],
+  "retired_production_calls_R3_05": [
+    {
+      "method": "restart_stack",
+      "reason": "fixture-related automatic model restart removed; public Layer6 API remains available"
+    },
+    {
+      "method": "wait_for_status",
+      "reason": "fixture-related automatic model restart removed; public Layer6 API remains available"
+    }
+  ],
+  "observation_acceptance_R5_06": {
+    "scope": "local receipt/progression at actual consumption; no absolute source latency or flight authority",
+    "required_core": [
+      "HEARTBEAT",
+      "ATTITUDE",
+      "VFR_HUD",
+      "GLOBAL_POSITION_INT",
+      "SCALED_IMU",
+      "ATTITUDE_QUATERNION"
+    ],
+    "ingress_additional": [
+      "SERVO_OUTPUT_RAW",
+      "SYS_STATUS"
+    ],
+    "health": "SYS_STATUS/EKF_STATUS_REPORT metadata must also be valid at estimator-readiness consumption",
+    "freshness": "per-channel MAX_AGE cap; re-evaluate reported age plus local elapsed time; contradictory, missing, future, stale or cross-domain evidence rejected",
+    "replay": "arrival order, actual six-axis samples, matching source/session/domain and integration grant required; no sort/dedup, no timestamp repair, no endpoint overwrite",
+    "history_age": "old buffered records are historical observations; current-state freshness and integration coverage are separate checks",
+    "environment": "environment verification remains mandatory; no cache/timeout relaxation; status observations projected after heavy environment validation",
+    "evidence": [
+      "status:validate_observation_status",
+      "adapter:_fresh",
+      "adapter:_ingress_from_status"
+    ]
+  },
+  "targeted_cancel_R6_01": {
+    "schema": "Layer6-targeted-cancel-v1",
+    "scope": "service/GUI command generation only",
+    "success": "ok=true, cancelled=true, latch_cancelled=true, gui_cancelled=true plus matching GUI ACK and replay fence",
+    "None": "resolve current service generation; never broadcast GUI release; cancelled=false if no matching latch",
+    "replay": "control-session peer/sequence + revoked instance fence; bounded non-evicting storage, full session closed",
+    "post_cancel_output": "matched/current-or-last generation inhibits MANUAL_CONTROL fallback until a new accepted state",
+    "physical_stabilization_verified": false,
+    "remaining": [
+      "R6.02 fault/idempotence acceptance",
+      "R6.03 segment closure",
+      "R6.04 timeout/HOLD physical semantics",
+      "R6.05 lifecycle"
+    ]
+  },
+  "cancel_operations_R6_02": {
+    "operation_schema": "Layer6-cancel-operation-v2",
+    "identity": "client session + monotonic operation sequence + nonce + payload fingerprint + peer",
+    "binding": "target resolved once on first service handling; duplicate operation never resolves current target again",
+    "retry": "Client retains the identical operation after timeout/unconfirmed ACK, including original reason even if retry reason changes; known new generation or completed prior call defines a new operation",
+    "completion_replay": "only the original actual successful GUI proof may be replayed, explicitly labelled original_operation_completed; never a new observation of current latch",
+    "pending_with_newer_command": "cancelled=false and unconfirmed; no old GUI wait/clear can interfere with newer service latch",
+    "bounded_history": "evicted/unseen older operations rejected by non-evicting client watermarks; no retarget",
+    "lifecycle_scope": "same service/GUI process lifetime; persistent restart guarantees remain R6.05",
+    "physical_stabilization_verified": false
+  },
+  "first_move_segment_R6_03": {
+    "schema": "Layer6-first-move-segment-v1",
+    "maximum_duration_s": 0.1,
+    "default_close_guard_s": 0.04,
+    "scope": "continuous command latch only; physical HOLD remains R6.04",
+    "proof": "two actual ordered-stream TIMESYNC nonce barriers and SCALED_IMU clock witnesses; duration upper <= authorized cap",
+    "deadline": "admission/confirmation only; never extends maximum plant duration",
+    "post_observation": "fresh frozen closure snapshot; original R5.06 consumption checks retained",
+    "short_execution": "conservative bounded prefix; no full 0.1s claim or exact midpoint",
+    "full_status": "blocked while segment active to avoid heavy environment work in the close path"
+  },
+  "timeout_HOLD_R6_04": {
+    "schema": "Layer6-HOLD-outcome-v1",
+    "GUI_expiry": "TTL and packet admission deadline close the exact generation, inhibit inherited output and revoke refresh/action replay before processing arriving packets",
+    "service_expiry": "targeted cancel_bound retains instance/retry state; never broadcast release",
+    "release": "identity/peer bound to last actually sent state; unscoped release cannot clear another owner",
+    "HOLD": "HOLD_UNVERIFIED regardless of zero throttle or cancel success; no autonomous ARM/mode/zero/PWM fallback",
+    "failed_submission": "execution_confirmation UNCONFIRMED; actuation_executed unknown when submission attempted",
+    "physical_acceptance_scope": "sampled disarmed fourfoot ground quiescence, not airborne HOLD; FCU RC retention observed separately",
+    "airborne": "no flight release from transport or ground acceptance; current provider and Layer5 authority remain required"
+  },
+  "native_lifecycle_R6_05": {
+    "startup": "three real terminal workers, real ArduPilot/JSBSim, MAVProxy, bound Environment Adapter, intake and Qt GUI",
+    "ownership": "unique same-UID session tag + PID birth identity, no global process-name cleanup",
+    "reuse": "same exact live binding; no overwrite of active knowledge/forcing identity",
+    "stop": "owned process cleanup independent of cancellation outcome; failed cleanup retains owner handle",
+    "GUI": "managed session inhibits manual startup/close writes and manual ARM/mode; actual control only from accepted virtual state",
+    "wind": "batched SET echo phase followed by independent GET phase; all six values/source/time checks retained; no freshness or timeout relaxation",
+    "remaining": "flight and R604 physical rate finding not certified by transport readiness",
+    "boot": "managed public intake and GUI actuation messages bind exact native boot UUID; old/missing boot rejected before admission; restart clears client operation caches",
+    "status_validation": "per-request full validation in QThread, no result cache; fresh GUI telemetry projection on delivery and TDOC revalidation retained; TTL unchanged"
+  },
+  "retired_production_calls": [
+    {
+      "method": "submit_command",
+      "purpose": "status-only ARM bootstrap retired; external client utility remains available; no production TDOC caller",
+      "unit_frame": "u_cmd=[a,e,t,r]؛ mode و discrete؛ direct_pwm=false",
+      "time_tx": "tau_apply و deadline در wall epoch؛ ttl_s ثانیه؛ tx صریح از TDOC",
+      "owner": "R6.05/R7.07",
+      "evidence": [
+        "adapter:_prepare_ground_arm",
+        "client:submit_command"
+      ],
+      "retired_in": "R7.07 execution repair v10",
+      "replacement": "current verified Layer5 D_exec -> Layer6OnlineAdapter.invoke -> Layer6Client.submit"
+    }
+  ]
+}

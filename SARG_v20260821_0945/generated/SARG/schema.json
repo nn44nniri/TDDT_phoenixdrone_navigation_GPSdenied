@@ -1,0 +1,332 @@
+{
+  "primary_key": [
+    "regime_id",
+    "phase_id",
+    "crp_id"
+  ],
+  "lookup_index": {
+    "file": "sarg_lookup_index.csv",
+    "order": [
+      "regime_id",
+      "crp_local_index",
+      "phase_id"
+    ],
+    "columns": [
+      "regime_id",
+      "crp_local_index",
+      "phase_id",
+      "crp_id",
+      "record_id",
+      "row_offset"
+    ],
+    "crp_local_index_base": 0
+  },
+  "selector": {
+    "canonical_api": "select(regime_id, phase_id, crp_id)",
+    "canonical_formula": "Select_SARG(r_m, s_m, k_m^*)",
+    "phase_stage_equivalence": "s_m ≡ p_m",
+    "unknown_regime_behavior": "return candidates for phase_id + crp_id; never infer regime"
+  },
+  "coordinate_reference": {
+    "geodetic_crs": "EPSG:4326",
+    "map_crs": "EPSG:32613",
+    "local_frame": "ENU",
+    "vertical_reference": "MSL",
+    "coordinate_order_geodetic": "longitude,latitude",
+    "linear_unit": "m",
+    "angular_unit": "deg"
+  },
+  "columns": {
+    "record_id": {
+      "dtype": "int64"
+    },
+    "scenario_id": {
+      "dtype": "int64"
+    },
+    "regime_id": {
+      "dtype": "int64"
+    },
+    "phase_id": {
+      "dtype": "int64"
+    },
+    "crp_id": {
+      "dtype": "int64"
+    },
+    "region_id": {
+      "dtype": "str"
+    },
+    "origin_lon_deg": {
+      "dtype": "float64",
+      "crs": "EPSG:4326",
+      "unit": "deg",
+      "axis": "longitude"
+    },
+    "origin_lat_deg": {
+      "dtype": "float64",
+      "crs": "EPSG:4326",
+      "unit": "deg",
+      "axis": "latitude"
+    },
+    "destination_lon_deg": {
+      "dtype": "float64",
+      "crs": "EPSG:4326",
+      "unit": "deg",
+      "axis": "longitude"
+    },
+    "destination_lat_deg": {
+      "dtype": "float64",
+      "crs": "EPSG:4326",
+      "unit": "deg",
+      "axis": "latitude"
+    },
+    "origin_x_m": {
+      "dtype": "float64",
+      "crs": "EPSG:32613",
+      "unit": "m",
+      "axis": "easting"
+    },
+    "origin_y_m": {
+      "dtype": "float64",
+      "crs": "EPSG:32613",
+      "unit": "m",
+      "axis": "northing"
+    },
+    "destination_x_m": {
+      "dtype": "float64",
+      "crs": "EPSG:32613",
+      "unit": "m",
+      "axis": "easting"
+    },
+    "destination_y_m": {
+      "dtype": "float64",
+      "crs": "EPSG:32613",
+      "unit": "m",
+      "axis": "northing"
+    },
+    "origin_x": {
+      "dtype": "float64",
+      "crs": "EPSG:32613",
+      "unit": "m",
+      "deprecated_alias_of": "origin_x_m"
+    },
+    "origin_y": {
+      "dtype": "float64",
+      "crs": "EPSG:32613",
+      "unit": "m",
+      "deprecated_alias_of": "origin_y_m"
+    },
+    "destination_x": {
+      "dtype": "float64",
+      "crs": "EPSG:32613",
+      "unit": "m",
+      "deprecated_alias_of": "destination_x_m"
+    },
+    "destination_y": {
+      "dtype": "float64",
+      "crs": "EPSG:32613",
+      "unit": "m",
+      "deprecated_alias_of": "destination_y_m"
+    },
+    "record_status": {
+      "dtype": "int64"
+    },
+    "phase_used": {
+      "dtype": "int64"
+    },
+    "wing_status": {
+      "dtype": "int64"
+    },
+    "mesa_status": {
+      "dtype": "int64"
+    },
+    "wind_u_mean_ms": {
+      "dtype": "float64"
+    },
+    "wind_v_mean_ms": {
+      "dtype": "float64"
+    },
+    "crp_code": {
+      "dtype": "str"
+    },
+    "crp_temperature_state": {
+      "dtype": "str"
+    },
+    "crp_humidity_state": {
+      "dtype": "str"
+    },
+    "crp_wind_state": {
+      "dtype": "str"
+    },
+    "crp_time_window": {
+      "dtype": "str"
+    },
+    "crp_temperature_mean_c": {
+      "dtype": "float64"
+    },
+    "crp_humidity_mean_pct": {
+      "dtype": "float64"
+    },
+    "crp_wind_speed_mean_ms": {
+      "dtype": "float64"
+    },
+    "crp_wind_direction_mean_deg": {
+      "dtype": "float64"
+    },
+    "crp_pressure_mean_pa": {
+      "dtype": "float64"
+    },
+    "crp_air_density_mean_kg_m3": {
+      "dtype": "float64"
+    },
+    "crp_pressure_source": {
+      "dtype": "str"
+    },
+    "crp_air_density_source": {
+      "dtype": "str"
+    },
+    "fmi_execution_mode": {
+      "dtype": "str"
+    },
+    "route_file_id": {
+      "dtype": "int64"
+    },
+    "path_length_m": {
+      "dtype": "float64"
+    },
+    "flight_time_s": {
+      "dtype": "float64"
+    },
+    "energy_used_wh": {
+      "dtype": "float64"
+    },
+    "airspeed_mean_ms": {
+      "dtype": "float64"
+    },
+    "groundspeed_mean_ms": {
+      "dtype": "float64"
+    },
+    "min_ground_clearance_m": {
+      "dtype": "float64"
+    },
+    "observability_score": {
+      "dtype": "float64"
+    },
+    "energy_remaining_wh": {
+      "dtype": "float64",
+      "unit": "Wh",
+      "source": "WingMPET accumulation + drone usable energy"
+    },
+    "min_obstacle_clearance_m": {
+      "dtype": "float64",
+      "unit": "m",
+      "source": "WingMPET safety.obstacle_margin"
+    },
+    "position_error_m": {
+      "dtype": "float64",
+      "unit": "m",
+      "source": "MESA-NAV covariance 1..3",
+      "semantics": "one-sigma 3D reference error magnitude"
+    },
+    "velocity_error_ms": {
+      "dtype": "float64",
+      "unit": "m/s",
+      "source": "MESA-NAV covariance 4..6",
+      "semantics": "one-sigma 3D velocity error magnitude"
+    },
+    "heading_error_deg": {
+      "dtype": "float64",
+      "unit": "deg",
+      "source": "MESA-NAV covariance 9",
+      "semantics": "one-sigma heading/yaw reference error"
+    },
+    "position_sigma_m": {
+      "dtype": "float64",
+      "unit": "m",
+      "source": "MESA-NAV covariance 1..3",
+      "semantics": "3D one-sigma position uncertainty"
+    },
+    "wind_error_ms": {
+      "dtype": "float64",
+      "unit": "m/s",
+      "source": "MESA-NAV Phoenix-FA operation 11 terrain-flow/map consistency residual; legacy operation 8 only for older twins",
+      "sensor_semantics": "CRP wind is environment/map context and is not synthesized as ULTRASONIC_WIND"
+    },
+    "wing_confidence": {
+      "dtype": "float64",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "source": "WingMPET mode-aware VTOL envelope+safety with MESA mechanical consistency"
+    },
+    "mesa_confidence": {
+      "dtype": "float64",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "source": "MESA-NAV observability/excitation+robust weight+anchor validity"
+    },
+    "record_confidence": {
+      "dtype": "float64",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "formula": "wing_confidence * mesa_confidence * crp_confidence"
+    },
+    "objective": {
+      "dtype": "float64"
+    },
+    "phase_start_x": {
+      "dtype": "float64"
+    },
+    "phase_start_y": {
+      "dtype": "float64"
+    },
+    "phase_end_x": {
+      "dtype": "float64"
+    },
+    "phase_end_y": {
+      "dtype": "float64"
+    },
+    "flight_ok": {
+      "dtype": "int64"
+    },
+    "nav_ok": {
+      "dtype": "int64"
+    }
+  },
+  "route_columns": {
+    "x_m": {
+      "crs": "EPSG:32613",
+      "unit": "m",
+      "axis": "easting"
+    },
+    "y_m": {
+      "crs": "EPSG:32613",
+      "unit": "m",
+      "axis": "northing"
+    },
+    "z_msl_m": {
+      "vertical_reference": "MSL",
+      "unit": "m",
+      "axis": "up"
+    },
+    "lon_deg": {
+      "crs": "EPSG:4326",
+      "unit": "deg",
+      "axis": "longitude"
+    },
+    "lat_deg": {
+      "crs": "EPSG:4326",
+      "unit": "deg",
+      "axis": "latitude"
+    },
+    "h_m": {
+      "vertical_reference": "MSL",
+      "unit": "m",
+      "deprecated_alias_of": "z_msl_m"
+    }
+  }
+}
