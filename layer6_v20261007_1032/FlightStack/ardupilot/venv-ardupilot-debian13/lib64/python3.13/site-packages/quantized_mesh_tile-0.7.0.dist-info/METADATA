@@ -1,0 +1,59 @@
+Metadata-Version: 2.4
+Name: quantized-mesh-tile
+Version: 0.7.0
+Summary: Quantized-Mesh format reader and writer
+Author-email: Loïc Gasser <loicgasser4@gmail.com>
+License: MIT
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Plugins
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Scientific/Engineering :: GIS
+Requires-Python: <4.0,>=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: numpy>=2.0.0
+Requires-Dist: shapely>=2.0.0
+Provides-Extra: dev
+Requires-Dist: coveralls; extra == "dev"
+Requires-Dist: mock; extra == "dev"
+Requires-Dist: pylint; extra == "dev"
+Requires-Dist: sphinx; extra == "dev"
+Requires-Dist: sphinx_rtd_theme; extra == "dev"
+Requires-Dist: sphinx-autobuild; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Dynamic: license-file
+
+quantized-mesh-tile
+===================
+
+![Build Status](https://github.com/loicgasser/quantized-mesh-tile/workflows/CI/badge.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/loicgasser/quantized-mesh-tile/badge.svg?branch=master)](https://coveralls.io/github/loicgasser/quantized-mesh-tile?branch=master)
+[![Doc Status](https://readthedocs.org/projects/quantized-mesh-tile/badge/?version=latest)](http://quantized-mesh-tile.readthedocs.io/en/latest/?badge=latest)
+
+[Quantized-mesh-tile](https://github.com/AnalyticalGraphicsInc/quantized-mesh) is a Python encoder/decoder and topology builder for terrain tiles.
+
+Doc is hosted on Readthedocs: https://quantized-mesh-tile.readthedocs.io/en/latest/
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for version history.
+
+## Test Doc Locally
+
+```bash
+cd doc
+rm -rf build && make htm
+python -m http.server 8000 --directory build/html
+```
+
+Open `http://localhost:8000/viewer.html`.
