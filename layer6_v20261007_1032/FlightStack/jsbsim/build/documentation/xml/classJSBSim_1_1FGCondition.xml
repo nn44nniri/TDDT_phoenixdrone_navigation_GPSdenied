@@ -1,0 +1,436 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classJSBSim_1_1FGCondition" kind="class" language="C++" prot="public">
+    <compoundname>JSBSim::FGCondition</compoundname>
+    <basecompoundref refid="classJSBSim_1_1FGJSBBase" prot="public" virt="non-virtual">FGJSBBase</basecompoundref>
+    <includes refid="FGCondition_8h" local="no">FGCondition.h</includes>
+    <sectiondef kind="private-type">
+      <memberdef kind="enum" id="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64ec" prot="private" static="no" strong="no">
+        <type></type>
+        <name>eComparison</name>
+        <qualifiedname>JSBSim::FGCondition::eComparison</qualifiedname>
+        <enumvalue id="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64eca20c26db4f2b28ffb95a1fae980679be4" prot="private">
+          <name>ecUndef</name>
+          <initializer>=0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64ecaf70f509782da73beab666ee0f9af49d3" prot="private">
+          <name>eEQ</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64eca699caf68974a276fb8eee43bc217bb95" prot="private">
+          <name>eNE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64ecadb471ebd8f78821e466b798da680999d" prot="private">
+          <name>eGT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64ecaffa826d1addda04f3ab82aac2e28b04c" prot="private">
+          <name>eGE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64ecaecd3939c5dc23c708a920ffd0625c8fa" prot="private">
+          <name>eLT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64ecadae4c2b864ee57699a1b01c57a0fc086" prot="private">
+          <name>eLE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" line="76" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" bodystart="76" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="enum" id="classJSBSim_1_1FGCondition_1a21fc80ea07eb8c2b13061a53c71ca1c7" prot="private" static="no" strong="no">
+        <type></type>
+        <name>eLogic</name>
+        <qualifiedname>JSBSim::FGCondition::eLogic</qualifiedname>
+        <enumvalue id="classJSBSim_1_1FGCondition_1a21fc80ea07eb8c2b13061a53c71ca1c7ab847daaafc65c99b55092e4755316db6" prot="private">
+          <name>elUndef</name>
+          <initializer>=0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGCondition_1a21fc80ea07eb8c2b13061a53c71ca1c7aead13b6443629e1486a59ec88addc521" prot="private">
+          <name>eAND</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGCondition_1a21fc80ea07eb8c2b13061a53c71ca1c7a737dedc9fceb2fbaf8a57a785cbb1e99" prot="private">
+          <name>eOR</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" line="77" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" bodystart="77" bodyend="77"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGCondition_1abd46dc6c079ab3b72edb18e7783f4074" prot="private" static="no" mutable="no">
+        <type>eComparison</type>
+        <definition>eComparison Comparison</definition>
+        <argsstring></argsstring>
+        <name>Comparison</name>
+        <qualifiedname>JSBSim::FGCondition::Comparison</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" line="82" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGCondition_1a1bee980d3f37cd79bcf0473a98132ffb" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string conditional</definition>
+        <argsstring></argsstring>
+        <name>conditional</name>
+        <qualifiedname>JSBSim::FGCondition::conditional</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" line="83" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGCondition_1ad6b278f54e97e51e3265f8ac456bf057" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classJSBSim_1_1FGCondition" kindref="compound">FGCondition</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::shared_ptr&lt;FGCondition&gt; &gt; conditions</definition>
+        <argsstring></argsstring>
+        <name>conditions</name>
+        <qualifiedname>JSBSim::FGCondition::conditions</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" line="84" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGCondition_1a4aef6ae9945788538ef9840f745d1e58" prot="private" static="no" mutable="no">
+        <type>eLogic</type>
+        <definition>eLogic Logic</definition>
+        <argsstring></argsstring>
+        <name>Logic</name>
+        <qualifiedname>JSBSim::FGCondition::Logic</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" line="78" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGCondition_1a80653c219751b3299fe95161b0c56ad1" prot="private" static="no" mutable="no">
+        <type>FGPropertyValue_ptr</type>
+        <definition>FGPropertyValue_ptr TestParam1</definition>
+        <argsstring></argsstring>
+        <name>TestParam1</name>
+        <qualifiedname>JSBSim::FGCondition::TestParam1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" line="80" column="23" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGCondition_1a8c1b9b1416d0f6433de42dfa2f5a6757" prot="private" static="no" mutable="no">
+        <type>FGParameter_ptr</type>
+        <definition>FGParameter_ptr TestParam2</definition>
+        <argsstring></argsstring>
+        <name>TestParam2</name>
+        <qualifiedname>JSBSim::FGCondition::TestParam2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" line="81" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGCondition_1aa3b114ae181e19f09edada59a20aff8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGCondition</definition>
+        <argsstring>(const std::string &amp;test, std::shared_ptr&lt; FGPropertyManager &gt; PropertyManager, Element *el)</argsstring>
+        <name>FGCondition</name>
+        <qualifiedname>JSBSim::FGCondition::FGCondition</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>test</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; FGPropertyManager &gt;</type>
+          <declname>PropertyManager</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>el</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" line="68" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.cpp" bodystart="104" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGCondition_1a01032a667061f389bfe9fbdc018fda38" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGCondition</definition>
+        <argsstring>(Element *element, std::shared_ptr&lt; FGPropertyManager &gt; PropertyManager)</argsstring>
+        <name>FGCondition</name>
+        <qualifiedname>JSBSim::FGCondition::FGCondition</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>element</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; FGPropertyManager &gt;</type>
+          <declname>PropertyManager</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" line="67" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.cpp" bodystart="59" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGCondition_1a024381ba0c2a97cf1561372351f988b6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Evaluate</definition>
+        <argsstring>(void) const</argsstring>
+        <name>Evaluate</name>
+        <qualifiedname>JSBSim::FGCondition::Evaluate</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" line="71" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.cpp" bodystart="160" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGCondition_1a6c4ee3fbfe4d7ab28f4ae7ea52fbb4e7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PrintCondition</definition>
+        <argsstring>(std::string indent=&quot;  &quot;) const</argsstring>
+        <name>PrintCondition</name>
+        <qualifiedname>JSBSim::FGCondition::PrintCondition</qualifiedname>
+        <param>
+          <type>std::string</type>
+          <declname>indent</declname>
+          <defval>&quot;  &quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" line="72" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.cpp" bodystart="216" bodyend="258"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGCondition_1a54ec10fc427f5973db1cf7af1ef55103" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Debug</definition>
+        <argsstring>(int from)</argsstring>
+        <name>Debug</name>
+        <qualifiedname>JSBSim::FGCondition::Debug</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>from</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" line="86" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.cpp" bodystart="279" bodyend="303"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Encapsulates a condition, which is used in parts of JSBSim including switches. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FGCondition</label>
+        <link refid="classJSBSim_1_1FGCondition"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>FGCondition</label>
+        <link refid="classJSBSim_1_1FGCondition"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>JSBSim_version</edgelabel>
+          <edgelabel>needed_cfg_version</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" line="64" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGCondition.h" bodystart="65" bodyend="87"/>
+    <listofallmembers>
+      <member refid="classJSBSim_1_1FGJSBBase_1af8ad1042b82f1c0a47801d6978434b80" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>CelsiusToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aa3b6f7fb97ac87f59f266b3e64438cc3" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>CelsiusToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7b471bc247e5d616560cc5f5c66b4b6d" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>CelsiusToRankine</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1abd46dc6c079ab3b72edb18e7783f4074" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>Comparison</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a1bee980d3f37cd79bcf0473a98132ffb" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>conditional</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1ad6b278f54e97e51e3265f8ac456bf057" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>conditions</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a68d4cc66e32cfecaae8f500d688252c9" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>Constrain</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a71d62a503829149eb1dfc6ad1852d4bf" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>CreateIndexedPropertyName</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a54ec10fc427f5973db1cf7af1ef55103" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>Debug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ccb6173462774ec856542834c1df750" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>debug_lvl</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9959287a77d54c301e59848ccbc1227e" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>degtorad</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a21fc80ea07eb8c2b13061a53c71ca1c7aead13b6443629e1486a59ec88addc521" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eAND</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64ec" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eComparison</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64eca20c26db4f2b28ffb95a1fae980679be4" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>ecUndef</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7761b6352da13e163a3e60ed931e10b2" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eDown</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ea9301202abb5117f2f5c84c400dd02863" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eDrag</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da8b0184eb4350aff703ffefe981be0ed0" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eEast</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64ecaf70f509782da73beab666ee0f9af49d3" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eEQ</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64ecaffa826d1addda04f3ab82aac2e28b04c" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eGE</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64ecadb471ebd8f78821e466b798da680999d" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eGT</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55baad8d708d8b2a6b0de1c60efac84c13c2" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eL</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600aee71d29fc9997c8c692e1cec39ccbd9e" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eLat</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64ecadae4c2b864ee57699a1b01c57a0fc086" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eLE</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9eaf9b007051dea0fdcdda1128417810324" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eLift</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a21fc80ea07eb8c2b13061a53c71ca1c7" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eLogic</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600a82c89bd841ec11709255930b4f2ed128" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eLong</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64ecaecd3939c5dc23c708a920ffd0625c8fa" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eLT</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a21fc80ea07eb8c2b13061a53c71ca1c7ab847daaafc65c99b55092e4755316db6" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>elUndef</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba1108dc0fe89c81165e7e21bfa2d99a5c" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eM</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba29860d91c138d8308ab622566d5388b5" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eN</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a88161a1838c5b90823dd713a4a6b64eca699caf68974a276fb8eee43bc217bb95" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eNE</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7af984c99e631c934f09d5f464886dff" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eNorth</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a21fc80ea07eb8c2b13061a53c71ca1c7a737dedc9fceb2fbaf8a57a785cbb1e99" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eOR</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a53f1f5a36fc3c436188ba2de84a480cc" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eP</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca330da5edf1a7a181a5e682969033346d" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>ePhi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a755bd3b6ce5a786426392a9b22101569" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>ePitch</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca00ec32130eba5084873150f79dd4241d" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>ePsi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7ad435ed230bc84886ebd313f88f50617f" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eQ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0808b46d9967cd56d78df1274adc8147" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaed80f9927f0b8c14c67cfad83a8d60b" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a3fa3dd89c1b30f6d2b8a297006842a19" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4089c27aa417783731495c25b0d3e79b" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a568d83290d150b55a7c08ec3e01a4b80" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eR</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600ac34cb49e3a3c0217eb60f28606a074fd" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eRad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a5929427bd7f9a3f8a260ab0cee4adf5b" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eRoll</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ead333a23016fb297dc1e225e9de92a902" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eSide</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca782d389c863bda6761d96904c8ca5c88" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eTht</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a4e6ccf577f5e3892239a4d0243233c46" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eU</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a8967c32806f6f2377283501791d2139b" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eV</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a024381ba0c2a97cf1561372351f988b6" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>Evaluate</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5ad170ee6fdb066c2ac0a32760a4b6be8f" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eW</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04afd5a33749fa68a755125d713a656b616" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eX</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04af968dfccf7b280e98b613569ce68a29a" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eY</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a6828e3eb3b26c2f81338381e9ca45500" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eYaw</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04a246094bb9b7b37e389534a9cc740d126" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>eZ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adaf24dd942ba1dbaf0262ddf9725d50e" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>FahrenheitToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a8c51473eff249bacddf47d95834c6f69" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>FeetToMeters</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a01032a667061f389bfe9fbdc018fda38" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>FGCondition</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1aa3b114ae181e19f09edada59a20aff8c" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>FGCondition</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a5fd11c437bf08537955a9231dcd4dc49" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af43d52b160c8fa8ba6325d858e34beb3" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>fpstokts</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae41da7596d847c1d8b27c3e9d611157d" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>fttom</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ce5e8bcfd2d23ad3b4032565842596c" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>GetVersion</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af3ca32541c0a55f05ded120dca912440" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>hptoftlbssec</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab97b1e120708f6f64abb9bb9e9e4cd7a" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>in3tom3</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4b8b2a0e4b0180b2abe1aff2f00d334e" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>inchtoft</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a15e2a87588ef193ac0ad314327ecd509" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>inDegrees</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aaff61dea1cc525eed707df9fbac8eca5" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>inFeet</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ace650b7aed33166ac6974d13906e1894" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>inhgtopa</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57ad71c820cf28dae1965f184b9441d1694" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>inMeters</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aecc753b3791b03920f3ea0ad33852142" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>inNone</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a0a17d86840eb2e6b1784129ed75e414e" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>inRadians</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1affc9150d5720145d6a6c2a2dd265d9f5" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>JSBSim_version</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a241ce52e843cb12ae6de467cbc2f59a7" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>KelvinToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a6f1c8844b2bf556c2e90c84524c331e1" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>KelvinToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab1cd84a064daee36bb88b9052514da65" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>KelvinToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a532147ec5e65e4b78fd08bc76e1f1d35" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>kgtolb</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4627a23f0f2722262a9c865c4255fec8" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>kgtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae29b0dff0362fa116184dc2027e0a5e1" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>ktstofps</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a85110847c268725c20cd7e8d2adf0033" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>lbtoslug</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a4aef6ae9945788538ef9840f745d1e58" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>Logic</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ad7434c1faeb6468757414fc3f86586df" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>m3toft3</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7c4e9bce0d9b7f5d394a8ee1d9b553eb" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>needed_cfg_version</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a6c4ee3fbfe4d7ab28f4ae7ea52fbb4e7" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>PrintCondition</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1add6c8d987939a3bf35554fd6d7c6a580" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>psftoinhg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a1f44bc4c489ccb9df15115c2586fc30a" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>psftopa</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaca636497dcea29d83039f342f2f47e2" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>radtodeg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9daa4b8416feb6ef2964aacbb1ad07e7" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>RankineToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7abcf379608273b32f3d8b939a9173d5" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>RankineToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a493e81f2c57fb2733a3a8c54f4ac2ed8" prot="public" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>sign</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4daf96dd9557d890a37cfc504ca67efd" prot="protected" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>slugtolb</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a80653c219751b3299fe95161b0c56ad1" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>TestParam1</name></member>
+      <member refid="classJSBSim_1_1FGCondition_1a8c1b9b1416d0f6433de42dfa2f5a6757" prot="private" virt="non-virtual"><scope>JSBSim::FGCondition</scope><name>TestParam2</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a27507db9cad73b38ac3ba2bdc64fa428" prot="public" virt="virtual"><scope>JSBSim::FGCondition</scope><name>~FGJSBBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

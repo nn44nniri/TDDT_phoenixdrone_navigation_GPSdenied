@@ -1,0 +1,1001 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="FGQuaternion_8h" kind="file" language="C++">
+    <compoundname>FGQuaternion.h</compoundname>
+    <includes local="no">string</includes>
+    <includes refid="FGJSBBase_8h" local="yes">FGJSBBase.h</includes>
+    <includes refid="FGColumnVector3_8h" local="yes">FGColumnVector3.h</includes>
+    <includedby refid="FGInitialCondition_8h" local="yes">FGInitialCondition.h</includedby>
+    <includedby refid="FGMatrix33_8cpp" local="yes">FGMatrix33.cpp</includedby>
+    <includedby refid="FGPropagate_8h" local="yes">FGPropagate.h</includedby>
+    <includedby refid="FGQuaternion_8cpp" local="yes">FGQuaternion.cpp</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>FGJSBBase.h</label>
+        <link refid="FGJSBBase_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>JSBSim_API.h</label>
+        <link refid="JSBSim__API_8h_source"/>
+      </node>
+      <node id="9">
+        <label>FGColumnVector3.h</label>
+        <link refid="FGColumnVector3_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>FGQuaternion.h</label>
+        <link refid="FGQuaternion_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>chrono</label>
+      </node>
+      <node id="4">
+        <label>float.h</label>
+      </node>
+      <node id="10">
+        <label>iosfwd</label>
+      </node>
+      <node id="6">
+        <label>random</label>
+      </node>
+      <node id="5">
+        <label>stdexcept</label>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>FGFDMExec.cpp</label>
+        <link refid="FGFDMExec_8cpp_source"/>
+      </node>
+      <node id="17">
+        <label>FGFDMExec.h</label>
+        <link refid="FGFDMExec_8h_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>JSBSim.cpp</label>
+        <link refid="JSBSim_8cpp_source"/>
+      </node>
+      <node id="89">
+        <label>JSBSim.minimal.cpp</label>
+        <link refid="JSBSim_8minimal_8cpp_source"/>
+      </node>
+      <node id="5">
+        <label>FGInitialCondition.cpp</label>
+        <link refid="FGInitialCondition_8cpp_source"/>
+      </node>
+      <node id="2">
+        <label>FGInitialCondition.h</label>
+        <link refid="FGInitialCondition_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>FGLinearization.cpp</label>
+        <link refid="FGLinearization_8cpp_source"/>
+      </node>
+      <node id="49">
+        <label>FGLinearization.h</label>
+        <link refid="FGLinearization_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>FGTrim.cpp</label>
+        <link refid="FGTrim_8cpp_source"/>
+      </node>
+      <node id="10">
+        <label>FGTrim.h</label>
+        <link refid="FGTrim_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>FGTrimAxis.cpp</label>
+        <link refid="FGTrimAxis_8cpp_source"/>
+      </node>
+      <node id="58">
+        <label>FGInputSocket.cpp</label>
+        <link refid="FGInputSocket_8cpp_source"/>
+      </node>
+      <node id="59">
+        <label>FGInputType.cpp</label>
+        <link refid="FGInputType_8cpp_source"/>
+      </node>
+      <node id="66">
+        <label>FGModelLoader.cpp</label>
+        <link refid="FGModelLoader_8cpp_source"/>
+      </node>
+      <node id="42">
+        <label>FGOutputFG.cpp</label>
+        <link refid="FGOutputFG_8cpp_source"/>
+      </node>
+      <node id="69">
+        <label>FGOutputFile.cpp</label>
+        <link refid="FGOutputFile_8cpp_source"/>
+      </node>
+      <node id="68">
+        <label>FGOutputFile.h</label>
+        <link refid="FGOutputFile_8h_source"/>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>FGOutputSocket.cpp</label>
+        <link refid="FGOutputSocket_8cpp_source"/>
+      </node>
+      <node id="44">
+        <label>FGOutputTextFile.cpp</label>
+        <link refid="FGOutputTextFile_8cpp_source"/>
+      </node>
+      <node id="70">
+        <label>FGOutputTextFile.h</label>
+        <link refid="FGOutputTextFile_8h_source"/>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="72">
+        <label>FGOutputType.cpp</label>
+        <link refid="FGOutputType_8cpp_source"/>
+      </node>
+      <node id="8">
+        <label>FGScript.cpp</label>
+        <link refid="FGScript_8cpp_source"/>
+      </node>
+      <node id="87">
+        <label>FGUDPInputSocket.cpp</label>
+        <link refid="FGUDPInputSocket_8cpp_source"/>
+      </node>
+      <node id="53">
+        <label>FGFunction.cpp</label>
+        <link refid="FGFunction_8cpp_source"/>
+      </node>
+      <node id="15">
+        <label>FGMatrix33.cpp</label>
+        <link refid="FGMatrix33_8cpp_source"/>
+      </node>
+      <node id="65">
+        <label>FGModelFunctions.cpp</label>
+        <link refid="FGModelFunctions_8cpp_source"/>
+      </node>
+      <node id="90">
+        <label>FGQuaternion.cpp</label>
+        <link refid="FGQuaternion_8cpp_source"/>
+      </node>
+      <node id="1">
+        <label>FGQuaternion.h</label>
+        <link refid="FGQuaternion_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>FGStateSpace.cpp</label>
+        <link refid="FGStateSpace_8cpp_source"/>
+      </node>
+      <node id="48">
+        <label>FGStateSpace.h</label>
+        <link refid="FGStateSpace_8h_source"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="78">
+        <label>FGTemplateFunc.cpp</label>
+        <link refid="FGTemplateFunc_8cpp_source"/>
+      </node>
+      <node id="18">
+        <label>FGAccelerations.cpp</label>
+        <link refid="FGAccelerations_8cpp_source"/>
+      </node>
+      <node id="19">
+        <label>FGAerodynamics.cpp</label>
+        <link refid="FGAerodynamics_8cpp_source"/>
+      </node>
+      <node id="20">
+        <label>FGAircraft.cpp</label>
+        <link refid="FGAircraft_8cpp_source"/>
+      </node>
+      <node id="21">
+        <label>FGAtmosphere.cpp</label>
+        <link refid="FGAtmosphere_8cpp_source"/>
+      </node>
+      <node id="3">
+        <label>FGAuxiliary.cpp</label>
+        <link refid="FGAuxiliary_8cpp_source"/>
+      </node>
+      <node id="23">
+        <label>FGBuoyantForces.cpp</label>
+        <link refid="FGBuoyantForces_8cpp_source"/>
+      </node>
+      <node id="25">
+        <label>FGExternalForce.cpp</label>
+        <link refid="FGExternalForce_8cpp_source"/>
+      </node>
+      <node id="26">
+        <label>FGExternalReactions.cpp</label>
+        <link refid="FGExternalReactions_8cpp_source"/>
+      </node>
+      <node id="33">
+        <label>FGFCS.cpp</label>
+        <link refid="FGFCS_8cpp_source"/>
+      </node>
+      <node id="27">
+        <label>FGFCS.h</label>
+        <link refid="FGFCS_8h_source"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>FGGasCell.cpp</label>
+        <link refid="FGGasCell_8cpp_source"/>
+      </node>
+      <node id="55">
+        <label>FGGroundReactions.cpp</label>
+        <link refid="FGGroundReactions_8cpp_source"/>
+      </node>
+      <node id="56">
+        <label>FGInertial.cpp</label>
+        <link refid="FGInertial_8cpp_source"/>
+      </node>
+      <node id="57">
+        <label>FGInput.cpp</label>
+        <link refid="FGInput_8cpp_source"/>
+      </node>
+      <node id="60">
+        <label>FGLGear.cpp</label>
+        <link refid="FGLGear_8cpp_source"/>
+      </node>
+      <node id="63">
+        <label>FGMassBalance.cpp</label>
+        <link refid="FGMassBalance_8cpp_source"/>
+      </node>
+      <node id="64">
+        <label>FGModel.cpp</label>
+        <link refid="FGModel_8cpp_source"/>
+      </node>
+      <node id="71">
+        <label>FGOutput.cpp</label>
+        <link refid="FGOutput_8cpp_source"/>
+      </node>
+      <node id="7">
+        <label>FGPropagate.cpp</label>
+        <link refid="FGPropagate_8cpp_source"/>
+      </node>
+      <node id="16">
+        <label>FGPropagate.h</label>
+        <link refid="FGPropagate_8h_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>FGPropulsion.cpp</label>
+        <link refid="FGPropulsion_8cpp_source"/>
+      </node>
+      <node id="61">
+        <label>FGMSIS.cpp</label>
+        <link refid="FGMSIS_8cpp_source"/>
+      </node>
+      <node id="62">
+        <label>FGMars.cpp</label>
+        <link refid="FGMars_8cpp_source"/>
+      </node>
+      <node id="76">
+        <label>FGStandardAtmosphere.cpp</label>
+        <link refid="FGStandardAtmosphere_8cpp_source"/>
+      </node>
+      <node id="88">
+        <label>FGWinds.cpp</label>
+        <link refid="FGWinds_8cpp_source"/>
+      </node>
+      <node id="28">
+        <label>FGAccelerometer.cpp</label>
+        <link refid="FGAccelerometer_8cpp_source"/>
+      </node>
+      <node id="29">
+        <label>FGActuator.cpp</label>
+        <link refid="FGActuator_8cpp_source"/>
+      </node>
+      <node id="30">
+        <label>FGAngles.cpp</label>
+        <link refid="FGAngles_8cpp_source"/>
+      </node>
+      <node id="31">
+        <label>FGDeadBand.cpp</label>
+        <link refid="FGDeadBand_8cpp_source"/>
+      </node>
+      <node id="32">
+        <label>FGDistributor.cpp</label>
+        <link refid="FGDistributor_8cpp_source"/>
+      </node>
+      <node id="34">
+        <label>FGFCSComponent.cpp</label>
+        <link refid="FGFCSComponent_8cpp_source"/>
+      </node>
+      <node id="35">
+        <label>FGFCSFunction.cpp</label>
+        <link refid="FGFCSFunction_8cpp_source"/>
+      </node>
+      <node id="36">
+        <label>FGFilter.cpp</label>
+        <link refid="FGFilter_8cpp_source"/>
+      </node>
+      <node id="37">
+        <label>FGGain.cpp</label>
+        <link refid="FGGain_8cpp_source"/>
+      </node>
+      <node id="38">
+        <label>FGGyro.cpp</label>
+        <link refid="FGGyro_8cpp_source"/>
+      </node>
+      <node id="39">
+        <label>FGKinemat.cpp</label>
+        <link refid="FGKinemat_8cpp_source"/>
+      </node>
+      <node id="40">
+        <label>FGLinearActuator.cpp</label>
+        <link refid="FGLinearActuator_8cpp_source"/>
+      </node>
+      <node id="41">
+        <label>FGMagnetometer.cpp</label>
+        <link refid="FGMagnetometer_8cpp_source"/>
+      </node>
+      <node id="45">
+        <label>FGPID.cpp</label>
+        <link refid="FGPID_8cpp_source"/>
+      </node>
+      <node id="47">
+        <label>FGSensor.cpp</label>
+        <link refid="FGSensor_8cpp_source"/>
+      </node>
+      <node id="50">
+        <label>FGSummer.cpp</label>
+        <link refid="FGSummer_8cpp_source"/>
+      </node>
+      <node id="51">
+        <label>FGSwitch.cpp</label>
+        <link refid="FGSwitch_8cpp_source"/>
+      </node>
+      <node id="14">
+        <label>FGWaypoint.cpp</label>
+        <link refid="FGWaypoint_8cpp_source"/>
+      </node>
+      <node id="22">
+        <label>FGBrushLessDCMotor.cpp</label>
+        <link refid="FGBrushLessDCMotor_8cpp_source"/>
+      </node>
+      <node id="24">
+        <label>FGElectric.cpp</label>
+        <link refid="FGElectric_8cpp_source"/>
+      </node>
+      <node id="82">
+        <label>FGEngine.cpp</label>
+        <link refid="FGEngine_8cpp_source"/>
+      </node>
+      <node id="52">
+        <label>FGForce.cpp</label>
+        <link refid="FGForce_8cpp_source"/>
+      </node>
+      <node id="67">
+        <label>FGNozzle.cpp</label>
+        <link refid="FGNozzle_8cpp_source"/>
+      </node>
+      <node id="73">
+        <label>FGPiston.cpp</label>
+        <link refid="FGPiston_8cpp_source"/>
+      </node>
+      <node id="74">
+        <label>FGPropeller.cpp</label>
+        <link refid="FGPropeller_8cpp_source"/>
+      </node>
+      <node id="75">
+        <label>FGRocket.cpp</label>
+        <link refid="FGRocket_8cpp_source"/>
+      </node>
+      <node id="83">
+        <label>FGRotor.cpp</label>
+        <link refid="FGRotor_8cpp_source"/>
+      </node>
+      <node id="81">
+        <label>FGRotor.h</label>
+        <link refid="FGRotor_8h_source"/>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+      </node>
+      <node id="77">
+        <label>FGTank.cpp</label>
+        <link refid="FGTank_8cpp_source"/>
+      </node>
+      <node id="79">
+        <label>FGThruster.cpp</label>
+        <link refid="FGThruster_8cpp_source"/>
+      </node>
+      <node id="85">
+        <label>FGTransmission.cpp</label>
+        <link refid="FGTransmission_8cpp_source"/>
+      </node>
+      <node id="80">
+        <label>FGTransmission.h</label>
+        <link refid="FGTransmission_8h_source"/>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+      </node>
+      <node id="86">
+        <label>FGTurbine.cpp</label>
+        <link refid="FGTurbine_8cpp_source"/>
+      </node>
+      <node id="84">
+        <label>FGTurboProp.cpp</label>
+        <link refid="FGTurboProp_8cpp_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classJSBSim_1_1FGQuaternion" prot="public">JSBSim::FGQuaternion</innerclass>
+    <innernamespace refid="namespaceJSBSim">JSBSim</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"></highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>Header:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>FGQuaternion.h</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Author:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Jon<sp/>Berndt,<sp/>Mathis<sp/>Froehlich</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>Date<sp/>started:<sp/>12/02/98</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"></highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>-------<sp/>Copyright<sp/>(C)<sp/>1999<sp/><sp/>Jon<sp/>S.<sp/>Berndt<sp/>(jon@jsbsim.org)<sp/>------------------</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>-------<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(C)<sp/>2004<sp/><sp/>Mathias<sp/>Froehlich<sp/>(Mathias.Froehlich@web.de)<sp/>----</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>This<sp/>program<sp/>is<sp/>free<sp/>software;<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by<sp/>the<sp/>Free<sp/>Software</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>Foundation;<sp/>either<sp/>version<sp/>2<sp/>of<sp/>the<sp/>License,<sp/>or<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>version.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"></highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>This<sp/>program<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/>but<sp/>WITHOUT</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty<sp/>of<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/><sp/>See<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>details.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"></highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>You<sp/>should<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>this<sp/>program;<sp/>if<sp/>not,<sp/>write<sp/>to<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>Inc.,<sp/>59<sp/>Temple</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>Place<sp/>-<sp/>Suite<sp/>330,<sp/>Boston,<sp/>MA<sp/><sp/>02111-1307,<sp/>USA.</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"></highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>Further<sp/>information<sp/>about<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>can<sp/>also<sp/>be<sp/>found<sp/>on</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>the<sp/>world<sp/>wide<sp/>web<sp/>at<sp/>http://www.gnu.org.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"></highlight></codeline>
+<codeline lineno="27"><highlight class="comment">HISTORY</highlight></codeline>
+<codeline lineno="28"><highlight class="comment">-------------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="29"><highlight class="comment">12/02/98<sp/><sp/><sp/>JSB<sp/><sp/><sp/>Created</highlight></codeline>
+<codeline lineno="30"><highlight class="comment">15/01/04<sp/><sp/><sp/>MF<sp/><sp/><sp/><sp/>Quaternion<sp/>class<sp/>from<sp/>old<sp/>FGColumnVector4</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"></highlight></codeline>
+<codeline lineno="32"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="33"><highlight class="comment">SENTRY</highlight></codeline>
+<codeline lineno="34"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>FGQUATERNION_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FGQUATERNION_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/><sp/>INCLUDES</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/><sp/>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;FGJSBBase.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;FGColumnVector3.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">JSBSim<sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">FGMatrix33;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/><sp/>CLASS<sp/>DOCUMENTATION</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/><sp/>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/><sp/>CLASS<sp/>DECLARATION</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/><sp/>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="classJSBSim_1_1FGQuaternion" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">JSBSIM_API<sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGJSBBase" kindref="compound">FGJSBBase</ref><sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="90" refid="classJSBSim_1_1FGQuaternion_1af37693324e4bd4b0781668dc2e347821" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion_1af37693324e4bd4b0781668dc2e347821" kindref="member">FGQuaternion</ref>()<sp/>:<sp/>mCacheValid(false)<sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>data[0]<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>data[1]<sp/>=<sp/>data[2]<sp/>=<sp/>data[3]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/>q);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phi,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tht,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>psi);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>(<ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref><sp/>vOrient);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="classJSBSim_1_1FGQuaternion_1a1226ffd3500f1b0979e232bd1a2c3568" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a1226ffd3500f1b0979e232bd1a2c3568" kindref="member">FGQuaternion</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>angle)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>mCacheValid(false)<sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>angle2<sp/>=<sp/>0.5*angle;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Sangle2<sp/>=<sp/>sin(angle2);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Cangle2<sp/>=<sp/>cos(angle2);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(idx<sp/>==<sp/>ePhi)<sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>data[0]<sp/>=<sp/>Cangle2;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>data[1]<sp/>=<sp/>Sangle2;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>data[2]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>data[3]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(idx<sp/>==<sp/>eTht)<sp/>{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>data[0]<sp/>=<sp/>Cangle2;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>data[1]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>data[2]<sp/>=<sp/>Sangle2;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>data[3]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>data[0]<sp/>=<sp/>Cangle2;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>data[1]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>data[2]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>data[3]<sp/>=<sp/>Sangle2;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152" refid="classJSBSim_1_1FGQuaternion_1a08cdcd333c49bee9b017cb6ba2829509" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a08cdcd333c49bee9b017cb6ba2829509" kindref="member">FGQuaternion</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>angle,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref>&amp;<sp/>axis)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>mCacheValid(false)<sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>angle2<sp/>=<sp/>0.5<sp/>*<sp/>angle;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>length<sp/>=<sp/>axis.<ref refid="classJSBSim_1_1FGColumnVector3_1a4b994a872678de3097f1c86723ce92c9" kindref="member">Magnitude</ref>();</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Sangle2<sp/>=<sp/>sin(angle2)<sp/>/<sp/>length;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Cangle2<sp/>=<sp/>cos(angle2);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>data[0]<sp/>=<sp/>Cangle2;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>data[1]<sp/>=<sp/>Sangle2<sp/>*<sp/>axis(1);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>data[2]<sp/>=<sp/>Sangle2<sp/>*<sp/>axis(2);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>data[3]<sp/>=<sp/>Sangle2<sp/>*<sp/>axis(3);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGMatrix33" kindref="compound">FGMatrix33</ref>&amp;<sp/>m);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174" refid="classJSBSim_1_1FGQuaternion_1a363d4c74f45ac2ea3af0a4502427515d" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a363d4c74f45ac2ea3af0a4502427515d" kindref="member">~FGQuaternion</ref>()<sp/>{}</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref><sp/>GetQDot(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref>&amp;<sp/>PQR)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188" refid="classJSBSim_1_1FGQuaternion_1aca5c842a3e16d4ac6004e8f12a652a0d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGMatrix33" kindref="compound">FGMatrix33</ref>&amp;<sp/><ref refid="classJSBSim_1_1FGQuaternion_1aca5c842a3e16d4ac6004e8f12a652a0d" kindref="member">GetT</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/>ComputeDerived();<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mT;<sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193" refid="classJSBSim_1_1FGQuaternion_1a2549e52bf1b9a90da149129c6959bb0b" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGMatrix33" kindref="compound">FGMatrix33</ref>&amp;<sp/><ref refid="classJSBSim_1_1FGQuaternion_1a2549e52bf1b9a90da149129c6959bb0b" kindref="member">GetTInv</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/>ComputeDerived();<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mTInv;<sp/>}</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199" refid="classJSBSim_1_1FGQuaternion_1a857102bd8d09d5426d39ffe5e75fc4ee" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref>&amp;<sp/><ref refid="classJSBSim_1_1FGQuaternion_1a857102bd8d09d5426d39ffe5e75fc4ee" kindref="member">GetEuler</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>ComputeDerived();</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mEulerAngles;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210" refid="classJSBSim_1_1FGQuaternion_1a160cf8cb2a54aa196e9c782314390313" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a160cf8cb2a54aa196e9c782314390313" kindref="member">GetEuler</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>ComputeDerived();</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mEulerAngles(i);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220" refid="classJSBSim_1_1FGQuaternion_1a4e2c0402339df421f1e6f9b3ac8c8712" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a4e2c0402339df421f1e6f9b3ac8c8712" kindref="member">GetEulerDeg</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/>ComputeDerived();</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>radtodeg*mEulerAngles(i);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229" refid="classJSBSim_1_1FGQuaternion_1ab90117b2166cbf6b0e54f37f69254b2c" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion_1ab90117b2166cbf6b0e54f37f69254b2c" kindref="member">GetEulerDeg</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>ComputeDerived();</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>radtodeg*mEulerAngles;</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237" refid="classJSBSim_1_1FGQuaternion_1a05a24cffb3dbe93f6dac60998eb3dbf9" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a05a24cffb3dbe93f6dac60998eb3dbf9" kindref="member">GetSinEuler</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>ComputeDerived();</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mEulerSines(i);</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="245" refid="classJSBSim_1_1FGQuaternion_1a15a2018bc1a5faa4c85a2e27a20fa5d8" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a15a2018bc1a5faa4c85a2e27a20fa5d8" kindref="member">GetCosEuler</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/>ComputeDerived();</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mEulerCosines(i);</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"></highlight></codeline>
+<codeline lineno="259" refid="classJSBSim_1_1FGQuaternion_1a3415d042d281e866bbaa8af939d382ad" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a3415d042d281e866bbaa8af939d382ad" kindref="member">operator()</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>data[idx-1];<sp/>}</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight></codeline>
+<codeline lineno="270" refid="classJSBSim_1_1FGQuaternion_1a6812b4e8611d45170ed5bf24217d4955" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/><ref refid="classJSBSim_1_1FGQuaternion_1a6812b4e8611d45170ed5bf24217d4955" kindref="member">operator()</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)<sp/>{<sp/>mCacheValid<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>data[idx-1];<sp/>}</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight></codeline>
+<codeline lineno="285" refid="classJSBSim_1_1FGQuaternion_1af38d3ffd0a2f72aee0d43835fcdb076d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion_1af38d3ffd0a2f72aee0d43835fcdb076d" kindref="member">Entry</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>data[idx-1];<sp/>}</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight></codeline>
+<codeline lineno="300" refid="classJSBSim_1_1FGQuaternion_1a7a835a15ec39ad10bd722b893ed4c4d3" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/><ref refid="classJSBSim_1_1FGQuaternion_1a7a835a15ec39ad10bd722b893ed4c4d3" kindref="member">Entry</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)<sp/>{</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/>mCacheValid<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>data[idx-1];</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"></highlight></codeline>
+<codeline lineno="310" refid="classJSBSim_1_1FGQuaternion_1a9fc19ce92aaf081bba060292e5e19473" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/><ref refid="classJSBSim_1_1FGQuaternion_1a9fc19ce92aaf081bba060292e5e19473" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/>q)<sp/>{</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Copy<sp/>the<sp/>master<sp/>values<sp/>...</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/>data[0]<sp/>=<sp/>q.data[0];</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/>data[1]<sp/>=<sp/>q.data[1];</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/>data[2]<sp/>=<sp/>q.data[2];</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/>data[3]<sp/>=<sp/>q.data[3];</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/>ComputeDerived();</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>..<sp/>and<sp/>copy<sp/>the<sp/>derived<sp/>values<sp/>if<sp/>they<sp/>are<sp/>valid</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/>mCacheValid<sp/>=<sp/>q.mCacheValid;</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mCacheValid)<sp/>{</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mT<sp/>=<sp/>q.mT;</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mTInv<sp/>=<sp/>q.mTInv;</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mEulerAngles<sp/>=<sp/>q.mEulerAngles;</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mEulerSines<sp/>=<sp/>q.mEulerSines;</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mEulerCosines<sp/>=<sp/>q.mEulerCosines;</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight></codeline>
+<codeline lineno="330" refid="classJSBSim_1_1FGQuaternion_1ab590a88372c219caae4237b5d0b0893f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGMatrix33" kindref="compound">FGMatrix33</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>GetT();<sp/>}</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"></highlight></codeline>
+<codeline lineno="335" refid="classJSBSim_1_1FGQuaternion_1a8df2fd01380798fd09a63a41b5854069" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a8df2fd01380798fd09a63a41b5854069" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/>q)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>data[0]<sp/>==<sp/>q.data[0]<sp/>&amp;&amp;<sp/>data[1]<sp/>==<sp/>q.data[1]</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>&amp;&amp;<sp/>data[2]<sp/>==<sp/>q.data[2]<sp/>&amp;&amp;<sp/>data[3]<sp/>==<sp/>q.data[3];</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight></codeline>
+<codeline lineno="343" refid="classJSBSim_1_1FGQuaternion_1a6c6691eb680ba24cd684479dce527d6f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a6c6691eb680ba24cd684479dce527d6f" kindref="member">operator!=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/>q)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!<sp/>operator==(q);<sp/>}</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/>operator+=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/>q)<sp/>{</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Copy<sp/>the<sp/>master<sp/>values<sp/>...</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/>data[0]<sp/>+=<sp/>q.data[0];</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/>data[1]<sp/>+=<sp/>q.data[1];</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/>data[2]<sp/>+=<sp/>q.data[2];</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/>data[3]<sp/>+=<sp/>q.data[3];</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/>mCacheValid<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"></highlight></codeline>
+<codeline lineno="357" refid="classJSBSim_1_1FGQuaternion_1ada0fc6d5d3b5ca7546b6310089d87921" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/><ref refid="classJSBSim_1_1FGQuaternion_1ada0fc6d5d3b5ca7546b6310089d87921" kindref="member">operator-=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/>q)<sp/>{</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Copy<sp/>the<sp/>master<sp/>values<sp/>...</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/>data[0]<sp/>-=<sp/>q.data[0];</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/>data[1]<sp/>-=<sp/>q.data[1];</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/>data[2]<sp/>-=<sp/>q.data[2];</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/>data[3]<sp/>-=<sp/>q.data[3];</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/>mCacheValid<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"></highlight></codeline>
+<codeline lineno="370" refid="classJSBSim_1_1FGQuaternion_1afaa05547e715e80f1ebff6f148c0c2e5" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/><ref refid="classJSBSim_1_1FGQuaternion_1afaa05547e715e80f1ebff6f148c0c2e5" kindref="member">operator*=</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scalar)<sp/>{</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/>data[0]<sp/>*=<sp/>scalar;</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/>data[1]<sp/>*=<sp/>scalar;</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/>data[2]<sp/>*=<sp/>scalar;</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/>data[3]<sp/>*=<sp/>scalar;</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/>mCacheValid<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"></highlight></codeline>
+<codeline lineno="382" refid="classJSBSim_1_1FGQuaternion_1ab116288193368de284c8cd47dec43972" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/><ref refid="classJSBSim_1_1FGQuaternion_1ab116288193368de284c8cd47dec43972" kindref="member">operator/=</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scalar)<sp/>{</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>operator*=(1.0/scalar);</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"></highlight></codeline>
+<codeline lineno="389" refid="classJSBSim_1_1FGQuaternion_1a9fae8b99e8ceb0d77b9ef79244c910f0" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a9fae8b99e8ceb0d77b9ef79244c910f0" kindref="member">operator+</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/>q)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>(data[0]+q.data[0],<sp/>data[1]+q.data[1],</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[2]+q.data[2],<sp/>data[3]+q.data[3]);</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"></highlight></codeline>
+<codeline lineno="397" refid="classJSBSim_1_1FGQuaternion_1acb2ab21d3b0e35d07dcce53cc2f41131" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref><sp/><ref refid="classJSBSim_1_1FGQuaternion_1acb2ab21d3b0e35d07dcce53cc2f41131" kindref="member">operator-</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/>q)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>(data[0]-q.data[0],<sp/>data[1]-q.data[1],</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[2]-q.data[2],<sp/>data[3]-q.data[3]);</highlight></codeline>
+<codeline lineno="400"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="401"><highlight class="normal"></highlight></codeline>
+<codeline lineno="406" refid="classJSBSim_1_1FGQuaternion_1a3b999cf010dbdbe598b271baf8f269b1" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a3b999cf010dbdbe598b271baf8f269b1" kindref="member">operator*</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/>q)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="407"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>(data[0]*q.data[0]-data[1]*q.data[1]-data[2]*q.data[2]-data[3]*q.data[3],</highlight></codeline>
+<codeline lineno="408"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[0]*q.data[1]+data[1]*q.data[0]+data[2]*q.data[3]-data[3]*q.data[2],</highlight></codeline>
+<codeline lineno="409"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[0]*q.data[2]-data[1]*q.data[3]+data[2]*q.data[0]+data[3]*q.data[1],</highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[0]*q.data[3]+data[1]*q.data[2]-data[2]*q.data[1]+data[3]*q.data[0]);</highlight></codeline>
+<codeline lineno="411"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="412"><highlight class="normal"></highlight></codeline>
+<codeline lineno="417" refid="classJSBSim_1_1FGQuaternion_1acf448a57e4909314f8c6a0e47c52b769" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/><ref refid="classJSBSim_1_1FGQuaternion_1acf448a57e4909314f8c6a0e47c52b769" kindref="member">operator*=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/>q)<sp/>{</highlight></codeline>
+<codeline lineno="418"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q0<sp/>=<sp/>data[0]*q.data[0]-data[1]*q.data[1]-data[2]*q.data[2]-data[3]*q.data[3];</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q1<sp/>=<sp/>data[0]*q.data[1]+data[1]*q.data[0]+data[2]*q.data[3]-data[3]*q.data[2];</highlight></codeline>
+<codeline lineno="420"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q2<sp/>=<sp/>data[0]*q.data[2]-data[1]*q.data[3]+data[2]*q.data[0]+data[3]*q.data[1];</highlight></codeline>
+<codeline lineno="421"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q3<sp/>=<sp/>data[0]*q.data[3]+data[1]*q.data[2]-data[2]*q.data[1]+data[3]*q.data[0];</highlight></codeline>
+<codeline lineno="422"><highlight class="normal"><sp/><sp/><sp/><sp/>data[0]<sp/>=<sp/>q0;</highlight></codeline>
+<codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/>data[1]<sp/>=<sp/>q1;</highlight></codeline>
+<codeline lineno="424"><highlight class="normal"><sp/><sp/><sp/><sp/>data[2]<sp/>=<sp/>q2;</highlight></codeline>
+<codeline lineno="425"><highlight class="normal"><sp/><sp/><sp/><sp/>data[3]<sp/>=<sp/>q3;</highlight></codeline>
+<codeline lineno="426"><highlight class="normal"><sp/><sp/><sp/><sp/>mCacheValid<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="427"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="428"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="429"><highlight class="normal"></highlight></codeline>
+<codeline lineno="436" refid="classJSBSim_1_1FGQuaternion_1a1a55f19b8ee4681cc8bafad31d6c48f2" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a1a55f19b8ee4681cc8bafad31d6c48f2" kindref="member">Inverse</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>norm<sp/>=<sp/>SqrMagnitude();</highlight></codeline>
+<codeline lineno="438"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(norm<sp/>==<sp/>0.0)</highlight></codeline>
+<codeline lineno="439"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="440"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>rNorm<sp/>=<sp/>1.0/norm;</highlight></codeline>
+<codeline lineno="441"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>(<sp/>data[0]*rNorm,<sp/>-data[1]*rNorm,</highlight></codeline>
+<codeline lineno="442"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-data[2]*rNorm,<sp/>-data[3]*rNorm<sp/>);</highlight></codeline>
+<codeline lineno="443"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="444"><highlight class="normal"></highlight></codeline>
+<codeline lineno="450" refid="classJSBSim_1_1FGQuaternion_1a8b6f2264afdb5a3c5a64f531a7cfbdb2" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a8b6f2264afdb5a3c5a64f531a7cfbdb2" kindref="member">Conjugate</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="451"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>(<sp/>data[0],<sp/>-data[1],<sp/>-data[2],<sp/>-data[3]<sp/>);</highlight></codeline>
+<codeline lineno="452"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="453"><highlight class="normal"></highlight></codeline>
+<codeline lineno="454"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref><sp/>operator*(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;);</highlight></codeline>
+<codeline lineno="455"><highlight class="normal"></highlight></codeline>
+<codeline lineno="460" refid="classJSBSim_1_1FGQuaternion_1a4b994a872678de3097f1c86723ce92c9" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a4b994a872678de3097f1c86723ce92c9" kindref="member">Magnitude</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sqrt(SqrMagnitude());<sp/>}</highlight></codeline>
+<codeline lineno="461"><highlight class="normal"></highlight></codeline>
+<codeline lineno="466" refid="classJSBSim_1_1FGQuaternion_1a26c7f8d31c5658b65354bbae4447d8a3" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a26c7f8d31c5658b65354bbae4447d8a3" kindref="member">SqrMagnitude</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="467"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><sp/>data[0]*data[0]<sp/>+<sp/>data[1]*data[1]</highlight></codeline>
+<codeline lineno="468"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>data[2]*data[2]<sp/>+<sp/>data[3]*data[3];</highlight></codeline>
+<codeline lineno="469"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="470"><highlight class="normal"></highlight></codeline>
+<codeline lineno="476"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Normalize(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="477"><highlight class="normal"></highlight></codeline>
+<codeline lineno="480" refid="classJSBSim_1_1FGQuaternion_1a93dd7c7a5344ae8ad450d760f57cb74f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a93dd7c7a5344ae8ad450d760f57cb74f" kindref="member">zero</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>(<sp/>0.0,<sp/>0.0,<sp/>0.0,<sp/>0.0<sp/>);<sp/>}</highlight></codeline>
+<codeline lineno="481"><highlight class="normal"></highlight></codeline>
+<codeline lineno="482"><highlight class="normal"><sp/><sp/>std::string<sp/>Dump(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>delimiter)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="483"><highlight class="normal"></highlight></codeline>
+<codeline lineno="484"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref><sp/>QExp(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref>&amp;<sp/>omega);</highlight></codeline>
+<codeline lineno="485"><highlight class="normal"></highlight></codeline>
+<codeline lineno="486"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="488"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q3,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q4)<sp/>:<sp/>mCacheValid(false)</highlight></codeline>
+<codeline lineno="489"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>data[0]<sp/>=<sp/>q1;<sp/>data[1]<sp/>=<sp/>q2;<sp/>data[2]<sp/>=<sp/>q3;<sp/>data[3]<sp/>=<sp/>q4;<sp/>}</highlight></codeline>
+<codeline lineno="490"><highlight class="normal"></highlight></codeline>
+<codeline lineno="494"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ComputeDerivedUnconditional(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="495"><highlight class="normal"></highlight></codeline>
+<codeline lineno="502"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ComputeDerived(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="503"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!mCacheValid)</highlight></codeline>
+<codeline lineno="504"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>ComputeDerivedUnconditional();</highlight></codeline>
+<codeline lineno="505"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="506"><highlight class="normal"></highlight></codeline>
+<codeline lineno="508"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>data[4];</highlight></codeline>
+<codeline lineno="509"><highlight class="normal"></highlight></codeline>
+<codeline lineno="516"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>mCacheValid;</highlight></codeline>
+<codeline lineno="517"><highlight class="normal"></highlight></codeline>
+<codeline lineno="519"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>FGMatrix33<sp/>mT;</highlight></codeline>
+<codeline lineno="520"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>FGMatrix33<sp/>mTInv;</highlight></codeline>
+<codeline lineno="521"><highlight class="normal"></highlight></codeline>
+<codeline lineno="523"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>FGColumnVector3<sp/>mEulerAngles;</highlight></codeline>
+<codeline lineno="524"><highlight class="normal"></highlight></codeline>
+<codeline lineno="526"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>FGColumnVector3<sp/>mEulerSines;</highlight></codeline>
+<codeline lineno="527"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>FGColumnVector3<sp/>mEulerCosines;</highlight></codeline>
+<codeline lineno="528"><highlight class="normal"></highlight></codeline>
+<codeline lineno="529"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>InitializeFromEulerAngles(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phi,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tht,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>psi);</highlight></codeline>
+<codeline lineno="530"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="531"><highlight class="normal"></highlight></codeline>
+<codeline lineno="539" refid="classJSBSim_1_1FGQuaternion_1a7e24a8f1d0396f6e3a32ff0ecf457655" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref><sp/>operator*(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scalar,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/>q)<sp/>{</highlight></codeline>
+<codeline lineno="540"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>(scalar*q.data[0],<sp/>scalar*q.data[1],<sp/>scalar*q.data[2],<sp/>scalar*q.data[3]);</highlight></codeline>
+<codeline lineno="541"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="542"><highlight class="normal"></highlight></codeline>
+<codeline lineno="548" refid="classJSBSim_1_1FGQuaternion_1ac06d61a4797cb2981c4900ca5de4331f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref><sp/>QExp(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref>&amp;<sp/>omega)<sp/>{</highlight></codeline>
+<codeline lineno="549"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref><sp/>qexp;</highlight></codeline>
+<codeline lineno="550"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>angle<sp/>=<sp/>omega.<ref refid="classJSBSim_1_1FGColumnVector3_1a4b994a872678de3097f1c86723ce92c9" kindref="member">Magnitude</ref>();</highlight></codeline>
+<codeline lineno="551"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sina_a<sp/>=<sp/>angle<sp/>&gt;<sp/>0.0<sp/>?<sp/>sin(angle)/angle<sp/>:<sp/>1.0;</highlight></codeline>
+<codeline lineno="552"><highlight class="normal"></highlight></codeline>
+<codeline lineno="553"><highlight class="normal"><sp/><sp/>qexp.data[0]<sp/>=<sp/>cos(angle);</highlight></codeline>
+<codeline lineno="554"><highlight class="normal"><sp/><sp/>qexp.data[1]<sp/>=<sp/>omega(1)<sp/>*<sp/>sina_a;</highlight></codeline>
+<codeline lineno="555"><highlight class="normal"><sp/><sp/>qexp.data[2]<sp/>=<sp/>omega(2)<sp/>*<sp/>sina_a;</highlight></codeline>
+<codeline lineno="556"><highlight class="normal"><sp/><sp/>qexp.data[3]<sp/>=<sp/>omega(3)<sp/>*<sp/>sina_a;</highlight></codeline>
+<codeline lineno="557"><highlight class="normal"></highlight></codeline>
+<codeline lineno="558"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>qexp;</highlight></codeline>
+<codeline lineno="559"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="560"><highlight class="normal"></highlight></codeline>
+<codeline lineno="565"><highlight class="normal">JSBSIM_API<sp/>std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/>q);</highlight></codeline>
+<codeline lineno="566"><highlight class="normal"></highlight></codeline>
+<codeline lineno="567"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>JSBSim</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="568"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,353 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="FGRungeKutta_8cpp" kind="file" language="C++">
+    <compoundname>FGRungeKutta.cpp</compoundname>
+    <includes local="no">cstdio</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">cmath</includes>
+    <includes refid="FGJSBBase_8h" local="yes">FGJSBBase.h</includes>
+    <includes refid="FGRungeKutta_8h" local="yes">FGRungeKutta.h</includes>
+    <includes refid="FGLog_8h" local="yes">input_output/FGLog.h</includes>
+    <incdepgraph>
+      <node id="5">
+        <label>FGJSBBase.h</label>
+        <link refid="FGJSBBase_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>JSBSim_API.h</label>
+        <link refid="JSBSim__API_8h_source"/>
+      </node>
+      <node id="12">
+        <label>input_output/FGLog.h</label>
+        <link refid="FGLog_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>math/FGColumnVector3.h</label>
+        <link refid="FGColumnVector3_8h_source"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>FGRungeKutta.cpp</label>
+        <link refid="FGRungeKutta_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>FGRungeKutta.h</label>
+        <link refid="FGRungeKutta_8h_source"/>
+      </node>
+      <node id="9">
+        <label>chrono</label>
+      </node>
+      <node id="4">
+        <label>cmath</label>
+      </node>
+      <node id="2">
+        <label>cstdio</label>
+      </node>
+      <node id="6">
+        <label>float.h</label>
+      </node>
+      <node id="13">
+        <label>iomanip</label>
+      </node>
+      <node id="19">
+        <label>iosfwd</label>
+      </node>
+      <node id="3">
+        <label>iostream</label>
+      </node>
+      <node id="14">
+        <label>memory</label>
+      </node>
+      <node id="8">
+        <label>random</label>
+      </node>
+      <node id="17">
+        <label>simgear/misc/sg_path.hxx</label>
+      </node>
+      <node id="15">
+        <label>sstream</label>
+      </node>
+      <node id="7">
+        <label>stdexcept</label>
+      </node>
+      <node id="16">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceJSBSim">JSBSim</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"></highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>Header:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>FGRungeKutta.cpp</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Author:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Thomas<sp/>Kreitler</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>Date<sp/>started:<sp/>04/9/2010</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"></highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>-------------<sp/>Copyright<sp/>(C)<sp/><sp/>-------------</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"></highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>This<sp/>program<sp/>is<sp/>free<sp/>software;<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by<sp/>the<sp/>Free<sp/>Software</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>Foundation;<sp/>either<sp/>version<sp/>2<sp/>of<sp/>the<sp/>License,<sp/>or<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>version.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"></highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>This<sp/>program<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/>but<sp/>WITHOUT</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty<sp/>of<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/><sp/>See<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>details.</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"></highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>You<sp/>should<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>this<sp/>program;<sp/>if<sp/>not,<sp/>write<sp/>to<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>Inc.,<sp/>59<sp/>Temple</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>Place<sp/>-<sp/>Suite<sp/>330,<sp/>Boston,<sp/>MA<sp/><sp/>02111-1307,<sp/>USA.</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"></highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>Further<sp/>information<sp/>about<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>can<sp/>also<sp/>be<sp/>found<sp/>on</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>the<sp/>world<sp/>wide<sp/>web<sp/>at<sp/>http://www.gnu.org.</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"></highlight></codeline>
+<codeline lineno="26"><highlight class="comment"></highlight></codeline>
+<codeline lineno="27"><highlight class="comment"></highlight></codeline>
+<codeline lineno="28"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/><sp/>INCLUDES</highlight></codeline>
+<codeline lineno="30"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdio&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;FGJSBBase.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;FGRungeKutta.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;input_output/FGLog.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/><sp/>DEFINITIONS</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/><sp/>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">JSBSim<sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FGRungeKutta::RealLimit<sp/>=<sp/>1e30;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="49"><highlight class="comment">CLASS<sp/>IMPLEMENTATION</highlight></codeline>
+<codeline lineno="50"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">FGRungeKutta::~FGRungeKutta()<sp/>{<sp/>};</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>FGRungeKutta::init(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x_start,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x_end,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>intervals)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/>x0<sp/>=<sp/>x_start;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/>x1<sp/>=<sp/>x_end;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/>h<sp/><sp/>=<sp/>(x_end<sp/>-<sp/>x_start)/intervals;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/>safer_x1<sp/>=<sp/>x1<sp/>-<sp/>h*1e-6;<sp/></highlight><highlight class="comment">//<sp/>avoid<sp/>&apos;intervals*h<sp/>&lt;<sp/>x1&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/>h05<sp/>=<sp/>h*0.5;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/>err<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(x0&gt;=x1)<sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>&amp;=<sp/>eFaultyInit;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>status;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/><sp/><sp/>Make<sp/>sure<sp/>that<sp/>a<sp/>numerical<sp/>result<sp/>is<sp/>within<sp/>+/-RealLimit.</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/><sp/><sp/>This<sp/>is<sp/>a<sp/>hapless<sp/>try<sp/>to<sp/>be<sp/>portable.</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/><sp/><sp/>(There<sp/>will<sp/>be<sp/>at<sp/>least<sp/>one<sp/>architecture/compiler<sp/>combination</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/><sp/><sp/>where<sp/>this<sp/>will<sp/>fail.)</highlight></codeline>
+<codeline lineno="76"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>FGRungeKutta::sane_val(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>assuming<sp/>+/-<sp/>inf<sp/>behave<sp/>as<sp/>expected<sp/>and<sp/>&apos;nan&apos;<sp/>comparisons<sp/>yield<sp/>to<sp/>false</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>x<sp/>&lt;<sp/>RealLimit<sp/>&amp;&amp;<sp/>x<sp/>&gt;<sp/>-RealLimit<sp/>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FGRungeKutta::evolve(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y_0,<sp/>FGRungeKuttaProblem<sp/>*pf)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x<sp/>=<sp/>x0;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y<sp/>=<sp/>y_0;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/>pfo<sp/>=<sp/>pf;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/>iterations<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!trace_values)<sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(x&lt;safer_x1)<sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>y<sp/><sp/>=<sp/>approximate(x,y);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!sane_val(y))<sp/>{<sp/>status<sp/>&amp;=<sp/>eMathError;<sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>+=<sp/>h;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>iterations++;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>FGLogging<sp/>log(LogLevel::DEBUG);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(x&lt;safer_x1)<sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>log<sp/>&lt;&lt;<sp/>x<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>y<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>y<sp/>=<sp/>approximate(x,y);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!sane_val(y))<sp/>{<sp/>status<sp/>&amp;=<sp/>eMathError;<sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>+=<sp/>h;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>iterations++;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>log<sp/>&lt;&lt;<sp/>x<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>y<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/>x_end<sp/>=<sp/>x;<sp/></highlight><highlight class="comment">//<sp/>twimc,<sp/>store<sp/>the<sp/>last<sp/>x<sp/>used.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>y;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="121"><highlight class="comment">CLASS<sp/>IMPLEMENTATION</highlight></codeline>
+<codeline lineno="122"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal">FGRK4::~FGRK4()<sp/>{<sp/>};</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FGRK4::approximate(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y)</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>k1,k2,k3,k4;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/>k1<sp/><sp/><sp/>=<sp/><sp/>pfo-&gt;pFunc(x<sp/><sp/><sp/><sp/><sp/><sp/>,<sp/>y<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/>k2<sp/><sp/><sp/>=<sp/><sp/>pfo-&gt;pFunc(x<sp/>+<sp/>h05,<sp/>y<sp/>+<sp/>h05*k1);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/>k3<sp/><sp/><sp/>=<sp/><sp/>pfo-&gt;pFunc(x<sp/>+<sp/>h05,<sp/>y<sp/>+<sp/>h05*k2);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/>k4<sp/><sp/><sp/>=<sp/><sp/>pfo-&gt;pFunc(x<sp/>+<sp/>h<sp/><sp/>,<sp/>y<sp/>+<sp/>h<sp/><sp/>*k3);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/>y<sp/><sp/><sp/>+=<sp/><sp/>h/6.0<sp/>*<sp/>(<sp/>k1<sp/>+<sp/>2.0*k2<sp/>+<sp/>2.0*k3<sp/>+<sp/>k4<sp/>);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>y;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="144"><highlight class="comment">CLASS<sp/>IMPLEMENTATION</highlight></codeline>
+<codeline lineno="145"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Butcher<sp/>tableau</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FGRKFehlberg::A2[]<sp/>=<sp/>{<sp/>0.0,<sp/><sp/><sp/><sp/><sp/>1.0/4.0<sp/>};</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FGRKFehlberg::A3[]<sp/>=<sp/>{<sp/>0.0,<sp/><sp/><sp/><sp/><sp/>3.0/32.0,<sp/><sp/><sp/><sp/><sp/><sp/><sp/>9.0/32.0<sp/>};</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FGRKFehlberg::A4[]<sp/>=<sp/>{<sp/>0.0,<sp/><sp/>1932.0/2197.0,<sp/>-7200.0/2197.0,<sp/><sp/><sp/>7296.0/2197.0<sp/>};</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FGRKFehlberg::A5[]<sp/>=<sp/>{<sp/>0.0,<sp/><sp/><sp/>439.0/216.0,<sp/><sp/><sp/><sp/><sp/>-8.0,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3680.0/513.0,<sp/><sp/><sp/><sp/>-845.0/4104.0<sp/><sp/>};</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FGRKFehlberg::A6[]<sp/>=<sp/>{<sp/>0.0,<sp/><sp/><sp/><sp/>-8.0/27.0,<sp/><sp/><sp/><sp/><sp/><sp/><sp/>2.0,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-3544.0/2565.0,<sp/><sp/><sp/>1859.0/4104.0,<sp/><sp/>-11.0/40.0<sp/>};</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FGRKFehlberg::C[]<sp/><sp/>=<sp/>{<sp/>0.0,<sp/>0.0,<sp/>1.0/4.0,<sp/>3.0/8.0,<sp/>12.0/13.0,<sp/>1.0,<sp/>1.0/2.0<sp/>};</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FGRKFehlberg::B[]<sp/><sp/>=<sp/>{<sp/>0.0,<sp/><sp/><sp/><sp/><sp/>16.0/135.0,<sp/><sp/><sp/>0.0,<sp/><sp/><sp/>6656.0/12825.0,<sp/><sp/>28561.0/56430.0,<sp/><sp/><sp/>-9.0/50.0,<sp/><sp/>2.0/55.0<sp/>};</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FGRKFehlberg::Bs[]<sp/>=<sp/>{<sp/>0.0,<sp/><sp/><sp/><sp/><sp/>25.0/216.0,<sp/><sp/><sp/>0.0,<sp/><sp/><sp/>1408.0/2565.0,<sp/><sp/><sp/><sp/>2197.0/4104.0,<sp/><sp/><sp/><sp/>-1.0/5.0,<sp/><sp/><sp/>0.0<sp/>};</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="comment">//<sp/>use<sp/>this<sp/>if<sp/>truncation<sp/>is<sp/>an<sp/>issue</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="comment">//<sp/>const<sp/>double<sp/>Ee[]<sp/>=<sp/>{<sp/>0.0,<sp/>1.0/360.0,<sp/>0.0,<sp/>-128.0/4275.0,<sp/>-2197.0/75240.0,<sp/>1.0/50.0,<sp/>2.0/55.0<sp/>};</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal">FGRKFehlberg::~FGRKFehlberg()<sp/>{<sp/>};</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FGRKFehlberg::approximate(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y)</highlight></codeline>
+<codeline lineno="165"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>k1,k2,k3,k4,k5,k6,<sp/>as;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y4_val;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y5_val;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>abs_err;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>est_step;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>done<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(!done)<sp/>{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>err<sp/><sp/>=<sp/><sp/>h*h*h*h*h;<sp/></highlight><highlight class="comment">//<sp/>h<sp/>might<sp/>change</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>k1<sp/><sp/><sp/>=<sp/><sp/>pfo-&gt;pFunc(x<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>,<sp/>y<sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>as<sp/><sp/><sp/>=<sp/><sp/>h*A2[1]*k1;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>k2<sp/><sp/><sp/>=<sp/><sp/>pfo-&gt;pFunc(x<sp/>+<sp/>C[2]*h<sp/>,<sp/>y<sp/>+<sp/>as<sp/>);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>as<sp/><sp/><sp/>=<sp/><sp/>h*(A3[1]*k1<sp/>+<sp/>A3[2]*k2);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>k3<sp/><sp/><sp/>=<sp/><sp/>pfo-&gt;pFunc(x<sp/>+<sp/>C[3]*h<sp/>,<sp/>y<sp/>+<sp/>as<sp/>);</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>as<sp/><sp/><sp/>=<sp/><sp/>h*(A4[1]*k1<sp/>+<sp/>A4[2]*k2<sp/>+<sp/>A4[3]*k3);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>k4<sp/><sp/><sp/>=<sp/><sp/>pfo-&gt;pFunc(x<sp/>+<sp/>C[4]*h<sp/>,<sp/>y<sp/>+<sp/>as<sp/>);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>as<sp/><sp/><sp/>=<sp/><sp/>h*(A5[1]*k1<sp/>+<sp/>A5[2]*k2<sp/>+<sp/>A5[3]*k3<sp/>+<sp/>A5[4]*k4);</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>k5<sp/><sp/><sp/>=<sp/><sp/>pfo-&gt;pFunc(x<sp/>+<sp/>C[5]*h<sp/>,<sp/>y<sp/>+<sp/>as<sp/>);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>as<sp/><sp/><sp/>=<sp/><sp/>h*(A6[1]*k1<sp/>+<sp/>A6[2]*k2<sp/>+<sp/>A6[3]*k3<sp/>+<sp/>A6[4]*k4<sp/>+<sp/>A6[5]*k5);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>k6<sp/><sp/><sp/>=<sp/><sp/>pfo-&gt;pFunc(x<sp/>+<sp/>C[6]*h<sp/>,<sp/>y<sp/>+<sp/>as<sp/>);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>B[2]*k2<sp/>and<sp/>Bs[2]*k2<sp/>are<sp/>zero<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>y5_val<sp/><sp/>=<sp/><sp/>y<sp/>+<sp/>h<sp/>*<sp/>(<sp/>B[1]*k1<sp/>+<sp/><sp/>B[3]*k3<sp/>+<sp/><sp/>B[4]*k4<sp/>+<sp/><sp/>B[5]*k5<sp/>+<sp/>B[6]*k6);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>y4_val<sp/><sp/>=<sp/><sp/>y<sp/>+<sp/>h<sp/>*<sp/>(Bs[1]*k1<sp/>+<sp/>Bs[3]*k3<sp/>+<sp/>Bs[4]*k4<sp/>+<sp/>Bs[5]*k5);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>abs_err<sp/>=<sp/>fabs(y4_val-y5_val);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>same<sp/>in<sp/>green</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>abs_err<sp/>=<sp/>h<sp/>*<sp/>(Ee[1]<sp/>*<sp/>k1<sp/>+<sp/>Ee[3]<sp/>*<sp/>k3<sp/>+<sp/>Ee[4]<sp/>*<sp/>k4<sp/>+<sp/>Ee[5]<sp/>*<sp/>k5<sp/>+<sp/>Ee[6]<sp/>*<sp/>k6);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>estimate<sp/>step<sp/>size</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(abs_err<sp/>&gt;<sp/>epsilon)<sp/>{</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>est_step<sp/>=<sp/>sqrt(sqrt(epsilon*h/abs_err));</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>est_step=2.0*h;<sp/></highlight><highlight class="comment">//<sp/>cheat</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>a<sp/>smaller<sp/>step<sp/>size<sp/>is<sp/>proposed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(shrink_avail&gt;0<sp/>&amp;&amp;<sp/>est_step&lt;h)<sp/>{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>h/=2.0;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shrink_avail--;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>done<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>y4_val;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>JSBSim</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.cpp"/>
+  </compounddef>
+</doxygen>

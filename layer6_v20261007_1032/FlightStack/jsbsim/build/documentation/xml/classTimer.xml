@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classTimer" kind="class" language="C++" prot="public">
+    <compoundname>Timer</compoundname>
+    <basecompoundref refid="classSGPropertyChangeListener" prot="public" virt="non-virtual">SGPropertyChangeListener</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classTimer_1a5ffa72ecdfa9a32fb440f0dfc244d3d5" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double initial_seconds</definition>
+        <argsstring></argsstring>
+        <name>initial_seconds</name>
+        <qualifiedname>Timer::initial_seconds</qualifiedname>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" line="221" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" bodystart="221" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTimer_1a9e9483098282f7e475601c37b1f6496d" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool isPaused</definition>
+        <argsstring></argsstring>
+        <name>isPaused</name>
+        <qualifiedname>Timer::isPaused</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" line="222" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTimer_1a146ef043df1d5ebbf293599a55fea961" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double pause_start_seconds</definition>
+        <argsstring></argsstring>
+        <name>pause_start_seconds</name>
+        <qualifiedname>Timer::pause_start_seconds</qualifiedname>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" line="223" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" bodystart="223" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classTimer_1a6a8bc5014802d569f6d01c4f36121a81" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Timer</definition>
+        <argsstring>()</argsstring>
+        <name>Timer</name>
+        <qualifiedname>Timer::Timer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" line="193" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" bodystart="193" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="classTimer_1a9778ebe2fa926d7ac724b085b5d44512" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double getElapsedTime</definition>
+        <argsstring>(void)</argsstring>
+        <name>getElapsedTime</name>
+        <qualifiedname>Timer::getElapsedTime</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the elapsed real time in seconds since the timer was started. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" line="202" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" bodystart="202" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="classTimer_1a3f845b19504701119f67b047f409527b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void pause</definition>
+        <argsstring>(bool paused)</argsstring>
+        <name>pause</name>
+        <qualifiedname>Timer::pause</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>paused</declname>
+        </param>
+        <briefdescription>
+<para>Pause the timer if the <computeroutput>paused</computeroutput> parameter is true and resume it if the <computeroutput>paused</computeroutput> parameter is false. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" line="206" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" bodystart="206" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="classTimer_1aedc96a40e844bc2efc8bbef1b0782702" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void start</definition>
+        <argsstring>(void)</argsstring>
+        <name>start</name>
+        <qualifiedname>Timer::start</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" line="194" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" bodystart="194" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="classTimer_1a4f7d4c54967f605b6d473bc7feddd722" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void valueChanged</definition>
+        <argsstring>(SGPropertyNode *prop) override</argsstring>
+        <name>valueChanged</name>
+        <qualifiedname>Timer::valueChanged</qualifiedname>
+        <reimplements refid="classSGPropertyChangeListener_1ab3cbbed0d666dbe00f8bb5b257a9b888">valueChanged</reimplements>
+        <param>
+          <type><ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> *</type>
+          <declname>prop</declname>
+        </param>
+        <briefdescription>
+<para>Restart the timer when the listened property is modified. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" line="197" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" bodystart="197" bodyend="200"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The <ref refid="classTimer" kindref="compound">Timer</ref> class measures the elapsed real time and can be paused and resumed. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>It inherits from <ref refid="classSGPropertyChangeListener" kindref="compound">SGPropertyChangeListener</ref> to restart the timer whenever a property change is detected. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>SGPropertyChangeListener</label>
+        <link refid="classSGPropertyChangeListener"/>
+      </node>
+      <node id="1">
+        <label>Timer</label>
+        <link refid="classTimer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>SGPropertyChangeListener</label>
+        <link refid="classSGPropertyChangeListener"/>
+      </node>
+      <node id="1">
+        <label>Timer</label>
+        <link refid="classTimer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" line="191" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp" bodystart="191" bodyend="224"/>
+    <listofallmembers>
+      <member refid="classSGPropertyChangeListener_1a198a5bc394310efe23d5d276c6d3678a" prot="public" virt="virtual"><scope>Timer</scope><name>childAdded</name></member>
+      <member refid="classSGPropertyChangeListener_1ad4c1216d91194882623885b6573d322c" prot="public" virt="virtual"><scope>Timer</scope><name>childRemoved</name></member>
+      <member refid="classTimer_1a9778ebe2fa926d7ac724b085b5d44512" prot="public" virt="non-virtual"><scope>Timer</scope><name>getElapsedTime</name></member>
+      <member refid="classTimer_1a5ffa72ecdfa9a32fb440f0dfc244d3d5" prot="private" virt="non-virtual"><scope>Timer</scope><name>initial_seconds</name></member>
+      <member refid="classTimer_1a9e9483098282f7e475601c37b1f6496d" prot="private" virt="non-virtual"><scope>Timer</scope><name>isPaused</name></member>
+      <member refid="classTimer_1a3f845b19504701119f67b047f409527b" prot="public" virt="non-virtual"><scope>Timer</scope><name>pause</name></member>
+      <member refid="classTimer_1a146ef043df1d5ebbf293599a55fea961" prot="private" virt="non-virtual"><scope>Timer</scope><name>pause_start_seconds</name></member>
+      <member refid="classSGPropertyChangeListener_1a61dc35b0015d754ab82884058972a4c8" prot="protected" virt="virtual"><scope>Timer</scope><name>register_property</name></member>
+      <member refid="classTimer_1aedc96a40e844bc2efc8bbef1b0782702" prot="public" virt="non-virtual"><scope>Timer</scope><name>start</name></member>
+      <member refid="classTimer_1a6a8bc5014802d569f6d01c4f36121a81" prot="public" virt="non-virtual"><scope>Timer</scope><name>Timer</name></member>
+      <member refid="classSGPropertyChangeListener_1a067ef533dbf5080683a34599e2c2de84" prot="protected" virt="virtual"><scope>Timer</scope><name>unregister_property</name></member>
+      <member refid="classTimer_1a4f7d4c54967f605b6d473bc7feddd722" prot="public" virt="virtual"><scope>Timer</scope><name>valueChanged</name></member>
+      <member refid="classSGPropertyChangeListener_1a9642910946a4a981cf233187b1d5d1ef" prot="public" virt="virtual"><scope>Timer</scope><name>~SGPropertyChangeListener</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

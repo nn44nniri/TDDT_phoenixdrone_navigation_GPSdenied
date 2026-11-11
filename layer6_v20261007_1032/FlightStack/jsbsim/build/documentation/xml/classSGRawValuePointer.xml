@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classSGRawValuePointer" kind="class" language="C++" prot="public">
+    <compoundname>SGRawValuePointer</compoundname>
+    <basecompoundref refid="classSGRawValue" prot="public" virt="non-virtual">SGRawValue&lt; T &gt;</basecompoundref>
+    <includes refid="props_8hxx" local="no">props.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classSGRawValuePointer_1a67324c6ce723a91e83a1bf425a192493" prot="private" static="no" mutable="no">
+        <type>T *</type>
+        <definition>T* _ptr</definition>
+        <argsstring></argsstring>
+        <name>_ptr</name>
+        <qualifiedname>SGRawValuePointer::_ptr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="451" column="6" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="451" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSGRawValuePointer_1a4dd0284c0ea4ba53c86bf857101779d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SGRawValuePointer</definition>
+        <argsstring>(T *ptr)</argsstring>
+        <name>SGRawValuePointer</name>
+        <qualifiedname>SGRawValuePointer::SGRawValuePointer</qualifiedname>
+        <param>
+          <type>T *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+<para>Explicit pointer constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a new raw value bound to the value of the variable referenced by the pointer.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pointer to the variable to which this raw value will be bound. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="418" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="418" bodyend="418"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGRawValuePointer_1afc50b291c92f8a58a6446d7ef8a5627f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual ~SGRawValuePointer</definition>
+        <argsstring>()</argsstring>
+        <name>~SGRawValuePointer</name>
+        <qualifiedname>SGRawValuePointer::~SGRawValuePointer</qualifiedname>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="423" column="11" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="423" bodyend="423"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGRawValuePointer_1ab7ceabbb2a19e6da727742291f1f8a95" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classSGRaw" kindref="compound">SGRaw</ref> *</type>
+        <definition>virtual SGRaw * clone</definition>
+        <argsstring>() const</argsstring>
+        <name>clone</name>
+        <qualifiedname>SGRawValuePointer::clone</qualifiedname>
+        <briefdescription>
+<para>Create a copy of this raw value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The copy will use the same external pointer as the original. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="446" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="446" bodyend="448"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGRawValuePointer_1ac323f1c2818de77e9ff741d16ccc57db" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>T</type>
+        <definition>virtual T getValue</definition>
+        <argsstring>() const</argsstring>
+        <name>getValue</name>
+        <qualifiedname>SGRawValuePointer::getValue</qualifiedname>
+        <reimplements refid="classSGRawValue_1ac91272f311e86f848dca03c8c7094d41">getValue</reimplements>
+        <briefdescription>
+<para>Get the underlying value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method will dereference the pointer and return the variable&apos;s value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="431" column="13" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="431" bodyend="431"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGRawValuePointer_1a1479141f02b5f580a8e30f4c880fa6c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool setValue</definition>
+        <argsstring>(T value)</argsstring>
+        <name>setValue</name>
+        <qualifiedname>SGRawValuePointer::setValue</qualifiedname>
+        <reimplements refid="classSGRawValue_1ad79317ea3317b6f27f1b863f7f804b71">setValue</reimplements>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Set the underlying value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method will dereference the pointer and change the variable&apos;s value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="439" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="439" bodyend="439"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A raw value bound to a pointer. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This is the most efficient way to tie an external value, but also the most dangerous, because there is no way for the supplier to perform bounds checking and derived calculations except by polling the variable to see if it has changed. There is no default constructor, because this class would be meaningless without a pointer. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>SGRawBase&lt; T, internal &gt;</label>
+        <link refid="classSGRawBase"/>
+      </node>
+      <node id="2">
+        <label>SGRawValue&lt; T &gt;</label>
+        <link refid="classSGRawValue"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>SGRawValuePointer&lt; T &gt;</label>
+        <link refid="classSGRawValuePointer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>SGRawBase&lt; T, internal &gt;</label>
+        <link refid="classSGRawBase"/>
+      </node>
+      <node id="2">
+        <label>SGRawValue&lt; T &gt;</label>
+        <link refid="classSGRawValue"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>SGRawValuePointer&lt; T &gt;</label>
+        <link refid="classSGRawValuePointer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="405" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="406" bodyend="452"/>
+    <listofallmembers>
+      <member refid="classSGRawValuePointer_1a67324c6ce723a91e83a1bf425a192493" prot="private" virt="non-virtual"><scope>SGRawValuePointer</scope><name>_ptr</name></member>
+      <member refid="classSGRawValuePointer_1ab7ceabbb2a19e6da727742291f1f8a95" prot="public" virt="virtual"><scope>SGRawValuePointer</scope><name>clone</name></member>
+      <member refid="classSGRawValue_1af2ddfe7db26daee286fa4e1fbee696d0" prot="public" virt="non-virtual"><scope>SGRawValuePointer</scope><name>DefaultValue</name></member>
+      <member refid="classSGRawValue_1a0684cf369d89e96940e1fcbfc8c5dab8" prot="public" virt="non-virtual"><scope>SGRawValuePointer</scope><name>DefaultValue</name></member>
+      <member refid="classSGRawValue_1a62a20d97ff76bb6b2f73552fdae884da" prot="public" virt="non-virtual"><scope>SGRawValuePointer</scope><name>DefaultValue</name></member>
+      <member refid="classSGRawValue_1a00d5f177dfae0e202132b4783916120f" prot="public" virt="virtual"><scope>SGRawValuePointer</scope><name>getType</name></member>
+      <member refid="classSGRawValuePointer_1ac323f1c2818de77e9ff741d16ccc57db" prot="public" virt="virtual"><scope>SGRawValuePointer</scope><name>getValue</name></member>
+      <member refid="classSGRawValuePointer_1a1479141f02b5f580a8e30f4c880fa6c6" prot="public" virt="virtual"><scope>SGRawValuePointer</scope><name>setValue</name></member>
+      <member refid="classSGRawValue_1a482d1ef4efc5a04b33ef65f632734c57" prot="public" virt="non-virtual"><scope>SGRawValuePointer</scope><name>SGRawValue</name></member>
+      <member refid="classSGRawValuePointer_1a4dd0284c0ea4ba53c86bf857101779d0" prot="public" virt="non-virtual"><scope>SGRawValuePointer</scope><name>SGRawValuePointer</name></member>
+      <member refid="classSGRawValue_1ac16beb78deb70e44a5bcca00f370e979" prot="public" virt="virtual"><scope>SGRawValuePointer</scope><name>~SGRawValue</name></member>
+      <member refid="classSGRawValuePointer_1afc50b291c92f8a58a6446d7ef8a5627f" prot="public" virt="virtual"><scope>SGRawValuePointer</scope><name>~SGRawValuePointer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

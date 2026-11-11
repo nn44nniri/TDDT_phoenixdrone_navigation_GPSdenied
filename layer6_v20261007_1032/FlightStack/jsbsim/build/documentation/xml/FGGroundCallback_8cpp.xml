@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="FGGroundCallback_8cpp" kind="file" language="C++">
+    <compoundname>FGGroundCallback.cpp</compoundname>
+    <includes refid="FGLocation_8h" local="yes">math/FGLocation.h</includes>
+    <includes refid="FGGroundCallback_8h" local="yes">FGGroundCallback.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>FGJSBBase.h</label>
+        <link refid="FGJSBBase_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>JSBSim_API.h</label>
+        <link refid="JSBSim__API_8h_source"/>
+      </node>
+      <node id="1">
+        <label>FGGroundCallback.cpp</label>
+        <link refid="FGGroundCallback_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>FGGroundCallback.h</label>
+        <link refid="FGGroundCallback_8h_source"/>
+      </node>
+      <node id="10">
+        <label>FGColumnVector3.h</label>
+        <link refid="FGColumnVector3_8h_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>math/FGLocation.h</label>
+        <link refid="FGLocation_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>FGMatrix33.h</label>
+        <link refid="FGMatrix33_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cassert</label>
+      </node>
+      <node id="8">
+        <label>chrono</label>
+      </node>
+      <node id="5">
+        <label>float.h</label>
+      </node>
+      <node id="11">
+        <label>iosfwd</label>
+      </node>
+      <node id="7">
+        <label>random</label>
+      </node>
+      <node id="6">
+        <label>stdexcept</label>
+      </node>
+      <node id="12">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceJSBSim">JSBSim</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"></highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>Header:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>FGGroundCallback.cpp</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Author:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Mathias<sp/>Froehlich</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>Date<sp/>started:<sp/>05/21/04</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"></highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>------<sp/>Copyright<sp/>(C)<sp/>2004<sp/>Mathias<sp/>Froehlich<sp/>(Mathias.Froehlich@web.de)<sp/>-------</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"></highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>This<sp/>program<sp/>is<sp/>free<sp/>software;<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by<sp/>the<sp/>Free</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>Software<sp/>Foundation;<sp/>either<sp/>version<sp/>2<sp/>of<sp/>the<sp/>License,<sp/>or<sp/>(at<sp/>your<sp/>option)<sp/>any</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"></highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>This<sp/>program<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/>but<sp/>WITHOUT</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty<sp/>of<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/><sp/>See<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>details.</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"></highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>You<sp/>should<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>along</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>with<sp/>this<sp/>program;<sp/>if<sp/>not,<sp/>write<sp/>to<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>Inc.,<sp/>59</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>Temple<sp/>Place<sp/>-<sp/>Suite<sp/>330,<sp/>Boston,<sp/>MA<sp/>02111-1307,<sp/>USA.</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"></highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>Further<sp/>information<sp/>about<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>can<sp/>also<sp/>be</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>found<sp/>on<sp/>the<sp/>world<sp/>wide<sp/>web<sp/>at<sp/>http://www.gnu.org.</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"></highlight></codeline>
+<codeline lineno="26"><highlight class="comment">HISTORY</highlight></codeline>
+<codeline lineno="27"><highlight class="comment">-------------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="28"><highlight class="comment">05/21/00<sp/><sp/><sp/>MF<sp/><sp/><sp/>Created</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"></highlight></codeline>
+<codeline lineno="30"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="31"><highlight class="comment">SENTRY</highlight></codeline>
+<codeline lineno="32"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;math/FGLocation.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;FGGroundCallback.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">JSBSim<sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="classJSBSim_1_1FGDefaultGroundCallback_1a8ea3c30532eecf47acf6932c7b8b86fb" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGDefaultGroundCallback_1a8ea3c30532eecf47acf6932c7b8b86fb" kindref="member">FGDefaultGroundCallback::GetAGLevel</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>t,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGLocation" kindref="compound">FGLocation</ref>&amp;<sp/>loc,</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classJSBSim_1_1FGLocation" kindref="compound">FGLocation</ref>&amp;<sp/>contact,<sp/><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref>&amp;<sp/>normal,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref>&amp;<sp/>vel,<sp/><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref>&amp;<sp/>angularVel)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="44"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/>vel.InitMatrix();</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/>angularVel.InitMatrix();</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGLocation" kindref="compound">FGLocation</ref><sp/>l<sp/>=<sp/>loc;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/>l.<ref refid="classJSBSim_1_1FGLocation_1a0697137d8c02a8b84f695d12317347a6" kindref="member">SetEllipse</ref>(a,b);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>latitude<sp/>=<sp/>l.<ref refid="classJSBSim_1_1FGLocation_1a7331ed56fdad41129ef4e74dcc2eff82" kindref="member">GetGeodLatitudeRad</ref>();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cosLat<sp/>=<sp/>cos(latitude);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>longitude<sp/>=<sp/>l.<ref refid="classJSBSim_1_1FGLocation_1a804f3713901ade7ce31549d97d197583" kindref="member">GetLongitude</ref>();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/>normal<sp/>=<sp/><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref>(cosLat*cos(longitude),<sp/>cosLat*sin(longitude),</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sin(latitude));</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/>contact.<ref refid="classJSBSim_1_1FGLocation_1a0697137d8c02a8b84f695d12317347a6" kindref="member">SetEllipse</ref>(a,<sp/>b);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/>contact.<ref refid="classJSBSim_1_1FGLocation_1af0f103b7c1f4c5c8cdceb15a55305fe2" kindref="member">SetPositionGeodetic</ref>(longitude,<sp/>latitude,<sp/>mTerrainElevation);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>l.<ref refid="classJSBSim_1_1FGLocation_1ad6d787090b71419e91678ceb91c6ef1f" kindref="member">GetGeodAltitude</ref>()<sp/>-<sp/>mTerrainElevation;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>JSBSim</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.cpp"/>
+  </compounddef>
+</doxygen>

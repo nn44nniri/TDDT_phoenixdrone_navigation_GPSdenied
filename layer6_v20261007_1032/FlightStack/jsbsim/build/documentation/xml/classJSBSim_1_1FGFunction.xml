@@ -1,0 +1,1256 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classJSBSim_1_1FGFunction" kind="class" language="C++" prot="public">
+    <compoundname>JSBSim::FGFunction</compoundname>
+    <basecompoundref refid="classJSBSim_1_1FGParameter" prot="public" virt="non-virtual">FGParameter</basecompoundref>
+    <basecompoundref refid="classJSBSim_1_1FGJSBBase" prot="public" virt="non-virtual">FGJSBBase</basecompoundref>
+    <derivedcompoundref refid="classJSBSim_1_1FGTemplateFunc" prot="public" virt="non-virtual">FGTemplateFunc</derivedcompoundref>
+    <derivedcompoundref refid="classJSBSim_1_1aFunc" prot="public" virt="non-virtual">aFunc&lt; func_t, Nmin &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classJSBSim_1_1aFunc_3_01func__t_00_010_01_4" prot="public" virt="non-virtual">aFunc&lt; func_t, 0 &gt;</derivedcompoundref>
+    <includes refid="FGFunction_8h" local="no">FGFunction.h</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classJSBSim_1_1FGFunction_1a5f96f82810dc92fb012b461e56341dc6" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>OddEven</name>
+        <qualifiedname>JSBSim::FGFunction::OddEven</qualifiedname>
+        <enumvalue id="classJSBSim_1_1FGFunction_1a5f96f82810dc92fb012b461e56341dc6a9e70a5d3dab1960c04b55a29f310331e" prot="public">
+          <name>Either</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGFunction_1a5f96f82810dc92fb012b461e56341dc6a37b6bd7fe61d651735cec3d3b0356c66" prot="public">
+          <name>Odd</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGFunction_1a5f96f82810dc92fb012b461e56341dc6a35537fbc25d87ffe59e4f35fefcd34b7" prot="public">
+          <name>Even</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="825" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" bodystart="825" bodyend="825"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGFunction_1a5f2e1a98012a2ebf983d5a4f4c5be6f9" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool cached</definition>
+        <argsstring></argsstring>
+        <name>cached</name>
+        <qualifiedname>JSBSim::FGFunction::cached</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="828" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" bodystart="828" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGFunction_1a064f386da7a4ed20dde3e38c5f2f0e06" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double cachedValue</definition>
+        <argsstring></argsstring>
+        <name>cachedValue</name>
+        <qualifiedname>JSBSim::FGFunction::cachedValue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="829" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" bodystart="829" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGFunction_1a3df432c9dbaffa784b9bf343b2a277df" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; FGParameter_ptr &gt;</type>
+        <definition>std::vector&lt;FGParameter_ptr&gt; Parameters</definition>
+        <argsstring></argsstring>
+        <name>Parameters</name>
+        <qualifiedname>JSBSim::FGFunction::Parameters</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="830" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" bodystart="830" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGFunction_1a871e206d01ebea5a5bafee9340310bc1" prot="protected" static="no" mutable="no">
+        <type>SGPropertyNode_ptr</type>
+        <definition>SGPropertyNode_ptr pNode</definition>
+        <argsstring></argsstring>
+        <name>pNode</name>
+        <qualifiedname>JSBSim::FGFunction::pNode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="832" column="22" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" bodystart="832" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGFunction_1a6f4a1c312d0edb6cded26fd9a148f409" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; FGPropertyManager &gt;</type>
+        <definition>std::shared_ptr&lt;FGPropertyManager&gt; PropertyManager</definition>
+        <argsstring></argsstring>
+        <name>PropertyManager</name>
+        <qualifiedname>JSBSim::FGFunction::PropertyManager</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="831" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" bodystart="831" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGFunction_1adc852f586959ce13117d737cf3f14899" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string Name</definition>
+        <argsstring></argsstring>
+        <name>Name</name>
+        <qualifiedname>JSBSim::FGFunction::Name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="843" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" bodystart="843" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGFunction_1a77183c472a72dfed21cf839363011662" prot="private" static="no" mutable="no">
+        <type>SGPropertyNode_ptr</type>
+        <definition>SGPropertyNode_ptr pCopyTo</definition>
+        <argsstring></argsstring>
+        <name>pCopyTo</name>
+        <qualifiedname>JSBSim::FGFunction::pCopyTo</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="844" column="22" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" bodystart="844" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1a044d8823741a587785c1381b1c00fa90" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>FGFunction</definition>
+        <argsstring>()</argsstring>
+        <name>FGFunction</name>
+        <qualifiedname>JSBSim::FGFunction::FGFunction</qualifiedname>
+        <briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="768" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" bodystart="768" bodyend="769"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1a89b81df0d34de831a1e8c48903d1af64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGFunction</definition>
+        <argsstring>(FGFDMExec *fdmex, Element *element, const std::string &amp;prefix=&quot;&quot;, FGPropertyValue *var=0L)</argsstring>
+        <name>FGFunction</name>
+        <qualifiedname>JSBSim::FGFunction::FGFunction</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+          <declname>fdmex</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>element</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>prefix</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGPropertyValue" kindref="compound">FGPropertyValue</ref> *</type>
+          <declname>var</declname>
+          <defval>0L</defval>
+        </param>
+        <briefdescription>
+<para>Constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>When this constructor is called, the XML element pointed to in memory by the element argument is traversed. If other FGParameter-derived objects (values, functions, properties, or tables) are encountered, this instance of the <ref refid="classJSBSim_1_1FGFunction" kindref="compound">FGFunction</ref> object will store a pointer to the found object and pass the relevant <ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> pointer to the constructor for the new object. In other words, each <ref refid="classJSBSim_1_1FGFunction" kindref="compound">FGFunction</ref> object maintains a list of &quot;child&quot; FGParameter-derived objects which in turn may each contain its own list, and so on. At runtime, each object evaluates its child parameters, which each may have its own child parameters to evaluate.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>PropertyManager</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to the property manager instance. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>element</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to the <ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> object containing the function definition. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prefix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an optional prefix to prepend to the name given to the property that represents this function (if given). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="792" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.cpp" bodystart="207" bodyend="239"/>
+        <references refid="classJSBSim_1_1Element_1a4fd4cb4d88046523b2cf729bf847e0e2" compoundref="FGXMLElement_8cpp" startline="270" endline="274">Element::GetAttributeValue</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1abc592b6dff12a456a429cfda9d18d7c7" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>FGFunction</definition>
+        <argsstring>(std::shared_ptr&lt; FGPropertyManager &gt; pm)</argsstring>
+        <name>FGFunction</name>
+        <qualifiedname>JSBSim::FGFunction::FGFunction</qualifiedname>
+        <param>
+          <type>std::shared_ptr&lt; FGPropertyManager &gt;</type>
+          <declname>pm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="771" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" bodystart="771" bodyend="773"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1ac03cd4330b5ea3f272aa1e57bbfbbf33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>~FGFunction</definition>
+        <argsstring>(void) override</argsstring>
+        <name>~FGFunction</name>
+        <qualifiedname>JSBSim::FGFunction::~FGFunction</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Destructor Make sure the function is untied before destruction. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="798" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.cpp" bodystart="950" bodyend="956"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1a23ddcda982a7bae0faf51a548f0aafeb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void cacheValue</definition>
+        <argsstring>(bool shouldCache)</argsstring>
+        <name>cacheValue</name>
+        <qualifiedname>JSBSim::FGFunction::cacheValue</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>shouldCache</declname>
+        </param>
+        <briefdescription>
+<para>Specifies whether to cache the value of the function, so it is calculated only once per frame. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If shouldCache is true, then the value of the function is calculated, and a flag is set so further calculations done this frame will use the cached value. In order to turn off caching, cacheValue must be called with a false argument. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shouldCache</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies whether the function should cache the computed value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="823" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.cpp" bodystart="972" bodyend="980"/>
+        <references refid="classJSBSim_1_1FGFunction_1a20153bedb4fc19a8b698f34dada67e5f" compoundref="FGFunction_8cpp" startline="984" endline="993">FGFunction::GetValue</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1a2842714eb53693f6a053610d97a0bac9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string GetName</definition>
+        <argsstring>(void) const override</argsstring>
+        <name>GetName</name>
+        <qualifiedname>JSBSim::FGFunction::GetName</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGParameter_1acf5c7e37e0c47ca87038e90a1736db76">GetName</reimplements>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Retrieves the name of the function. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="809" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" bodystart="809" bodyend="809"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1a20153bedb4fc19a8b698f34dada67e5f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double GetValue</definition>
+        <argsstring>(void) const override</argsstring>
+        <name>GetValue</name>
+        <qualifiedname>JSBSim::FGFunction::GetValue</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGParameter_1af2db79fb9328702d52ef59782b3d8863">GetValue</reimplements>
+        <reimplementedby refid="classJSBSim_1_1FGTemplateFunc_1a20153bedb4fc19a8b698f34dada67e5f">GetValue</reimplementedby>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Retrieves the value of the function object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the total value of the function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="802" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.cpp" bodystart="984" bodyend="993"/>
+        <referencedby refid="classJSBSim_1_1FGRocket_1acdd441a759a096a360a1da53602343d8" compoundref="FGRocket_8cpp" startline="54" endline="144">FGRocket::FGRocket</referencedby>
+        <referencedby refid="classJSBSim_1_1FGFunction_1a23ddcda982a7bae0faf51a548f0aafeb" compoundref="FGFunction_8cpp" startline="972" endline="980">FGFunction::cacheValue</referencedby>
+        <referencedby refid="classJSBSim_1_1FGBallonet_1ab4f2abee6ace8ea44fa06a50f78b7540" compoundref="FGGasCell_8cpp" startline="684" endline="777">FGBallonet::Calculate</referencedby>
+        <referencedby refid="classJSBSim_1_1FGRocket_1a308031836dd2661401a194f63483bdf6" compoundref="FGRocket_8cpp" startline="156" endline="213">FGRocket::Calculate</referencedby>
+        <referencedby refid="classJSBSim_1_1FGFunction_1a2987343c143f23f640a1d57b6ccc9bd5" compoundref="FGFunction_8cpp" startline="997" endline="1003">FGFunction::GetValueAsString</referencedby>
+        <referencedby refid="classJSBSim_1_1FGAerodynamics_1a764e8c6d39b827d2ad03f570a2fc37e6" compoundref="FGAerodynamics_8cpp" startline="132" endline="314">FGAerodynamics::Run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1a2987343c143f23f640a1d57b6ccc9bd5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>string GetValueAsString</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetValueAsString</name>
+        <qualifiedname>JSBSim::FGFunction::GetValueAsString</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>The value that the function evaluates to, as a string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the value of the function as a string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="806" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.cpp" bodystart="997" bodyend="1003"/>
+        <references refid="classJSBSim_1_1FGFunction_1a20153bedb4fc19a8b698f34dada67e5f" compoundref="FGFunction_8cpp" startline="984" endline="993">FGFunction::GetValue</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1a23a8ff3382453c209996391574e42b66" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool IsConstant</definition>
+        <argsstring>(void) const override</argsstring>
+        <name>IsConstant</name>
+        <qualifiedname>JSBSim::FGFunction::IsConstant</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGParameter_1a3bfd33fa66316606bf5ed6028a03a139">IsConstant</reimplements>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Does the function always return the same result (i.e. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>does it apply to constant parameters) ? </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="813" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.cpp" bodystart="960" bodyend="968"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1a571e8e91c5b5e229e015bc63ae448119" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void bind</definition>
+        <argsstring>(Element *, const std::string &amp;)</argsstring>
+        <name>bind</name>
+        <qualifiedname>JSBSim::FGFunction::bind</qualifiedname>
+        <reimplementedby refid="classJSBSim_1_1FGTemplateFunc_1a909c0765f5da19a263651cb1326c7de8">bind</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1aFunc_1a08d342e6aed0e5139ef3476dab598641">bind</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1aFunc_3_01func__t_00_010_01_4_1a08d342e6aed0e5139ef3476dab598641">bind</reimplementedby>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <defname>el</defname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <defname>Prefix</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="836" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.cpp" bodystart="1043" bodyend="1049"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1a76fdcabc720b13e1e8160ce536f748ff" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CheckMaxArguments</definition>
+        <argsstring>(Element *el, unsigned int _max)</argsstring>
+        <name>CheckMaxArguments</name>
+        <qualifiedname>JSBSim::FGFunction::CheckMaxArguments</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>el</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>_max</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="838" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.cpp" bodystart="256" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1a90833cda92d5cc20a59f379ef84fd8ff" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CheckMinArguments</definition>
+        <argsstring>(Element *el, unsigned int _min)</argsstring>
+        <name>CheckMinArguments</name>
+        <qualifiedname>JSBSim::FGFunction::CheckMinArguments</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>el</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>_min</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="837" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.cpp" bodystart="243" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1a145cc12c081d551c52e7662dadb18f85" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CheckOddOrEvenArguments</definition>
+        <argsstring>(Element *el, OddEven odd_even)</argsstring>
+        <name>CheckOddOrEvenArguments</name>
+        <qualifiedname>JSBSim::FGFunction::CheckOddOrEvenArguments</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>el</declname>
+        </param>
+        <param>
+          <type>OddEven</type>
+          <declname>odd_even</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="839" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.cpp" bodystart="269" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1a7b71b6f21f5f5700c05ada0e855d4b68" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>string CreateOutputNode</definition>
+        <argsstring>(Element *el, const std::string &amp;Prefix)</argsstring>
+        <name>CreateOutputNode</name>
+        <qualifiedname>JSBSim::FGFunction::CreateOutputNode</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>el</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>Prefix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="840" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.cpp" bodystart="1007" bodyend="1039"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1a24c30e7fc37ef42ef000f6e1205e0e3a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Load</definition>
+        <argsstring>(Element *element, FGPropertyValue *var, FGFDMExec *fdmex, const std::string &amp;prefix=&quot;&quot;)</argsstring>
+        <name>Load</name>
+        <qualifiedname>JSBSim::FGFunction::Load</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>element</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGPropertyValue" kindref="compound">FGPropertyValue</ref> *</type>
+          <declname>var</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+          <declname>fdmex</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>prefix</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="834" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.cpp" bodystart="313" bodyend="946"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGFunction_1a54ec10fc427f5973db1cf7af1ef55103" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Debug</definition>
+        <argsstring>(int from)</argsstring>
+        <name>Debug</name>
+        <qualifiedname>JSBSim::FGFunction::Debug</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>from</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="846" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.cpp" bodystart="1070" bodyend="1097"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents a mathematical function. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="classJSBSim_1_1FGFunction" kindref="compound">FGFunction</ref> class is a powerful and versatile resource that allows algebraic functions to be defined in a JSBSim configuration file. It is similar in concept to MathML (Mathematical Markup Language, www.w3.org/Math/), but simpler and more terse. A function definition consists of an operation, a value, a table, or a property (which evaluates to a value). The currently supported operations are:<itemizedlist>
+<listitem><para>sum (takes n args)</para>
+</listitem><listitem><para>difference (takes n args)</para>
+</listitem><listitem><para>product (takes n args)</para>
+</listitem><listitem><para>quotient (takes 2 args)</para>
+</listitem><listitem><para>pow (takes 2 args)</para>
+</listitem><listitem><para>sqrt (takes one argument)</para>
+</listitem><listitem><para>toradians (takes one argument)</para>
+</listitem><listitem><para>todegrees (takes one argument)</para>
+</listitem><listitem><para>exp (takes 2 args)</para>
+</listitem><listitem><para>log2 (takes 1 arg)</para>
+</listitem><listitem><para>ln (takes 1 arg)</para>
+</listitem><listitem><para>log10 (takes 1 arg)</para>
+</listitem><listitem><para>abs (takes 1 arg)</para>
+</listitem><listitem><para>sin (takes 1 arg)</para>
+</listitem><listitem><para>cos (takes 1 arg)</para>
+</listitem><listitem><para>tan (takes 1 arg)</para>
+</listitem><listitem><para>asin (takes 1 arg)</para>
+</listitem><listitem><para>acos (takes 1 arg)</para>
+</listitem><listitem><para>atan (takes 1 arg)</para>
+</listitem><listitem><para>atan2 (takes 2 args)</para>
+</listitem><listitem><para>min (takes n args)</para>
+</listitem><listitem><para>max (takes n args)</para>
+</listitem><listitem><para>avg (takes n args)</para>
+</listitem><listitem><para>fraction</para>
+</listitem><listitem><para>mod</para>
+</listitem><listitem><para>floor (takes 1 arg)</para>
+</listitem><listitem><para>ceil (takes 1 arg)</para>
+</listitem><listitem><para>fmod (takes 2 args)</para>
+</listitem><listitem><para>roundmultiple (takes 2 args)</para>
+</listitem><listitem><para>lt (less than, takes 2 args)</para>
+</listitem><listitem><para>le (less equal, takes 2 args)</para>
+</listitem><listitem><para>gt (greater than, takes 2 args)</para>
+</listitem><listitem><para>ge (greater than, takes 2 args)</para>
+</listitem><listitem><para>eq (equal, takes 2 args)</para>
+</listitem><listitem><para>nq (not equal, takes 2 args)</para>
+</listitem><listitem><para>and (takes n args)</para>
+</listitem><listitem><para>or (takes n args)</para>
+</listitem><listitem><para>not (takes 1 args)</para>
+</listitem><listitem><para>if-then (takes 2-3 args)</para>
+</listitem><listitem><para>switch (takes 2 or more args)</para>
+</listitem><listitem><para>random (Gaussian distribution random number)</para>
+</listitem><listitem><para>urandom (Uniform random number between -1 and +1)</para>
+</listitem><listitem><para>pi</para>
+</listitem><listitem><para>integer</para>
+</listitem><listitem><para>interpolate 1-dimensional (takes a minimum of five arguments, odd number)</para>
+</listitem></itemizedlist>
+</para>
+<para>An operation is defined in the configuration file as in the following example:</para>
+<para><programlisting><codeline><highlight class="normal">&lt;sum&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;value&gt;<sp/>3.14159<sp/>&lt;/value&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;<sp/>velocities/qbar<sp/>&lt;/</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;product&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;value&gt;<sp/>0.125<sp/>&lt;/value&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;<sp/>metrics/wingarea<sp/>&lt;/</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;/product&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/sum&gt;</highlight></codeline>
+</programlisting></para>
+<para>A full function definition, such as is used in the aerodynamics section of a configuration file includes the function element, and other elements. It should be noted that there can be only one non-optional (non-documentation) element - that is, one operation element or one table element - in the top-level function definition. Multiple value and/or property elements cannot be immediate child members of the function element. Almost always, the first operation within the function element will be a product or sum. For example:</para>
+<para><programlisting><codeline><highlight class="normal">&lt;function<sp/>name=</highlight><highlight class="stringliteral">&quot;aero/moment/Clr&quot;</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;description&gt;Roll<sp/>moment<sp/>due<sp/>to<sp/>yaw<sp/>rate&lt;/description&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;product&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;aero/qbar-area&lt;/</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;metrics/bw-ft&lt;/</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;aero/bi2vel&lt;/</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;velocities/r-aero-rad_sec&lt;/</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;table&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;independentVar&gt;aero/alpha-rad&lt;/independentVar&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;tableData&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.000<sp/><sp/>0.08</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.094<sp/><sp/>0.19</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/tableData&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/table&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;/product&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/function&gt;</highlight></codeline>
+</programlisting></para>
+<para>The &quot;lowest level&quot; in a function is always a value or a property, which cannot itself contain another element. As shown, operations can contain values, properties, tables, or other operations. In the first above example, the sum element contains all three. What is evaluated is written algebraically as:</para>
+<para><programlisting><codeline><highlight class="normal">3.14159<sp/>+<sp/>qbar<sp/>+<sp/>(0.125<sp/>*<sp/>wingarea)<sp/></highlight></codeline>
+</programlisting></para>
+<para>Some operations can take only a single argument. That argument, however, can be an operation (such as sum) which can contain other items. The point to keep in mind is that it evaluates to a single value - which is just what the trigonometric functions require (except atan2, which takes two arguments).</para>
+<para><heading level="2">Specific Function Definitions</heading>
+</para>
+<para>Note: In the definitions below, a &quot;property&quot; refers to a single property specified within either the &lt;property&gt;&lt;/property&gt; tag or the shortcut tag, &lt;p&gt;&lt;/p&gt;. The keyword &quot;value&quot; refers to a single numeric value specified either within the &lt;value&gt;&lt;/value&gt; tag or the shortcut &lt;v&gt;&lt;/v&gt; tag. The keyword &quot;table&quot; refers to a single table specified either within the &lt;table&gt;&lt;/table&gt; tag or the shortcut &lt;t&gt;&lt;/t&gt; tag. The plural form of any of the three words refers to one or more instances of a property, value, or table.</para>
+<para><itemizedlist>
+<listitem><para><bold>sum</bold>, sums the values of all immediate child elements: <programlisting><codeline><highlight class="normal">&lt;sum&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{properties,<sp/>values,<sp/>tables,<sp/>or<sp/>other<sp/>function<sp/>elements}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/sum&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>Mach<sp/>+<sp/>0.01</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;sum&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>velocities/mach<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>0.01<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/sum&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>difference</bold>, subtracts the values of all immediate child elements from the value of the first child element: <programlisting><codeline><highlight class="normal">&lt;difference&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{properties,<sp/>values,<sp/>tables,<sp/>or<sp/>other<sp/>function<sp/>elements}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/difference&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>Mach<sp/>-<sp/>0.01</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;difference&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>velocities/mach<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>0.01<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/difference&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>product</bold> multiplies together the values of all immediate child elements: <programlisting><codeline><highlight class="normal">&lt;product&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{properties,<sp/>values,<sp/>tables,<sp/>or<sp/>other<sp/>function<sp/>elements}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/product&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>qbar*S*beta*CY_beta</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;product&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;<sp/>aero/qbar-psf<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;<sp/>metrics/Sw-sqft<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;<sp/>aero/beta-rad<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;<sp/>aero/coefficient/CY_beta<sp/>&lt;/</highlight><highlight class="keyword">property</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/product&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>quotient</bold>, divides the value of the first immediate child element by the second immediate child element: <programlisting><codeline><highlight class="normal">&lt;quotient&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/quotient&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>(2*GM)/R</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;quotient&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;product&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;v&gt;<sp/>2.0<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&lt;p&gt;<sp/>guidance/executive/gm<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;/product&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>position/radius-to-vehicle-ft<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/quotient&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>pow</bold>, raises the value of the first immediate child element to the power of the value of the second immediate child element: <programlisting><codeline><highlight class="normal">&lt;pow&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/pow&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>Mach^2</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;pow&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>velocities/mach<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>2.0<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/pow&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>sqrt</bold>, takes the square root of the value of the immediate child element: <programlisting><codeline><highlight class="normal">&lt;sqrt&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/sqrt&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>square<sp/>root<sp/>of<sp/>25</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;sqrt&gt;<sp/>&lt;v&gt;<sp/>25.0<sp/>&lt;/v&gt;<sp/>&lt;/sqrt&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>toradians</bold>, converts a presumed argument in degrees to radians by multiplying the value of the immediate child element by pi/180: <programlisting><codeline><highlight class="normal">&lt;toradians&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/toradians&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>convert<sp/>45<sp/>degrees<sp/>to<sp/>radians</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;toradians&gt;<sp/>&lt;v&gt;<sp/>45<sp/>&lt;/v&gt;<sp/>&lt;/toradians&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>todegrees</bold>, converts a presumed argument in radians to degrees by multiplying the value of the immediate child element by 180/pi: <programlisting><codeline><highlight class="normal">&lt;todegrees&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/todegrees&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>convert<sp/>0.5*pi<sp/>radians<sp/>to<sp/>degrees</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;todegrees&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;product&gt;<sp/>&lt;v&gt;<sp/>0.5<sp/>&lt;/v&gt;<sp/>&lt;pi/&gt;<sp/>&lt;/product&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/todegrees&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>exp</bold>, raises &quot;e&quot; to the power of the immediate child element: <programlisting><codeline><highlight class="normal">&lt;exp&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/exp&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>raise<sp/></highlight><highlight class="stringliteral">&quot;e&quot;</highlight><highlight class="normal"><sp/>to<sp/>the<sp/>1.5<sp/>power,<sp/>e^1.5</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;exp&gt;<sp/>&lt;v&gt;<sp/>1.5<sp/>&lt;/v&gt;<sp/>&lt;/exp&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>log2</bold>, calculates the log base 2 value of the immediate child element: <programlisting><codeline><highlight class="normal">&lt;log2&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/log2&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:</highlight></codeline>
+<codeline><highlight class="normal">&lt;log2&gt;<sp/>&lt;v&gt;<sp/>128<sp/>&lt;/v&gt;<sp/>&lt;/log2&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>ln</bold>, calculates the natural logarithm of the value of the immediate child element: <programlisting><codeline><highlight class="normal">&lt;ln&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/ln&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>ln(128)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;ln&gt;<sp/>&lt;v&gt;<sp/>200<sp/>&lt;/v&gt;<sp/>&lt;/ln&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>log10</bold>, calculates the base 10 logarithm of the value of the immediate child element <programlisting><codeline><highlight class="normal">&lt;log10&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/log10&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example<sp/>log(Mach)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;log10&gt;<sp/>&lt;p&gt;<sp/>velocities/mach<sp/>&lt;/p&gt;<sp/>&lt;/log10&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>abs</bold> calculates the absolute value of the immediate child element <programlisting><codeline><highlight class="normal">&lt;abs&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/abs&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;abs&gt;<sp/>&lt;p&gt;<sp/>flight-path/gamma-rad<sp/>&lt;/p&gt;<sp/>&lt;/abs&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>sin</bold>, calculates the sine of the value of the immediate child element (the argument is expected to be in radians) <programlisting><codeline><highlight class="normal">&lt;sin&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/sin&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;sin&gt;<sp/>&lt;toradians&gt;<sp/>&lt;p&gt;<sp/>fcs/heading-</highlight><highlight class="keyword">true</highlight><highlight class="normal">-degrees<sp/>&lt;/p&gt;<sp/>&lt;/toradians&gt;<sp/>&lt;/sin&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>cos</bold>, calculates the cosine of the value of the immediate child element (the argument is expected to be in radians) <programlisting><codeline><highlight class="normal">&lt;cos&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/cos&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;cos&gt;<sp/>&lt;toradians&gt;<sp/>&lt;p&gt;<sp/>fcs/heading-</highlight><highlight class="keyword">true</highlight><highlight class="normal">-degrees<sp/>&lt;/p&gt;<sp/>&lt;/toradians&gt;<sp/>&lt;/cos&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>tan</bold>, calculates the tangent of the value of the immediate child element (the argument is expected to be in radians) <programlisting><codeline><highlight class="normal">&lt;tan&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/tan&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;tan&gt;<sp/>&lt;toradians&gt;<sp/>&lt;p&gt;<sp/>fcs/heading-</highlight><highlight class="keyword">true</highlight><highlight class="normal">-degrees<sp/>&lt;/p&gt;<sp/>&lt;/toradians&gt;<sp/>&lt;/tan&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>asin</bold>, calculates the arcsine (inverse sine) of the value of the immediate child element. The value provided should be in the range from -1 to +1. The value returned will be expressed in radians, and will be in the range from -pi/2 to +pi/2. <programlisting><codeline><highlight class="normal">&lt;asin&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/asin&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;asin&gt;<sp/>&lt;v&gt;<sp/>0.5<sp/>&lt;/v&gt;<sp/>&lt;/asin&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>acos</bold>, calculates the arccosine (inverse cosine) of the value of the immediate child element. The value provided should be in the range from -1 to +1. The value returned will be expressed in radians, and will be in the range from 0 to pi. <programlisting><codeline><highlight class="normal">&lt;acos&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/acos&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;acos&gt;<sp/>&lt;v&gt;<sp/>0.5<sp/>&lt;/v&gt;<sp/>&lt;/acos&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>atan</bold>, calculates the inverse tangent of the value of the immediate child element. The value returned will be expressed in radians, and will be in the range from -pi/2 to +pi/2. <programlisting><codeline><highlight class="normal">&lt;atan&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/atan&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;atan&gt;<sp/>&lt;v&gt;<sp/>0.5<sp/>&lt;/v&gt;<sp/>&lt;/atan&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>atan2</bold> calculates the inverse tangent of the value of the immediate child elements, Y/X (in that order). It even works for X values near zero. The value returned will be expressed in radians, and in the range -pi to +pi. <programlisting><codeline><highlight class="normal">&lt;atan2&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}<sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/atan2&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>inverse<sp/>tangent<sp/>of<sp/>0.5/0.25,<sp/>evaluates<sp/>to:<sp/>1.107<sp/>radians</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;atan2&gt;<sp/>&lt;v&gt;<sp/>0.5<sp/>&lt;/&lt;v&gt;<sp/>&lt;v&gt;<sp/>0.25<sp/>&lt;/v&gt;<sp/>&lt;/atan2&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>min</bold> returns the smallest value from all the immediate child elements <programlisting><codeline><highlight class="normal">&lt;min&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{properties,<sp/>values,<sp/>tables,<sp/>or<sp/>other<sp/>function<sp/>elements}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/min&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>returns<sp/>the<sp/>lesser<sp/>of<sp/>velocity<sp/>and<sp/>2500</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;min&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>velocities/eci-velocity-mag-fps<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>2500.0<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/min&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>max</bold> returns the largest value from all the immediate child elements <programlisting><codeline><highlight class="normal">&lt;max&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{properties,<sp/>values,<sp/>tables,<sp/>or<sp/>other<sp/>function<sp/>elements}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/max&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>returns<sp/>the<sp/>greater<sp/>of<sp/>velocity<sp/>and<sp/>15000</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;max&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>velocities/eci-velocity-mag-fps<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>15000.0<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/max&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>avg</bold> returns the average value of all the immediate child elements <programlisting><codeline><highlight class="normal">&lt;avg&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{properties,<sp/>values,<sp/>tables,<sp/>or<sp/>other<sp/>function<sp/>elements}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/avg&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>returns<sp/>the<sp/>average<sp/>of<sp/>the<sp/>four<sp/>numbers<sp/>below,<sp/>evaluates<sp/>to<sp/>0.50.</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;avg&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>0.25<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>0.50<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>0.75<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>0.50<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/avg&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>fraction</bold>, returns the fractional part of the value of the immediate child element <programlisting><codeline><highlight class="normal">&lt;fraction&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/fraction&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>returns<sp/>the<sp/>fractional<sp/>part<sp/>of<sp/>pi<sp/>-<sp/>or,<sp/>roughly,<sp/>0.1415926...</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;fraction&gt;<sp/>&lt;pi/&gt;<sp/>&lt;/fraction&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>integer</bold>, returns the integer portion of the value of the immediate child element <programlisting><codeline><highlight class="normal">&lt;integer&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/integer&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>mod</bold> returns the remainder from the integer division of the value of the first immediate child element by the second immediate child element, X/Y (X modulo Y). The value returned is the value X-I*Y, for the largest integer I such that if Y is nonzero, the result has the same sign as X and magnitude less than the magnitude of Y. For instance, the expression &quot;5 mod 2&quot; would evaluate to 1 because 5 divided by 2 leaves a quotient of 2 and a remainder of 1, while &quot;9 mod 3&quot; would evaluate to 0 because the division of 9 by 3 has a quotient of 3 and leaves a remainder of 0. <programlisting><codeline><highlight class="normal">&lt;mod&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/mod&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>5<sp/>mod<sp/>2,<sp/>evaluates<sp/>to<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;mod&gt;<sp/>&lt;v&gt;<sp/>5<sp/>&lt;/v&gt;<sp/>&lt;v&gt;<sp/>2<sp/>&lt;/v&gt;<sp/>&lt;/mod&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>floor</bold> returns the largest integral value that is not greater than X. <programlisting><codeline><highlight class="normal">&lt;floor&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/floor&gt;</highlight></codeline>
+</programlisting> Examples: floor(2.3) evaluates to 2.0 while floor(-2.3) evaluates to -3.0</para>
+</listitem><listitem><para><bold>ceil</bold> returns the smallest integral value that is not less than X. <programlisting><codeline><highlight class="normal">&lt;ceil&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/ceil&gt;</highlight></codeline>
+</programlisting> Examples: ceil(2.3) evaluates to 3.0 while ceil(-2.3) evaluates to -2.0</para>
+</listitem><listitem><para><bold>fmod</bold> returns the floating-point remainder of X/Y (rounded towards zero) <programlisting><codeline><highlight class="normal">&lt;fmod&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/fmod&gt;</highlight></codeline>
+</programlisting> Example: fmod(18.5, 4.2) evaluates to 1.7</para>
+</listitem><listitem><para><bold>roundmultiple</bold> returns the floating-point rounding of X to a multiple of M. round(X/M) * M <programlisting><codeline><highlight class="normal">&lt;roundmultiple&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/roundmultiple&gt;</highlight></codeline>
+</programlisting> Example: roundmultiple(93.43, 5.0) evaluates to 95.0</para>
+</listitem><listitem><para><bold>lt</bold> returns a 1 if the value of the first immediate child element is less than the value of the second immediate child element, returns 0 otherwise <programlisting><codeline><highlight class="normal">&lt;lt&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/lt&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>returns<sp/>1<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>thrust<sp/>is<sp/>less<sp/>than<sp/>10,000,<sp/>returns<sp/>0<sp/>otherwise</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;lt&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>propulsion/engine[2]/thrust-lbs<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>10000.0<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/lt&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>le</bold>, returns a 1 if the value of the first immediate child element is less than or equal to the value of the second immediate child element, returns 0 otherwise <programlisting><codeline><highlight class="normal">&lt;le&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/le&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>returns<sp/>1<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>thrust<sp/>is<sp/>less<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>10,000,<sp/>returns<sp/>0<sp/>otherwise</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;le&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>propulsion/engine[2]/thrust-lbs<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>10000.0<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/le&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>gt</bold> returns a 1 if the value of the first immediate child element is greater than the value of the second immediate child element, returns 0 otherwise <programlisting><codeline><highlight class="normal">&lt;gt&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/gt&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>returns<sp/>1<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>thrust<sp/>is<sp/>greater<sp/>than<sp/>10,000,<sp/>returns<sp/>0<sp/>otherwise</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;gt&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>propulsion/engine[2]/thrust-lbs<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>10000.0<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/gt&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>ge</bold>, returns a 1 if the value of the first immediate child element is greater than or equal to the value of the second immediate child element, returns 0 otherwise <programlisting><codeline><highlight class="normal">&lt;ge&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/ge&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>returns<sp/>1<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>thrust<sp/>is<sp/>greater<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>10,000,<sp/>returns<sp/>0</highlight></codeline>
+<codeline><highlight class="normal">otherwise</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;ge&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>propulsion/engine[2]/thrust-lbs<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>10000.0<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/ge&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>eq</bold> returns a 1 if the value of the first immediate child element is equal to the second immediate child element, returns 0 otherwise <programlisting><codeline><highlight class="normal">&lt;eq&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/eq&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>returns<sp/>1<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>thrust<sp/>is<sp/>equal<sp/>to<sp/>10,000,<sp/>returns<sp/>0<sp/>otherwise</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;eq&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>propulsion/engine[2]/thrust-lbs<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>10000.0<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/eq&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>nq</bold> returns a 1 if the value of the first immediate child element is not equal to the value of the second immediate child element, returns 0 otherwise <programlisting><codeline><highlight class="normal">&lt;nq&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/nq&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>returns<sp/>1<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>thrust<sp/>is<sp/>not<sp/>0,<sp/>returns<sp/>0<sp/>otherwise</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;nq&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>propulsion/engine[2]/thrust-lbs<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>0.0<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/nq&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>and</bold> returns a 1 if the values of the immediate child elements are all 1, returns 0 otherwise. Values provided are expected to be either 1 or 0 within machine precision. <programlisting><codeline><highlight class="normal">&lt;and&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{properties,<sp/>values,<sp/>tables,<sp/>or<sp/>other<sp/>function<sp/>elements}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/and&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>returns<sp/>1<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>the<sp/>specified<sp/>flags<sp/>are<sp/>all<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;and&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>guidance/first-stage-flight-flag<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>control/engines-running-flag<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/and&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>or</bold> returns a 1 if the values of any of the immediate child elements 1, returns 0 otherwise. Values provided are expected to be either 1 or 0 within machine precision. <programlisting><codeline><highlight class="normal">&lt;or&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{properties,<sp/>values,<sp/>tables,<sp/>or<sp/>other<sp/>function<sp/>elements}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/or&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>returns<sp/>1<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>any<sp/>of<sp/>the<sp/>specified<sp/>flags<sp/>are<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;or&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>guidance/first-stage-flight-flag<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>control/engines-running-flag<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/or&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>not</bold>, returns the inverse of the value of the supplied immediate child element (e.g., returns 1 if supplied a 0) <programlisting><codeline><highlight class="normal">&lt;not&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/not&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>returns<sp/>0<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>the<sp/>value<sp/>of<sp/>the<sp/>supplied<sp/>flag<sp/>is<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;not&gt;<sp/>&lt;p&gt;<sp/>guidance/first-stage-flight-flag<sp/>&lt;/p&gt;<sp/>&lt;/not&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>ifthen</bold> if the value of the first immediate child element is 1, then the value of the second immediate child element is returned, otherwise the value of the third child element is returned <programlisting><codeline><highlight class="normal">&lt;ifthen&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal">&lt;/ifthen&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>flight-mode<sp/>is<sp/>greater<sp/>than<sp/>2,<sp/>then<sp/>a<sp/>value<sp/>of<sp/>0.00<sp/>is</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>returned,<sp/>otherwise<sp/>the<sp/>value<sp/>of<sp/>the<sp/></highlight><highlight class="keyword">property</highlight><highlight class="normal"><sp/>control/pitch-lag<sp/>is</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>returned.</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;ifthen&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;gt&gt;<sp/>&lt;p&gt;<sp/>executive/flight-mode<sp/>&lt;/p&gt;<sp/>&lt;v&gt;<sp/>2<sp/>&lt;/v&gt;<sp/>&lt;/gt&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>0.00<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>control/pitch-lag<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/ifthen&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>switch</bold> uses the integer value of the first immediate child element as an index to select one of the subsequent immediate child elements to return the value of <programlisting><codeline><highlight class="normal">&lt;</highlight><highlight class="keywordflow">switch</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">&lt;/</highlight><highlight class="keywordflow">switch</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>flight-mode<sp/>is<sp/>2,<sp/>the<sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>function<sp/>returns<sp/>0.50</highlight></codeline>
+<codeline><highlight class="normal">&lt;</highlight><highlight class="keywordflow">switch</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>executive/flight-mode<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>0.25<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>0.50<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>0.75<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>1.00<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/</highlight><highlight class="keywordflow">switch</highlight><highlight class="normal">&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>random</bold> Returns a normal distributed random number. The function, without parameters, returns a normal distributed random value with a distribution defined by the parameters mean = 0.0 and standard deviation (stddev) = 1.0 The Mean of the distribution (its expected value, μ). Which coincides with the location of its peak. Standard deviation (σ): The square root of variance, representing the dispersion of values from the distribution mean. This shall be a positive value (σ&gt;0). <programlisting><codeline><highlight class="normal">&lt;random/&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;random<sp/>seed=</highlight><highlight class="stringliteral">&quot;1234&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;random<sp/>seed=</highlight><highlight class="stringliteral">&quot;time_now&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;random<sp/>seed=</highlight><highlight class="stringliteral">&quot;time_now&quot;</highlight><highlight class="normal"><sp/>mean=</highlight><highlight class="stringliteral">&quot;0.0&quot;</highlight><highlight class="normal"><sp/>stddev=</highlight><highlight class="stringliteral">&quot;1.0&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>urandom</bold> Returns a uniformly distributed random number. The function, without parameters, returns a random value between the minimum value -1.0 and the maximum value of 1.0 The two maximum and minimum values can be modified using the lower and upper parameters. <programlisting><codeline><highlight class="normal">&lt;urandom/&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;random<sp/>seed=</highlight><highlight class="stringliteral">&quot;1234&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;random<sp/>seed=</highlight><highlight class="stringliteral">&quot;time_now&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;random<sp/>seed=</highlight><highlight class="stringliteral">&quot;time_now&quot;</highlight><highlight class="normal"><sp/>lower=</highlight><highlight class="stringliteral">&quot;-1.0&quot;</highlight><highlight class="normal"><sp/>upper=</highlight><highlight class="stringliteral">&quot;1.0&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>pi</bold> Takes no argument and returns the value of Pi <programlisting><codeline><highlight class="normal">&lt;pi/&gt;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para><bold>interpolate1d</bold> returns the result from a 1-dimensional interpolation of the supplied values, with the value of the first immediate child element representing the lookup value into the table, and the following pairs of values representing the independent and dependent values. The first provided child element is expected to be a property. The interpolation does not extrapolate, but holds the highest value if the provided lookup value goes outside of the provided range. <programlisting><codeline><highlight class="normal">&lt;interpolate1d&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}<sp/>{property,<sp/>value,<sp/>table,<sp/>or<sp/>other<sp/>function<sp/>element}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">&lt;/interpolate1d&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Example:<sp/>If<sp/>mach<sp/>is<sp/>0.4,<sp/>the<sp/>interpolation<sp/>will<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.375.<sp/>If<sp/>mach<sp/>is</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1.5,<sp/>the<sp/>interpolation<sp/>will<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.60.</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&lt;interpolate1d&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;p&gt;<sp/>velocities/mach<sp/>&lt;/p&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>0.00<sp/>&lt;/v&gt;<sp/><sp/>&lt;v&gt;<sp/>0.25<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>0.80<sp/>&lt;/v&gt;<sp/><sp/>&lt;v&gt;<sp/>0.50<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;v&gt;<sp/>0.90<sp/>&lt;/v&gt;<sp/><sp/>&lt;v&gt;<sp/>0.60<sp/>&lt;/v&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/interpolate1d&gt;</highlight></codeline>
+</programlisting> <simplesect kind="author"><para>Jon Berndt </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FGFunction</label>
+        <link refid="classJSBSim_1_1FGFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+      </node>
+      <node id="2">
+        <label>FGParameter</label>
+        <link refid="classJSBSim_1_1FGParameter"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>FGTemplateFunc</label>
+        <link refid="classJSBSim_1_1FGTemplateFunc"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>aFunc&lt; func_t, Nmin &gt;</label>
+        <link refid="classJSBSim_1_1aFunc"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>aFunc&lt; func_t, 0 &gt;</label>
+        <link refid="classJSBSim_1_1aFunc_3_01func__t_00_010_01_4"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>SGReferenced</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>FGFunction</label>
+        <link refid="classJSBSim_1_1FGFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>Parameters</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>PropertyManager</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>JSBSim_version</edgelabel>
+          <edgelabel>needed_cfg_version</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGParameter</label>
+        <link refid="classJSBSim_1_1FGParameter"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>FGPropertyManager</label>
+      </node>
+      <node id="3">
+        <label>SGReferenced</label>
+      </node>
+      <node id="8">
+        <label>shared_ptr&lt; FGPropertyManager &gt;</label>
+        <childnode refid="9" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>vector&lt; FGParameter_ptr &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" line="764" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGFunction.h" bodystart="765" bodyend="847"/>
+    <listofallmembers>
+      <member refid="classJSBSim_1_1FGFunction_1a571e8e91c5b5e229e015bc63ae448119" prot="protected" virt="virtual"><scope>JSBSim::FGFunction</scope><name>bind</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a5f2e1a98012a2ebf983d5a4f4c5be6f9" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>cached</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a064f386da7a4ed20dde3e38c5f2f0e06" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>cachedValue</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a23ddcda982a7bae0faf51a548f0aafeb" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>cacheValue</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af8ad1042b82f1c0a47801d6978434b80" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>CelsiusToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aa3b6f7fb97ac87f59f266b3e64438cc3" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>CelsiusToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7b471bc247e5d616560cc5f5c66b4b6d" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>CelsiusToRankine</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a76fdcabc720b13e1e8160ce536f748ff" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>CheckMaxArguments</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a90833cda92d5cc20a59f379ef84fd8ff" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>CheckMinArguments</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a145cc12c081d551c52e7662dadb18f85" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>CheckOddOrEvenArguments</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a68d4cc66e32cfecaae8f500d688252c9" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>Constrain</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a71d62a503829149eb1dfc6ad1852d4bf" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>CreateIndexedPropertyName</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a7b71b6f21f5f5700c05ada0e855d4b68" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>CreateOutputNode</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a54ec10fc427f5973db1cf7af1ef55103" prot="private" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>Debug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ccb6173462774ec856542834c1df750" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>debug_lvl</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9959287a77d54c301e59848ccbc1227e" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>degtorad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7761b6352da13e163a3e60ed931e10b2" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eDown</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ea9301202abb5117f2f5c84c400dd02863" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eDrag</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da8b0184eb4350aff703ffefe981be0ed0" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eEast</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55baad8d708d8b2a6b0de1c60efac84c13c2" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eL</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600aee71d29fc9997c8c692e1cec39ccbd9e" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eLat</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9eaf9b007051dea0fdcdda1128417810324" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eLift</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600a82c89bd841ec11709255930b4f2ed128" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eLong</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba1108dc0fe89c81165e7e21bfa2d99a5c" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eM</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba29860d91c138d8308ab622566d5388b5" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eN</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7af984c99e631c934f09d5f464886dff" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eNorth</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a53f1f5a36fc3c436188ba2de84a480cc" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eP</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca330da5edf1a7a181a5e682969033346d" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>ePhi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a755bd3b6ce5a786426392a9b22101569" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>ePitch</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca00ec32130eba5084873150f79dd4241d" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>ePsi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7ad435ed230bc84886ebd313f88f50617f" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eQ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0808b46d9967cd56d78df1274adc8147" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaed80f9927f0b8c14c67cfad83a8d60b" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a3fa3dd89c1b30f6d2b8a297006842a19" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4089c27aa417783731495c25b0d3e79b" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a568d83290d150b55a7c08ec3e01a4b80" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eR</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600ac34cb49e3a3c0217eb60f28606a074fd" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eRad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a5929427bd7f9a3f8a260ab0cee4adf5b" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eRoll</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ead333a23016fb297dc1e225e9de92a902" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eSide</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca782d389c863bda6761d96904c8ca5c88" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eTht</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a4e6ccf577f5e3892239a4d0243233c46" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eU</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a8967c32806f6f2377283501791d2139b" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eV</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5ad170ee6fdb066c2ac0a32760a4b6be8f" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eW</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04afd5a33749fa68a755125d713a656b616" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eX</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04af968dfccf7b280e98b613569ce68a29a" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eY</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a6828e3eb3b26c2f81338381e9ca45500" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eYaw</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04a246094bb9b7b37e389534a9cc740d126" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>eZ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adaf24dd942ba1dbaf0262ddf9725d50e" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>FahrenheitToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a8c51473eff249bacddf47d95834c6f69" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>FeetToMeters</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a044d8823741a587785c1381b1c00fa90" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>FGFunction</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1abc592b6dff12a456a429cfda9d18d7c7" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>FGFunction</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a89b81df0d34de831a1e8c48903d1af64" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>FGFunction</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a5fd11c437bf08537955a9231dcd4dc49" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af43d52b160c8fa8ba6325d858e34beb3" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>fpstokts</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae41da7596d847c1d8b27c3e9d611157d" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>fttom</name></member>
+      <member refid="classJSBSim_1_1FGParameter_1a0ad8d0aded26450e6fdaa4f470a74a3d" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>getDoubleValue</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a2842714eb53693f6a053610d97a0bac9" prot="public" virt="virtual"><scope>JSBSim::FGFunction</scope><name>GetName</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a20153bedb4fc19a8b698f34dada67e5f" prot="public" virt="virtual"><scope>JSBSim::FGFunction</scope><name>GetValue</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a2987343c143f23f640a1d57b6ccc9bd5" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>GetValueAsString</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ce5e8bcfd2d23ad3b4032565842596c" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>GetVersion</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af3ca32541c0a55f05ded120dca912440" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>hptoftlbssec</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab97b1e120708f6f64abb9bb9e9e4cd7a" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>in3tom3</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4b8b2a0e4b0180b2abe1aff2f00d334e" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>inchtoft</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a15e2a87588ef193ac0ad314327ecd509" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>inDegrees</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aaff61dea1cc525eed707df9fbac8eca5" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>inFeet</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ace650b7aed33166ac6974d13906e1894" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>inhgtopa</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57ad71c820cf28dae1965f184b9441d1694" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>inMeters</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aecc753b3791b03920f3ea0ad33852142" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>inNone</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a0a17d86840eb2e6b1784129ed75e414e" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>inRadians</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a23a8ff3382453c209996391574e42b66" prot="public" virt="virtual"><scope>JSBSim::FGFunction</scope><name>IsConstant</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1affc9150d5720145d6a6c2a2dd265d9f5" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>JSBSim_version</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a241ce52e843cb12ae6de467cbc2f59a7" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>KelvinToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a6f1c8844b2bf556c2e90c84524c331e1" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>KelvinToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab1cd84a064daee36bb88b9052514da65" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>KelvinToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a532147ec5e65e4b78fd08bc76e1f1d35" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>kgtolb</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4627a23f0f2722262a9c865c4255fec8" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>kgtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae29b0dff0362fa116184dc2027e0a5e1" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>ktstofps</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a85110847c268725c20cd7e8d2adf0033" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>lbtoslug</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a24c30e7fc37ef42ef000f6e1205e0e3a" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>Load</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ad7434c1faeb6468757414fc3f86586df" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>m3toft3</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1adc852f586959ce13117d737cf3f14899" prot="private" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>Name</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7c4e9bce0d9b7f5d394a8ee1d9b553eb" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>needed_cfg_version</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a5f96f82810dc92fb012b461e56341dc6" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>OddEven</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a3df432c9dbaffa784b9bf343b2a277df" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>Parameters</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a77183c472a72dfed21cf839363011662" prot="private" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>pCopyTo</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a871e206d01ebea5a5bafee9340310bc1" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>pNode</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1a6f4a1c312d0edb6cded26fd9a148f409" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>PropertyManager</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1add6c8d987939a3bf35554fd6d7c6a580" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>psftoinhg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a1f44bc4c489ccb9df15115c2586fc30a" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>psftopa</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaca636497dcea29d83039f342f2f47e2" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>radtodeg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9daa4b8416feb6ef2964aacbb1ad07e7" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>RankineToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7abcf379608273b32f3d8b939a9173d5" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>RankineToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a493e81f2c57fb2733a3a8c54f4ac2ed8" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>sign</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4daf96dd9557d890a37cfc504ca67efd" prot="protected" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>slugtolb</name></member>
+      <member refid="classJSBSim_1_1FGFunction_1ac03cd4330b5ea3f272aa1e57bbfbbf33" prot="public" virt="non-virtual"><scope>JSBSim::FGFunction</scope><name>~FGFunction</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a27507db9cad73b38ac3ba2bdc64fa428" prot="public" virt="virtual"><scope>JSBSim::FGFunction</scope><name>~FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGParameter_1af0f21414a5333bc31b7f4f630251fb1b" prot="public" virt="virtual"><scope>JSBSim::FGFunction</scope><name>~FGParameter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

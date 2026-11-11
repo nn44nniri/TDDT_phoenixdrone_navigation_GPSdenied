@@ -1,0 +1,2704 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classJSBSim_1_1FGTurbine" kind="class" language="C++" prot="public">
+    <compoundname>JSBSim::FGTurbine</compoundname>
+    <basecompoundref refid="classJSBSim_1_1FGEngine" prot="public" virt="non-virtual">FGEngine</basecompoundref>
+    <includes refid="FGTurbine_8h" local="no">FGTurbine.h</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1" prot="public" static="no" strong="no">
+        <type></type>
+        <name>phaseType</name>
+        <qualifiedname>JSBSim::FGTurbine::phaseType</qualifiedname>
+        <enumvalue id="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1a9512cbda39d606ee0e3018b99cffc85c" prot="public">
+          <name>tpOff</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1a4abcb1475eda1ba63d6d136523aa2f7f" prot="public">
+          <name>tpRun</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1aac976f553a1f9daa97602f933a4b5f3a" prot="public">
+          <name>tpSpinUp</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1a1b330453903c61e680b2c417d991535f" prot="public">
+          <name>tpStart</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1ae039d70305d8adc7b863a7c9d26a986a" prot="public">
+          <name>tpStall</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1a35795d27db5e8e0cb03ede6ac0708a70" prot="public">
+          <name>tpSeize</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1a7c99088d7c92e05f73ab702e5a9bb86b" prot="public">
+          <name>tpTrim</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="182" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="182" bodyend="182"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a253e0baee00a0c2a5485f3660ded1a39" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classJSBSim_1_1FGParameter" kindref="compound">FGParameter</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;FGParameter&gt; ATSFC</definition>
+        <argsstring></argsstring>
+        <name>ATSFC</name>
+        <qualifiedname>JSBSim::FGTurbine::ATSFC</qualifiedname>
+        <briefdescription>
+<para>Augmented TSFC (lbm/hr/lbf) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="250" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="250" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1aa918c0c3306b2e8b2951bb7d059bae44" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Augmentation</definition>
+        <argsstring></argsstring>
+        <name>Augmentation</name>
+        <qualifiedname>JSBSim::FGTurbine::Augmentation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="276" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="276" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a238e85150a8c3490a04b733339072e1b" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double AugmentCmd</definition>
+        <argsstring></argsstring>
+        <name>AugmentCmd</name>
+        <qualifiedname>JSBSim::FGTurbine::AugmentCmd</qualifiedname>
+        <briefdescription>
+<para>modulated afterburner command (0.0 to 1.0) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="264" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="264" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a84b1dd903af083aabf23a45bed6c33b2" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Augmented</definition>
+        <argsstring></argsstring>
+        <name>Augmented</name>
+        <qualifiedname>JSBSim::FGTurbine::Augmented</qualifiedname>
+        <briefdescription>
+<para>= 1 if augmentation installed </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="282" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="282" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a1cc0ce5a3711fe52336b453587a2bd7c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int AugMethod</definition>
+        <argsstring></argsstring>
+        <name>AugMethod</name>
+        <qualifiedname>JSBSim::FGTurbine::AugMethod</qualifiedname>
+        <briefdescription>
+<para>= 0 if using property /engine[n]/augmentation = 1 if using last 1% of throttle movement = 2 if using FCS-defined throttle </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="283" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="283" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a7b122d88ba0e1d2c9bd636dfc185d05a" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double BleedDemand</definition>
+        <argsstring></argsstring>
+        <name>BleedDemand</name>
+        <qualifiedname>JSBSim::FGTurbine::BleedDemand</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="290" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="290" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a5425f3436630eb082968d9966b73df46" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double BypassRatio</definition>
+        <argsstring></argsstring>
+        <name>BypassRatio</name>
+        <qualifiedname>JSBSim::FGTurbine::BypassRatio</qualifiedname>
+        <briefdescription>
+<para>Bypass Ratio. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="248" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="248" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a3035511d83862b6751ddcdb9c57b60c8" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double correctedTSFC</definition>
+        <argsstring></argsstring>
+        <name>correctedTSFC</name>
+        <qualifiedname>JSBSim::FGTurbine::correctedTSFC</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="293" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="293" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a8b83cdd8f125b48dd4c80e2f08173fb9" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Cutoff</definition>
+        <argsstring></argsstring>
+        <name>Cutoff</name>
+        <qualifiedname>JSBSim::FGTurbine::Cutoff</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="278" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="278" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a41d8844da47117c09909ac0c3218eb65" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool disableWindmill</definition>
+        <argsstring></argsstring>
+        <name>disableWindmill</name>
+        <qualifiedname>JSBSim::FGTurbine::disableWindmill</qualifiedname>
+        <briefdescription>
+<para>flag to disable windmilling of engine in Off phase </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="279" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="279" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a352f107b394fefa5c68a33d348b1037c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double EGT_degC</definition>
+        <argsstring></argsstring>
+        <name>EGT_degC</name>
+        <qualifiedname>JSBSim::FGTurbine::EGT_degC</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="286" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="286" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a2cac0adc865f697533436f17ec007570" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double EPR</definition>
+        <argsstring></argsstring>
+        <name>EPR</name>
+        <qualifiedname>JSBSim::FGTurbine::EPR</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="287" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="287" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a14dca20c8b787600092287bf11bddd19" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+        <definition>FGFDMExec* FDMExec</definition>
+        <argsstring></argsstring>
+        <name>FDMExec</name>
+        <qualifiedname>JSBSim::FGTurbine::FDMExec</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="312" column="13" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="312" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a4318fa0ab92c7a816e52147db2c6a808" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Fire</definition>
+        <argsstring></argsstring>
+        <name>Fire</name>
+        <qualifiedname>JSBSim::FGTurbine::Fire</qualifiedname>
+        <briefdescription>
+<para>true if engine fire detected </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="274" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="274" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1aa3f6c2baf2f8b18b02ebca79c01ac9c0" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double IdleFF</definition>
+        <argsstring></argsstring>
+        <name>IdleFF</name>
+        <qualifiedname>JSBSim::FGTurbine::IdleFF</qualifiedname>
+        <briefdescription>
+<para>Idle Fuel Flow (lbm/hr) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="260" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="260" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a4ab404142bc9741f4ee6be587f5b9be9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double IdleN1</definition>
+        <argsstring></argsstring>
+        <name>IdleN1</name>
+        <qualifiedname>JSBSim::FGTurbine::IdleN1</qualifiedname>
+        <briefdescription>
+<para>Idle N1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="251" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="251" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a8bc08ab89fcfbe3d4fd7f64b47fb745c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double IdleN2</definition>
+        <argsstring></argsstring>
+        <name>IdleN2</name>
+        <qualifiedname>JSBSim::FGTurbine::IdleN2</qualifiedname>
+        <briefdescription>
+<para>Idle N2. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="252" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="252" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a3bed3033e750c68b2eb3f3217735a095" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classJSBSim_1_1FGFunction" kindref="compound">FGFunction</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;FGFunction&gt; IdleThrustLookup</definition>
+        <argsstring></argsstring>
+        <name>IdleThrustLookup</name>
+        <qualifiedname>JSBSim::FGTurbine::IdleThrustLookup</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="308" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="308" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a2bd8e9d3deffd4ef31dbb7e86316f387" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Ignition</definition>
+        <argsstring></argsstring>
+        <name>Ignition</name>
+        <qualifiedname>JSBSim::FGTurbine::Ignition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="281" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="281" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a54d7f04fce40761b90f85f6872efafdf" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double IgnitionN1</definition>
+        <argsstring></argsstring>
+        <name>IgnitionN1</name>
+        <qualifiedname>JSBSim::FGTurbine::IgnitionN1</qualifiedname>
+        <briefdescription>
+<para>Ignition N1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="253" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="253" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1afae57c45c10ad4803f1764fd456b60cd" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double IgnitionN2</definition>
+        <argsstring></argsstring>
+        <name>IgnitionN2</name>
+        <qualifiedname>JSBSim::FGTurbine::IgnitionN2</qualifiedname>
+        <briefdescription>
+<para>Ignition N2. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="254" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="254" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a181e387df6b3450cf9e388f060e4068d" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Injected</definition>
+        <argsstring></argsstring>
+        <name>Injected</name>
+        <qualifiedname>JSBSim::FGTurbine::Injected</qualifiedname>
+        <briefdescription>
+<para>= 1 if water injection installed </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="280" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="280" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1ab2af895dd94e2bc623fe6c2d456c1b1e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Injection</definition>
+        <argsstring></argsstring>
+        <name>Injection</name>
+        <qualifiedname>JSBSim::FGTurbine::Injection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="275" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="275" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1aceb05e63bf469dae455f833502f8e697" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classJSBSim_1_1FGFunction" kindref="compound">FGFunction</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;FGFunction&gt; InjectionLookup</definition>
+        <argsstring></argsstring>
+        <name>InjectionLookup</name>
+        <qualifiedname>JSBSim::FGTurbine::InjectionLookup</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="311" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="311" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a68dd8b66b1f5de45897d092b659585e9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double InjectionTime</definition>
+        <argsstring></argsstring>
+        <name>InjectionTime</name>
+        <qualifiedname>JSBSim::FGTurbine::InjectionTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="295" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="295" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a243481e205acf3e89e0b55c6c0d6c0e1" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double InjectionTimer</definition>
+        <argsstring></argsstring>
+        <name>InjectionTimer</name>
+        <qualifiedname>JSBSim::FGTurbine::InjectionTimer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="294" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="294" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1acdf78df46cdd2f4693eaf62bbe01b868" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double InjN1increment</definition>
+        <argsstring></argsstring>
+        <name>InjN1increment</name>
+        <qualifiedname>JSBSim::FGTurbine::InjN1increment</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="297" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="297" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a15f88263fc775f5a3bb10e1004a7312d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double InjN2increment</definition>
+        <argsstring></argsstring>
+        <name>InjN2increment</name>
+        <qualifiedname>JSBSim::FGTurbine::InjN2increment</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="298" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="298" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1adc72f065f0054dd1ed7d4ef35cea94e1" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double InjWaterNorm</definition>
+        <argsstring></argsstring>
+        <name>InjWaterNorm</name>
+        <qualifiedname>JSBSim::FGTurbine::InjWaterNorm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="296" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="296" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a4f4569001116f006a41ca37b38f5d682" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double InletPosition</definition>
+        <argsstring></argsstring>
+        <name>InletPosition</name>
+        <qualifiedname>JSBSim::FGTurbine::InletPosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="291" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="291" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a2bde0438792d5d3fed178c6faa1f4d66" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MaxN1</definition>
+        <argsstring></argsstring>
+        <name>MaxN1</name>
+        <qualifiedname>JSBSim::FGTurbine::MaxN1</qualifiedname>
+        <briefdescription>
+<para>N1 at 100% throttle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="258" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="258" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a9e9756e2b111ce1a8fb66b01509a189c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MaxN2</definition>
+        <argsstring></argsstring>
+        <name>MaxN2</name>
+        <qualifiedname>JSBSim::FGTurbine::MaxN2</qualifiedname>
+        <briefdescription>
+<para>N2 at 100% throttle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="259" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="259" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1afd66e34796ed4d92bdf3feddd7f630c3" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MaxThrust</definition>
+        <argsstring></argsstring>
+        <name>MaxThrust</name>
+        <qualifiedname>JSBSim::FGTurbine::MaxThrust</qualifiedname>
+        <briefdescription>
+<para>Maximum Augmented Thrust, static @ S.L. (lbf) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="247" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="247" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1abb94141f4244287536975f58eea9a090" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classJSBSim_1_1FGFunction" kindref="compound">FGFunction</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;FGFunction&gt; MaxThrustLookup</definition>
+        <argsstring></argsstring>
+        <name>MaxThrustLookup</name>
+        <qualifiedname>JSBSim::FGTurbine::MaxThrustLookup</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="310" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="310" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1ac2a99479ef963d158a71fe9a194cc512" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MilThrust</definition>
+        <argsstring></argsstring>
+        <name>MilThrust</name>
+        <qualifiedname>JSBSim::FGTurbine::MilThrust</qualifiedname>
+        <briefdescription>
+<para>Maximum Unaugmented Thrust, static @ S.L. (lbf) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="246" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="246" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1abb50754075f5c08575616cba10a97040" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classJSBSim_1_1FGFunction" kindref="compound">FGFunction</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;FGFunction&gt; MilThrustLookup</definition>
+        <argsstring></argsstring>
+        <name>MilThrustLookup</name>
+        <qualifiedname>JSBSim::FGTurbine::MilThrustLookup</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="309" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="309" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1ae54058e72cd2253e034e958642bae4e2" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double N1</definition>
+        <argsstring></argsstring>
+        <name>N1</name>
+        <qualifiedname>JSBSim::FGTurbine::N1</qualifiedname>
+        <briefdescription>
+<para>N1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="255" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="255" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a352838260cdfe8ff0e7efe249bc972b5" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double N1_factor</definition>
+        <argsstring></argsstring>
+        <name>N1_factor</name>
+        <qualifiedname>JSBSim::FGTurbine::N1_factor</qualifiedname>
+        <briefdescription>
+<para>factor to tie N1 and throttle </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="261" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="261" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a614afc7401fed8932fa54837854b6e9a" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double N1_spindown</definition>
+        <argsstring></argsstring>
+        <name>N1_spindown</name>
+        <qualifiedname>JSBSim::FGTurbine::N1_spindown</qualifiedname>
+        <briefdescription>
+<para>N1 spin down factor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="269" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="269" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1ac4038eacd7faaa55b60594c82f814596" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double N1_spinup</definition>
+        <argsstring></argsstring>
+        <name>N1_spinup</name>
+        <qualifiedname>JSBSim::FGTurbine::N1_spinup</qualifiedname>
+        <briefdescription>
+<para>N1 spin up rate from pneumatic starter (per second) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="265" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="265" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1aeeb806ae7e5948bfd4d1b5ffc4022cb8" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double N1_start_rate</definition>
+        <argsstring></argsstring>
+        <name>N1_start_rate</name>
+        <qualifiedname>JSBSim::FGTurbine::N1_start_rate</qualifiedname>
+        <briefdescription>
+<para>N1 spin up rate from ignition (per second) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="267" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="267" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1afe4c2d670f10d74ed08213c556a276cd" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classJSBSim_1_1FGParameter" kindref="compound">FGParameter</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;FGParameter&gt; N1SpoolDown</definition>
+        <argsstring></argsstring>
+        <name>N1SpoolDown</name>
+        <qualifiedname>JSBSim::FGTurbine::N1SpoolDown</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="314" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="314" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1ab03fd53cda450ed87accdb3bf56b6a21" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classJSBSim_1_1FGParameter" kindref="compound">FGParameter</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;FGParameter&gt; N1SpoolUp</definition>
+        <argsstring></argsstring>
+        <name>N1SpoolUp</name>
+        <qualifiedname>JSBSim::FGTurbine::N1SpoolUp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="313" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="313" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1afe442319834e8b8450dc51dbe239ba76" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double N2</definition>
+        <argsstring></argsstring>
+        <name>N2</name>
+        <qualifiedname>JSBSim::FGTurbine::N2</qualifiedname>
+        <briefdescription>
+<para>N2. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="256" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="256" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1afd9ee578542b014837d00b52190ac441" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double N2_factor</definition>
+        <argsstring></argsstring>
+        <name>N2_factor</name>
+        <qualifiedname>JSBSim::FGTurbine::N2_factor</qualifiedname>
+        <briefdescription>
+<para>factor to tie N2 and throttle </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="262" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="262" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a009ecc441cdb4e7ef1d87fd5bb0d0f6c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double N2_spindown</definition>
+        <argsstring></argsstring>
+        <name>N2_spindown</name>
+        <qualifiedname>JSBSim::FGTurbine::N2_spindown</qualifiedname>
+        <briefdescription>
+<para>N2 spin down factor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="270" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="270" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a8440cc65c5aa7df31a317920d6b65287" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double N2_spinup</definition>
+        <argsstring></argsstring>
+        <name>N2_spinup</name>
+        <qualifiedname>JSBSim::FGTurbine::N2_spinup</qualifiedname>
+        <briefdescription>
+<para>N2 spin up rate from pneumatic starter (per second) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="266" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="266" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a324dc6ca98193016c1f94867ecfa71d8" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double N2_start_rate</definition>
+        <argsstring></argsstring>
+        <name>N2_start_rate</name>
+        <qualifiedname>JSBSim::FGTurbine::N2_start_rate</qualifiedname>
+        <briefdescription>
+<para>N2 spin up rate from ignition (per second) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="268" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="268" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1afb70b59b8b13fa2352a60cb005380b17" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double N2norm</definition>
+        <argsstring></argsstring>
+        <name>N2norm</name>
+        <qualifiedname>JSBSim::FGTurbine::N2norm</qualifiedname>
+        <briefdescription>
+<para>N2 normalized (0=idle, 1=max) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="257" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="257" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1adee8657de0d5286d8d058f68f85f48bb" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classJSBSim_1_1FGParameter" kindref="compound">FGParameter</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;FGParameter&gt; N2SpoolDown</definition>
+        <argsstring></argsstring>
+        <name>N2SpoolDown</name>
+        <qualifiedname>JSBSim::FGTurbine::N2SpoolDown</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="316" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="316" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1ac9fe42dc738d20cf61f69c7c3038a170" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classJSBSim_1_1FGParameter" kindref="compound">FGParameter</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;FGParameter&gt; N2SpoolUp</definition>
+        <argsstring></argsstring>
+        <name>N2SpoolUp</name>
+        <qualifiedname>JSBSim::FGTurbine::N2SpoolUp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="315" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="315" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a24729b6ecd74ddbc181d3fd4b806b69a" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double NozzlePosition</definition>
+        <argsstring></argsstring>
+        <name>NozzlePosition</name>
+        <qualifiedname>JSBSim::FGTurbine::NozzlePosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="292" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="292" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a74aeae4ab25353617e35d0dd24967617" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double OilPressure_psi</definition>
+        <argsstring></argsstring>
+        <name>OilPressure_psi</name>
+        <qualifiedname>JSBSim::FGTurbine::OilPressure_psi</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="288" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="288" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a3645509d676a2c2981b5ad6d0cad1f43" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double OilTemp_degK</definition>
+        <argsstring></argsstring>
+        <name>OilTemp_degK</name>
+        <qualifiedname>JSBSim::FGTurbine::OilTemp_degK</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="289" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="289" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a24692472fcf72635a7ab570243957a0c" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Overtemp</definition>
+        <argsstring></argsstring>
+        <name>Overtemp</name>
+        <qualifiedname>JSBSim::FGTurbine::Overtemp</qualifiedname>
+        <briefdescription>
+<para>true if EGT exceeds limits </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="273" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="273" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a1b0b8832b5ca3dac8f7f7c1a3abf55c4" prot="private" static="no" mutable="no">
+        <type>phaseType</type>
+        <definition>phaseType phase</definition>
+        <argsstring></argsstring>
+        <name>phase</name>
+        <qualifiedname>JSBSim::FGTurbine::phase</qualifiedname>
+        <briefdescription>
+<para>Operating mode, or &quot;phase&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="245" column="13" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="245" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a5b00452be50a3e44cdad65612b6c7228" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Reversed</definition>
+        <argsstring></argsstring>
+        <name>Reversed</name>
+        <qualifiedname>JSBSim::FGTurbine::Reversed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="277" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="277" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1add437c47998db3cb3a554936c32e26a5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Seized</definition>
+        <argsstring></argsstring>
+        <name>Seized</name>
+        <qualifiedname>JSBSim::FGTurbine::Seized</qualifiedname>
+        <briefdescription>
+<para>true if inner spool is seized </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="272" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="272" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a0369dbae2f0e03f0579d7c86e7ab4baf" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Stalled</definition>
+        <argsstring></argsstring>
+        <name>Stalled</name>
+        <qualifiedname>JSBSim::FGTurbine::Stalled</qualifiedname>
+        <briefdescription>
+<para>true if engine is compressor-stalled </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="271" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="271" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a2fb729080a987113981edbefb62d56c1" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ThrottlePos</definition>
+        <argsstring></argsstring>
+        <name>ThrottlePos</name>
+        <qualifiedname>JSBSim::FGTurbine::ThrottlePos</qualifiedname>
+        <briefdescription>
+<para>FCS-supplied throttle position - modified for local use! </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="263" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="263" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTurbine_1a86b1f4bb40e9a5e41935cf4e0d2843a9" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classJSBSim_1_1FGParameter" kindref="compound">FGParameter</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;FGParameter&gt; TSFC</definition>
+        <argsstring></argsstring>
+        <name>TSFC</name>
+        <qualifiedname>JSBSim::FGTurbine::TSFC</qualifiedname>
+        <briefdescription>
+<para>Thrust Specific Fuel Consumption (lbm/hr/lbf) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="249" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="249" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classJSBSim_1_1FGTurbine_1a098cb8d8d1ce48dc8999fcb98d443eaf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class FGSimplifiedTSFC</definition>
+        <argsstring></argsstring>
+        <name>FGSimplifiedTSFC</name>
+        <qualifiedname>JSBSim::FGTurbine::FGSimplifiedTSFC</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGSimplifiedTSFC" kindref="compound">FGSimplifiedTSFC</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="323" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="323" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classJSBSim_1_1FGTurbine_1a7f00b3b056c97b95bb84534f31b9ae76" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class FGSpoolUp</definition>
+        <argsstring></argsstring>
+        <name>FGSpoolUp</name>
+        <qualifiedname>JSBSim::FGTurbine::FGSpoolUp</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGSpoolUp" kindref="compound">FGSpoolUp</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="322" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="322" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1af1875df73025c87172b8fa4da8b57679" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGTurbine</definition>
+        <argsstring>(FGFDMExec *Executive, Element *el, int engine_number, struct Inputs &amp;input)</argsstring>
+        <name>FGTurbine</name>
+        <qualifiedname>JSBSim::FGTurbine::FGTurbine</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+          <declname>Executive</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>el</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>engine_number</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structJSBSim_1_1FGEngine_1_1Inputs" kindref="compound">Inputs</ref> &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Executive</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to executive structure </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>el</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the XML element representing the turbine engine </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>engine_number</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>engine number <linebreak/>
+ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="180" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="61" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a8c1a9250c6bf27f558c9584afd9fd3d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double CalcFuelNeed</definition>
+        <argsstring>(void)</argsstring>
+        <name>CalcFuelNeed</name>
+        <qualifiedname>JSBSim::FGTurbine::CalcFuelNeed</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGEngine_1a8c1a9250c6bf27f558c9584afd9fd3d3">CalcFuelNeed</reimplements>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>The fuel need is calculated based on power levels and flow rate for that power level. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It is also turned from a rate into an actual amount (pounds) by multiplying it by the delta T and the rate. <simplesect kind="return"><para>Total fuel requirement for this engine in pounds. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="185" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="384" bodyend="390"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a308031836dd2661401a194f63483bdf6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Calculate</definition>
+        <argsstring>(void)</argsstring>
+        <name>Calculate</name>
+        <qualifiedname>JSBSim::FGTurbine::Calculate</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGEngine_1ac5c72a702ac7046a9cd86989ae02f5a2">Calculate</reimplements>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Calculates the thrust of the engine, and other engine functions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="184" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="109" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a055efebbb352d0b54305dca3aa8a7d43" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GetAugmentation</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetAugmentation</name>
+        <qualifiedname>JSBSim::FGTurbine::GetAugmentation</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="200" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="200" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1aec39464a469ab247191c127c7c4da753" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetBleedDemand</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetBleedDemand</name>
+        <qualifiedname>JSBSim::FGTurbine::GetBleedDemand</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="207" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="207" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a605b6cc1ce4086cb6325fa21cd92e87c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GetCutoff</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetCutoff</name>
+        <qualifiedname>JSBSim::FGTurbine::GetCutoff</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="202" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="202" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1ae4a997c981bf4b3f5ff176da1571e5aa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetEGT</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetEGT</name>
+        <qualifiedname>JSBSim::FGTurbine::GetEGT</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="211" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="211" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1ac4f56819de5ba4489b17e450bf93ee97" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>string GetEngineLabels</definition>
+        <argsstring>(const std::string &amp;delimiter)</argsstring>
+        <name>GetEngineLabels</name>
+        <qualifiedname>JSBSim::FGTurbine::GetEngineLabels</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGEngine_1a91c1e93552423ac646df66e8540221ac">GetEngineLabels</reimplements>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>delimiter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="240" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="538" bodyend="547"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a9cdf6884938be6a1a1846613d2ff48a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>string GetEngineValues</definition>
+        <argsstring>(const std::string &amp;delimiter)</argsstring>
+        <name>GetEngineValues</name>
+        <qualifiedname>JSBSim::FGTurbine::GetEngineValues</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGEngine_1a6e54af32a77801a63e26375f7b2b3d20">GetEngineValues</reimplements>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>delimiter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="241" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="551" bodyend="560"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a48a4aa569fb45ffdee2ab8862bfa78ef" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetEPR</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetEPR</name>
+        <qualifiedname>JSBSim::FGTurbine::GetEPR</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="210" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="210" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1ac85bf770d95fc9dafccb29239b5b3d14" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GetFire</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetFire</name>
+        <qualifiedname>JSBSim::FGTurbine::GetFire</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="199" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="199" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a56508be786f1e2fcc225b77a709f8245" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int GetIgnition</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetIgnition</name>
+        <qualifiedname>JSBSim::FGTurbine::GetIgnition</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="203" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="203" bodyend="203"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1abb1416a30b66cf22174e5e38e02f36d6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GetInjection</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetInjection</name>
+        <qualifiedname>JSBSim::FGTurbine::GetInjection</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="198" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="198" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a098bf01f2eb6460c9a7cd3f01543c5ac" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetInjectionTimer</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetInjectionTimer</name>
+        <qualifiedname>JSBSim::FGTurbine::GetInjectionTimer</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="217" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="217" bodyend="217"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1ad9b269585ff3d44d2886ce992841bf67" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetInjN1increment</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetInjN1increment</name>
+        <qualifiedname>JSBSim::FGTurbine::GetInjN1increment</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="219" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="219" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a46405a4b79235dabccfdfc974f8b199e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetInjN2increment</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetInjN2increment</name>
+        <qualifiedname>JSBSim::FGTurbine::GetInjN2increment</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="220" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="220" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a1471ab7dfbaa3e23a553b6797dfb3296" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetInjWaterNorm</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetInjWaterNorm</name>
+        <qualifiedname>JSBSim::FGTurbine::GetInjWaterNorm</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="218" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="218" bodyend="218"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a096ac6a6b74291bbc2e2f209805a9a23" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetInlet</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetInlet</name>
+        <qualifiedname>JSBSim::FGTurbine::GetInlet</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="205" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="205" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1ad30f42025b658c56b33dec66e3c0d552" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetMaxN1</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetMaxN1</name>
+        <qualifiedname>JSBSim::FGTurbine::GetMaxN1</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="213" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="213" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a8b4431ae55efee83e42317ec0b0f1902" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetMaxN2</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetMaxN2</name>
+        <qualifiedname>JSBSim::FGTurbine::GetMaxN2</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="214" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="214" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1afaadac03345ac51cac1ccf3e0a7a6fec" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetN1</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetN1</name>
+        <qualifiedname>JSBSim::FGTurbine::GetN1</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="208" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="208" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a996df16785632b42f7c281202ba589f1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetN2</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetN2</name>
+        <qualifiedname>JSBSim::FGTurbine::GetN2</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="209" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="209" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a35a364d0cf20e61e5c4b2cff97d7b507" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetNozzle</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetNozzle</name>
+        <qualifiedname>JSBSim::FGTurbine::GetNozzle</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="206" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="206" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a3cedb707cb7cc3e768173dacf3e3c507" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double getOilPressure_psi</definition>
+        <argsstring>() const</argsstring>
+        <name>getOilPressure_psi</name>
+        <qualifiedname>JSBSim::FGTurbine::getOilPressure_psi</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="215" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="215" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a25f282156ab3af0e1f44c6d189133f16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double getOilTemp_degF</definition>
+        <argsstring>(void)</argsstring>
+        <name>getOilTemp_degF</name>
+        <qualifiedname>JSBSim::FGTurbine::getOilTemp_degF</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="216" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="216" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a4cd342b1b372305525df7083ec0eb234" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GetOvertemp</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetOvertemp</name>
+        <qualifiedname>JSBSim::FGTurbine::GetOvertemp</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="197" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="197" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1aed355c03a438e38502784ff7fa174246" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>phaseType</type>
+        <definition>phaseType GetPhase</definition>
+        <argsstring>(void)</argsstring>
+        <name>GetPhase</name>
+        <qualifiedname>JSBSim::FGTurbine::GetPhase</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="195" column="13" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="195" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1ad8f964b25e0ff10b879e4819a2a58f29" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double GetPowerAvailable</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetPowerAvailable</name>
+        <qualifiedname>JSBSim::FGTurbine::GetPowerAvailable</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGEngine_1a8bdcc63a9f456b3d4470ed75e0abd70d">GetPowerAvailable</reimplements>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="186" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="394" bodyend="399"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1ab9e262339bc43f1ab0acb056604b682a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GetReversed</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetReversed</name>
+        <qualifiedname>JSBSim::FGTurbine::GetReversed</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="201" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="201" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1afc78dae153660a82c819e60c374cac80" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int InitRunning</definition>
+        <argsstring>(void)</argsstring>
+        <name>InitRunning</name>
+        <qualifiedname>JSBSim::FGTurbine::InitRunning</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGEngine_1acc78dea6df5c0471e1b445851c42a522">InitRunning</reimplements>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="237" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="609" bodyend="621"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a4b801a1a064406c4f0326121e82cd4bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void ResetToIC</definition>
+        <argsstring>(void)</argsstring>
+        <name>ResetToIC</name>
+        <qualifiedname>JSBSim::FGTurbine::ResetToIC</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGEngine_1a4b801a1a064406c4f0326121e82cd4bb">ResetToIC</reimplements>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Resets the Engine parameters to the initial conditions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="238" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="89" bodyend="103"/>
+        <references refid="classJSBSim_1_1FGEngine_1a4b801a1a064406c4f0326121e82cd4bb" compoundref="FGEngine_8cpp" startline="77" endline="89">FGEngine::ResetToIC</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a19ece223c6dc819db12351f6a5e371c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Seek</definition>
+        <argsstring>(double *var, double target, double accel, double decel)</argsstring>
+        <name>Seek</name>
+        <qualifiedname>JSBSim::FGTurbine::Seek</qualifiedname>
+        <param>
+          <type>double *</type>
+          <declname>var</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>accel</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>decel</declname>
+        </param>
+        <briefdescription>
+<para>A lag filter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Used to control the rate at which values are allowed to change. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>var</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to a variable of type double </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the desired (target) value </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>accel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the rate, per second, the value may increase </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>decel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the rate, per second, the value may decrease <linebreak/>
+ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="193" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="403" bodyend="413"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1ae4347baf8c44e9cebbc1b8c5b30540b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetAugmentation</definition>
+        <argsstring>(bool augmentation)</argsstring>
+        <name>SetAugmentation</name>
+        <qualifiedname>JSBSim::FGTurbine::SetAugmentation</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>augmentation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="224" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="224" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1aa51c57e79ed30dd4d290ade906318646" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetBleedDemand</definition>
+        <argsstring>(double bleedDemand)</argsstring>
+        <name>SetBleedDemand</name>
+        <qualifiedname>JSBSim::FGTurbine::SetBleedDemand</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>bleedDemand</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="227" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="227" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1aff150f55b8c2421fb624fc5f8fcb94a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetCutoff</definition>
+        <argsstring>(bool cutoff)</argsstring>
+        <name>SetCutoff</name>
+        <qualifiedname>JSBSim::FGTurbine::SetCutoff</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>cutoff</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="229" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="229" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a2f7612247c5c5c177a86002fc945b725" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetEPR</definition>
+        <argsstring>(double epr)</argsstring>
+        <name>SetEPR</name>
+        <qualifiedname>JSBSim::FGTurbine::SetEPR</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>epr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="226" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="226" bodyend="226"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1aa6a5aebae42066bb2de5cca2462b6f10" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetIgnition</definition>
+        <argsstring>(int ignition)</argsstring>
+        <name>SetIgnition</name>
+        <qualifiedname>JSBSim::FGTurbine::SetIgnition</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>ignition</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="223" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="223" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a030b5bb56f1f75e24e47695d1fe090ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetInjection</definition>
+        <argsstring>(bool injection)</argsstring>
+        <name>SetInjection</name>
+        <qualifiedname>JSBSim::FGTurbine::SetInjection</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>injection</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="222" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="222" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1ae9fe4a176c7ab557fe28b3e94d202d6e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetInjectionTimer</definition>
+        <argsstring>(double injtimer)</argsstring>
+        <name>SetInjectionTimer</name>
+        <qualifiedname>JSBSim::FGTurbine::SetInjectionTimer</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>injtimer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="232" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="232" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a518e8fdfea0ed4498988fee7b0b33d48" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetInjN1increment</definition>
+        <argsstring>(double injN1inc)</argsstring>
+        <name>SetInjN1increment</name>
+        <qualifiedname>JSBSim::FGTurbine::SetInjN1increment</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>injN1inc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="234" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="234" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a518e6e21c8c1457429637da2f6d782ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetInjN2increment</definition>
+        <argsstring>(double injN2inc)</argsstring>
+        <name>SetInjN2increment</name>
+        <qualifiedname>JSBSim::FGTurbine::SetInjN2increment</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>injN2inc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="235" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="235" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a6c0c502ea0c4e0f7c759f548c1552ed1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetInjWaterNorm</definition>
+        <argsstring>(double injwater)</argsstring>
+        <name>SetInjWaterNorm</name>
+        <qualifiedname>JSBSim::FGTurbine::SetInjWaterNorm</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>injwater</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="233" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="233" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a07eb1bad4941e654bea91479be420817" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetMaxN1</definition>
+        <argsstring>(double maxn1)</argsstring>
+        <name>SetMaxN1</name>
+        <qualifiedname>JSBSim::FGTurbine::SetMaxN1</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>maxn1</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="230" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="230" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a29aa853e76ce878d4ff97ef771eece51" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetMaxN2</definition>
+        <argsstring>(double maxn2)</argsstring>
+        <name>SetMaxN2</name>
+        <qualifiedname>JSBSim::FGTurbine::SetMaxN2</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>maxn2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="231" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="231" bodyend="231"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1abe6d0f6873f00019ed2b7d68700ea88f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetPhase</definition>
+        <argsstring>(phaseType p)</argsstring>
+        <name>SetPhase</name>
+        <qualifiedname>JSBSim::FGTurbine::SetPhase</qualifiedname>
+        <param>
+          <type>phaseType</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="225" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="225" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a2f32f640191fb61277adb1e5ab3fe7cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetReverse</definition>
+        <argsstring>(bool reversed)</argsstring>
+        <name>SetReverse</name>
+        <qualifiedname>JSBSim::FGTurbine::SetReverse</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>reversed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="228" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="228" bodyend="228"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1ac2cd1be447103a54d5ce1b228114a9d7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void bindmodel</definition>
+        <argsstring>(FGPropertyManager *pm)</argsstring>
+        <name>bindmodel</name>
+        <qualifiedname>JSBSim::FGTurbine::bindmodel</qualifiedname>
+        <param>
+          <type>FGPropertyManager *</type>
+          <declname>pm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="319" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="564" bodyend="605"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a54ec10fc427f5973db1cf7af1ef55103" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Debug</definition>
+        <argsstring>(int from)</argsstring>
+        <name>Debug</name>
+        <qualifiedname>JSBSim::FGTurbine::Debug</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>from</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="320" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="642" bodyend="684"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a056f8918ea959fd0159c0b3802224ec8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Load</definition>
+        <argsstring>(FGFDMExec *exec, Element *el)</argsstring>
+        <name>Load</name>
+        <qualifiedname>JSBSim::FGTurbine::Load</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+          <declname>exec</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>el</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="318" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="417" bodyend="534"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a272b2dad7dd3d1db0923161b20acbfde" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Off</definition>
+        <argsstring>(void)</argsstring>
+        <name>Off</name>
+        <qualifiedname>JSBSim::FGTurbine::Off</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="300" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="175" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1aa3f549de1ab1f33bfd977af8ce374f8c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Run</definition>
+        <argsstring>()</argsstring>
+        <name>Run</name>
+        <qualifiedname>JSBSim::FGTurbine::Run</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="301" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="199" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1af7ea21952705765ddee97138f25bfb6e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Seize</definition>
+        <argsstring>(void)</argsstring>
+        <name>Seize</name>
+        <qualifiedname>JSBSim::FGTurbine::Seize</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="305" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="337" bodyend="346"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a53ef3217d78c34d7f57abd9bcf0a88fa" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double SpinUp</definition>
+        <argsstring>(void)</argsstring>
+        <name>SpinUp</name>
+        <qualifiedname>JSBSim::FGTurbine::SpinUp</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="302" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="276" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1acc9d7cf4a5c81441fb9bef36f8a7a083" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Stall</definition>
+        <argsstring>(void)</argsstring>
+        <name>Stall</name>
+        <qualifiedname>JSBSim::FGTurbine::Stall</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="304" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="322" bodyend="333"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a5645c1967a478692d902f6c3b2a71378" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Start</definition>
+        <argsstring>(void)</argsstring>
+        <name>Start</name>
+        <qualifiedname>JSBSim::FGTurbine::Start</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="303" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="293" bodyend="318"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTurbine_1a68a92ab007e6f173de4a9efa30098e17" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Trim</definition>
+        <argsstring>()</argsstring>
+        <name>Trim</name>
+        <qualifiedname>JSBSim::FGTurbine::Trim</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="306" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.cpp" bodystart="350" bodyend="380"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>This class models a turbine engine. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Based on Jon Berndt&apos;s <ref refid="classJSBSim_1_1FGTurbine" kindref="compound">FGTurbine</ref> module. Here the term &quot;phase&quot; signifies the engine&apos;s mode of operation. At any given time the engine is in only one phase. At simulator startup the engine will be placed in the Trim phase in order to provide a simplified thrust value without throttle lag. When trimming is complete the engine will go to the Off phase, unless the value FGEngine::Running has been previously set to true, in which case the engine will go to the Run phase. Once an engine is in the Off phase the full starting procedure (or airstart) must be used to get it running. </para>
+<para><itemizedlist>
+<listitem><para>STARTING (on ground):<orderedlist>
+<listitem><para>Set the control FGEngine::Starter to true. The engine will spin up to a maximum of about %25 N2 (%5.2 N1). This value may be changed using the &lt;startnX&gt; parameter. This simulates the action of a pneumatic starter.</para>
+</listitem><listitem><para>After reaching %15 N2 set the control FGEngine::Cutoff to false. If fuel is available the engine will now accelerate to idle. The starter will automatically be set to false after the start cycle. </para>
+</listitem></orderedlist>
+</para>
+</listitem><listitem><para>STARTING (in air):<orderedlist>
+<listitem><para>Increase speed to obtain a minimum of %15 N2. If this is not possible, the starter may be used to assist.</para>
+</listitem><listitem><para>Place the control FGEngine::Cutoff to false. </para>
+</listitem></orderedlist>
+</para>
+<para>Ignition is assumed to be on anytime the Cutoff control is set to false, therefore a separate ignition system is not modeled.</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="3">Configuration File Format:</heading>
+</para>
+<para><programlisting><codeline><highlight class="normal">&lt;turbine_engine<sp/>name=</highlight><highlight class="stringliteral">&quot;{string}&quot;</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;milthrust<sp/>unit=</highlight><highlight class="stringliteral">&quot;{LBS<sp/>|<sp/>N}&quot;</highlight><highlight class="normal">&gt;<sp/>{number}<sp/>&lt;/milthrust&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;maxthrust<sp/>unit=</highlight><highlight class="stringliteral">&quot;{LBS<sp/>|<sp/>N}&quot;</highlight><highlight class="normal">&gt;<sp/>{number}<sp/>&lt;/maxthrust&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;bypassratio&gt;<sp/>{number}<sp/>&lt;/bypassratio&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;bleed&gt;<sp/>{number}<sp/>&lt;/bleed&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;tsfc&gt;<sp/>{number}<sp/>&lt;/tsfc&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;atsfc&gt;<sp/>{number}<sp/>&lt;/atsfc&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;ignitionn1&gt;<sp/>{number}<sp/>&lt;/ignitionn1&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;ignitionn2&gt;<sp/>{number}<sp/>&lt;/ignitionn2&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;idlen1&gt;<sp/>{number}<sp/>&lt;/idlen1&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;idlen2&gt;<sp/>{number}<sp/>&lt;/idlen2&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;n1spinup&gt;<sp/>{number}<sp/>&lt;/n1spinup&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;n2spinup&gt;<sp/>{number}<sp/>&lt;/n2spinup&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;n1startrate&gt;<sp/>{number}<sp/>&lt;/n1startrate&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;n2startrate&gt;<sp/>{number}<sp/>&lt;/n2startrate&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;n1spindown&gt;<sp/>{number}<sp/>&lt;/n1spindown&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;n2spindown&gt;<sp/>{number}<sp/>&lt;/n2spindown&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;maxn1&gt;<sp/>{number}<sp/>&lt;/maxn1&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;maxn2&gt;<sp/>{number}<sp/>&lt;/maxn2&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;augmented&gt;<sp/>{0<sp/>|<sp/>1}<sp/>&lt;/augmented&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;augmethod&gt;<sp/>{0<sp/>|<sp/>1<sp/>|<sp/>2}<sp/>&lt;/augmethod&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;injected&gt;<sp/>{0<sp/>|<sp/>1}<sp/>&lt;/injected&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;injection-time&gt;<sp/>{number}<sp/>&lt;/injection-time&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/>&lt;disable-windmill&gt;<sp/>{0<sp/>|<sp/>1}&lt;/disable-windmill&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/turbine_engine&gt;</highlight></codeline>
+</programlisting></para>
+<para><heading level="3">Definition of the turbine engine configuration file parameters:</heading>
+</para>
+<para><preformatted>
+  milthrust   - Maximum thrust, static, at sea level.
+  maxthrust   - Afterburning thrust, static, at sea level.
+  bypassratio - Ratio of bypass air flow to core air flow.
+  bleed       - Thrust reduction factor due to losses (0.0 to 1.0).
+  tsfc        - Thrust-specific fuel consumption at cruise, lbm/hr/lbf
+  atsfc       - Afterburning TSFC, lbm/hr/lbf
+  ignitionn1  - Fan rotor rpm (% of max) while starting
+  ignitionn2  - Core rotor rpm (% of max) while starting
+  idlen1      - Fan rotor rpm (% of max) at idle
+  idlen2      - Core rotor rpm (% of max) at idle
+  n1spinup    - Fan rotor rpm starter acceleration to ignitionn1 value (default 1.0)
+  n2spinup    - Core rotor rpm starter acceleration to ignitionn2 value (default 3.0)
+  n1startrate - Fan rotor rpm time taken to accelerate from ignitionn1 to idlen1 value (default 1.4)
+  n2startrate - Core rotor rpm time taken to accelerate to ignitionn2 idlen2 value (default 2.0)
+  n1spindown  - Factor used in calculation for fan rotor time to spool down to zero (default 2.0)
+  n2spindown  - Factor used in calculation for core rotor time to spool down to zero (default 2.0)
+  maxn1       - Fan rotor rpm (% of max) at full throttle
+  maxn2       - Core rotor rpm (% of max) at full throttle
+  augmented
+              0 = afterburner not installed
+              1 = afterburner installed
+  augmethod
+              0 = afterburner activated by property /engines/engine[n]/augmentation
+              1 = afterburner activated by pushing throttle above 99% position
+              2 = throttle range is expanded in the FCS, and values above 1.0 are afterburner range
+  injected
+              0 = Water injection not installed
+              1 = Water injection installed
+  injection-time - Time, in seconds, of water injection duration
+  InjN1increment - % increase in N1 when injection is taking place
+  InjN2increment - % increase in N2 when injection is taking place
+  disable-windmill - flag that disables engine windmilling when off if true
+</preformatted></para>
+<para><heading level="3">NOTES:</heading>
+</para>
+<para><preformatted>
+    Bypass ratio is used only to estimate engine acceleration time.  The
+    effect of bypass ratio on engine efficiency is already included in
+    the TSFC value.  Feel free to set this parameter (even for turbojets) to
+    whatever value gives a desired spool-up rate. Default value is 0.
+
+    The bleed factor is multiplied by thrust to give a resulting thrust
+    after losses.  This can represent losses due to bleed, or any other cause.
+    Default value is 0.  A common value would be 0.04.
+
+    Nozzle position, for variable area exhaust nozzles, is provided for users
+    needing to drive a nozzle gauge or animate a virtual nozzle.
+
+    This model can only be used with the &quot;direct&quot; thruster.  See the file:
+    /engine/direct.xml
+</preformatted> <simplesect kind="author"><para>David P. Culp </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FGTurbine</label>
+        <link refid="classJSBSim_1_1FGTurbine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGEngine</label>
+        <link refid="classJSBSim_1_1FGEngine"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+      </node>
+      <node id="3">
+        <label>FGModelFunctions</label>
+        <link refid="classJSBSim_1_1FGModelFunctions"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>FGTurbine</label>
+        <link refid="classJSBSim_1_1FGTurbine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>FGColumnVector3</label>
+        <link refid="classJSBSim_1_1FGColumnVector3"/>
+      </node>
+      <node id="2">
+        <label>FGEngine</label>
+        <link refid="classJSBSim_1_1FGEngine"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>in</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>Name</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>Thruster</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>SourceTanks</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Inputs</label>
+        <link refid="structJSBSim_1_1FGEngine_1_1Inputs"/>
+        <childnode refid="17" relation="usage">
+          <edgelabel>AeroPQR</edgelabel>
+          <edgelabel>AeroUVW</edgelabel>
+          <edgelabel>PQRi</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>MixtureCmd</edgelabel>
+          <edgelabel>MixturePos</edgelabel>
+          <edgelabel>PropAdvance</edgelabel>
+          <edgelabel>ThrottleCmd</edgelabel>
+          <edgelabel>ThrottlePos</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>PropFeather</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>FGFDMExec</label>
+        <link refid="classJSBSim_1_1FGFDMExec"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>FGForce</label>
+        <link refid="classJSBSim_1_1FGForce"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>fdmex</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>MassBalance</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>vActingXYZn</edgelabel>
+          <edgelabel>vFn</edgelabel>
+          <edgelabel>vMn</edgelabel>
+          <edgelabel>vOrient</edgelabel>
+          <edgelabel>vXYZn</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>mT</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>FGFunction</label>
+        <link refid="classJSBSim_1_1FGFunction"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>Parameters</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>PropertyManager</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>JSBSim_version</edgelabel>
+          <edgelabel>needed_cfg_version</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>FGMassBalance</label>
+        <link refid="classJSBSim_1_1FGMassBalance"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>in</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Inputs</label>
+        <link refid="structJSBSim_1_1FGMassBalance_1_1Inputs"/>
+        <childnode refid="17" relation="usage">
+          <edgelabel>GasMoment</edgelabel>
+          <edgelabel>TanksMoment</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>GasInertia</edgelabel>
+          <edgelabel>TankInertia</edgelabel>
+        </childnode>
+      </node>
+      <node id="27">
+        <label>FGMatrix33</label>
+        <link refid="classJSBSim_1_1FGMatrix33"/>
+      </node>
+      <node id="25">
+        <label>FGModel</label>
+        <link refid="classJSBSim_1_1FGModel"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>Name</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>FDMExec</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>PropertyManager</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>FGModelFunctions</label>
+        <link refid="classJSBSim_1_1FGModelFunctions"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>PostFunctions</edgelabel>
+          <edgelabel>PreFunctions</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>LocalProperties</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>FGParameter</label>
+        <link refid="classJSBSim_1_1FGParameter"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>FGPropertyManager</label>
+      </node>
+      <node id="15">
+        <label>FGPropertyReader</label>
+        <link refid="classJSBSim_1_1FGPropertyReader"/>
+      </node>
+      <node id="20">
+        <label>FGThruster</label>
+        <link refid="classJSBSim_1_1FGThruster"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>in</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>Name</edgelabel>
+        </childnode>
+      </node>
+      <node id="28">
+        <label>Inputs</label>
+        <link refid="structJSBSim_1_1FGThruster_1_1Inputs"/>
+        <childnode refid="17" relation="usage">
+          <edgelabel>AeroPQR</edgelabel>
+          <edgelabel>AeroUVW</edgelabel>
+          <edgelabel>PQRi</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>SGReferenced</label>
+      </node>
+      <node id="13">
+        <label>shared_ptr&lt; FGPropertyManager &gt;</label>
+        <childnode refid="14" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>shared_ptr&lt; JSBSim::FGFunction &gt;</label>
+        <childnode refid="9" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>shared_ptr&lt; JSBSim::FGMassBalance &gt;</label>
+        <childnode refid="24" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>vector&lt; FGParameter_ptr &gt;</label>
+      </node>
+      <node id="19">
+        <label>vector&lt; bool &gt;</label>
+      </node>
+      <node id="18">
+        <label>vector&lt; double &gt;</label>
+      </node>
+      <node id="29">
+        <label>vector&lt; int &gt;</label>
+      </node>
+      <node id="7">
+        <label>vector&lt; std::shared_ptr&lt; JSBSim::FGFunction &gt; &gt;</label>
+        <childnode refid="8" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" line="173" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGTurbine.h" bodystart="174" bodyend="324"/>
+    <listofallmembers>
+      <member refid="classJSBSim_1_1FGTurbine_1a253e0baee00a0c2a5485f3660ded1a39" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>ATSFC</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1aa918c0c3306b2e8b2951bb7d059bae44" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Augmentation</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a238e85150a8c3490a04b733339072e1b" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>AugmentCmd</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a84b1dd903af083aabf23a45bed6c33b2" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Augmented</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a1cc0ce5a3711fe52336b453587a2bd7c" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>AugMethod</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ac2cd1be447103a54d5ce1b228114a9d7" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>bindmodel</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a7b122d88ba0e1d2c9bd636dfc185d05a" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>BleedDemand</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a5425f3436630eb082968d9966b73df46" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>BypassRatio</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a8c1a9250c6bf27f558c9584afd9fd3d3" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>CalcFuelNeed</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1aaedd21c6f3841b7868b30c1a2aa4c61b" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>CalcOxidizerNeed</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a308031836dd2661401a194f63483bdf6" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>Calculate</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af8ad1042b82f1c0a47801d6978434b80" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>CelsiusToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aa3b6f7fb97ac87f59f266b3e64438cc3" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>CelsiusToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7b471bc247e5d616560cc5f5c66b4b6d" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>CelsiusToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a68d4cc66e32cfecaae8f500d688252c9" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Constrain</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a3035511d83862b6751ddcdb9c57b60c8" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>correctedTSFC</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1aad4a0c43ce7bca8a791b2e31ee474623" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Cranking</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a71d62a503829149eb1dfc6ad1852d4bf" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>CreateIndexedPropertyName</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a8b83cdd8f125b48dd4c80e2f08173fb9" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Cutoff</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a54ec10fc427f5973db1cf7af1ef55103" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Debug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ccb6173462774ec856542834c1df750" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>debug_lvl</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9959287a77d54c301e59848ccbc1227e" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>degtorad</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a41d8844da47117c09909ac0c3218eb65" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>disableWindmill</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7761b6352da13e163a3e60ed931e10b2" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eDown</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ea9301202abb5117f2f5c84c400dd02863" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eDrag</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da8b0184eb4350aff703ffefe981be0ed0" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eEast</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a352f107b394fefa5c68a33d348b1037c" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>EGT_degC</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55baad8d708d8b2a6b0de1c60efac84c13c2" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eL</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600aee71d29fc9997c8c692e1cec39ccbd9e" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eLat</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9eaf9b007051dea0fdcdda1128417810324" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eLift</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600a82c89bd841ec11709255930b4f2ed128" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eLong</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba1108dc0fe89c81165e7e21bfa2d99a5c" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eM</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba29860d91c138d8308ab622566d5388b5" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eN</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1ae28a298dbdc4d076936bd32d7762398c" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>EngineNumber</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1afccd19cf3b9753ee84ad2eca7bed182f" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>EngineType</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7af984c99e631c934f09d5f464886dff" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eNorth</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a53f1f5a36fc3c436188ba2de84a480cc" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eP</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca330da5edf1a7a181a5e682969033346d" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>ePhi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a755bd3b6ce5a786426392a9b22101569" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>ePitch</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a2cac0adc865f697533436f17ec007570" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>EPR</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca00ec32130eba5084873150f79dd4241d" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>ePsi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7ad435ed230bc84886ebd313f88f50617f" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eQ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0808b46d9967cd56d78df1274adc8147" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaed80f9927f0b8c14c67cfad83a8d60b" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a3fa3dd89c1b30f6d2b8a297006842a19" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4089c27aa417783731495c25b0d3e79b" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a568d83290d150b55a7c08ec3e01a4b80" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eR</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600ac34cb49e3a3c0217eb60f28606a074fd" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eRad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a5929427bd7f9a3f8a260ab0cee4adf5b" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eRoll</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ead333a23016fb297dc1e225e9de92a902" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eSide</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1afccd19cf3b9753ee84ad2eca7bed182fa22587f96d02ec82745126df849c7ce28" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>etElectric</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca782d389c863bda6761d96904c8ca5c88" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eTht</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1afccd19cf3b9753ee84ad2eca7bed182fa141ddad1f99ac6d083f4af50c4fd0cc9" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>etPiston</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1afccd19cf3b9753ee84ad2eca7bed182fae32b17d1997aa954524fa8006b815d21" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>etRocket</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1afccd19cf3b9753ee84ad2eca7bed182faf64b24c2948b8ef2b0472f5e6920f494" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>etTurbine</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1afccd19cf3b9753ee84ad2eca7bed182faea4af1800e415555e5a884d976d8f12f" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>etTurboprop</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1afccd19cf3b9753ee84ad2eca7bed182faebe4883fd888c8ccbd11bf101bd856b3" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>etUnknown</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a4e6ccf577f5e3892239a4d0243233c46" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eU</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a8967c32806f6f2377283501791d2139b" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eV</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5ad170ee6fdb066c2ac0a32760a4b6be8f" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eW</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04afd5a33749fa68a755125d713a656b616" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eX</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04af968dfccf7b280e98b613569ce68a29a" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eY</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a6828e3eb3b26c2f81338381e9ca45500" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eYaw</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04a246094bb9b7b37e389534a9cc740d126" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>eZ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adaf24dd942ba1dbaf0262ddf9725d50e" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FahrenheitToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a14dca20c8b787600092287bf11bddd19" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FDMExec</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a8c51473eff249bacddf47d95834c6f69" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FeetToMeters</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1ac24c0cda3506e40a81754362ec21d2f0" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FGEngine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a5fd11c437bf08537955a9231dcd4dc49" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a098cb8d8d1ce48dc8999fcb98d443eaf" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FGSimplifiedTSFC</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a7f00b3b056c97b95bb84534f31b9ae76" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FGSpoolUp</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1af1875df73025c87172b8fa4da8b57679" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FGTurbine</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a4318fa0ab92c7a816e52147db2c6a808" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Fire</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af43d52b160c8fa8ba6325d858e34beb3" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>fpstokts</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae41da7596d847c1d8b27c3e9d611157d" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>fttom</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a5f1321f82b57c0adb9a8e0cf1d14d6c8" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FuelDensity</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1ae98720837b329a2d1f50e34772f424ef" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FuelExpended</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1af988442076f4f11373b4928c7b02c05d" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FuelFlow_gph</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1af92e30e6f3a036ffaa0aec64bccf2817" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FuelFlow_pph</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a3ab0f7c7dd6cc7285f6deb932d1b86d6" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FuelFlowRate</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1aa0e7869097af9f44f7e53f9dded644db" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FuelFreeze</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a0d3c41d2f10127b756c5735df5dac178" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>FuelUsedLbs</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a055efebbb352d0b54305dca3aa8a7d43" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetAugmentation</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1aec39464a469ab247191c127c7c4da753" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetBleedDemand</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1af5e100e7fb6f5bdc71f0e051e9dadda7" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetBodyForces</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a866cd1c38533fd7f3c49878e2b26d986" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetCranking</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a605b6cc1ce4086cb6325fa21cd92e87c" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetCutoff</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ae4a997c981bf4b3f5ff176da1571e5aa" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetEGT</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ac4f56819de5ba4489b17e450bf93ee97" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetEngineLabels</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a9cdf6884938be6a1a1846613d2ff48a8" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetEngineValues</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a48a4aa569fb45ffdee2ab8862bfa78ef" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetEPR</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ac85bf770d95fc9dafccb29239b5b3d14" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetFire</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a6ceb6e1901e670086fa682e566386a46" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>getFuelFlow_gph</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a717751c87accb32ad9cf55e684278aed" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>getFuelFlow_pph</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a519d590ff1fa6ed4f70eff9d9fbc0408" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetFuelFlowRate</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1afc19e56e73a85503581668fef4487d3f" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetFuelFlowRateGPH</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a8e2a180636690ededad5cb033f148959" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetFuelUsedLbs</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a6d0e47cd9c6bdba65db88286e0b5ee06" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetFunctionStrings</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a7137c8955bc052d365da3ce2955fb7c8" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetFunctionValues</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a56508be786f1e2fcc225b77a709f8245" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetIgnition</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1abb1416a30b66cf22174e5e38e02f36d6" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetInjection</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a098bf01f2eb6460c9a7cd3f01543c5ac" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetInjectionTimer</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ad9b269585ff3d44d2886ce992841bf67" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetInjN1increment</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a46405a4b79235dabccfdfc974f8b199e" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetInjN2increment</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a1471ab7dfbaa3e23a553b6797dfb3296" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetInjWaterNorm</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a096ac6a6b74291bbc2e2f209805a9a23" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetInlet</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ad30f42025b658c56b33dec66e3c0d552" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetMaxN1</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a8b4431ae55efee83e42317ec0b0f1902" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetMaxN2</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a036a97b58b0cbf27d80400387ba1f446" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetMoments</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1afaadac03345ac51cac1ccf3e0a7a6fec" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetN1</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a996df16785632b42f7c281202ba589f1" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetN2</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1adacd9f138d5497b893659c93cf6c2d2f" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetName</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a35a364d0cf20e61e5c4b2cff97d7b507" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetNozzle</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1adab9fe8da297af742ca96e20eefb3a87" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetNumSourceTanks</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a3cedb707cb7cc3e768173dacf3e3c507" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>getOilPressure_psi</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a25f282156ab3af0e1f44c6d189133f16" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>getOilTemp_degF</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a4cd342b1b372305525df7083ec0eb234" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetOvertemp</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1aed355c03a438e38502784ff7fa174246" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetPhase</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ad8f964b25e0ff10b879e4819a2a58f29" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetPowerAvailable</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1ab451ad7bfa803fb4e89ae3f69388c5f0" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetPreFunction</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ab9e262339bc43f1ab0acb056604b682a" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetReversed</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1ad868a2b23749f3e2ee33a1a97d59c8bd" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetRunning</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a1a4d3990dca830e61949c9527cbc232c" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetSourceTank</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a743c23369683b2cda09b69938b303b47" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetStarter</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1aa95f86ef65d1e749650314cb17a11a4c" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetStarved</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1acf6d9faab06001fb88513e993c0e9bf8" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetThrottleMax</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a6590a3540053acaab69c98120b79b8d0" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetThrottleMin</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a94f04d2d6a287c78136dc8796562fbff" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>GetThrust</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1ad6e0a61f9c3fcdac52c8a3f9ac6a11d9" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetThruster</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1ac7c7dd811030cd182381a2bb5abd29a1" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetType</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ce5e8bcfd2d23ad3b4032565842596c" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>GetVersion</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af3ca32541c0a55f05ded120dca912440" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>hptoftlbssec</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1aa3f6c2baf2f8b18b02ebca79c01ac9c0" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>IdleFF</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a4ab404142bc9741f4ee6be587f5b9be9" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>IdleN1</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a8bc08ab89fcfbe3d4fd7f64b47fb745c" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>IdleN2</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a3bed3033e750c68b2eb3f3217735a095" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>IdleThrustLookup</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a2bd8e9d3deffd4ef31dbb7e86316f387" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Ignition</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a54d7f04fce40761b90f85f6872efafdf" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>IgnitionN1</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1afae57c45c10ad4803f1764fd456b60cd" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>IgnitionN2</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a72892b25dcb4474a56b6444b4fa9541d" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>in</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab97b1e120708f6f64abb9bb9e9e4cd7a" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>in3tom3</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4b8b2a0e4b0180b2abe1aff2f00d334e" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>inchtoft</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a15e2a87588ef193ac0ad314327ecd509" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>inDegrees</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aaff61dea1cc525eed707df9fbac8eca5" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>inFeet</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ace650b7aed33166ac6974d13906e1894" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>inhgtopa</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a9729191af164b5db0c9f72cd182939d2" prot="protected" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>InitModel</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1afc78dae153660a82c819e60c374cac80" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>InitRunning</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a181e387df6b3450cf9e388f060e4068d" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Injected</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ab2af895dd94e2bc623fe6c2d456c1b1e" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Injection</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1aceb05e63bf469dae455f833502f8e697" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>InjectionLookup</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a68dd8b66b1f5de45897d092b659585e9" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>InjectionTime</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a243481e205acf3e89e0b55c6c0d6c0e1" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>InjectionTimer</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1acdf78df46cdd2f4693eaf62bbe01b868" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>InjN1increment</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a15f88263fc775f5a3bb10e1004a7312d" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>InjN2increment</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1adc72f065f0054dd1ed7d4ef35cea94e1" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>InjWaterNorm</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a4f4569001116f006a41ca37b38f5d682" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>InletPosition</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57ad71c820cf28dae1965f184b9441d1694" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>inMeters</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aecc753b3791b03920f3ea0ad33852142" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>inNone</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a0a17d86840eb2e6b1784129ed75e414e" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>inRadians</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1affc9150d5720145d6a6c2a2dd265d9f5" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>JSBSim_version</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a241ce52e843cb12ae6de467cbc2f59a7" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>KelvinToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a6f1c8844b2bf556c2e90c84524c331e1" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>KelvinToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab1cd84a064daee36bb88b9052514da65" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>KelvinToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a532147ec5e65e4b78fd08bc76e1f1d35" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>kgtolb</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4627a23f0f2722262a9c865c4255fec8" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>kgtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae29b0dff0362fa116184dc2027e0a5e1" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>ktstofps</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a85110847c268725c20cd7e8d2adf0033" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>lbtoslug</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a056f8918ea959fd0159c0b3802224ec8" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Load</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a91dc920fd29be3d0446f5c5ebf63f5d9" prot="public" virt="non-virtual" ambiguityscope="JSBSim::FGModelFunctions::"><scope>JSBSim::FGTurbine</scope><name>Load</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a45e9b990ed870aed39b64dcaa15eb38b" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>LoadThruster</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a6f25f9f65f997eda74ffc12d26169a93" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>LoadThrusterInputs</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a839c5af04e61a2a8021401caaae36719" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>LocalProperties</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ad7434c1faeb6468757414fc3f86586df" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>m3toft3</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a2bde0438792d5d3fed178c6faa1f4d66" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>MaxN1</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a9e9756e2b111ce1a8fb66b01509a189c" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>MaxN2</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1aa9612f5f8cda0b028500fd1222cda9c0" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>MaxThrottle</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1afd66e34796ed4d92bdf3feddd7f630c3" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>MaxThrust</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1abb94141f4244287536975f58eea9a090" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>MaxThrustLookup</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ac2a99479ef963d158a71fe9a194cc512" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>MilThrust</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1abb50754075f5c08575616cba10a97040" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>MilThrustLookup</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a20a77700ebfe7587c72be82fe043f47d" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>MinThrottle</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ae54058e72cd2253e034e958642bae4e2" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N1</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a352838260cdfe8ff0e7efe249bc972b5" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N1_factor</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a614afc7401fed8932fa54837854b6e9a" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N1_spindown</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ac4038eacd7faaa55b60594c82f814596" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N1_spinup</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1aeeb806ae7e5948bfd4d1b5ffc4022cb8" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N1_start_rate</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1afe4c2d670f10d74ed08213c556a276cd" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N1SpoolDown</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ab03fd53cda450ed87accdb3bf56b6a21" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N1SpoolUp</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1afe442319834e8b8450dc51dbe239ba76" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N2</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1afd9ee578542b014837d00b52190ac441" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N2_factor</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a009ecc441cdb4e7ef1d87fd5bb0d0f6c" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N2_spindown</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a8440cc65c5aa7df31a317920d6b65287" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N2_spinup</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a324dc6ca98193016c1f94867ecfa71d8" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N2_start_rate</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1afb70b59b8b13fa2352a60cb005380b17" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N2norm</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1adee8657de0d5286d8d058f68f85f48bb" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N2SpoolDown</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ac9fe42dc738d20cf61f69c7c3038a170" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>N2SpoolUp</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1adc852f586959ce13117d737cf3f14899" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Name</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7c4e9bce0d9b7f5d394a8ee1d9b553eb" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>needed_cfg_version</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a24729b6ecd74ddbc181d3fd4b806b69a" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>NozzlePosition</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a272b2dad7dd3d1db0923161b20acbfde" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Off</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a74aeae4ab25353617e35d0dd24967617" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>OilPressure_psi</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a3645509d676a2c2981b5ad6d0cad1f43" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>OilTemp_degK</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a24692472fcf72635a7ab570243957a0c" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Overtemp</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a4ed4f1955bcd2e9d1539c15e14f4ce26" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>PctPower</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a1b0b8832b5ca3dac8f7f7c1a3abf55c4" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>phase</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>phaseType</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1adaee5c4e7b7ae038e96001d883c53659" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>PostFunctions</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1acf26b3d55883d94d21808a587b91c89f" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>PostLoad</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a0efd16fc559b354fe9644730d4d511ad" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>PreFunctions</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1acba6355047f26ea4f9af34ea1b670a5e" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>PreLoad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1add6c8d987939a3bf35554fd6d7c6a580" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>psftoinhg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a1f44bc4c489ccb9df15115c2586fc30a" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>psftopa</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaca636497dcea29d83039f342f2f47e2" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>radtodeg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9daa4b8416feb6ef2964aacbb1ad07e7" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>RankineToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7abcf379608273b32f3d8b939a9173d5" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>RankineToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a4b801a1a064406c4f0326121e82cd4bb" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>ResetToIC</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a5b00452be50a3e44cdad65612b6c7228" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Reversed</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1aa3f549de1ab1f33bfd977af8ce374f8c" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Run</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1ae2e97f1ebd7c956e2c68d1209eabd4b1" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Running</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1ab708e0e9a5e4a6380130a1204e038ac7" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>RunPostFunctions</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1aae966cf3d4398eb6ba347128a87c1b4c" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>RunPreFunctions</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a19ece223c6dc819db12351f6a5e371c6" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Seek</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1af7ea21952705765ddee97138f25bfb6e" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Seize</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1add437c47998db3cb3a554936c32e26a5" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Seized</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ae4347baf8c44e9cebbc1b8c5b30540b7" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SetAugmentation</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1aa51c57e79ed30dd4d290ade906318646" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SetBleedDemand</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1aff150f55b8c2421fb624fc5f8fcb94a2" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SetCutoff</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a2f7612247c5c5c177a86002fc945b725" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SetEPR</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1ad4264f4f2a0b5f23711422037012f1bd" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>SetFuelDensity</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a5c971529669fcb8cfa483ffd244ea56c" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>SetFuelFreeze</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1aa6a5aebae42066bb2de5cca2462b6f10" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SetIgnition</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a030b5bb56f1f75e24e47695d1fe090ee" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SetInjection</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1ae9fe4a176c7ab557fe28b3e94d202d6e" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SetInjectionTimer</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a518e8fdfea0ed4498988fee7b0b33d48" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SetInjN1increment</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a518e6e21c8c1457429637da2f6d782ed" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SetInjN2increment</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a6c0c502ea0c4e0f7c759f548c1552ed1" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SetInjWaterNorm</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a07eb1bad4941e654bea91479be420817" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SetMaxN1</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a29aa853e76ce878d4ff97ef771eece51" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SetMaxN2</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a847d2f81d14b0005954aeb0d817a2187" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>SetName</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1abe6d0f6873f00019ed2b7d68700ea88f" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SetPhase</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a2f32f640191fb61277adb1e5ab3fe7cd" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SetReverse</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1ad63ff6191b3d5440e8a80bac834ddb72" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>SetRunning</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a1303b3699277363de2102eec14c7b9ad" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>SetStarter</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1ad6461fd3355f3fcda68b9c38708e4aca" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>SetStarved</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a35d0241043589a38e6d27eff60a190ef" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>SetStarved</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a493e81f2c57fb2733a3a8c54f4ac2ed8" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>sign</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1af885bb804acf32f57ced368bfbe3c16a" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SLFuelFlowMax</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4daf96dd9557d890a37cfc504ca67efd" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>slugtolb</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a886365b861ced8708bbea29629887cdb" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SourceTanks</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a53ef3217d78c34d7f57abd9bcf0a88fa" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>SpinUp</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1acc9d7cf4a5c81441fb9bef36f8a7a083" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Stall</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a0369dbae2f0e03f0579d7c86e7ab4baf" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Stalled</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a5645c1967a478692d902f6c3b2a71378" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Start</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a0190fd2b35d23856cc6bd65161fedcc3" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Starter</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a0880cdbe6c7ace98ff94c8913ae7793a" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Starved</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a2fb729080a987113981edbefb62d56c1" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>ThrottlePos</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a3418ed4df56ac88f248c218a8c41bcad" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Thruster</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1a9512cbda39d606ee0e3018b99cffc85c" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>tpOff</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1a4abcb1475eda1ba63d6d136523aa2f7f" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>tpRun</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1a35795d27db5e8e0cb03ede6ac0708a70" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>tpSeize</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1aac976f553a1f9daa97602f933a4b5f3a" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>tpSpinUp</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1ae039d70305d8adc7b863a7c9d26a986a" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>tpStall</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1a1b330453903c61e680b2c417d991535f" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>tpStart</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a4f71dc10e5b076ba5df4d31d3abe8dd1a7c99088d7c92e05f73ab702e5a9bb86b" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>tpTrim</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a68a92ab007e6f173de4a9efa30098e17" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Trim</name></member>
+      <member refid="classJSBSim_1_1FGTurbine_1a86b1f4bb40e9a5e41935cf4e0d2843a9" prot="private" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>TSFC</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a6c0f8f96fdcdb6d7f26d3fe3631c43ec" prot="protected" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>Type</name></member>
+      <member refid="classJSBSim_1_1FGEngine_1a81bff37d1352c16a26cbb9e6a68d1b8f" prot="public" virt="non-virtual"><scope>JSBSim::FGTurbine</scope><name>~FGEngine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a27507db9cad73b38ac3ba2bdc64fa428" prot="public" virt="virtual"><scope>JSBSim::FGTurbine</scope><name>~FGJSBBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

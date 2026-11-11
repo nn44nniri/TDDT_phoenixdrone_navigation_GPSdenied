@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phoenix-environment-adapter"
+version = "1.1.0"
+description = "Offline GeoJSON/Copernicus DEM/ERA5 environment adapter for ArduPilot SITL + embedded JSBSim"
+requires-python = ">=3.10"
+dependencies = ["PyYAML>=6.0", "rasterio>=1.3", "pymavlink>=2.4.40"]
+
+[project.scripts]
+phoenix-env = "phoenix_env_adapter.cli:main"

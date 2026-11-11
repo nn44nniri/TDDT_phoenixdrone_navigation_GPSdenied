@@ -1,0 +1,16 @@
+[build-system]
+requires=["setuptools>=68"]
+build-backend="setuptools.build_meta"
+[project]
+name="tddt-layer6"
+version="2026.10.7.0937"
+requires-python=">=3.11"
+dependencies=["PyYAML>=6","pygame>=2.5","PyQt6>=6.6","pymavlink>=2.4"]
+[tool.setuptools]
+package-dir={""="src"}
+[tool.setuptools.packages.find]
+where=["src"]
+include=["layer6*"]
+[tool.pytest.ini_options]
+pythonpath=["src","src/gui"]
+testpaths=["src/tests","src/gui/tests"]

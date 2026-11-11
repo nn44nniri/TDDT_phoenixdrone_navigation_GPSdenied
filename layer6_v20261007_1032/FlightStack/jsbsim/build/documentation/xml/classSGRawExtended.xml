@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classSGRawExtended" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>SGRawExtended</compoundname>
+    <basecompoundref refid="classSGRaw" prot="public" virt="non-virtual">SGRaw</basecompoundref>
+    <derivedcompoundref refid="classSGRawBase_3_01T_00_010_01_4" prot="public" virt="non-virtual">SGRawBase&lt; T, 0 &gt;</derivedcompoundref>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSGRawExtended_1a49bc6c2fbc3c7f65d47c3433f568c1f2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classSGRawExtended" kindref="compound">SGRawExtended</ref> *</type>
+        <definition>virtual SGRawExtended * makeContainer</definition>
+        <argsstring>() const =0</argsstring>
+        <name>makeContainer</name>
+        <qualifiedname>SGRawExtended::makeContainer</qualifiedname>
+        <reimplementedby refid="classSGRawBase_3_01T_00_010_01_4_1ab83d51c8773206b451d44377dbd616bc">makeContainer</reimplementedby>
+        <briefdescription>
+<para>Make an <ref refid="classSGRawValueContainer" kindref="compound">SGRawValueContainer</ref> from the <ref refid="classSGRawValue" kindref="compound">SGRawValue</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is a virtual function of <ref refid="classSGRawExtended" kindref="compound">SGRawExtended</ref> so that <ref refid="classSGPropertyNode_1a0fb4c6d8cab837c9d460d9b7c2d327fa" kindref="member">SGPropertyNode::untie</ref> doesn&apos;t need to know the type of an extended property. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="247" column="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGRawExtended_1ab75902b609aadcf263389c55918abbf6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>virtual std::ostream &amp; printOn</definition>
+        <argsstring>(std::ostream &amp;stream) const =0</argsstring>
+        <name>printOn</name>
+        <qualifiedname>SGRawExtended::printOn</qualifiedname>
+        <reimplementedby refid="classSGRawBase_3_01T_00_010_01_4_1a17537fd7b91412a10db4bfdae3576d86">printOn</reimplementedby>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+<para>Write value out to a stream. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="251" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGRawExtended_1aea15171f2f1ee110838a58afcf26b53a" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::istream &amp;</type>
+        <definition>virtual std::istream &amp; readFrom</definition>
+        <argsstring>(std::istream &amp;stream)=0</argsstring>
+        <name>readFrom</name>
+        <qualifiedname>SGRawExtended::readFrom</qualifiedname>
+        <reimplementedby refid="classSGRawBase_3_01T_00_010_01_4_1acda20461385fee8c98d2f20095a5a15e">readFrom</reimplementedby>
+        <param>
+          <type>std::istream &amp;</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+<para>Read value from a stream and store it. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="255" column="26"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>SGRaw</label>
+        <link refid="classSGRaw"/>
+      </node>
+      <node id="3">
+        <label>SGRawBase&lt; T, 0 &gt;</label>
+        <link refid="classSGRawBase_3_01T_00_010_01_4"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>SGRawExtended</label>
+        <link refid="classSGRawExtended"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>SGRaw</label>
+        <link refid="classSGRaw"/>
+      </node>
+      <node id="1">
+        <label>SGRawExtended</label>
+        <link refid="classSGRawExtended"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="237" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="238" bodyend="256"/>
+    <listofallmembers>
+      <member refid="classSGRaw_1a614015be06f067644fdf8928661d0510" prot="public" virt="pure-virtual"><scope>SGRawExtended</scope><name>clone</name></member>
+      <member refid="classSGRaw_1acce30a731fedab784b8c697bd68743d4" prot="public" virt="pure-virtual"><scope>SGRawExtended</scope><name>getType</name></member>
+      <member refid="classSGRawExtended_1a49bc6c2fbc3c7f65d47c3433f568c1f2" prot="public" virt="pure-virtual"><scope>SGRawExtended</scope><name>makeContainer</name></member>
+      <member refid="classSGRawExtended_1ab75902b609aadcf263389c55918abbf6" prot="public" virt="pure-virtual"><scope>SGRawExtended</scope><name>printOn</name></member>
+      <member refid="classSGRawExtended_1aea15171f2f1ee110838a58afcf26b53a" prot="public" virt="pure-virtual"><scope>SGRawExtended</scope><name>readFrom</name></member>
+      <member refid="classSGRaw_1aef4c302249b28c8eed4263f616906662" prot="public" virt="virtual"><scope>SGRawExtended</scope><name>~SGRaw</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

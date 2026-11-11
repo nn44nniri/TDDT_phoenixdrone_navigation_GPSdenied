@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classSGRaw" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>SGRaw</compoundname>
+    <derivedcompoundref refid="classSGRawBase_3_01T_00_011_01_4" prot="public" virt="non-virtual">SGRawBase&lt; T, 1 &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classSGRawExtended" prot="public" virt="non-virtual">SGRawExtended</derivedcompoundref>
+    <includes refid="props_8hxx" local="no">props.hxx</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSGRaw_1aef4c302249b28c8eed4263f616906662" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual ~SGRaw</definition>
+        <argsstring>()</argsstring>
+        <name>~SGRaw</name>
+        <qualifiedname>SGRaw::~SGRaw</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="223" column="13" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="223" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGRaw_1a614015be06f067644fdf8928661d0510" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classSGRaw" kindref="compound">SGRaw</ref> *</type>
+        <definition>virtual SGRaw * clone</definition>
+        <argsstring>() const =0</argsstring>
+        <name>clone</name>
+        <qualifiedname>SGRaw::clone</qualifiedname>
+        <briefdescription>
+<para>Create a new deep copy of this raw value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The copy will contain its own version of the underlying value as well, and will be the same type.</para>
+<para><simplesect kind="return"><para>A deep copy of the current object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="233" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGRaw_1acce30a731fedab784b8c697bd68743d4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="namespacesimgear_1_1props_1a1d1cfd8ffb84e947f82999c682b666a7" kindref="member">simgear::props::Type</ref></type>
+        <definition>virtual simgear::props::Type getType</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getType</name>
+        <qualifiedname>SGRaw::getType</qualifiedname>
+        <briefdescription>
+<para>Get the type enumeration for the raw value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="222" column="34"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Base class for <ref refid="classSGRawValue" kindref="compound">SGRawValue</ref> classes that holds no type information. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This allows some generic manipulation of the <ref refid="classSGRawValue" kindref="compound">SGRawValue</ref> object. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>SGRaw</label>
+        <link refid="classSGRaw"/>
+      </node>
+      <node id="4">
+        <label>SGRawBase&lt; T, 0 &gt;</label>
+        <link refid="classSGRawBase_3_01T_00_010_01_4"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SGRawBase&lt; T, 1 &gt;</label>
+        <link refid="classSGRawBase_3_01T_00_011_01_4"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>SGRawExtended</label>
+        <link refid="classSGRawExtended"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="214" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="215" bodyend="235"/>
+    <listofallmembers>
+      <member refid="classSGRaw_1a614015be06f067644fdf8928661d0510" prot="public" virt="pure-virtual"><scope>SGRaw</scope><name>clone</name></member>
+      <member refid="classSGRaw_1acce30a731fedab784b8c697bd68743d4" prot="public" virt="pure-virtual"><scope>SGRaw</scope><name>getType</name></member>
+      <member refid="classSGRaw_1aef4c302249b28c8eed4263f616906662" prot="public" virt="virtual"><scope>SGRaw</scope><name>~SGRaw</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,445 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classJSBSim_1_1FGUDPInputSocket" kind="class" language="C++" prot="public">
+    <compoundname>JSBSim::FGUDPInputSocket</compoundname>
+    <basecompoundref refid="classJSBSim_1_1FGInputSocket" prot="public" virt="non-virtual">FGInputSocket</basecompoundref>
+    <includes refid="FGUDPInputSocket_8h" local="no">FGUDPInputSocket.h</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGUDPInputSocket_1ae9951c0581907b3649c13135bf69af24" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; SGPropertyNode_ptr &gt;</type>
+        <definition>std::vector&lt;SGPropertyNode_ptr&gt; InputProperties</definition>
+        <argsstring></argsstring>
+        <name>InputProperties</name>
+        <qualifiedname>JSBSim::FGUDPInputSocket::InputProperties</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGUDPInputSocket.h" line="78" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGUDPInputSocket.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGUDPInputSocket_1a1b9e9ab416ba9abf274e5f54ca809f8d" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double oldTimeStamp</definition>
+        <argsstring></argsstring>
+        <name>oldTimeStamp</name>
+        <qualifiedname>JSBSim::FGUDPInputSocket::oldTimeStamp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGUDPInputSocket.h" line="77" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGUDPInputSocket.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGUDPInputSocket_1a7a829e6fd74e94e0edf10550470d844c" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rate</definition>
+        <argsstring></argsstring>
+        <name>rate</name>
+        <qualifiedname>JSBSim::FGUDPInputSocket::rate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGUDPInputSocket.h" line="76" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGUDPInputSocket.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGUDPInputSocket_1a03dffb250f914c210166d67d9e31c59f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGUDPInputSocket</definition>
+        <argsstring>(FGFDMExec *fdmex, bool isEnabled=true)</argsstring>
+        <name>FGUDPInputSocket</name>
+        <qualifiedname>JSBSim::FGUDPInputSocket::FGUDPInputSocket</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+          <declname>fdmex</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>isEnabled</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGUDPInputSocket.h" line="64" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGUDPInputSocket.cpp" bodystart="54" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGUDPInputSocket_1a0b8d108c40ce8b06c3c849824ab18397" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool Load</definition>
+        <argsstring>(Element *el) override</argsstring>
+        <name>Load</name>
+        <qualifiedname>JSBSim::FGUDPInputSocket::Load</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGInputSocket_1a0b8d108c40ce8b06c3c849824ab18397">Load</reimplements>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>el</declname>
+        </param>
+        <briefdescription>
+<para>Reads the property names from an XML file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The root XML <ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> of the input file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGUDPInputSocket.h" line="69" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGUDPInputSocket.cpp" bodystart="63" bodyend="87"/>
+        <references refid="classJSBSim_1_1Element_1a0290668d182e1035b626b551f2b552e7" compoundref="FGXMLElement_8cpp" startline="392" endline="406">Element::FindElement</references>
+        <references refid="classJSBSim_1_1Element_1ac49b58ae4fd6170ac11c2ed21d882666" compoundref="FGXMLElement_8cpp" startline="410" endline="428">Element::FindNextElement</references>
+        <references refid="classJSBSim_1_1Element_1a4fd4cb4d88046523b2cf729bf847e0e2" compoundref="FGXMLElement_8cpp" startline="270" endline="274">Element::GetAttributeValue</references>
+        <references refid="classJSBSim_1_1Element_1a66c9f019215d9c6b3f85cdab75d6d429" compoundref="FGXMLElement_8cpp" startline="341" endline="345">Element::GetDataLine</references>
+        <references refid="classJSBSim_1_1FGFDMExec_1a738179a34b72fa5a9a72ddafc2e4adae" compoundref="FGFDMExec_8h" startline="557" endline="557">FGFDMExec::GetDeltaT</references>
+        <references refid="classJSBSim_1_1FGInputSocket_1a0b8d108c40ce8b06c3c849824ab18397" compoundref="FGInputSocket_8cpp" startline="64" endline="82">FGInputSocket::Load</references>
+        <references refid="classJSBSim_1_1FGModel_1aa869d818d1cc23946f954079b88cbd2a" compoundref="FGModel_8h" startline="102" endline="102">FGModel::SetRate</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGUDPInputSocket_1a7323b6a37cd99bc6f5dad5a8d709a8a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Read</definition>
+        <argsstring>(bool Holding) override</argsstring>
+        <name>Read</name>
+        <qualifiedname>JSBSim::FGUDPInputSocket::Read</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGInputSocket_1a7323b6a37cd99bc6f5dad5a8d709a8a7">Read</reimplements>
+        <param>
+          <type>bool</type>
+          <declname>Holding</declname>
+        </param>
+        <briefdescription>
+<para>Reads the socket and updates properties accordingly. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGUDPInputSocket.h" line="72" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGUDPInputSocket.cpp" bodystart="91" bodyend="134"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Implements a UDP input socket. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FGUDPInputSocket</label>
+        <link refid="classJSBSim_1_1FGUDPInputSocket"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGInputSocket</label>
+        <link refid="classJSBSim_1_1FGInputSocket"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>FGInputType</label>
+        <link refid="classJSBSim_1_1FGInputType"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+      </node>
+      <node id="4">
+        <label>FGModel</label>
+        <link refid="classJSBSim_1_1FGModel"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>FGModelFunctions</label>
+        <link refid="classJSBSim_1_1FGModelFunctions"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>FGUDPInputSocket</label>
+        <link refid="classJSBSim_1_1FGUDPInputSocket"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>InputProperties</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>FGFDMExec</label>
+        <link refid="classJSBSim_1_1FGFDMExec"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>FGFunction</label>
+        <link refid="classJSBSim_1_1FGFunction"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>Parameters</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>PropertyManager</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGInputSocket</label>
+        <link refid="classJSBSim_1_1FGInputSocket"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>socket</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>FGInputType</label>
+        <link refid="classJSBSim_1_1FGInputType"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>JSBSim_version</edgelabel>
+          <edgelabel>needed_cfg_version</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>FGModel</label>
+        <link refid="classJSBSim_1_1FGModel"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>Name</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>FDMExec</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>PropertyManager</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>FGModelFunctions</label>
+        <link refid="classJSBSim_1_1FGModelFunctions"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>PostFunctions</edgelabel>
+          <edgelabel>PreFunctions</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>LocalProperties</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>FGParameter</label>
+        <link refid="classJSBSim_1_1FGParameter"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>FGPropertyManager</label>
+      </node>
+      <node id="17">
+        <label>FGPropertyReader</label>
+        <link refid="classJSBSim_1_1FGPropertyReader"/>
+      </node>
+      <node id="20">
+        <label>FGfdmSocket</label>
+        <link refid="classJSBSim_1_1FGfdmSocket"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>SGReferenced</label>
+      </node>
+      <node id="15">
+        <label>shared_ptr&lt; FGPropertyManager &gt;</label>
+        <childnode refid="16" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>shared_ptr&lt; JSBSim::FGFunction &gt;</label>
+        <childnode refid="11" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="7">
+        <label>string</label>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>unique_ptr&lt; JSBSim::FGfdmSocket &gt;</label>
+        <childnode refid="20" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>vector&lt; FGParameter_ptr &gt;</label>
+      </node>
+      <node id="21">
+        <label>vector&lt; SGPropertyNode_ptr &gt;</label>
+      </node>
+      <node id="9">
+        <label>vector&lt; std::shared_ptr&lt; JSBSim::FGFunction &gt; &gt;</label>
+        <childnode refid="10" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGUDPInputSocket.h" line="60" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGUDPInputSocket.h" bodystart="61" bodyend="79"/>
+    <listofallmembers>
+      <member refid="classJSBSim_1_1FGInputSocket_1aa54b07542210b1a67c552f9a0b01dcc7" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>BlockingInput</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af8ad1042b82f1c0a47801d6978434b80" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>CelsiusToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aa3b6f7fb97ac87f59f266b3e64438cc3" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>CelsiusToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7b471bc247e5d616560cc5f5c66b4b6d" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>CelsiusToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a68d4cc66e32cfecaae8f500d688252c9" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>Constrain</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a71d62a503829149eb1dfc6ad1852d4bf" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>CreateIndexedPropertyName</name></member>
+      <member refid="classJSBSim_1_1FGInputSocket_1abd75fea345a10310b9f5c3358e6b6e41" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>CreateSocket</name></member>
+      <member refid="classJSBSim_1_1FGInputSocket_1a8a036d3167ef9d3099cafcac54e25c72" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>data</name></member>
+      <member refid="classJSBSim_1_1FGInputType_1ab152e07068ddfbd390c7cfbcec21ef8f" prot="protected" virt="virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>Debug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ccb6173462774ec856542834c1df750" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>debug_lvl</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9959287a77d54c301e59848ccbc1227e" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>degtorad</name></member>
+      <member refid="classJSBSim_1_1FGInputSocket_1a40d69779bb6e9519ea0529aa16f350b6" prot="public" virt="virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>Disable</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7761b6352da13e163a3e60ed931e10b2" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eDown</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ea9301202abb5117f2f5c84c400dd02863" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eDrag</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da8b0184eb4350aff703ffefe981be0ed0" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eEast</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55baad8d708d8b2a6b0de1c60efac84c13c2" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eL</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600aee71d29fc9997c8c692e1cec39ccbd9e" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eLat</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9eaf9b007051dea0fdcdda1128417810324" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eLift</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600a82c89bd841ec11709255930b4f2ed128" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eLong</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba1108dc0fe89c81165e7e21bfa2d99a5c" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eM</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba29860d91c138d8308ab622566d5388b5" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eN</name></member>
+      <member refid="classJSBSim_1_1FGInputSocket_1ad844994456a6e69f316b7d2938718064" prot="public" virt="virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>Enable</name></member>
+      <member refid="classJSBSim_1_1FGModel_1a8740ba80e30dd75e71d09fa1dcf04f3d" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>enabled</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7af984c99e631c934f09d5f464886dff" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eNorth</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a53f1f5a36fc3c436188ba2de84a480cc" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eP</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca330da5edf1a7a181a5e682969033346d" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>ePhi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a755bd3b6ce5a786426392a9b22101569" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>ePitch</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca00ec32130eba5084873150f79dd4241d" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>ePsi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7ad435ed230bc84886ebd313f88f50617f" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eQ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0808b46d9967cd56d78df1274adc8147" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaed80f9927f0b8c14c67cfad83a8d60b" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a3fa3dd89c1b30f6d2b8a297006842a19" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4089c27aa417783731495c25b0d3e79b" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a568d83290d150b55a7c08ec3e01a4b80" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eR</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600ac34cb49e3a3c0217eb60f28606a074fd" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eRad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a5929427bd7f9a3f8a260ab0cee4adf5b" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eRoll</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ead333a23016fb297dc1e225e9de92a902" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eSide</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca782d389c863bda6761d96904c8ca5c88" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eTht</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a4e6ccf577f5e3892239a4d0243233c46" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eU</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a8967c32806f6f2377283501791d2139b" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eV</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5ad170ee6fdb066c2ac0a32760a4b6be8f" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eW</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04afd5a33749fa68a755125d713a656b616" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eX</name></member>
+      <member refid="classJSBSim_1_1FGModel_1adcaa1fceca61f22620232edeb1b31bbd" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>exe_ctr</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04af968dfccf7b280e98b613569ce68a29a" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eY</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a6828e3eb3b26c2f81338381e9ca45500" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eYaw</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04a246094bb9b7b37e389534a9cc740d126" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>eZ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adaf24dd942ba1dbaf0262ddf9725d50e" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>FahrenheitToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGModel_1a14dca20c8b787600092287bf11bddd19" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>FDMExec</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a8c51473eff249bacddf47d95834c6f69" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>FeetToMeters</name></member>
+      <member refid="classJSBSim_1_1FGInputSocket_1a3aea4a59adaed09289ab3268de18300f" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>FGInputSocket</name></member>
+      <member refid="classJSBSim_1_1FGInputType_1a4eb4c353c2062840ee04549c19ff8f2e" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>FGInputType</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a5fd11c437bf08537955a9231dcd4dc49" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGModel_1aa594d4d73c49e17439d823fef59d5a4c" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>FGModel</name></member>
+      <member refid="classJSBSim_1_1FGUDPInputSocket_1a03dffb250f914c210166d67d9e31c59f" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>FGUDPInputSocket</name></member>
+      <member refid="classJSBSim_1_1FGModel_1a63a07b2d923efd39a1e1a586020d7bc5" prot="public" virt="virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>FindFullPathName</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af43d52b160c8fa8ba6325d858e34beb3" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>fpstokts</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae41da7596d847c1d8b27c3e9d611157d" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>fttom</name></member>
+      <member refid="classJSBSim_1_1FGModel_1aeb3e22e82831486e9983a3bf2802fb2e" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>GetExec</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a6d0e47cd9c6bdba65db88286e0b5ee06" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>GetFunctionStrings</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a7137c8955bc052d365da3ce2955fb7c8" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>GetFunctionValues</name></member>
+      <member refid="classJSBSim_1_1FGInputType_1afa6321eb4acf3c1159c9ddff6786eb3c" prot="public" virt="virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>GetInputName</name></member>
+      <member refid="classJSBSim_1_1FGModel_1a11d48e9a7f9aaf59c07d1ce465607aea" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>GetName</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1ab451ad7bfa803fb4e89ae3f69388c5f0" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>GetPreFunction</name></member>
+      <member refid="classJSBSim_1_1FGModel_1ad98192b551e8ff5ce90f12554b5b2e7f" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>GetRate</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ce5e8bcfd2d23ad3b4032565842596c" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>GetVersion</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af3ca32541c0a55f05ded120dca912440" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>hptoftlbssec</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab97b1e120708f6f64abb9bb9e9e4cd7a" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>in3tom3</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4b8b2a0e4b0180b2abe1aff2f00d334e" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>inchtoft</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a15e2a87588ef193ac0ad314327ecd509" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>inDegrees</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aaff61dea1cc525eed707df9fbac8eca5" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>inFeet</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ace650b7aed33166ac6974d13906e1894" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>inhgtopa</name></member>
+      <member refid="classJSBSim_1_1FGInputSocket_1a91e22e2448c51c5dfffbd1ece7febefc" prot="public" virt="virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>InitModel</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57ad71c820cf28dae1965f184b9441d1694" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>inMeters</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aecc753b3791b03920f3ea0ad33852142" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>inNone</name></member>
+      <member refid="classJSBSim_1_1FGInputType_1a847fdab98ebfda592d9c5754d638cba6" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>InputIdx</name></member>
+      <member refid="classJSBSim_1_1FGUDPInputSocket_1ae9951c0581907b3649c13135bf69af24" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>InputProperties</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a0a17d86840eb2e6b1784129ed75e414e" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>inRadians</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1affc9150d5720145d6a6c2a2dd265d9f5" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>JSBSim_version</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a241ce52e843cb12ae6de467cbc2f59a7" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>KelvinToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a6f1c8844b2bf556c2e90c84524c331e1" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>KelvinToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab1cd84a064daee36bb88b9052514da65" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>KelvinToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a532147ec5e65e4b78fd08bc76e1f1d35" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>kgtolb</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4627a23f0f2722262a9c865c4255fec8" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>kgtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae29b0dff0362fa116184dc2027e0a5e1" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>ktstofps</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a85110847c268725c20cd7e8d2adf0033" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>lbtoslug</name></member>
+      <member refid="classJSBSim_1_1FGUDPInputSocket_1a0b8d108c40ce8b06c3c849824ab18397" prot="public" virt="virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>Load</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a91dc920fd29be3d0446f5c5ebf63f5d9" prot="public" virt="non-virtual" ambiguityscope="JSBSim::FGModelFunctions::"><scope>JSBSim::FGUDPInputSocket</scope><name>Load</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a839c5af04e61a2a8021401caaae36719" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>LocalProperties</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ad7434c1faeb6468757414fc3f86586df" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>m3toft3</name></member>
+      <member refid="classJSBSim_1_1FGModel_1adc852f586959ce13117d737cf3f14899" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>Name</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7c4e9bce0d9b7f5d394a8ee1d9b553eb" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>needed_cfg_version</name></member>
+      <member refid="classJSBSim_1_1FGUDPInputSocket_1a1b9e9ab416ba9abf274e5f54ca809f8d" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>oldTimeStamp</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1adaee5c4e7b7ae038e96001d883c53659" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>PostFunctions</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1acf26b3d55883d94d21808a587b91c89f" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>PostLoad</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a0efd16fc559b354fe9644730d4d511ad" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>PreFunctions</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1acba6355047f26ea4f9af34ea1b670a5e" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>PreLoad</name></member>
+      <member refid="classJSBSim_1_1FGModel_1a6f4a1c312d0edb6cded26fd9a148f409" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>PropertyManager</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1add6c8d987939a3bf35554fd6d7c6a580" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>psftoinhg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a1f44bc4c489ccb9df15115c2586fc30a" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>psftopa</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaca636497dcea29d83039f342f2f47e2" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>radtodeg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9daa4b8416feb6ef2964aacbb1ad07e7" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>RankineToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7abcf379608273b32f3d8b939a9173d5" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>RankineToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGUDPInputSocket_1a7a829e6fd74e94e0edf10550470d844c" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>rate</name></member>
+      <member refid="classJSBSim_1_1FGUDPInputSocket_1a7323b6a37cd99bc6f5dad5a8d709a8a7" prot="public" virt="virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>Read</name></member>
+      <member refid="classJSBSim_1_1FGInputType_1a764e8c6d39b827d2ad03f570a2fc37e6" prot="public" virt="virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>Run</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1ab708e0e9a5e4a6380130a1204e038ac7" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>RunPostFunctions</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1aae966cf3d4398eb6ba347128a87c1b4c" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>RunPreFunctions</name></member>
+      <member refid="classJSBSim_1_1FGInputType_1a6f1370cfe2ed983e54af0720b6c0b3d5" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>SetIdx</name></member>
+      <member refid="classJSBSim_1_1FGInputType_1a7e5b55db743d2e4f320d71065935cbdd" prot="public" virt="virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>SetInputName</name></member>
+      <member refid="classJSBSim_1_1FGModel_1ac1b6ee019228962652a85aa7d007c50d" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>SetPropertyManager</name></member>
+      <member refid="classJSBSim_1_1FGModel_1aa869d818d1cc23946f954079b88cbd2a" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>SetRate</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a493e81f2c57fb2733a3a8c54f4ac2ed8" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>sign</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4daf96dd9557d890a37cfc504ca67efd" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>slugtolb</name></member>
+      <member refid="classJSBSim_1_1FGInputSocket_1a41083e3e280a9bb3b4e4c73bd4de9fa9" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>socket</name></member>
+      <member refid="classJSBSim_1_1FGInputSocket_1a15ec902a1316cafcc02fbcbf012acb74" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>SockPort</name></member>
+      <member refid="classJSBSim_1_1FGInputSocket_1ae3c3db7ec81c723087d9768d9ced908f" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>SockProtocol</name></member>
+      <member refid="classJSBSim_1_1FGInputSocket_1a4c92ab7a39ed716d7e102c3196478f48" prot="public" virt="virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>Toggle</name></member>
+      <member refid="classJSBSim_1_1FGModel_1a42ce334dbfdce7ccb2a75f9d32d02065" prot="protected" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>Upload</name></member>
+      <member refid="classJSBSim_1_1FGInputType_1a2fc65b70d497405c915a2d6306095208" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>~FGInputType</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a27507db9cad73b38ac3ba2bdc64fa428" prot="public" virt="virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>~FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGModel_1a1836fae4795532f2bccaba74a8e9d93c" prot="public" virt="non-virtual"><scope>JSBSim::FGUDPInputSocket</scope><name>~FGModel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

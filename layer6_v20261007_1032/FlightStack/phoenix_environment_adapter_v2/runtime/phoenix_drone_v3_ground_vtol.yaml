@@ -1,0 +1,536 @@
+schema_version: '3.0'
+config_id: phoenix_tailsitter_v3_source_informed_jsbsim
+source_document: PhoenixDrone official Gazebo SITL model + retained v2 integration
+  assumptions
+model:
+  name: Phoenix
+  type: dual_rotor_tailsitter
+  airframe_class: fixed_wing_vtol
+  airfoil: Eppler_E168
+  gravity_m_s2: 9.80665
+mass:
+  empty_or_flight_mass_kg: 0.65
+  payload_nominal_kg: 0.05
+  payload_max_estimated_kg: 0.1
+  battery_mass_estimated_kg: 0.18
+  source_gazebo_base_link_mass_kg: 0.5
+  source_gazebo_imu_mass_kg: 0.015
+  source_gazebo_rotor_mass_each_kg: 0.005
+  operational_mass_note: 0.65 kg is retained from v2 as the integration/mission mass;
+    the official Gazebo base link is 0.5 kg plus explicit components.
+geometry:
+  wing_span_m: 0.64
+  wing_area_m2: 0.12
+  mean_aerodynamic_chord_m: 0.19
+  root_chord_m: 0.21
+  tip_chord_m: 0.17
+  aspect_ratio: 3.41
+  taper_ratio: 0.81
+  elevon_area_total_m2: 0.03
+  elevon_area_each_m2: 0.015
+aerodynamics:
+  cl_max: 1.05
+  cl_min: -1.05
+  cd0: 0.045
+  oswald_efficiency: 0.7
+  induced_drag_factor: 0.134
+  stall_angle_deg: 12.0
+  lift_to_drag_max: 8.0
+  official_propwash_plugin:
+    k_lift: 3.48e-06
+    k_drag: 1.75e-06
+    k_pitch: -3.44e-07
+    left_cp_m:
+    - 0.0
+    - 0.195
+    - 0.036
+    right_cp_m:
+    - 0.0
+    - -0.195
+    - 0.036
+    forward_axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    upward_axis:
+    - 1.0
+    - 0.0
+    - 0.0
+    provenance: source_identified_official_phoenix_sdf_calibrated_plugin
+  jsbsim_forward_flight_estimates:
+    CL0: 0.1
+    CL_alpha_per_rad: 3.4
+    CL_q: 2.5
+    CL_de_per_rad: 0.45
+    Cm0: 0.02
+    Cm_alpha_per_rad: -0.55
+    Cm_q: -5.0
+    Cm_de_per_rad: -0.8
+    CY_beta_per_rad: -0.35
+    CY_dr_per_rad: 0.12
+    Cl_beta_per_rad: -0.08
+    Cl_p: -0.45
+    Cl_da_per_rad: 0.18
+    Cn_beta_per_rad: 0.08
+    Cn_r: -0.18
+    Cn_dr_per_rad: -0.08
+    confidence: low
+    provenance: engineering_estimate_for_source_informed_JSBSim_forward_flight_only
+    warning: Not measured Phoenix stability derivatives; replace with identified data
+      before claiming validated Phoenix dynamics.
+    normalized_surface_reference_rad: 0.53
+    normalized_surface_reference_provenance: source_identified_elevon_joint_limit;
+      derivatives_remain_engineering_estimates
+speed:
+  stall_speed_m_s: 9.1
+  minimum_command_speed_m_s: 12.0
+  cruise_speed_m_s: 13.0
+  maximum_speed_m_s: 18.0
+propulsion:
+  motor_count: 2
+  motor_kv_rpm_v: 1100.0
+  motor_max_current_A_each: 18.0
+  motor_cont_current_A_each: 11.0
+  motor_efficiency: 0.8
+  propeller_diameter_m: 0.2032
+  propeller_pitch_m: 0.1143
+  propeller_mass_each_kg: 0.007
+  propeller_efficiency: 0.75
+  maximum_thrust_each_N: 5.03296
+  maximum_total_thrust_N: 10.06592
+  continuous_power_total_W: 240.0
+  peak_power_total_W: 350.0
+  hover_power_W: 80.0
+  esc_current_limit_A_each: 20.0
+  inverter_efficiency: 0.95
+  source_motor_model:
+    time_constant_up_s: 0.016
+    time_constant_down_s: 0.02
+    max_rot_velocity_rad_s: 800.0
+    motor_constant_N_per_rad_s_squared: 7.864e-06
+    moment_constant_m: 0.023
+    rotor_velocity_slowdown_sim: 10.0
+    left_turning_direction: cw
+    right_turning_direction: ccw
+    source_max_thrust_each_N_from_motor_law: 5.03296
+    provenance: source_identified_official_phoenix_sdf
+battery:
+  chemistry: LiPo
+  cells_series: 3
+  nominal_voltage_V: 11.1
+  full_voltage_V: 12.6
+  capacity_Ah: 2.2
+  nominal_energy_Wh: 24.42
+  usable_energy_Wh: 20.5
+  internal_resistance_ohm_estimated: 0.08
+  estimated_C_rating: 20.0
+  maximum_current_A_estimated: 44.0
+  initial_soc: 1.0
+control_limits:
+  elevon_min_deg: -30.36676314193363
+  elevon_max_deg: 30.36676314193363
+  max_roll_rate_deg_s: 300.0
+  max_pitch_rate_deg_s: 200.0
+  max_yaw_rate_deg_s: 150.0
+  max_bank_angle_deg: 45.0
+  max_flightpath_angle_deg: 20.0
+  max_load_factor: 2.5
+  max_sideslip_deg: 12.0
+  elevon_joint_limit_rad: 0.53
+  elevon_limit_provenance: source_identified_official_phoenix_sdf_joint_limit_comment_minus30_plus30_deg
+mission:
+  hover_endurance_min: 20.0
+  forward_endurance_min: 27.0
+  theoretical_range_km: 21.0
+  operational_path_range_km: 12.0
+  maximum_hover_wind_m_s: 5.0
+  maximum_cruise_wind_m_s: 8.0
+  maximum_gust_m_s: 10.0
+  recommended_service_ceiling_m_msl: null
+  estimated_service_ceiling_m_msl: 2000.0
+  service_ceiling_note: No source-validated MSL service ceiling was identified; 2000
+    m MSL is retained only as the previous low-confidence engineering estimate. Runtime
+    mission altitude is governed by terrain/route clearance, not this value.
+navigation:
+  imu_dt_s: 0.01
+  pitot_scale_initial: 1.0
+  pressure_scale_height_m: 8400.0
+  pressure_time_scale_s: 30.0
+  default_sensor_variance: 1.0
+  nis_gate: 6.0
+  student_t_nu: 4.0
+  rls_forgetting_factor: 0.99
+  wind_filter_tau_s: 10.0
+uncertainty:
+  wing_area_m2:
+    min: 0.11
+    nominal: 0.12
+    max: 0.14
+    confidence: medium
+  cl_max:
+    min: 0.9
+    nominal: 1.05
+    max: 1.2
+    confidence: low
+  stall_speed_m_s:
+    min: 7.9
+    nominal: 9.1
+    max: 10.3
+    confidence: low
+  cruise_speed_m_s:
+    min: 10.0
+    nominal: 13.0
+    max: 17.0
+    confidence: low
+  maximum_speed_m_s:
+    min: 15.0
+    nominal: 18.0
+    max: 22.0
+    confidence: low
+  battery_mass_kg:
+    min: 0.16
+    nominal: 0.18
+    max: 0.2
+    confidence: medium
+sensor_layout:
+  contract_version: '1.1'
+  deployment_scope: ArduPilot_SITL_plus_JSBSim_JSON_integration
+  pt_lib_boundary_policy: latest_value_hold_at_10_Hz_control_tick; producer/native
+    rates remain unchanged
+  sensors:
+    imu:
+      role: 3_axis_accelerometer_and_3_axis_gyroscope
+      simulator_source: JSBSim_bridge_JSON_imu.accel_body_and_imu.gyro
+      ardupilot_backend: JSON_SITL_simulated_IMU
+      mavlink_messages:
+      - SCALED_IMU
+      - RAW_IMU
+      - SCALED_IMU2
+      pt_lib_group: IMU
+      pt_lib_access: read_latest_valid_sample
+      required_for_ready: true
+    magnetometer:
+      role: 3_axis_magnetic_field
+      simulator_source: ArduPilot_SITL_environment_derived_from_simulated_state
+      ardupilot_backend: SITL_magnetometer
+      mavlink_messages:
+      - SCALED_IMU
+      - RAW_IMU
+      - SCALED_IMU2
+      pt_lib_group: MAGNETOMETER
+      pt_lib_access: read_latest_valid_sample
+      required_for_ready: false
+    barometer:
+      role: pressure_altitude_pressure_temperature
+      simulator_source: ArduPilot_SITL_atmosphere_from_simulated_state
+      ardupilot_backend: SITL_barometer
+      mavlink_messages:
+      - SCALED_PRESSURE
+      - SCALED_PRESSURE2
+      - SCALED_PRESSURE3
+      pt_lib_group: PRESSURE
+      pt_lib_access: read_latest_valid_sample
+      required_for_ready: true
+    airspeed:
+      role: pitot_true_or_calibrated_airspeed_integration_signal
+      simulator_source: JSBSim_bridge_JSON_airspeed
+      ardupilot_backend: SITL_airspeed_ARSPD_TYPE_100
+      mavlink_messages:
+      - AIRSPEED
+      - VFR_HUD
+      pt_lib_group: AIRSPEED
+      pt_lib_access: read_latest_valid_sample
+      required_for_ready: false
+    position:
+      role: integration_truth_position_not_validated_GNSS_denied_estimator
+      simulator_source: JSBSim_bridge_JSON_latitude_longitude_altitude
+      ardupilot_backend: JSON_SITL_position
+      mavlink_messages:
+      - GLOBAL_POSITION_INT
+      pt_lib_group: POSITION
+      pt_lib_access: read_latest_valid_sample
+      required_for_ready: true
+    velocity:
+      role: NED_velocity
+      simulator_source: JSBSim_bridge_JSON_velocity
+      ardupilot_backend: JSON_SITL_velocity
+      mavlink_messages:
+      - GLOBAL_POSITION_INT
+      - VFR_HUD
+      pt_lib_group: VELOCITY
+      pt_lib_access: read_latest_valid_sample
+      required_for_ready: false
+    attitude:
+      role: roll_pitch_yaw_and_body_rates
+      simulator_source: JSBSim_bridge_JSON_attitude
+      ardupilot_backend: simulator_primary_AHRS_for_this_SITL_profile
+      mavlink_messages:
+      - ATTITUDE
+      pt_lib_group: ATTITUDE
+      pt_lib_access: read_latest_valid_sample
+      required_for_ready: true
+    battery:
+      role: integration_voltage_current_remaining
+      simulator_source: JSBSim_bridge_JSON_battery_integration_model
+      ardupilot_backend: battery_monitor_BATT_MONITOR_4
+      mavlink_messages:
+      - BATTERY_STATUS
+      - SYS_STATUS
+      pt_lib_group: BATTERY
+      pt_lib_access: read_latest_valid_sample
+      required_for_ready: false
+    gps_bootstrap:
+      role: SITL_bootstrap_only_disableable_for_GNSS_denied_test
+      simulator_source: ArduPilot_SITL_GPS_from_simulated_position
+      ardupilot_backend: SIM_GPS1_ENABLE_runtime_switch
+      mavlink_messages:
+      - GPS_RAW_INT
+      pt_lib_group: GPS
+      pt_lib_access: read_and_enable_disable_for_integration_test
+      required_for_ready: false
+    wind:
+      role: ardupilot_wind_estimate_telemetry
+      simulator_source: simulator_environment
+      ardupilot_backend: SITL_wind_state
+      mavlink_messages:
+      - WIND
+      pt_lib_group: WIND
+      pt_lib_access: read_latest_valid_sample
+      required_for_ready: false
+      truth_source: JSBSim bridge current_state.wind / atmosphere wind properties
+      mavlink_semantics: WIND is an ArduPilot estimate/telemetry signal and may differ
+        from simulator environment truth
+      reporting_policy: show JSBSim truth and MAVLink WIND estimate separately; never
+        relabel estimate as truth
+    ultrasonic_wind:
+      role: 3_axis_ultrasonic_wind_measurement
+      physical_sensor: true
+      installed_on_vehicle: true
+      original_phoenixdrone_sensor: false
+      integration_status: contract_and_decoder_ready_for_real_vehicle; optional_in_current_SITL
+      ardupilot_backend: external_ultrasonic_sensor_forwarded_by_ArduPilot_or_ArduPilot_side_companion
+      transport_contract: MAVLink NAMED_VALUE_FLOAT triplet UWIND_N/UWIND_E/UWIND_D
+        in m/s
+      transport_messages:
+      - NAMED_VALUE_FLOAT
+      mavlink_messages:
+      - ULTRASONIC_WIND
+      pt_lib_group: ULTRASONIC_WIND
+      pt_lib_access: read_latest_valid_sample
+      required_for_ready: false
+      frame: NED
+      units: m/s
+      truth_source: independent_from_JSBSim_truth_and_ArduPilot_WIND_estimate
+      sitl_policy: do_not_synthesize_from_JSBSim_truth; absence remains explicit unless
+        a sensor emulator/backend publishes the triplet
+      reporting_policy: preserve as independent sensor_observation for truth/estimate
+        accuracy analysis
+  note: Sensor producers remain at their native rates. PT_LIB normalizes observation
+    only at its 10 Hz control boundary; it does not down-clock JSBSim or ArduPilot
+    inner loops. JSBSim wind truth, the physical ultrasonic wind observation, and
+    ArduPilot WIND estimate are three independent semantics.
+actuator_layout:
+  flight_mode_scope: forward_fixed_wing_integration_test
+  control_surfaces:
+    left_elevon:
+      servo_output: 1
+      ardupilot_function: 77
+      role: elevon_left
+      min_deg: -30.36676314193363
+      max_deg: 30.36676314193363
+      trim_deg: 0.0
+      joint_limit_rad: 0.53
+      limit_provenance: source_identified_official_phoenix_sdf
+    right_elevon:
+      servo_output: 2
+      ardupilot_function: 78
+      role: elevon_right
+      min_deg: -30.36676314193363
+      max_deg: 30.36676314193363
+      trim_deg: 0.0
+      joint_limit_rad: 0.53
+      limit_provenance: source_identified_official_phoenix_sdf
+  motors:
+    left_motor:
+      servo_output: 3
+      ardupilot_function: 73
+      role: throttle_left
+      min_norm: 0.0
+      max_norm: 1.0
+    right_motor:
+      servo_output: 4
+      ardupilot_function: 74
+      role: throttle_right
+      min_norm: 0.0
+      max_norm: 1.0
+  logical_control_input:
+    roll: aileron_norm [-1,+1]
+    pitch: elevator_norm [-1,+1]
+    throttle: throttle_norm [0,1]
+    yaw: rudder_norm [-1,+1]
+  mixing_note: ArduPilot performs elevon mixing and optional differential-thrust yaw;
+    pt_lib sends pilot-domain roll/pitch/throttle/yaw, not direct motor RPM.
+autopilot_runtime:
+  vehicle: ArduPlane
+  forward_flight_only: false
+  parameters:
+    SERVO1_FUNCTION: 77
+    SERVO2_FUNCTION: 78
+    SERVO3_FUNCTION: 73
+    SERVO4_FUNCTION: 74
+    SERVO1_MIN: 1000
+    SERVO1_TRIM: 1500
+    SERVO1_MAX: 2000
+    SERVO2_MIN: 1000
+    SERVO2_TRIM: 1500
+    SERVO2_MAX: 2000
+    SERVO3_MIN: 1000
+    SERVO3_TRIM: 1000
+    SERVO3_MAX: 2000
+    SERVO4_MIN: 1000
+    SERVO4_TRIM: 1000
+    SERVO4_MAX: 2000
+    RUDD_DT_GAIN: 0.0
+    AHRS_EKF_TYPE: 10
+    ARSPD_TYPE: 100
+    BATT_MONITOR: 4
+    BATT_CAPACITY: 2200
+    TERRAIN_ENABLE: 0
+    TERRAIN_FOLLOW: 0
+  parameter_provenance:
+    servo_functions: ArduPlane documented elevon/twin-throttle output functions
+    RUDD_DT_GAIN: kept disabled in the simplified JSBSim forward-flight model; source
+      motor law is recorded but differential-thrust control has not been validated
+      in ArduPlane
+    AHRS_EKF_TYPE: SITL-only simulator attitude backend; do not transfer blindly to
+      real hardware
+    ARSPD_TYPE: SITL-only simulator airspeed backend so JSON airspeed is used consistently
+    BATT_MONITOR: SITL integration battery monitor enabled so JSON bridge voltage/current
+      are observable
+    BATT_CAPACITY: Phoenix profile capacity in mAh; telemetry model remains integration-only
+    TERRAIN_ENABLE: disabled because ArduPilot terrain-follow requires its own matching
+      terrain database; the supplied DEM is coupled to JSBSim physics in v0.6.0
+    TERRAIN_FOLLOW: disabled until a validated terrain data source is explicitly provided
+simulation_assumptions:
+  jsbsim_model_fidelity: source_informed_simplified_forward_flight_model
+  jsbsim_aircraft_model: phoenix_v3
+  forward_flight_air_start_only: false
+  tailsitter_hover_transition_validated: true
+  source_identified_data:
+  - base-link inertia and inertial pose
+  - motor time constants/max speed/thrust constant/moment constant
+  - calibrated Gazebo propwash aerodynamic coefficients and CP locations
+  engineering_estimates_still_required:
+  - conventional forward-flight stability/control derivatives used by phoenix_v3.xml
+  - JSBSim coordinate-frame reduction of the full Gazebo geometry
+  - cruise trim control values
+  initial_agl_m: 0.1410258217081318
+  home_alt_msl_m_default: 1798.372802734375
+  home_alt_source: runtime terrain start sample
+  confidence: source_informed_integration_model_not_flight_validated
+  validation_boundary: Suitable for SITL integration/mission-continuity testing only;
+    not a validated replacement for the official Gazebo/Simulink Phoenix dynamics.
+  analytic_release_seed:
+    airspeed_m_s: 13.5
+    alpha_deg: 8.8
+    elevator_norm: -0.15
+    collective_throttle_norm: 0.3
+    fidelity: engineering_equilibrium_seed_using_source_inertia_motor_law_and_estimated_forward_flight_derivatives
+    validation: not_measured_trim; Docker JSBSim runtime readiness/watchdog remains
+      authoritative
+  initial_altitude_msl_m: 1798.5138285560831
+  position_origin: CG
+  ground_geometry_revision: phoenix-fourfoot-r3.02-v1
+provenance:
+  official_repository: https://github.com/utiasSTARS/PhoenixDrone
+  official_sitl_repository: https://github.com/utiasSTARS/PhoenixDrone-sitl_gazebo
+  official_sitl_commit: ed3b70cbd7612746db90d3d091c1ba3767f4f151
+  official_sdf_path: models/phoenixdrone/phoenixdrone.sdf
+  paper_doi: 10.1109/ICRA.2019.8794433
+  paper_arxiv: '1810.03196'
+  policy: Values copied from the official SDF are marked source_identified; conventional
+    forward-flight derivatives not present there remain explicit engineering estimates
+    for SITL only.
+inertia:
+  frame: BODY_FRD_CG; retained diagonal engineering model from pinned JSBSim XML,
+    not an identified rotated SDF inertia tensor
+  Ixx_kg_m2: 0.0147563
+  Iyy_kg_m2: 0.00638929
+  Izz_kg_m2: 0.0177
+  Ixy_kg_m2: 0.0
+  Ixz_kg_m2: 0.0
+  Iyz_kg_m2: 0.0
+  inertial_pose_xyz_m:
+  - 0.0
+  - 0.0
+  - 0.0
+  source_sdf_inertial_pose_xyz_m:
+  - 0.0
+  - 0.0
+  - 0.157
+  provenance: source_identified_official_phoenix_sdf
+ground_geometry:
+  schema: TDDT-Phoenix-ground-geometry-v1
+  revision: phoenix-fourfoot-r3.02-v1
+  reference_aircraft_sha256: 9118bfac6cb1bbaa05142f1c0f419fe570414be8b1dbdeffb591e7b898f64da9
+  unit: m
+  body_frame: BODY_FRD_CG
+  structural_frame: JSBSIM_AFT_RIGHT_UP
+  cg_structural_m:
+  - 0.0
+  - 0.0
+  - 0.0
+  position_origin: CG
+  cg_height_agl_at_reset_m: 0.1410258217081318
+  reset_pitch_deg: 89.0
+  terrain_vertical_datum_verified: false
+  ground_load_bearing_verified: false
+  contacts:
+  - name: TAIL_FOOT_L1
+    type: STRUCTURE
+    structural_m:
+    - 0.14
+    - -0.28
+    - 0.06
+    body_frd_m:
+    - -0.14
+    - -0.28
+    - -0.06
+    spring_coeff_lbs_per_ft: 12.0
+    damping_coeff_lbs_per_ft_per_s: 2.0
+  - name: TAIL_FOOT_L2
+    type: STRUCTURE
+    structural_m:
+    - 0.14
+    - -0.28
+    - -0.06
+    body_frd_m:
+    - -0.14
+    - -0.28
+    - 0.06
+    spring_coeff_lbs_per_ft: 12.0
+    damping_coeff_lbs_per_ft_per_s: 2.0
+  - name: TAIL_FOOT_R1
+    type: STRUCTURE
+    structural_m:
+    - 0.14
+    - 0.28
+    - 0.06
+    body_frd_m:
+    - -0.14
+    - 0.28
+    - -0.06
+    spring_coeff_lbs_per_ft: 12.0
+    damping_coeff_lbs_per_ft_per_s: 2.0
+  - name: TAIL_FOOT_R2
+    type: STRUCTURE
+    structural_m:
+    - 0.14
+    - 0.28
+    - -0.06
+    body_frd_m:
+    - -0.14
+    - 0.28
+    - 0.06
+    spring_coeff_lbs_per_ft: 12.0
+    damping_coeff_lbs_per_ft_per_s: 2.0

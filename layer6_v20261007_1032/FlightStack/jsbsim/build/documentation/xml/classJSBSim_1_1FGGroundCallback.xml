@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classJSBSim_1_1FGGroundCallback" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>JSBSim::FGGroundCallback</compoundname>
+    <derivedcompoundref refid="classJSBSim_1_1FGDefaultGroundCallback" prot="public" virt="non-virtual">FGDefaultGroundCallback</derivedcompoundref>
+    <includes refid="FGGroundCallback_8h" local="no">FGGroundCallback.h</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGGroundCallback_1ab2d5aa7fce1a14d8bddfb2c333ea9679" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double time</definition>
+        <argsstring></argsstring>
+        <name>time</name>
+        <qualifiedname>JSBSim::FGGroundCallback::time</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" line="118" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" bodystart="118" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGGroundCallback_1a5916bb54e2e6650e0062ec06249d5750" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>FGGroundCallback</definition>
+        <argsstring>()</argsstring>
+        <name>FGGroundCallback</name>
+        <qualifiedname>JSBSim::FGGroundCallback::FGGroundCallback</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" line="66" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" bodystart="66" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGGroundCallback_1aab447f81c8b5ad87386981781e84effe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual ~FGGroundCallback</definition>
+        <argsstring>()</argsstring>
+        <name>~FGGroundCallback</name>
+        <qualifiedname>JSBSim::FGGroundCallback::~FGGroundCallback</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" line="67" column="11" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGGroundCallback_1ae4c179d49bd42845d9bee4a84793c811" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double GetAGLevel</definition>
+        <argsstring>(const FGLocation &amp;location, FGLocation &amp;contact, FGColumnVector3 &amp;normal, FGColumnVector3 &amp;v, FGColumnVector3 &amp;w) const</argsstring>
+        <name>GetAGLevel</name>
+        <qualifiedname>JSBSim::FGGroundCallback::GetAGLevel</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGLocation" kindref="compound">FGLocation</ref> &amp;</type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGLocation" kindref="compound">FGLocation</ref> &amp;</type>
+          <declname>contact</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>normal</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+<para>Compute the altitude above ground. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The altitude depends on location l. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>location </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>contact</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contact point location below the location l </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>normal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Normal vector at the contact point </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Linear velocity at the contact point </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>w</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Angular velocity at the contact point </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>altitude above ground </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" line="93" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" bodystart="93" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGGroundCallback_1a719a2c167b6f1151701d4844b642809e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double GetAGLevel</definition>
+        <argsstring>(double t, const FGLocation &amp;location, FGLocation &amp;contact, FGColumnVector3 &amp;normal, FGColumnVector3 &amp;v, FGColumnVector3 &amp;w) const =0</argsstring>
+        <name>GetAGLevel</name>
+        <qualifiedname>JSBSim::FGGroundCallback::GetAGLevel</qualifiedname>
+        <reimplementedby refid="classJSBSim_1_1FGDefaultGroundCallback_1a8ea3c30532eecf47acf6932c7b8b86fb">GetAGLevel</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGLocation" kindref="compound">FGLocation</ref> &amp;</type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGLocation" kindref="compound">FGLocation</ref> &amp;</type>
+          <declname>contact</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>normal</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+<para>Compute the altitude above ground. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The altitude depends on time t and location l. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>simulation time </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>location </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>contact</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contact point location below the location l </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>normal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Normal vector at the contact point </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Linear velocity at the contact point </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>w</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Angular velocity at the contact point </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>altitude above ground </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" line="79" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGGroundCallback_1a8393da75b2157b9af03cfb0538d135b3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetEllipse</definition>
+        <argsstring>(double semimajor, double semiminor)</argsstring>
+        <name>SetEllipse</name>
+        <qualifiedname>JSBSim::FGGroundCallback::SetEllipse</qualifiedname>
+        <reimplementedby refid="classJSBSim_1_1FGDefaultGroundCallback_1abf4860857228d0c5ad69ac88b1cf0828">SetEllipse</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>semimajor</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>semiminor</declname>
+        </param>
+        <briefdescription>
+<para>Set the planet semimajor and semiminor axes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Only needs to be implemented if JSBSim should be allowed to modify the planet dimensions. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" line="108" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" bodystart="108" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGGroundCallback_1a87280a562676e47532418ae8de3d33b6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetTerrainElevation</definition>
+        <argsstring>(double h)</argsstring>
+        <name>SetTerrainElevation</name>
+        <qualifiedname>JSBSim::FGGroundCallback::SetTerrainElevation</qualifiedname>
+        <reimplementedby refid="classJSBSim_1_1FGDefaultGroundCallback_1a9c58e1a5995c49e4b19fc45250602eda">SetTerrainElevation</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+<para>Set the terrain elevation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Only needs to be implemented if JSBSim should be allowed to modify the local terrain radius (see the default implementation) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" line="102" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" bodystart="102" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGGroundCallback_1af2d0bd92a02f59fd949d7600ec4b386a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetTime</definition>
+        <argsstring>(double _time)</argsstring>
+        <name>SetTime</name>
+        <qualifiedname>JSBSim::FGGroundCallback::SetTime</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>_time</declname>
+        </param>
+        <briefdescription>
+<para>Set the simulation time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The elapsed time can be used by the ground callback to assess the planet rotation or the movement of objects. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>elapsed time in seconds since the simulation started. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" line="115" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" bodystart="115" bodyend="115"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>This class provides callback slots to get ground specific data. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The default implementation returns values for a ball formed earth with an adjustable terrain elevation.</para>
+<para><simplesect kind="author"><para>Mathias Froehlich </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FGGroundCallback</label>
+        <link refid="classJSBSim_1_1FGGroundCallback"/>
+      </node>
+      <node id="2">
+        <label>FGDefaultGroundCallback</label>
+        <link refid="classJSBSim_1_1FGDefaultGroundCallback"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" line="62" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGGroundCallback.h" bodystart="63" bodyend="119"/>
+    <listofallmembers>
+      <member refid="classJSBSim_1_1FGGroundCallback_1a5916bb54e2e6650e0062ec06249d5750" prot="public" virt="non-virtual"><scope>JSBSim::FGGroundCallback</scope><name>FGGroundCallback</name></member>
+      <member refid="classJSBSim_1_1FGGroundCallback_1a719a2c167b6f1151701d4844b642809e" prot="public" virt="pure-virtual"><scope>JSBSim::FGGroundCallback</scope><name>GetAGLevel</name></member>
+      <member refid="classJSBSim_1_1FGGroundCallback_1ae4c179d49bd42845d9bee4a84793c811" prot="public" virt="virtual"><scope>JSBSim::FGGroundCallback</scope><name>GetAGLevel</name></member>
+      <member refid="classJSBSim_1_1FGGroundCallback_1a8393da75b2157b9af03cfb0538d135b3" prot="public" virt="virtual"><scope>JSBSim::FGGroundCallback</scope><name>SetEllipse</name></member>
+      <member refid="classJSBSim_1_1FGGroundCallback_1a87280a562676e47532418ae8de3d33b6" prot="public" virt="virtual"><scope>JSBSim::FGGroundCallback</scope><name>SetTerrainElevation</name></member>
+      <member refid="classJSBSim_1_1FGGroundCallback_1af2d0bd92a02f59fd949d7600ec4b386a" prot="public" virt="non-virtual"><scope>JSBSim::FGGroundCallback</scope><name>SetTime</name></member>
+      <member refid="classJSBSim_1_1FGGroundCallback_1ab2d5aa7fce1a14d8bddfb2c333ea9679" prot="protected" virt="non-virtual"><scope>JSBSim::FGGroundCallback</scope><name>time</name></member>
+      <member refid="classJSBSim_1_1FGGroundCallback_1aab447f81c8b5ad87386981781e84effe" prot="public" virt="virtual"><scope>JSBSim::FGGroundCallback</scope><name>~FGGroundCallback</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

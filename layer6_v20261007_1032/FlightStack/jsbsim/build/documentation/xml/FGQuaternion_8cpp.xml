@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="FGQuaternion_8cpp" kind="file" language="C++">
+    <compoundname>FGQuaternion.cpp</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">sstream</includes>
+    <includes local="no">iomanip</includes>
+    <includes local="no">cmath</includes>
+    <includes refid="FGMatrix33_8h" local="yes">FGMatrix33.h</includes>
+    <includes refid="FGColumnVector3_8h" local="yes">FGColumnVector3.h</includes>
+    <includes refid="FGQuaternion_8h" local="yes">FGQuaternion.h</includes>
+    <incdepgraph>
+      <node id="9">
+        <label>FGJSBBase.h</label>
+        <link refid="FGJSBBase_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>JSBSim_API.h</label>
+        <link refid="JSBSim__API_8h_source"/>
+      </node>
+      <node id="15">
+        <label>FGColumnVector3.h</label>
+        <link refid="FGColumnVector3_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>FGMatrix33.h</label>
+        <link refid="FGMatrix33_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>FGQuaternion.cpp</label>
+        <link refid="FGQuaternion_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>FGQuaternion.h</label>
+        <link refid="FGQuaternion_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>chrono</label>
+      </node>
+      <node id="6">
+        <label>cmath</label>
+      </node>
+      <node id="10">
+        <label>float.h</label>
+      </node>
+      <node id="5">
+        <label>iomanip</label>
+      </node>
+      <node id="8">
+        <label>iosfwd</label>
+      </node>
+      <node id="3">
+        <label>iostream</label>
+      </node>
+      <node id="12">
+        <label>random</label>
+      </node>
+      <node id="4">
+        <label>sstream</label>
+      </node>
+      <node id="11">
+        <label>stdexcept</label>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceJSBSim">JSBSim</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"></highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>Module:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>FGQuaternion.cpp</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Author:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Jon<sp/>Berndt,<sp/>Mathias<sp/>Froehlich</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>Date<sp/>started:<sp/>12/02/98</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"></highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>-------<sp/>Copyright<sp/>(C)<sp/>1999<sp/><sp/>Jon<sp/>S.<sp/>Berndt<sp/>(jon@jsbsim.org)<sp/>------------------</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>-------<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(C)<sp/>2004<sp/><sp/>Mathias<sp/>Froehlich<sp/>(Mathias.Froehlich@web.de)<sp/>----</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>This<sp/>program<sp/>is<sp/>free<sp/>software;<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by<sp/>the<sp/>Free<sp/>Software</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>Foundation;<sp/>either<sp/>version<sp/>2<sp/>of<sp/>the<sp/>License,<sp/>or<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>version.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"></highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>This<sp/>program<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/>but<sp/>WITHOUT</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty<sp/>of<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/><sp/>See<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>details.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"></highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>You<sp/>should<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>this<sp/>program;<sp/>if<sp/>not,<sp/>write<sp/>to<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>Inc.,<sp/>59<sp/>Temple</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>Place<sp/>-<sp/>Suite<sp/>330,<sp/>Boston,<sp/>MA<sp/><sp/>02111-1307,<sp/>USA.</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"></highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>Further<sp/>information<sp/>about<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>can<sp/>also<sp/>be<sp/>found<sp/>on</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>the<sp/>world<sp/>wide<sp/>web<sp/>at<sp/>http://www.gnu.org.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"></highlight></codeline>
+<codeline lineno="27"><highlight class="comment">HISTORY</highlight></codeline>
+<codeline lineno="28"><highlight class="comment">-------------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="29"><highlight class="comment">12/02/98<sp/><sp/><sp/>JSB<sp/><sp/><sp/>Created</highlight></codeline>
+<codeline lineno="30"><highlight class="comment">15/01/04<sp/><sp/><sp/>Mathias<sp/>Froehlich<sp/>implemented<sp/>a<sp/>quaternion<sp/>class<sp/>from<sp/>many<sp/>places</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>in<sp/>JSBSim.</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"></highlight></codeline>
+<codeline lineno="33"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="34"><highlight class="comment">SENTRY</highlight></codeline>
+<codeline lineno="35"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/><sp/>INCLUDES</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/><sp/>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iomanip&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;FGMatrix33.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;FGColumnVector3.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;FGQuaternion.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/><sp/>DEFINITIONS</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/><sp/>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">JSBSim<sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Initialize<sp/>from<sp/>q</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="classJSBSim_1_1FGQuaternion_1ad78439d07685534240c11c67551b0fd7" refkind="member"><highlight class="normal"><ref refid="classJSBSim_1_1FGQuaternion_1af37693324e4bd4b0781668dc2e347821" kindref="member">FGQuaternion::FGQuaternion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref>&amp;<sp/>q)<sp/>:<sp/>mCacheValid(q.mCacheValid)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/>data[0]<sp/>=<sp/>q(1);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/>data[1]<sp/>=<sp/>q(2);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/>data[2]<sp/>=<sp/>q(3);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>data[3]<sp/>=<sp/>q(4);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mCacheValid)<sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>mT<sp/>=<sp/>q.mT;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>mTInv<sp/>=<sp/>q.mTInv;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>mEulerAngles<sp/>=<sp/>q.mEulerAngles;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>mEulerSines<sp/>=<sp/>q.mEulerSines;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>mEulerCosines<sp/>=<sp/>q.mEulerCosines;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Initialize<sp/>with<sp/>the<sp/>three<sp/>euler<sp/>angles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="classJSBSim_1_1FGQuaternion_1a2585cbb22c5c3498d5e2ae3aff242a06" refkind="member"><highlight class="normal"><ref refid="classJSBSim_1_1FGQuaternion_1af37693324e4bd4b0781668dc2e347821" kindref="member">FGQuaternion::FGQuaternion</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phi,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tht,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>psi):<sp/>mCacheValid(false)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/>InitializeFromEulerAngles(phi,<sp/>tht,<sp/>psi);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="classJSBSim_1_1FGQuaternion_1a6a159ce8070ef45333eda6bf63f72ebb" refkind="member"><highlight class="normal"><ref refid="classJSBSim_1_1FGQuaternion_1af37693324e4bd4b0781668dc2e347821" kindref="member">FGQuaternion::FGQuaternion</ref>(<ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref><sp/>vOrient):<sp/>mCacheValid(false)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phi<sp/>=<sp/>vOrient(ePhi);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tht<sp/>=<sp/>vOrient(eTht);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>psi<sp/>=<sp/>vOrient(ePsi);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/>InitializeFromEulerAngles(phi,<sp/>tht,<sp/>psi);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>function<sp/>computes<sp/>the<sp/>quaternion<sp/>that<sp/>describes<sp/>the<sp/>relationship<sp/>of<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">//<sp/>body<sp/>frame<sp/>with<sp/>respect<sp/>to<sp/>another<sp/>frame,<sp/>such<sp/>as<sp/>the<sp/>ECI<sp/>or<sp/>ECEF<sp/>frames.<sp/>The</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Euler<sp/>angles<sp/>used<sp/>represent<sp/>a<sp/>3-2-1<sp/>(psi,<sp/>theta,<sp/>phi)<sp/>rotation<sp/>sequence<sp/>from</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="comment">//<sp/>the<sp/>reference<sp/>frame<sp/>to<sp/>the<sp/>body<sp/>frame.<sp/>See<sp/>&quot;Quaternions<sp/>and<sp/>Rotation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Sequences&quot;,<sp/>Jack<sp/>B.<sp/>Kuipers,<sp/>sections<sp/>9.2<sp/>and<sp/>7.6.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FGQuaternion::InitializeFromEulerAngles(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phi,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tht,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>psi)</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/>mEulerAngles(ePhi)<sp/>=<sp/>phi;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/>mEulerAngles(eTht)<sp/>=<sp/>tht;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/>mEulerAngles(ePsi)<sp/>=<sp/>psi;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>thtd2<sp/>=<sp/>0.5*tht;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>psid2<sp/>=<sp/>0.5*psi;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phid2<sp/>=<sp/>0.5*phi;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Sthtd2<sp/>=<sp/>sin(thtd2);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Spsid2<sp/>=<sp/>sin(psid2);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Sphid2<sp/>=<sp/>sin(phid2);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Cthtd2<sp/>=<sp/>cos(thtd2);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Cpsid2<sp/>=<sp/>cos(psid2);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Cphid2<sp/>=<sp/>cos(phid2);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Cphid2Cthtd2<sp/>=<sp/>Cphid2*Cthtd2;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Cphid2Sthtd2<sp/>=<sp/>Cphid2*Sthtd2;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Sphid2Sthtd2<sp/>=<sp/>Sphid2*Sthtd2;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Sphid2Cthtd2<sp/>=<sp/>Sphid2*Cthtd2;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/>data[0]<sp/>=<sp/>Cphid2Cthtd2*Cpsid2<sp/>+<sp/>Sphid2Sthtd2*Spsid2;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/>data[1]<sp/>=<sp/>Sphid2Cthtd2*Cpsid2<sp/>-<sp/>Cphid2Sthtd2*Spsid2;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/>data[2]<sp/>=<sp/>Cphid2Sthtd2*Cpsid2<sp/>+<sp/>Sphid2Cthtd2*Spsid2;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/>data[3]<sp/>=<sp/>Cphid2Cthtd2*Spsid2<sp/>-<sp/>Sphid2Sthtd2*Cpsid2;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a231f7602591a267c2669a2af9b9c8749" kindref="member">Normalize</ref>();</highlight></codeline>
+<codeline lineno="132"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Initialize<sp/>with<sp/>a<sp/>direction<sp/>cosine<sp/>(rotation)<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="classJSBSim_1_1FGQuaternion_1a93ecb238eaf9c1d5b500bce21121f255" refkind="member"><highlight class="normal"><ref refid="classJSBSim_1_1FGQuaternion_1af37693324e4bd4b0781668dc2e347821" kindref="member">FGQuaternion::FGQuaternion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGMatrix33" kindref="compound">FGMatrix33</ref>&amp;<sp/>m)<sp/>:<sp/>mCacheValid(false)</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/>data[0]<sp/>=<sp/>0.50*sqrt(1.0<sp/>+<sp/>m(1,1)<sp/>+<sp/>m(2,2)<sp/>+<sp/>m(3,3));</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>t<sp/>=<sp/>0.25/data[0];</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/>data[1]<sp/>=<sp/>t*(m(2,3)<sp/>-<sp/>m(3,2));</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/>data[2]<sp/>=<sp/>t*(m(3,1)<sp/>-<sp/>m(1,3));</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/>data[3]<sp/>=<sp/>t*(m(1,2)<sp/>-<sp/>m(2,1));</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a231f7602591a267c2669a2af9b9c8749" kindref="member">Normalize</ref>();</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155" refid="classJSBSim_1_1FGQuaternion_1a826e9ee7aaf8e2b88cfb96f6d00fedce" refkind="member"><highlight class="normal"><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a826e9ee7aaf8e2b88cfb96f6d00fedce" kindref="member">FGQuaternion::GetQDot</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref>&amp;<sp/>PQR)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="156"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion_1af37693324e4bd4b0781668dc2e347821" kindref="member">FGQuaternion</ref>(</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>-0.5*(<sp/>data[1]*PQR(eP)<sp/>+<sp/>data[2]*PQR(eQ)<sp/>+<sp/>data[3]*PQR(eR)),</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>0.5*(<sp/>data[0]*PQR(eP)<sp/>-<sp/>data[3]*PQR(eQ)<sp/>+<sp/>data[2]*PQR(eR)),</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>0.5*(<sp/>data[3]*PQR(eP)<sp/>+<sp/>data[0]*PQR(eQ)<sp/>-<sp/>data[1]*PQR(eR)),</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>0.5*(-data[2]*PQR(eP)<sp/>+<sp/>data[1]*PQR(eQ)<sp/>+<sp/>data[0]*PQR(eR))</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/>);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167" refid="classJSBSim_1_1FGQuaternion_1a231f7602591a267c2669a2af9b9c8749" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGQuaternion_1a231f7602591a267c2669a2af9b9c8749" kindref="member">FGQuaternion::Normalize</ref>()</highlight></codeline>
+<codeline lineno="168"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Note:<sp/>this<sp/>does<sp/>not<sp/>touch<sp/>the<sp/>cache<sp/>since<sp/>it<sp/>does<sp/>not<sp/>change<sp/>the<sp/>orientation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>norm<sp/>=<sp/><ref refid="classJSBSim_1_1FGQuaternion_1a4b994a872678de3097f1c86723ce92c9" kindref="member">Magnitude</ref>();</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(norm<sp/>==<sp/>0.0<sp/>||<sp/>fabs(norm<sp/>-<sp/>1.000)<sp/>&lt;<sp/>1e-10)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>rnorm<sp/>=<sp/>1.0/norm;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/>data[0]<sp/>*=<sp/>rnorm;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/>data[1]<sp/>*=<sp/>rnorm;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/>data[2]<sp/>*=<sp/>rnorm;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/>data[3]<sp/>*=<sp/>rnorm;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Compute<sp/>the<sp/>derived<sp/>values<sp/>if<sp/>required<sp/>...</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FGQuaternion::ComputeDerivedUnconditional(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="185"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/>mCacheValid<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q0<sp/>=<sp/>data[0];<sp/></highlight><highlight class="comment">//<sp/>use<sp/>some<sp/>aliases/shorthand<sp/>for<sp/>the<sp/>quat<sp/>elements.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q1<sp/>=<sp/>data[1];</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q2<sp/>=<sp/>data[2];</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q3<sp/>=<sp/>data[3];</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Now<sp/>compute<sp/>the<sp/>transformation<sp/>matrix.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q0q0<sp/>=<sp/>q0*q0;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q1q1<sp/>=<sp/>q1*q1;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q2q2<sp/>=<sp/>q2*q2;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q3q3<sp/>=<sp/>q3*q3;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q0q1<sp/>=<sp/>q0*q1;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q0q2<sp/>=<sp/>q0*q2;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q0q3<sp/>=<sp/>q0*q3;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q1q2<sp/>=<sp/>q1*q2;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q1q3<sp/>=<sp/>q1*q3;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q2q3<sp/>=<sp/>q2*q3;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/>mT(1,1)<sp/>=<sp/>q0q0<sp/>+<sp/>q1q1<sp/>-<sp/>q2q2<sp/>-<sp/>q3q3;<sp/></highlight><highlight class="comment">//<sp/>This<sp/>is<sp/>found<sp/>from<sp/>Eqn.<sp/>1.3-32<sp/>in</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/>mT(1,2)<sp/>=<sp/>2.0*(q1q2<sp/>+<sp/>q0q3);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Stevens<sp/>and<sp/>Lewis</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/>mT(1,3)<sp/>=<sp/>2.0*(q1q3<sp/>-<sp/>q0q2);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/>mT(2,1)<sp/>=<sp/>2.0*(q1q2<sp/>-<sp/>q0q3);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/>mT(2,2)<sp/>=<sp/>q0q0<sp/>-<sp/>q1q1<sp/>+<sp/>q2q2<sp/>-<sp/>q3q3;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/>mT(2,3)<sp/>=<sp/>2.0*(q2q3<sp/>+<sp/>q0q1);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/>mT(3,1)<sp/>=<sp/>2.0*(q1q3<sp/>+<sp/>q0q2);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/>mT(3,2)<sp/>=<sp/>2.0*(q2q3<sp/>-<sp/>q0q1);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/>mT(3,3)<sp/>=<sp/>q0q0<sp/>-<sp/>q1q1<sp/>-<sp/>q2q2<sp/>+<sp/>q3q3;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Since<sp/>this<sp/>is<sp/>an<sp/>orthogonal<sp/>matrix,<sp/>the<sp/>inverse<sp/>is<sp/>simply<sp/>the<sp/>transpose.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/>mTInv<sp/>=<sp/>mT;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/>mTInv.<ref refid="classJSBSim_1_1FGMatrix33_1a07067602e11a88f2a5d341128499fff3" kindref="member">T</ref>();</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>the<sp/>Euler-angles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/>mEulerAngles<sp/>=<sp/>mT.<ref refid="classJSBSim_1_1FGMatrix33_1aed3e63a9693712e447930a68dedd1cc4" kindref="member">GetEuler</ref>();</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>FIXME:<sp/>may<sp/>be<sp/>one<sp/>can<sp/>compute<sp/>those<sp/>values<sp/>easier<sp/>???</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/>mEulerSines(ePhi)<sp/>=<sp/>sin(mEulerAngles(ePhi));</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>mEulerSines(eTht)<sp/>=<sp/>sin(mEulerAngles(eTht));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/>mEulerSines(eTht)<sp/>=<sp/>-mT(1,3);</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/>mEulerSines(ePsi)<sp/>=<sp/>sin(mEulerAngles(ePsi));</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/>mEulerCosines(ePhi)<sp/>=<sp/>cos(mEulerAngles(ePhi));</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/>mEulerCosines(eTht)<sp/>=<sp/>cos(mEulerAngles(eTht));</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/>mEulerCosines(ePsi)<sp/>=<sp/>cos(mEulerAngles(ePsi));</highlight></codeline>
+<codeline lineno="232"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal">std::string<sp/>FGQuaternion::Dump(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>delimiter)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="237"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/>std::ostringstream<sp/>buffer;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/>buffer<sp/>&lt;&lt;<sp/>std::setprecision(16)<sp/>&lt;&lt;<sp/>data[0]<sp/>&lt;&lt;<sp/>delimiter;</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/>buffer<sp/>&lt;&lt;<sp/>std::setprecision(16)<sp/>&lt;&lt;<sp/>data[1]<sp/>&lt;&lt;<sp/>delimiter;</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/>buffer<sp/>&lt;&lt;<sp/>std::setprecision(16)<sp/>&lt;&lt;<sp/>data[2]<sp/>&lt;&lt;<sp/>delimiter;</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/>buffer<sp/>&lt;&lt;<sp/>std::setprecision(16)<sp/>&lt;&lt;<sp/>data[3];</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>buffer.str();</highlight></codeline>
+<codeline lineno="244"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight><highlight class="comment">//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal">std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>FGQuaternion&amp;<sp/>q)</highlight></codeline>
+<codeline lineno="249"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/>os<sp/>&lt;&lt;<sp/>q(1)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>q(2)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>q(3)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>q(4);</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os;</highlight></codeline>
+<codeline lineno="252"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"></highlight></codeline>
+<codeline lineno="254"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>JSBSim</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.cpp"/>
+  </compounddef>
+</doxygen>

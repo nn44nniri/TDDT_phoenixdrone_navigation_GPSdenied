@@ -1,0 +1,928 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="FGFCS_8h" kind="file" language="C++">
+    <compoundname>FGFCS.h</compoundname>
+    <includes local="no">iosfwd</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">string</includes>
+    <includes refid="FGFDMExec_8h" local="yes">FGFDMExec.h</includes>
+    <includes refid="FGModel_8h" local="yes">models/FGModel.h</includes>
+    <includes refid="FGLGear_8h" local="yes">models/FGLGear.h</includes>
+    <includes refid="FGGroundReactions_8h" local="yes">models/FGGroundReactions.h</includes>
+    <includedby refid="FGAccelerometer_8cpp" local="yes">FGAccelerometer.cpp</includedby>
+    <includedby refid="FGActuator_8cpp" local="yes">FGActuator.cpp</includedby>
+    <includedby refid="FGAngles_8cpp" local="yes">FGAngles.cpp</includedby>
+    <includedby refid="FGDeadBand_8cpp" local="yes">FGDeadBand.cpp</includedby>
+    <includedby refid="FGDistributor_8cpp" local="yes">FGDistributor.cpp</includedby>
+    <includedby refid="FGFCS_8cpp" local="yes">FGFCS.cpp</includedby>
+    <includedby refid="FGFCSComponent_8cpp" local="yes">FGFCSComponent.cpp</includedby>
+    <includedby refid="FGFCSFunction_8cpp" local="yes">FGFCSFunction.cpp</includedby>
+    <includedby refid="FGFDMExec_8cpp" local="yes">FGFDMExec.cpp</includedby>
+    <includedby refid="FGFilter_8cpp" local="yes">FGFilter.cpp</includedby>
+    <includedby refid="FGGain_8cpp" local="yes">FGGain.cpp</includedby>
+    <includedby refid="FGGyro_8cpp" local="yes">FGGyro.cpp</includedby>
+    <includedby refid="FGKinemat_8cpp" local="yes">FGKinemat.cpp</includedby>
+    <includedby refid="FGLinearActuator_8cpp" local="yes">FGLinearActuator.cpp</includedby>
+    <includedby refid="FGMagnetometer_8cpp" local="yes">FGMagnetometer.cpp</includedby>
+    <includedby refid="FGOutputFG_8cpp" local="yes">FGOutputFG.cpp</includedby>
+    <includedby refid="FGOutputSocket_8cpp" local="yes">FGOutputSocket.cpp</includedby>
+    <includedby refid="FGOutputTextFile_8cpp" local="yes">FGOutputTextFile.cpp</includedby>
+    <includedby refid="FGPID_8cpp" local="yes">FGPID.cpp</includedby>
+    <includedby refid="FGPropulsion_8cpp" local="yes">FGPropulsion.cpp</includedby>
+    <includedby refid="FGSensor_8cpp" local="yes">FGSensor.cpp</includedby>
+    <includedby refid="FGStateSpace_8h" local="yes">FGStateSpace.h</includedby>
+    <includedby refid="FGSummer_8cpp" local="yes">FGSummer.cpp</includedby>
+    <includedby refid="FGSwitch_8cpp" local="yes">FGSwitch.cpp</includedby>
+    <includedby refid="FGTrim_8cpp" local="yes">FGTrim.cpp</includedby>
+    <includedby refid="FGTrimAxis_8cpp" local="yes">FGTrimAxis.cpp</includedby>
+    <includedby refid="FGWaypoint_8cpp" local="yes">FGWaypoint.cpp</includedby>
+    <incdepgraph>
+      <node id="5">
+        <label>FGFDMExec.h</label>
+        <link refid="FGFDMExec_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>FGJSBBase.h</label>
+        <link refid="FGJSBBase_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>JSBSim_API.h</label>
+        <link refid="JSBSim__API_8h_source"/>
+      </node>
+      <node id="41">
+        <label>input_output/FGInputType.h</label>
+        <link refid="FGInputType_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>input_output/FGLog.h</label>
+        <link refid="FGLog_8h_source"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>input_output/FGOutputType.h</label>
+        <link refid="FGOutputType_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>input_output/FGPropertyManager.h</label>
+        <link refid="FGPropertyManager_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>input_output/FGPropertyReader.h</label>
+        <link refid="FGPropertyReader_8h_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>input_output/FGXMLElement.h</label>
+        <link refid="FGXMLElement_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>math/FGColumnVector3.h</label>
+        <link refid="FGColumnVector3_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>math/FGFunction.h</label>
+        <link refid="FGFunction_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>math/FGLocation.h</label>
+        <link refid="FGLocation_8h_source"/>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>FGMatrix33.h</label>
+        <link refid="FGMatrix33_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>math/FGModelFunctions.h</label>
+        <link refid="FGModelFunctions_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>FGParameter.h</label>
+        <link refid="FGParameter_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>math/FGPropertyValue.h</label>
+        <link refid="FGPropertyValue_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>math/FGQuaternion.h</label>
+        <link refid="FGQuaternion_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>math/FGTemplateFunc.h</label>
+        <link refid="FGTemplateFunc_8h_source"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>math/LagrangeMultiplier.h</label>
+        <link refid="LagrangeMultiplier_8h_source"/>
+      </node>
+      <node id="1">
+        <label>FGFCS.h</label>
+        <link refid="FGFCS_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>models/FGGroundReactions.h</label>
+        <link refid="FGGroundReactions_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>models/FGInput.h</label>
+        <link refid="FGInput_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>models/FGLGear.h</label>
+        <link refid="FGLGear_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>models/FGMassBalance.h</label>
+        <link refid="FGMassBalance_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>models/FGModel.h</label>
+        <link refid="FGModel_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>models/FGOutput.h</label>
+        <link refid="FGOutput_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>models/FGPropagate.h</label>
+        <link refid="FGPropagate_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>FGSurface.h</label>
+        <link refid="FGSurface_8h_source"/>
+      </node>
+      <node id="48">
+        <label>models/propulsion/FGForce.h</label>
+        <link refid="FGForce_8h_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>simgear/props/props.hxx</label>
+        <link refid="props_8hxx"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>cassert</label>
+      </node>
+      <node id="15">
+        <label>chrono</label>
+      </node>
+      <node id="8">
+        <label>deque</label>
+      </node>
+      <node id="12">
+        <label>float.h</label>
+      </node>
+      <node id="31">
+        <label>iomanip</label>
+      </node>
+      <node id="2">
+        <label>iosfwd</label>
+      </node>
+      <node id="20">
+        <label>iostream</label>
+      </node>
+      <node id="27">
+        <label>list</label>
+      </node>
+      <node id="18">
+        <label>map</label>
+      </node>
+      <node id="6">
+        <label>memory</label>
+      </node>
+      <node id="14">
+        <label>random</label>
+      </node>
+      <node id="23">
+        <label>simgear/compiler.h</label>
+      </node>
+      <node id="29">
+        <label>simgear/math/SGMath.hxx</label>
+      </node>
+      <node id="32">
+        <label>simgear/misc/sg_path.hxx</label>
+      </node>
+      <node id="24">
+        <label>simgear/structure/SGReferenced.hxx</label>
+      </node>
+      <node id="25">
+        <label>simgear/structure/SGSharedPtr.hxx</label>
+      </node>
+      <node id="21">
+        <label>sstream</label>
+      </node>
+      <node id="13">
+        <label>stdexcept</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="28">
+        <label>type_traits</label>
+      </node>
+      <node id="22">
+        <label>typeinfo</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="10">
+        <label>FGFDMExec.cpp</label>
+        <link refid="FGFDMExec_8cpp_source"/>
+      </node>
+      <node id="25">
+        <label>FGLinearization.cpp</label>
+        <link refid="FGLinearization_8cpp_source"/>
+      </node>
+      <node id="24">
+        <label>FGLinearization.h</label>
+        <link refid="FGLinearization_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>FGTrim.cpp</label>
+        <link refid="FGTrim_8cpp_source"/>
+      </node>
+      <node id="30">
+        <label>FGTrimAxis.cpp</label>
+        <link refid="FGTrimAxis_8cpp_source"/>
+      </node>
+      <node id="17">
+        <label>FGOutputFG.cpp</label>
+        <link refid="FGOutputFG_8cpp_source"/>
+      </node>
+      <node id="18">
+        <label>FGOutputSocket.cpp</label>
+        <link refid="FGOutputSocket_8cpp_source"/>
+      </node>
+      <node id="19">
+        <label>FGOutputTextFile.cpp</label>
+        <link refid="FGOutputTextFile_8cpp_source"/>
+      </node>
+      <node id="26">
+        <label>FGStateSpace.cpp</label>
+        <link refid="FGStateSpace_8cpp_source"/>
+      </node>
+      <node id="23">
+        <label>FGStateSpace.h</label>
+        <link refid="FGStateSpace_8h_source"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>FGFCS.cpp</label>
+        <link refid="FGFCS_8cpp_source"/>
+      </node>
+      <node id="1">
+        <label>FGFCS.h</label>
+        <link refid="FGFCS_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>FGPropulsion.cpp</label>
+        <link refid="FGPropulsion_8cpp_source"/>
+      </node>
+      <node id="2">
+        <label>FGAccelerometer.cpp</label>
+        <link refid="FGAccelerometer_8cpp_source"/>
+      </node>
+      <node id="3">
+        <label>FGActuator.cpp</label>
+        <link refid="FGActuator_8cpp_source"/>
+      </node>
+      <node id="4">
+        <label>FGAngles.cpp</label>
+        <link refid="FGAngles_8cpp_source"/>
+      </node>
+      <node id="5">
+        <label>FGDeadBand.cpp</label>
+        <link refid="FGDeadBand_8cpp_source"/>
+      </node>
+      <node id="6">
+        <label>FGDistributor.cpp</label>
+        <link refid="FGDistributor_8cpp_source"/>
+      </node>
+      <node id="8">
+        <label>FGFCSComponent.cpp</label>
+        <link refid="FGFCSComponent_8cpp_source"/>
+      </node>
+      <node id="9">
+        <label>FGFCSFunction.cpp</label>
+        <link refid="FGFCSFunction_8cpp_source"/>
+      </node>
+      <node id="11">
+        <label>FGFilter.cpp</label>
+        <link refid="FGFilter_8cpp_source"/>
+      </node>
+      <node id="12">
+        <label>FGGain.cpp</label>
+        <link refid="FGGain_8cpp_source"/>
+      </node>
+      <node id="13">
+        <label>FGGyro.cpp</label>
+        <link refid="FGGyro_8cpp_source"/>
+      </node>
+      <node id="14">
+        <label>FGKinemat.cpp</label>
+        <link refid="FGKinemat_8cpp_source"/>
+      </node>
+      <node id="15">
+        <label>FGLinearActuator.cpp</label>
+        <link refid="FGLinearActuator_8cpp_source"/>
+      </node>
+      <node id="16">
+        <label>FGMagnetometer.cpp</label>
+        <link refid="FGMagnetometer_8cpp_source"/>
+      </node>
+      <node id="20">
+        <label>FGPID.cpp</label>
+        <link refid="FGPID_8cpp_source"/>
+      </node>
+      <node id="22">
+        <label>FGSensor.cpp</label>
+        <link refid="FGSensor_8cpp_source"/>
+      </node>
+      <node id="27">
+        <label>FGSummer.cpp</label>
+        <link refid="FGSummer_8cpp_source"/>
+      </node>
+      <node id="28">
+        <label>FGSwitch.cpp</label>
+        <link refid="FGSwitch_8cpp_source"/>
+      </node>
+      <node id="31">
+        <label>FGWaypoint.cpp</label>
+        <link refid="FGWaypoint_8cpp_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classJSBSim_1_1FGFCS" prot="public">JSBSim::FGFCS</innerclass>
+    <innernamespace refid="namespaceJSBSim">JSBSim</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"></highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>Header:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>FGGFCS.h</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Author:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Jon<sp/>S.<sp/>Berndt</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>Date<sp/>started:<sp/>12/12/98</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"></highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>-------------<sp/>Copyright<sp/>(C)<sp/>1999<sp/><sp/>Jon<sp/>S.<sp/>Berndt<sp/>(jon@jsbsim.org)<sp/>-------------</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"></highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>This<sp/>program<sp/>is<sp/>free<sp/>software;<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/>it<sp/>under</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by<sp/>the<sp/>Free<sp/>Software</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>Foundation;<sp/>either<sp/>version<sp/>2<sp/>of<sp/>the<sp/>License,<sp/>or<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>version.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"></highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>This<sp/>program<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/>but<sp/>WITHOUT</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty<sp/>of<sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/><sp/>See<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>details.</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"></highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>You<sp/>should<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>this<sp/>program;<sp/>if<sp/>not,<sp/>write<sp/>to<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>Inc.,<sp/>59<sp/>Temple</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>Place<sp/>-<sp/>Suite<sp/>330,<sp/>Boston,<sp/>MA<sp/><sp/>02111-1307,<sp/>USA.</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"></highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>Further<sp/>information<sp/>about<sp/>the<sp/>GNU<sp/>Lesser<sp/>General<sp/>Public<sp/>License<sp/>can<sp/>also<sp/>be<sp/>found<sp/>on</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>the<sp/>world<sp/>wide<sp/>web<sp/>at<sp/>http://www.gnu.org.</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"></highlight></codeline>
+<codeline lineno="26"><highlight class="comment">HISTORY</highlight></codeline>
+<codeline lineno="27"><highlight class="comment">--------------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="28"><highlight class="comment">12/12/98<sp/><sp/><sp/>JSB<sp/><sp/><sp/>Created</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"></highlight></codeline>
+<codeline lineno="30"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="31"><highlight class="comment">SENTRY</highlight></codeline>
+<codeline lineno="32"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>FGFCS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FGFCS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="38"><highlight class="comment">INCLUDES</highlight></codeline>
+<codeline lineno="39"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iosfwd&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;FGFDMExec.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;models/FGModel.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;models/FGLGear.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;models/FGGroundReactions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="51"><highlight class="comment">FORWARD<sp/>DECLARATIONS</highlight></codeline>
+<codeline lineno="52"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">JSBSim<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">FGFCSChannel;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{<sp/>ofRad=0,<sp/>ofDeg,<sp/>ofNorm,<sp/>ofMag<sp/>,<sp/>NForms}<sp/>OutputForm;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="60"><highlight class="comment">CLASS<sp/>DOCUMENTATION</highlight></codeline>
+<codeline lineno="61"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight><highlight class="comment">/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</highlight></codeline>
+<codeline lineno="185"><highlight class="comment">CLASS<sp/>DECLARATION</highlight></codeline>
+<codeline lineno="186"><highlight class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188" refid="classJSBSim_1_1FGFCS" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">JSBSIM_API<sp/><ref refid="classJSBSim_1_1FGFCS" kindref="compound">FGFCS</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGModel" kindref="compound">FGModel</ref></highlight></codeline>
+<codeline lineno="189"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGFCS" kindref="compound">FGFCS</ref>(<ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref>*);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><ref refid="classJSBSim_1_1FGFCS" kindref="compound">~FGFCS</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>InitModel(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Run(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Holding)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213" refid="classJSBSim_1_1FGFCS_1a79e4d8715b739efb965d5ec3be2de287" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a79e4d8715b739efb965d5ec3be2de287" kindref="member">GetDaCmd</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DaCmd;<sp/>}</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217" refid="classJSBSim_1_1FGFCS_1a249c499bc2e6b94d5e72f1d03f853a66" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a249c499bc2e6b94d5e72f1d03f853a66" kindref="member">GetDeCmd</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DeCmd;<sp/>}</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="221" refid="classJSBSim_1_1FGFCS_1a7473b520d6fb0e7c14d85b59580cf30f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a7473b520d6fb0e7c14d85b59580cf30f" kindref="member">GetDrCmd</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DrCmd;<sp/>}</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225" refid="classJSBSim_1_1FGFCS_1a3c5c69498f8bd70099e846d19d5b4819" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a3c5c69498f8bd70099e846d19d5b4819" kindref="member">GetDsCmd</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>FDMExec-&gt;<ref refid="classJSBSim_1_1FGFDMExec_1aaf46febf401174f57afe069b7d2f1584" kindref="member">GetGroundReactions</ref>()-&gt;GetDsCmd();<sp/>}</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229" refid="classJSBSim_1_1FGFCS_1a1e6f6e6caa9c431824f13f5eaf2bf1f2" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a1e6f6e6caa9c431824f13f5eaf2bf1f2" kindref="member">GetDfCmd</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DfCmd;<sp/>}</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight></codeline>
+<codeline lineno="233" refid="classJSBSim_1_1FGFCS_1ac199b1ff12c2f08853ede662b2b7586b" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1ac199b1ff12c2f08853ede662b2b7586b" kindref="member">GetDsbCmd</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DsbCmd;<sp/>}</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237" refid="classJSBSim_1_1FGFCS_1aa20f00466aa0c1fa26a970b14499b836" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1aa20f00466aa0c1fa26a970b14499b836" kindref="member">GetDspCmd</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DspCmd;<sp/>}</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>GetThrottleCmd(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>GetThrottleCmd()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ThrottleCmd;}</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253" refid="classJSBSim_1_1FGFCS_1a8389127ffc08b4eeb061d249d1dfd92c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a8389127ffc08b4eeb061d249d1dfd92c" kindref="member">GetMixtureCmd</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>MixtureCmd[engine];<sp/>}</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>GetMixtureCmd()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>MixtureCmd;}</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"></highlight></codeline>
+<codeline lineno="260" refid="classJSBSim_1_1FGFCS_1a4cdb2e4e4e3fcf17c1037c4c4bc1f1c9" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a4cdb2e4e4e3fcf17c1037c4c4bc1f1c9" kindref="member">GetPropAdvanceCmd</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>PropAdvanceCmd[engine];<sp/>}</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"></highlight></codeline>
+<codeline lineno="265" refid="classJSBSim_1_1FGFCS_1a1d0415f39b93b8084b4f8c105d386420" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a1d0415f39b93b8084b4f8c105d386420" kindref="member">GetFeatherCmd</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>PropFeatherCmd[engine];<sp/>}</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="269" refid="classJSBSim_1_1FGFCS_1ab2926b6cf52b7d3d9cdf25f98bc69572" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1ab2926b6cf52b7d3d9cdf25f98bc69572" kindref="member">GetPitchTrimCmd</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>PTrimCmd;<sp/>}</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight></codeline>
+<codeline lineno="273" refid="classJSBSim_1_1FGFCS_1ad1a752f3531ca79ead3a43c5c30ee2ca" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1ad1a752f3531ca79ead3a43c5c30ee2ca" kindref="member">GetYawTrimCmd</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>YTrimCmd;<sp/>}</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"></highlight></codeline>
+<codeline lineno="277" refid="classJSBSim_1_1FGFCS_1a8ce68c5b1d3f81001713c4fe2672d719" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a8ce68c5b1d3f81001713c4fe2672d719" kindref="member">GetRollTrimCmd</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>RTrimCmd;<sp/>}</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"></highlight></codeline>
+<codeline lineno="282" refid="classJSBSim_1_1FGFCS_1ae0b8593b818c6701c9ac8e396d50dda3" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1ae0b8593b818c6701c9ac8e396d50dda3" kindref="member">GetGearCmd</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>GearCmd;<sp/>}</highlight></codeline>
+<codeline lineno="284"></codeline>
+<codeline lineno="286"></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="289" refid="classJSBSim_1_1FGFCS_1a8365d40d300f36b7209992cc75890a11" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a8365d40d300f36b7209992cc75890a11" kindref="member">GetDaLPos</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>form<sp/>=<sp/>ofRad<sp/>)</highlight><highlight class="keyword"></highlight></codeline>
+<codeline lineno="290"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DaLPos[form];<sp/>}</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight></codeline>
+<codeline lineno="294" refid="classJSBSim_1_1FGFCS_1a923b5759e5a9381945402b9bfd4abcd3" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a923b5759e5a9381945402b9bfd4abcd3" kindref="member">GetDaRPos</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>form<sp/>=<sp/>ofRad<sp/>)</highlight><highlight class="keyword"></highlight></codeline>
+<codeline lineno="295"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DaRPos[form];<sp/>}</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight></codeline>
+<codeline lineno="299" refid="classJSBSim_1_1FGFCS_1a5bd88ff542ccd25f24cf968c223b4909" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a5bd88ff542ccd25f24cf968c223b4909" kindref="member">GetDePos</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>form<sp/>=<sp/>ofRad<sp/>)</highlight><highlight class="keyword"></highlight></codeline>
+<codeline lineno="300"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DePos[form];<sp/>}</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"></highlight></codeline>
+<codeline lineno="304" refid="classJSBSim_1_1FGFCS_1aef832f0d068c275f8d07eee7557d66b5" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1aef832f0d068c275f8d07eee7557d66b5" kindref="member">GetDrPos</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>form<sp/>=<sp/>ofRad<sp/>)</highlight><highlight class="keyword"></highlight></codeline>
+<codeline lineno="305"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DrPos[form];<sp/>}</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"></highlight></codeline>
+<codeline lineno="309" refid="classJSBSim_1_1FGFCS_1a6c45165d6f660755cda1903b2215d0c1" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a6c45165d6f660755cda1903b2215d0c1" kindref="member">GetDsbPos</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>form<sp/>=<sp/>ofRad<sp/>)</highlight><highlight class="keyword"></highlight></codeline>
+<codeline lineno="310"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DsbPos[form];<sp/>}</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight></codeline>
+<codeline lineno="314" refid="classJSBSim_1_1FGFCS_1acf8e5f075699432e26034c1bd4866f4c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1acf8e5f075699432e26034c1bd4866f4c" kindref="member">GetDspPos</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>form<sp/>=<sp/>ofRad<sp/>)</highlight><highlight class="keyword"></highlight></codeline>
+<codeline lineno="315"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DspPos[form];<sp/>}</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"></highlight></codeline>
+<codeline lineno="319" refid="classJSBSim_1_1FGFCS_1a19d60d676eda1a38972e7cf3f7c707c7" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a19d60d676eda1a38972e7cf3f7c707c7" kindref="member">GetDfPos</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>form<sp/>=<sp/>ofRad<sp/>)</highlight><highlight class="keyword"></highlight></codeline>
+<codeline lineno="320"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DfPos[form];<sp/>}</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>GetThrottlePos(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>GetThrottlePos()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ThrottlePos;}</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight></codeline>
+<codeline lineno="336" refid="classJSBSim_1_1FGFCS_1ae2c47d6e034213b200e779cf56b2d3d2" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1ae2c47d6e034213b200e779cf56b2d3d2" kindref="member">GetMixturePos</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>MixturePos[engine];<sp/>}</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>GetMixturePos()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>MixturePos;}</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight></codeline>
+<codeline lineno="342" refid="classJSBSim_1_1FGFCS_1abef6934c76d6f38a80cc35cbb1b698a0" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1abef6934c76d6f38a80cc35cbb1b698a0" kindref="member">GetGearPos</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>GearPos;<sp/>}</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"></highlight></codeline>
+<codeline lineno="346" refid="classJSBSim_1_1FGFCS_1a43a4bcedf720ac4c6073ae9b1b8cf0cb" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a43a4bcedf720ac4c6073ae9b1b8cf0cb" kindref="member">GetTailhookPos</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>TailhookPos;<sp/>}</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"></highlight></codeline>
+<codeline lineno="350" refid="classJSBSim_1_1FGFCS_1a9e8b23f5b98f196bac3fe44b63b293ef" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a9e8b23f5b98f196bac3fe44b63b293ef" kindref="member">GetWingFoldPos</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>WingFoldPos;<sp/>}</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"></highlight></codeline>
+<codeline lineno="355" refid="classJSBSim_1_1FGFCS_1ac98c4bb6b5099331bf223b4a150a1e47" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1ac98c4bb6b5099331bf223b4a150a1e47" kindref="member">GetPropAdvance</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>PropAdvance[engine];<sp/>}</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>GetPropAdvance()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>PropAdvance;<sp/>}</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"></highlight></codeline>
+<codeline lineno="362" refid="classJSBSim_1_1FGFCS_1ac192d89471561942c0cfc3b1585c7f48" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1ac192d89471561942c0cfc3b1585c7f48" kindref="member">GetPropFeather</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>PropFeather[engine];<sp/>}</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"></highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;bool&gt;&amp;<sp/>GetPropFeather()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>PropFeather;<sp/>}</highlight></codeline>
+<codeline lineno="366"></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/>std::string<sp/>GetComponentStrings(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>delimiter)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"></highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/>std::string<sp/>GetComponentValues(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>delimiter)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"></highlight></codeline>
+<codeline lineno="379"></codeline>
+<codeline lineno="380"><highlight class="normal"></highlight></codeline>
+<codeline lineno="382" refid="classJSBSim_1_1FGFCS_1a6afc8c6ba357f0d4bf8e7a3210869c13" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a6afc8c6ba357f0d4bf8e7a3210869c13" kindref="member">SetDaCmd</ref>(<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd<sp/>)<sp/>{<sp/>DaCmd<sp/>=<sp/>cmd;<sp/>}</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"></highlight></codeline>
+<codeline lineno="386" refid="classJSBSim_1_1FGFCS_1a5956f8841ee764a75b40f1cc27ab97a9" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a5956f8841ee764a75b40f1cc27ab97a9" kindref="member">SetDeCmd</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd<sp/>)<sp/>{<sp/>DeCmd<sp/>=<sp/>cmd;<sp/>}</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"></highlight></codeline>
+<codeline lineno="390" refid="classJSBSim_1_1FGFCS_1a7374588555161088d62c3e0deb229402" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a7374588555161088d62c3e0deb229402" kindref="member">SetDrCmd</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd)<sp/>{<sp/>DrCmd<sp/>=<sp/>cmd;<sp/>}</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"></highlight></codeline>
+<codeline lineno="394" refid="classJSBSim_1_1FGFCS_1a9df30f127d68cac80b72996975b60653" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a9df30f127d68cac80b72996975b60653" kindref="member">SetDsCmd</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd)<sp/>{<sp/>FDMExec-&gt;<ref refid="classJSBSim_1_1FGFDMExec_1aaf46febf401174f57afe069b7d2f1584" kindref="member">GetGroundReactions</ref>()-&gt;SetDsCmd(<sp/>cmd<sp/>);<sp/>}</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"></highlight></codeline>
+<codeline lineno="398" refid="classJSBSim_1_1FGFCS_1a9d83b3a5788903552ecfa796be6cce6a" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a9d83b3a5788903552ecfa796be6cce6a" kindref="member">SetDfCmd</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd)<sp/>{<sp/>DfCmd<sp/>=<sp/>cmd;<sp/>}</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"></highlight></codeline>
+<codeline lineno="402" refid="classJSBSim_1_1FGFCS_1a1b6c124070acf18a752ed35ee4d4ea53" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a1b6c124070acf18a752ed35ee4d4ea53" kindref="member">SetDsbCmd</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd)<sp/>{<sp/>DsbCmd<sp/>=<sp/>cmd;<sp/>}</highlight></codeline>
+<codeline lineno="403"><highlight class="normal"></highlight></codeline>
+<codeline lineno="406" refid="classJSBSim_1_1FGFCS_1ac57d473561924cef4c3a6b02d93a6f70" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1ac57d473561924cef4c3a6b02d93a6f70" kindref="member">SetDspCmd</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd)<sp/>{<sp/>DspCmd<sp/>=<sp/>cmd;<sp/>}</highlight></codeline>
+<codeline lineno="407"><highlight class="normal"></highlight></codeline>
+<codeline lineno="410" refid="classJSBSim_1_1FGFCS_1a08dee6eb6c94a092ac0bdd8070086e5e" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a08dee6eb6c94a092ac0bdd8070086e5e" kindref="member">SetPitchTrimCmd</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd)<sp/>{<sp/>PTrimCmd<sp/>=<sp/>cmd;<sp/>}</highlight></codeline>
+<codeline lineno="411"><highlight class="normal"></highlight></codeline>
+<codeline lineno="414" refid="classJSBSim_1_1FGFCS_1ad793ed80b083bf580a4690db518d1f48" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1ad793ed80b083bf580a4690db518d1f48" kindref="member">SetYawTrimCmd</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd)<sp/>{<sp/>YTrimCmd<sp/>=<sp/>cmd;<sp/>}</highlight></codeline>
+<codeline lineno="415"><highlight class="normal"></highlight></codeline>
+<codeline lineno="418" refid="classJSBSim_1_1FGFCS_1ad5cb3b7a15f5783653f304553dd22ae2" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1ad5cb3b7a15f5783653f304553dd22ae2" kindref="member">SetRollTrimCmd</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd)<sp/>{<sp/>RTrimCmd<sp/>=<sp/>cmd;<sp/>}</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"></highlight></codeline>
+<codeline lineno="423"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetThrottleCmd(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd);</highlight></codeline>
+<codeline lineno="424"><highlight class="normal"></highlight></codeline>
+<codeline lineno="432"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetMixtureCmd(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd);</highlight></codeline>
+<codeline lineno="433"><highlight class="normal"></highlight></codeline>
+<codeline lineno="436" refid="classJSBSim_1_1FGFCS_1afc2a723a1286ef37ad48b2b876b89c11" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1afc2a723a1286ef37ad48b2b876b89c11" kindref="member">SetGearCmd</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gearcmd)<sp/>{<sp/>GearCmd<sp/>=<sp/>gearcmd;<sp/>}</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"></highlight></codeline>
+<codeline lineno="441"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetPropAdvanceCmd(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd);</highlight></codeline>
+<codeline lineno="442"><highlight class="normal"></highlight></codeline>
+<codeline lineno="446"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetFeatherCmd(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>cmd);</highlight></codeline>
+<codeline lineno="448"></codeline>
+<codeline lineno="450"></codeline>
+<codeline lineno="451"><highlight class="normal"></highlight></codeline>
+<codeline lineno="453"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetDaLPos(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>form<sp/>,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pos<sp/>);</highlight></codeline>
+<codeline lineno="454"><highlight class="normal"></highlight></codeline>
+<codeline lineno="457"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetDaRPos(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>form<sp/>,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pos<sp/>);</highlight></codeline>
+<codeline lineno="458"><highlight class="normal"></highlight></codeline>
+<codeline lineno="461"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetDePos(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>form<sp/>,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pos<sp/>);</highlight></codeline>
+<codeline lineno="462"><highlight class="normal"></highlight></codeline>
+<codeline lineno="465"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetDrPos(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>form<sp/>,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pos<sp/>);</highlight></codeline>
+<codeline lineno="466"><highlight class="normal"></highlight></codeline>
+<codeline lineno="469"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetDfPos(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>form<sp/>,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pos<sp/>);</highlight></codeline>
+<codeline lineno="470"><highlight class="normal"></highlight></codeline>
+<codeline lineno="473"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetDsbPos(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>form<sp/>,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pos<sp/>);</highlight></codeline>
+<codeline lineno="474"><highlight class="normal"></highlight></codeline>
+<codeline lineno="477"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetDspPos(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>form<sp/>,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pos<sp/>);</highlight></codeline>
+<codeline lineno="478"><highlight class="normal"></highlight></codeline>
+<codeline lineno="482"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetThrottlePos(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd);</highlight></codeline>
+<codeline lineno="483"><highlight class="normal"></highlight></codeline>
+<codeline lineno="494"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetMixturePos(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd);</highlight></codeline>
+<codeline lineno="495"><highlight class="normal"></highlight></codeline>
+<codeline lineno="498" refid="classJSBSim_1_1FGFCS_1a140a8869f06b82e9a760fe582f139a2d" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a140a8869f06b82e9a760fe582f139a2d" kindref="member">SetGearPos</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gearpos)<sp/>{<sp/>GearPos<sp/>=<sp/>gearpos;<sp/>}</highlight></codeline>
+<codeline lineno="499"><highlight class="normal"></highlight></codeline>
+<codeline lineno="502" refid="classJSBSim_1_1FGFCS_1a9d68a6444ea45b2ae7f41fd989a0bb02" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a9d68a6444ea45b2ae7f41fd989a0bb02" kindref="member">SetTailhookPos</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>hookpos)<sp/>{<sp/>TailhookPos<sp/>=<sp/>hookpos;<sp/>}</highlight></codeline>
+<codeline lineno="503"><highlight class="normal"></highlight></codeline>
+<codeline lineno="506" refid="classJSBSim_1_1FGFCS_1aed470d586c2e98246ac7d395df964c27" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1aed470d586c2e98246ac7d395df964c27" kindref="member">SetWingFoldPos</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>foldpos)<sp/>{<sp/>WingFoldPos<sp/>=<sp/>foldpos;<sp/>}</highlight></codeline>
+<codeline lineno="507"><highlight class="normal"></highlight></codeline>
+<codeline lineno="511"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetPropAdvance(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd);</highlight></codeline>
+<codeline lineno="512"><highlight class="normal"></highlight></codeline>
+<codeline lineno="516"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetPropFeather(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>engine,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>cmd);</highlight></codeline>
+<codeline lineno="518"></codeline>
+<codeline lineno="520"></codeline>
+<codeline lineno="521"><highlight class="normal"></highlight></codeline>
+<codeline lineno="523" refid="classJSBSim_1_1FGFCS_1ac717f29cfe6498e139f37a8cd139ecd7" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1ac717f29cfe6498e139f37a8cd139ecd7" kindref="member">SetLBrake</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd)<sp/>{BrakePos[FGLGear::bgLeft]<sp/>=<sp/>cmd;}</highlight></codeline>
+<codeline lineno="524"><highlight class="normal"></highlight></codeline>
+<codeline lineno="527" refid="classJSBSim_1_1FGFCS_1a73180963bad52579d162d024487c9f36" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a73180963bad52579d162d024487c9f36" kindref="member">SetRBrake</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd)<sp/>{BrakePos[FGLGear::bgRight]<sp/>=<sp/>cmd;}</highlight></codeline>
+<codeline lineno="528"><highlight class="normal"></highlight></codeline>
+<codeline lineno="531" refid="classJSBSim_1_1FGFCS_1ad0833f947e79b041703133d7492cb277" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1ad0833f947e79b041703133d7492cb277" kindref="member">SetCBrake</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cmd)<sp/>{BrakePos[FGLGear::bgCenter]<sp/>=<sp/>cmd;}</highlight></codeline>
+<codeline lineno="532"><highlight class="normal"></highlight></codeline>
+<codeline lineno="536"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>GetBrake(<ref refid="classJSBSim_1_1FGLGear_1a24096c0c545895485f543b996fe07648" kindref="member">FGLGear::BrakeGroup</ref><sp/>bg);</highlight></codeline>
+<codeline lineno="537"><highlight class="normal"></highlight></codeline>
+<codeline lineno="538"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>GetBrakePos()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>BrakePos;}</highlight></codeline>
+<codeline lineno="539"><highlight class="normal"></highlight></codeline>
+<codeline lineno="542" refid="classJSBSim_1_1FGFCS_1a19abf2d9c995a52fddaa96dac3e0ae64" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a19abf2d9c995a52fddaa96dac3e0ae64" kindref="member">GetLBrake</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>BrakePos[FGLGear::bgLeft];}</highlight></codeline>
+<codeline lineno="543"><highlight class="normal"></highlight></codeline>
+<codeline lineno="546" refid="classJSBSim_1_1FGFCS_1a6dcfd89596f92cd9a76955f7a6350d66" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a6dcfd89596f92cd9a76955f7a6350d66" kindref="member">GetRBrake</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>BrakePos[FGLGear::bgRight];}</highlight></codeline>
+<codeline lineno="547"><highlight class="normal"></highlight></codeline>
+<codeline lineno="550" refid="classJSBSim_1_1FGFCS_1a15cf9085b00149fd82aea3bcb4bc7589" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classJSBSim_1_1FGFCS_1a15cf9085b00149fd82aea3bcb4bc7589" kindref="member">GetCBrake</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>BrakePos[FGLGear::bgCenter];}</highlight></codeline>
+<codeline lineno="552"><highlight class="normal"></highlight></codeline>
+<codeline lineno="553"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>SystemType<sp/>{<sp/>stFCS,<sp/>stSystem,<sp/>stAutoPilot<sp/>};</highlight></codeline>
+<codeline lineno="554"><highlight class="normal"></highlight></codeline>
+<codeline lineno="559"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Load(Element*<sp/>el)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="560"><highlight class="normal"></highlight></codeline>
+<codeline lineno="561"><highlight class="normal"><sp/><sp/>SGPath<sp/>FindFullPathName(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SGPath&amp;<sp/>path)<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="562"><highlight class="normal"></highlight></codeline>
+<codeline lineno="563"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AddThrottle(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="564"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>GetDt(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="565"><highlight class="normal"></highlight></codeline>
+<codeline lineno="566"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;FGPropertyManager&gt;<sp/>GetPropertyManager(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>PropertyManager;<sp/>}</highlight></codeline>
+<codeline lineno="567"><highlight class="normal"></highlight></codeline>
+<codeline lineno="568"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>GetTrimStatus(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>FDMExec-&gt;GetTrimStatus();<sp/>}</highlight></codeline>
+<codeline lineno="569"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>GetChannelDeltaT(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>GetDt()<sp/>*<sp/>ChannelRate;<sp/>}</highlight></codeline>
+<codeline lineno="570"><highlight class="normal"></highlight></codeline>
+<codeline lineno="571"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="572"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>DaCmd,<sp/>DeCmd,<sp/>DrCmd,<sp/>DfCmd,<sp/>DsbCmd,<sp/>DspCmd;</highlight></codeline>
+<codeline lineno="573"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>DePos[NForms],<sp/>DaLPos[NForms],<sp/>DaRPos[NForms],<sp/>DrPos[NForms];</highlight></codeline>
+<codeline lineno="574"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>DfPos[NForms],<sp/>DsbPos[NForms],<sp/>DspPos[NForms];</highlight></codeline>
+<codeline lineno="575"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>PTrimCmd,<sp/>YTrimCmd,<sp/>RTrimCmd;</highlight></codeline>
+<codeline lineno="576"><highlight class="normal"><sp/><sp/>std::vector<sp/>&lt;double&gt;<sp/>ThrottleCmd;</highlight></codeline>
+<codeline lineno="577"><highlight class="normal"><sp/><sp/>std::vector<sp/>&lt;double&gt;<sp/>ThrottlePos;</highlight></codeline>
+<codeline lineno="578"><highlight class="normal"><sp/><sp/>std::vector<sp/>&lt;double&gt;<sp/>MixtureCmd;</highlight></codeline>
+<codeline lineno="579"><highlight class="normal"><sp/><sp/>std::vector<sp/>&lt;double&gt;<sp/>MixturePos;</highlight></codeline>
+<codeline lineno="580"><highlight class="normal"><sp/><sp/>std::vector<sp/>&lt;double&gt;<sp/>PropAdvanceCmd;</highlight></codeline>
+<codeline lineno="581"><highlight class="normal"><sp/><sp/>std::vector<sp/>&lt;double&gt;<sp/>PropAdvance;</highlight></codeline>
+<codeline lineno="582"><highlight class="normal"><sp/><sp/>std::vector<sp/>&lt;bool&gt;<sp/>PropFeatherCmd;</highlight></codeline>
+<codeline lineno="583"><highlight class="normal"><sp/><sp/>std::vector<sp/>&lt;bool&gt;<sp/>PropFeather;</highlight></codeline>
+<codeline lineno="584"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//double<sp/>LeftBrake,<sp/>RightBrake,<sp/>CenterBrake;<sp/>//<sp/>Brake<sp/>settings</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="585"><highlight class="normal"><sp/><sp/>std::vector<sp/>&lt;double&gt;<sp/>BrakePos;<sp/></highlight><highlight class="comment">//<sp/>left,<sp/>center,<sp/>right<sp/>-<sp/>defined<sp/>by<sp/>FGLGear::<sp/>enum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="586"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>GearCmd,GearPos;</highlight></codeline>
+<codeline lineno="587"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>TailhookPos,<sp/>WingFoldPos;</highlight></codeline>
+<codeline lineno="588"><highlight class="normal"><sp/><sp/>SystemType<sp/>systype;</highlight></codeline>
+<codeline lineno="589"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ChannelRate;</highlight></codeline>
+<codeline lineno="590"><highlight class="normal"></highlight></codeline>
+<codeline lineno="591"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::vector<sp/>&lt;FGFCSChannel*&gt;<sp/>Channels;</highlight></codeline>
+<codeline lineno="592"><highlight class="normal"><sp/><sp/>Channels<sp/>SystemChannels;</highlight></codeline>
+<codeline lineno="593"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>bind(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="594"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>bindThrottle(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="595"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Debug(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>from)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="596"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="597"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="598"><highlight class="normal"></highlight></codeline>
+<codeline lineno="599"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGFCS.h"/>
+  </compounddef>
+</doxygen>

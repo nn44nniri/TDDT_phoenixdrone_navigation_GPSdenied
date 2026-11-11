@@ -1,0 +1,66 @@
+--- a/libraries/SITL/SIM_JSBSim.cpp
++++ b/libraries/SITL/SIM_JSBSim.cpp
+@@ -185,25 +185,44 @@
+     }
+     float r, p, y;
+     dcm.to_euler(&r, &p, &y);
+-    const float initial_alt_m = phoenix_v3 ? 0.08f : 1.3f;
+-    const float initial_pitch_deg = phoenix_v3 ? 89.0f : 13.0f;
+-    fprintf(f,
+-            "<?xml version=\"1.0\"?>\n"
+-            "<initialize name=\"Start up location\">\n"
+-            "  <latitude unit=\"DEG\" type=\"geodetic\"> %f </latitude>\n"
+-            "  <longitude unit=\"DEG\"> %f </longitude>\n"
+-            "  <altitude unit=\"M\"> %f </altitude>\n"
+-            "  <vt unit=\"FT/SEC\"> 0.0 </vt>\n"
+-            "  <gamma unit=\"DEG\"> 0.0 </gamma>\n"
+-            "  <phi unit=\"DEG\"> 0.0 </phi>\n"
+-            "  <theta unit=\"DEG\"> %f </theta>\n"
+-            "  <psi unit=\"DEG\"> %f </psi>\n"
+-            "</initialize>\n",
+-            home.lat*1.0e-7,
+-            home.lng*1.0e-7,
+-            initial_alt_m,
+-            initial_pitch_deg,
+-            degrees(y));
++    if (phoenix_v3) {
++        // Do not specify gamma for the zero-speed tailsitter initial condition.
++        // In JSBSim IC processing gamma is a flight-path constraint and can
++        // cause an explicitly supplied theta to be recomputed/ignored.  Use
++        // zero BODY velocity instead so the 89 deg local pitch is authoritative.
++        fprintf(f,
++                "<?xml version=\"1.0\"?>\n"
++                "<initialize name=\"Phoenix ground VTOL start\">\n"
++                "  <latitude unit=\"DEG\" type=\"geodetic\"> %f </latitude>\n"
++                "  <longitude unit=\"DEG\"> %f </longitude>\n"
++                "  <altitudeAGL unit=\"M\"> 0.141025821708132 </altitudeAGL>\n"
++                "  <ubody unit=\"FT/SEC\"> 0.0 </ubody>\n"
++                "  <vbody unit=\"FT/SEC\"> 0.0 </vbody>\n"
++                "  <wbody unit=\"FT/SEC\"> 0.0 </wbody>\n"
++                "  <phi unit=\"DEG\"> 0.0 </phi>\n"
++                "  <theta unit=\"DEG\"> 89.0 </theta>\n"
++                "  <psi unit=\"DEG\"> %f </psi>\n"
++                "</initialize>\n",
++                home.lat*1.0e-7,
++                home.lng*1.0e-7,
++                degrees(y));
++    } else {
++        fprintf(f,
++                "<?xml version=\"1.0\"?>\n"
++                "<initialize name=\"Start up location\">\n"
++                "  <latitude unit=\"DEG\" type=\"geodetic\"> %f </latitude>\n"
++                "  <longitude unit=\"DEG\"> %f </longitude>\n"
++                "  <altitude unit=\"M\"> 1.3 </altitude>\n"
++                "  <vt unit=\"FT/SEC\"> 0.0 </vt>\n"
++                "  <gamma unit=\"DEG\"> 0.0 </gamma>\n"
++                "  <phi unit=\"DEG\"> 0.0 </phi>\n"
++                "  <theta unit=\"DEG\"> 13.0 </theta>\n"
++                "  <psi unit=\"DEG\"> %f </psi>\n"
++                "</initialize>\n",
++                home.lat*1.0e-7,
++                home.lng*1.0e-7,
++                degrees(y));
++    }
+     fclose(f);
+ 
+     created_templates = true;

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>JSBSim</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An Open Source, Object-Oriented, Cross-Platform Flight Dynamics Model in C++</para>
+<sect1 id="index_1intro">
+<title>Introduction</title>
+<para>JSBSim is an open source, multi-platform, object-oriented flight dynamics model (FDM) framework written in the C++ programming language. It is designed to support simulation modeling of any aerospace craft without the need for specific compiled and linked program code, instead relying on a versatile and powerful specification written in an XML format. The format is formally known as JSBSim-ML (JSBSim Markup Language).</para>
+<para>JSBSim (<ulink url="https://www.jsbsim.org">www.jsbsim.org</ulink>) was created initially for the open source FlightGear flight simulator (<ulink url="https://www.flightgear.org">www.flightgear.org</ulink>). JSBSim maintains the ability to run as a standalone executable in soft real-time, or batch mode. This is useful for running tests or sets of tests automatically using the internal scripting capability.</para>
+<para>JSBSim does not model specific aircraft in program code. The aircraft itself is defined in a file written in an XML-based format where the aircraft mass and geometric properties are specified. Additional statements define such characteristics as:</para>
+<para><itemizedlist>
+<listitem><para>Landing gear location and properties.</para>
+</listitem><listitem><para>Pilot eyepoint</para>
+</listitem><listitem><para>Additional point masses (passengers, cargo, etc.)</para>
+</listitem><listitem><para>Propulsion system (engines, fuel tanks, and &quot;thrusters&quot;)</para>
+</listitem><listitem><para>Flight control system</para>
+</listitem><listitem><para>Autopilot</para>
+</listitem><listitem><para>Aerodynamic stability derivatives and coefficients</para>
+</listitem></itemizedlist>
+</para>
+<para>The configuration file format is set up to be easily comprehensible, for instance featuring textbook-like coefficients, which enables newcomers to become immediately fluent in describing vehicles, and requiring only prior basic theoretical aero knowledge.</para>
+<para>One of the more unique features of JSBSim is its method of modeling aircraft systems such as a flight control system, autopilot, electrical, etc. These are modeled by assembling strings of components that represent filters, switches, summers, gains, sensors, and so on.</para>
+<para>Another unique feature is displayed in the use of &quot;properties&quot;. Properties essentially expose chosen variables as nodes in a tree, in a directory-like hierarchy. This approach facilitates plugging in different FDMs (Flight Dynamics Model) into FlightGear, but it also is a fundamental tool in allowing a wide range of aircraft to be modeled, each having its own unique control system, aerosurfaces, and flight deck instrument panel. The use of properties allows all these items for a craft to be modeled and integrated without the need for specific and unique program source code.</para>
+<para>The equations of motion are modeled essentially as they are presented in aerospace textbooks for the benefit of student users, but quaternions are used to track orientation, avoiding &quot;gimbal lock&quot;. JSBSim can model the atmospheric flight of an aircraft, or the motion of a spacecraft in orbit. Coriolis and centripetal accelerations are incorporated into the EOM.</para>
+<para>JSBSim can output (log) data in a configurable way. Sets of data that are logically related can be selected to be output at a chosen rate, and individual properties can be selected for output. The output can be streamed to the console, and/or to a file (or files), and/or can be transmitted through a socket or sockets, or any combination of the aforementioned methods.</para>
+<para>JSBSim has been used in a variety of ways:</para>
+<para><itemizedlist>
+<listitem><para>For developing control laws for a sounding rocket</para>
+</listitem><listitem><para>For crafting an aircraft autopilot as part of a thesis project</para>
+</listitem><listitem><para>As a flight model for FlightGear</para>
+</listitem><listitem><para>As an FDM that drives motion base simulators for some commercial/entertainment simulators</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="index_1platforms">
+<title>Supported Platforms</title>
+<para>JSBSim has been built on the following platforms:</para>
+<para><itemizedlist>
+<listitem><para>Linux (x86)</para>
+</listitem><listitem><para>Windows (MSVC, Cygwin, Mingwin)</para>
+</listitem><listitem><para>Mac OS X</para>
+</listitem><listitem><para>FreeBSD</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="index_1depends">
+<title>Dependencies</title>
+<para>JSBSim has no external dependencies at present. No code is autogenerated.</para>
+</sect1>
+<sect1 id="index_1license">
+<title>Licensing</title>
+<para>JSBSim is licensed under the terms of the Lesser GPL (LGPL)</para>
+</sect1>
+<sect1 id="index_1website">
+<title>Website</title>
+<para>For more information, see the JSBSim web site:  href=&quot;https://www.jsbsim.org&quot;&gt;www.jsbsim.org. </para>
+</sect1>
+    </detaileddescription>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/JSBSim.cpp"/>
+  </compounddef>
+</doxygen>

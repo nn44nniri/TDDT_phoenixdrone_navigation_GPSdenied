@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classSGPropertyChangeListener" kind="class" language="C++" prot="public">
+    <compoundname>SGPropertyChangeListener</compoundname>
+    <derivedcompoundref refid="classSGPropertyChangeCallback" prot="public" virt="non-virtual">SGPropertyChangeCallback&lt; T &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classTimer" prot="public" virt="non-virtual">Timer</derivedcompoundref>
+    <includes refid="props_8hxx" local="no">props.hxx</includes>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classSGPropertyChangeListener_1a6adc2d51be669c7cc4edf009bd107c52" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class SGPropertyNode</definition>
+        <argsstring></argsstring>
+        <name>SGPropertyNode</name>
+        <qualifiedname>SGPropertyChangeListener::SGPropertyNode</qualifiedname>
+        <param>
+          <type><ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="734" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="734" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classSGPropertyChangeListener_1ac8677d16cea0efd7826fd168d02c0002" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> * &gt;</type>
+        <definition>std::vector&lt;SGPropertyNode *&gt; _properties</definition>
+        <argsstring></argsstring>
+        <name>_properties</name>
+        <qualifiedname>SGPropertyChangeListener::_properties</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="739" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="739" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSGPropertyChangeListener_1a9642910946a4a981cf233187b1d5d1ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual ~SGPropertyChangeListener</definition>
+        <argsstring>()</argsstring>
+        <name>~SGPropertyChangeListener</name>
+        <qualifiedname>SGPropertyChangeListener::~SGPropertyChangeListener</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="722" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGPropertyChangeListener_1a198a5bc394310efe23d5d276c6d3678a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void childAdded</definition>
+        <argsstring>(SGPropertyNode *parent, SGPropertyNode *child)</argsstring>
+        <name>childAdded</name>
+        <qualifiedname>SGPropertyChangeListener::childAdded</qualifiedname>
+        <param>
+          <type><ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> *</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type><ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> *</type>
+          <declname>child</declname>
+        </param>
+        <briefdescription>
+<para>Called if <emphasis>child</emphasis> has been added to the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="728" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGPropertyChangeListener_1ad4c1216d91194882623885b6573d322c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void childRemoved</definition>
+        <argsstring>(SGPropertyNode *parent, SGPropertyNode *child)</argsstring>
+        <name>childRemoved</name>
+        <qualifiedname>SGPropertyChangeListener::childRemoved</qualifiedname>
+        <param>
+          <type><ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> *</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type><ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> *</type>
+          <declname>child</declname>
+        </param>
+        <briefdescription>
+<para>Called if <emphasis>child</emphasis> has been removed from its <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="731" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGPropertyChangeListener_1ab3cbbed0d666dbe00f8bb5b257a9b888" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void valueChanged</definition>
+        <argsstring>(SGPropertyNode *node)</argsstring>
+        <name>valueChanged</name>
+        <qualifiedname>SGPropertyChangeListener::valueChanged</qualifiedname>
+        <reimplementedby refid="classSGPropertyChangeCallback_1ace3528d576d3d559f900820da6c41ad8">valueChanged</reimplementedby>
+        <reimplementedby refid="classTimer_1a4f7d4c54967f605b6d473bc7feddd722">valueChanged</reimplementedby>
+        <param>
+          <type><ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> *</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>Called if value of <emphasis>node</emphasis> has changed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="725" column="16"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classSGPropertyChangeListener_1a61dc35b0015d754ab82884058972a4c8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void register_property</definition>
+        <argsstring>(SGPropertyNode *node)</argsstring>
+        <name>register_property</name>
+        <qualifiedname>SGPropertyChangeListener::register_property</qualifiedname>
+        <param>
+          <type><ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> *</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="735" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGPropertyChangeListener_1a067ef533dbf5080683a34599e2c2de84" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void unregister_property</definition>
+        <argsstring>(SGPropertyNode *node)</argsstring>
+        <name>unregister_property</name>
+        <qualifiedname>SGPropertyChangeListener::unregister_property</qualifiedname>
+        <param>
+          <type><ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> *</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="736" column="16"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The property change listener interface. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Any class that needs to listen for property changes must implement this interface.</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>SGPropertyChangeCallback&lt; T &gt;</label>
+        <link refid="classSGPropertyChangeCallback"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>SGPropertyChangeListener</label>
+        <link refid="classSGPropertyChangeListener"/>
+      </node>
+      <node id="3">
+        <label>Timer</label>
+        <link refid="classTimer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="719" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="720" bodyend="740"/>
+    <listofallmembers>
+      <member refid="classSGPropertyChangeListener_1ac8677d16cea0efd7826fd168d02c0002" prot="private" virt="non-virtual"><scope>SGPropertyChangeListener</scope><name>_properties</name></member>
+      <member refid="classSGPropertyChangeListener_1a198a5bc394310efe23d5d276c6d3678a" prot="public" virt="virtual"><scope>SGPropertyChangeListener</scope><name>childAdded</name></member>
+      <member refid="classSGPropertyChangeListener_1ad4c1216d91194882623885b6573d322c" prot="public" virt="virtual"><scope>SGPropertyChangeListener</scope><name>childRemoved</name></member>
+      <member refid="classSGPropertyChangeListener_1a61dc35b0015d754ab82884058972a4c8" prot="protected" virt="virtual"><scope>SGPropertyChangeListener</scope><name>register_property</name></member>
+      <member refid="classSGPropertyChangeListener_1a6adc2d51be669c7cc4edf009bd107c52" prot="protected" virt="non-virtual"><scope>SGPropertyChangeListener</scope><name>SGPropertyNode</name></member>
+      <member refid="classSGPropertyChangeListener_1a067ef533dbf5080683a34599e2c2de84" prot="protected" virt="virtual"><scope>SGPropertyChangeListener</scope><name>unregister_property</name></member>
+      <member refid="classSGPropertyChangeListener_1ab3cbbed0d666dbe00f8bb5b257a9b888" prot="public" virt="virtual"><scope>SGPropertyChangeListener</scope><name>valueChanged</name></member>
+      <member refid="classSGPropertyChangeListener_1a9642910946a4a981cf233187b1d5d1ef" prot="public" virt="virtual"><scope>SGPropertyChangeListener</scope><name>~SGPropertyChangeListener</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

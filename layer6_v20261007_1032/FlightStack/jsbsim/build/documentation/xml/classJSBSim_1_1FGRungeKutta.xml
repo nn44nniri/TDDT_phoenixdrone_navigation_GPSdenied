@@ -1,0 +1,520 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classJSBSim_1_1FGRungeKutta" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>JSBSim::FGRungeKutta</compoundname>
+    <derivedcompoundref refid="classJSBSim_1_1FGRK4" prot="public" virt="non-virtual">FGRK4</derivedcompoundref>
+    <derivedcompoundref refid="classJSBSim_1_1FGRKFehlberg" prot="public" virt="non-virtual">FGRKFehlberg</derivedcompoundref>
+    <includes refid="FGRungeKutta_8h" local="no">FGRungeKutta.h</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classJSBSim_1_1FGRungeKutta_1a2fb15283c8e5bf9cf14972730af879e9" prot="public" static="no" strong="no">
+        <type></type>
+        <name>eStates</name>
+        <qualifiedname>JSBSim::FGRungeKutta::eStates</qualifiedname>
+        <enumvalue id="classJSBSim_1_1FGRungeKutta_1a2fb15283c8e5bf9cf14972730af879e9a8c8e213ecccbb012954699a9b224bf2d" prot="public">
+          <name>eNoError</name>
+          <initializer>=0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGRungeKutta_1a2fb15283c8e5bf9cf14972730af879e9a713425f6530864c91c2357ae1345bbd1" prot="public">
+          <name>eMathError</name>
+          <initializer>=1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGRungeKutta_1a2fb15283c8e5bf9cf14972730af879e9a30ed67f440ce0c8e8bd730ecb238fe2f" prot="public">
+          <name>eFaultyInit</name>
+          <initializer>=2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGRungeKutta_1a2fb15283c8e5bf9cf14972730af879e9af0e414f706893b4a0ec3b4851071a331" prot="public">
+          <name>eEvolve</name>
+          <initializer>=4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGRungeKutta_1a2fb15283c8e5bf9cf14972730af879e9a9b5dc9f36b7d7222c3ef1ca139c0b71a" prot="public">
+          <name>eUnknown</name>
+          <initializer>=8</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="82" column="5" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="82" bodyend="82"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGRungeKutta_1a55d4705f18b6642537bbb2526f5221ca" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double err</definition>
+        <argsstring></argsstring>
+        <name>err</name>
+        <qualifiedname>JSBSim::FGRungeKutta::err</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="105" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGRungeKutta_1a8ee9be1b5aa75abae556de3088cba6d9" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double h</definition>
+        <argsstring></argsstring>
+        <name>h</name>
+        <qualifiedname>JSBSim::FGRungeKutta::h</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="103" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGRungeKutta_1a7585534bbaaaa7579130d507db3450b7" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double h05</definition>
+        <argsstring></argsstring>
+        <name>h05</name>
+        <qualifiedname>JSBSim::FGRungeKutta::h05</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="104" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGRungeKutta_1aa92abf9e854257b9355d32ae3f627f7a" prot="protected" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGRungeKuttaProblem" kindref="compound">FGRungeKuttaProblem</ref> *</type>
+        <definition>FGRungeKuttaProblem* pfo</definition>
+        <argsstring></argsstring>
+        <name>pfo</name>
+        <qualifiedname>JSBSim::FGRungeKutta::pfo</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="101" column="25" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGRungeKutta_1a682c957039a3256aad95b8b144ca2c10" prot="private" static="yes" mutable="no">
+        <type>const double</type>
+        <definition>const double RealLimit</definition>
+        <argsstring></argsstring>
+        <name>RealLimit</name>
+        <qualifiedname>JSBSim::FGRungeKutta::RealLimit</qualifiedname>
+        <initializer>= 1e30</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="113" column="25" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGRungeKutta_1a1d10e252e778731e59f0f71afd7e727e" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int iterations</definition>
+        <argsstring></argsstring>
+        <name>iterations</name>
+        <qualifiedname>JSBSim::FGRungeKutta::iterations</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="121" column="9" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGRungeKutta_1a1effcf875007b8996492f53035501019" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double safer_x1</definition>
+        <argsstring></argsstring>
+        <name>safer_x1</name>
+        <qualifiedname>JSBSim::FGRungeKutta::safer_x1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="116" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGRungeKutta_1a6e27f49150e9a14580fb313cc2777e00" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <qualifiedname>JSBSim::FGRungeKutta::status</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="119" column="9" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGRungeKutta_1a57da5a3396933b5d2ae0fb110eded052" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool trace_values</definition>
+        <argsstring></argsstring>
+        <name>trace_values</name>
+        <qualifiedname>JSBSim::FGRungeKutta::trace_values</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="120" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGRungeKutta_1ae553c80321ef2d7c454cc4f62b42d0d1" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double x0</definition>
+        <argsstring></argsstring>
+        <name>x0</name>
+        <qualifiedname>JSBSim::FGRungeKutta::x0</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="115" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGRungeKutta_1ac75b803b570527306e1e744bfb7a604f" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double x1</definition>
+        <argsstring></argsstring>
+        <name>x1</name>
+        <qualifiedname>JSBSim::FGRungeKutta::x1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="115" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGRungeKutta_1a40228eb71d59eed051fc5b1a1eff4b4c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double x_end</definition>
+        <argsstring></argsstring>
+        <name>x_end</name>
+        <qualifiedname>JSBSim::FGRungeKutta::x_end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="117" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGRungeKutta_1a904a80a9a54910609e8c76caa913159e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void clearStatus</definition>
+        <argsstring>()</argsstring>
+        <name>clearStatus</name>
+        <qualifiedname>JSBSim::FGRungeKutta::clearStatus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="93" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="93" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGRungeKutta_1aeed6670f2402edd0a57df60149562551" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double evolve</definition>
+        <argsstring>(double y_0, FGRungeKuttaProblem *pf)</argsstring>
+        <name>evolve</name>
+        <qualifiedname>JSBSim::FGRungeKutta::evolve</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>y_0</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGRungeKuttaProblem" kindref="compound">FGRungeKuttaProblem</ref> *</type>
+          <declname>pf</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="86" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.cpp" bodystart="87" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGRungeKutta_1a5fff78b8986d5af58507333e2bf96f3b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double getError</definition>
+        <argsstring>()</argsstring>
+        <name>getError</name>
+        <qualifiedname>JSBSim::FGRungeKutta::getError</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="89" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="89" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGRungeKutta_1aaaaf98a1f23790d810bcb93a95ac0b3f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int getIterations</definition>
+        <argsstring>()</argsstring>
+        <name>getIterations</name>
+        <qualifiedname>JSBSim::FGRungeKutta::getIterations</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="92" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGRungeKutta_1aebb0e2b33c2ec4bdcc13aaaf1642326f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int getStatus</definition>
+        <argsstring>()</argsstring>
+        <name>getStatus</name>
+        <qualifiedname>JSBSim::FGRungeKutta::getStatus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="91" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGRungeKutta_1af62d35f31a833b18428ec68baa9afd5c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double getXEnd</definition>
+        <argsstring>()</argsstring>
+        <name>getXEnd</name>
+        <qualifiedname>JSBSim::FGRungeKutta::getXEnd</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="88" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGRungeKutta_1abd89894412f52ec415a0542eb2848321" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int init</definition>
+        <argsstring>(double x_start, double x_end, int intervals=4)</argsstring>
+        <name>init</name>
+        <qualifiedname>JSBSim::FGRungeKutta::init</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x_start</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>x_end</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>intervals</declname>
+          <defval>4</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="84" column="9" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.cpp" bodystart="54" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGRungeKutta_1a071e2bc87c1f2023d073af26a6ee7742" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void setTrace</definition>
+        <argsstring>(bool t)</argsstring>
+        <name>setTrace</name>
+        <qualifiedname>JSBSim::FGRungeKutta::setTrace</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="94" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="94" bodyend="94"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGRungeKutta_1af9adee6ce490a95c1972a11d2b2f385d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>FGRungeKutta</definition>
+        <argsstring>()</argsstring>
+        <name>FGRungeKutta</name>
+        <qualifiedname>JSBSim::FGRungeKutta::FGRungeKutta</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="98" column="5" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="98" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGRungeKutta_1a840960b6f788ea3336188762b39a354b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>~FGRungeKutta</definition>
+        <argsstring>()</argsstring>
+        <name>~FGRungeKutta</name>
+        <qualifiedname>JSBSim::FGRungeKutta::~FGRungeKutta</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="99" column="13" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.cpp" bodystart="52" bodyend="52"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGRungeKutta_1abb6a6fa7d5017a4ef3a8c680843897e9" prot="private" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double approximate</definition>
+        <argsstring>(double x, double y)=0</argsstring>
+        <name>approximate</name>
+        <qualifiedname>JSBSim::FGRungeKutta::approximate</qualifiedname>
+        <reimplementedby refid="classJSBSim_1_1FGRK4_1abfb01a90bd8549715f61f43326dd07ce">approximate</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGRKFehlberg_1abfb01a90bd8549715f61f43326dd07ce">approximate</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="109" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGRungeKutta_1a0d7397b842e53e83633196fe8a8334c3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool sane_val</definition>
+        <argsstring>(double x)</argsstring>
+        <name>sane_val</name>
+        <qualifiedname>JSBSim::FGRungeKutta::sane_val</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="111" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.cpp" bodystart="78" bodyend="83"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Abstract base. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FGRungeKutta</label>
+        <link refid="classJSBSim_1_1FGRungeKutta"/>
+      </node>
+      <node id="2">
+        <label>FGRK4</label>
+        <link refid="classJSBSim_1_1FGRK4"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>FGRKFehlberg</label>
+        <link refid="classJSBSim_1_1FGRKFehlberg"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>FGRungeKutta</label>
+        <link refid="classJSBSim_1_1FGRungeKutta"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>pfo</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGRungeKuttaProblem</label>
+        <link refid="classJSBSim_1_1FGRungeKuttaProblem"/>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" line="78" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGRungeKutta.h" bodystart="78" bodyend="123"/>
+    <listofallmembers>
+      <member refid="classJSBSim_1_1FGRungeKutta_1abb6a6fa7d5017a4ef3a8c680843897e9" prot="private" virt="pure-virtual"><scope>JSBSim::FGRungeKutta</scope><name>approximate</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a904a80a9a54910609e8c76caa913159e" prot="public" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>clearStatus</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a2fb15283c8e5bf9cf14972730af879e9af0e414f706893b4a0ec3b4851071a331" prot="public" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>eEvolve</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a2fb15283c8e5bf9cf14972730af879e9a30ed67f440ce0c8e8bd730ecb238fe2f" prot="public" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>eFaultyInit</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a2fb15283c8e5bf9cf14972730af879e9a713425f6530864c91c2357ae1345bbd1" prot="public" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>eMathError</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a2fb15283c8e5bf9cf14972730af879e9a8c8e213ecccbb012954699a9b224bf2d" prot="public" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>eNoError</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a55d4705f18b6642537bbb2526f5221ca" prot="protected" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>err</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a2fb15283c8e5bf9cf14972730af879e9" prot="public" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>eStates</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a2fb15283c8e5bf9cf14972730af879e9a9b5dc9f36b7d7222c3ef1ca139c0b71a" prot="public" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>eUnknown</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1aeed6670f2402edd0a57df60149562551" prot="public" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>evolve</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1af9adee6ce490a95c1972a11d2b2f385d" prot="protected" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>FGRungeKutta</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a5fff78b8986d5af58507333e2bf96f3b" prot="public" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>getError</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1aaaaf98a1f23790d810bcb93a95ac0b3f" prot="public" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>getIterations</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1aebb0e2b33c2ec4bdcc13aaaf1642326f" prot="public" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>getStatus</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1af62d35f31a833b18428ec68baa9afd5c" prot="public" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>getXEnd</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a8ee9be1b5aa75abae556de3088cba6d9" prot="protected" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>h</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a7585534bbaaaa7579130d507db3450b7" prot="protected" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>h05</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1abd89894412f52ec415a0542eb2848321" prot="public" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>init</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a1d10e252e778731e59f0f71afd7e727e" prot="private" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>iterations</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1aa92abf9e854257b9355d32ae3f627f7a" prot="protected" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>pfo</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a682c957039a3256aad95b8b144ca2c10" prot="private" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>RealLimit</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a1effcf875007b8996492f53035501019" prot="private" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>safer_x1</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a0d7397b842e53e83633196fe8a8334c3" prot="private" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>sane_val</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a071e2bc87c1f2023d073af26a6ee7742" prot="public" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>setTrace</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a6e27f49150e9a14580fb313cc2777e00" prot="private" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>status</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a57da5a3396933b5d2ae0fb110eded052" prot="private" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>trace_values</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1ae553c80321ef2d7c454cc4f62b42d0d1" prot="private" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>x0</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1ac75b803b570527306e1e744bfb7a604f" prot="private" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>x1</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a40228eb71d59eed051fc5b1a1eff4b4c" prot="private" virt="non-virtual"><scope>JSBSim::FGRungeKutta</scope><name>x_end</name></member>
+      <member refid="classJSBSim_1_1FGRungeKutta_1a840960b6f788ea3336188762b39a354b" prot="protected" virt="virtual"><scope>JSBSim::FGRungeKutta</scope><name>~FGRungeKutta</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1601 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classJSBSim_1_1FGQuaternion" kind="class" language="C++" prot="public">
+    <compoundname>JSBSim::FGQuaternion</compoundname>
+    <basecompoundref refid="classJSBSim_1_1FGJSBBase" prot="public" virt="non-virtual">FGJSBBase</basecompoundref>
+    <includes refid="FGQuaternion_8h" local="no">FGQuaternion.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGQuaternion_1a6965ed3cd24ac8f0d4ef90169be1a67f" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double data[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>data</name>
+        <qualifiedname>JSBSim::FGQuaternion::data</qualifiedname>
+        <briefdescription>
+<para>The quaternion values itself. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the master copy. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="508" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="508" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGQuaternion_1a333a3ce5d089c8c500ec33f56b0a9798" prot="private" static="no" mutable="yes">
+        <type>bool</type>
+        <definition>bool mCacheValid</definition>
+        <argsstring></argsstring>
+        <name>mCacheValid</name>
+        <qualifiedname>JSBSim::FGQuaternion::mCacheValid</qualifiedname>
+        <briefdescription>
+<para>A data validity flag. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This class implements caching of the derived values like the orthogonal rotation matrices or the Euler angles. For caching we carry a flag which signals if the values are valid or not. The C++ keyword &quot;mutable&quot; tells the compiler that the data member is allowed to change during a const member function. <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="516" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="516" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGQuaternion_1a2c0689e4b8850ee38e2e84ab1119ceef" prot="private" static="no" mutable="yes">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 mEulerAngles</definition>
+        <argsstring></argsstring>
+        <name>mEulerAngles</name>
+        <qualifiedname>JSBSim::FGQuaternion::mEulerAngles</qualifiedname>
+        <briefdescription>
+<para>The cached euler angles. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="523" column="27" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="523" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGQuaternion_1a2fe12ec82ff245ccf17e4d8011147a1c" prot="private" static="no" mutable="yes">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 mEulerCosines</definition>
+        <argsstring></argsstring>
+        <name>mEulerCosines</name>
+        <qualifiedname>JSBSim::FGQuaternion::mEulerCosines</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="527" column="27" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="527" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGQuaternion_1a8351b55490392ed96d52a0e753f0304b" prot="private" static="no" mutable="yes">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 mEulerSines</definition>
+        <argsstring></argsstring>
+        <name>mEulerSines</name>
+        <qualifiedname>JSBSim::FGQuaternion::mEulerSines</qualifiedname>
+        <briefdescription>
+<para>The cached sines and cosines of the euler angles. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="526" column="27" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="526" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGQuaternion_1a25abd16e3c1285b3730de8af78aca64d" prot="private" static="no" mutable="yes">
+        <type><ref refid="classJSBSim_1_1FGMatrix33" kindref="compound">FGMatrix33</ref></type>
+        <definition>FGMatrix33 mT</definition>
+        <argsstring></argsstring>
+        <name>mT</name>
+        <qualifiedname>JSBSim::FGQuaternion::mT</qualifiedname>
+        <briefdescription>
+<para>This stores the transformation matrices. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="519" column="22" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="519" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGQuaternion_1af4a30786dec13706b4038ca23176d79d" prot="private" static="no" mutable="yes">
+        <type><ref refid="classJSBSim_1_1FGMatrix33" kindref="compound">FGMatrix33</ref></type>
+        <definition>FGMatrix33 mTInv</definition>
+        <argsstring></argsstring>
+        <name>mTInv</name>
+        <qualifiedname>JSBSim::FGQuaternion::mTInv</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="520" column="22" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="520" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1af37693324e4bd4b0781668dc2e347821" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>FGQuaternion</definition>
+        <argsstring>()</argsstring>
+        <name>FGQuaternion</name>
+        <qualifiedname>JSBSim::FGQuaternion::FGQuaternion</qualifiedname>
+        <briefdescription>
+<para>Default initializer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Default initializer, initializes the class with the identity rotation. <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="90" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="90" bodyend="93"/>
+        <referencedby refid="classJSBSim_1_1FGQuaternion_1a826e9ee7aaf8e2b88cfb96f6d00fedce" compoundref="FGQuaternion_8cpp" startline="155" endline="163">FGQuaternion::GetQDot</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a93ecb238eaf9c1d5b500bce21121f255" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGQuaternion</definition>
+        <argsstring>(const FGMatrix33 &amp;m)</argsstring>
+        <name>FGQuaternion</name>
+        <qualifiedname>JSBSim::FGQuaternion::FGQuaternion</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGMatrix33" kindref="compound">FGMatrix33</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Initializer by matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize the quaternion with the matrix representing a transform from one frame to another using the standard aerospace sequence, Yaw-Pitch-Roll (3-2-1). <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the rotation matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="171" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.cpp" bodystart="136" bodyend="145"/>
+        <references refid="classJSBSim_1_1FGQuaternion_1a231f7602591a267c2669a2af9b9c8749" compoundref="FGQuaternion_8cpp" startline="167" endline="179">FGQuaternion::Normalize</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1ad78439d07685534240c11c67551b0fd7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGQuaternion</definition>
+        <argsstring>(const FGQuaternion &amp;q)</argsstring>
+        <name>FGQuaternion</name>
+        <qualifiedname>JSBSim::FGQuaternion::FGQuaternion</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+<para>Copy constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Copy constructor, initializes the quaternion. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a constant reference to another <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> instance <linebreak/>
+ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="98" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.cpp" bodystart="61" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a08cdcd333c49bee9b017cb6ba2829509" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>FGQuaternion</definition>
+        <argsstring>(double angle, const FGColumnVector3 &amp;axis)</argsstring>
+        <name>FGQuaternion</name>
+        <qualifiedname>JSBSim::FGQuaternion::FGQuaternion</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>angle</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+<para>Initializer by a rotation axis and an angle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize the quaternion to represent the rotation around a given angle and an arbitrary axis. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>angle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The angle in radians </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The rotation axis </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="152" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="152" bodyend="165"/>
+        <references refid="classJSBSim_1_1FGColumnVector3_1a4b994a872678de3097f1c86723ce92c9" compoundref="FGColumnVector3_8cpp" startline="114" endline="117">FGColumnVector3::Magnitude</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a2585cbb22c5c3498d5e2ae3aff242a06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGQuaternion</definition>
+        <argsstring>(double phi, double tht, double psi)</argsstring>
+        <name>FGQuaternion</name>
+        <qualifiedname>JSBSim::FGQuaternion::FGQuaternion</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>phi</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tht</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>psi</declname>
+        </param>
+        <briefdescription>
+<para>Initializer by euler angles. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize the quaternion with the euler angles. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>phi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The euler X axis (roll) angle in radians </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tht</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The euler Y axis (attitude) angle in radians </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>psi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The euler Z axis (heading) angle in radians <linebreak/>
+ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="105" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.cpp" bodystart="79" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a6a159ce8070ef45333eda6bf63f72ebb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGQuaternion</definition>
+        <argsstring>(FGColumnVector3 vOrient)</argsstring>
+        <name>FGQuaternion</name>
+        <qualifiedname>JSBSim::FGQuaternion::FGQuaternion</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+          <declname>vOrient</declname>
+        </param>
+        <briefdescription>
+<para>Initializer by euler angle vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize the quaternion with the euler angle vector. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vOrient</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The euler axis angle vector in radians (phi, tht, psi) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="110" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.cpp" bodystart="86" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a1226ffd3500f1b0979e232bd1a2c3568" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>FGQuaternion</definition>
+        <argsstring>(int idx, double angle)</argsstring>
+        <name>FGQuaternion</name>
+        <qualifiedname>JSBSim::FGQuaternion::FGQuaternion</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>angle</declname>
+        </param>
+        <briefdescription>
+<para>Initializer by one euler angle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize the quaternion with the single euler angle where its index is given in the first argument. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the euler angle to initialize </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>angle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The euler angle in radians <linebreak/>
+ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="117" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="117" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a363d4c74f45ac2ea3af0a4502427515d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>~FGQuaternion</definition>
+        <argsstring>()</argsstring>
+        <name>~FGQuaternion</name>
+        <qualifiedname>JSBSim::FGQuaternion::~FGQuaternion</qualifiedname>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="174" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="174" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a8b6f2264afdb5a3c5a64f531a7cfbdb2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref></type>
+        <definition>FGQuaternion Conjugate</definition>
+        <argsstring>(void) const</argsstring>
+        <name>Conjugate</name>
+        <qualifiedname>JSBSim::FGQuaternion::Conjugate</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Conjugate of the quaternion. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Compute and return the conjugate of the quaternion. This one is equal to the inverse iff the quaternion is normalized. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="450" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="450" bodyend="452"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a82c8a60c797b09d214d8e2ef4b4d9667" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Dump</definition>
+        <argsstring>(const std::string &amp;delimiter) const</argsstring>
+        <name>Dump</name>
+        <qualifiedname>JSBSim::FGQuaternion::Dump</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>delimiter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="482" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.cpp" bodystart="236" bodyend="244"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a7a835a15ec39ad10bd722b893ed4c4d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double &amp;</type>
+        <definition>double &amp; Entry</definition>
+        <argsstring>(unsigned int idx)</argsstring>
+        <name>Entry</name>
+        <qualifiedname>JSBSim::FGQuaternion::Entry</qualifiedname>
+        <param>
+          <type>unsigned int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Write access the entries of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the component index.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Return a reference to the vector entry at the given index. Indices are counted starting with 1.</para>
+<para>This function is just a shortcut for the <computeroutput>double&amp; <ref refid="classJSBSim_1_1FGQuaternion_1a6812b4e8611d45170ed5bf24217d4955" kindref="member">operator()(unsigned int idx)</ref></computeroutput> function. It is used internally to access the elements in a more convenient way.</para>
+<para>Note that the index given in the argument is unchecked. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="300" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="300" bodyend="303"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1af38d3ffd0a2f72aee0d43835fcdb076d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Entry</definition>
+        <argsstring>(unsigned int idx) const</argsstring>
+        <name>Entry</name>
+        <qualifiedname>JSBSim::FGQuaternion::Entry</qualifiedname>
+        <param>
+          <type>unsigned int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Read access the entries of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the component index.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Return the value of the matrix entry at the given index. Indices are counted starting with 1.</para>
+<para>This function is just a shortcut for the <computeroutput>double <ref refid="classJSBSim_1_1FGQuaternion_1a3415d042d281e866bbaa8af939d382ad" kindref="member">operator()(unsigned int idx) const</ref></computeroutput> function. It is used internally to access the elements in a more convenient way.</para>
+<para>Note that the index given in the argument is unchecked. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="285" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="285" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a15a2018bc1a5faa4c85a2e27a20fa5d8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetCosEuler</definition>
+        <argsstring>(int i) const</argsstring>
+        <name>GetCosEuler</name>
+        <qualifiedname>JSBSim::FGQuaternion::GetCosEuler</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves cosine of the given euler angle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the sine of the Euler angle theta (pitch attitude) corresponding to this quaternion rotation. <linebreak/>
+ </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="245" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="245" bodyend="248"/>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1a4e35ac529197f0bbcd476f52eae08a40" compoundref="FGInitialCondition_8cpp" startline="405" endline="448">FGInitialCondition::SetBetaRadIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1a57d4e26c7e34322f7e032b418cf8772f" compoundref="FGInitialCondition_8cpp" startline="535" endline="551">FGInitialCondition::SetCrossWindKtsIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1aade0339651dc5bf735d0fb105dc16cdf" compoundref="FGInitialCondition_8cpp" startline="558" endline="579">FGInitialCondition::SetHeadWindKtsIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1aef47a274b700f482ad7c4e75aa8e204b" compoundref="FGInitialCondition_8cpp" startline="241" endline="256">FGInitialCondition::SetVgroundFpsIC</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a160cf8cb2a54aa196e9c782314390313" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetEuler</definition>
+        <argsstring>(int i) const</argsstring>
+        <name>GetEuler</name>
+        <qualifiedname>JSBSim::FGQuaternion::GetEuler</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the Euler angles. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Euler angle index. units radians. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a reference to the i-th euler angles corresponding to this quaternion rotation. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="210" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="210" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a857102bd8d09d5426d39ffe5e75fc4ee" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+        <definition>const FGColumnVector3 &amp; GetEuler</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetEuler</name>
+        <qualifiedname>JSBSim::FGQuaternion::GetEuler</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Retrieves the Euler angles. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a reference to the triad of Euler angles corresponding to this quaternion rotation. units radians <linebreak/>
+ </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="199" column="25" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="199" bodyend="202"/>
+        <referencedby refid="classJSBSim_1_1FGPropagate_1a269d067d10ad81cf2b04e951dc1af761" compoundref="FGPropagate_8cpp" startline="699" endline="702">FGPropagate::GetEulerDeg</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1a4e35ac529197f0bbcd476f52eae08a40" compoundref="FGInitialCondition_8cpp" startline="405" endline="448">FGInitialCondition::SetBetaRadIC</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a4e2c0402339df421f1e6f9b3ac8c8712" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetEulerDeg</definition>
+        <argsstring>(int i) const</argsstring>
+        <name>GetEulerDeg</name>
+        <qualifiedname>JSBSim::FGQuaternion::GetEulerDeg</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the Euler angles. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Euler angle index. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a reference to the i-th euler angles corresponding to this quaternion rotation. units degrees </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="220" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="220" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1ab90117b2166cbf6b0e54f37f69254b2c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> const</type>
+        <definition>FGColumnVector3 const GetEulerDeg</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetEulerDeg</name>
+        <qualifiedname>JSBSim::FGQuaternion::GetEulerDeg</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Retrieves the Euler angle vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>an Euler angle column vector corresponding to this quaternion rotation. units degrees </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="229" column="25" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="229" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a826e9ee7aaf8e2b88cfb96f6d00fedce" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref></type>
+        <definition>FGQuaternion GetQDot</definition>
+        <argsstring>(const FGColumnVector3 &amp;PQR) const</argsstring>
+        <name>GetQDot</name>
+        <qualifiedname>JSBSim::FGQuaternion::GetQDot</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>PQR</declname>
+        </param>
+        <briefdescription>
+<para>Quaternion derivative for given angular rates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the derivative of the quaternion corresponding to the angular velocities PQR.</para>
+<para>Computes the quaternion derivative which results from the given angular velocities <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>PQR</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a constant reference to a rotation rate vector </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the quaternion derivative </para>
+</simplesect>
+<simplesect kind="see"><para>Stevens and Lewis, &quot;Aircraft Control and Simulation&quot;, Second Edition, Equation 1.3-36.</para>
+</simplesect>
+See Stevens and Lewis, &quot;Aircraft Control and Simulation&quot;, Second Edition, Equation 1.3-36. Also see Jack Kuipers, &quot;Quaternions and Rotation Sequences&quot;, Equation 11.12. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="183" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.cpp" bodystart="155" bodyend="163"/>
+        <references refid="classJSBSim_1_1FGQuaternion_1af37693324e4bd4b0781668dc2e347821" compoundref="FGQuaternion_8h" startline="90" endline="93">FGQuaternion::FGQuaternion</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a05a24cffb3dbe93f6dac60998eb3dbf9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetSinEuler</definition>
+        <argsstring>(int i) const</argsstring>
+        <name>GetSinEuler</name>
+        <qualifiedname>JSBSim::FGQuaternion::GetSinEuler</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves sine of the given euler angle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the sine of the Euler angle theta (pitch attitude) corresponding to this quaternion rotation. <linebreak/>
+ </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="237" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="237" bodyend="240"/>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1a4e35ac529197f0bbcd476f52eae08a40" compoundref="FGInitialCondition_8cpp" startline="405" endline="448">FGInitialCondition::SetBetaRadIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1a57d4e26c7e34322f7e032b418cf8772f" compoundref="FGInitialCondition_8cpp" startline="535" endline="551">FGInitialCondition::SetCrossWindKtsIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1aade0339651dc5bf735d0fb105dc16cdf" compoundref="FGInitialCondition_8cpp" startline="558" endline="579">FGInitialCondition::SetHeadWindKtsIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1aef47a274b700f482ad7c4e75aa8e204b" compoundref="FGInitialCondition_8cpp" startline="241" endline="256">FGInitialCondition::SetVgroundFpsIC</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1aca5c842a3e16d4ac6004e8f12a652a0d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGMatrix33" kindref="compound">FGMatrix33</ref> &amp;</type>
+        <definition>const FGMatrix33 &amp; GetT</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetT</name>
+        <qualifiedname>JSBSim::FGQuaternion::GetT</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Transformation matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a reference to the transformation/rotation matrix corresponding to this quaternion rotation. <linebreak/>
+ </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="188" column="20" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="188" bodyend="188"/>
+        <referencedby refid="classJSBSim_1_1FGLGear_1a27044d02e736b462e84b6c61d1200f41" compoundref="FGLGear_8cpp" startline="73" endline="238">FGLGear::FGLGear</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a2549e52bf1b9a90da149129c6959bb0b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGMatrix33" kindref="compound">FGMatrix33</ref> &amp;</type>
+        <definition>const FGMatrix33 &amp; GetTInv</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetTInv</name>
+        <qualifiedname>JSBSim::FGQuaternion::GetTInv</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Backward transformation matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a reference to the inverse transformation/rotation matrix corresponding to this quaternion rotation. <linebreak/>
+ </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="193" column="20" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="193" bodyend="193"/>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1a6788d9297505a09051952a5fa67a48a9" compoundref="FGInitialCondition_8cpp" startline="923" endline="931">FGInitialCondition::GetWindDirDegIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1a84c1828857a020c5c3c36f58b746dea7" compoundref="FGInitialCondition_8cpp" startline="943" endline="950">FGInitialCondition::GetWindMagFpsIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1a6c76f9556fb23b0e83b00b48b6a2283b" compoundref="FGInitialCondition_8cpp" startline="935" endline="939">FGInitialCondition::GetWindNEDFpsIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1a1fabb78d427d8f826631eb863fccce28" compoundref="FGInitialCondition_8cpp" startline="87" endline="121">FGInitialCondition::ResetIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1aab430a890b7eb995d69c0c042fca969a" compoundref="FGInitialCondition_8cpp" startline="319" endline="324">FGInitialCondition::SetAlphaRadIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1a4e35ac529197f0bbcd476f52eae08a40" compoundref="FGInitialCondition_8cpp" startline="405" endline="448">FGInitialCondition::SetBetaRadIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1aa0085586d19a7796ec2ac667f8d89b14" compoundref="FGInitialCondition_8cpp" startline="289" endline="312">FGInitialCondition::SetClimbRateFpsIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1a57d4e26c7e34322f7e032b418cf8772f" compoundref="FGInitialCondition_8cpp" startline="535" endline="551">FGInitialCondition::SetCrossWindKtsIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1aade0339651dc5bf735d0fb105dc16cdf" compoundref="FGInitialCondition_8cpp" startline="558" endline="579">FGInitialCondition::SetHeadWindKtsIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1aef47a274b700f482ad7c4e75aa8e204b" compoundref="FGInitialCondition_8cpp" startline="241" endline="256">FGInitialCondition::SetVgroundFpsIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1aa27763a4d398c95e7b346b824153d11e" compoundref="FGInitialCondition_8cpp" startline="265" endline="282">FGInitialCondition::SetVtrueFpsIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1acb10a2eea909a886349f49830377b028" compoundref="FGInitialCondition_8cpp" startline="628" endline="642">FGInitialCondition::SetWindDirDegIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1a1cc39afd956177b29210420e224beb46" compoundref="FGInitialCondition_8cpp" startline="586" endline="595">FGInitialCondition::SetWindDownKtsIC</referencedby>
+        <referencedby refid="classJSBSim_1_1FGInitialCondition_1a3064f4b800bd75993cc04e6f85b0846c" compoundref="FGInitialCondition_8cpp" startline="602" endline="621">FGInitialCondition::SetWindMagKtsIC</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a1a55f19b8ee4681cc8bafad31d6c48f2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref></type>
+        <definition>FGQuaternion Inverse</definition>
+        <argsstring>(void) const</argsstring>
+        <name>Inverse</name>
+        <qualifiedname>JSBSim::FGQuaternion::Inverse</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Inverse of the quaternion. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Compute and return the inverse of the quaternion so that the orientation represented with *this multiplied with the returned value is equal to the identity orientation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="436" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="436" bodyend="443"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a4b994a872678de3097f1c86723ce92c9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Magnitude</definition>
+        <argsstring>(void) const</argsstring>
+        <name>Magnitude</name>
+        <qualifiedname>JSBSim::FGQuaternion::Magnitude</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Length of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Compute and return the euclidean norm of this vector. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="460" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="460" bodyend="460"/>
+        <referencedby refid="classJSBSim_1_1FGQuaternion_1a231f7602591a267c2669a2af9b9c8749" compoundref="FGQuaternion_8cpp" startline="167" endline="179">FGQuaternion::Normalize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a231f7602591a267c2669a2af9b9c8749" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Normalize</definition>
+        <argsstring>(void)</argsstring>
+        <name>Normalize</name>
+        <qualifiedname>JSBSim::FGQuaternion::Normalize</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Normalize. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Normalize the vector to have the <ref refid="classJSBSim_1_1FGQuaternion_1a4b994a872678de3097f1c86723ce92c9" kindref="member">Magnitude()</ref> == 1.0. If the vector is equal to zero it is left untouched. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="476" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.cpp" bodystart="167" bodyend="179"/>
+        <references refid="classJSBSim_1_1FGQuaternion_1a4b994a872678de3097f1c86723ce92c9" compoundref="FGQuaternion_8h" startline="460" endline="460">FGQuaternion::Magnitude</references>
+        <referencedby refid="classJSBSim_1_1FGQuaternion_1a93ecb238eaf9c1d5b500bce21121f255" compoundref="FGQuaternion_8cpp" startline="136" endline="145">FGQuaternion::FGQuaternion</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1ab590a88372c219caae4237b5d0b0893f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>operator FGMatrix33</definition>
+        <argsstring>() const</argsstring>
+        <name>operator FGMatrix33</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator FGMatrix33</qualifiedname>
+        <briefdescription>
+<para>Conversion from Quat to Matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="330" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="330" bodyend="330"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a6c6691eb680ba24cd684479dce527d6f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator!=</definition>
+        <argsstring>(const FGQuaternion &amp;q) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+<para>Comparison operator &quot;!=&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a quaternion reference </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if both quaternions do not represent the same rotation. <linebreak/>
+ </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="343" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="343" bodyend="343"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a6812b4e8611d45170ed5bf24217d4955" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double &amp;</type>
+        <definition>double &amp; operator()</definition>
+        <argsstring>(unsigned int idx)</argsstring>
+        <name>operator()</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator()</qualifiedname>
+        <param>
+          <type>unsigned int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Write access the entries of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the component index.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Return a reference to the vector entry at the given index. Indices are counted starting with 1.</para>
+<para>Note that the index given in the argument is unchecked. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="270" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="270" bodyend="270"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a3415d042d281e866bbaa8af939d382ad" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double operator()</definition>
+        <argsstring>(unsigned int idx) const</argsstring>
+        <name>operator()</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator()</qualifiedname>
+        <param>
+          <type>unsigned int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Read access the entries of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the component index.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Return the value of the matrix entry at the given index. Indices are counted starting with 1.</para>
+<para>Note that the index given in the argument is unchecked. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="259" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="259" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a3b999cf010dbdbe598b271baf8f269b1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref></type>
+        <definition>FGQuaternion operator*</definition>
+        <argsstring>(const FGQuaternion &amp;q) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator*</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+<para>Arithmetic operator &quot;*&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Multiplication of two quaternions is like performing successive rotations. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a quaternion to be multiplied. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a quaternion representing Q, where Q = Q * q. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="406" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="406" bodyend="411"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1acf448a57e4909314f8c6a0e47c52b769" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+        <definition>const FGQuaternion &amp; operator*=</definition>
+        <argsstring>(const FGQuaternion &amp;q)</argsstring>
+        <name>operator*=</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator*=</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+<para>Arithmetic operator &quot;*=&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Multiplication of two quaternions is like performing successive rotations. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a quaternion to be multiplied. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a quaternion reference representing Q, where Q = Q * q. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="417" column="22" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="417" bodyend="428"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1afaa05547e715e80f1ebff6f148c0c2e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+        <definition>const FGQuaternion &amp; operator*=</definition>
+        <argsstring>(double scalar)</argsstring>
+        <name>operator*=</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator*=</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+<para>Arithmetic operator &quot;*=&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a multiplicative value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a quaternion reference representing Q, where Q = Q * scalar. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="370" column="22" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="370" bodyend="377"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a9fae8b99e8ceb0d77b9ef79244c910f0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref></type>
+        <definition>FGQuaternion operator+</definition>
+        <argsstring>(const FGQuaternion &amp;q) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator+</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+<para>Arithmetic operator &quot;+&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a quaternion to be summed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a quaternion representing Q, where Q = Q + q. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="389" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="389" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a345abc6d420c33d4690631106c0bcd94" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+        <definition>const FGQuaternion &amp; operator+=</definition>
+        <argsstring>(const FGQuaternion &amp;q)</argsstring>
+        <name>operator+=</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator+=</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="344" column="22" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="344" bodyend="352"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1acb2ab21d3b0e35d07dcce53cc2f41131" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref></type>
+        <definition>FGQuaternion operator-</definition>
+        <argsstring>(const FGQuaternion &amp;q) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator-</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+<para>Arithmetic operator &quot;-&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a quaternion to be subtracted. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a quaternion representing Q, where Q = Q - q. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="397" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="397" bodyend="400"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1ada0fc6d5d3b5ca7546b6310089d87921" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+        <definition>const FGQuaternion &amp; operator-=</definition>
+        <argsstring>(const FGQuaternion &amp;q)</argsstring>
+        <name>operator-=</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator-=</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+<para>Arithmetic operator &quot;-=&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a quaternion reference. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a quaternion reference representing Q, where Q = Q - q. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="357" column="22" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="357" bodyend="365"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1ab116288193368de284c8cd47dec43972" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+        <definition>const FGQuaternion &amp; operator/=</definition>
+        <argsstring>(double scalar)</argsstring>
+        <name>operator/=</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator/=</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+<para>Arithmetic operator &quot;/=&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a divisor value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a quaternion reference representing Q, where Q = Q / scalar. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="382" column="22" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="382" bodyend="384"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a9fc19ce92aaf081bba060292e5e19473" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+        <definition>const FGQuaternion &amp; operator=</definition>
+        <argsstring>(const FGQuaternion &amp;q)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+<para>Assignment operator &quot;=&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Assign the value of q to the current object. Cached values are conserved. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>reference to an <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> instance </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>reference to a quaternion object <linebreak/>
+ </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="310" column="22" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="310" bodyend="327"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a8df2fd01380798fd09a63a41b5854069" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator==</definition>
+        <argsstring>(const FGQuaternion &amp;q) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+<para>Comparison operator &quot;==&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a quaternion reference </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if both quaternions represent the same rotation. <linebreak/>
+ </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="335" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="335" bodyend="338"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a26c7f8d31c5658b65354bbae4447d8a3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double SqrMagnitude</definition>
+        <argsstring>(void) const</argsstring>
+        <name>SqrMagnitude</name>
+        <qualifiedname>JSBSim::FGQuaternion::SqrMagnitude</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Square of the length of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Compute and return the square of the euclidean norm of this vector. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="466" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="466" bodyend="469"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classJSBSim_1_1FGQuaternion_1a7e24a8f1d0396f6e3a32ff0ecf457655" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref></type>
+        <definition>FGQuaternion operator*</definition>
+        <argsstring>(double, const FGQuaternion &amp;)</argsstring>
+        <name>operator*</name>
+        <qualifiedname>JSBSim::FGQuaternion::operator*</qualifiedname>
+        <param>
+          <type>double</type>
+          <defname>scalar</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> &amp;</type>
+          <defname>q</defname>
+        </param>
+        <briefdescription>
+<para>Scalar multiplication. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>scalar value to multiply with. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector to multiply.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Multiply the Vector with a scalar value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="454" column="23" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="539" bodyend="541"/>
+      </memberdef>
+      <memberdef kind="friend" id="classJSBSim_1_1FGQuaternion_1ac06d61a4797cb2981c4900ca5de4331f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref></type>
+        <definition>FGQuaternion QExp</definition>
+        <argsstring>(const FGColumnVector3 &amp;omega)</argsstring>
+        <name>QExp</name>
+        <qualifiedname>JSBSim::FGQuaternion::QExp</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>omega</declname>
+        </param>
+        <briefdescription>
+<para>Quaternion exponential. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>omega</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>rotation velocity Calculate the unit quaternion which is the result of the exponentiation of the vector &apos;omega&apos;. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="484" column="23" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="548" bodyend="559"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a93dd7c7a5344ae8ad450d760f57cb74f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref></type>
+        <definition>static FGQuaternion zero</definition>
+        <argsstring>(void)</argsstring>
+        <name>zero</name>
+        <qualifiedname>JSBSim::FGQuaternion::zero</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Zero quaternion vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does not represent any orientation. Useful for initialization of increments </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="480" column="23" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="480" bodyend="480"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a3d57d5b81991081e497034a0d72df173" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>FGQuaternion</definition>
+        <argsstring>(double q1, double q2, double q3, double q4)</argsstring>
+        <name>FGQuaternion</name>
+        <qualifiedname>JSBSim::FGQuaternion::FGQuaternion</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>q1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>q2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>q3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>q4</declname>
+        </param>
+        <briefdescription>
+<para>Copying by assigning the vector valued components. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="488" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="488" bodyend="489"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1ad869a60ff04655ce88dec066b0a48310" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ComputeDerived</definition>
+        <argsstring>(void) const</argsstring>
+        <name>ComputeDerived</name>
+        <qualifiedname>JSBSim::FGQuaternion::ComputeDerived</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Computation of derived values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function checks if the derived values like euler angles and transformation matrices are already computed. If so, it returns. If they need to be computed the real worker routine FGQuaternion::ComputeDerivedUnconditional(void) const is called. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="502" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="502" bodyend="505"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1aaa45196c79ad40c068daaf5079688899" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ComputeDerivedUnconditional</definition>
+        <argsstring>(void) const</argsstring>
+        <name>ComputeDerivedUnconditional</name>
+        <qualifiedname>JSBSim::FGQuaternion::ComputeDerivedUnconditional</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Computation of derived values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function recomputes the derived values like euler angles and transformation matrices. It does this unconditionally. <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="494" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.cpp" bodystart="184" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGQuaternion_1a4aef148f1180fd286cde4ac1b5128bc5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void InitializeFromEulerAngles</definition>
+        <argsstring>(double phi, double tht, double psi)</argsstring>
+        <name>InitializeFromEulerAngles</name>
+        <qualifiedname>JSBSim::FGQuaternion::InitializeFromEulerAngles</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>phi</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tht</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>psi</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="529" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.cpp" bodystart="103" bodyend="132"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Models the Quaternion representation of rotations. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="classJSBSim_1_1FGQuaternion" kindref="compound">FGQuaternion</ref> is a representation of an arbitrary rotation through a quaternion. It has vector properties. This class also contains access functions to the euler angle representation of rotations and access to transformation matrices for 3D vectors. Transformations and euler angles are therefore computed once they are requested for the first time. Then they are cached for later usage as long as the class is not accessed trough a nonconst member function.</para>
+<para>Note: The order of rotations used in this class corresponds to a 3-2-1 sequence, or Y-P-R, or Z-Y-X, if you prefer.</para>
+<para><simplesect kind="see"><para>Cooke, Zyda, Pratt, and McGhee, &quot;NPSNET: Flight Simulation Dynamic Modeling
+Using Quaternions&quot;, Presence, Vol. 1, No. 4, pp. 404-420 Naval Postgraduate School, January 1994 </para>
+</simplesect>
+<simplesect kind="see"><para>D. M. Henderson, &quot;Euler Angles, Quaternions, and Transformation Matrices&quot;, JSC 12960, July 1977 </para>
+</simplesect>
+<simplesect kind="see"><para>Richard E. McFarland, &quot;A Standard Kinematic Model for Flight Simulation at
+NASA-Ames&quot;, NASA CR-2497, January 1975 </para>
+</simplesect>
+<simplesect kind="see"><para>Barnes W. McCormick, &quot;Aerodynamics, Aeronautics, and Flight Mechanics&quot;, Wiley &amp; Sons, 1979 ISBN 0-471-03032-5 </para>
+</simplesect>
+<simplesect kind="see"><para>Bernard Etkin, &quot;Dynamics of Flight, Stability and Control&quot;, Wiley &amp; Sons, 1982 ISBN 0-471-08936-2 </para>
+</simplesect>
+<simplesect kind="author"><para>Mathias Froehlich, extended FGColumnVector4 originally by Tony Peden and Jon Berndt </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FGQuaternion</label>
+        <link refid="classJSBSim_1_1FGQuaternion"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>FGQuaternion</label>
+        <link refid="classJSBSim_1_1FGQuaternion"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>JSBSim_version</edgelabel>
+          <edgelabel>needed_cfg_version</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" line="86" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGQuaternion.h" bodystart="86" bodyend="530"/>
+    <listofallmembers>
+      <member refid="classJSBSim_1_1FGJSBBase_1af8ad1042b82f1c0a47801d6978434b80" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>CelsiusToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aa3b6f7fb97ac87f59f266b3e64438cc3" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>CelsiusToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7b471bc247e5d616560cc5f5c66b4b6d" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>CelsiusToRankine</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1ad869a60ff04655ce88dec066b0a48310" prot="private" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>ComputeDerived</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1aaa45196c79ad40c068daaf5079688899" prot="private" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>ComputeDerivedUnconditional</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a8b6f2264afdb5a3c5a64f531a7cfbdb2" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>Conjugate</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a68d4cc66e32cfecaae8f500d688252c9" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>Constrain</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a71d62a503829149eb1dfc6ad1852d4bf" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>CreateIndexedPropertyName</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a6965ed3cd24ac8f0d4ef90169be1a67f" prot="private" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>data</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ccb6173462774ec856542834c1df750" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>debug_lvl</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9959287a77d54c301e59848ccbc1227e" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>degtorad</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a82c8a60c797b09d214d8e2ef4b4d9667" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>Dump</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7761b6352da13e163a3e60ed931e10b2" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eDown</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ea9301202abb5117f2f5c84c400dd02863" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eDrag</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da8b0184eb4350aff703ffefe981be0ed0" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eEast</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55baad8d708d8b2a6b0de1c60efac84c13c2" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eL</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600aee71d29fc9997c8c692e1cec39ccbd9e" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eLat</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9eaf9b007051dea0fdcdda1128417810324" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eLift</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600a82c89bd841ec11709255930b4f2ed128" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eLong</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba1108dc0fe89c81165e7e21bfa2d99a5c" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eM</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba29860d91c138d8308ab622566d5388b5" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eN</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7af984c99e631c934f09d5f464886dff" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eNorth</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1af38d3ffd0a2f72aee0d43835fcdb076d" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>Entry</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a7a835a15ec39ad10bd722b893ed4c4d3" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>Entry</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a53f1f5a36fc3c436188ba2de84a480cc" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eP</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca330da5edf1a7a181a5e682969033346d" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>ePhi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a755bd3b6ce5a786426392a9b22101569" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>ePitch</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca00ec32130eba5084873150f79dd4241d" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>ePsi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7ad435ed230bc84886ebd313f88f50617f" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eQ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0808b46d9967cd56d78df1274adc8147" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaed80f9927f0b8c14c67cfad83a8d60b" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a3fa3dd89c1b30f6d2b8a297006842a19" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4089c27aa417783731495c25b0d3e79b" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a568d83290d150b55a7c08ec3e01a4b80" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eR</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600ac34cb49e3a3c0217eb60f28606a074fd" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eRad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a5929427bd7f9a3f8a260ab0cee4adf5b" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eRoll</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ead333a23016fb297dc1e225e9de92a902" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eSide</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca782d389c863bda6761d96904c8ca5c88" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eTht</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a4e6ccf577f5e3892239a4d0243233c46" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eU</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a8967c32806f6f2377283501791d2139b" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eV</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5ad170ee6fdb066c2ac0a32760a4b6be8f" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eW</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04afd5a33749fa68a755125d713a656b616" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eX</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04af968dfccf7b280e98b613569ce68a29a" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eY</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a6828e3eb3b26c2f81338381e9ca45500" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eYaw</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04a246094bb9b7b37e389534a9cc740d126" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>eZ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adaf24dd942ba1dbaf0262ddf9725d50e" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>FahrenheitToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a8c51473eff249bacddf47d95834c6f69" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>FeetToMeters</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a5fd11c437bf08537955a9231dcd4dc49" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1af37693324e4bd4b0781668dc2e347821" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>FGQuaternion</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1ad78439d07685534240c11c67551b0fd7" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>FGQuaternion</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a2585cbb22c5c3498d5e2ae3aff242a06" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>FGQuaternion</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a6a159ce8070ef45333eda6bf63f72ebb" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>FGQuaternion</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a1226ffd3500f1b0979e232bd1a2c3568" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>FGQuaternion</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a08cdcd333c49bee9b017cb6ba2829509" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>FGQuaternion</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a93ecb238eaf9c1d5b500bce21121f255" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>FGQuaternion</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a3d57d5b81991081e497034a0d72df173" prot="private" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>FGQuaternion</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af43d52b160c8fa8ba6325d858e34beb3" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>fpstokts</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae41da7596d847c1d8b27c3e9d611157d" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>fttom</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a15a2018bc1a5faa4c85a2e27a20fa5d8" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>GetCosEuler</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a857102bd8d09d5426d39ffe5e75fc4ee" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>GetEuler</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a160cf8cb2a54aa196e9c782314390313" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>GetEuler</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a4e2c0402339df421f1e6f9b3ac8c8712" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>GetEulerDeg</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1ab90117b2166cbf6b0e54f37f69254b2c" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>GetEulerDeg</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a826e9ee7aaf8e2b88cfb96f6d00fedce" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>GetQDot</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a05a24cffb3dbe93f6dac60998eb3dbf9" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>GetSinEuler</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1aca5c842a3e16d4ac6004e8f12a652a0d" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>GetT</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a2549e52bf1b9a90da149129c6959bb0b" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>GetTInv</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ce5e8bcfd2d23ad3b4032565842596c" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>GetVersion</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af3ca32541c0a55f05ded120dca912440" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>hptoftlbssec</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab97b1e120708f6f64abb9bb9e9e4cd7a" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>in3tom3</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4b8b2a0e4b0180b2abe1aff2f00d334e" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>inchtoft</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a15e2a87588ef193ac0ad314327ecd509" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>inDegrees</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aaff61dea1cc525eed707df9fbac8eca5" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>inFeet</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ace650b7aed33166ac6974d13906e1894" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>inhgtopa</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a4aef148f1180fd286cde4ac1b5128bc5" prot="private" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>InitializeFromEulerAngles</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57ad71c820cf28dae1965f184b9441d1694" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>inMeters</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aecc753b3791b03920f3ea0ad33852142" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>inNone</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a0a17d86840eb2e6b1784129ed75e414e" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>inRadians</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a1a55f19b8ee4681cc8bafad31d6c48f2" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>Inverse</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1affc9150d5720145d6a6c2a2dd265d9f5" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>JSBSim_version</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a241ce52e843cb12ae6de467cbc2f59a7" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>KelvinToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a6f1c8844b2bf556c2e90c84524c331e1" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>KelvinToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab1cd84a064daee36bb88b9052514da65" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>KelvinToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a532147ec5e65e4b78fd08bc76e1f1d35" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>kgtolb</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4627a23f0f2722262a9c865c4255fec8" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>kgtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae29b0dff0362fa116184dc2027e0a5e1" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>ktstofps</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a85110847c268725c20cd7e8d2adf0033" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>lbtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ad7434c1faeb6468757414fc3f86586df" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>m3toft3</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a4b994a872678de3097f1c86723ce92c9" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>Magnitude</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a333a3ce5d089c8c500ec33f56b0a9798" prot="private" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>mCacheValid</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a2c0689e4b8850ee38e2e84ab1119ceef" prot="private" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>mEulerAngles</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a2fe12ec82ff245ccf17e4d8011147a1c" prot="private" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>mEulerCosines</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a8351b55490392ed96d52a0e753f0304b" prot="private" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>mEulerSines</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a25abd16e3c1285b3730de8af78aca64d" prot="private" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>mT</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1af4a30786dec13706b4038ca23176d79d" prot="private" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>mTInv</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7c4e9bce0d9b7f5d394a8ee1d9b553eb" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>needed_cfg_version</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a231f7602591a267c2669a2af9b9c8749" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>Normalize</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1ab590a88372c219caae4237b5d0b0893f" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator FGMatrix33</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a6c6691eb680ba24cd684479dce527d6f" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator!=</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a3415d042d281e866bbaa8af939d382ad" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator()</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a6812b4e8611d45170ed5bf24217d4955" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator()</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a3b999cf010dbdbe598b271baf8f269b1" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator*</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a7e24a8f1d0396f6e3a32ff0ecf457655" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator*</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1afaa05547e715e80f1ebff6f148c0c2e5" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator*=</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1acf448a57e4909314f8c6a0e47c52b769" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator*=</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a9fae8b99e8ceb0d77b9ef79244c910f0" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator+</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a345abc6d420c33d4690631106c0bcd94" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator+=</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1acb2ab21d3b0e35d07dcce53cc2f41131" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator-</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1ada0fc6d5d3b5ca7546b6310089d87921" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator-=</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1ab116288193368de284c8cd47dec43972" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator/=</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a9fc19ce92aaf081bba060292e5e19473" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator=</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a8df2fd01380798fd09a63a41b5854069" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>operator==</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1add6c8d987939a3bf35554fd6d7c6a580" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>psftoinhg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a1f44bc4c489ccb9df15115c2586fc30a" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>psftopa</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1ac06d61a4797cb2981c4900ca5de4331f" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>QExp</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaca636497dcea29d83039f342f2f47e2" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>radtodeg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9daa4b8416feb6ef2964aacbb1ad07e7" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>RankineToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7abcf379608273b32f3d8b939a9173d5" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>RankineToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a493e81f2c57fb2733a3a8c54f4ac2ed8" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>sign</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4daf96dd9557d890a37cfc504ca67efd" prot="protected" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>slugtolb</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a26c7f8d31c5658b65354bbae4447d8a3" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>SqrMagnitude</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a93dd7c7a5344ae8ad450d760f57cb74f" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>zero</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a27507db9cad73b38ac3ba2bdc64fa428" prot="public" virt="virtual"><scope>JSBSim::FGQuaternion</scope><name>~FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGQuaternion_1a363d4c74f45ac2ea3af0a4502427515d" prot="public" virt="non-virtual"><scope>JSBSim::FGQuaternion</scope><name>~FGQuaternion</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

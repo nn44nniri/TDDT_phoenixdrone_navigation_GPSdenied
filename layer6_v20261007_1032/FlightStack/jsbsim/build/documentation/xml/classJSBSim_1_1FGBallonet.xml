@@ -1,0 +1,798 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classJSBSim_1_1FGBallonet" kind="class" language="C++" prot="public">
+    <compoundname>JSBSim::FGBallonet</compoundname>
+    <basecompoundref refid="classJSBSim_1_1FGJSBBase" prot="public" virt="non-virtual">FGJSBBase</basecompoundref>
+    <includes refid="FGGasCell_8h" local="no">FGGasCell.h</includes>
+    <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classJSBSim_1_1FGBallonet_1a5a1323a18172e634cac6369e851081ef" prot="private" static="no">
+        <type>std::vector&lt; <ref refid="classJSBSim_1_1FGFunction" kindref="compound">FGFunction</ref> * &gt;</type>
+        <definition>typedef std::vector&lt;FGFunction*&gt; CoeffArray</definition>
+        <argsstring></argsstring>
+        <name>CoeffArray</name>
+        <qualifiedname>JSBSim::FGBallonet::CoeffArray</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="348" column="24" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="348" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1af2a3ade528e9b82adf82bd4a74f73ed0" prot="public" static="no" mutable="no">
+        <type>const struct <ref refid="structJSBSim_1_1FGGasCell_1_1Inputs" kindref="compound">FGGasCell::Inputs</ref> &amp;</type>
+        <definition>const struct FGGasCell::Inputs&amp; in</definition>
+        <argsstring></argsstring>
+        <name>in</name>
+        <qualifiedname>JSBSim::FGBallonet::in</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="337" column="33" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="337" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1afc7288927e106abc42b87b64f655ec40" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGMatrix33" kindref="compound">FGMatrix33</ref></type>
+        <definition>FGMatrix33 ballonetJ</definition>
+        <argsstring></argsstring>
+        <name>ballonetJ</name>
+        <qualifiedname>JSBSim::FGBallonet::ballonetJ</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="360" column="14" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="360" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a8c4789a7c79d53d527ce2ed4506cb31b" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGFunction" kindref="compound">FGFunction</ref> *</type>
+        <definition>FGFunction* BlowerInput</definition>
+        <argsstring></argsstring>
+        <name>BlowerInput</name>
+        <qualifiedname>JSBSim::FGBallonet::BlowerInput</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="350" column="14" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="350" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a784fde50c17fdadd366bc12602db9510" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int CellNum</definition>
+        <argsstring></argsstring>
+        <name>CellNum</name>
+        <qualifiedname>JSBSim::FGBallonet::CellNum</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="340" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="340" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a298dca0ad125d17abe5259238aabb53f" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Contents</definition>
+        <argsstring></argsstring>
+        <name>Contents</name>
+        <qualifiedname>JSBSim::FGBallonet::Contents</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="354" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="354" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1ac633897c2b95ddd9173e0a673317cc16" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double dU</definition>
+        <argsstring></argsstring>
+        <name>dU</name>
+        <qualifiedname>JSBSim::FGBallonet::dU</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="357" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="357" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a184d802cffb25c18ee0d18c0b76f694e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double dVolumeIdeal</definition>
+        <argsstring></argsstring>
+        <name>dVolumeIdeal</name>
+        <qualifiedname>JSBSim::FGBallonet::dVolumeIdeal</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="356" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="356" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a2a855929aa7d31841a2d0c8ffc1d3e09" prot="private" static="no" mutable="no">
+        <type>CoeffArray</type>
+        <definition>CoeffArray HeatTransferCoeff</definition>
+        <argsstring></argsstring>
+        <name>HeatTransferCoeff</name>
+        <qualifiedname>JSBSim::FGBallonet::HeatTransferCoeff</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="349" column="14" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="349" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a2b891ed311334dde3facb7b1280643f1" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classJSBSim_1_1FGMassBalance" kindref="compound">FGMassBalance</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;FGMassBalance&gt; MassBalance</definition>
+        <argsstring></argsstring>
+        <name>MassBalance</name>
+        <qualifiedname>JSBSim::FGBallonet::MassBalance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="362" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="362" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1acdaa73e020719664dd20f375bbc7959b" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MaxOverpressure</definition>
+        <argsstring></argsstring>
+        <name>MaxOverpressure</name>
+        <qualifiedname>JSBSim::FGBallonet::MaxOverpressure</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="343" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="343" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a0585f1e028991f19c3d679083d5da329" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MaxVolume</definition>
+        <argsstring></argsstring>
+        <name>MaxVolume</name>
+        <qualifiedname>JSBSim::FGBallonet::MaxVolume</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="342" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="342" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a485fde2209e8295781c43a50363042d2" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGGasCell" kindref="compound">FGGasCell</ref> *</type>
+        <definition>FGGasCell* Parent</definition>
+        <argsstring></argsstring>
+        <name>Parent</name>
+        <qualifiedname>JSBSim::FGBallonet::Parent</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="351" column="13" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="351" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1aec5f8c97436244e26eadd3f3f9b1f663" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Pressure</definition>
+        <argsstring></argsstring>
+        <name>Pressure</name>
+        <qualifiedname>JSBSim::FGBallonet::Pressure</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="353" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="353" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1aa4d8c8ca4e13151db6cd61c5bebb4f8a" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Temperature</definition>
+        <argsstring></argsstring>
+        <name>Temperature</name>
+        <qualifiedname>JSBSim::FGBallonet::Temperature</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="358" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="358" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1ac3caa338ec5584433686677de7b6718e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ValveCoefficient</definition>
+        <argsstring></argsstring>
+        <name>ValveCoefficient</name>
+        <qualifiedname>JSBSim::FGBallonet::ValveCoefficient</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="347" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="347" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1ad488249d40bbb42a508eebf95724682e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ValveOpen</definition>
+        <argsstring></argsstring>
+        <name>ValveOpen</name>
+        <qualifiedname>JSBSim::FGBallonet::ValveOpen</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="359" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="359" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a3e76e13ed322eaa71a4bac8faafb3f01" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Volume</definition>
+        <argsstring></argsstring>
+        <name>Volume</name>
+        <qualifiedname>JSBSim::FGBallonet::Volume</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="355" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="355" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a2fc9a6af0bc8d1bd05d7ee313e95e134" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vXYZ</definition>
+        <argsstring></argsstring>
+        <name>vXYZ</name>
+        <qualifiedname>JSBSim::FGBallonet::vXYZ</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="344" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="344" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1addd21423bdc6d4d373dd452d273a7854" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Xradius</definition>
+        <argsstring></argsstring>
+        <name>Xradius</name>
+        <qualifiedname>JSBSim::FGBallonet::Xradius</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="345" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="345" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1acc943fd1cf4e2aae2d315455d3a176c5" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Xwidth</definition>
+        <argsstring></argsstring>
+        <name>Xwidth</name>
+        <qualifiedname>JSBSim::FGBallonet::Xwidth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="346" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="346" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1ad16b0938394b11626dbe31f09f11c569" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Yradius</definition>
+        <argsstring></argsstring>
+        <name>Yradius</name>
+        <qualifiedname>JSBSim::FGBallonet::Yradius</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="345" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="345" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a2e15d0cef2ce0d7c1270ada1c7204ed6" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Ywidth</definition>
+        <argsstring></argsstring>
+        <name>Ywidth</name>
+        <qualifiedname>JSBSim::FGBallonet::Ywidth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="346" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="346" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a6c24891905ed199d7b6655641dbb0a7d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Zradius</definition>
+        <argsstring></argsstring>
+        <name>Zradius</name>
+        <qualifiedname>JSBSim::FGBallonet::Zradius</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="345" column="26" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="345" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a2a66c9f13b20e6d2985e08433175dc8f" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Zwidth</definition>
+        <argsstring></argsstring>
+        <name>Zwidth</name>
+        <qualifiedname>JSBSim::FGBallonet::Zwidth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="346" column="24" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="346" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1ae0330b80ef87a4a5ed0b25865726e826" prot="private" static="yes" mutable="no">
+        <type>const double</type>
+        <definition>const double Cv_air</definition>
+        <argsstring></argsstring>
+        <name>Cv_air</name>
+        <qualifiedname>JSBSim::FGBallonet::Cv_air</qualifiedname>
+        <initializer>= 5.0/2.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="368" column="23" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="368" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a387c6c2121667c43f54c114f4edb4cb7" prot="private" static="yes" mutable="no">
+        <type>const double</type>
+        <definition>const double M_air</definition>
+        <argsstring></argsstring>
+        <name>M_air</name>
+        <qualifiedname>JSBSim::FGBallonet::M_air</qualifiedname>
+        <initializer>= 0.0019186</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="367" column="23" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="367" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGBallonet_1a0877420f3d7b1f47b871d2ccb47168d8" prot="private" static="yes" mutable="no">
+        <type>const double</type>
+        <definition>const double R</definition>
+        <argsstring></argsstring>
+        <name>R</name>
+        <qualifiedname>JSBSim::FGBallonet::R</qualifiedname>
+        <initializer>= 3.4071</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="366" column="23" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="366" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGBallonet_1a3cb5be3d2683225662098c0295053e1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGBallonet</definition>
+        <argsstring>(FGFDMExec *exec, Element *el, unsigned int num, FGGasCell *parent, const struct FGGasCell::Inputs &amp;input)</argsstring>
+        <name>FGBallonet</name>
+        <qualifiedname>JSBSim::FGBallonet::FGBallonet</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+          <declname>exec</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>el</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>num</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGGasCell" kindref="compound">FGGasCell</ref> *</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>const struct <ref refid="structJSBSim_1_1FGGasCell_1_1Inputs" kindref="compound">FGGasCell::Inputs</ref> &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="305" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.cpp" bodystart="500" bodyend="665"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGBallonet_1af8218f8ce9e9e75c9518b96d49c39d63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>~FGBallonet</definition>
+        <argsstring>()</argsstring>
+        <name>~FGBallonet</name>
+        <qualifiedname>JSBSim::FGBallonet::~FGBallonet</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="307" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.cpp" bodystart="669" bodyend="680"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGBallonet_1ab4f2abee6ace8ea44fa06a50f78b7540" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Calculate</definition>
+        <argsstring>(double dt)</argsstring>
+        <name>Calculate</name>
+        <qualifiedname>JSBSim::FGBallonet::Calculate</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+<para>Runs the ballonet model; called by <ref refid="classJSBSim_1_1FGGasCell" kindref="compound">FGGasCell</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="311" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.cpp" bodystart="684" bodyend="777"/>
+        <references refid="classJSBSim_1_1FGBallonet_1a8e0ffab00c7e2e8727762ec9fdeeae00" compoundref="FGGasCell_8h" startline="323" endline="323">FGBallonet::GetMass</references>
+        <references refid="classJSBSim_1_1FGGasCell_1af4f306ea7593244e4d22401029dee315" compoundref="FGGasCell_8h" startline="224" endline="224">FGGasCell::GetPressure</references>
+        <references refid="classJSBSim_1_1FGGasCell_1a214dcdce5277cf592fa2d1deca9c4fdf" compoundref="FGGasCell_8h" startline="220" endline="220">FGGasCell::GetTemperature</references>
+        <references refid="classJSBSim_1_1FGFunction_1a20153bedb4fc19a8b698f34dada67e5f" compoundref="FGFunction_8cpp" startline="984" endline="993">FGFunction::GetValue</references>
+        <references refid="classJSBSim_1_1FGBallonet_1a94adac1d42c64350e34a6c6e4a01abfd" compoundref="FGGasCell_8h" startline="316" endline="316">FGBallonet::GetXYZ</references>
+        <references refid="classJSBSim_1_1FGMatrix33_1adc92bad5b7ab05e017993818f6821ffc" compoundref="FGMatrix33_8cpp" startline="259" endline="263">FGMatrix33::InitMatrix</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGBallonet_1acd80c4ca77347ee5eb0b2a6869096774" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetHeatFlow</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetHeatFlow</name>
+        <qualifiedname>JSBSim::FGBallonet::GetHeatFlow</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the current heat flow into the ballonet. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>heat flow in lbs ft / sec. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="335" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="335" bodyend="335"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGBallonet_1aeecf3b1a756a69f5e198b4959fe3c00d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGMatrix33" kindref="compound">FGMatrix33</ref> &amp;</type>
+        <definition>const FGMatrix33 &amp; GetInertia</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetInertia</name>
+        <qualifiedname>JSBSim::FGBallonet::GetInertia</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the moments of inertia of the ballonet. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>moments of inertia matrix in the body frame in slug ft<superscript>2</superscript>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="328" column="20" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="328" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGBallonet_1a8e0ffab00c7e2e8727762ec9fdeeae00" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetMass</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetMass</name>
+        <qualifiedname>JSBSim::FGBallonet::GetMass</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the current mass of the ballonets. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>mass in slug. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="323" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="323" bodyend="323"/>
+        <referencedby refid="classJSBSim_1_1FGBallonet_1ab4f2abee6ace8ea44fa06a50f78b7540" compoundref="FGGasCell_8cpp" startline="684" endline="777">FGBallonet::Calculate</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGBallonet_1aa78ad49751587855fe2dc09ae8638c9d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetVolume</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetVolume</name>
+        <qualifiedname>JSBSim::FGBallonet::GetVolume</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the current volume of the ballonet. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>volume in ft<superscript>3</superscript>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="332" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="332" bodyend="332"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGBallonet_1a71123dda559fb8d8f33230fb4ccc2834" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetXYZ</definition>
+        <argsstring>(int idx) const</argsstring>
+        <name>GetXYZ</name>
+        <qualifiedname>JSBSim::FGBallonet::GetXYZ</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Get the center of gravity location of the ballonet. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>CoG location in the structural frame in inches. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="319" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="319" bodyend="319"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGBallonet_1a94adac1d42c64350e34a6c6e4a01abfd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+        <definition>const FGColumnVector3 &amp; GetXYZ</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetXYZ</name>
+        <qualifiedname>JSBSim::FGBallonet::GetXYZ</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the center of gravity location of the ballonet. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>CoG location in the structural frame in inches. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="316" column="25" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="316" bodyend="316"/>
+        <referencedby refid="classJSBSim_1_1FGBallonet_1ab4f2abee6ace8ea44fa06a50f78b7540" compoundref="FGGasCell_8cpp" startline="684" endline="777">FGBallonet::Calculate</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGBallonet_1a54ec10fc427f5973db1cf7af1ef55103" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Debug</definition>
+        <argsstring>(int from)</argsstring>
+        <name>Debug</name>
+        <qualifiedname>JSBSim::FGBallonet::Debug</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>from</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="363" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.cpp" bodystart="798" bodyend="844"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Models a ballonet inside a gas cell. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Not intended to be used outside <ref refid="classJSBSim_1_1FGGasCell" kindref="compound">FGGasCell</ref>. See <ref refid="classJSBSim_1_1FGGasCell" kindref="compound">FGGasCell</ref> for the configuration file format. <simplesect kind="author"><para>Anders Gidenstam </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FGBallonet</label>
+        <link refid="classJSBSim_1_1FGBallonet"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>FGBallonet</label>
+        <link refid="classJSBSim_1_1FGBallonet"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>in</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Inputs</label>
+        <link refid="structJSBSim_1_1FGGasCell_1_1Inputs"/>
+      </node>
+      <node id="2">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>JSBSim_version</edgelabel>
+          <edgelabel>needed_cfg_version</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" line="302" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/FGGasCell.h" bodystart="303" bodyend="369"/>
+    <listofallmembers>
+      <member refid="classJSBSim_1_1FGBallonet_1afc7288927e106abc42b87b64f655ec40" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>ballonetJ</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a8c4789a7c79d53d527ce2ed4506cb31b" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>BlowerInput</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1ab4f2abee6ace8ea44fa06a50f78b7540" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Calculate</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a784fde50c17fdadd366bc12602db9510" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>CellNum</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af8ad1042b82f1c0a47801d6978434b80" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>CelsiusToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aa3b6f7fb97ac87f59f266b3e64438cc3" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>CelsiusToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7b471bc247e5d616560cc5f5c66b4b6d" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>CelsiusToRankine</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a5a1323a18172e634cac6369e851081ef" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>CoeffArray</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a68d4cc66e32cfecaae8f500d688252c9" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Constrain</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a298dca0ad125d17abe5259238aabb53f" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Contents</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a71d62a503829149eb1dfc6ad1852d4bf" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>CreateIndexedPropertyName</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1ae0330b80ef87a4a5ed0b25865726e826" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Cv_air</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a54ec10fc427f5973db1cf7af1ef55103" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Debug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ccb6173462774ec856542834c1df750" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>debug_lvl</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9959287a77d54c301e59848ccbc1227e" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>degtorad</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1ac633897c2b95ddd9173e0a673317cc16" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>dU</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a184d802cffb25c18ee0d18c0b76f694e" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>dVolumeIdeal</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7761b6352da13e163a3e60ed931e10b2" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eDown</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ea9301202abb5117f2f5c84c400dd02863" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eDrag</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da8b0184eb4350aff703ffefe981be0ed0" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eEast</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55baad8d708d8b2a6b0de1c60efac84c13c2" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eL</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600aee71d29fc9997c8c692e1cec39ccbd9e" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eLat</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9eaf9b007051dea0fdcdda1128417810324" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eLift</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600a82c89bd841ec11709255930b4f2ed128" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eLong</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba1108dc0fe89c81165e7e21bfa2d99a5c" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eM</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba29860d91c138d8308ab622566d5388b5" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eN</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7af984c99e631c934f09d5f464886dff" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eNorth</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a53f1f5a36fc3c436188ba2de84a480cc" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eP</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca330da5edf1a7a181a5e682969033346d" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>ePhi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a755bd3b6ce5a786426392a9b22101569" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>ePitch</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca00ec32130eba5084873150f79dd4241d" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>ePsi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7ad435ed230bc84886ebd313f88f50617f" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eQ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0808b46d9967cd56d78df1274adc8147" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaed80f9927f0b8c14c67cfad83a8d60b" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a3fa3dd89c1b30f6d2b8a297006842a19" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4089c27aa417783731495c25b0d3e79b" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a568d83290d150b55a7c08ec3e01a4b80" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eR</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600ac34cb49e3a3c0217eb60f28606a074fd" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eRad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a5929427bd7f9a3f8a260ab0cee4adf5b" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eRoll</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ead333a23016fb297dc1e225e9de92a902" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eSide</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca782d389c863bda6761d96904c8ca5c88" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eTht</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a4e6ccf577f5e3892239a4d0243233c46" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eU</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a8967c32806f6f2377283501791d2139b" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eV</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5ad170ee6fdb066c2ac0a32760a4b6be8f" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eW</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04afd5a33749fa68a755125d713a656b616" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eX</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04af968dfccf7b280e98b613569ce68a29a" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eY</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a6828e3eb3b26c2f81338381e9ca45500" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eYaw</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04a246094bb9b7b37e389534a9cc740d126" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>eZ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adaf24dd942ba1dbaf0262ddf9725d50e" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>FahrenheitToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a8c51473eff249bacddf47d95834c6f69" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>FeetToMeters</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a3cb5be3d2683225662098c0295053e1b" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>FGBallonet</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a5fd11c437bf08537955a9231dcd4dc49" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af43d52b160c8fa8ba6325d858e34beb3" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>fpstokts</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae41da7596d847c1d8b27c3e9d611157d" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>fttom</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1acd80c4ca77347ee5eb0b2a6869096774" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>GetHeatFlow</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1aeecf3b1a756a69f5e198b4959fe3c00d" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>GetInertia</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a8e0ffab00c7e2e8727762ec9fdeeae00" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>GetMass</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ce5e8bcfd2d23ad3b4032565842596c" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>GetVersion</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1aa78ad49751587855fe2dc09ae8638c9d" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>GetVolume</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a94adac1d42c64350e34a6c6e4a01abfd" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>GetXYZ</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a71123dda559fb8d8f33230fb4ccc2834" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>GetXYZ</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a2a855929aa7d31841a2d0c8ffc1d3e09" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>HeatTransferCoeff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af3ca32541c0a55f05ded120dca912440" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>hptoftlbssec</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1af2a3ade528e9b82adf82bd4a74f73ed0" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>in</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab97b1e120708f6f64abb9bb9e9e4cd7a" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>in3tom3</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4b8b2a0e4b0180b2abe1aff2f00d334e" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>inchtoft</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a15e2a87588ef193ac0ad314327ecd509" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>inDegrees</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aaff61dea1cc525eed707df9fbac8eca5" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>inFeet</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ace650b7aed33166ac6974d13906e1894" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>inhgtopa</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57ad71c820cf28dae1965f184b9441d1694" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>inMeters</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aecc753b3791b03920f3ea0ad33852142" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>inNone</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a0a17d86840eb2e6b1784129ed75e414e" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>inRadians</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1affc9150d5720145d6a6c2a2dd265d9f5" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>JSBSim_version</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a241ce52e843cb12ae6de467cbc2f59a7" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>KelvinToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a6f1c8844b2bf556c2e90c84524c331e1" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>KelvinToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab1cd84a064daee36bb88b9052514da65" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>KelvinToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a532147ec5e65e4b78fd08bc76e1f1d35" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>kgtolb</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4627a23f0f2722262a9c865c4255fec8" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>kgtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae29b0dff0362fa116184dc2027e0a5e1" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>ktstofps</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a85110847c268725c20cd7e8d2adf0033" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>lbtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ad7434c1faeb6468757414fc3f86586df" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>m3toft3</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a387c6c2121667c43f54c114f4edb4cb7" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>M_air</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a2b891ed311334dde3facb7b1280643f1" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>MassBalance</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1acdaa73e020719664dd20f375bbc7959b" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>MaxOverpressure</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a0585f1e028991f19c3d679083d5da329" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>MaxVolume</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7c4e9bce0d9b7f5d394a8ee1d9b553eb" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>needed_cfg_version</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a485fde2209e8295781c43a50363042d2" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Parent</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1aec5f8c97436244e26eadd3f3f9b1f663" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Pressure</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1add6c8d987939a3bf35554fd6d7c6a580" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>psftoinhg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a1f44bc4c489ccb9df15115c2586fc30a" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>psftopa</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a0877420f3d7b1f47b871d2ccb47168d8" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>R</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaca636497dcea29d83039f342f2f47e2" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>radtodeg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9daa4b8416feb6ef2964aacbb1ad07e7" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>RankineToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7abcf379608273b32f3d8b939a9173d5" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>RankineToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a493e81f2c57fb2733a3a8c54f4ac2ed8" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>sign</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4daf96dd9557d890a37cfc504ca67efd" prot="protected" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>slugtolb</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1aa4d8c8ca4e13151db6cd61c5bebb4f8a" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Temperature</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1ac3caa338ec5584433686677de7b6718e" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>ValveCoefficient</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1ad488249d40bbb42a508eebf95724682e" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>ValveOpen</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a3e76e13ed322eaa71a4bac8faafb3f01" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Volume</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a2fc9a6af0bc8d1bd05d7ee313e95e134" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>vXYZ</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1addd21423bdc6d4d373dd452d273a7854" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Xradius</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1acc943fd1cf4e2aae2d315455d3a176c5" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Xwidth</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1ad16b0938394b11626dbe31f09f11c569" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Yradius</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a2e15d0cef2ce0d7c1270ada1c7204ed6" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Ywidth</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a6c24891905ed199d7b6655641dbb0a7d" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Zradius</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1a2a66c9f13b20e6d2985e08433175dc8f" prot="private" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>Zwidth</name></member>
+      <member refid="classJSBSim_1_1FGBallonet_1af8218f8ce9e9e75c9518b96d49c39d63" prot="public" virt="non-virtual"><scope>JSBSim::FGBallonet</scope><name>~FGBallonet</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a27507db9cad73b38ac3ba2bdc64fa428" prot="public" virt="virtual"><scope>JSBSim::FGBallonet</scope><name>~FGJSBBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

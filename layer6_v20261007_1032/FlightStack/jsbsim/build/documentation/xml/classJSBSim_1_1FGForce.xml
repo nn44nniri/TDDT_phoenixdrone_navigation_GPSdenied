@@ -1,0 +1,1353 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classJSBSim_1_1FGForce" kind="class" language="C++" prot="public">
+    <compoundname>JSBSim::FGForce</compoundname>
+    <basecompoundref refid="classJSBSim_1_1FGJSBBase" prot="public" virt="non-virtual">FGJSBBase</basecompoundref>
+    <derivedcompoundref refid="classJSBSim_1_1FGExternalForce" prot="public" virt="non-virtual">FGExternalForce</derivedcompoundref>
+    <derivedcompoundref refid="classJSBSim_1_1FGGasCell" prot="public" virt="non-virtual">FGGasCell</derivedcompoundref>
+    <derivedcompoundref refid="classJSBSim_1_1FGLGear" prot="public" virt="non-virtual">FGLGear</derivedcompoundref>
+    <derivedcompoundref refid="classJSBSim_1_1FGThruster" prot="public" virt="non-virtual">FGThruster</derivedcompoundref>
+    <includes refid="FGForce_8h" local="no">FGForce.h</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classJSBSim_1_1FGForce_1aa65f3b21a9a92ff022e435a7304126d2" prot="public" static="no" strong="no">
+        <type></type>
+        <name>TransformType</name>
+        <qualifiedname>JSBSim::FGForce::TransformType</qualifiedname>
+        <enumvalue id="classJSBSim_1_1FGForce_1aa65f3b21a9a92ff022e435a7304126d2a55fd57142bf3922879f3ba8270abe20b" prot="public">
+          <name>tNone</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGForce_1aa65f3b21a9a92ff022e435a7304126d2aa4fd0f2bce730e6eb048001996f70918" prot="public">
+          <name>tWindBody</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGForce_1aa65f3b21a9a92ff022e435a7304126d2a0532ccde884f2d70cbba0d886ed1b352" prot="public">
+          <name>tLocalBody</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGForce_1aa65f3b21a9a92ff022e435a7304126d2af08d009d0d11c7a602a911e9269cb16d" prot="public">
+          <name>tInertialBody</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGForce_1aa65f3b21a9a92ff022e435a7304126d2ace244c6baaa5049c46cf20bc46bbec95" prot="public">
+          <name>tCustom</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="230" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="230" bodyend="230"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGForce_1abdaabf972f96cfb9401a53e32871d81e" prot="protected" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+        <definition>FGFDMExec* fdmex</definition>
+        <argsstring></argsstring>
+        <name>fdmex</name>
+        <qualifiedname>JSBSim::FGForce::fdmex</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="307" column="13" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="307" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGForce_1a2b891ed311334dde3facb7b1280643f1" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classJSBSim_1_1FGMassBalance" kindref="compound">FGMassBalance</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;FGMassBalance&gt; MassBalance</definition>
+        <argsstring></argsstring>
+        <name>MassBalance</name>
+        <qualifiedname>JSBSim::FGForce::MassBalance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="308" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="308" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGForce_1a25abd16e3c1285b3730de8af78aca64d" prot="protected" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGMatrix33" kindref="compound">FGMatrix33</ref></type>
+        <definition>FGMatrix33 mT</definition>
+        <argsstring></argsstring>
+        <name>mT</name>
+        <qualifiedname>JSBSim::FGForce::mT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="315" column="14" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="315" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGForce_1ae1e5b61cbedf3656825e2978a12f97a7" prot="protected" static="no" mutable="no">
+        <type>TransformType</type>
+        <definition>TransformType ttype</definition>
+        <argsstring></argsstring>
+        <name>ttype</name>
+        <qualifiedname>JSBSim::FGForce::ttype</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="312" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="312" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGForce_1a261829c29c96908f4a36a9eb84d52014" prot="protected" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vActingXYZn</definition>
+        <argsstring></argsstring>
+        <name>vActingXYZn</name>
+        <qualifiedname>JSBSim::FGForce::vActingXYZn</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="314" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="314" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGForce_1a35fd541d1bbfe71c270e9608eb4b8146" prot="protected" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vFn</definition>
+        <argsstring></argsstring>
+        <name>vFn</name>
+        <qualifiedname>JSBSim::FGForce::vFn</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="309" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="309" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGForce_1af70be42d6ede403f0ee99e04d33edce7" prot="protected" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vMn</definition>
+        <argsstring></argsstring>
+        <name>vMn</name>
+        <qualifiedname>JSBSim::FGForce::vMn</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="310" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="310" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGForce_1a38e3dfb62a2f19dc0189feb342d3c8a2" prot="protected" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vOrient</definition>
+        <argsstring></argsstring>
+        <name>vOrient</name>
+        <qualifiedname>JSBSim::FGForce::vOrient</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="311" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="311" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGForce_1a25d46249aee7e0989fad3f899333c962" prot="protected" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vXYZn</definition>
+        <argsstring></argsstring>
+        <name>vXYZn</name>
+        <qualifiedname>JSBSim::FGForce::vXYZn</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="313" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="313" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGForce_1a2b4cb761b1059e55618d04ded496bb63" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vFb</definition>
+        <argsstring></argsstring>
+        <name>vFb</name>
+        <qualifiedname>JSBSim::FGForce::vFb</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="318" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="318" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGForce_1aae63d441ecba1f4b072b0ed22b3ee1fc" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vM</definition>
+        <argsstring></argsstring>
+        <name>vM</name>
+        <qualifiedname>JSBSim::FGForce::vM</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="319" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="319" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1ad98c8de145395bb53db40edcca186ea8" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGForce</definition>
+        <argsstring>(FGFDMExec *FDMExec)</argsstring>
+        <name>FGForce</name>
+        <qualifiedname>JSBSim::FGForce::FGForce</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+          <declname>FDMExec</declname>
+        </param>
+        <briefdescription>
+<para>Constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="225" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.cpp" bodystart="53" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a06ef165f39feac98d53ce45276118618" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>~FGForce</definition>
+        <argsstring>()</argsstring>
+        <name>~FGForce</name>
+        <qualifiedname>JSBSim::FGForce::~FGForce</qualifiedname>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="228" column="11" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.cpp" bodystart="74" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1adf98c83b86fa1097ca1a64d65aaed73a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+        <definition>const FGColumnVector3 &amp; GetActingLocation</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetActingLocation</name>
+        <qualifiedname>JSBSim::FGForce::GetActingLocation</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="277" column="25" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="277" bodyend="277"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a05631a3513c91536e3da32550d4af0dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetActingLocationX</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetActingLocationX</name>
+        <qualifiedname>JSBSim::FGForce::GetActingLocationX</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="273" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="273" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a2b83402fece41d0daa932cd457f99ae8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetActingLocationY</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetActingLocationY</name>
+        <qualifiedname>JSBSim::FGForce::GetActingLocationY</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="274" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="274" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1ac810d1db59dbb96c45a1a172aec7e777" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetActingLocationZ</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetActingLocationZ</name>
+        <qualifiedname>JSBSim::FGForce::GetActingLocationZ</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="275" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="275" bodyend="275"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1ad494d2fc735f00c04810b2905efff035" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetAnglesToBody</definition>
+        <argsstring>(int axis) const</argsstring>
+        <name>GetAnglesToBody</name>
+        <qualifiedname>JSBSim::FGForce::GetAnglesToBody</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="299" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="299" bodyend="299"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a2b2658a4b4c62f7afd511e5c84a9642d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+        <definition>const FGColumnVector3 &amp; GetAnglesToBody</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetAnglesToBody</name>
+        <qualifiedname>JSBSim::FGForce::GetAnglesToBody</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="298" column="32" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="298" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1af5e100e7fb6f5bdc71f0e051e9dadda7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+        <definition>const FGColumnVector3 &amp; GetBodyForces</definition>
+        <argsstring>(void)</argsstring>
+        <name>GetBodyForces</name>
+        <qualifiedname>JSBSim::FGForce::GetBodyForces</qualifiedname>
+        <reimplementedby refid="classJSBSim_1_1FGExternalForce_1a0890dab6172664fc6f6b7bbdfee8151b">GetBodyForces</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGLGear_1a0890dab6172664fc6f6b7bbdfee8151b">GetBodyForces</reimplementedby>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="232" column="33" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.cpp" bodystart="81" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1af58f1abc123139fbe2d1a9d94af78585" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetBodyXForce</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetBodyXForce</name>
+        <qualifiedname>JSBSim::FGForce::GetBodyXForce</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="234" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="234" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a96bbbb556bf8ffc3ac62b51c952bcb5a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetBodyYForce</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetBodyYForce</name>
+        <qualifiedname>JSBSim::FGForce::GetBodyYForce</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="235" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="235" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a60de4fe6683f0c21c0703f40314abe1b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetBodyZForce</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetBodyZForce</name>
+        <qualifiedname>JSBSim::FGForce::GetBodyZForce</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="236" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="236" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a34c092b14324024aa95b15e1d3182c8f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+        <definition>const FGColumnVector3 &amp; GetLocation</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetLocation</name>
+        <qualifiedname>JSBSim::FGForce::GetLocation</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="276" column="25" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="276" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a84f4dec5101b405c05aa0f41dd5c96a5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetLocationX</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetLocationX</name>
+        <qualifiedname>JSBSim::FGForce::GetLocationX</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="270" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="270" bodyend="270"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a648545433999aa97a0a1ed629abbbf8a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetLocationY</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetLocationY</name>
+        <qualifiedname>JSBSim::FGForce::GetLocationY</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="271" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="271" bodyend="271"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a22879e2bd87a04db6332970a80589844" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetLocationZ</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetLocationZ</name>
+        <qualifiedname>JSBSim::FGForce::GetLocationZ</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="272" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="272" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a09f2cdecd6731d65b059725a03249631" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+        <definition>const FGColumnVector3 &amp; GetMoments</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetMoments</name>
+        <qualifiedname>JSBSim::FGForce::GetMoments</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="237" column="32" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="237" bodyend="237"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a0b690c3d5a7a874f8ff81ed53014f0ab" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetPitch</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetPitch</name>
+        <qualifiedname>JSBSim::FGForce::GetPitch</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="295" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="295" bodyend="295"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1ae31b9a5d570ede142bebea268c1f5bd8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>TransformType</type>
+        <definition>TransformType GetTransformType</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetTransformType</name>
+        <qualifiedname>JSBSim::FGForce::GetTransformType</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="302" column="24" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="302" bodyend="302"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a6c2e50e0fbcbc068fbc2da8d159d3d15" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetYaw</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetYaw</name>
+        <qualifiedname>JSBSim::FGForce::GetYaw</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="296" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="296" bodyend="296"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a85cdbb0c4d2133d7886c42908711ee73" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetActingLocation</definition>
+        <argsstring>(const FGColumnVector3 &amp;vv)</argsstring>
+        <name>SetActingLocation</name>
+        <qualifiedname>JSBSim::FGForce::SetActingLocation</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>vv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="268" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="268" bodyend="268"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a113614fa402dd20029edc006df5468c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetActingLocation</definition>
+        <argsstring>(double x, double y, double z)</argsstring>
+        <name>SetActingLocation</name>
+        <qualifiedname>JSBSim::FGForce::SetActingLocation</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+<para>Acting point of application. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>JSBsim structural coords used (inches, x +back, y +right, z +up). This function sets the point at which the force acts - this may not be the same as where the object resides. One area where this is true is P-Factor modeling. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>acting location of force </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>acting location of force </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>acting location of force <linebreak/>
+ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="256" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="256" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a6c7ecb47ad4e8ef267ac59be5cdcaa23" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetActingLocationX</definition>
+        <argsstring>(double x)</argsstring>
+        <name>SetActingLocationX</name>
+        <qualifiedname>JSBSim::FGForce::SetActingLocationX</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="264" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="264" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a565457d2f8a57953397ec9a681f95056" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetActingLocationY</definition>
+        <argsstring>(double y)</argsstring>
+        <name>SetActingLocationY</name>
+        <qualifiedname>JSBSim::FGForce::SetActingLocationY</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="265" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="265" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1acbf136d7a843327e1863422f0c0d2ba9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetActingLocationZ</definition>
+        <argsstring>(double z)</argsstring>
+        <name>SetActingLocationZ</name>
+        <qualifiedname>JSBSim::FGForce::SetActingLocationZ</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="266" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="266" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1ad14d9ee50b08bd0defc20d17a8431d42" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetAnglesToBody</definition>
+        <argsstring>(const FGColumnVector3 &amp;vv)</argsstring>
+        <name>SetAnglesToBody</name>
+        <qualifiedname>JSBSim::FGForce::SetAnglesToBody</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>vv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="287" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="287" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a5ccf31dc1f7e485922d4e58fc5b5785e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetAnglesToBody</definition>
+        <argsstring>(double broll, double bpitch, double byaw)</argsstring>
+        <name>SetAnglesToBody</name>
+        <qualifiedname>JSBSim::FGForce::SetAnglesToBody</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>broll</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bpitch</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>byaw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="286" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.cpp" bodystart="149" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a60e32a7017d7bff658c41c0636affc34" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetLocation</definition>
+        <argsstring>(const FGColumnVector3 &amp;vv)</argsstring>
+        <name>SetLocation</name>
+        <qualifiedname>JSBSim::FGForce::SetLocation</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>vv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="267" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="267" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a943f7ff68ce6cf5aff00b89eefb93e27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetLocation</definition>
+        <argsstring>(double x, double y, double z)</argsstring>
+        <name>SetLocation</name>
+        <qualifiedname>JSBSim::FGForce::SetLocation</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="241" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="241" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a730271798f8225a6e5981bdbf22dd338" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetLocationX</definition>
+        <argsstring>(double x)</argsstring>
+        <name>SetLocationX</name>
+        <qualifiedname>JSBSim::FGForce::SetLocationX</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="261" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="261" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a83532b4fc4d718f1389679bc18535129" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetLocationY</definition>
+        <argsstring>(double y)</argsstring>
+        <name>SetLocationY</name>
+        <qualifiedname>JSBSim::FGForce::SetLocationY</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="262" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="262" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1ab5c85ed62dacbe5cd9a20d504ab08014" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetLocationZ</definition>
+        <argsstring>(double z)</argsstring>
+        <name>SetLocationZ</name>
+        <qualifiedname>JSBSim::FGForce::SetLocationZ</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="263" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="263" bodyend="263"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a56d8189b078e6fd8ab8f1408cbe8aa9a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetPitch</definition>
+        <argsstring>(double pitch)</argsstring>
+        <name>SetPitch</name>
+        <qualifiedname>JSBSim::FGForce::SetPitch</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>pitch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="292" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="292" bodyend="292"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1ab4eb0c0d024e7661d1acd570bc54e387" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetTransformType</definition>
+        <argsstring>(TransformType ii)</argsstring>
+        <name>SetTransformType</name>
+        <qualifiedname>JSBSim::FGForce::SetTransformType</qualifiedname>
+        <param>
+          <type>TransformType</type>
+          <declname>ii</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="301" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="301" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a60ed3c5bd4213093e75bbf30796e081d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetYaw</definition>
+        <argsstring>(double yaw)</argsstring>
+        <name>SetYaw</name>
+        <qualifiedname>JSBSim::FGForce::SetYaw</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>yaw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="293" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="293" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a9b4c55d7b362e3cf126ee8e56d20efc9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classJSBSim_1_1FGMatrix33" kindref="compound">FGMatrix33</ref> &amp;</type>
+        <definition>const FGMatrix33 &amp; Transform</definition>
+        <argsstring>(void) const</argsstring>
+        <name>Transform</name>
+        <qualifiedname>JSBSim::FGForce::Transform</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="304" column="20" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.cpp" bodystart="98" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1ae33de343760ec1d340f19f2789170c9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UpdateCustomTransformMatrix</definition>
+        <argsstring>(void)</argsstring>
+        <name>UpdateCustomTransformMatrix</name>
+        <qualifiedname>JSBSim::FGForce::UpdateCustomTransformMatrix</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="291" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.cpp" bodystart="121" bodyend="145"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGForce_1a54ec10fc427f5973db1cf7af1ef55103" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Debug</definition>
+        <argsstring>(int from)</argsstring>
+        <name>Debug</name>
+        <qualifiedname>JSBSim::FGForce::Debug</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>from</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="321" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.cpp" bodystart="179" bodyend="202"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Utility class that aids in the conversion of forces between coordinate systems and calculation of moments. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><linebreak/>
+<heading level="3">Resolution of Applied Forces into Moments and Body Axes Components</heading>
+</para>
+<para><linebreak/>
+</para>
+<para>All forces acting on the aircraft that cannot be considered a change in weight need to be resolved into body axis components so that the aircraft acceleration vectors, both translational and rotational, can be computed. Furthermore, the moments produced by each force that does not act at a location corresponding to the center of gravity also need to be computed. Unfortunately, the math required to do this can be a bit messy and errors are easily introduced so the class <ref refid="classJSBSim_1_1FGForce" kindref="compound">FGForce</ref> was created to provide these services in a consistent and reusable manner.<linebreak/>
+<linebreak/>
+</para>
+<para><heading level="4">Basic usage</heading>
+</para>
+<para><ref refid="classJSBSim_1_1FGForce" kindref="compound">FGForce</ref> requires that its users supply it with the location of the applied force vector in JSBSim structural coordinates, the sense of each axis in that coordinate system relative to the body system, the orientation of the vector also relative to body coordinates and, of course, the force vector itself. With this information it will compute both the body axis force components and the resulting moments. Any moments inherently produced by the native system can be supplied as well and they will be summed with those computed.</para>
+<para>A good example for demonstrating the use of this class are the aerodynamic forces: lift, drag, and side force and the aerodynamic moments about the pitch, roll and yaw axes. These &quot;native&quot; forces and moments are computed and stored in the FGColumnVector objects vFs and vMoments. Their native coordinate system is often referred to as the wind system and is defined as a right-handed system having its x-axis aligned with the relative velocity vector and pointing towards the rear of the aircraft , the y-axis extending out the right wing, and the z-axis directed upwards. This is different than body axes; they are defined such that the x-axis is lies on the aircraft&apos;s roll axis and positive forward, the y-axis is positive out the right wing, and the z-axis is positive downwards. In this instance, JSBSim already provides the needed transform and <ref refid="classJSBSim_1_1FGForce" kindref="compound">FGForce</ref> can make use of it by calling SetTransformType() once an object is created:</para>
+<para><computeroutput><ref refid="classJSBSim_1_1FGForce" kindref="compound">FGForce</ref> fgf(FDMExec);</computeroutput><linebreak/>
+ <computeroutput>fgf.SetTransformType(tWindBody);</computeroutput><linebreak/>
+<linebreak/>
+</para>
+<para>This call need only be made once for each object. The available transforms are defined in the enumerated type TransformType and are tWindBody, tLocalBody, tCustom, and tNone. The local-to-body transform, like the wind-to-body, also makes use of that already available in JSBSim. tNone sets <ref refid="classJSBSim_1_1FGForce" kindref="compound">FGForce</ref> to do no angular transform at all, and tCustom allows for modeling force vectors at arbitrary angles relative to the body system such as that produced by propulsion systems. Setting up and using a custom transform is covered in more detail below. Continuing with the example, the point of application of the aerodynamic forces, the aerodynamic reference point in JSBSim, also needs to be set:</para>
+<para><computeroutput> fgf.SetLocation(x, y, z)</computeroutput></para>
+<para>where x, y, and z are in JSBSim structural coordinates.</para>
+<para>Initialization is complete and the <ref refid="classJSBSim_1_1FGForce" kindref="compound">FGForce</ref> object is ready to do its job. As stated above, the lift, drag, and side force are computed and stored in the vector vFs and need to be passed to <ref refid="classJSBSim_1_1FGForce" kindref="compound">FGForce</ref>:</para>
+<para><computeroutput>fgf.SetNativeForces(vFs);</computeroutput> </para>
+<para>The same applies to the aerodynamic pitching, rolling and yawing moments:</para>
+<para><computeroutput>fgf.SetNativeMoments(vMoments);</computeroutput></para>
+<para>Note that storing the native forces and moments outside of this class is not strictly necessary, overloaded SetNativeForces() and SetNativeMoments() methods which each accept three doubles (rather than a vector) are provided and can be repeatedly called without incurring undue overhead. The body axes force vector can now be retrieved by calling:</para>
+<para><computeroutput>vFb=fgf.GetBodyForces();</computeroutput></para>
+<para>This method is where the bulk of the work gets done so calling it more than once for the same set of native forces and moments should probably be avoided. Note that the moment calculations are done here as well so they should be retrieved after calling the GetBodyForces() method:</para>
+<para><computeroutput>vM=fgf.GetMoments();</computeroutput> </para>
+<para>As an aside, the native moments are not needed to perform the computations correctly so, if the <ref refid="classJSBSim_1_1FGForce" kindref="compound">FGForce</ref> object is not being used to store them then an alternate approach is to avoid the SetNativeMoments call and perform the sum</para>
+<para><computeroutput>vMoments+=fgf.GetMoments();</computeroutput> <linebreak/>
+<linebreak/>
+</para>
+<para>after the forces have been retrieved. </para>
+<para><heading level="4">Use of the Custom Transform Type</heading>
+</para>
+<para>In cases where the native force vector is not aligned with the body, wind, or local coordinate systems a custom transform type is provided. A vectorable engine nozzle will be used to demonstrate its usage. Initialization is much the same:</para>
+<para><computeroutput><ref refid="classJSBSim_1_1FGForce" kindref="compound">FGForce</ref> fgf(FDMExec);</computeroutput> <linebreak/>
+ <computeroutput>fgf.SetTransformType(tCustom);</computeroutput> <linebreak/>
+ <computeroutput>fgf.SetLocation(x,y,z);</computeroutput> </para>
+<para>Except that here the tCustom transform type is specified and the location of the thrust vector is used rather than the aerodynamic reference point. Thrust is typically considered to be positive when directed aft while the body x-axis is positive forward and, if the native system is right handed, the z-axis will be reversed as well. These differences in sense need to be specified using by the call: </para>
+<para><computeroutput>fgf.SetSense(-1,1,-1);</computeroutput></para>
+<para>The angles are specified by calling the method: </para>
+<para><computeroutput>fgf.SetAnglesToBody(pitch, roll, yaw);</computeroutput> </para>
+<para>in which the transform matrix is computed. Note that these angles should be taken relative to the body system and not the local as the names might suggest. For an aircraft with vectorable thrust, this method will need to be called every time the nozzle angle changes, a fixed engine/nozzle installation, on the other hand, will require it to be be called only once.</para>
+<para>Retrieval of the computed forces and moments is done as detailed above.</para>
+<para><linebreak/>
+ <preformatted>
+    </preformatted></para>
+<para><preformatted><emphasis>CAVEAT: If the custom system is used to compute
+    the wind-to-body transform, then the sign of the sideslip
+    angle must be reversed when calling SetAnglesToBody().
+    This is true because sideslip angle does not follow the right
+    hand rule. Using the custom transform type this way
+    should not be necessary, as it is already provided as a built
+    in type (and the sign differences are correctly accounted for).</emphasis>
+    </preformatted></para>
+<para><preformatted>
+</preformatted></para>
+<para><heading level="4">Use as a Base Type</heading>
+</para>
+<para>For use as a base type, the native force and moment vector data members are defined as protected. In this case the SetNativeForces() and SetNativeMoments() methods need not be used and, instead, the assignments to vFn, the force vector, and vMn, the moments, can be made directly. Otherwise, the usage is similar.<linebreak/>
+ <linebreak/>
+<linebreak/>
+</para>
+<para><verbatim>@author Tony Peden
+</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FGForce</label>
+        <link refid="classJSBSim_1_1FGForce"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>FGExternalForce</label>
+        <link refid="classJSBSim_1_1FGExternalForce"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>FGGasCell</label>
+        <link refid="classJSBSim_1_1FGGasCell"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+      </node>
+      <node id="5">
+        <label>FGLGear</label>
+        <link refid="classJSBSim_1_1FGLGear"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>FGNozzle</label>
+        <link refid="classJSBSim_1_1FGNozzle"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>FGPropeller</label>
+        <link refid="classJSBSim_1_1FGPropeller"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>FGRotor</label>
+        <link refid="classJSBSim_1_1FGRotor"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>FGThruster</label>
+        <link refid="classJSBSim_1_1FGThruster"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>FGForce</label>
+        <link refid="classJSBSim_1_1FGForce"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fdmex</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>MassBalance</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>vActingXYZn</edgelabel>
+          <edgelabel>vFn</edgelabel>
+          <edgelabel>vMn</edgelabel>
+          <edgelabel>vOrient</edgelabel>
+          <edgelabel>vXYZn</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>mT</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>FGColumnVector3</label>
+        <link refid="classJSBSim_1_1FGColumnVector3"/>
+      </node>
+      <node id="5">
+        <label>FGFDMExec</label>
+        <link refid="classJSBSim_1_1FGFDMExec"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>FGFunction</label>
+        <link refid="classJSBSim_1_1FGFunction"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>Parameters</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>PropertyManager</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>JSBSim_version</edgelabel>
+          <edgelabel>needed_cfg_version</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>FGMassBalance</label>
+        <link refid="classJSBSim_1_1FGMassBalance"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>in</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>Inputs</label>
+        <link refid="structJSBSim_1_1FGMassBalance_1_1Inputs"/>
+        <childnode refid="20" relation="usage">
+          <edgelabel>GasMoment</edgelabel>
+          <edgelabel>TanksMoment</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>GasInertia</edgelabel>
+          <edgelabel>TankInertia</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>FGMatrix33</label>
+        <link refid="classJSBSim_1_1FGMatrix33"/>
+      </node>
+      <node id="8">
+        <label>FGModel</label>
+        <link refid="classJSBSim_1_1FGModel"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>Name</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>FDMExec</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>PropertyManager</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>FGModelFunctions</label>
+        <link refid="classJSBSim_1_1FGModelFunctions"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>PostFunctions</edgelabel>
+          <edgelabel>PreFunctions</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>LocalProperties</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>FGParameter</label>
+        <link refid="classJSBSim_1_1FGParameter"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>FGPropertyManager</label>
+      </node>
+      <node id="18">
+        <label>FGPropertyReader</label>
+        <link refid="classJSBSim_1_1FGPropertyReader"/>
+      </node>
+      <node id="14">
+        <label>SGReferenced</label>
+      </node>
+      <node id="16">
+        <label>shared_ptr&lt; FGPropertyManager &gt;</label>
+        <childnode refid="17" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>shared_ptr&lt; JSBSim::FGFunction &gt;</label>
+        <childnode refid="12" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>shared_ptr&lt; JSBSim::FGMassBalance &gt;</label>
+        <childnode refid="7" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>vector&lt; FGParameter_ptr &gt;</label>
+      </node>
+      <node id="10">
+        <label>vector&lt; std::shared_ptr&lt; JSBSim::FGFunction &gt; &gt;</label>
+        <childnode refid="11" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" line="221" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/propulsion/FGForce.h" bodystart="222" bodyend="322"/>
+    <listofallmembers>
+      <member refid="classJSBSim_1_1FGJSBBase_1af8ad1042b82f1c0a47801d6978434b80" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>CelsiusToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aa3b6f7fb97ac87f59f266b3e64438cc3" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>CelsiusToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7b471bc247e5d616560cc5f5c66b4b6d" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>CelsiusToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a68d4cc66e32cfecaae8f500d688252c9" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>Constrain</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a71d62a503829149eb1dfc6ad1852d4bf" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>CreateIndexedPropertyName</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a54ec10fc427f5973db1cf7af1ef55103" prot="private" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>Debug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ccb6173462774ec856542834c1df750" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>debug_lvl</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9959287a77d54c301e59848ccbc1227e" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>degtorad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7761b6352da13e163a3e60ed931e10b2" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eDown</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ea9301202abb5117f2f5c84c400dd02863" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eDrag</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da8b0184eb4350aff703ffefe981be0ed0" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eEast</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55baad8d708d8b2a6b0de1c60efac84c13c2" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eL</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600aee71d29fc9997c8c692e1cec39ccbd9e" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eLat</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9eaf9b007051dea0fdcdda1128417810324" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eLift</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600a82c89bd841ec11709255930b4f2ed128" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eLong</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba1108dc0fe89c81165e7e21bfa2d99a5c" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eM</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba29860d91c138d8308ab622566d5388b5" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eN</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7af984c99e631c934f09d5f464886dff" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eNorth</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a53f1f5a36fc3c436188ba2de84a480cc" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eP</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca330da5edf1a7a181a5e682969033346d" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>ePhi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a755bd3b6ce5a786426392a9b22101569" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>ePitch</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca00ec32130eba5084873150f79dd4241d" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>ePsi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7ad435ed230bc84886ebd313f88f50617f" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eQ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0808b46d9967cd56d78df1274adc8147" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaed80f9927f0b8c14c67cfad83a8d60b" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a3fa3dd89c1b30f6d2b8a297006842a19" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4089c27aa417783731495c25b0d3e79b" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a568d83290d150b55a7c08ec3e01a4b80" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eR</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600ac34cb49e3a3c0217eb60f28606a074fd" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eRad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a5929427bd7f9a3f8a260ab0cee4adf5b" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eRoll</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ead333a23016fb297dc1e225e9de92a902" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eSide</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca782d389c863bda6761d96904c8ca5c88" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eTht</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a4e6ccf577f5e3892239a4d0243233c46" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eU</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a8967c32806f6f2377283501791d2139b" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eV</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5ad170ee6fdb066c2ac0a32760a4b6be8f" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eW</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04afd5a33749fa68a755125d713a656b616" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eX</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04af968dfccf7b280e98b613569ce68a29a" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eY</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a6828e3eb3b26c2f81338381e9ca45500" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eYaw</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04a246094bb9b7b37e389534a9cc740d126" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>eZ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adaf24dd942ba1dbaf0262ddf9725d50e" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>FahrenheitToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGForce_1abdaabf972f96cfb9401a53e32871d81e" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>fdmex</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a8c51473eff249bacddf47d95834c6f69" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>FeetToMeters</name></member>
+      <member refid="classJSBSim_1_1FGForce_1ad98c8de145395bb53db40edcca186ea8" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>FGForce</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a5fd11c437bf08537955a9231dcd4dc49" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af43d52b160c8fa8ba6325d858e34beb3" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>fpstokts</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae41da7596d847c1d8b27c3e9d611157d" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>fttom</name></member>
+      <member refid="classJSBSim_1_1FGForce_1adf98c83b86fa1097ca1a64d65aaed73a" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetActingLocation</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a05631a3513c91536e3da32550d4af0dc" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetActingLocationX</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a2b83402fece41d0daa932cd457f99ae8" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetActingLocationY</name></member>
+      <member refid="classJSBSim_1_1FGForce_1ac810d1db59dbb96c45a1a172aec7e777" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetActingLocationZ</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a2b2658a4b4c62f7afd511e5c84a9642d" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetAnglesToBody</name></member>
+      <member refid="classJSBSim_1_1FGForce_1ad494d2fc735f00c04810b2905efff035" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetAnglesToBody</name></member>
+      <member refid="classJSBSim_1_1FGForce_1af5e100e7fb6f5bdc71f0e051e9dadda7" prot="public" virt="virtual"><scope>JSBSim::FGForce</scope><name>GetBodyForces</name></member>
+      <member refid="classJSBSim_1_1FGForce_1af58f1abc123139fbe2d1a9d94af78585" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetBodyXForce</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a96bbbb556bf8ffc3ac62b51c952bcb5a" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetBodyYForce</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a60de4fe6683f0c21c0703f40314abe1b" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetBodyZForce</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a34c092b14324024aa95b15e1d3182c8f" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetLocation</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a84f4dec5101b405c05aa0f41dd5c96a5" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetLocationX</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a648545433999aa97a0a1ed629abbbf8a" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetLocationY</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a22879e2bd87a04db6332970a80589844" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetLocationZ</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a09f2cdecd6731d65b059725a03249631" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetMoments</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a0b690c3d5a7a874f8ff81ed53014f0ab" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetPitch</name></member>
+      <member refid="classJSBSim_1_1FGForce_1ae31b9a5d570ede142bebea268c1f5bd8" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetTransformType</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ce5e8bcfd2d23ad3b4032565842596c" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetVersion</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a6c2e50e0fbcbc068fbc2da8d159d3d15" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>GetYaw</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af3ca32541c0a55f05ded120dca912440" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>hptoftlbssec</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab97b1e120708f6f64abb9bb9e9e4cd7a" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>in3tom3</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4b8b2a0e4b0180b2abe1aff2f00d334e" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>inchtoft</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a15e2a87588ef193ac0ad314327ecd509" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>inDegrees</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aaff61dea1cc525eed707df9fbac8eca5" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>inFeet</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ace650b7aed33166ac6974d13906e1894" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>inhgtopa</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57ad71c820cf28dae1965f184b9441d1694" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>inMeters</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aecc753b3791b03920f3ea0ad33852142" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>inNone</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a0a17d86840eb2e6b1784129ed75e414e" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>inRadians</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1affc9150d5720145d6a6c2a2dd265d9f5" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>JSBSim_version</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a241ce52e843cb12ae6de467cbc2f59a7" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>KelvinToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a6f1c8844b2bf556c2e90c84524c331e1" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>KelvinToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab1cd84a064daee36bb88b9052514da65" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>KelvinToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a532147ec5e65e4b78fd08bc76e1f1d35" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>kgtolb</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4627a23f0f2722262a9c865c4255fec8" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>kgtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae29b0dff0362fa116184dc2027e0a5e1" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>ktstofps</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a85110847c268725c20cd7e8d2adf0033" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>lbtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ad7434c1faeb6468757414fc3f86586df" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>m3toft3</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a2b891ed311334dde3facb7b1280643f1" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>MassBalance</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a25abd16e3c1285b3730de8af78aca64d" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>mT</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7c4e9bce0d9b7f5d394a8ee1d9b553eb" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>needed_cfg_version</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1add6c8d987939a3bf35554fd6d7c6a580" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>psftoinhg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a1f44bc4c489ccb9df15115c2586fc30a" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>psftopa</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaca636497dcea29d83039f342f2f47e2" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>radtodeg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9daa4b8416feb6ef2964aacbb1ad07e7" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>RankineToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7abcf379608273b32f3d8b939a9173d5" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>RankineToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a113614fa402dd20029edc006df5468c4" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetActingLocation</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a85cdbb0c4d2133d7886c42908711ee73" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetActingLocation</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a6c7ecb47ad4e8ef267ac59be5cdcaa23" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetActingLocationX</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a565457d2f8a57953397ec9a681f95056" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetActingLocationY</name></member>
+      <member refid="classJSBSim_1_1FGForce_1acbf136d7a843327e1863422f0c0d2ba9" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetActingLocationZ</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a5ccf31dc1f7e485922d4e58fc5b5785e" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetAnglesToBody</name></member>
+      <member refid="classJSBSim_1_1FGForce_1ad14d9ee50b08bd0defc20d17a8431d42" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetAnglesToBody</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a943f7ff68ce6cf5aff00b89eefb93e27" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetLocation</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a60e32a7017d7bff658c41c0636affc34" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetLocation</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a730271798f8225a6e5981bdbf22dd338" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetLocationX</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a83532b4fc4d718f1389679bc18535129" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetLocationY</name></member>
+      <member refid="classJSBSim_1_1FGForce_1ab5c85ed62dacbe5cd9a20d504ab08014" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetLocationZ</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a56d8189b078e6fd8ab8f1408cbe8aa9a" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetPitch</name></member>
+      <member refid="classJSBSim_1_1FGForce_1ab4eb0c0d024e7661d1acd570bc54e387" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetTransformType</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a60ed3c5bd4213093e75bbf30796e081d" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>SetYaw</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a493e81f2c57fb2733a3a8c54f4ac2ed8" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>sign</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4daf96dd9557d890a37cfc504ca67efd" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>slugtolb</name></member>
+      <member refid="classJSBSim_1_1FGForce_1aa65f3b21a9a92ff022e435a7304126d2ace244c6baaa5049c46cf20bc46bbec95" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>tCustom</name></member>
+      <member refid="classJSBSim_1_1FGForce_1aa65f3b21a9a92ff022e435a7304126d2af08d009d0d11c7a602a911e9269cb16d" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>tInertialBody</name></member>
+      <member refid="classJSBSim_1_1FGForce_1aa65f3b21a9a92ff022e435a7304126d2a0532ccde884f2d70cbba0d886ed1b352" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>tLocalBody</name></member>
+      <member refid="classJSBSim_1_1FGForce_1aa65f3b21a9a92ff022e435a7304126d2a55fd57142bf3922879f3ba8270abe20b" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>tNone</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a9b4c55d7b362e3cf126ee8e56d20efc9" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>Transform</name></member>
+      <member refid="classJSBSim_1_1FGForce_1aa65f3b21a9a92ff022e435a7304126d2" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>TransformType</name></member>
+      <member refid="classJSBSim_1_1FGForce_1ae1e5b61cbedf3656825e2978a12f97a7" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>ttype</name></member>
+      <member refid="classJSBSim_1_1FGForce_1aa65f3b21a9a92ff022e435a7304126d2aa4fd0f2bce730e6eb048001996f70918" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>tWindBody</name></member>
+      <member refid="classJSBSim_1_1FGForce_1ae33de343760ec1d340f19f2789170c9a" prot="public" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>UpdateCustomTransformMatrix</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a261829c29c96908f4a36a9eb84d52014" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>vActingXYZn</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a2b4cb761b1059e55618d04ded496bb63" prot="private" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>vFb</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a35fd541d1bbfe71c270e9608eb4b8146" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>vFn</name></member>
+      <member refid="classJSBSim_1_1FGForce_1aae63d441ecba1f4b072b0ed22b3ee1fc" prot="private" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>vM</name></member>
+      <member refid="classJSBSim_1_1FGForce_1af70be42d6ede403f0ee99e04d33edce7" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>vMn</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a38e3dfb62a2f19dc0189feb342d3c8a2" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>vOrient</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a25d46249aee7e0989fad3f899333c962" prot="protected" virt="non-virtual"><scope>JSBSim::FGForce</scope><name>vXYZn</name></member>
+      <member refid="classJSBSim_1_1FGForce_1a06ef165f39feac98d53ce45276118618" prot="public" virt="virtual"><scope>JSBSim::FGForce</scope><name>~FGForce</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a27507db9cad73b38ac3ba2bdc64fa428" prot="public" virt="virtual"><scope>JSBSim::FGForce</scope><name>~FGJSBBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

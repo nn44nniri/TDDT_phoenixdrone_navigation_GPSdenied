@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classJSBSim_1_1FGLogger" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>JSBSim::FGLogger</compoundname>
+    <derivedcompoundref refid="classJSBSim_1_1BufferLogger" prot="public" virt="non-virtual">BufferLogger</derivedcompoundref>
+    <derivedcompoundref refid="classJSBSim_1_1FGLogConsole" prot="public" virt="non-virtual">FGLogConsole</derivedcompoundref>
+    <includes refid="FGLog_8h" local="no">FGLog.h</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGLogger_1a16fda368866c2a2e2d5a54eda52050f9" prot="protected" static="no" mutable="no">
+        <type>LogLevel</type>
+        <definition>LogLevel log_level</definition>
+        <argsstring></argsstring>
+        <name>log_level</name>
+        <qualifiedname>JSBSim::FGLogger::log_level</qualifiedname>
+        <initializer>= LogLevel::BULK</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" line="140" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGLogger_1aae0f9004d19ed1c732bd5e135ffa9bc1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual ~FGLogger</definition>
+        <argsstring>()</argsstring>
+        <name>~FGLogger</name>
+        <qualifiedname>JSBSim::FGLogger::~FGLogger</qualifiedname>
+        <briefdescription>
+<para>Virtual destructor for polymorphic use. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" line="128" column="11" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" bodystart="128" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGLogger_1a2ccffd730f629bd43e90bebdb9a1b4c7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void FileLocation</definition>
+        <argsstring>(const std::string &amp;filename, int line)</argsstring>
+        <name>FileLocation</name>
+        <qualifiedname>JSBSim::FGLogger::FileLocation</qualifiedname>
+        <reimplementedby refid="classJSBSim_1_1BufferLogger_1a937b40fa25e2e2a6ef9def3668b2b356">FileLocation</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGLogConsole_1a937b40fa25e2e2a6ef9def3668b2b356">FileLocation</reimplementedby>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+<para>Optionally provides source filename and line for contextual diagnostics. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" line="132" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" bodystart="132" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGLogger_1a8de90074a80326af95b3c498c76f9055" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Flush</definition>
+        <argsstring>(void)</argsstring>
+        <name>Flush</name>
+        <qualifiedname>JSBSim::FGLogger::Flush</qualifiedname>
+        <reimplementedby refid="classJSBSim_1_1FGLogConsole_1a00f8c4cf44f7acd95d145af4b52b8fff">Flush</reimplementedby>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Ends the current log record and commits any buffered output. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" line="138" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" bodystart="138" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGLogger_1a9dc328222a3584d3ab93b629bd08ee1c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Format</definition>
+        <argsstring>(LogFormat format)</argsstring>
+        <name>Format</name>
+        <qualifiedname>JSBSim::FGLogger::Format</qualifiedname>
+        <reimplementedby refid="classJSBSim_1_1BufferLogger_1adefc3a7580496b07d3b720b30181ee08">Format</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGLogConsole_1adefc3a7580496b07d3b720b30181ee08">Format</reimplementedby>
+        <param>
+          <type>LogFormat</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>Applies a formatting hint to subsequent output. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" line="136" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" bodystart="136" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGLogger_1a8bc529ff2cf0f74ae0da11351eeb7bc5" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void Message</definition>
+        <argsstring>(const std::string &amp;message)=0</argsstring>
+        <name>Message</name>
+        <qualifiedname>JSBSim::FGLogger::Message</qualifiedname>
+        <reimplementedby refid="classJSBSim_1_1BufferLogger_1a76288c497bd5c706a1375a6172260af6">Message</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGLogConsole_1a76288c497bd5c706a1375a6172260af6">Message</reimplementedby>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+<para>Appends message text. May be called multiple times per log record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" line="134" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGLogger_1a32670bc130fc9176676ace17ecf46dcd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetLevel</definition>
+        <argsstring>(LogLevel level)</argsstring>
+        <name>SetLevel</name>
+        <qualifiedname>JSBSim::FGLogger::SetLevel</qualifiedname>
+        <param>
+          <type>LogLevel</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+<para>Starts a new log record and provides its severity level. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" line="130" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" bodystart="130" bodyend="130"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Logging backend interface. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>JSBSim routes each log record to an <computeroutput><ref refid="classJSBSim_1_1FGLogger" kindref="compound">FGLogger</ref></computeroutput> instance instead of writing directly to stdout/stderr. Applications can keep the default <computeroutput><ref refid="classJSBSim_1_1FGLogConsole" kindref="compound">FGLogConsole</ref></computeroutput> backend, or provide their own subclass and register it through <computeroutput>SetLogger(FGLogger_ptr)</computeroutput>.</para>
+<para>A single log record follows this lifecycle:<orderedlist>
+<listitem><para><computeroutput><ref refid="classJSBSim_1_1FGLogger_1a32670bc130fc9176676ace17ecf46dcd" kindref="member">SetLevel()</ref></computeroutput> starts a new log record and gives the severity.</para>
+</listitem><listitem><para><computeroutput><ref refid="classJSBSim_1_1FGLogger_1a2ccffd730f629bd43e90bebdb9a1b4c7" kindref="member">FileLocation()</ref></computeroutput> may be called (typically for XML-related messages), immediately after <computeroutput><ref refid="classJSBSim_1_1FGLogger_1a32670bc130fc9176676ace17ecf46dcd" kindref="member">SetLevel()</ref></computeroutput> and before message content.</para>
+</listitem><listitem><para><computeroutput><ref refid="classJSBSim_1_1FGLogger_1a8bc529ff2cf0f74ae0da11351eeb7bc5" kindref="member">Message()</ref></computeroutput> receives the textual payload. It can be invoked multiple times for one logical record because JSBSim may build a message in fragments.</para>
+</listitem><listitem><para><computeroutput><ref refid="classJSBSim_1_1FGLogger_1a9dc328222a3584d3ab93b629bd08ee1c" kindref="member">Format()</ref></computeroutput> communicates formatting intent (colors, emphasis, reset) for the subsequent output. Implementations may ignore it if formatting is not applicable.</para>
+</listitem><listitem><para><computeroutput><ref refid="classJSBSim_1_1FGLogger_1a8de90074a80326af95b3c498c76f9055" kindref="member">Flush()</ref></computeroutput> ends the current log record and is the right place to finalize and emit the record (for example: prefixing, buffering, forwarding to a UI, or forcing output synchronization).</para>
+</listitem></orderedlist>
+</para>
+<para>Implementations are expected to keep enough internal state between these callbacks to assemble one coherent log record.</para>
+<para><simplesect kind="see"><para>SetLogger </para>
+</simplesect>
+<simplesect kind="see"><para>GetLogger </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FGLogger</label>
+        <link refid="classJSBSim_1_1FGLogger"/>
+      </node>
+      <node id="2">
+        <label>BufferLogger</label>
+        <link refid="classJSBSim_1_1BufferLogger"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>FGLogConsole</label>
+        <link refid="classJSBSim_1_1FGLogConsole"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" line="124" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGLog.h" bodystart="125" bodyend="141"/>
+    <listofallmembers>
+      <member refid="classJSBSim_1_1FGLogger_1a2ccffd730f629bd43e90bebdb9a1b4c7" prot="public" virt="virtual"><scope>JSBSim::FGLogger</scope><name>FileLocation</name></member>
+      <member refid="classJSBSim_1_1FGLogger_1a8de90074a80326af95b3c498c76f9055" prot="public" virt="virtual"><scope>JSBSim::FGLogger</scope><name>Flush</name></member>
+      <member refid="classJSBSim_1_1FGLogger_1a9dc328222a3584d3ab93b629bd08ee1c" prot="public" virt="virtual"><scope>JSBSim::FGLogger</scope><name>Format</name></member>
+      <member refid="classJSBSim_1_1FGLogger_1a16fda368866c2a2e2d5a54eda52050f9" prot="protected" virt="non-virtual"><scope>JSBSim::FGLogger</scope><name>log_level</name></member>
+      <member refid="classJSBSim_1_1FGLogger_1a8bc529ff2cf0f74ae0da11351eeb7bc5" prot="public" virt="pure-virtual"><scope>JSBSim::FGLogger</scope><name>Message</name></member>
+      <member refid="classJSBSim_1_1FGLogger_1a32670bc130fc9176676ace17ecf46dcd" prot="public" virt="virtual"><scope>JSBSim::FGLogger</scope><name>SetLevel</name></member>
+      <member refid="classJSBSim_1_1FGLogger_1aae0f9004d19ed1c732bd5e135ffa9bc1" prot="public" virt="virtual"><scope>JSBSim::FGLogger</scope><name>~FGLogger</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

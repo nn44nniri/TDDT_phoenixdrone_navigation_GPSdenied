@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classSGRawValue" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>SGRawValue</compoundname>
+    <basecompoundref refid="classSGRawBase" prot="public" virt="non-virtual">SGRawBase&lt; T &gt;</basecompoundref>
+    <derivedcompoundref refid="classSGRawValueContainer" prot="public" virt="non-virtual">SGRawValueContainer&lt; T &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classSGRawValueFunctions" prot="public" virt="non-virtual">SGRawValueFunctions&lt; T &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classSGRawValueFunctionsIndexed" prot="public" virt="non-virtual">SGRawValueFunctionsIndexed&lt; T &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classSGRawValueMethods" prot="public" virt="non-virtual">SGRawValueMethods&lt; C, T &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classSGRawValueMethodsIndexed" prot="public" virt="non-virtual">SGRawValueMethodsIndexed&lt; C, T &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classSGRawValueMethodsIndexedEnum" prot="public" virt="non-virtual">SGRawValueMethodsIndexedEnum&lt; C, T, U &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classSGRawValuePointer" prot="public" virt="non-virtual">SGRawValuePointer&lt; T &gt;</derivedcompoundref>
+    <includes refid="props_8hxx" local="no">props.hxx</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classSGRawValue_1af2ddfe7db26daee286fa4e1fbee696d0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T DefaultValue</definition>
+        <argsstring>()</argsstring>
+        <name>DefaultValue</name>
+        <qualifiedname>SGRawValue::DefaultValue</qualifiedname>
+        <briefdescription>
+<para>The default underlying value for this type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Every raw value has a default; the default is false for a boolean, 0 for the various numeric values, and &quot;&quot; for a string. If additional types of raw values are added in the future, they may need different kinds of default values (such as epoch for a date type). The default value is used when creating new values. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="325" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="325" bodyend="328"/>
+        <referencedby refid="classSGRawValueFunctions_1ac323f1c2818de77e9ff741d16ccc57db" compoundref="props_8hxx" startline="501" endline="504">SGRawValueFunctions&lt; T &gt;::getValue</referencedby>
+        <referencedby refid="classSGRawValueFunctionsIndexed_1ac323f1c2818de77e9ff741d16ccc57db" compoundref="props_8hxx" startline="550" endline="553">SGRawValueFunctionsIndexed&lt; T &gt;::getValue</referencedby>
+        <referencedby refid="classSGRawValueMethods_1ac323f1c2818de77e9ff741d16ccc57db" compoundref="props_8hxx" startline="583" endline="586">SGRawValueMethods&lt; C, T &gt;::getValue</referencedby>
+        <referencedby refid="classSGRawValueMethodsIndexed_1ac323f1c2818de77e9ff741d16ccc57db" compoundref="props_8hxx" startline="617" endline="620">SGRawValueMethodsIndexed&lt; C, T &gt;::getValue</referencedby>
+        <referencedby refid="classSGRawValueMethodsEnum_1a6016e7c4b100464fe6bcddd745b1e1c9" compoundref="FGPropertyManager_8h" startline="69" endline="72">SGRawValueMethodsEnum&lt; C, T &gt;::getValue</referencedby>
+        <referencedby refid="classSGRawValueMethodsIndexedEnum_1aebc4654338ef64f37ad85b92e9489c85" compoundref="FGPropertyManager_8h" startline="95" endline="98">SGRawValueMethodsIndexedEnum&lt; C, T, U &gt;::getValue</referencedby>
+        <referencedby refid="classSGPropertyNode_1a220b2cfb8e3e15059b1e3752d06e9f7e" compoundref="props_8hxx" startline="1908" endline="1932">SGPropertyNode::tie</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSGRawValue_1a482d1ef4efc5a04b33ef65f632734c57" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SGRawValue</definition>
+        <argsstring>()</argsstring>
+        <name>SGRawValue</name>
+        <qualifiedname>SGRawValue::SGRawValue</qualifiedname>
+        <briefdescription>
+<para>Constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Use the default value for this type. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="336" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="336" bodyend="336"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGRawValue_1ac16beb78deb70e44a5bcca00f370e979" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual ~SGRawValue</definition>
+        <argsstring>()</argsstring>
+        <name>~SGRawValue</name>
+        <qualifiedname>SGRawValue::~SGRawValue</qualifiedname>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="342" column="11" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="342" bodyend="342"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGRawValue_1a0684cf369d89e96940e1fcbfc8c5dab8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DefaultValue</definition>
+        <argsstring>()</argsstring>
+        <name>DefaultValue</name>
+        <qualifiedname>SGRawValue::DefaultValue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="384" column="34" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="384" bodyend="387"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGRawValue_1a62a20d97ff76bb6b2f73552fdae884da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const char *</type>
+        <definition>const char * DefaultValue</definition>
+        <argsstring>()</argsstring>
+        <name>DefaultValue</name>
+        <qualifiedname>SGRawValue::DefaultValue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="389" column="41" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="389" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGRawValue_1a00d5f177dfae0e202132b4783916120f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="namespacesimgear_1_1props_1a1d1cfd8ffb84e947f82999c682b666a7" kindref="member">simgear::props::Type</ref></type>
+        <definition>virtual simgear::props::Type getType</definition>
+        <argsstring>() const</argsstring>
+        <name>getType</name>
+        <qualifiedname>SGRawValue::getType</qualifiedname>
+        <briefdescription>
+<para>Return the type tag for this raw value type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="372" column="32" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="372" bodyend="375"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGRawValue_1ac91272f311e86f848dca03c8c7094d41" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>T</type>
+        <definition>virtual T getValue</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getValue</name>
+        <qualifiedname>SGRawValue::getValue</qualifiedname>
+        <reimplementedby refid="classSGRawValuePointer_1ac323f1c2818de77e9ff741d16ccc57db">getValue</reimplementedby>
+        <reimplementedby refid="classSGRawValueFunctions_1ac323f1c2818de77e9ff741d16ccc57db">getValue</reimplementedby>
+        <reimplementedby refid="classSGRawValueFunctionsIndexed_1ac323f1c2818de77e9ff741d16ccc57db">getValue</reimplementedby>
+        <reimplementedby refid="classSGRawValueMethods_1ac323f1c2818de77e9ff741d16ccc57db">getValue</reimplementedby>
+        <reimplementedby refid="classSGRawValueMethodsIndexed_1ac323f1c2818de77e9ff741d16ccc57db">getValue</reimplementedby>
+        <reimplementedby refid="classSGRawValueContainer_1ac323f1c2818de77e9ff741d16ccc57db">getValue</reimplementedby>
+        <reimplementedby refid="classSGRawValueMethodsEnum_1a6016e7c4b100464fe6bcddd745b1e1c9">getValue</reimplementedby>
+        <reimplementedby refid="classSGRawValueMethodsIndexedEnum_1aebc4654338ef64f37ad85b92e9489c85">getValue</reimplementedby>
+        <briefdescription>
+<para>Return the underlying value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The actual value for the property. </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="classSGRawValue_1ad79317ea3317b6f27f1b863f7f804b71" kindref="member">setValue</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="351" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classSGRawValue_1ad79317ea3317b6f27f1b863f7f804b71" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool setValue</definition>
+        <argsstring>(T value)=0</argsstring>
+        <name>setValue</name>
+        <qualifiedname>SGRawValue::setValue</qualifiedname>
+        <reimplementedby refid="classSGRawValueMethodsEnum_1a5865db7db3c21acc4434f4f3c45a18ff">setValue</reimplementedby>
+        <reimplementedby refid="classSGRawValuePointer_1a1479141f02b5f580a8e30f4c880fa6c6">setValue</reimplementedby>
+        <reimplementedby refid="classSGRawValueFunctions_1a1479141f02b5f580a8e30f4c880fa6c6">setValue</reimplementedby>
+        <reimplementedby refid="classSGRawValueFunctionsIndexed_1a1479141f02b5f580a8e30f4c880fa6c6">setValue</reimplementedby>
+        <reimplementedby refid="classSGRawValueMethods_1a1479141f02b5f580a8e30f4c880fa6c6">setValue</reimplementedby>
+        <reimplementedby refid="classSGRawValueMethodsIndexed_1a1479141f02b5f580a8e30f4c880fa6c6">setValue</reimplementedby>
+        <reimplementedby refid="classSGRawValueContainer_1a1479141f02b5f580a8e30f4c880fa6c6">setValue</reimplementedby>
+        <reimplementedby refid="classSGRawValueMethodsIndexedEnum_1a734fd2dbfb8eaf85e140ecce4059ad9c">setValue</reimplementedby>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Assign a new underlying value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the new value cannot be set (because this is a read-only raw value, or because the new value is not acceptable for some reason) this method returns false and leaves the original value unchanged.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The actual value for the property. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the value was set successfully, false otherwise. </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="classSGRawValue_1ac91272f311e86f848dca03c8c7094d41" kindref="member">getValue</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="366" column="16"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Abstract base class for a raw value. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The property manager is implemented in two layers. The <ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> is the highest and most abstract layer, representing an LValue/RValue pair: it records the position of the property in the property tree and contains facilities for navigation to other nodes. It is guaranteed to be persistent: the <ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> will not change during a session, even if the property is bound and unbound multiple times.</para>
+<para>When the property value is not managed internally in the <ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref>, the <ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> will contain a reference to an <ref refid="classSGRawValue" kindref="compound">SGRawValue</ref> (this class), which provides an abstract way to get, set, and clone the underlying value. The <ref refid="classSGRawValue" kindref="compound">SGRawValue</ref> may change frequently during a session as a value is retyped or bound and unbound to various data source, but the abstract <ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> layer insulates the application from those changes.</para>
+<para>The <ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> class always keeps a <emphasis>copy</emphasis> of a raw value, not the original one passed to it; if you override a derived class but do not replace the <computeroutput><ref refid="classSGRaw_1a614015be06f067644fdf8928661d0510" kindref="member">clone()</ref></computeroutput> method, strange things will happen.</para>
+<para>All derived <ref refid="classSGRawValue" kindref="compound">SGRawValue</ref> classes must implement <ref refid="classSGRawValue_1ac91272f311e86f848dca03c8c7094d41" kindref="member">getValue()</ref>, <ref refid="classSGRawValue_1ad79317ea3317b6f27f1b863f7f804b71" kindref="member">setValue()</ref>, and <computeroutput><ref refid="classSGRaw_1a614015be06f067644fdf8928661d0510" kindref="member">clone()</ref></computeroutput> for the appropriate type.</para>
+<para><simplesect kind="see"><para><ref refid="classSGPropertyNode" kindref="compound">SGPropertyNode</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="classSGRawValuePointer" kindref="compound">SGRawValuePointer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="classSGRawValueFunctions" kindref="compound">SGRawValueFunctions</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="classSGRawValueFunctionsIndexed" kindref="compound">SGRawValueFunctionsIndexed</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="classSGRawValueMethods" kindref="compound">SGRawValueMethods</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="classSGRawValueMethodsIndexed" kindref="compound">SGRawValueMethodsIndexed</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="classSGRawValueContainer" kindref="compound">SGRawValueContainer</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>SGRawBase&lt; T, internal &gt;</label>
+        <link refid="classSGRawBase"/>
+      </node>
+      <node id="1">
+        <label>SGRawValue&lt; T &gt;</label>
+        <link refid="classSGRawValue"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>SGRawValueContainer&lt; T &gt;</label>
+        <link refid="classSGRawValueContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>SGRawValueFunctions&lt; T &gt;</label>
+        <link refid="classSGRawValueFunctions"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>SGRawValueFunctionsIndexed&lt; T &gt;</label>
+        <link refid="classSGRawValueFunctionsIndexed"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>SGRawValueMethods&lt; C, T &gt;</label>
+        <link refid="classSGRawValueMethods"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>SGRawValueMethodsIndexed&lt; C, T &gt;</label>
+        <link refid="classSGRawValueMethodsIndexed"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>SGRawValueMethodsIndexedEnum&lt; C, T, U &gt;</label>
+        <link refid="classSGRawValueMethodsIndexedEnum"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>SGRawValuePointer&lt; T &gt;</label>
+        <link refid="classSGRawValuePointer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>SGRawBase&lt; T, internal &gt;</label>
+        <link refid="classSGRawBase"/>
+      </node>
+      <node id="1">
+        <label>SGRawValue&lt; T &gt;</label>
+        <link refid="classSGRawValue"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" line="312" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/simgear/props/props.hxx" bodystart="313" bodyend="376"/>
+    <listofallmembers>
+      <member refid="classSGRawValue_1af2ddfe7db26daee286fa4e1fbee696d0" prot="public" virt="non-virtual"><scope>SGRawValue</scope><name>DefaultValue</name></member>
+      <member refid="classSGRawValue_1a0684cf369d89e96940e1fcbfc8c5dab8" prot="public" virt="non-virtual"><scope>SGRawValue</scope><name>DefaultValue</name></member>
+      <member refid="classSGRawValue_1a62a20d97ff76bb6b2f73552fdae884da" prot="public" virt="non-virtual"><scope>SGRawValue</scope><name>DefaultValue</name></member>
+      <member refid="classSGRawValue_1a00d5f177dfae0e202132b4783916120f" prot="public" virt="virtual"><scope>SGRawValue</scope><name>getType</name></member>
+      <member refid="classSGRawValue_1ac91272f311e86f848dca03c8c7094d41" prot="public" virt="pure-virtual"><scope>SGRawValue</scope><name>getValue</name></member>
+      <member refid="classSGRawValue_1ad79317ea3317b6f27f1b863f7f804b71" prot="public" virt="pure-virtual"><scope>SGRawValue</scope><name>setValue</name></member>
+      <member refid="classSGRawValue_1a482d1ef4efc5a04b33ef65f632734c57" prot="public" virt="non-virtual"><scope>SGRawValue</scope><name>SGRawValue</name></member>
+      <member refid="classSGRawValue_1ac16beb78deb70e44a5bcca00f370e979" prot="public" virt="virtual"><scope>SGRawValue</scope><name>~SGRawValue</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,2246 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classJSBSim_1_1FGWinds" kind="class" language="C++" prot="public">
+    <compoundname>JSBSim::FGWinds</compoundname>
+    <basecompoundref refid="classJSBSim_1_1FGModel" prot="public" virt="non-virtual">FGModel</basecompoundref>
+    <includes refid="FGWinds_8h" local="no">FGWinds.h</includes>
+    <innerclass refid="structJSBSim_1_1FGWinds_1_1Inputs" prot="public">JSBSim::FGWinds::Inputs</innerclass>
+    <innerclass refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineGust" prot="public">JSBSim::FGWinds::OneMinusCosineGust</innerclass>
+    <innerclass refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineProfile" prot="public">JSBSim::FGWinds::OneMinusCosineProfile</innerclass>
+    <innerclass refid="structJSBSim_1_1FGWinds_1_1UpDownBurst" prot="public">JSBSim::FGWinds::UpDownBurst</innerclass>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classJSBSim_1_1FGWinds_1a4124f1d44d5051cd1d4e5ec9cf3d8eda" prot="public" static="no" strong="no">
+        <type></type>
+        <name>eGustFrame</name>
+        <qualifiedname>JSBSim::FGWinds::eGustFrame</qualifiedname>
+        <enumvalue id="classJSBSim_1_1FGWinds_1a4124f1d44d5051cd1d4e5ec9cf3d8edaa9f4ae620c622dbb4346940d826f33139" prot="public">
+          <name>gfNone</name>
+          <initializer>=0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGWinds_1a4124f1d44d5051cd1d4e5ec9cf3d8edaa6694a285b17345e97fbd13dcabca5dae" prot="public">
+          <name>gfBody</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGWinds_1a4124f1d44d5051cd1d4e5ec9cf3d8edaa1ea13c1dd4a5e26235ece893209e04c9" prot="public">
+          <name>gfWind</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGWinds_1a4124f1d44d5051cd1d4e5ec9cf3d8edaa637822ea7b45f2be82d36ee0c0cf0ce4" prot="public">
+          <name>gfLocal</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="292" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="292" bodyend="292"/>
+      </memberdef>
+      <memberdef kind="enum" id="classJSBSim_1_1FGWinds_1a8e2690b9d46a01680ac987825d0ccdd0" prot="public" static="no" strong="no">
+        <type></type>
+        <name>tType</name>
+        <qualifiedname>JSBSim::FGWinds::tType</qualifiedname>
+        <enumvalue id="classJSBSim_1_1FGWinds_1a8e2690b9d46a01680ac987825d0ccdd0afe4d1cf65976d77c0415438eee5b6eb8" prot="public">
+          <name>ttNone</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGWinds_1a8e2690b9d46a01680ac987825d0ccdd0a60bec2000fc91b2835dafa4236225ab9" prot="public">
+          <name>ttStandard</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGWinds_1a8e2690b9d46a01680ac987825d0ccdd0a530b024c841ba780046cb06d03fe9e25" prot="public">
+          <name>ttCulp</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGWinds_1a8e2690b9d46a01680ac987825d0ccdd0ac7eb3ac5ec47dd3be997fc2d13541aaf" prot="public">
+          <name>ttMilspec</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGWinds_1a8e2690b9d46a01680ac987825d0ccdd0a431962270ecb3f7088d4588c7acde09a" prot="public">
+          <name>ttTustin</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="183" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="183" bodyend="183"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a1bb522dda9c2d23394dd473eddcec4bc" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structJSBSim_1_1FGWinds_1_1Inputs" kindref="compound">JSBSim::FGWinds::Inputs</ref></type>
+        <definition>struct JSBSim::FGWinds::Inputs in</definition>
+        <argsstring></argsstring>
+        <name>in</name>
+        <qualifiedname>JSBSim::FGWinds::in</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="367" column="6"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1acea38908ea18321cab7307a1c08f910a" prot="public" static="no" mutable="no">
+        <type>enum JSBSim::FGWinds::tType</type>
+        <definition>enum JSBSim::FGWinds::tType turbType</definition>
+        <argsstring></argsstring>
+        <name>turbType</name>
+        <qualifiedname>JSBSim::FGWinds::turbType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="183" column="22"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a8cce36aa7388743080e5a79ebaef4b6f" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classJSBSim_1_1RandomNumberGenerator" kindref="compound">RandomNumberGenerator</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;RandomNumberGenerator&gt; generator</definition>
+        <argsstring></argsstring>
+        <name>generator</name>
+        <qualifiedname>JSBSim::FGWinds::generator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="407" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="407" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a88b1a54983c05f8686c5bdf222ec8c28" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Magnitude</definition>
+        <argsstring></argsstring>
+        <name>Magnitude</name>
+        <qualifiedname>JSBSim::FGWinds::Magnitude</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="371" column="43" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="371" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a127903f2b13e5aa9d8c2f55a800816a2" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MagnitudeAccel</definition>
+        <argsstring></argsstring>
+        <name>MagnitudeAccel</name>
+        <qualifiedname>JSBSim::FGWinds::MagnitudeAccel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="371" column="28" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="371" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1ab48608b62d220abb4e12ce63ca9c86c1" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MagnitudedAccelDt</definition>
+        <argsstring></argsstring>
+        <name>MagnitudedAccelDt</name>
+        <qualifiedname>JSBSim::FGWinds::MagnitudedAccelDt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="371" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="371" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1aad0bd153f9ffe409e4088965abca8bd0" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nu_p_km1</definition>
+        <argsstring></argsstring>
+        <name>nu_p_km1</name>
+        <qualifiedname>JSBSim::FGWinds::nu_p_km1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="395" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="395" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1ab78339264e57bb590b4aa87313452d39" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nu_u_km1</definition>
+        <argsstring></argsstring>
+        <name>nu_u_km1</name>
+        <qualifiedname>JSBSim::FGWinds::nu_u_km1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="392" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="392" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a6e66d50c5a4cefb8ee63646873a377e7" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nu_v_km1</definition>
+        <argsstring></argsstring>
+        <name>nu_v_km1</name>
+        <qualifiedname>JSBSim::FGWinds::nu_v_km1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="393" column="28" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="393" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1ab5fba856fce5f0e5c37ed673473eae73" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nu_v_km2</definition>
+        <argsstring></argsstring>
+        <name>nu_v_km2</name>
+        <qualifiedname>JSBSim::FGWinds::nu_v_km2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="393" column="37" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="393" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a6de2154dd53c2f4226c1ee6c52b828d1" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nu_w_km1</definition>
+        <argsstring></argsstring>
+        <name>nu_w_km1</name>
+        <qualifiedname>JSBSim::FGWinds::nu_w_km1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="394" column="28" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="394" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a658012e0953aa2098184ba29a1acfb29" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nu_w_km2</definition>
+        <argsstring></argsstring>
+        <name>nu_w_km2</name>
+        <qualifiedname>JSBSim::FGWinds::nu_w_km2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="394" column="37" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="394" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a31de8483459cde30aee92fbf014dbbcc" prot="private" static="no" mutable="no">
+        <type>struct <ref refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineGust" kindref="compound">OneMinusCosineGust</ref></type>
+        <definition>struct OneMinusCosineGust oneMinusCosineGust</definition>
+        <argsstring></argsstring>
+        <name>oneMinusCosineGust</name>
+        <qualifiedname>JSBSim::FGWinds::oneMinusCosineGust</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="382" column="27" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="382" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1aed26a6cd2dcdd12ca2fcf89ad4c3daab" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGTable" kindref="compound">FGTable</ref> *</type>
+        <definition>FGTable* POE_Table</definition>
+        <argsstring></argsstring>
+        <name>POE_Table</name>
+        <qualifiedname>JSBSim::FGWinds::POE_Table</qualifiedname>
+        <briefdescription>
+<para>probability of exceedence table </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="388" column="11" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="388" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a81539264efb910224e0ca586b29c0c15" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int probability_of_exceedence_index</definition>
+        <argsstring></argsstring>
+        <name>probability_of_exceedence_index</name>
+        <qualifiedname>JSBSim::FGWinds::probability_of_exceedence_index</qualifiedname>
+        <briefdescription>
+<para>this is bound as the severity property </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="387" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="387" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a8f443a810ecd1854592178d2d1e1c106" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double psiw</definition>
+        <argsstring></argsstring>
+        <name>psiw</name>
+        <qualifiedname>JSBSim::FGWinds::psiw</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="398" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="398" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1adb5d21c436a68a07aef453ffa7640a88" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; unsigned int &gt;</type>
+        <definition>std::optional&lt;unsigned int&gt; RandomSeed</definition>
+        <argsstring></argsstring>
+        <name>RandomSeed</name>
+        <qualifiedname>JSBSim::FGWinds::RandomSeed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="406" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="406" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a84b7b98a9769cfffb913f6a6ee88b413" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Rhythmicity</definition>
+        <argsstring></argsstring>
+        <name>Rhythmicity</name>
+        <qualifiedname>JSBSim::FGWinds::Rhythmicity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="375" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="375" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1af674a59db7c51d1f0238c82d70fa0a56" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double spike</definition>
+        <argsstring></argsstring>
+        <name>spike</name>
+        <qualifiedname>JSBSim::FGWinds::spike</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="377" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="377" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1aa2e076c625665f2980f1219977b6036d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double strength</definition>
+        <argsstring></argsstring>
+        <name>strength</name>
+        <qualifiedname>JSBSim::FGWinds::strength</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="377" column="28" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="377" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a4afe2aac08c27629f723783fb03d96b3" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double target_time</definition>
+        <argsstring></argsstring>
+        <name>target_time</name>
+        <qualifiedname>JSBSim::FGWinds::target_time</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="377" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="377" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a704bd9b5dae602f41934e5cd92788bcb" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double TurbDirection</definition>
+        <argsstring></argsstring>
+        <name>TurbDirection</name>
+        <qualifiedname>JSBSim::FGWinds::TurbDirection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="371" column="53" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="371" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a8900ad4c88f835940b81d339eed8790b" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double TurbGain</definition>
+        <argsstring></argsstring>
+        <name>TurbGain</name>
+        <qualifiedname>JSBSim::FGWinds::TurbGain</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="373" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="373" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1aa5dfef5391509d4fe9b0147eab37670f" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double TurbRate</definition>
+        <argsstring></argsstring>
+        <name>TurbRate</name>
+        <qualifiedname>JSBSim::FGWinds::TurbRate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="374" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="374" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a79e3dfad2d6876b704740ca3727a5e47" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; struct <ref refid="structJSBSim_1_1FGWinds_1_1UpDownBurst" kindref="compound">UpDownBurst</ref> * &gt;</type>
+        <definition>std::vector&lt;struct UpDownBurst*&gt; UpDownBurstCells</definition>
+        <argsstring></argsstring>
+        <name>UpDownBurstCells</name>
+        <qualifiedname>JSBSim::FGWinds::UpDownBurstCells</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="383" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="383" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a095531f407c5df4bdd7bfe25f1d98fc3" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vBodyTurbGrad</definition>
+        <argsstring></argsstring>
+        <name>vBodyTurbGrad</name>
+        <qualifiedname>JSBSim::FGWinds::vBodyTurbGrad</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="379" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="379" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a8477e35bfa2d2b801ecfc3e89387ea63" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vBurstGust</definition>
+        <argsstring></argsstring>
+        <name>vBurstGust</name>
+        <qualifiedname>JSBSim::FGWinds::vBurstGust</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="403" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="403" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1ab3aa02c0d52c971009546831f180d055" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vCosineGust</definition>
+        <argsstring></argsstring>
+        <name>vCosineGust</name>
+        <qualifiedname>JSBSim::FGWinds::vCosineGust</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="402" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="402" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a94b9b52c0547b9822e4247a6cf087657" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vGustNED</definition>
+        <argsstring></argsstring>
+        <name>vGustNED</name>
+        <qualifiedname>JSBSim::FGWinds::vGustNED</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="401" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="401" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a606b2100b51f02943385cae2065b577d" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vTotalWindNED</definition>
+        <argsstring></argsstring>
+        <name>vTotalWindNED</name>
+        <qualifiedname>JSBSim::FGWinds::vTotalWindNED</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="399" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="399" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a5e39fb42926220c1cced554c0e4b3300" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vTurbPQR</definition>
+        <argsstring></argsstring>
+        <name>vTurbPQR</name>
+        <qualifiedname>JSBSim::FGWinds::vTurbPQR</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="380" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="380" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a11b9bfc9bc22d045ad33e848adc325fb" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vTurbulenceGrad</definition>
+        <argsstring></argsstring>
+        <name>vTurbulenceGrad</name>
+        <qualifiedname>JSBSim::FGWinds::vTurbulenceGrad</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="378" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="378" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a3c4fbbd22202c45d541f94298bf4510e" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vTurbulenceNED</definition>
+        <argsstring></argsstring>
+        <name>vTurbulenceNED</name>
+        <qualifiedname>JSBSim::FGWinds::vTurbulenceNED</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="404" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="404" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a91502a4afa2924e9322bf47aacd8f60e" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref></type>
+        <definition>FGColumnVector3 vWindNED</definition>
+        <argsstring></argsstring>
+        <name>vWindNED</name>
+        <qualifiedname>JSBSim::FGWinds::vWindNED</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="400" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="400" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a2d337bf5e9da21ea88c04ef57f0d62fa" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double wind_from_clockwise</definition>
+        <argsstring></argsstring>
+        <name>wind_from_clockwise</name>
+        <qualifiedname>JSBSim::FGWinds::wind_from_clockwise</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="376" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="376" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a216cb345c4556a54c4397dc7db858d52" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double windspeed_at_20ft</definition>
+        <argsstring></argsstring>
+        <name>windspeed_at_20ft</name>
+        <qualifiedname>JSBSim::FGWinds::windspeed_at_20ft</qualifiedname>
+        <briefdescription>
+<para>in ft/s </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="386" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="386" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1ad9d9e9da1ea84b46cd531dc61dbd0113" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double xi_p_km1</definition>
+        <argsstring></argsstring>
+        <name>xi_p_km1</name>
+        <qualifiedname>JSBSim::FGWinds::xi_p_km1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="395" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="395" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1acc7a8ba678c4b7fced4ee25576c6198f" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double xi_q_km1</definition>
+        <argsstring></argsstring>
+        <name>xi_q_km1</name>
+        <qualifiedname>JSBSim::FGWinds::xi_q_km1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="396" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="396" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1af88f368547d450f7267364fc7df0cc87" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double xi_r_km1</definition>
+        <argsstring></argsstring>
+        <name>xi_r_km1</name>
+        <qualifiedname>JSBSim::FGWinds::xi_r_km1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="396" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="396" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1ac6a44fb15b30ba40935d9ee74b81e239" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double xi_u_km1</definition>
+        <argsstring></argsstring>
+        <name>xi_u_km1</name>
+        <qualifiedname>JSBSim::FGWinds::xi_u_km1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="392" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="392" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a6f1cb3408f94e840320c6da5c7465f53" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double xi_v_km1</definition>
+        <argsstring></argsstring>
+        <name>xi_v_km1</name>
+        <qualifiedname>JSBSim::FGWinds::xi_v_km1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="393" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="393" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1a5012d7f63366877fecd20ac7d963fb70" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double xi_v_km2</definition>
+        <argsstring></argsstring>
+        <name>xi_v_km2</name>
+        <qualifiedname>JSBSim::FGWinds::xi_v_km2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="393" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="393" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1abd5726e59c55129df37828a1fa1e734c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double xi_w_km1</definition>
+        <argsstring></argsstring>
+        <name>xi_w_km1</name>
+        <qualifiedname>JSBSim::FGWinds::xi_w_km1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="394" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="394" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGWinds_1aba4dc6f947055a742e0165c767515fd7" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double xi_w_km2</definition>
+        <argsstring></argsstring>
+        <name>xi_w_km2</name>
+        <qualifiedname>JSBSim::FGWinds::xi_w_km2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="394" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="394" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1ab89b6b3a26046c96a24e10f14c831f1a" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGWinds</definition>
+        <argsstring>(FGFDMExec *)</argsstring>
+        <name>FGWinds</name>
+        <qualifiedname>JSBSim::FGWinds::FGWinds</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+          <defname>fdmex</defname>
+        </param>
+        <briefdescription>
+<para>Constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="171" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="75" bodyend="109"/>
+        <references refid="classJSBSim_1_1FGWinds_1a7f400bc589b69ff4ba17b6615777958b" compoundref="FGWinds_8h" startline="250" endline="250">FGWinds::SetTurbType</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a96aca627f6541fd1317183aba3ff5c3e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>~FGWinds</definition>
+        <argsstring>()</argsstring>
+        <name>~FGWinds</name>
+        <qualifiedname>JSBSim::FGWinds::~FGWinds</qualifiedname>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="173" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="113" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a981f58dbaa85911e96e2bbba216a2817" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void EndGustDuration</definition>
+        <argsstring>(double dur)</argsstring>
+        <name>EndGustDuration</name>
+        <qualifiedname>JSBSim::FGWinds::EndGustDuration</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>dur</declname>
+        </param>
+        <briefdescription>
+<para>Specifies the length of time it takes for the gust to return to zero velocity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="335" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="335" bodyend="335"/>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineProfile_1a00e60fd20dffa72b807eb87db1de061a" compoundref="FGWinds_8h" startline="281">FGWinds::OneMinusCosineProfile::endDuration</references>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineGust_1aac0cbb97106e87793a20af821eebb9eb" compoundref="FGWinds_8h" startline="300">FGWinds::OneMinusCosineGust::gustProfile</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1ac1faadfbe1fdab9098135f7d82af098a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double GetGustNED</definition>
+        <argsstring>(int idx) const</argsstring>
+        <name>GetGustNED</name>
+        <qualifiedname>JSBSim::FGWinds::GetGustNED</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a gust component in NED frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="240" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="240" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1ae87d3da7df7b80614cb1c859b2e6227c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+        <definition>virtual const FGColumnVector3 &amp; GetGustNED</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetGustNED</name>
+        <qualifiedname>JSBSim::FGWinds::GetGustNED</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Retrieves the gust components in NED frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="246" column="33" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="246" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1ad038e85d86dada8065dd9c502eb81089" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>virtual int GetProbabilityOfExceedence</definition>
+        <argsstring>() const</argsstring>
+        <name>GetProbabilityOfExceedence</name>
+        <qualifiedname>JSBSim::FGWinds::GetProbabilityOfExceedence</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="272" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="272" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1af3506e7b030539b3b408bd7914f99d70" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double GetRhythmicity</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRhythmicity</name>
+        <qualifiedname>JSBSim::FGWinds::GetRhythmicity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="260" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="260" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a9878d0a75a1aad3f995c029fdb4a2e53" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double GetTotalWindNED</definition>
+        <argsstring>(int idx) const</argsstring>
+        <name>GetTotalWindNED</name>
+        <qualifiedname>JSBSim::FGWinds::GetTotalWindNED</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a total wind component in NED frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="191" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="191" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a3448ca4fa739cd521bdf94dae9f4e9c4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+        <definition>virtual const FGColumnVector3 &amp; GetTotalWindNED</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetTotalWindNED</name>
+        <qualifiedname>JSBSim::FGWinds::GetTotalWindNED</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Retrieves the total wind components in NED frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="188" column="33" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="188" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1aa962eb3ed3ccb25487e7a37caf399b9b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double GetTurbDirection</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetTurbDirection</name>
+        <qualifiedname>JSBSim::FGWinds::GetTurbDirection</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="264" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="264" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a7e2b12d5a2bbdb1818eaf4fdddbfbad0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double GetTurbGain</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTurbGain</name>
+        <qualifiedname>JSBSim::FGWinds::GetTurbGain</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="254" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="254" bodyend="254"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a930290d32d137df80c421e13b7701eea" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double GetTurbMagnitude</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetTurbMagnitude</name>
+        <qualifiedname>JSBSim::FGWinds::GetTurbMagnitude</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="263" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="263" bodyend="263"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a8f96a58912589c5c51152e6070460337" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double GetTurbNED</definition>
+        <argsstring>(int idx) const</argsstring>
+        <name>GetTurbNED</name>
+        <qualifiedname>JSBSim::FGWinds::GetTurbNED</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a turbulence component in NED frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="243" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="243" bodyend="243"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1ae075a63ea2086afd1176ccba8f943ea4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double GetTurbPQR</definition>
+        <argsstring>(int idx) const</argsstring>
+        <name>GetTurbPQR</name>
+        <qualifiedname>JSBSim::FGWinds::GetTurbPQR</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="262" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="262" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1aebeb1b2179e96ffcad0b0d6cf18a4c3e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+        <definition>virtual const FGColumnVector3 &amp; GetTurbPQR</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetTurbPQR</name>
+        <qualifiedname>JSBSim::FGWinds::GetTurbPQR</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="265" column="33" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="265" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a408e3c5ddbe34c0fd91d6bc4f449bdaf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double GetTurbRate</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTurbRate</name>
+        <qualifiedname>JSBSim::FGWinds::GetTurbRate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="257" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="257" bodyend="257"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1ad73d3568332e191da781ad61adbf1e0e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>tType</type>
+        <definition>virtual tType GetTurbType</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTurbType</name>
+        <qualifiedname>JSBSim::FGWinds::GetTurbType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="251" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="251" bodyend="251"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1aafb9b2058f805ef8f0e3632feeec70e7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double GetWindNED</definition>
+        <argsstring>(int idx) const</argsstring>
+        <name>GetWindNED</name>
+        <qualifiedname>JSBSim::FGWinds::GetWindNED</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a wind component in NED frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="208" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="208" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a01dd5e8069be4a7af38fd1b4681fa836" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+        <definition>virtual const FGColumnVector3 &amp; GetWindNED</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetWindNED</name>
+        <qualifiedname>JSBSim::FGWinds::GetWindNED</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Retrieves the wind components in NED frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="205" column="33" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="205" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1ae8a5512750069682ea5d3b312e58bdb9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double GetWindPsi</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetWindPsi</name>
+        <qualifiedname>JSBSim::FGWinds::GetWindPsi</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Retrieves the direction that the wind is coming from. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The direction is defined as north=0 and increases counterclockwise. The wind heading is returned in radians. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="213" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="213" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a7d1649867202be1cf8dc3d05cb46098b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double GetWindspeed</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetWindspeed</name>
+        <qualifiedname>JSBSim::FGWinds::GetWindspeed</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="226" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="182" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a387a4476eb6d878930d4787eb2f49777" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double GetWindspeed20ft</definition>
+        <argsstring>() const</argsstring>
+        <name>GetWindspeed20ft</name>
+        <qualifiedname>JSBSim::FGWinds::GetWindspeed20ft</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="268" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="268" bodyend="268"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1ab1a48a3204e6ac9eae2df80c82922bf5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void GustFrame</definition>
+        <argsstring>(eGustFrame gFrame)</argsstring>
+        <name>GustFrame</name>
+        <qualifiedname>JSBSim::FGWinds::GustFrame</qualifiedname>
+        <param>
+          <type>eGustFrame</type>
+          <declname>gFrame</declname>
+        </param>
+        <briefdescription>
+<para>Specifies the frame that the gust direction vector components are specified in. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The body frame is defined with the X direction forward, and the Y direction positive out the right wing. The wind frame is defined with the X axis pointing into the velocity vector, the Z axis perpendicular to the X axis, in the aircraft XZ plane, and the Y axis completing the system. The local axis is a navigational frame with X pointing north, Y pointing east, and Z pointing down. This is a locally vertical, locally horizontal frame, with the XY plane tangent to the geocentric surface. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="345" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="345" bodyend="345"/>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineGust_1ae3ef0b09a04377cb73b4e487628bdd48" compoundref="FGWinds_8h" startline="299">FGWinds::OneMinusCosineGust::gustFrame</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a2a848d901244323a4875f03985a03afd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void GustMagnitude</definition>
+        <argsstring>(double mag)</argsstring>
+        <name>GustMagnitude</name>
+        <qualifiedname>JSBSim::FGWinds::GustMagnitude</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>mag</declname>
+        </param>
+        <briefdescription>
+<para>Specifies the magnitude of the gust in feet/second. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="337" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="337" bodyend="337"/>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineGust_1a7ad825616c5a39ab6e7f71bb6b320e77" compoundref="FGWinds_8h" startline="298">FGWinds::OneMinusCosineGust::magnitude</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a43d15f84629be0f1aa37641030c0d393" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void GustXComponent</definition>
+        <argsstring>(double x)</argsstring>
+        <name>GustXComponent</name>
+        <qualifiedname>JSBSim::FGWinds::GustXComponent</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Specifies the X component of velocity in the specified gust frame (ft/sec). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="347" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="347" bodyend="347"/>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineGust_1a6443a37304ed2a3a53252321b1a00b43" compoundref="FGWinds_8h" startline="296">FGWinds::OneMinusCosineGust::vWind</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1ada4d9bd60b9e8d42c2b7c4aa1a8e3d18" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void GustYComponent</definition>
+        <argsstring>(double y)</argsstring>
+        <name>GustYComponent</name>
+        <qualifiedname>JSBSim::FGWinds::GustYComponent</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Specifies the Y component of velocity in the specified gust frame (ft/sec). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="349" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="349" bodyend="349"/>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineGust_1a6443a37304ed2a3a53252321b1a00b43" compoundref="FGWinds_8h" startline="296">FGWinds::OneMinusCosineGust::vWind</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1aa64c1291d2149c36618a4158021f17fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void GustZComponent</definition>
+        <argsstring>(double z)</argsstring>
+        <name>GustZComponent</name>
+        <qualifiedname>JSBSim::FGWinds::GustZComponent</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+<para>Specifies the Z component of velocity in the specified gust frame (ft/sec). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="351" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="351" bodyend="351"/>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineGust_1a6443a37304ed2a3a53252321b1a00b43" compoundref="FGWinds_8h" startline="296">FGWinds::OneMinusCosineGust::vWind</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a91e22e2448c51c5dfffbd1ece7febefc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool InitModel</definition>
+        <argsstring>(void) override</argsstring>
+        <name>InitModel</name>
+        <qualifiedname>JSBSim::FGWinds::InitModel</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGModel_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplements>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="182" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="121" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1ac320dd1210e738d2339d394f62c5d3d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void NumberOfUpDownburstCells</definition>
+        <argsstring>(int num)</argsstring>
+        <name>NumberOfUpDownburstCells</name>
+        <qualifiedname>JSBSim::FGWinds::NumberOfUpDownburstCells</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>num</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="354" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="457" bodyend="464"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a764e8c6d39b827d2ad03f570a2fc37e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool Run</definition>
+        <argsstring>(bool Holding) override</argsstring>
+        <name>Run</name>
+        <qualifiedname>JSBSim::FGWinds::Run</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGModel_1a35ac9aa2a24b4c76037dcc874cdfdcdd">Run</reimplements>
+        <param>
+          <type>bool</type>
+          <declname>Holding</declname>
+        </param>
+        <briefdescription>
+<para>Runs the winds model; called by the Executive Can pass in a value indicating if the executive is directing the simulation to Hold. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Holding</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if true, the executive has been directed to hold the sim from advancing time. Some models may ignore this flag, such as the Input model, which may need to be active to listen on a socket for the &quot;Resume&quot; command to be given. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>false if no error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="181" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="146" bodyend="162"/>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineGust_1aac0cbb97106e87793a20af821eebb9eb" compoundref="FGWinds_8h" startline="300">FGWinds::OneMinusCosineGust::gustProfile</references>
+        <references refid="classJSBSim_1_1FGModel_1a35ac9aa2a24b4c76037dcc874cdfdcdd" compoundref="FGModel_8cpp" startline="101" endline="112">FGModel::Run</references>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineProfile_1ae2e97f1ebd7c956e2c68d1209eabd4b1" compoundref="FGWinds_8h" startline="277">FGWinds::OneMinusCosineProfile::Running</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1af6295aacb262dc63a2fb7afdca6247c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetGustNED</definition>
+        <argsstring>(double gN, double gE, double gD)</argsstring>
+        <name>SetGustNED</name>
+        <qualifiedname>JSBSim::FGWinds::SetGustNED</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>gN</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>gE</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>gD</declname>
+        </param>
+        <briefdescription>
+<para>Sets the gust components in NED frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="237" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="237" bodyend="237"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1af77909b6d8b4323e4610ebfcaca9fc5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetGustNED</definition>
+        <argsstring>(int idx, double gust)</argsstring>
+        <name>SetGustNED</name>
+        <qualifiedname>JSBSim::FGWinds::SetGustNED</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>gust</declname>
+        </param>
+        <briefdescription>
+<para>Sets a gust component in NED frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="231" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="231" bodyend="231"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1aad7ec783b7dd73f5ebfabec4c0ba535c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetProbabilityOfExceedence</definition>
+        <argsstring>(int idx)</argsstring>
+        <name>SetProbabilityOfExceedence</name>
+        <qualifiedname>JSBSim::FGWinds::SetProbabilityOfExceedence</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>allowable range: 0-7, 3=light, 4=moderate, 6=severe turbulence </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="271" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="271" bodyend="271"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a818294a81fd6cdc8bd45acb8a9161eb7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetRhythmicity</definition>
+        <argsstring>(double r)</argsstring>
+        <name>SetRhythmicity</name>
+        <qualifiedname>JSBSim::FGWinds::SetRhythmicity</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="259" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="259" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1af80e28d1257d92df77d80d33689c6a5c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetTurbGain</definition>
+        <argsstring>(double tg)</argsstring>
+        <name>SetTurbGain</name>
+        <qualifiedname>JSBSim::FGWinds::SetTurbGain</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>tg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="253" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="253" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a5da4484e4bda711a6f461cb2863d59fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetTurbNED</definition>
+        <argsstring>(int idx, double turb)</argsstring>
+        <name>SetTurbNED</name>
+        <qualifiedname>JSBSim::FGWinds::SetTurbNED</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>turb</declname>
+        </param>
+        <briefdescription>
+<para>Sets a turbulence component in NED frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="234" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="234" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a1ed9b37dd22bc14f676b7ded04b15ee8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetTurbRate</definition>
+        <argsstring>(double tr)</argsstring>
+        <name>SetTurbRate</name>
+        <qualifiedname>JSBSim::FGWinds::SetTurbRate</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>tr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="256" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="256" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a7f400bc589b69ff4ba17b6615777958b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetTurbType</definition>
+        <argsstring>(tType tt)</argsstring>
+        <name>SetTurbType</name>
+        <qualifiedname>JSBSim::FGWinds::SetTurbType</qualifiedname>
+        <param>
+          <type>tType</type>
+          <declname>tt</declname>
+        </param>
+        <briefdescription>
+<para>Turbulence models available: ttNone, ttStandard, ttBerndt, ttCulp, ttMilspec, ttTustin. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="250" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="250" bodyend="250"/>
+        <referencedby refid="classJSBSim_1_1FGWinds_1ab89b6b3a26046c96a24e10f14c831f1a" compoundref="FGWinds_8cpp" startline="75" endline="109">FGWinds::FGWinds</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a234d44993d2aec03c1ecebc3bbb1443a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetWindNED</definition>
+        <argsstring>(const FGColumnVector3 &amp;wind)</argsstring>
+        <name>SetWindNED</name>
+        <qualifiedname>JSBSim::FGWinds::SetWindNED</qualifiedname>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>wind</declname>
+        </param>
+        <briefdescription>
+<para>Sets the wind components in NED frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="202" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="202" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a9992c316eabb367ea732ac61acde77be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetWindNED</definition>
+        <argsstring>(double wN, double wE, double wD)</argsstring>
+        <name>SetWindNED</name>
+        <qualifiedname>JSBSim::FGWinds::SetWindNED</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>wN</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>wE</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>wD</declname>
+        </param>
+        <briefdescription>
+<para>Sets the wind components in NED frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="196" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="196" bodyend="196"/>
+        <referencedby refid="classJSBSim_1_1FGFDMExec_1ae3182037153735d40f1857bdfa34a299" compoundref="FGFDMExec_8cpp" startline="675" endline="681">FGFDMExec::Initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a4a09de96cff71e0bb18d527fa851fff9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetWindNED</definition>
+        <argsstring>(int idx, double wind)</argsstring>
+        <name>SetWindNED</name>
+        <qualifiedname>JSBSim::FGWinds::SetWindNED</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>wind</declname>
+        </param>
+        <briefdescription>
+<para>Sets a wind component in NED frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="199" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="199" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a5ed79dd94ea2bc253ca214c99f4f77af" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void SetWindPsi</definition>
+        <argsstring>(double dir)</argsstring>
+        <name>SetWindPsi</name>
+        <qualifiedname>JSBSim::FGWinds::SetWindPsi</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>Sets the direction that the wind is coming from. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The direction is defined as north=0 and increases counterclockwise to 2*pi (radians). The vertical component of wind is assumed to be zero - and is forcibly set to zero. This function sets the vWindNED vector components based on the supplied direction. The magnitude of the wind set in the vector is preserved (assuming the vertical component is non-zero). <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wind direction in the horizontal plane, in radians. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="222" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="191" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1aabd7e94ab64238b157ee3537f25b9658" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void SetWindspeed</definition>
+        <argsstring>(double speed)</argsstring>
+        <name>SetWindspeed</name>
+        <qualifiedname>JSBSim::FGWinds::SetWindspeed</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>speed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="224" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="168" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a41c17542d26c012acb6db9744aceea44" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SetWindspeed20ft</definition>
+        <argsstring>(double ws)</argsstring>
+        <name>SetWindspeed20ft</name>
+        <qualifiedname>JSBSim::FGWinds::SetWindspeed20ft</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>ws</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="267" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="267" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1ae4b364e379aed1bb550416b818f2e82f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void StartGust</definition>
+        <argsstring>(bool running)</argsstring>
+        <name>StartGust</name>
+        <qualifiedname>JSBSim::FGWinds::StartGust</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>running</declname>
+        </param>
+        <briefdescription>
+<para>Initiates the execution of the gust. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="329" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="329" bodyend="329"/>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineGust_1aac0cbb97106e87793a20af821eebb9eb" compoundref="FGWinds_8h" startline="300">FGWinds::OneMinusCosineGust::gustProfile</references>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineProfile_1ae2e97f1ebd7c956e2c68d1209eabd4b1" compoundref="FGWinds_8h" startline="277">FGWinds::OneMinusCosineProfile::Running</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a6d0061651f1c0e66ae7aa2aaafb0baa4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void StartupGustDuration</definition>
+        <argsstring>(double dur)</argsstring>
+        <name>StartupGustDuration</name>
+        <qualifiedname>JSBSim::FGWinds::StartupGustDuration</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>dur</declname>
+        </param>
+        <briefdescription>
+<para>Specifies the duration of the startup portion of the gust. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="331" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="331" bodyend="331"/>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineGust_1aac0cbb97106e87793a20af821eebb9eb" compoundref="FGWinds_8h" startline="300">FGWinds::OneMinusCosineGust::gustProfile</references>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineProfile_1ac1bbd8742dcfd4efa162a62e799a37d1" compoundref="FGWinds_8h" startline="279">FGWinds::OneMinusCosineProfile::startupDuration</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a8fde2100ccff974446dc4cd859a60013" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SteadyGustDuration</definition>
+        <argsstring>(double dur)</argsstring>
+        <name>SteadyGustDuration</name>
+        <qualifiedname>JSBSim::FGWinds::SteadyGustDuration</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>dur</declname>
+        </param>
+        <briefdescription>
+<para>Specifies the length of time that the gust is at a steady, full strength. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="333" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="333" bodyend="333"/>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineGust_1aac0cbb97106e87793a20af821eebb9eb" compoundref="FGWinds_8h" startline="300">FGWinds::OneMinusCosineGust::gustProfile</references>
+        <references refid="structJSBSim_1_1FGWinds_1_1OneMinusCosineProfile_1a218e978a6da7c0e64a49564c03f9a815" compoundref="FGWinds_8h" startline="280">FGWinds::OneMinusCosineProfile::steadyDuration</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a26a9f9e9671af7494d8de79f6df25f0b" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void bind</definition>
+        <argsstring>(void)</argsstring>
+        <name>bind</name>
+        <qualifiedname>JSBSim::FGWinds::bind</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="420" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="515" bodyend="599"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a79bd157e21a6c03447dac8d34226d78f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CosineGust</definition>
+        <argsstring>()</argsstring>
+        <name>CosineGust</name>
+        <qualifiedname>JSBSim::FGWinds::CosineGust</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="415" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="415" bodyend="453"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1aec064092b791546d6fedeba891f47b39" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double CosineGustProfile</definition>
+        <argsstring>(double startDuration, double steadyDuration, double endDuration, double elapsedTime)</argsstring>
+        <name>CosineGustProfile</name>
+        <qualifiedname>JSBSim::FGWinds::CosineGustProfile</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>startDuration</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>steadyDuration</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>endDuration</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>elapsedTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="416" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="397" bodyend="411"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1ab152e07068ddfbd390c7cfbcec21ef8f" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Debug</definition>
+        <argsstring>(int from) override</argsstring>
+        <name>Debug</name>
+        <qualifiedname>JSBSim::FGWinds::Debug</qualifiedname>
+        <reimplements refid="classJSBSim_1_1FGModel_1a54ec10fc427f5973db1cf7af1ef55103">Debug</reimplements>
+        <param>
+          <type>int</type>
+          <declname>from</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="421" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="620" bodyend="645"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a849851eb1e9487b117655cd19ae740a8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double DistanceFromRingCenter</definition>
+        <argsstring>(double lat, double lon)</argsstring>
+        <name>DistanceFromRingCenter</name>
+        <qualifiedname>JSBSim::FGWinds::DistanceFromRingCenter</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>lat</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>lon</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="418" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="471" bodyend="482"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a25f46521a636641c02d0968a39d98db0" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int GetRandomSeed</definition>
+        <argsstring>(void) const</argsstring>
+        <name>GetRandomSeed</name>
+        <qualifiedname>JSBSim::FGWinds::GetRandomSeed</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="410" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="506" bodyend="511"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1a904126c08ebcb503d90104bd58a44825" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetRandomSeed</definition>
+        <argsstring>(int sr)</argsstring>
+        <name>SetRandomSeed</name>
+        <qualifiedname>JSBSim::FGWinds::SetRandomSeed</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>sr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="409" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="500" bodyend="504"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1ab6f23dd3f5481f45bae0540bfb4a7588" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Turbulence</definition>
+        <argsstring>(double h)</argsstring>
+        <name>Turbulence</name>
+        <qualifiedname>JSBSim::FGWinds::Turbulence</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="412" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="200" bodyend="393"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGWinds_1aa54ce960f38938653b6201400c9e02e3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UpDownBurst</definition>
+        <argsstring>()</argsstring>
+        <name>UpDownBurst</name>
+        <qualifiedname>JSBSim::FGWinds::UpDownBurst</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="413" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" bodystart="486" bodyend="493"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Models atmospheric disturbances: winds, gusts, turbulence, downbursts, etc. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><heading level="2">Turbulence</heading>
+</para>
+<para>Various turbulence models are available. They are specified via the property <computeroutput>atmosphere/turb-type</computeroutput>. The following models are available:<itemizedlist>
+<listitem><para>0: ttNone (turbulence disabled)</para>
+</listitem><listitem><para>1: ttStandard</para>
+</listitem><listitem><para>2: ttCulp</para>
+</listitem><listitem><para>3: ttMilspec (Dryden spectrum)</para>
+</listitem><listitem><para>4: ttTustin (Dryden spectrum)</para>
+</listitem></itemizedlist>
+</para>
+<para>The Milspec and Tustin models are described in the Yeager report cited below. They both use a Dryden spectrum model whose parameters (scale lengths and intensities) are modelled according to MIL-F-8785C. Parameters are modelled differently for altitudes below 1000ft and above 2000ft, for altitudes in between they are interpolated linearly.</para>
+<para>The two models differ in the implementation of the transfer functions described in the milspec.</para>
+<para>To use one of these two models, set <computeroutput>atmosphere/turb-type</computeroutput> to 4 resp. 5, and specify values for <computeroutput>atmosphere/turbulence/milspec/windspeed_at_20ft_AGL-fps</computeroutput> and <computeroutput>atmosphere/turbulence/milspec/severity</computeroutput> (the latter corresponds to the probability of exceedence curves from Fig.<nonbreakablespace/>7 of the milspec, allowable range is 0 (disabled) to 7). <computeroutput>atmosphere/psiw-rad</computeroutput> is respected as well; note that you have to specify a positive wind magnitude to prevent psiw from being reset to zero.</para>
+<para>Reference values (cf. figures 7 and 9 from the milspec): <table rows="4" cols="3"><row>
+<entry thead="no"><para><bold>Intensity</bold> </para>
+</entry><entry thead="no"><para><bold><computeroutput>windspeed_at_20ft_AGL-fps</computeroutput></bold> </para>
+</entry><entry thead="no"><para><bold><computeroutput>severity</computeroutput></bold> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>light </para>
+</entry><entry thead="no"><para>25 (15 knots) </para>
+</entry><entry thead="no"><para>3 </para>
+</entry></row>
+<row>
+<entry thead="no"><para>moderate </para>
+</entry><entry thead="no"><para>50 (30 knots) </para>
+</entry><entry thead="no"><para>4 </para>
+</entry></row>
+<row>
+<entry thead="no"><para>severe </para>
+</entry><entry thead="no"><para>75 (45 knots) </para>
+</entry><entry thead="no"><para>6 </para>
+</entry></row>
+</table>
+</para>
+<para><heading level="2">Cosine Gust</heading>
+</para>
+<para>A one minus cosine gust model is available. This permits a configurable, predictable gust to be input to JSBSim for testing handling and dynamics. Here is how a gust can be entered in a script:</para>
+<para><programlisting filename=".xml"><codeline><highlight class="normal">&lt;</highlight><highlight class="keywordtype">event</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">name</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;Introduce<sp/>gust&quot;</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keywordtype">condition</highlight><highlight class="normal">&gt;<sp/></highlight><highlight class="keyword">simulation</highlight><highlight class="normal">/</highlight><highlight class="keyword">sim-time-sec</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">ge</highlight><highlight class="normal"><sp/>10<sp/>&lt;/</highlight><highlight class="keywordtype">condition</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keywordtype">set</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">name</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;atmosphere/cosine-gust/startup-duration-sec&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">value</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;5&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keywordtype">set</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">name</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;atmosphere/cosine-gust/steady-duration-sec&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">value</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;1&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keywordtype">set</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">name</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;atmosphere/cosine-gust/end-duration-sec&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">value</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;5&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keywordtype">set</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">name</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;atmosphere/cosine-gust/magnitude-ft_sec&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">value</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;30&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keywordtype">set</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">name</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;atmosphere/cosine-gust/frame&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">value</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;2&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keywordtype">set</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">name</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;atmosphere/cosine-gust/X-velocity-ft_sec&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">value</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;-1&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keywordtype">set</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">name</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;atmosphere/cosine-gust/Y-velocity-ft_sec&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">value</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;0&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keywordtype">set</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">name</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;atmosphere/cosine-gust/Z-velocity-ft_sec&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">value</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;0&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keywordtype">set</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">name</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;atmosphere/cosine-gust/start&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">value</highlight><highlight class="normal">=</highlight><highlight class="stringliteral">&quot;1&quot;</highlight><highlight class="normal">/&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&lt;</highlight><highlight class="keywordtype">notify</highlight><highlight class="normal">/&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;/</highlight><highlight class="keywordtype">event</highlight><highlight class="normal">&gt;</highlight></codeline>
+</programlisting></para>
+<para>The x, y, z velocity components are meant to define the direction vector. The vector will be normalized by the routine, so it does not need to be a unit vector.</para>
+<para>The startup duration is the time it takes to build up to full strength (magnitude-ft_sec) from zero. Steady duration is the time the gust stays at the specified magnitude. End duration is the time it takes to dwindle to zero from the specified magnitude. The start and end transients are in a smooth cosine shape.</para>
+<para>The frame is specified from the following enum:</para>
+<para>enum eGustFrame {gfNone=0, gfBody, gfWind, gfLocal};</para>
+<para>That is, if you specify the X, Y, Z gust direction vector in the body frame, frame will be &quot;1&quot;. If the X, Y, and Z gust direction vector is in the Wind frame, use frame = 2. If you specify the gust direction vector in the local frame (N-E-D) use frame = 3. Note that an internal local frame direction vector is created based on the X, Y, Z direction vector you specify and the frame <emphasis>at the time the gust is begun</emphasis>. The direction vector is not updated after the initial creation. This is to keep the gust at the same direction independent of aircraft dynamics.</para>
+<para>The gust is triggered when the property atmosphere/cosine-gust/start is set to 1. It can be used repeatedly - the gust resets itself after it has completed.</para>
+<para>The cosine gust is global: it affects the whole world not just the vicinity of the aircraft.</para>
+<para><simplesect kind="see"><para>Yeager, Jessie C.: &quot;Implementation and Testing of Turbulence Models for
+     the F18-HARV&quot; (<ulink url="http://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19980028448_1998081596.pdf">pdf</ulink>), NASA CR-1998-206937, 1998</para>
+</simplesect>
+<simplesect kind="see"><para>MIL-F-8785C: Military Specification: Flying Qualities of Piloted Aircraft </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FGWinds</label>
+        <link refid="classJSBSim_1_1FGWinds"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+      </node>
+      <node id="2">
+        <label>FGModel</label>
+        <link refid="classJSBSim_1_1FGModel"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>FGModelFunctions</label>
+        <link refid="classJSBSim_1_1FGModelFunctions"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>FGWinds</label>
+        <link refid="classJSBSim_1_1FGWinds"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>in</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>FGColumnVector3</label>
+        <link refid="classJSBSim_1_1FGColumnVector3"/>
+      </node>
+      <node id="16">
+        <label>FGFDMExec</label>
+        <link refid="classJSBSim_1_1FGFDMExec"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>FGFunction</label>
+        <link refid="classJSBSim_1_1FGFunction"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>Parameters</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>PropertyManager</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>JSBSim_version</edgelabel>
+          <edgelabel>needed_cfg_version</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>FGMatrix33</label>
+        <link refid="classJSBSim_1_1FGMatrix33"/>
+      </node>
+      <node id="2">
+        <label>FGModel</label>
+        <link refid="classJSBSim_1_1FGModel"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>Name</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>FDMExec</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>PropertyManager</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>FGModelFunctions</label>
+        <link refid="classJSBSim_1_1FGModelFunctions"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>PostFunctions</edgelabel>
+          <edgelabel>PreFunctions</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>LocalProperties</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>FGParameter</label>
+        <link refid="classJSBSim_1_1FGParameter"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>FGPropertyManager</label>
+      </node>
+      <node id="15">
+        <label>FGPropertyReader</label>
+        <link refid="classJSBSim_1_1FGPropertyReader"/>
+      </node>
+      <node id="17">
+        <label>Inputs</label>
+        <link refid="structJSBSim_1_1FGWinds_1_1Inputs"/>
+        <childnode refid="18" relation="usage">
+          <edgelabel>vUVW</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>Tl2b</edgelabel>
+          <edgelabel>Tw2b</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>SGReferenced</label>
+      </node>
+      <node id="13">
+        <label>shared_ptr&lt; FGPropertyManager &gt;</label>
+        <childnode refid="14" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>shared_ptr&lt; JSBSim::FGFunction &gt;</label>
+        <childnode refid="9" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>vector&lt; FGParameter_ptr &gt;</label>
+      </node>
+      <node id="7">
+        <label>vector&lt; std::shared_ptr&lt; JSBSim::FGFunction &gt; &gt;</label>
+        <childnode refid="8" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" line="167" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.h" bodystart="167" bodyend="422"/>
+    <listofallmembers>
+      <member refid="classJSBSim_1_1FGWinds_1a26a9f9e9671af7494d8de79f6df25f0b" prot="private" virt="virtual"><scope>JSBSim::FGWinds</scope><name>bind</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af8ad1042b82f1c0a47801d6978434b80" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>CelsiusToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aa3b6f7fb97ac87f59f266b3e64438cc3" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>CelsiusToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7b471bc247e5d616560cc5f5c66b4b6d" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>CelsiusToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a68d4cc66e32cfecaae8f500d688252c9" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>Constrain</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a79bd157e21a6c03447dac8d34226d78f" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>CosineGust</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1aec064092b791546d6fedeba891f47b39" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>CosineGustProfile</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a71d62a503829149eb1dfc6ad1852d4bf" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>CreateIndexedPropertyName</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ab152e07068ddfbd390c7cfbcec21ef8f" prot="private" virt="virtual"><scope>JSBSim::FGWinds</scope><name>Debug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ccb6173462774ec856542834c1df750" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>debug_lvl</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9959287a77d54c301e59848ccbc1227e" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>degtorad</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a849851eb1e9487b117655cd19ae740a8" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>DistanceFromRingCenter</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7761b6352da13e163a3e60ed931e10b2" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eDown</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ea9301202abb5117f2f5c84c400dd02863" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eDrag</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da8b0184eb4350aff703ffefe981be0ed0" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eEast</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a4124f1d44d5051cd1d4e5ec9cf3d8eda" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eGustFrame</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55baad8d708d8b2a6b0de1c60efac84c13c2" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eL</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600aee71d29fc9997c8c692e1cec39ccbd9e" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eLat</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9eaf9b007051dea0fdcdda1128417810324" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eLift</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600a82c89bd841ec11709255930b4f2ed128" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eLong</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba1108dc0fe89c81165e7e21bfa2d99a5c" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eM</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba29860d91c138d8308ab622566d5388b5" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eN</name></member>
+      <member refid="classJSBSim_1_1FGModel_1a8740ba80e30dd75e71d09fa1dcf04f3d" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>enabled</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a981f58dbaa85911e96e2bbba216a2817" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>EndGustDuration</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7af984c99e631c934f09d5f464886dff" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eNorth</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a53f1f5a36fc3c436188ba2de84a480cc" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eP</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca330da5edf1a7a181a5e682969033346d" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>ePhi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a755bd3b6ce5a786426392a9b22101569" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>ePitch</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca00ec32130eba5084873150f79dd4241d" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>ePsi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7ad435ed230bc84886ebd313f88f50617f" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eQ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0808b46d9967cd56d78df1274adc8147" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaed80f9927f0b8c14c67cfad83a8d60b" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a3fa3dd89c1b30f6d2b8a297006842a19" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4089c27aa417783731495c25b0d3e79b" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a568d83290d150b55a7c08ec3e01a4b80" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eR</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600ac34cb49e3a3c0217eb60f28606a074fd" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eRad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a5929427bd7f9a3f8a260ab0cee4adf5b" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eRoll</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ead333a23016fb297dc1e225e9de92a902" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eSide</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca782d389c863bda6761d96904c8ca5c88" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eTht</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a4e6ccf577f5e3892239a4d0243233c46" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eU</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a8967c32806f6f2377283501791d2139b" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eV</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5ad170ee6fdb066c2ac0a32760a4b6be8f" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eW</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04afd5a33749fa68a755125d713a656b616" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eX</name></member>
+      <member refid="classJSBSim_1_1FGModel_1adcaa1fceca61f22620232edeb1b31bbd" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>exe_ctr</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04af968dfccf7b280e98b613569ce68a29a" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eY</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a6828e3eb3b26c2f81338381e9ca45500" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eYaw</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04a246094bb9b7b37e389534a9cc740d126" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>eZ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adaf24dd942ba1dbaf0262ddf9725d50e" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>FahrenheitToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGModel_1a14dca20c8b787600092287bf11bddd19" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>FDMExec</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a8c51473eff249bacddf47d95834c6f69" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>FeetToMeters</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a5fd11c437bf08537955a9231dcd4dc49" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGModel_1aa594d4d73c49e17439d823fef59d5a4c" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>FGModel</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ab89b6b3a26046c96a24e10f14c831f1a" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>FGWinds</name></member>
+      <member refid="classJSBSim_1_1FGModel_1a63a07b2d923efd39a1e1a586020d7bc5" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>FindFullPathName</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af43d52b160c8fa8ba6325d858e34beb3" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>fpstokts</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae41da7596d847c1d8b27c3e9d611157d" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>fttom</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a8cce36aa7388743080e5a79ebaef4b6f" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>generator</name></member>
+      <member refid="classJSBSim_1_1FGModel_1aeb3e22e82831486e9983a3bf2802fb2e" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>GetExec</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a6d0e47cd9c6bdba65db88286e0b5ee06" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>GetFunctionStrings</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a7137c8955bc052d365da3ce2955fb7c8" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>GetFunctionValues</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ac1faadfbe1fdab9098135f7d82af098a" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetGustNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ae87d3da7df7b80614cb1c859b2e6227c" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetGustNED</name></member>
+      <member refid="classJSBSim_1_1FGModel_1a11d48e9a7f9aaf59c07d1ce465607aea" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>GetName</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1ab451ad7bfa803fb4e89ae3f69388c5f0" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>GetPreFunction</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ad038e85d86dada8065dd9c502eb81089" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetProbabilityOfExceedence</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a25f46521a636641c02d0968a39d98db0" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>GetRandomSeed</name></member>
+      <member refid="classJSBSim_1_1FGModel_1ad98192b551e8ff5ce90f12554b5b2e7f" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>GetRate</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1af3506e7b030539b3b408bd7914f99d70" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetRhythmicity</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a3448ca4fa739cd521bdf94dae9f4e9c4" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetTotalWindNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a9878d0a75a1aad3f995c029fdb4a2e53" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetTotalWindNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1aa962eb3ed3ccb25487e7a37caf399b9b" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetTurbDirection</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a7e2b12d5a2bbdb1818eaf4fdddbfbad0" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetTurbGain</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a930290d32d137df80c421e13b7701eea" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetTurbMagnitude</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a8f96a58912589c5c51152e6070460337" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetTurbNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ae075a63ea2086afd1176ccba8f943ea4" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetTurbPQR</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1aebeb1b2179e96ffcad0b0d6cf18a4c3e" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetTurbPQR</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a408e3c5ddbe34c0fd91d6bc4f449bdaf" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetTurbRate</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ad73d3568332e191da781ad61adbf1e0e" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetTurbType</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ce5e8bcfd2d23ad3b4032565842596c" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>GetVersion</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a01dd5e8069be4a7af38fd1b4681fa836" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetWindNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1aafb9b2058f805ef8f0e3632feeec70e7" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetWindNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ae8a5512750069682ea5d3b312e58bdb9" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetWindPsi</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a7d1649867202be1cf8dc3d05cb46098b" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetWindspeed</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a387a4476eb6d878930d4787eb2f49777" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GetWindspeed20ft</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a4124f1d44d5051cd1d4e5ec9cf3d8edaa6694a285b17345e97fbd13dcabca5dae" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>gfBody</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a4124f1d44d5051cd1d4e5ec9cf3d8edaa637822ea7b45f2be82d36ee0c0cf0ce4" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>gfLocal</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a4124f1d44d5051cd1d4e5ec9cf3d8edaa9f4ae620c622dbb4346940d826f33139" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>gfNone</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a4124f1d44d5051cd1d4e5ec9cf3d8edaa1ea13c1dd4a5e26235ece893209e04c9" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>gfWind</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ab1a48a3204e6ac9eae2df80c82922bf5" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GustFrame</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a2a848d901244323a4875f03985a03afd" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GustMagnitude</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a43d15f84629be0f1aa37641030c0d393" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GustXComponent</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ada4d9bd60b9e8d42c2b7c4aa1a8e3d18" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GustYComponent</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1aa64c1291d2149c36618a4158021f17fc" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>GustZComponent</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af3ca32541c0a55f05ded120dca912440" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>hptoftlbssec</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a1bb522dda9c2d23394dd473eddcec4bc" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>in</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab97b1e120708f6f64abb9bb9e9e4cd7a" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>in3tom3</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4b8b2a0e4b0180b2abe1aff2f00d334e" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>inchtoft</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a15e2a87588ef193ac0ad314327ecd509" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>inDegrees</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aaff61dea1cc525eed707df9fbac8eca5" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>inFeet</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ace650b7aed33166ac6974d13906e1894" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>inhgtopa</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a91e22e2448c51c5dfffbd1ece7febefc" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>InitModel</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57ad71c820cf28dae1965f184b9441d1694" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>inMeters</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aecc753b3791b03920f3ea0ad33852142" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>inNone</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a0a17d86840eb2e6b1784129ed75e414e" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>inRadians</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1affc9150d5720145d6a6c2a2dd265d9f5" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>JSBSim_version</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a241ce52e843cb12ae6de467cbc2f59a7" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>KelvinToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a6f1c8844b2bf556c2e90c84524c331e1" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>KelvinToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab1cd84a064daee36bb88b9052514da65" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>KelvinToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a532147ec5e65e4b78fd08bc76e1f1d35" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>kgtolb</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4627a23f0f2722262a9c865c4255fec8" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>kgtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae29b0dff0362fa116184dc2027e0a5e1" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>ktstofps</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a85110847c268725c20cd7e8d2adf0033" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>lbtoslug</name></member>
+      <member refid="classJSBSim_1_1FGModel_1ace0fef027a1618fd12395fd45952d2ee" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>Load</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a91dc920fd29be3d0446f5c5ebf63f5d9" prot="public" virt="non-virtual" ambiguityscope="JSBSim::FGModelFunctions::"><scope>JSBSim::FGWinds</scope><name>Load</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a839c5af04e61a2a8021401caaae36719" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>LocalProperties</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ad7434c1faeb6468757414fc3f86586df" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>m3toft3</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a88b1a54983c05f8686c5bdf222ec8c28" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>Magnitude</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a127903f2b13e5aa9d8c2f55a800816a2" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>MagnitudeAccel</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ab48608b62d220abb4e12ce63ca9c86c1" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>MagnitudedAccelDt</name></member>
+      <member refid="classJSBSim_1_1FGModel_1adc852f586959ce13117d737cf3f14899" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>Name</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7c4e9bce0d9b7f5d394a8ee1d9b553eb" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>needed_cfg_version</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1aad0bd153f9ffe409e4088965abca8bd0" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>nu_p_km1</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ab78339264e57bb590b4aa87313452d39" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>nu_u_km1</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a6e66d50c5a4cefb8ee63646873a377e7" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>nu_v_km1</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ab5fba856fce5f0e5c37ed673473eae73" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>nu_v_km2</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a6de2154dd53c2f4226c1ee6c52b828d1" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>nu_w_km1</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a658012e0953aa2098184ba29a1acfb29" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>nu_w_km2</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ac320dd1210e738d2339d394f62c5d3d4" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>NumberOfUpDownburstCells</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a31de8483459cde30aee92fbf014dbbcc" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>oneMinusCosineGust</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1aed26a6cd2dcdd12ca2fcf89ad4c3daab" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>POE_Table</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1adaee5c4e7b7ae038e96001d883c53659" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>PostFunctions</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1acf26b3d55883d94d21808a587b91c89f" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>PostLoad</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a0efd16fc559b354fe9644730d4d511ad" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>PreFunctions</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1acba6355047f26ea4f9af34ea1b670a5e" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>PreLoad</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a81539264efb910224e0ca586b29c0c15" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>probability_of_exceedence_index</name></member>
+      <member refid="classJSBSim_1_1FGModel_1a6f4a1c312d0edb6cded26fd9a148f409" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>PropertyManager</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1add6c8d987939a3bf35554fd6d7c6a580" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>psftoinhg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a1f44bc4c489ccb9df15115c2586fc30a" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>psftopa</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a8f443a810ecd1854592178d2d1e1c106" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>psiw</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaca636497dcea29d83039f342f2f47e2" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>radtodeg</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1adb5d21c436a68a07aef453ffa7640a88" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>RandomSeed</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9daa4b8416feb6ef2964aacbb1ad07e7" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>RankineToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7abcf379608273b32f3d8b939a9173d5" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>RankineToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGModel_1adf42a979321286885fe5a447d48d14d6" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>rate</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a84b7b98a9769cfffb913f6a6ee88b413" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>Rhythmicity</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a764e8c6d39b827d2ad03f570a2fc37e6" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>Run</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1ab708e0e9a5e4a6380130a1204e038ac7" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>RunPostFunctions</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1aae966cf3d4398eb6ba347128a87c1b4c" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>RunPreFunctions</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1af77909b6d8b4323e4610ebfcaca9fc5f" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SetGustNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1af6295aacb262dc63a2fb7afdca6247c8" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SetGustNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1aad7ec783b7dd73f5ebfabec4c0ba535c" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SetProbabilityOfExceedence</name></member>
+      <member refid="classJSBSim_1_1FGModel_1ac1b6ee019228962652a85aa7d007c50d" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>SetPropertyManager</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a904126c08ebcb503d90104bd58a44825" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>SetRandomSeed</name></member>
+      <member refid="classJSBSim_1_1FGModel_1aa869d818d1cc23946f954079b88cbd2a" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>SetRate</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a818294a81fd6cdc8bd45acb8a9161eb7" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SetRhythmicity</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1af80e28d1257d92df77d80d33689c6a5c" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SetTurbGain</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a5da4484e4bda711a6f461cb2863d59fc" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SetTurbNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a1ed9b37dd22bc14f676b7ded04b15ee8" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SetTurbRate</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a7f400bc589b69ff4ba17b6615777958b" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SetTurbType</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a9992c316eabb367ea732ac61acde77be" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SetWindNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a4a09de96cff71e0bb18d527fa851fff9" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SetWindNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a234d44993d2aec03c1ecebc3bbb1443a" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SetWindNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a5ed79dd94ea2bc253ca214c99f4f77af" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SetWindPsi</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1aabd7e94ab64238b157ee3537f25b9658" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SetWindspeed</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a41c17542d26c012acb6db9744aceea44" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SetWindspeed20ft</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a493e81f2c57fb2733a3a8c54f4ac2ed8" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>sign</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4daf96dd9557d890a37cfc504ca67efd" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>slugtolb</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1af674a59db7c51d1f0238c82d70fa0a56" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>spike</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ae4b364e379aed1bb550416b818f2e82f" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>StartGust</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a6d0061651f1c0e66ae7aa2aaafb0baa4" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>StartupGustDuration</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a8fde2100ccff974446dc4cd859a60013" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>SteadyGustDuration</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1aa2e076c625665f2980f1219977b6036d" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>strength</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a4afe2aac08c27629f723783fb03d96b3" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>target_time</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a8e2690b9d46a01680ac987825d0ccdd0a530b024c841ba780046cb06d03fe9e25" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>ttCulp</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a8e2690b9d46a01680ac987825d0ccdd0ac7eb3ac5ec47dd3be997fc2d13541aaf" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>ttMilspec</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a8e2690b9d46a01680ac987825d0ccdd0afe4d1cf65976d77c0415438eee5b6eb8" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>ttNone</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a8e2690b9d46a01680ac987825d0ccdd0a60bec2000fc91b2835dafa4236225ab9" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>ttStandard</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a8e2690b9d46a01680ac987825d0ccdd0a431962270ecb3f7088d4588c7acde09a" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>ttTustin</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a8e2690b9d46a01680ac987825d0ccdd0" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>tType</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a704bd9b5dae602f41934e5cd92788bcb" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>TurbDirection</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a8900ad4c88f835940b81d339eed8790b" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>TurbGain</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1aa5dfef5391509d4fe9b0147eab37670f" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>TurbRate</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1acea38908ea18321cab7307a1c08f910a" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>turbType</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ab6f23dd3f5481f45bae0540bfb4a7588" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>Turbulence</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1aa54ce960f38938653b6201400c9e02e3" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>UpDownBurst</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a79e3dfad2d6876b704740ca3727a5e47" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>UpDownBurstCells</name></member>
+      <member refid="classJSBSim_1_1FGModel_1a42ce334dbfdce7ccb2a75f9d32d02065" prot="protected" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>Upload</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a095531f407c5df4bdd7bfe25f1d98fc3" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>vBodyTurbGrad</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a8477e35bfa2d2b801ecfc3e89387ea63" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>vBurstGust</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ab3aa02c0d52c971009546831f180d055" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>vCosineGust</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a94b9b52c0547b9822e4247a6cf087657" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>vGustNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a606b2100b51f02943385cae2065b577d" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>vTotalWindNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a5e39fb42926220c1cced554c0e4b3300" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>vTurbPQR</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a11b9bfc9bc22d045ad33e848adc325fb" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>vTurbulenceGrad</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a3c4fbbd22202c45d541f94298bf4510e" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>vTurbulenceNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a91502a4afa2924e9322bf47aacd8f60e" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>vWindNED</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a2d337bf5e9da21ea88c04ef57f0d62fa" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>wind_from_clockwise</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a216cb345c4556a54c4397dc7db858d52" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>windspeed_at_20ft</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ad9d9e9da1ea84b46cd531dc61dbd0113" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>xi_p_km1</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1acc7a8ba678c4b7fced4ee25576c6198f" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>xi_q_km1</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1af88f368547d450f7267364fc7df0cc87" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>xi_r_km1</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1ac6a44fb15b30ba40935d9ee74b81e239" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>xi_u_km1</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a6f1cb3408f94e840320c6da5c7465f53" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>xi_v_km1</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a5012d7f63366877fecd20ac7d963fb70" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>xi_v_km2</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1abd5726e59c55129df37828a1fa1e734c" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>xi_w_km1</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1aba4dc6f947055a742e0165c767515fd7" prot="private" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>xi_w_km2</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a27507db9cad73b38ac3ba2bdc64fa428" prot="public" virt="virtual"><scope>JSBSim::FGWinds</scope><name>~FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGModel_1a1836fae4795532f2bccaba74a8e9d93c" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>~FGModel</name></member>
+      <member refid="classJSBSim_1_1FGWinds_1a96aca627f6541fd1317183aba3ff5c3e" prot="public" virt="non-virtual"><scope>JSBSim::FGWinds</scope><name>~FGWinds</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

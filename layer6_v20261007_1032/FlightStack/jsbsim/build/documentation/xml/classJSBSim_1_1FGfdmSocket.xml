@@ -1,0 +1,835 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classJSBSim_1_1FGfdmSocket" kind="class" language="C++" prot="public">
+    <compoundname>JSBSim::FGfdmSocket</compoundname>
+    <basecompoundref refid="classJSBSim_1_1FGJSBBase" prot="public" virt="non-virtual">FGJSBBase</basecompoundref>
+    <includes refid="FGfdmSocket_8h" local="no">FGfdmSocket.h</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classJSBSim_1_1FGfdmSocket_1a2b99fb4e4914a533566284f2ed3b0186" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ProtocolType</name>
+        <qualifiedname>JSBSim::FGfdmSocket::ProtocolType</qualifiedname>
+        <enumvalue id="classJSBSim_1_1FGfdmSocket_1a2b99fb4e4914a533566284f2ed3b0186a9c674b320e583679c93fbc424eebd577" prot="public">
+          <name>ptUDP</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classJSBSim_1_1FGfdmSocket_1a2b99fb4e4914a533566284f2ed3b0186a0223520e6ab280d9ed2a94c371882ed3" prot="public">
+          <name>ptTCP</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="177" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" bodystart="177" bodyend="177"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGfdmSocket_1adf5b5a0c01dfb39171409ca03724a13c" prot="private" static="no" mutable="no">
+        <type>std::ostringstream</type>
+        <definition>std::ostringstream buffer</definition>
+        <argsstring></argsstring>
+        <name>buffer</name>
+        <qualifiedname>JSBSim::FGfdmSocket::buffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="190" column="22" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" bodystart="190" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGfdmSocket_1ab36823025f12a809217f7771125658c2" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool connected</definition>
+        <argsstring></argsstring>
+        <name>connected</name>
+        <qualifiedname>JSBSim::FGfdmSocket::connected</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="192" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGfdmSocket_1a90b19f2a1530ea0919bea0925d79f4c3" prot="private" static="no" mutable="no">
+        <type>struct hostent *</type>
+        <definition>struct hostent* host</definition>
+        <argsstring></argsstring>
+        <name>host</name>
+        <qualifiedname>JSBSim::FGfdmSocket::host</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="189" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGfdmSocket_1aa95455ed52a8459fad69509a4a0411b5" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int precision</definition>
+        <argsstring></argsstring>
+        <name>precision</name>
+        <qualifiedname>JSBSim::FGfdmSocket::precision</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="191" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGfdmSocket_1a52ba7c81a2279bbbfc0650cdfb7f3859" prot="private" static="no" mutable="no">
+        <type>ProtocolType</type>
+        <definition>ProtocolType Protocol</definition>
+        <argsstring></argsstring>
+        <name>Protocol</name>
+        <qualifiedname>JSBSim::FGfdmSocket::Protocol</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="187" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" bodystart="187" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGfdmSocket_1a4e2a2edfac75c9d35b6726fa16a5e7e6" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int sckt</definition>
+        <argsstring></argsstring>
+        <name>sckt</name>
+        <qualifiedname>JSBSim::FGfdmSocket::sckt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="184" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" bodystart="184" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGfdmSocket_1ab55e115a8a65c91ff0195e4a26d070c9" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int sckt_in</definition>
+        <argsstring></argsstring>
+        <name>sckt_in</name>
+        <qualifiedname>JSBSim::FGfdmSocket::sckt_in</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="185" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" bodystart="185" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGfdmSocket_1a7d0545d15b79573202ef9f23591aeaa1" prot="private" static="no" mutable="no">
+        <type>struct sockaddr_in</type>
+        <definition>struct sockaddr_in scktName</definition>
+        <argsstring></argsstring>
+        <name>scktName</name>
+        <qualifiedname>JSBSim::FGfdmSocket::scktName</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="188" column="20" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" bodystart="188" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1ac3a5bcfff915cfb8909fe65e41a88c09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGfdmSocket</definition>
+        <argsstring>(const std::string &amp;address, int port, int protocol, int precision=7)</argsstring>
+        <name>FGfdmSocket</name>
+        <qualifiedname>JSBSim::FGfdmSocket::FGfdmSocket</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>address</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>protocol</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>precision</declname>
+          <defval>7</defval>
+        </param>
+        <briefdescription>
+<para>Construct a client socket. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>address</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The IP address or hostname of the server to connect to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The port number to connect to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>protocol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The protocol to use for communication (ptUDP or ptTCP). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>precision</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The precision to use for floating-point numbers (default is 7). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="86" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="101" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1a200de3f94ff46d56c31d376e618edfbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGfdmSocket</definition>
+        <argsstring>(int port, int protocol, int precision=7)</argsstring>
+        <name>FGfdmSocket</name>
+        <qualifiedname>JSBSim::FGfdmSocket::FGfdmSocket</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>protocol</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>precision</declname>
+          <defval>7</defval>
+        </param>
+        <briefdescription>
+<para>Construct a server socket. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The port number to listen on. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>protocol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The protocol to use for communication (ptUDP or ptTCP). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>precision</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The precision to use for floating-point numbers (default is 7). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="95" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="179" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1a10aaafbfd6fcddfd9c7fc7ae81ec4331" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>~FGfdmSocket</definition>
+        <argsstring>()</argsstring>
+        <name>~FGfdmSocket</name>
+        <qualifiedname>JSBSim::FGfdmSocket::~FGfdmSocket</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="97" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="266" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1ac15ac107e4b26b1d9b3e27ba04881273" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Append</definition>
+        <argsstring>(const char *)</argsstring>
+        <name>Append</name>
+        <qualifiedname>JSBSim::FGfdmSocket::Append</qualifiedname>
+        <param>
+          <type>const char *</type>
+          <defname>item</defname>
+        </param>
+        <briefdescription>
+<para>Append the specified C-style string to the internal buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The C-style string to append. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="138" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="388" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1a88484bfab35bd30c2f7bf3e441867cb9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Append</definition>
+        <argsstring>(const std::string &amp;s)</argsstring>
+        <name>Append</name>
+        <qualifiedname>JSBSim::FGfdmSocket::Append</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Append the specified string to the internal buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string to append. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="131" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" bodystart="131" bodyend="131"/>
+        <references refid="classJSBSim_1_1FGfdmSocket_1a88484bfab35bd30c2f7bf3e441867cb9" compoundref="FGfdmSocket_8h" startline="131" endline="131">FGfdmSocket::Append</references>
+        <referencedby refid="classJSBSim_1_1FGfdmSocket_1a88484bfab35bd30c2f7bf3e441867cb9" compoundref="FGfdmSocket_8h" startline="131" endline="131">FGfdmSocket::Append</referencedby>
+        <referencedby refid="classJSBSim_1_1FGOutputSocket_1a0d7143a7146c3401f1c71e68d68097d6" compoundref="FGOutputSocket_8cpp" startline="280" endline="390">FGOutputSocket::Print</referencedby>
+        <referencedby refid="classJSBSim_1_1FGOutputSocket_1a870ccd394b24be86298f3aa7f1c53e54" compoundref="FGOutputSocket_8cpp" startline="394" endline="404">FGOutputSocket::SocketStatusOutput</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1a7842b0102a58bfeb8f0b2fb9315e84b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Append</definition>
+        <argsstring>(double value)</argsstring>
+        <name>Append</name>
+        <qualifiedname>JSBSim::FGfdmSocket::Append</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Append the specified double value to the internal buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The double value to append. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="145" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="396" bodyend="400"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1a000fc3ab5162a90007aef0ded59a207c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Append</definition>
+        <argsstring>(long value)</argsstring>
+        <name>Append</name>
+        <qualifiedname>JSBSim::FGfdmSocket::Append</qualifiedname>
+        <param>
+          <type>long</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Append the specified long value to the internal buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The long value to append. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="152" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="404" bodyend="408"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1a6ff5a5678899604d0374d39fe96eb924" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Clear</definition>
+        <argsstring>(const std::string &amp;s)</argsstring>
+        <name>Clear</name>
+        <qualifiedname>JSBSim::FGfdmSocket::Clear</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Clear the internal buffer and appends the specified string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string to append after clearing the buffer. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="162" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="380" bodyend="384"/>
+        <references refid="classJSBSim_1_1FGfdmSocket_1a666736fbd0ebb8dc7e6ff3392423d6c0" compoundref="FGfdmSocket_8cpp" startline="373" endline="376">FGfdmSocket::Clear</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1a666736fbd0ebb8dc7e6ff3392423d6c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Clear</definition>
+        <argsstring>(void)</argsstring>
+        <name>Clear</name>
+        <qualifiedname>JSBSim::FGfdmSocket::Clear</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Clear the internal buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="155" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="373" bodyend="376"/>
+        <referencedby refid="classJSBSim_1_1FGfdmSocket_1a6ff5a5678899604d0374d39fe96eb924" compoundref="FGfdmSocket_8cpp" startline="380" endline="384">FGfdmSocket::Clear</referencedby>
+        <referencedby refid="classJSBSim_1_1FGOutputSocket_1a0d7143a7146c3401f1c71e68d68097d6" compoundref="FGOutputSocket_8cpp" startline="280" endline="390">FGOutputSocket::Print</referencedby>
+        <referencedby refid="classJSBSim_1_1FGOutputSocket_1a870ccd394b24be86298f3aa7f1c53e54" compoundref="FGOutputSocket_8cpp" startline="394" endline="404">FGOutputSocket::SocketStatusOutput</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1a9346a35b44811828dc424826472d2417" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Close</definition>
+        <argsstring>(void)</argsstring>
+        <name>Close</name>
+        <qualifiedname>JSBSim::FGfdmSocket::Close</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Close the socket connection if the protocol is TCP. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="165" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="364" bodyend="369"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1a4eec346a8e00275a95a6c76aa3bcb07b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GetConnectStatus</definition>
+        <argsstring>(void)</argsstring>
+        <name>GetConnectStatus</name>
+        <qualifiedname>JSBSim::FGfdmSocket::GetConnectStatus</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Return the connection status of the socket. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if the socket is connected, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="172" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" bodystart="172" bodyend="172"/>
+        <referencedby refid="classJSBSim_1_1FGOutputSocket_1a91e22e2448c51c5dfffbd1ece7febefc" compoundref="FGOutputSocket_8cpp" startline="136" endline="151">FGOutputSocket::InitModel</referencedby>
+        <referencedby refid="classJSBSim_1_1FGOutputFG_1a0d7143a7146c3401f1c71e68d68097d6" compoundref="FGOutputFG_8cpp" startline="380" endline="389">FGOutputFG::Print</referencedby>
+        <referencedby refid="classJSBSim_1_1FGOutputSocket_1a0d7143a7146c3401f1c71e68d68097d6" compoundref="FGOutputSocket_8cpp" startline="280" endline="390">FGOutputSocket::Print</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1a18072674f11c417f2e889b3f74dba270" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>string Receive</definition>
+        <argsstring>(void)</argsstring>
+        <name>Receive</name>
+        <qualifiedname>JSBSim::FGfdmSocket::Receive</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Receive data from the socket connection. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The received data as a string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="116" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="276" bodyend="341"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1af64877ead188ce748f825b819897228d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Reply</definition>
+        <argsstring>(const std::string &amp;text)</argsstring>
+        <name>Reply</name>
+        <qualifiedname>JSBSim::FGfdmSocket::Reply</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Send a reply to the client ending by a prompt &quot;JSBSim&gt;&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The reply text to send. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The number of bytes sent. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="124" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="345" bodyend="360"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1a12303b2744d2d865542ef9114a00285d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Send</definition>
+        <argsstring>(const char *data, int length)</argsstring>
+        <name>Send</name>
+        <qualifiedname>JSBSim::FGfdmSocket::Send</qualifiedname>
+        <param>
+          <type>const char *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Send the specified data over the socket connection. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The data to send. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The length of the data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="108" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="421" bodyend="435"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1a8d28867bb37a8bea4a0b947c57f671e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Send</definition>
+        <argsstring>(const std::string &amp;data)</argsstring>
+        <name>Send</name>
+        <qualifiedname>JSBSim::FGfdmSocket::Send</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="109" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" bodystart="109" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1afed667c562fe42d98bf5f4196e016bc2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Send</definition>
+        <argsstring>(void)</argsstring>
+        <name>Send</name>
+        <qualifiedname>JSBSim::FGfdmSocket::Send</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Send the internal buffer over the socket connection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="100" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="412" bodyend="417"/>
+        <references refid="classJSBSim_1_1FGfdmSocket_1afed667c562fe42d98bf5f4196e016bc2" compoundref="FGfdmSocket_8cpp" startline="412" endline="417">FGfdmSocket::Send</references>
+        <referencedby refid="classJSBSim_1_1FGOutputFG_1a0d7143a7146c3401f1c71e68d68097d6" compoundref="FGOutputFG_8cpp" startline="380" endline="389">FGOutputFG::Print</referencedby>
+        <referencedby refid="classJSBSim_1_1FGOutputSocket_1a0d7143a7146c3401f1c71e68d68097d6" compoundref="FGOutputSocket_8cpp" startline="280" endline="390">FGOutputSocket::Print</referencedby>
+        <referencedby refid="classJSBSim_1_1FGfdmSocket_1afed667c562fe42d98bf5f4196e016bc2" compoundref="FGfdmSocket_8cpp" startline="412" endline="417">FGfdmSocket::Send</referencedby>
+        <referencedby refid="classJSBSim_1_1FGOutputSocket_1a870ccd394b24be86298f3aa7f1c53e54" compoundref="FGOutputSocket_8cpp" startline="394" endline="404">FGOutputSocket::SocketStatusOutput</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1ac393efee8b1913abd136eea7f572954d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void WaitUntilReadable</definition>
+        <argsstring>(void)</argsstring>
+        <name>WaitUntilReadable</name>
+        <qualifiedname>JSBSim::FGfdmSocket::WaitUntilReadable</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Wait until the TCP socket is readable. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="175" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="439" bodyend="458"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1a54ec10fc427f5973db1cf7af1ef55103" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Debug</definition>
+        <argsstring>(int from)</argsstring>
+        <name>Debug</name>
+        <qualifiedname>JSBSim::FGfdmSocket::Debug</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>from</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="194" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="498" bodyend="521"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGfdmSocket_1a5dd31e6681e2831c1a19c7316de3a72d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LogSocketError</definition>
+        <argsstring>(const std::string &amp;msg)</argsstring>
+        <name>LogSocketError</name>
+        <qualifiedname>JSBSim::FGfdmSocket::LogSocketError</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="193" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.cpp" bodystart="462" bodyend="477"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The <ref refid="classJSBSim_1_1FGfdmSocket" kindref="compound">FGfdmSocket</ref> class enables JSBSim to communicate via sockets. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class provides functionality for sending and receiving data over a socket connection. It can behave as both a client and/or a server, depending on the constructor used. The socket can use either UDP or TCP protocol for communication. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FGfdmSocket</label>
+        <link refid="classJSBSim_1_1FGfdmSocket"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>FGfdmSocket</label>
+        <link refid="classJSBSim_1_1FGfdmSocket"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>JSBSim_version</edgelabel>
+          <edgelabel>needed_cfg_version</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" line="75" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/input_output/FGfdmSocket.h" bodystart="76" bodyend="195"/>
+    <listofallmembers>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a88484bfab35bd30c2f7bf3e441867cb9" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Append</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1ac15ac107e4b26b1d9b3e27ba04881273" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Append</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a7842b0102a58bfeb8f0b2fb9315e84b9" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Append</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a000fc3ab5162a90007aef0ded59a207c" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Append</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1adf5b5a0c01dfb39171409ca03724a13c" prot="private" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>buffer</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af8ad1042b82f1c0a47801d6978434b80" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>CelsiusToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aa3b6f7fb97ac87f59f266b3e64438cc3" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>CelsiusToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7b471bc247e5d616560cc5f5c66b4b6d" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>CelsiusToRankine</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a666736fbd0ebb8dc7e6ff3392423d6c0" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Clear</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a6ff5a5678899604d0374d39fe96eb924" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Clear</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a9346a35b44811828dc424826472d2417" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Close</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1ab36823025f12a809217f7771125658c2" prot="private" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>connected</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a68d4cc66e32cfecaae8f500d688252c9" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Constrain</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a71d62a503829149eb1dfc6ad1852d4bf" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>CreateIndexedPropertyName</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a54ec10fc427f5973db1cf7af1ef55103" prot="private" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Debug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ccb6173462774ec856542834c1df750" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>debug_lvl</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9959287a77d54c301e59848ccbc1227e" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>degtorad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7761b6352da13e163a3e60ed931e10b2" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eDown</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ea9301202abb5117f2f5c84c400dd02863" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eDrag</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da8b0184eb4350aff703ffefe981be0ed0" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eEast</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55baad8d708d8b2a6b0de1c60efac84c13c2" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eL</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600aee71d29fc9997c8c692e1cec39ccbd9e" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eLat</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9eaf9b007051dea0fdcdda1128417810324" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eLift</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600a82c89bd841ec11709255930b4f2ed128" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eLong</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba1108dc0fe89c81165e7e21bfa2d99a5c" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eM</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba29860d91c138d8308ab622566d5388b5" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eN</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7af984c99e631c934f09d5f464886dff" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eNorth</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a53f1f5a36fc3c436188ba2de84a480cc" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eP</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca330da5edf1a7a181a5e682969033346d" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>ePhi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a755bd3b6ce5a786426392a9b22101569" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>ePitch</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca00ec32130eba5084873150f79dd4241d" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>ePsi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7ad435ed230bc84886ebd313f88f50617f" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eQ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0808b46d9967cd56d78df1274adc8147" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaed80f9927f0b8c14c67cfad83a8d60b" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a3fa3dd89c1b30f6d2b8a297006842a19" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4089c27aa417783731495c25b0d3e79b" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a568d83290d150b55a7c08ec3e01a4b80" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eR</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600ac34cb49e3a3c0217eb60f28606a074fd" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eRad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a5929427bd7f9a3f8a260ab0cee4adf5b" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eRoll</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ead333a23016fb297dc1e225e9de92a902" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eSide</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca782d389c863bda6761d96904c8ca5c88" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eTht</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a4e6ccf577f5e3892239a4d0243233c46" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eU</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a8967c32806f6f2377283501791d2139b" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eV</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5ad170ee6fdb066c2ac0a32760a4b6be8f" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eW</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04afd5a33749fa68a755125d713a656b616" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eX</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04af968dfccf7b280e98b613569ce68a29a" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eY</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a6828e3eb3b26c2f81338381e9ca45500" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eYaw</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04a246094bb9b7b37e389534a9cc740d126" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>eZ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adaf24dd942ba1dbaf0262ddf9725d50e" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>FahrenheitToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a8c51473eff249bacddf47d95834c6f69" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>FeetToMeters</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1ac3a5bcfff915cfb8909fe65e41a88c09" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>FGfdmSocket</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a200de3f94ff46d56c31d376e618edfbc" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>FGfdmSocket</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a5fd11c437bf08537955a9231dcd4dc49" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af43d52b160c8fa8ba6325d858e34beb3" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>fpstokts</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae41da7596d847c1d8b27c3e9d611157d" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>fttom</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a4eec346a8e00275a95a6c76aa3bcb07b" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>GetConnectStatus</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ce5e8bcfd2d23ad3b4032565842596c" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>GetVersion</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a90b19f2a1530ea0919bea0925d79f4c3" prot="private" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>host</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af3ca32541c0a55f05ded120dca912440" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>hptoftlbssec</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab97b1e120708f6f64abb9bb9e9e4cd7a" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>in3tom3</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4b8b2a0e4b0180b2abe1aff2f00d334e" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>inchtoft</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a15e2a87588ef193ac0ad314327ecd509" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>inDegrees</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aaff61dea1cc525eed707df9fbac8eca5" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>inFeet</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ace650b7aed33166ac6974d13906e1894" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>inhgtopa</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57ad71c820cf28dae1965f184b9441d1694" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>inMeters</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aecc753b3791b03920f3ea0ad33852142" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>inNone</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a0a17d86840eb2e6b1784129ed75e414e" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>inRadians</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1affc9150d5720145d6a6c2a2dd265d9f5" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>JSBSim_version</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a241ce52e843cb12ae6de467cbc2f59a7" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>KelvinToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a6f1c8844b2bf556c2e90c84524c331e1" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>KelvinToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab1cd84a064daee36bb88b9052514da65" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>KelvinToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a532147ec5e65e4b78fd08bc76e1f1d35" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>kgtolb</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4627a23f0f2722262a9c865c4255fec8" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>kgtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae29b0dff0362fa116184dc2027e0a5e1" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>ktstofps</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a85110847c268725c20cd7e8d2adf0033" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>lbtoslug</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a5dd31e6681e2831c1a19c7316de3a72d" prot="private" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>LogSocketError</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ad7434c1faeb6468757414fc3f86586df" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>m3toft3</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7c4e9bce0d9b7f5d394a8ee1d9b553eb" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>needed_cfg_version</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1aa95455ed52a8459fad69509a4a0411b5" prot="private" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>precision</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a52ba7c81a2279bbbfc0650cdfb7f3859" prot="private" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Protocol</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a2b99fb4e4914a533566284f2ed3b0186" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>ProtocolType</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1add6c8d987939a3bf35554fd6d7c6a580" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>psftoinhg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a1f44bc4c489ccb9df15115c2586fc30a" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>psftopa</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a2b99fb4e4914a533566284f2ed3b0186a0223520e6ab280d9ed2a94c371882ed3" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>ptTCP</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a2b99fb4e4914a533566284f2ed3b0186a9c674b320e583679c93fbc424eebd577" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>ptUDP</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaca636497dcea29d83039f342f2f47e2" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>radtodeg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9daa4b8416feb6ef2964aacbb1ad07e7" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>RankineToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7abcf379608273b32f3d8b939a9173d5" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>RankineToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a18072674f11c417f2e889b3f74dba270" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Receive</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1af64877ead188ce748f825b819897228d" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Reply</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a4e2a2edfac75c9d35b6726fa16a5e7e6" prot="private" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>sckt</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1ab55e115a8a65c91ff0195e4a26d070c9" prot="private" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>sckt_in</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a7d0545d15b79573202ef9f23591aeaa1" prot="private" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>scktName</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1afed667c562fe42d98bf5f4196e016bc2" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Send</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a12303b2744d2d865542ef9114a00285d" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Send</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a8d28867bb37a8bea4a0b947c57f671e3" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>Send</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a493e81f2c57fb2733a3a8c54f4ac2ed8" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>sign</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4daf96dd9557d890a37cfc504ca67efd" prot="protected" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>slugtolb</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1ac393efee8b1913abd136eea7f572954d" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>WaitUntilReadable</name></member>
+      <member refid="classJSBSim_1_1FGfdmSocket_1a10aaafbfd6fcddfd9c7fc7ae81ec4331" prot="public" virt="non-virtual"><scope>JSBSim::FGfdmSocket</scope><name>~FGfdmSocket</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a27507db9cad73b38ac3ba2bdc64fa428" prot="public" virt="virtual"><scope>JSBSim::FGfdmSocket</scope><name>~FGJSBBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

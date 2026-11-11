@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "simulation_time_utc": "2025-05-20T12:00:00+00:00",
+  "region": {
+    "name": "Boulder expanded square example",
+    "bbox": [
+      -105.30999670363443,
+      40.00218350325587,
+      -105.26999890035525,
+      40.03281405830647
+    ]
+  },
+  "home": {
+    "lat": 40.01,
+    "lon": -105.3,
+    "terrain_msl_m": 1798.372802734375,
+    "initial_agl_m": 0.1410258217081318,
+    "heading_deg": 45.59257145243174,
+    "initial_CG_msl_m": 1798.5138285560831,
+    "position_origin": "CG"
+  },
+  "destination": {
+    "lat": 40.025,
+    "lon": -105.28,
+    "terrain_msl_m": 1635.9107666015625
+  },
+  "climate_at_home": {
+    "temperature_c": 4.085666340243602,
+    "relative_humidity_pct": 75.75511900009646,
+    "wind_speed_m_s": 2.4600000000000004,
+    "wind_direction_from_deg": 264.0,
+    "wind_north_m_s": 0.2571400196384273,
+    "wind_east_m_s": 2.446523862605953
+  },
+  "vehicle": {
+    "model": "Phoenix",
+    "type": "dual_rotor_tailsitter",
+    "forward_flight_air_start_only": false
+  },
+  "embedded_jsbsim": {
+    "mode": "ArduPilot SIM_JSBSim child process",
+    "wind_path": "Adapter -> MAVLink SIM_WIND_* -> SITL input.wind -> SIM_JSBSim.cpp -> JSBSim atmosphere properties",
+    "direct_control_socket_connection": false,
+    "terrain_injection": "not performed in no-patch mode; DEM is mission/safety/home truth",
+    "temperature_humidity_injection": "not performed by current ArduPilot SIM_JSBSim backend; retained in runtime_environment.json"
+  },
+  "ground_geometry_revision": "phoenix-fourfoot-r3.02-v1"
+}

@@ -1,0 +1,706 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classJSBSim_1_1FGModelFunctions" kind="class" language="C++" prot="public">
+    <compoundname>JSBSim::FGModelFunctions</compoundname>
+    <basecompoundref refid="classJSBSim_1_1FGJSBBase" prot="public" virt="non-virtual">FGJSBBase</basecompoundref>
+    <derivedcompoundref refid="classJSBSim_1_1FGEngine" prot="public" virt="non-virtual">FGEngine</derivedcompoundref>
+    <derivedcompoundref refid="classJSBSim_1_1FGModel" prot="public" virt="non-virtual">FGModel</derivedcompoundref>
+    <includes refid="FGModelFunctions_8h" local="no">FGModelFunctions.h</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGModelFunctions_1a839c5af04e61a2a8021401caaae36719" prot="protected" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGPropertyReader" kindref="compound">FGPropertyReader</ref></type>
+        <definition>FGPropertyReader LocalProperties</definition>
+        <argsstring></argsstring>
+        <name>LocalProperties</name>
+        <qualifiedname>JSBSim::FGModelFunctions::LocalProperties</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" line="103" column="20" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGModelFunctions_1adaee5c4e7b7ae038e96001d883c53659" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classJSBSim_1_1FGFunction" kindref="compound">FGFunction</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::shared_ptr&lt;FGFunction&gt; &gt; PostFunctions</definition>
+        <argsstring></argsstring>
+        <name>PostFunctions</name>
+        <qualifiedname>JSBSim::FGModelFunctions::PostFunctions</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" line="102" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGModelFunctions_1a0efd16fc559b354fe9644730d4d511ad" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classJSBSim_1_1FGFunction" kindref="compound">FGFunction</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::shared_ptr&lt;FGFunction&gt; &gt; PreFunctions</definition>
+        <argsstring></argsstring>
+        <name>PreFunctions</name>
+        <qualifiedname>JSBSim::FGModelFunctions::PreFunctions</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" line="101" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGModelFunctions_1a6d0e47cd9c6bdba65db88286e0b5ee06" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>string GetFunctionStrings</definition>
+        <argsstring>(const std::string &amp;delimeter) const</argsstring>
+        <name>GetFunctionStrings</name>
+        <qualifiedname>JSBSim::FGModelFunctions::GetFunctionStrings</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>delimeter</declname>
+        </param>
+        <briefdescription>
+<para>Gets the strings for the current set of functions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>delimeter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>either a tab or comma string depending on output type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a string containing the descriptive names for all functions </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" line="86" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.cpp" bodystart="143" bodyend="162"/>
+        <referencedby refid="classJSBSim_1_1FGAerodynamics_1a0354e29bf7dea97bcb25f875e235a85d" compoundref="FGAerodynamics_8cpp" startline="533" endline="561">FGAerodynamics::GetAeroFunctionStrings</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGModelFunctions_1a7137c8955bc052d365da3ce2955fb7c8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>string GetFunctionValues</definition>
+        <argsstring>(const std::string &amp;delimeter) const</argsstring>
+        <name>GetFunctionValues</name>
+        <qualifiedname>JSBSim::FGModelFunctions::GetFunctionValues</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>delimeter</declname>
+        </param>
+        <briefdescription>
+<para>Gets the function values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>delimeter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>either a tab or comma string depending on output type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a string containing the numeric values for the current set of functions </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" line="92" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.cpp" bodystart="166" bodyend="181"/>
+        <referencedby refid="classJSBSim_1_1FGAerodynamics_1a7e567f91ddddd571cef3912fd907487b" compoundref="FGAerodynamics_8cpp" startline="565" endline="587">FGAerodynamics::GetAeroFunctionValues</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGModelFunctions_1ab451ad7bfa803fb4e89ae3f69388c5f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classJSBSim_1_1FGFunction" kindref="compound">FGFunction</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; FGFunction &gt; GetPreFunction</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>GetPreFunction</name>
+        <qualifiedname>JSBSim::FGModelFunctions::GetPreFunction</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Get one of the &quot;pre&quot; function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the requested function. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a pointer to the function (NULL if not found) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" line="98" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.cpp" bodystart="131" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGModelFunctions_1a91dc920fd29be3d0446f5c5ebf63f5d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Load</definition>
+        <argsstring>(Element *el, FGFDMExec *fdmex, std::string prefix=&quot;&quot;)</argsstring>
+        <name>Load</name>
+        <qualifiedname>JSBSim::FGModelFunctions::Load</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>el</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+          <declname>fdmex</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>prefix</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" line="79" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.cpp" bodystart="61" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGModelFunctions_1acf26b3d55883d94d21808a587b91c89f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PostLoad</definition>
+        <argsstring>(Element *el, FGFDMExec *fdmex, std::string prefix=&quot;&quot;)</argsstring>
+        <name>PostLoad</name>
+        <qualifiedname>JSBSim::FGModelFunctions::PostLoad</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>el</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+          <declname>fdmex</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>prefix</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" line="81" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.cpp" bodystart="92" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGModelFunctions_1acba6355047f26ea4f9af34ea1b670a5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PreLoad</definition>
+        <argsstring>(Element *el, FGFDMExec *fdmex, std::string prefix=&quot;&quot;)</argsstring>
+        <name>PreLoad</name>
+        <qualifiedname>JSBSim::FGModelFunctions::PreLoad</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1Element" kindref="compound">Element</ref> *</type>
+          <declname>el</declname>
+        </param>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+          <declname>fdmex</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>prefix</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" line="80" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.cpp" bodystart="71" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGModelFunctions_1ab708e0e9a5e4a6380130a1204e038ac7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RunPostFunctions</definition>
+        <argsstring>(void)</argsstring>
+        <name>RunPostFunctions</name>
+        <qualifiedname>JSBSim::FGModelFunctions::RunPostFunctions</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" line="78" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.cpp" bodystart="123" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGModelFunctions_1aae966cf3d4398eb6ba347128a87c1b4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RunPreFunctions</definition>
+        <argsstring>(void)</argsstring>
+        <name>RunPreFunctions</name>
+        <qualifiedname>JSBSim::FGModelFunctions::RunPreFunctions</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" line="77" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.cpp" bodystart="111" bodyend="115"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGModelFunctions_1a9729191af164b5db0c9f72cd182939d2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool InitModel</definition>
+        <argsstring>(void)</argsstring>
+        <name>InitModel</name>
+        <qualifiedname>JSBSim::FGModelFunctions::InitModel</qualifiedname>
+        <reimplementedby refid="classJSBSim_1_1FGPropagate_1a9729191af164b5db0c9f72cd182939d2">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGInputSocket_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGInputType_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGOutputFile_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGOutputSocket_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGOutputType_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGMSIS_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGStandardAtmosphere_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGWinds_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGAccelerations_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGAerodynamics_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGAircraft_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGAtmosphere_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGAuxiliary_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGBuoyantForces_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGExternalReactions_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGFCS_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGGroundReactions_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGInput_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGMassBalance_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGModel_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGOutput_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <reimplementedby refid="classJSBSim_1_1FGPropulsion_1a91e22e2448c51c5dfffbd1ece7febefc">InitModel</reimplementedby>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" line="105" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.cpp" bodystart="52" bodyend="57"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The model functions class provides the capability for loading, storing, and executing arbitrary functions. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>For certain classes, such as the engine, aerodynamics, ground reactions, mass balance, etc., it can be useful to incorporate special functions that can operate on the local model parameters before and/or after the model executes. For example, there is no inherent chamber pressure calculation done in the rocket engine model. However, an arbitrary function can be added to a specific rocket engine XML configuration file. It would be tagged with a &quot;pre&quot; or &quot;post&quot; type attribute to denote whether the function is to be executed before or after the standard model algorithm. <simplesect kind="author"><para>Jon Berndt </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FGModelFunctions</label>
+        <link refid="classJSBSim_1_1FGModelFunctions"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>FGAccelerations</label>
+        <link refid="classJSBSim_1_1FGAccelerations"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>FGAerodynamics</label>
+        <link refid="classJSBSim_1_1FGAerodynamics"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>FGAircraft</label>
+        <link refid="classJSBSim_1_1FGAircraft"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>FGAtmosphere</label>
+        <link refid="classJSBSim_1_1FGAtmosphere"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>FGAuxiliary</label>
+        <link refid="classJSBSim_1_1FGAuxiliary"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>FGBrushLessDCMotor</label>
+        <link refid="classJSBSim_1_1FGBrushLessDCMotor"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>FGBuoyantForces</label>
+        <link refid="classJSBSim_1_1FGBuoyantForces"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>FGElectric</label>
+        <link refid="classJSBSim_1_1FGElectric"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>FGEngine</label>
+        <link refid="classJSBSim_1_1FGEngine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>FGExternalReactions</label>
+        <link refid="classJSBSim_1_1FGExternalReactions"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>FGFCS</label>
+        <link refid="classJSBSim_1_1FGFCS"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>FGGroundReactions</label>
+        <link refid="classJSBSim_1_1FGGroundReactions"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>FGInertial</label>
+        <link refid="classJSBSim_1_1FGInertial"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>FGInput</label>
+        <link refid="classJSBSim_1_1FGInput"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>FGInputSocket</label>
+        <link refid="classJSBSim_1_1FGInputSocket"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>FGInputType</label>
+        <link refid="classJSBSim_1_1FGInputType"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+      </node>
+      <node id="17">
+        <label>FGMSIS</label>
+        <link refid="classJSBSim_1_1FGMSIS"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>FGMars</label>
+        <link refid="classJSBSim_1_1FGMars"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>FGMassBalance</label>
+        <link refid="classJSBSim_1_1FGMassBalance"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>FGModel</label>
+        <link refid="classJSBSim_1_1FGModel"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>FGOutput</label>
+        <link refid="classJSBSim_1_1FGOutput"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>FGOutputFG</label>
+        <link refid="classJSBSim_1_1FGOutputFG"/>
+        <childnode refid="33" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>FGOutputFile</label>
+        <link refid="classJSBSim_1_1FGOutputFile"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>FGOutputSocket</label>
+        <link refid="classJSBSim_1_1FGOutputSocket"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>FGOutputTextFile</label>
+        <link refid="classJSBSim_1_1FGOutputTextFile"/>
+        <childnode refid="31" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>FGOutputType</label>
+        <link refid="classJSBSim_1_1FGOutputType"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>FGPiston</label>
+        <link refid="classJSBSim_1_1FGPiston"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>FGPropagate</label>
+        <link refid="classJSBSim_1_1FGPropagate"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>FGPropulsion</label>
+        <link refid="classJSBSim_1_1FGPropulsion"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>FGRocket</label>
+        <link refid="classJSBSim_1_1FGRocket"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>FGStandardAtmosphere</label>
+        <link refid="classJSBSim_1_1FGStandardAtmosphere"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>FGTurbine</label>
+        <link refid="classJSBSim_1_1FGTurbine"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>FGTurboProp</label>
+        <link refid="classJSBSim_1_1FGTurboProp"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>FGUDPInputSocket</label>
+        <link refid="classJSBSim_1_1FGUDPInputSocket"/>
+        <childnode refid="26" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>FGWinds</label>
+        <link refid="classJSBSim_1_1FGWinds"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>FGModelFunctions</label>
+        <link refid="classJSBSim_1_1FGModelFunctions"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>PostFunctions</edgelabel>
+          <edgelabel>PreFunctions</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>LocalProperties</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>FGFunction</label>
+        <link refid="classJSBSim_1_1FGFunction"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>Parameters</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>PropertyManager</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>JSBSim_version</edgelabel>
+          <edgelabel>needed_cfg_version</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>FGParameter</label>
+        <link refid="classJSBSim_1_1FGParameter"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>FGPropertyManager</label>
+      </node>
+      <node id="13">
+        <label>FGPropertyReader</label>
+        <link refid="classJSBSim_1_1FGPropertyReader"/>
+      </node>
+      <node id="9">
+        <label>SGReferenced</label>
+      </node>
+      <node id="11">
+        <label>shared_ptr&lt; FGPropertyManager &gt;</label>
+        <childnode refid="12" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>shared_ptr&lt; JSBSim::FGFunction &gt;</label>
+        <childnode refid="7" relation="usage">
+          <edgelabel>ptr</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>vector&lt; FGParameter_ptr &gt;</label>
+      </node>
+      <node id="5">
+        <label>vector&lt; std::shared_ptr&lt; JSBSim::FGFunction &gt; &gt;</label>
+        <childnode refid="6" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" line="74" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/math/FGModelFunctions.h" bodystart="75" bodyend="106"/>
+    <listofallmembers>
+      <member refid="classJSBSim_1_1FGJSBBase_1af8ad1042b82f1c0a47801d6978434b80" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>CelsiusToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aa3b6f7fb97ac87f59f266b3e64438cc3" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>CelsiusToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7b471bc247e5d616560cc5f5c66b4b6d" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>CelsiusToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a68d4cc66e32cfecaae8f500d688252c9" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>Constrain</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a71d62a503829149eb1dfc6ad1852d4bf" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>CreateIndexedPropertyName</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ccb6173462774ec856542834c1df750" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>debug_lvl</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9959287a77d54c301e59848ccbc1227e" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>degtorad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7761b6352da13e163a3e60ed931e10b2" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eDown</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ea9301202abb5117f2f5c84c400dd02863" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eDrag</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da8b0184eb4350aff703ffefe981be0ed0" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eEast</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55baad8d708d8b2a6b0de1c60efac84c13c2" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eL</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600aee71d29fc9997c8c692e1cec39ccbd9e" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eLat</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9eaf9b007051dea0fdcdda1128417810324" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eLift</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600a82c89bd841ec11709255930b4f2ed128" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eLong</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba1108dc0fe89c81165e7e21bfa2d99a5c" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eM</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba29860d91c138d8308ab622566d5388b5" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eN</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7af984c99e631c934f09d5f464886dff" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eNorth</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a53f1f5a36fc3c436188ba2de84a480cc" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eP</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca330da5edf1a7a181a5e682969033346d" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>ePhi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a755bd3b6ce5a786426392a9b22101569" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>ePitch</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca00ec32130eba5084873150f79dd4241d" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>ePsi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7ad435ed230bc84886ebd313f88f50617f" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eQ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0808b46d9967cd56d78df1274adc8147" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaed80f9927f0b8c14c67cfad83a8d60b" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a3fa3dd89c1b30f6d2b8a297006842a19" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4089c27aa417783731495c25b0d3e79b" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a568d83290d150b55a7c08ec3e01a4b80" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eR</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600ac34cb49e3a3c0217eb60f28606a074fd" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eRad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a5929427bd7f9a3f8a260ab0cee4adf5b" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eRoll</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ead333a23016fb297dc1e225e9de92a902" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eSide</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca782d389c863bda6761d96904c8ca5c88" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eTht</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a4e6ccf577f5e3892239a4d0243233c46" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eU</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a8967c32806f6f2377283501791d2139b" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eV</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5ad170ee6fdb066c2ac0a32760a4b6be8f" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eW</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04afd5a33749fa68a755125d713a656b616" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eX</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04af968dfccf7b280e98b613569ce68a29a" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eY</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a6828e3eb3b26c2f81338381e9ca45500" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eYaw</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04a246094bb9b7b37e389534a9cc740d126" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>eZ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adaf24dd942ba1dbaf0262ddf9725d50e" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>FahrenheitToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a8c51473eff249bacddf47d95834c6f69" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>FeetToMeters</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a5fd11c437bf08537955a9231dcd4dc49" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af43d52b160c8fa8ba6325d858e34beb3" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>fpstokts</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae41da7596d847c1d8b27c3e9d611157d" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>fttom</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a6d0e47cd9c6bdba65db88286e0b5ee06" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>GetFunctionStrings</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a7137c8955bc052d365da3ce2955fb7c8" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>GetFunctionValues</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1ab451ad7bfa803fb4e89ae3f69388c5f0" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>GetPreFunction</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ce5e8bcfd2d23ad3b4032565842596c" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>GetVersion</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af3ca32541c0a55f05ded120dca912440" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>hptoftlbssec</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab97b1e120708f6f64abb9bb9e9e4cd7a" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>in3tom3</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4b8b2a0e4b0180b2abe1aff2f00d334e" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>inchtoft</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a15e2a87588ef193ac0ad314327ecd509" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>inDegrees</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aaff61dea1cc525eed707df9fbac8eca5" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>inFeet</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ace650b7aed33166ac6974d13906e1894" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>inhgtopa</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a9729191af164b5db0c9f72cd182939d2" prot="protected" virt="virtual"><scope>JSBSim::FGModelFunctions</scope><name>InitModel</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57ad71c820cf28dae1965f184b9441d1694" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>inMeters</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aecc753b3791b03920f3ea0ad33852142" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>inNone</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a0a17d86840eb2e6b1784129ed75e414e" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>inRadians</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1affc9150d5720145d6a6c2a2dd265d9f5" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>JSBSim_version</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a241ce52e843cb12ae6de467cbc2f59a7" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>KelvinToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a6f1c8844b2bf556c2e90c84524c331e1" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>KelvinToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab1cd84a064daee36bb88b9052514da65" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>KelvinToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a532147ec5e65e4b78fd08bc76e1f1d35" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>kgtolb</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4627a23f0f2722262a9c865c4255fec8" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>kgtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae29b0dff0362fa116184dc2027e0a5e1" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>ktstofps</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a85110847c268725c20cd7e8d2adf0033" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>lbtoslug</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a91dc920fd29be3d0446f5c5ebf63f5d9" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>Load</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a839c5af04e61a2a8021401caaae36719" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>LocalProperties</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ad7434c1faeb6468757414fc3f86586df" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>m3toft3</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7c4e9bce0d9b7f5d394a8ee1d9b553eb" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>needed_cfg_version</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1adaee5c4e7b7ae038e96001d883c53659" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>PostFunctions</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1acf26b3d55883d94d21808a587b91c89f" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>PostLoad</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1a0efd16fc559b354fe9644730d4d511ad" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>PreFunctions</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1acba6355047f26ea4f9af34ea1b670a5e" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>PreLoad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1add6c8d987939a3bf35554fd6d7c6a580" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>psftoinhg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a1f44bc4c489ccb9df15115c2586fc30a" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>psftopa</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaca636497dcea29d83039f342f2f47e2" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>radtodeg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9daa4b8416feb6ef2964aacbb1ad07e7" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>RankineToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7abcf379608273b32f3d8b939a9173d5" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>RankineToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1ab708e0e9a5e4a6380130a1204e038ac7" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>RunPostFunctions</name></member>
+      <member refid="classJSBSim_1_1FGModelFunctions_1aae966cf3d4398eb6ba347128a87c1b4c" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>RunPreFunctions</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a493e81f2c57fb2733a3a8c54f4ac2ed8" prot="public" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>sign</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4daf96dd9557d890a37cfc504ca67efd" prot="protected" virt="non-virtual"><scope>JSBSim::FGModelFunctions</scope><name>slugtolb</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a27507db9cad73b38ac3ba2bdc64fa428" prot="public" virt="virtual"><scope>JSBSim::FGModelFunctions</scope><name>~FGJSBBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

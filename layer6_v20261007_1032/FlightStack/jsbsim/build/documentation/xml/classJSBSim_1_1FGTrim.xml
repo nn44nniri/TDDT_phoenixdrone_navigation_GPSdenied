@@ -1,0 +1,1227 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classJSBSim_1_1FGTrim" kind="class" language="C++" prot="public">
+    <compoundname>JSBSim::FGTrim</compoundname>
+    <basecompoundref refid="classJSBSim_1_1FGJSBBase" prot="public" virt="non-virtual">FGJSBBase</basecompoundref>
+    <includes refid="FGTrim_8h" local="no">FGTrim.h</includes>
+    <innerclass refid="structJSBSim_1_1FGTrim_1_1ContactPoints" prot="private">JSBSim::FGTrim::ContactPoints</innerclass>
+    <innerclass refid="structJSBSim_1_1FGTrim_1_1RotationParameters" prot="private">JSBSim::FGTrim::RotationParameters</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a37e2e4c999a6e6a92efef3b90902acc8" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double A_Tolerance</definition>
+        <argsstring></argsstring>
+        <name>A_Tolerance</name>
+        <qualifiedname>JSBSim::FGTrim::A_Tolerance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="131" column="20" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a33ae24d91155e2621f04fefe3e208118" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ahi</definition>
+        <argsstring></argsstring>
+        <name>ahi</name>
+        <qualifiedname>JSBSim::FGTrim::ahi</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="139" column="19" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a811b03f602abc7e741981be74c0325b3" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double alo</definition>
+        <argsstring></argsstring>
+        <name>alo</name>
+        <qualifiedname>JSBSim::FGTrim::alo</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="139" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a923774364cedbc16baa0bc05e9be136c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Debug</definition>
+        <argsstring></argsstring>
+        <name>Debug</name>
+        <qualifiedname>JSBSim::FGTrim::Debug</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="130" column="18" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a2ec187b5cf28cd80e05910994b479b9c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int debug_axis</definition>
+        <argsstring></argsstring>
+        <name>debug_axis</name>
+        <qualifiedname>JSBSim::FGTrim::debug_axis</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="141" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a57de13c36c21922938d330c7dd9cf766" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int DebugLevel</definition>
+        <argsstring></argsstring>
+        <name>DebugLevel</name>
+        <qualifiedname>JSBSim::FGTrim::DebugLevel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="130" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1abdaabf972f96cfb9401a53e32871d81e" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+        <definition>FGFDMExec* fdmex</definition>
+        <argsstring></argsstring>
+        <name>fdmex</name>
+        <qualifiedname>JSBSim::FGTrim::fdmex</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="145" column="13" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1aef24f5782cc9076139decea6e8b78e89" prot="private" static="no" mutable="no">
+        <type><ref refid="classJSBSim_1_1FGInitialCondition" kindref="compound">FGInitialCondition</ref></type>
+        <definition>FGInitialCondition fgic</definition>
+        <argsstring></argsstring>
+        <name>fgic</name>
+        <qualifiedname>JSBSim::FGTrim::fgic</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="146" column="22" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1abf4467c99382bf0ce552c6858cd73762" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool gamma_fallback</definition>
+        <argsstring></argsstring>
+        <name>gamma_fallback</name>
+        <qualifiedname>JSBSim::FGTrim::gamma_fallback</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="137" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a6d1fb853793cdbd341600473a0168fc2" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int max_iterations</definition>
+        <argsstring></argsstring>
+        <name>max_iterations</name>
+        <qualifiedname>JSBSim::FGTrim::max_iterations</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="135" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a6439e2be01321c69cfaa0c5058e8fdef" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int max_sub_iterations</definition>
+        <argsstring></argsstring>
+        <name>max_sub_iterations</name>
+        <qualifiedname>JSBSim::FGTrim::max_sub_iterations</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="134" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1afc33b5c122f65b8ec26b52ec3093f054" prot="private" static="no" mutable="no">
+        <type>TrimMode</type>
+        <definition>TrimMode mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <qualifiedname>JSBSim::FGTrim::mode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="129" column="12" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a6664db0d267e5e412b5e58db70c4e65f" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int Nsub</definition>
+        <argsstring></argsstring>
+        <name>Nsub</name>
+        <qualifiedname>JSBSim::FGTrim::Nsub</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="128" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a5a83cc8ef7dcd0bd733f09b1c031b2bb" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double psidot</definition>
+        <argsstring></argsstring>
+        <name>psidot</name>
+        <qualifiedname>JSBSim::FGTrim::psidot</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="143" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1af5b3690a3f3cf9850b7efd0515cd4f24" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; bool &gt;</type>
+        <definition>std::vector&lt;bool&gt; solution</definition>
+        <argsstring></argsstring>
+        <name>solution</name>
+        <qualifiedname>JSBSim::FGTrim::solution</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="133" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a943b995a19f503a3add3973709d76c2b" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int solutionDomain</definition>
+        <argsstring></argsstring>
+        <name>solutionDomain</name>
+        <qualifiedname>JSBSim::FGTrim::solutionDomain</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="138" column="7" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1aae471517b0745b4fd67a52693077d5cc" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; sub_iterations</definition>
+        <argsstring></argsstring>
+        <name>sub_iterations</name>
+        <qualifiedname>JSBSim::FGTrim::sub_iterations</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="132" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a5179c96b2cdc76620c980e791b059777" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; successful</definition>
+        <argsstring></argsstring>
+        <name>successful</name>
+        <qualifiedname>JSBSim::FGTrim::successful</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="132" column="30" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a9e07c4340619c2682bccb926a36d75f9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double targetNlf</definition>
+        <argsstring></argsstring>
+        <name>targetNlf</name>
+        <qualifiedname>JSBSim::FGTrim::targetNlf</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="140" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1ad7e6d7ca4fcbebf9ad23e2c39cc44447" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Tolerance</definition>
+        <argsstring></argsstring>
+        <name>Tolerance</name>
+        <qualifiedname>JSBSim::FGTrim::Tolerance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="131" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a0488ab49d9194c80be29af3571053c4f" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int total_its</definition>
+        <argsstring></argsstring>
+        <name>total_its</name>
+        <qualifiedname>JSBSim::FGTrim::total_its</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="136" column="16" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a18b7141c406f3775e7fe4fae0f237f71" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classJSBSim_1_1FGTrimAxis" kindref="compound">FGTrimAxis</ref> &gt;</type>
+        <definition>std::vector&lt;FGTrimAxis&gt; TrimAxes</definition>
+        <argsstring></argsstring>
+        <name>TrimAxes</name>
+        <qualifiedname>JSBSim::FGTrim::TrimAxes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="127" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1a04db0810325587a7ba02fef95adcbbff" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double xhi</definition>
+        <argsstring></argsstring>
+        <name>xhi</name>
+        <qualifiedname>JSBSim::FGTrim::xhi</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="139" column="13" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classJSBSim_1_1FGTrim_1aa3661de0d4c6a3b00ffb41a5cbe8e4c3" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double xlo</definition>
+        <argsstring></argsstring>
+        <name>xlo</name>
+        <qualifiedname>JSBSim::FGTrim::xlo</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="139" column="10" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a1acc5f9f5d0b7c5010a81c13c50ee44a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RotationParameters</type>
+        <definition>FGTrim::RotationParameters calcRotation</definition>
+        <argsstring>(std::vector&lt; ContactPoints &gt; &amp;contacts, const FGColumnVector3 &amp;rotationAxis, const FGColumnVector3 &amp;contact0)</argsstring>
+        <name>calcRotation</name>
+        <qualifiedname>JSBSim::FGTrim::calcRotation</qualifiedname>
+        <param>
+          <type>std::vector&lt; ContactPoints &gt; &amp;</type>
+          <declname>contacts</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>rotationAxis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classJSBSim_1_1FGColumnVector3" kindref="compound">FGColumnVector3</ref> &amp;</type>
+          <declname>contact0</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="178" column="22" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="506" bodyend="555"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a031605858ee9fc29fd733f0b26bedc07" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool checkLimits</definition>
+        <argsstring>(FGTrimAxis &amp;axis)</argsstring>
+        <name>checkLimits</name>
+        <qualifiedname>JSBSim::FGTrim::checkLimits</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGTrimAxis" kindref="compound">FGTrimAxis</ref> &amp;</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="159" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="716" bodyend="753"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1ac4903df02064ce2a0590210d775f19d6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool findInterval</definition>
+        <argsstring>(FGTrimAxis &amp;axis)</argsstring>
+        <name>findInterval</name>
+        <qualifiedname>JSBSim::FGTrim::findInterval</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGTrimAxis" kindref="compound">FGTrimAxis</ref> &amp;</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>false if there is no change in the current axis accel between accel(control_min) and accel(control_max). If there is a change, sets solutionDomain to: 0 for no sign change, -1 if sign change between accel(control_min) and accel(0) 1 if sign between accel(0) and accel(control_max) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="157" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="644" bodyend="699"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a9e2a83457eba53281e052d3780bc66ac" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void setDebug</definition>
+        <argsstring>(FGTrimAxis &amp;axis)</argsstring>
+        <name>setDebug</name>
+        <qualifiedname>JSBSim::FGTrim::setDebug</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGTrimAxis" kindref="compound">FGTrimAxis</ref> &amp;</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="165" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="820" bodyend="829"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a34d408183e72fe56f9dc16f3b024022d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void setupPullup</definition>
+        <argsstring>(void)</argsstring>
+        <name>setupPullup</name>
+        <qualifiedname>JSBSim::FGTrim::setupPullup</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="161" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="757" bodyend="769"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1aab52446e580f6dc05dfb3045f97e414d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void setupTurn</definition>
+        <argsstring>(void)</argsstring>
+        <name>setupTurn</name>
+        <qualifiedname>JSBSim::FGTrim::setupTurn</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="162" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="773" bodyend="784"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1acad5f99eef8c623975e8064c1a23602d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool solve</definition>
+        <argsstring>(FGTrimAxis &amp;axis)</argsstring>
+        <name>solve</name>
+        <qualifiedname>JSBSim::FGTrim::solve</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGTrimAxis" kindref="compound">FGTrimAxis</ref> &amp;</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="148" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="559" bodyend="617"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1adaea477cf9c2c8f0a0adca7582f8e67d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void trimOnGround</definition>
+        <argsstring>(void)</argsstring>
+        <name>trimOnGround</name>
+        <qualifiedname>JSBSim::FGTrim::trimOnGround</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="177" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="391" bodyend="495"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a342ce9b573eeff05cf3fce8c2dc6d7a0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void updateRates</definition>
+        <argsstring>(void)</argsstring>
+        <name>updateRates</name>
+        <qualifiedname>JSBSim::FGTrim::updateRates</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="164" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="788" bodyend="816"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1ab8b8c986a483a9dcb1e7c94234957933" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FGTrim</definition>
+        <argsstring>(FGFDMExec *FDMExec, TrimMode tm=tGround)</argsstring>
+        <name>FGTrim</name>
+        <qualifiedname>JSBSim::FGTrim::FGTrim</qualifiedname>
+        <param>
+          <type><ref refid="classJSBSim_1_1FGFDMExec" kindref="compound">FGFDMExec</ref> *</type>
+          <declname>FDMExec</declname>
+        </param>
+        <param>
+          <type>TrimMode</type>
+          <declname>tm</declname>
+          <defval>tGround</defval>
+        </param>
+        <briefdescription>
+<para>Initializes the trimming class. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>FDMExec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a JSBSim executive object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>trim mode </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="187" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="62" bodyend="86"/>
+        <references refid="classJSBSim_1_1FGFDMExec_1a1b9cbe82b05ea5038bb8cd083891dcb1" compoundref="FGFDMExec_8h" startline="390" endline="390">FGFDMExec::GetIC</references>
+        <references refid="classJSBSim_1_1FGInitialCondition_1a4824f36ca8f38ef52be1bcaa785c404f" compoundref="FGInitialCondition_8h" startline="670" endline="670">FGInitialCondition::GetTargetNlfIC</references>
+        <references refid="classJSBSim_1_1FGTrim_1a620e970bb5917f073dae47e0d43f09b8" compoundref="FGTrim_8cpp" startline="833" endline="894">FGTrim::SetMode</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1ace8c3e9b89e0605f8b647d97599ea0b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>~FGTrim</definition>
+        <argsstring>(void)</argsstring>
+        <name>~FGTrim</name>
+        <qualifiedname>JSBSim::FGTrim::~FGTrim</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="189" column="3" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="90" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a10778cf6f16d11b11a03ac301daf5ea9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AddState</definition>
+        <argsstring>(State state, Control control)</argsstring>
+        <name>AddState</name>
+        <qualifiedname>JSBSim::FGTrim::AddState</qualifiedname>
+        <param>
+          <type>State</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type>Control</type>
+          <declname>control</declname>
+        </param>
+        <briefdescription>
+<para>Add a state-control pair to the current configuration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See the enums State and Control in <ref refid="FGTrimAxis_8h_source" kindref="compound">FGTrimAxis.h</ref> for the available options. Will fail if the given state is already configured. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the accel or other condition to zero </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>control</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the control used to zero the state </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if add is successful </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="225" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="139" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a184269bb1fe4b28c3f1cb31f4b9454ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ClearDebug</definition>
+        <argsstring>(void)</argsstring>
+        <name>ClearDebug</name>
+        <qualifiedname>JSBSim::FGTrim::ClearDebug</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="280" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="280" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a311066bccbe388bae09055dadb0357f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ClearStates</definition>
+        <argsstring>(void)</argsstring>
+        <name>ClearStates</name>
+        <qualifiedname>JSBSim::FGTrim::ClearStates</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Clear all state-control pairs from the current configuration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The trimming routine must have at least one state-control pair configured to be useful </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="216" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="130" bodyend="135"/>
+        <referencedby refid="classJSBSim_1_1FGTrim_1a620e970bb5917f073dae47e0d43f09b8" compoundref="FGTrim_8cpp" startline="833" endline="894">FGTrim::SetMode</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1ac82e1299bb8bf3401ca217606d7e2787" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DebugState</definition>
+        <argsstring>(State state)</argsstring>
+        <name>DebugState</name>
+        <qualifiedname>JSBSim::FGTrim::DebugState</qualifiedname>
+        <param>
+          <type>State</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Output debug data for one of the axes The State enum is defined in <ref refid="FGTrimAxis_8h_source" kindref="compound">FGTrimAxis.h</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="286" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="286" bodyend="286"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a6a5e26b6c78ad99b63d075c6acc70679" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DoTrim</definition>
+        <argsstring>(void)</argsstring>
+        <name>DoTrim</name>
+        <qualifiedname>JSBSim::FGTrim::DoTrim</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Execute the trim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="193" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="195" bodyend="365"/>
+        <references refid="classJSBSim_1_1FGInitialCondition_1a84eb5205c00cea25382e8961e77a4784" compoundref="FGInitialCondition_8cpp" startline="664" endline="667">FGInitialCondition::GetAltitudeAGLFtIC</references>
+        <references refid="classJSBSim_1_1FGFDMExec_1a4b3638bf39899882c5caab1de172499a" compoundref="FGFDMExec_8cpp" startline="306" endline="309">FGFDMExec::GetFCS</references>
+        <references refid="classJSBSim_1_1FGFDMExec_1aaf46febf401174f57afe069b7d2f1584" compoundref="FGFDMExec_8cpp" startline="341" endline="344">FGFDMExec::GetGroundReactions</references>
+        <references refid="classJSBSim_1_1FGFDMExec_1a1b9cbe82b05ea5038bb8cd083891dcb1" compoundref="FGFDMExec_8h" startline="390" endline="390">FGFDMExec::GetIC</references>
+        <references refid="classJSBSim_1_1FGInitialCondition_1a166ec4260ec1051bf83b148a667af572" compoundref="FGInitialCondition_8h" startline="654" endline="654">FGInitialCondition::GetPhiRadIC</references>
+        <references refid="classJSBSim_1_1FGFDMExec_1a8e6ea51ac4a5e22d4a447737d6fef054" compoundref="FGFDMExec_8cpp" startline="271" endline="274">FGFDMExec::GetPropagate</references>
+        <references refid="classJSBSim_1_1FGInitialCondition_1acd24191b1a1075553a497c6b57014883" compoundref="FGInitialCondition_8h" startline="658" endline="658">FGInitialCondition::GetThetaRadIC</references>
+        <references refid="classJSBSim_1_1FGFDMExec_1ae3182037153735d40f1857bdfa34a299" compoundref="FGFDMExec_8cpp" startline="675" endline="681">FGFDMExec::Initialize</references>
+        <references refid="classJSBSim_1_1FGFDMExec_1afb4e8e8c83a51c804cfc50d9d90f65a5" compoundref="FGFDMExec_8h" startline="563" endline="563">FGFDMExec::ResumeIntegration</references>
+        <references refid="classJSBSim_1_1FGFDMExec_1aa83769769c700eba0b0b82a5c62dbc71" compoundref="FGFDMExec_8cpp" startline="406" endline="430">FGFDMExec::Run</references>
+        <references refid="classJSBSim_1_1FGInitialCondition_1a5ca59972252f91ec091a6026e0e0a990" compoundref="FGInitialCondition_8h" startline="430" endline="430">FGInitialCondition::SetPRadpsIC</references>
+        <references refid="classJSBSim_1_1FGInitialCondition_1aaf941c0c5902e318a224216dda7bdc38" compoundref="FGInitialCondition_8h" startline="434" endline="434">FGInitialCondition::SetQRadpsIC</references>
+        <references refid="classJSBSim_1_1FGInitialCondition_1aae17f88a86799403d5a50d5a3a981c60" compoundref="FGInitialCondition_8h" startline="438" endline="438">FGInitialCondition::SetRRadpsIC</references>
+        <references refid="classJSBSim_1_1FGFDMExec_1adf760b99f286a726dde5b47a377fe243" compoundref="FGFDMExec_8h" startline="560" endline="560">FGFDMExec::SuspendIntegration</references>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a947a02e9e1f8535e67de91a6fe9742ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool EditState</definition>
+        <argsstring>(State state, Control new_control)</argsstring>
+        <name>EditState</name>
+        <qualifiedname>JSBSim::FGTrim::EditState</qualifiedname>
+        <param>
+          <type>State</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type>Control</type>
+          <declname>new_control</declname>
+        </param>
+        <briefdescription>
+<para>Change the control used to zero a state previously configured. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the accel or other condition to zero </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>new_control</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the control used to zero the state </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="237" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="180" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1aafd3c506063198697aeb8a775ff1ae93" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GetGammaFallback</definition>
+        <argsstring>(void)</argsstring>
+        <name>GetGammaFallback</name>
+        <qualifiedname>JSBSim::FGTrim::GetGammaFallback</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>query the fallback state </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if fallback is enabled. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="249" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="249" bodyend="249"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a211430f215801e2b488d951ef51192c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetTargetNlf</definition>
+        <argsstring>(void)</argsstring>
+        <name>GetTargetNlf</name>
+        <qualifiedname>JSBSim::FGTrim::GetTargetNlf</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="289" column="17" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="289" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a38effa56e1fa2a544f5e992b0ec20689" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool RemoveState</definition>
+        <argsstring>(State state)</argsstring>
+        <name>RemoveState</name>
+        <qualifiedname>JSBSim::FGTrim::RemoveState</qualifiedname>
+        <param>
+          <type>State</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Remove a specific state-control pair from the current configuration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the state to remove </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if removal is successful </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="231" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="157" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a4d9a0c94e1c7e1767992625fb091b067" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Report</definition>
+        <argsstring>(void)</argsstring>
+        <name>Report</name>
+        <qualifiedname>JSBSim::FGTrim::Report</qualifiedname>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Print the results of the trim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For each axis trimmed, this includes the final state value, control value, and tolerance used. <simplesect kind="return"><para>true if trim succeeds </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="200" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="121" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1aa82fcaee5763b18fa69b104b8765c1ac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetDebug</definition>
+        <argsstring>(int level)</argsstring>
+        <name>SetDebug</name>
+        <qualifiedname>JSBSim::FGTrim::SetDebug</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+<para>Debug level 1 shows results of each top-level iteration Debug level 2 shows level 1 &amp; results of each per-axis iteration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="279" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="279" bodyend="279"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a1bca232d03d3435dd38d9b1020b0b94b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetGammaFallback</definition>
+        <argsstring>(bool bb)</argsstring>
+        <name>SetGammaFallback</name>
+        <qualifiedname>JSBSim::FGTrim::SetGammaFallback</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>bb</declname>
+        </param>
+        <briefdescription>
+<para>automatically switch to trimming longitudinal acceleration with flight path angle (gamma) once it becomes apparent that there is not enough/too much thrust. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>true to enable fallback </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="244" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="244" bodyend="244"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a3bb0304fa85b100882e35f676dc2e42f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetMaxCycles</definition>
+        <argsstring>(int ii)</argsstring>
+        <name>SetMaxCycles</name>
+        <qualifiedname>JSBSim::FGTrim::SetMaxCycles</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>ii</declname>
+        </param>
+        <briefdescription>
+<para>Set the iteration limit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="classJSBSim_1_1FGTrim_1a6a5e26b6c78ad99b63d075c6acc70679" kindref="member">DoTrim()</ref> will return false if limit iterations are reached before trim is achieved. The default is 60. This does not ordinarily need to be changed. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ii</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>integer iteration limit </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="256" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="256" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a457fe5143450feee56189536ebe8ec8c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetMaxCyclesPerAxis</definition>
+        <argsstring>(int ii)</argsstring>
+        <name>SetMaxCyclesPerAxis</name>
+        <qualifiedname>JSBSim::FGTrim::SetMaxCyclesPerAxis</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>ii</declname>
+        </param>
+        <briefdescription>
+<para>Set the per-axis iteration limit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Attempt to zero each state by iterating limit times before moving on to the next. The default limit is 100 and also does not ordinarily need to be changed. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ii</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>integer iteration limit </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="264" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="264" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a620e970bb5917f073dae47e0d43f09b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetMode</definition>
+        <argsstring>(TrimMode tm)</argsstring>
+        <name>SetMode</name>
+        <qualifiedname>JSBSim::FGTrim::SetMode</qualifiedname>
+        <param>
+          <type>TrimMode</type>
+          <declname>tm</declname>
+        </param>
+        <briefdescription>
+<para>Clear all state-control pairs and set a predefined trim mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the set of axes to trim. Can be: tLongitudinal, tFull, tGround, tCustom, or tNone </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="210" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="833" bodyend="894"/>
+        <references refid="classJSBSim_1_1FGTrim_1a311066bccbe388bae09055dadb0357f7" compoundref="FGTrim_8cpp" startline="130" endline="135">FGTrim::ClearStates</references>
+        <referencedby refid="classJSBSim_1_1FGTrim_1ab8b8c986a483a9dcb1e7c94234957933" compoundref="FGTrim_8cpp" startline="62" endline="86">FGTrim::FGTrim</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1a3dbf5c60cd3e95710b0ee755a98534a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetTargetNlf</definition>
+        <argsstring>(double nlf)</argsstring>
+        <name>SetTargetNlf</name>
+        <qualifiedname>JSBSim::FGTrim::SetTargetNlf</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>nlf</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="288" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="288" bodyend="288"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1ada263e667d06a432f3f9aa2e556ab972" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetTolerance</definition>
+        <argsstring>(double tt)</argsstring>
+        <name>SetTolerance</name>
+        <qualifiedname>JSBSim::FGTrim::SetTolerance</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>tt</declname>
+        </param>
+        <briefdescription>
+<para>Set the tolerance for declaring a state trimmed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Angular accels are held to a tolerance of 1/10th of the given. The default is 0.001 for the recti-linear accelerations and 0.0001 for the angular. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="270" column="15" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="270" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="classJSBSim_1_1FGTrim_1abcb74404f6cd30f45ef82c465afa2402" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TrimStats</definition>
+        <argsstring>()</argsstring>
+        <name>TrimStats</name>
+        <qualifiedname>JSBSim::FGTrim::TrimStats</qualifiedname>
+        <briefdescription>
+<para>Iteration statistics. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="204" column="8" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.cpp" bodystart="99" bodyend="117"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The trimming routine for JSBSim. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="classJSBSim_1_1FGTrim" kindref="compound">FGTrim</ref> finds the aircraft attitude and control settings needed to maintain the steady state described by the <ref refid="classJSBSim_1_1FGInitialCondition" kindref="compound">FGInitialCondition</ref> object . It does this iteratively by assigning a control to each state and adjusting that control until the state is within a specified tolerance of zero. States include the recti-linear accelerations udot, vdot, and wdot, the angular accelerations qdot, pdot, and rdot, and the difference between heading and ground track. Controls include the usual flight deck controls available to the pilot plus angle of attack (alpha), sideslip angle(beta), flight path angle (gamma), pitch attitude(theta), roll attitude(phi), and altitude above ground. The last three are used for on-ground trimming. The state-control pairs used in a given trim are completely user configurable and several pre-defined modes are provided as well. They are:<itemizedlist>
+<listitem><para>tLongitudinal: Trim wdot with alpha, udot with thrust, qdot with elevator</para>
+</listitem><listitem><para>tFull: tLongitudinal + vdot with phi, pdot with aileron, rdot with rudder and heading minus ground track (hmgt) with beta</para>
+</listitem><listitem><para>tPullup: tLongitudinal but adjust alpha to achieve load factor input with SetTargetNlf()</para>
+</listitem><listitem><para>tGround: wdot with altitude, qdot with theta, and pdot with phi</para>
+</listitem></itemizedlist>
+</para>
+<para>The remaining modes include <bold>tCustom</bold>, which is completely user defined and <bold>tNone</bold>.</para>
+<para>Note that trims can (and do) fail for reasons that are completely outside the control of the trimming routine itself. The most common problem is the initial conditions: is the model capable of steady state flight at those conditions? Check the speed, altitude, configuration (flaps, gear, etc.), weight, cg, and anything else that may be relevant.</para>
+<para>Example usage: <programlisting><codeline><highlight class="normal">FGFDMExec*<sp/>FDMExec<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>FGFDMExec();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">FGInitialCondition*<sp/>fgic<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>FGInitialCondition(FDMExec);</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classJSBSim_1_1FGTrim_1ab8b8c986a483a9dcb1e7c94234957933" kindref="member">FGTrim</ref><sp/>fgt(FDMExec,<sp/>fgic,<sp/>tFull);</highlight></codeline>
+<codeline><highlight class="normal">fgic-&gt;SetVcaibratedKtsIC(100);</highlight></codeline>
+<codeline><highlight class="normal">fgic-&gt;SetAltitudeFtIC(1000);</highlight></codeline>
+<codeline><highlight class="normal">fgic-&gt;SetClimbRate(500);</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>!fgt.DoTrim()<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Trim<sp/>Failed&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">fgt.Report();</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="author"><para>Tony Peden </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FGTrim</label>
+        <link refid="classJSBSim_1_1FGTrim"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>FGTrim</label>
+        <link refid="classJSBSim_1_1FGTrim"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>FGJSBBase</label>
+        <link refid="classJSBSim_1_1FGJSBBase"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>JSBSim_version</edgelabel>
+          <edgelabel>needed_cfg_version</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" line="125" column="1" bodyfile="/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/initialization/FGTrim.h" bodystart="126" bodyend="291"/>
+    <listofallmembers>
+      <member refid="classJSBSim_1_1FGTrim_1a37e2e4c999a6e6a92efef3b90902acc8" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>A_Tolerance</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a10778cf6f16d11b11a03ac301daf5ea9" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>AddState</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a33ae24d91155e2621f04fefe3e208118" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>ahi</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a811b03f602abc7e741981be74c0325b3" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>alo</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a1acc5f9f5d0b7c5010a81c13c50ee44a" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>calcRotation</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af8ad1042b82f1c0a47801d6978434b80" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>CelsiusToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aa3b6f7fb97ac87f59f266b3e64438cc3" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>CelsiusToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7b471bc247e5d616560cc5f5c66b4b6d" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>CelsiusToRankine</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a031605858ee9fc29fd733f0b26bedc07" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>checkLimits</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a184269bb1fe4b28c3f1cb31f4b9454ae" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>ClearDebug</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a311066bccbe388bae09055dadb0357f7" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>ClearStates</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a68d4cc66e32cfecaae8f500d688252c9" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>Constrain</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a71d62a503829149eb1dfc6ad1852d4bf" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>CreateIndexedPropertyName</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a923774364cedbc16baa0bc05e9be136c" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>Debug</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a2ec187b5cf28cd80e05910994b479b9c" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>debug_axis</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ccb6173462774ec856542834c1df750" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>debug_lvl</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a57de13c36c21922938d330c7dd9cf766" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>DebugLevel</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1ac82e1299bb8bf3401ca217606d7e2787" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>DebugState</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9959287a77d54c301e59848ccbc1227e" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>degtorad</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a6a5e26b6c78ad99b63d075c6acc70679" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>DoTrim</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a947a02e9e1f8535e67de91a6fe9742ca" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>EditState</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7761b6352da13e163a3e60ed931e10b2" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eDown</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ea9301202abb5117f2f5c84c400dd02863" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eDrag</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da8b0184eb4350aff703ffefe981be0ed0" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eEast</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55baad8d708d8b2a6b0de1c60efac84c13c2" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eL</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600aee71d29fc9997c8c692e1cec39ccbd9e" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eLat</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9eaf9b007051dea0fdcdda1128417810324" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eLift</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600a82c89bd841ec11709255930b4f2ed128" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eLong</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba1108dc0fe89c81165e7e21bfa2d99a5c" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eM</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a06fc87d81c62e9abb8790b6e5713c55ba29860d91c138d8308ab622566d5388b5" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eN</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0411cd49bb5b71852cecd93bcbf0ca2da7af984c99e631c934f09d5f464886dff" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eNorth</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a53f1f5a36fc3c436188ba2de84a480cc" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eP</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca330da5edf1a7a181a5e682969033346d" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>ePhi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a755bd3b6ce5a786426392a9b22101569" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>ePitch</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca00ec32130eba5084873150f79dd4241d" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>ePsi</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7ad435ed230bc84886ebd313f88f50617f" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eQ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0808b46d9967cd56d78df1274adc8147" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaed80f9927f0b8c14c67cfad83a8d60b" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a3fa3dd89c1b30f6d2b8a297006842a19" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4089c27aa417783731495c25b0d3e79b" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>EqualToRoundoff</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adf764cbdea00d65edcd07bb9953ad2b7a568d83290d150b55a7c08ec3e01a4b80" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eR</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abed82baf7f470b522273a3e37c24c600ac34cb49e3a3c0217eb60f28606a074fd" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eRad</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a5929427bd7f9a3f8a260ab0cee4adf5b" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eRoll</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a61dadd085c1777f559549e05962b2c9ead333a23016fb297dc1e225e9de92a902" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eSide</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adc29c2ff13d900c2f185ee95427fb06ca782d389c863bda6761d96904c8ca5c88" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eTht</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a4e6ccf577f5e3892239a4d0243233c46" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eU</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5a8967c32806f6f2377283501791d2139b" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eV</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a99fb83031ce9923c84392b4e92f956b5ad170ee6fdb066c2ac0a32760a4b6be8f" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eW</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04afd5a33749fa68a755125d713a656b616" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eX</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04af968dfccf7b280e98b613569ce68a29a" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eY</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a726ca809ffd3d67ab4b8476646f26635a6828e3eb3b26c2f81338381e9ca45500" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eYaw</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1abc6126af1d45847bc59afa0aa3216b04a246094bb9b7b37e389534a9cc740d126" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>eZ</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1adaf24dd942ba1dbaf0262ddf9725d50e" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>FahrenheitToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1abdaabf972f96cfb9401a53e32871d81e" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>fdmex</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a8c51473eff249bacddf47d95834c6f69" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>FeetToMeters</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1aef24f5782cc9076139decea6e8b78e89" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>fgic</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a5fd11c437bf08537955a9231dcd4dc49" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1ab8b8c986a483a9dcb1e7c94234957933" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>FGTrim</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1ac4903df02064ce2a0590210d775f19d6" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>findInterval</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af43d52b160c8fa8ba6325d858e34beb3" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>fpstokts</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae41da7596d847c1d8b27c3e9d611157d" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>fttom</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1abf4467c99382bf0ce552c6858cd73762" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>gamma_fallback</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1aafd3c506063198697aeb8a775ff1ae93" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>GetGammaFallback</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a211430f215801e2b488d951ef51192c4" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>GetTargetNlf</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a0ce5e8bcfd2d23ad3b4032565842596c" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>GetVersion</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1af3ca32541c0a55f05ded120dca912440" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>hptoftlbssec</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab97b1e120708f6f64abb9bb9e9e4cd7a" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>in3tom3</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4b8b2a0e4b0180b2abe1aff2f00d334e" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>inchtoft</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a15e2a87588ef193ac0ad314327ecd509" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>inDegrees</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aaff61dea1cc525eed707df9fbac8eca5" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>inFeet</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ace650b7aed33166ac6974d13906e1894" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>inhgtopa</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57ad71c820cf28dae1965f184b9441d1694" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>inMeters</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57aecc753b3791b03920f3ea0ad33852142" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>inNone</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab04a0655cd1e3bcac5e8f48c18df1a57a0a17d86840eb2e6b1784129ed75e414e" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>inRadians</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1affc9150d5720145d6a6c2a2dd265d9f5" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>JSBSim_version</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a241ce52e843cb12ae6de467cbc2f59a7" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>KelvinToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a6f1c8844b2bf556c2e90c84524c331e1" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>KelvinToFahrenheit</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ab1cd84a064daee36bb88b9052514da65" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>KelvinToRankine</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a532147ec5e65e4b78fd08bc76e1f1d35" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>kgtolb</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4627a23f0f2722262a9c865c4255fec8" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>kgtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ae29b0dff0362fa116184dc2027e0a5e1" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>ktstofps</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a85110847c268725c20cd7e8d2adf0033" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>lbtoslug</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1ad7434c1faeb6468757414fc3f86586df" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>m3toft3</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a6d1fb853793cdbd341600473a0168fc2" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>max_iterations</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a6439e2be01321c69cfaa0c5058e8fdef" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>max_sub_iterations</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1afc33b5c122f65b8ec26b52ec3093f054" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>mode</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7c4e9bce0d9b7f5d394a8ee1d9b553eb" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>needed_cfg_version</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a6664db0d267e5e412b5e58db70c4e65f" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>Nsub</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1add6c8d987939a3bf35554fd6d7c6a580" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>psftoinhg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a1f44bc4c489ccb9df15115c2586fc30a" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>psftopa</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a5a83cc8ef7dcd0bd733f09b1c031b2bb" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>psidot</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1aaca636497dcea29d83039f342f2f47e2" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>radtodeg</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a9daa4b8416feb6ef2964aacbb1ad07e7" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>RankineToCelsius</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a7abcf379608273b32f3d8b939a9173d5" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>RankineToKelvin</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a38effa56e1fa2a544f5e992b0ec20689" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>RemoveState</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a4d9a0c94e1c7e1767992625fb091b067" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>Report</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a9e2a83457eba53281e052d3780bc66ac" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>setDebug</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1aa82fcaee5763b18fa69b104b8765c1ac" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>SetDebug</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a1bca232d03d3435dd38d9b1020b0b94b" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>SetGammaFallback</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a3bb0304fa85b100882e35f676dc2e42f" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>SetMaxCycles</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a457fe5143450feee56189536ebe8ec8c" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>SetMaxCyclesPerAxis</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a620e970bb5917f073dae47e0d43f09b8" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>SetMode</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a3dbf5c60cd3e95710b0ee755a98534a9" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>SetTargetNlf</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1ada263e667d06a432f3f9aa2e556ab972" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>SetTolerance</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a34d408183e72fe56f9dc16f3b024022d" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>setupPullup</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1aab52446e580f6dc05dfb3045f97e414d" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>setupTurn</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a493e81f2c57fb2733a3a8c54f4ac2ed8" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>sign</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a4daf96dd9557d890a37cfc504ca67efd" prot="protected" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>slugtolb</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1af5b3690a3f3cf9850b7efd0515cd4f24" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>solution</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a943b995a19f503a3add3973709d76c2b" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>solutionDomain</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1acad5f99eef8c623975e8064c1a23602d" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>solve</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1aae471517b0745b4fd67a52693077d5cc" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>sub_iterations</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a5179c96b2cdc76620c980e791b059777" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>successful</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a9e07c4340619c2682bccb926a36d75f9" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>targetNlf</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1ad7e6d7ca4fcbebf9ad23e2c39cc44447" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>Tolerance</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a0488ab49d9194c80be29af3571053c4f" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>total_its</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a18b7141c406f3775e7fe4fae0f237f71" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>TrimAxes</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1adaea477cf9c2c8f0a0adca7582f8e67d" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>trimOnGround</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1abcb74404f6cd30f45ef82c465afa2402" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>TrimStats</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a342ce9b573eeff05cf3fce8c2dc6d7a0" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>updateRates</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1a04db0810325587a7ba02fef95adcbbff" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>xhi</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1aa3661de0d4c6a3b00ffb41a5cbe8e4c3" prot="private" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>xlo</name></member>
+      <member refid="classJSBSim_1_1FGJSBBase_1a27507db9cad73b38ac3ba2bdc64fa428" prot="public" virt="virtual"><scope>JSBSim::FGTrim</scope><name>~FGJSBBase</name></member>
+      <member refid="classJSBSim_1_1FGTrim_1ace8c3e9b89e0605f8b647d97599ea0b0" prot="public" virt="non-virtual"><scope>JSBSim::FGTrim</scope><name>~FGTrim</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

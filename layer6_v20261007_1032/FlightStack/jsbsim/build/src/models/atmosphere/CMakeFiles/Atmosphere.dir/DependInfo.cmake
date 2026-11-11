@@ -1,0 +1,28 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  )
+
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/MSIS/nrlmsise-00.c" "src/models/atmosphere/CMakeFiles/Atmosphere.dir/MSIS/nrlmsise-00.c.o" "gcc" "src/models/atmosphere/CMakeFiles/Atmosphere.dir/MSIS/nrlmsise-00.c.o.d"
+  "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/MSIS/nrlmsise-00_data.c" "src/models/atmosphere/CMakeFiles/Atmosphere.dir/MSIS/nrlmsise-00_data.c.o" "gcc" "src/models/atmosphere/CMakeFiles/Atmosphere.dir/MSIS/nrlmsise-00_data.c.o.d"
+  "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGMSIS.cpp" "src/models/atmosphere/CMakeFiles/Atmosphere.dir/FGMSIS.cpp.o" "gcc" "src/models/atmosphere/CMakeFiles/Atmosphere.dir/FGMSIS.cpp.o.d"
+  "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGMars.cpp" "src/models/atmosphere/CMakeFiles/Atmosphere.dir/FGMars.cpp.o" "gcc" "src/models/atmosphere/CMakeFiles/Atmosphere.dir/FGMars.cpp.o.d"
+  "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGStandardAtmosphere.cpp" "src/models/atmosphere/CMakeFiles/Atmosphere.dir/FGStandardAtmosphere.cpp.o" "gcc" "src/models/atmosphere/CMakeFiles/Atmosphere.dir/FGStandardAtmosphere.cpp.o.d"
+  "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/jsbsim/src/models/atmosphere/FGWinds.cpp" "src/models/atmosphere/CMakeFiles/Atmosphere.dir/FGWinds.cpp.o" "gcc" "src/models/atmosphere/CMakeFiles/Atmosphere.dir/FGWinds.cpp.o.d"
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_FORWARD_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

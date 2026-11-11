@@ -1,0 +1,243 @@
+--- a/libraries/SITL/SIM_JSBSim.cpp
++++ b/libraries/SITL/SIM_JSBSim.cpp
+@@ -26,6 +26,7 @@
+ #include <errno.h>
+ #include <fcntl.h>
+ #include <stdio.h>
++#include <string.h>
+ #include <sys/stat.h>
+ #include <sys/types.h>
+ 
+@@ -91,7 +92,35 @@
+     if (f == nullptr) {
+         AP_HAL::panic("Unable to create jsbsim script %s", jsbsim_script);
+     }
+-    fprintf(f,
++    const bool phoenix_v3 = (jsbsim_model != nullptr && strcmp(jsbsim_model, "phoenix_v3") == 0);
++
++    if (phoenix_v3) {
++        // Phoenix uses two externally-modelled motors and must not receive the
++        // stock single-engine start or conventional fixed-wing trim events.
++        fprintf(f,
++"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
++"<?xml-stylesheet type=\"text/xsl\" href=\"http://jsbsim.sf.net/JSBSimScript.xsl\"?>\n"
++"<runscript xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
++"    xsi:noNamespaceSchemaLocation=\"http://jsbsim.sf.net/JSBSimScript.xsd\"\n"
++"    name=\"Testing phoenix_v3\">\n"
++"\n"
++"  <description>\n"
++"    Phoenix dual-rotor tailsitter under ArduPilot control\n"
++"  </description>\n"
++"\n"
++"  <use aircraft=\"phoenix_v3\" initialize=\"reset\"/>\n"
++"\n"
++"  <input port=\"%u\"/>\n"
++"\n"
++"  <run start=\"0\" end=\"10000000\" dt=\"%.6f\">\n"
++"    <property value=\"0\"> simulation/notify-time-trigger </property>\n"
++"  </run>\n"
++"\n"
++"</runscript>\n",
++                control_port,
++                1.0/rate_hz);
++    } else {
++        fprintf(f,
+ "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+ "<?xml-stylesheet type=\"text/xsl\" href=\"http://jsbsim.sf.net/JSBSimScript.xsl\"?>\n"
+ "<runscript xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
+@@ -126,11 +155,12 @@
+ "\n"
+ "</runscript>\n"
+ "",
+-            jsbsim_model,
+-            jsbsim_model,
+-            jsbsim_model,
+-            control_port,
+-            1.0/rate_hz);
++                jsbsim_model,
++                jsbsim_model,
++                jsbsim_model,
++                control_port,
++                1.0/rate_hz);
++    }
+     fclose(f);
+ 
+     f = fopen(jsbsim_fgout, "w");
+@@ -155,21 +185,44 @@
+     }
+     float r, p, y;
+     dcm.to_euler(&r, &p, &y);
+-    fprintf(f,
+-            "<?xml version=\"1.0\"?>\n"
+-            "<initialize name=\"Start up location\">\n"
+-            "  <latitude unit=\"DEG\" type=\"geodetic\"> %f </latitude>\n"
+-            "  <longitude unit=\"DEG\"> %f </longitude>\n"
+-            "  <altitude unit=\"M\"> 1.3 </altitude>\n"
+-            "  <vt unit=\"FT/SEC\"> 0.0 </vt>\n"
+-            "  <gamma unit=\"DEG\"> 0.0 </gamma>\n"
+-            "  <phi unit=\"DEG\"> 0.0 </phi>\n"
+-            "  <theta unit=\"DEG\"> 13.0 </theta>\n"
+-            "  <psi unit=\"DEG\"> %f </psi>\n"
+-            "</initialize>\n",
+-            home.lat*1.0e-7,
+-            home.lng*1.0e-7,
+-            degrees(y));
++    if (phoenix_v3) {
++        // Do not specify gamma for the zero-speed tailsitter initial condition.
++        // In JSBSim IC processing gamma is a flight-path constraint and can
++        // cause an explicitly supplied theta to be recomputed/ignored.  Use
++        // zero BODY velocity instead so the 89 deg local pitch is authoritative.
++        fprintf(f,
++                "<?xml version=\"1.0\"?>\n"
++                "<initialize name=\"Phoenix ground VTOL start\">\n"
++                "  <latitude unit=\"DEG\" type=\"geodetic\"> %f </latitude>\n"
++                "  <longitude unit=\"DEG\"> %f </longitude>\n"
++                "  <altitudeAGL unit=\"M\"> 0.141025821708132 </altitudeAGL>\n"
++                "  <ubody unit=\"FT/SEC\"> 0.0 </ubody>\n"
++                "  <vbody unit=\"FT/SEC\"> 0.0 </vbody>\n"
++                "  <wbody unit=\"FT/SEC\"> 0.0 </wbody>\n"
++                "  <phi unit=\"DEG\"> 0.0 </phi>\n"
++                "  <theta unit=\"DEG\"> 89.0 </theta>\n"
++                "  <psi unit=\"DEG\"> %f </psi>\n"
++                "</initialize>\n",
++                home.lat*1.0e-7,
++                home.lng*1.0e-7,
++                degrees(y));
++    } else {
++        fprintf(f,
++                "<?xml version=\"1.0\"?>\n"
++                "<initialize name=\"Start up location\">\n"
++                "  <latitude unit=\"DEG\" type=\"geodetic\"> %f </latitude>\n"
++                "  <longitude unit=\"DEG\"> %f </longitude>\n"
++                "  <altitude unit=\"M\"> 1.3 </altitude>\n"
++                "  <vt unit=\"FT/SEC\"> 0.0 </vt>\n"
++                "  <gamma unit=\"DEG\"> 0.0 </gamma>\n"
++                "  <phi unit=\"DEG\"> 0.0 </phi>\n"
++                "  <theta unit=\"DEG\"> 13.0 </theta>\n"
++                "  <psi unit=\"DEG\"> %f </psi>\n"
++                "</initialize>\n",
++                home.lat*1.0e-7,
++                home.lng*1.0e-7,
++                degrees(y));
++    }
+     fclose(f);
+ 
+     created_templates = true;
+@@ -345,43 +398,72 @@
+ void JSBSim::send_servos(const struct sitl_input &input)
+ {
+     char *buf = nullptr;
+-    float aileron  = filtered_servo_angle(input, 0);
+-    float elevator = filtered_servo_angle(input, 1);
+-    float throttle = filtered_servo_range(input, 2);
+-    float rudder   = filtered_servo_angle(input, 3);
+-    if (frame == FRAME_ELEVON) {
+-        // fake an elevon plane
+-        float ch1 = aileron;
+-        float ch2 = elevator;
+-        aileron  = (ch2-ch1)/2.0f;
+-        // the minus does away with the need for RC2_REVERSED=-1
+-        elevator = -(ch2+ch1)/2.0f;
+-    } else if (frame == FRAME_VTAIL) {
+-        // fake a vtail plane
+-        float ch1 = elevator;
+-        float ch2 = rudder;
+-        // this matches VTAIL_OUTPUT==2
+-        elevator = (ch2-ch1)/2.0f;
+-        rudder   = (ch2+ch1)/2.0f;
+-    }
+-    float wind_speed_fps = input.wind.speed / FEET_TO_METERS;
+-    asprintf(&buf,
+-             "set fcs/aileron-cmd-norm %f\n"
+-             "set fcs/elevator-cmd-norm %f\n"
+-             "set fcs/rudder-cmd-norm %f\n"
+-             "set fcs/throttle-cmd-norm %f\n"
+-             "set atmosphere/psiw-rad %f\n"
+-             "set atmosphere/wind-mag-fps %f\n"
+-             "set atmosphere/turbulence/milspec/windspeed_at_20ft_AGL-fps %f\n"
+-             "set atmosphere/turbulence/milspec/severity %f\n"
+-             "iterate 1\n",
+-             aileron, elevator, rudder, throttle,
+-             radians(input.wind.direction),
+-             wind_speed_fps,
+-             wind_speed_fps/3,
+-             input.wind.turbulence);
+-    ssize_t buflen = strlen(buf);
+-    ssize_t sent = sock_control.send(buf, buflen);
++    const bool phoenix_v3 = (jsbsim_model != nullptr && strcmp(jsbsim_model, "phoenix_v3") == 0);
++    const float wind_speed_fps = input.wind.speed / FEET_TO_METERS;
++
++    if (phoenix_v3) {
++        // Phoenix output contract:
++        // SERVO1 -> left elevon, SERVO2 -> right elevon,
++        // SERVO3 -> left motor,  SERVO4 -> right motor.
++        const float left_elevon  = filtered_servo_angle(input, 0);
++        const float right_elevon = filtered_servo_angle(input, 1);
++        const float left_motor   = filtered_servo_range(input, 2);
++        const float right_motor  = filtered_servo_range(input, 3);
++
++        asprintf(&buf,
++                 "set fcs/left-elevon-cmd-norm %f\n"
++                 "set fcs/right-elevon-cmd-norm %f\n"
++                 "set fcs/left-motor-cmd-norm %f\n"
++                 "set fcs/right-motor-cmd-norm %f\n"
++                 "set atmosphere/psiw-rad %f\n"
++                 "set atmosphere/wind-mag-fps %f\n"
++                 "set atmosphere/turbulence/milspec/windspeed_at_20ft_AGL-fps %f\n"
++                 "set atmosphere/turbulence/milspec/severity %f\n"
++                 "iterate 1\n",
++                 left_elevon, right_elevon, left_motor, right_motor,
++                 radians(input.wind.direction),
++                 wind_speed_fps,
++                 wind_speed_fps/3,
++                 input.wind.turbulence);
++    } else {
++        float aileron  = filtered_servo_angle(input, 0);
++        float elevator = filtered_servo_angle(input, 1);
++        float throttle = filtered_servo_range(input, 2);
++        float rudder   = filtered_servo_angle(input, 3);
++        if (frame == FRAME_ELEVON) {
++            // fake an elevon plane
++            float ch1 = aileron;
++            float ch2 = elevator;
++            aileron  = (ch2-ch1)/2.0f;
++            // the minus does away with the need for RC2_REVERSED=-1
++            elevator = -(ch2+ch1)/2.0f;
++        } else if (frame == FRAME_VTAIL) {
++            // fake a vtail plane
++            float ch1 = elevator;
++            float ch2 = rudder;
++            // this matches VTAIL_OUTPUT==2
++            elevator = (ch2-ch1)/2.0f;
++            rudder   = (ch2+ch1)/2.0f;
++        }
++        asprintf(&buf,
++                 "set fcs/aileron-cmd-norm %f\n"
++                 "set fcs/elevator-cmd-norm %f\n"
++                 "set fcs/rudder-cmd-norm %f\n"
++                 "set fcs/throttle-cmd-norm %f\n"
++                 "set atmosphere/psiw-rad %f\n"
++                 "set atmosphere/wind-mag-fps %f\n"
++                 "set atmosphere/turbulence/milspec/windspeed_at_20ft_AGL-fps %f\n"
++                 "set atmosphere/turbulence/milspec/severity %f\n"
++                 "iterate 1\n",
++                 aileron, elevator, rudder, throttle,
++                 radians(input.wind.direction),
++                 wind_speed_fps,
++                 wind_speed_fps/3,
++                 input.wind.turbulence);
++    }
++
++    const ssize_t buflen = strlen(buf);
++    const ssize_t sent = sock_control.send(buf, buflen);
+     free(buf);
+     if (sent < 0) {
+         if (errno != EAGAIN) {
+@@ -394,6 +476,7 @@
+         fprintf(stderr, "Failed to send all bytes on control socket\n");
+     }
+ }
++
+ 
+ /* nasty hack ....
+    JSBSim sends in little-endian
