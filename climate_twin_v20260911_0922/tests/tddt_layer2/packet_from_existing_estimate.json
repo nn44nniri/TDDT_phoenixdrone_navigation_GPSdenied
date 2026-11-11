@@ -1,0 +1,75 @@
+{
+  "twin_id": "MicroMetTwin",
+  "layer": 2,
+  "state": {
+    "temperature_local": 31.213342957442425,
+    "relative_humidity_local": 6.686745459902404,
+    "wind_speed_terrain": 2.9618064702419487,
+    "wind_direction_terrain_deg": 94.57540484620745,
+    "surface_pressure_pa": 83367.18604184654,
+    "shortwave_radiation": 742.8050208439973,
+    "longwave_radiation": 321.5115680526053,
+    "precipitation_local": 0.0,
+    "wind_u_3dw": -3.9538313937906127,
+    "wind_v_3dw": 0.36337084078574183,
+    "diagnostic_vertical_wind": -0.08916235197224427,
+    "wind_speed_3d": 3.9714948046631986
+  },
+  "uncertainty": {
+    "std": {
+      "temperature_local": 1.6845547442138924,
+      "relative_humidity_local": 0.6603464054723748,
+      "wind_speed_terrain": 1.1204188486505062,
+      "wind_direction_terrain_deg": 79.7644076841366,
+      "surface_pressure_pa": 873.6766995234648,
+      "shortwave_radiation": 219.1389429576262
+    },
+    "variance": {
+      "temperature_local": 2.8377246862535324,
+      "relative_humidity_local": 0.436057375220286,
+      "wind_speed_terrain": 1.255338396411326,
+      "wind_direction_terrain_deg": 6362.36073320115,
+      "surface_pressure_pa": 763310.9752902145,
+      "shortwave_radiation": 48021.87632058575
+    },
+    "type": "TEP_sim prior",
+    "source": "nearest epistemic operating cell",
+    "novelty_distance": 0.13308439155903876
+  },
+  "quality": {
+    "score": 0.993,
+    "flag": "GOOD",
+    "prior": 0.993,
+    "reason": "finite+physical+support+TEP novelty"
+  },
+  "validity": {
+    "score": 1.0,
+    "prior": 1.0,
+    "reason": "validity envelope + current physical checks + TEP support"
+  },
+  "reliability": {
+    "prior": 0.994117647059,
+    "posterior": null,
+    "evidence_count": 168,
+    "field_evidence_count": 0,
+    "claim": "simulation prior unless posterior is field-backed"
+  },
+  "context": {
+    "context_id": "CRP_TEST",
+    "stage_id": "cruise",
+    "operation_code": "climate_estimate",
+    "tep_cell_id": "MM_004",
+    "novelty": false,
+    "novelty_distance": 0.13308439155903876
+  },
+  "timestamp": "2026-08-07T10:30:00",
+  "provenance": {
+    "model": "MicroMetTwin.fmu",
+    "formalism": "micromet_formalism_v2.md",
+    "tep_version": "2026-08-12-climate-sim-prior-v1",
+    "tep_maturity": "TEP_sim",
+    "terrain_source": null,
+    "source_count": 5,
+    "architectural_boundary": "Layer 2 only; no topology/coupling/CoC"
+  }
+}

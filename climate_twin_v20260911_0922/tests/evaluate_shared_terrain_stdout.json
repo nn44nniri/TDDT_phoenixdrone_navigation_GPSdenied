@@ -1,0 +1,128 @@
+{
+  "ok": true,
+  "reference": "Input forecast CSV (offline nearest-source reference)",
+  "reference_mode_requested": "input",
+  "reference_mode_used": "input",
+  "network_fallback_reason": null,
+  "notice": "Offline forecast-to-forecast forcing-consistency check. The nearest source point from --input is used as reference for each sampled target; this is not same-location Open-Meteo validation and not independent observational ground truth.",
+  "region": "region/region_v1.geojson",
+  "points": 9,
+  "times": 6,
+  "elevation_agl_m": 10.0,
+  "terrain_dem": "tests/fixtures/shared_map",
+  "terrain_policy": "require-dem",
+  "metrics": {
+    "precipitation_local": {
+      "count": 54,
+      "mae": 0.0,
+      "rmse": 0.0,
+      "bias": 0.0,
+      "pearson_r": null,
+      "reference_mean": 0.0,
+      "prediction_mean": 0.0
+    },
+    "relative_humidity_local": {
+      "count": 54,
+      "mae": 1.523222934612743,
+      "rmse": 2.9804608961319934,
+      "bias": 0.32795864586822465,
+      "pearson_r": 0.6004424856300964,
+      "reference_mean": 11.75925925925926,
+      "prediction_mean": 12.087217905127481
+    },
+    "shortwave_radiation": {
+      "count": 54,
+      "mae": 15.482859290312296,
+      "rmse": 24.963901663138994,
+      "bias": 8.718326964457605,
+      "pearson_r": 0.9983761148965932,
+      "reference_mean": 326.7037037037037,
+      "prediction_mean": 335.4220306681613
+    },
+    "surface_pressure_pa": {
+      "count": 54,
+      "mae": 1407.518048645608,
+      "rmse": 1806.4289236509835,
+      "bias": -35.332995886259056,
+      "pearson_r": -0.43032515330373555,
+      "reference_mean": 83000.74074074074,
+      "prediction_mean": 82965.4077448545
+    },
+    "temperature_local": {
+      "count": 54,
+      "mae": 1.114439698306028,
+      "rmse": 1.5189705552116528,
+      "bias": 0.11110770350367959,
+      "pearson_r": 0.9431761565993451,
+      "reference_mean": 27.94629629629629,
+      "prediction_mean": 28.05740399979998
+    },
+    "wind_direction_terrain_deg": {
+      "count": 54,
+      "mae": 10.347187885041446,
+      "rmse": 29.039277081425343,
+      "bias": 8.380828428830293,
+      "pearson_r": 0.9550407793134051,
+      "reference_mean": 181.57407407407408,
+      "prediction_mean": 189.95490250290436
+    },
+    "wind_speed_terrain": {
+      "count": 54,
+      "mae": 0.5461825442149444,
+      "rmse": 0.8054723191979871,
+      "bias": 0.005708259961992596,
+      "pearson_r": 0.4292537775078529,
+      "reference_mean": 3.2557407407407406,
+      "prediction_mean": 3.2614490007027337
+    }
+  },
+  "reference_urls": [
+    "input:openmeteo_24h.csv; nearest_source=(40.0021835,-105.3099967)",
+    "input:openmeteo_24h.csv; nearest_source=(40.0174988,-105.2899978)",
+    "input:openmeteo_24h.csv; nearest_source=(40.0021835,-105.2699989)",
+    "input:openmeteo_24h.csv; nearest_source=(40.0174988,-105.2899978)",
+    "input:openmeteo_24h.csv; nearest_source=(40.0174988,-105.2899978)",
+    "input:openmeteo_24h.csv; nearest_source=(40.0174988,-105.2899978)",
+    "input:openmeteo_24h.csv; nearest_source=(40.0328141,-105.3099967)",
+    "input:openmeteo_24h.csv; nearest_source=(40.0174988,-105.2899978)",
+    "input:openmeteo_24h.csv; nearest_source=(40.0328141,-105.2699989)"
+  ],
+  "offline_reference_source_points": [
+    [
+      40.00218350325587,
+      -105.30999670363444
+    ],
+    [
+      40.017498782173554,
+      -105.28999780562658
+    ],
+    [
+      40.00218350325587,
+      -105.26999890035523
+    ],
+    [
+      40.017498782173554,
+      -105.28999780562658
+    ],
+    [
+      40.017498782173554,
+      -105.28999780562658
+    ],
+    [
+      40.017498782173554,
+      -105.28999780562658
+    ],
+    [
+      40.03281405830647,
+      -105.30999670363444
+    ],
+    [
+      40.017498782173554,
+      -105.28999780562658
+    ],
+    [
+      40.03281405830647,
+      -105.26999890035523
+    ]
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "report": "reports/parameters_3d/micromet_3d_dem_agl_100m.html",
+  "dataset": "climate_dataset/micromet_grid_24h.csv",
+  "dem": {
+    "path": "tests/fixtures/outputs/region_v1_map/terrain_obstacles.tif",
+    "crs": "EPSG:4326",
+    "width": 80,
+    "height": 80,
+    "sample_step": 1,
+    "band": 1
+  },
+  "vertical_reference": "AGL",
+  "selected_elevation_m": 100.0,
+  "sampling_mode": "direct_fmu_evaluation",
+  "forecast_input": "climate_dataset/example_offline_input_spatial.csv",
+  "fmu": "fmu/MicroMetTwin.fmu",
+  "times": 24,
+  "parameters": [
+    "temperature_local",
+    "relative_humidity_local",
+    "wind_speed_terrain"
+  ],
+  "dem_shape": [
+    80,
+    80
+  ]
+}

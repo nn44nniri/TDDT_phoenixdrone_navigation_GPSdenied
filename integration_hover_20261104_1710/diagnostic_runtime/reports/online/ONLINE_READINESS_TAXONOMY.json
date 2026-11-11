@@ -1,0 +1,61 @@
+{
+  "schema": "TDOC-online-readiness-taxonomy-v1",
+  "status_model": "THREE_INDEPENDENT_READINESS_AXES",
+  "single_ready_flag_forbidden": true,
+  "infrastructure": {
+    "status": "INFRASTRUCTURE_READY",
+    "ready": true,
+    "scope": "CONTROL_INFRASTRUCTURE_MAPPING_COMMISSIONING_ONLY",
+    "reason": null,
+    "blockers": [],
+    "legacy_status": "READY",
+    "nominal_control_ready": true,
+    "qlpv_nonzero_correction_ready": null,
+    "mission_executability_authority": false,
+    "current_phase_release_authority": false,
+    "source": "ONLINE_CONTROL_READINESS.json"
+  },
+  "current_phase_release": {
+    "status": "CURRENT_PHASE_RELEASE_READY",
+    "ready": true,
+    "phase": "vertical_takeoff",
+    "reason": null,
+    "blockers": [
+      "next_phase_capability_blocked:hover"
+    ],
+    "authority": "RTMO_CURRENT_STATE_RUNTIME_RELEASE",
+    "durable_phase_capability": false,
+    "current_runtime_release": true,
+    "actuation_release": true,
+    "transition_release": false,
+    "bootstrap_artifact_published": true,
+    "episode_index": 1,
+    "cycle_in_episode": 4
+  },
+  "mission_certification": {
+    "status": "MISSION_NOT_FULLY_CERTIFIED",
+    "ready": false,
+    "fully_certified": false,
+    "blocked_phases": [
+      "vertical_takeoff",
+      "hover",
+      "transition_forward",
+      "climb",
+      "cruise",
+      "turn",
+      "approach",
+      "transition_back",
+      "vertical_landing",
+      "touchdown"
+    ],
+    "admission_authority": false,
+    "runtime_release_policy": "CURRENT_PHASE_AND_TRANSITION_LOCAL",
+    "authority": "RTMO_MISSION_CERTIFICATION"
+  },
+  "invariants": {
+    "infrastructure_ready_does_not_imply_current_phase_release_ready": true,
+    "infrastructure_ready_does_not_imply_mission_fully_certified": true,
+    "durable_phase_capability_does_not_imply_current_runtime_release": true,
+    "mission_certification_does_not_override_phase_local_runtime_release": true
+  }
+}

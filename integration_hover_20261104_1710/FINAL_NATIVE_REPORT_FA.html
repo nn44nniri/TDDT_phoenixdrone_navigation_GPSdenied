@@ -1,0 +1,392 @@
+<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8">
+<title>نتیجهٔ اصلاح میکروگام‌های TDDT و آزمون Native</title><style>
+body{font:16px/1.9 sans-serif;background:#f3f5f8;color:#172337;margin:0}main{max-width:1180px;margin:auto;padding:30px;background:white}
+h1,h2{color:#173f6c}table{border-collapse:collapse;width:100%;margin:20px 0}td,th{border:1px solid #c7d2df;padding:9px;vertical-align:top}th{background:#e8eff7}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#edf1f6;padding:15px;text-align:left;font-size:13px;line-height:1.6}
+.fail{background:#ffe7e7;padding:18px;border-right:6px solid #b52235}.note{background:#fff3cd;padding:15px}.gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}.gallery img{width:100%;border:1px solid #c7d2df}a{color:#075db0}code{direction:ltr;unicode-bidi:embed}small{color:#53657a}</style><main>
+<h1>اصلاح رابط‌ها و نتیجهٔ واقعی آزمون محلی Native</h1>
+<p>2026-11-04T18:47:49.658703-05:00</p>
+<p class="fail"><strong>خواستهٔ کامل محقق نشد: مأموریت FAIL و حلقهٔ اجرایی پیوستهٔ ۲ تا ۷ BLOCKED است.</strong>
+اصلاحات واقعی در سورس ثبت و آزموده شدند؛ اما حتی hover یک‌ثانیه‌ای همراه بازخورد معتبر و فرود تأیید نشده است.
+بنابراین برای مراحل ۵، ۱۰، ۳۰ یا ۶۰ ثانیه PASS صادر نمی‌شود.</p>
+<p>در اجرای نهایی، نشست <code>1dc72d00</code>، فرمان همین MPC از مسیر GUI/ArduPilot به QHOVER/ARM و یک segment معتبر
+<code>EXECUTED</code> با کران زمانی ۳۹ تا ۸۱ میلی‌ثانیه رسید. این ARM مستقل یا replay بستهٔ قدیمی نبود.
+Layer7 فراخوانی شد، ولی prediction برای ۵۸٫۳۰۸ و observation برای ۶۵٫۱۸۷ ثانیه بود؛ اختلاف ۶٫۸۷۹ ثانیه باعث رد جفت‌سازی شد.
+در تکرار قبلی همین سورس، گیت فیزیکی ground corridor رد کرده بود. هیچ‌یک شاهد hover پذیرفته‌شده نیست.</p>
+<p>proof لایه۶ فقط مدت و هویت segment ورودی را اثبات می‌کند؛ تثبیت فیزیکی پهپاد یا ایمنی فاصلهٔ بعد از cancel را اثبات نمی‌کند.
+در تصویر Console نهایی، attitude و سرعت پس از segment تغییر کرده‌اند و شاهد hover پایدار نیستند.</p>
+<p>این گزارش از log، CycleResult، نمونه‌های IMU و تصویرهای همین transaction ساخته شده است. گزارش‌های گذشته به‌عنوان evidence پذیرش این اجرا استفاده نشده‌اند.</p>
+<h2>وضعیت تک‌تک میکروگام‌ها</h2><table><tr><th>گام</th><th>کار</th><th>وضعیت</th><th>شاهد و محدودیت</th></tr>
+<tr><td>0</td><td>ثبت سورس، prior، forcing و binary</td><td>PASS</td><td>hash دقیق سورس/گواهی و حفظ KStore؛ reset اجرا نشد.</td></tr>
+<tr><td>1</td><td>علت‌دارکردن ingress و دریافت دوبارهٔ نمونهٔ منقضی</td><td>PASS</td><td>کد زیرگیت، witness وابسته به thread و retry محدود؛ تغییر هویت/hash فوراً رد می‌شود.</td></tr>
+<tr><td>2</td><td>۶۰ ثانیه مشاهدهٔ واقعی روی زمین</td><td>PASS</td><td>۱۰۲ مشاهده، ۶۰٫۱۳۸ ثانیه plant، بدون ARM/فرمان، صفر خطای acquisition.</td></tr>
+<tr><td>3</td><td>واحد/فریم و مقداردهی اولیهٔ bias موجود MESA</td><td>PARTIAL</td><td>ورودی bias با IMU سکون مقداردهی شد؛ صحت ناوبری دینامیکی اثبات نشده است.</td></tr>
+<tr><td>4</td><td>اندازه‌گیری و کاهش هزینهٔ مسیر</td><td>PARTIAL</td><td>YAML بر اساس محتوای فعلی cache می‌شود و history از کپی‌های forecast حذف شد؛ cycle هنوز چندثانیه‌ای است.</td></tr>
+<tr><td>5</td><td>گرم‌کردن اجزا پیش از release</td><td>PARTIAL</td><td>آماده‌سازی Layer5 و کالیبراسیون پیش از فرمان انجام می‌شود؛ timing لازم برای handover پیوسته حاصل نشد.</td></tr>
+<tr><td>6</td><td>state جاری MPC و prediction کوتاه فرمان واقعی</td><td>PARTIAL</td><td>MPC context جاری می‌گیرد؛ replay فرمان دقیق و یک proof اجرای Native ساخته شدند؛ هم‌زمانی جفت هنوز رد می‌شود.</td></tr>
+<tr><td>7</td><td>قرارداد زمان prediction و execution</td><td>PARTIAL</td><td>source clock حفظ و تأخیر مصنوعاً پنهان نمی‌شود؛ یک residual هم‌زمان Native هنوز پذیرفته نشده است.</td></tr>
+<tr><td>8</td><td>تحویل پیوستهٔ کنترل بین cycleها</td><td>BLOCKED</td><td>سقف segment برابر ۰٫۱ ثانیه است؛ تداوم پوشش بین cycleهای چندثانیه‌ای پیاده و تأیید نشده است.</td></tr>
+<tr><td>9</td><td>هویت candidate/command/snapshot و checksum</td><td>PASS</td><td>اصل artifact دست‌نخورده و ورودی موقت MPC جداگانه اعتبارسنجی می‌شود؛ فرمان متفاوت prediction را رد می‌کند.</td></tr>
+<tr><td>10</td><td>دو cycle واقعی L7→L2</td><td>BLOCKED</td><td>هیچ دو cycle اجرایی همراه residual و مصرف آن در L2 ثبت نشده است.</td></tr>
+<tr><td>11</td><td>پرواز محلی ۱، ۵ و ۱۰ ثانیه</td><td>BLOCKED</td><td>پروفایل و معیار پذیرش نصب شد؛ حتی سطح ۱ ثانیه تأیید نشده؛ ۵/۱۰ اجرا نشدند.</td></tr>
+<tr><td>12</td><td>پرواز ۳۰ و ۶۰ ثانیه و فرود</td><td>BLOCKED</td><td>به علت رد سطح مقدماتی اجرا نشد؛ touchdown کنترل‌شده تأیید نشده است.</td></tr>
+</table><h2>تغییرات ثبت‌شده در سورس اصلی</h2><ol>
+<li>ingress لایه۶ علت دقیق رد clock، environment، binding و freshness را حفظ می‌کند. witness هر thread مستقل است؛ نمونهٔ منقضی دوباره دریافت می‌شود، ولی تغییر hash/هویت fail-closed باقی می‌ماند.</li>
+<li>یک کالیبراسیون پنج‌ثانیه‌ای با IMU واقعی سکون در شروع نشست، ورودی‌های موجود bias در MESA را مقداردهی می‌کند. receipt در حافظه معتبر است؛ JSON ذخیره‌شده مجوز نصب bias نمی‌دهد. هیچ نمونهٔ خامی تغییر نکرده است.</li>
+<li>receipt داخلی پیش از عبور از مرز JSON لایه۳ به evidence سریال‌پذیر تبدیل شد. کپی history خام از packetهای محاسباتی لایه۳ و contextهای فرضی حذف شده؛ اصل evidence در CycleResult می‌ماند.</li>
+<li>Layer5 برای اجرای MPC، context وضعیت فعلی لایه۳ را دریافت می‌کند. artifact اولیه، hash و زمان گواهی قبلی تغییر نمی‌کنند. ورودی موقت MPC checksum جداگانه دارد؛ indexهای صرفاً candidate_id به candidate کامل تبدیل نمی‌شوند.</li>
+<li>برای همان candidate، transaction و u_cmd نهایی، replay کوتاه WingMPET/Layer3 ایجاد و فیزیکی بررسی می‌شود. این replay به‌تنهایی مجوز اجرا نیست. گیت ردشده به Layer6 نسبت داده می‌شود و FINAL واقعی Layer5 به خطای MPC بازبرچسب‌گذاری نمی‌شود. جزئیات AGL، پشتیبانی زمین و verdict نگه داشته می‌شوند.</li>
+<li>Layer7 فقط prediction همان فرمان را جفت می‌کند. زمان هدف از source clock واقعی prediction می‌آید و به زمان ارسال دیرتر منتقل نمی‌شود. آزمون تأخیر یک‌ثانیه‌ای باید رد شود.</li>
+<li>cache پارس YAML بر اساس bytes فعلی است؛ هر بار محتوا خوانده و hash می‌شود. تغییر هم‌اندازه با mtime مشابه نیز دیده می‌شود. در RPC وضعیت و proof، زمان هر درخواست با بودجهٔ کلی محدود شده تا پاسخ GUI بی‌جهت با request_id جدید رها نشود؛ مهلت کلی و مدت مجاز فرمان افزایش نیافتند.</li>
+<li>پروفایل اختیاری takeoff→hover→landing در CLI و workflow اضافه شد. شمارش hover نیازمند اجرای واقعی، Layer7 معتبر و پوشش پیوسته است. مأموریت عادی یازده‌مرحله‌ای حفظ شده است. راه استفاده در SETUP.md آمده است.</li></ol>
+<p><a href="source_changes.patch">patch تغییرات همین transaction</a> — <a href="source_changes.json">فهرست فایل‌ها و hash قبل/بعد</a> — <a href="../SETUP.md">SETUP.md</a></p>
+<h2>آزمون سکون و bias؛ با تفکیک از پرواز</h2>
+<p>۱۰۲ مشاهدهٔ معتبر در ۶۰٫۱۳۸ ثانیهٔ plant، بدون درخواست ARM یا actuation ثبت شد. ۳۰۵۰ نمونهٔ retained IMU محفوظ است.
+    gyro_y سکون برابر ‎−۰٫۰۰۲ rad/s بود. در replay نگه‌داشته‌شدهٔ حدود ۵۶ ثانیه با FMU اصلی و بدون FCU pose،
+    خطای افقی حالت بدون bias حدود ۵۶۹ متر و با bias اندازه‌گیری‌شده ۵٫۶۶ متر و خطای عمودی ۰٫۹۰ متر شد.
+    این کاهش، شاهد بهبود initialization است؛ ۵٫۶۶ متر از معیار افقی پنج‌متری بیشتر است و شاهد hover یا ناوبری دینامیکی نیست.</p>
+<p><a href="evidence/ground_result.json">نتیجهٔ acquisition زمین</a> — <a href="evidence/ground_bias_replay.json">مقایسهٔ سه replay</a> — <a href="evidence/ground_imu.json.gz">نمونه‌های واقعی IMU</a></p>
+<h2>نتیجهٔ اجرای واقعی نسخه‌ها</h2><table><tr><th>اجرا</th><th>cycleهای ثبت‌شده</th><th>EXECUTED</th><th>L7 OK</th><th>علت‌های ثبت‌شده</th></tr>
+<tr><td><a href="serialization_attempt/online_local_1s.log">serialization_attempt</a></td><td>5</td><td>0</td><td>0</td><td dir="ltr"></td></tr>
+<tr><td><a href="registry_attempt/online_local_1s.log">registry_attempt</a></td><td>6</td><td>0</td><td>0</td><td dir="ltr">ValueError(&#x27;selected Layer4 verified candidate differs from candidate registry&#x27;)</td></tr>
+<tr><td><a href="projection_attempt/online_local_1s.log">projection_attempt</a></td><td>7</td><td>0</td><td>0</td><td dir="ltr">ValueError(&#x27;Layer4 execution projection integrity mismatch&#x27;)</td></tr>
+<tr><td><a href="proof_timeout_attempt/online_local_1s.log">proof_timeout_attempt</a></td><td>2</td><td>0</td><td>0</td><td dir="ltr">Layer6BridgeError(&#x27;segment closure proof not received before confirmation deadline&#x27;)<br>layer6_execution_not_confirmed</td></tr>
+<tr><td><a href="ground_corridor_attempt/online_local_1s.log">ground_corridor_attempt</a></td><td>6</td><td>0</td><td>0</td><td dir="ltr">ValueError(&quot;current first move physically rejected: [&#x27;takeoff_ground_corridor&#x27;]None&quot;)</td></tr>
+<tr><td><a href="detailed_corridor_attempt/online_local_1s.log">detailed_corridor_attempt</a></td><td>6</td><td>0</td><td>0</td><td dir="ltr">current_first_move_prediction_rejected</td></tr>
+<tr><td><a href="evidence/online_local_1s.log">final_native</a></td><td>6</td><td>1</td><td>0</td><td dir="ltr"></td></tr>
+</table><p>prior هر مدل از یک اجرای تشخیصی Offline سه‌cycle‌ای همان نسخه ساخته شد. این اجراها با exit=2 و مأموریت ناقص پایان یافتند؛
+    هویت گواهی/SETD پذیرفته شد، ولی پرواز کامل Offline و پوشش تمام فازها اثبات نشد. هیچ گواهی قدیمی با hash جدید بازبرچسب‌گذاری نشد.</p>
+<h2>مانع زمانی در آخرین اجرای Native</h2>
+<p>بستهٔ FINAL همان MPC اجرا و proof آن پذیرفته شد. source زمان prediction برابر ۵۸٫۲۰۸ ثانیه است؛
+        پیش‌بینی صد میلی‌ثانیه جلوتر به ۵۸٫۳۰۸ مربوط است. شروع واقعی ارسال در بازهٔ ۶۵٫۰۸۷ تا ۶۵٫۱۰۸ و observation پس از اجرا
+        در ۶۵٫۱۸۷ ثبت شد. جابه‌جایی timestamp prediction به زمان ارسال، این فاصله را حل نمی‌کند.
+        Layer7 به‌درستی جفت زمانی را رد کرد؛ «missing output/state pair» در این اجرا پیامد رد هم‌زمانی است و به معنی نبودن خود replay نیست.
+        بدون residual معتبر، feedback به L2 و ادامهٔ مأموریت پذیرفته نمی‌شود.</p>
+<pre dir="ltr">{
+  &quot;native_session_id&quot;: &quot;1dc72d0033244bcba0b30f3c58b9cbc1&quot;,
+  &quot;u_cmd&quot;: [
+    0.45,
+    -0.65,
+    0.7994285167499464,
+    0.0
+  ],
+  &quot;prediction&quot;: {
+    &quot;candidate_id&quot;: &quot;C0001&quot;,
+    &quot;transaction_id&quot;: &quot;workflow-online_jsbsim-e0001-c0002&quot;,
+    &quot;u_cmd&quot;: [
+      0.45,
+      -0.65,
+      0.7994285167499464,
+      0.0
+    ],
+    &quot;source_snapshot_hash&quot;: &quot;388dbe0ee438a948c1650329b758d71e0d74587c828b948c146fa26832748527&quot;,
+    &quot;source_reference_time_s&quot;: 58.208,
+    &quot;source_plant_time_s&quot;: 58.208,
+    &quot;elapsed_s&quot;: 1.1033494290022645,
+    &quot;source&quot;: &quot;current Layer2/WingMPET/Layer3 first-move replay&quot;
+  },
+  &quot;prediction_target_plant_time_s&quot;: 58.308,
+  &quot;execution_start_bounds_s&quot;: {
+    &quot;verified&quot;: true,
+    &quot;lower_s&quot;: 65.087,
+    &quot;upper_s&quot;: 65.108,
+    &quot;clock_domain&quot;: &quot;FCU_BOOT&quot;,
+    &quot;upper_quantization_s&quot;: 0.001,
+    &quot;proof&quot;: &quot;pre_send_source_then_write_then_echo_barrier_then_source_on_ordered_stream&quot;,
+    &quot;upper_source_observation&quot;: {
+      &quot;type&quot;: &quot;SCALED_IMU&quot;,
+      &quot;source&quot;: &quot;MAVLink/SCALED_IMU&quot;,
+      &quot;wire_sha256&quot;: &quot;e1eac6fe1ee91dacf90995d3c71d3c0add2d12b1dead5558d55ac138e740ee11&quot;,
+      &quot;received_monotonic&quot;: 37483.029789128,
+      &quot;source_time&quot;: {
+        &quot;field&quot;: &quot;time_boot_ms&quot;,
+        &quot;value&quot;: 65107,
+        &quot;unit&quot;: &quot;ms&quot;,
+        &quot;clock_domain&quot;: &quot;FCU_BOOT&quot;
+      },
+      &quot;plant_time_s&quot;: 65.107,
+      &quot;history_sequence&quot;: 10312,
+      &quot;source_system&quot;: 1,
+      &quot;source_component&quot;: 1
+    },
+    &quot;exact&quot;: false,
+    &quot;clock_rate_assumed&quot;: false,
+    &quot;rebase&quot;: false
+  },
+  &quot;execution_duration_bounds_s&quot;: {
+    &quot;lower_s&quot;: 0.03900000000000148,
+    &quot;upper_s&quot;: 0.08100000000000307
+  },
+  &quot;execution_post_plant_time_s&quot;: 65.187,
+  &quot;prediction_execution_offset_s&quot;: 6.878999999999998,
+  &quot;L7_validation_reasons&quot;: [
+    &quot;no comparable real/predicted output keys&quot;,
+    &quot;native_pair:missing_or_partial_output_pair&quot;,
+    &quot;native_pair:missing_or_partial_state_pair&quot;,
+    &quot;native_pair:state_pair_source_kind_mismatch&quot;,
+    &quot;native_pair:target_plant_time_mismatch_or_missing&quot;
+  ],
+  &quot;timing_s&quot;: {
+    &quot;L2&quot;: 2.5780135419990984,
+    &quot;L3&quot;: 0.36802936699677957,
+    &quot;L4&quot;: 0.09487893700134009,
+    &quot;L5&quot;: 2.3039893260065583,
+    &quot;L6&quot;: 2.3045346419967245,
+    &quot;L7&quot;: 0.002749267005128786
+  }
+}</pre>
+<h2>مانع فیزیکی مشاهده‌شده در تکرار قبلی همین نسخه</h2>
+<p>در workflow-online_jsbsim-e0001-c0002، Layer5 به FINAL رسید؛ گیت بعدی با علت
+        <code>takeoff_ground_corridor</code> رد شد. AGL جاری برابر -0.16981835554224745 و AGL replay برابر -0.18612849374858342 متر بود؛ حد پایین قرارداد صفر است. گیت پشتیبانی زمین به علت AGL منفی false شد، replay از op27 استفاده کرد و تمام substepهای آن feasible نبودند.
+        فرمان ارسال نشد. این داده‌ها اثبات نمی‌کنند مدل باد یا طراحی پهپاد معیوب است؛ فقط علت دقیق رد این ورودی و این قرارداد را نشان می‌دهند.</p>
+<pre dir="ltr">{
+  &quot;current_AGL_m&quot;: -0.16981835554224745,
+  &quot;predicted_AGL_m&quot;: -0.18612849374858342,
+  &quot;u_cmd&quot;: [
+    0.45,
+    -0.65,
+    0.7994285151883291,
+    0.0
+  ],
+  &quot;feasibility&quot;: {
+    &quot;safe&quot;: false,
+    &quot;physical_mission_safe&quot;: false,
+    &quot;action_safe&quot;: true,
+    &quot;reasons&quot;: [
+      &quot;takeoff_ground_corridor&quot;
+    ],
+    &quot;steps&quot;: [
+      {
+        &quot;step&quot;: 1,
+        &quot;ok&quot;: false,
+        &quot;reasons&quot;: [
+          &quot;takeoff_ground_corridor&quot;
+        ],
+        &quot;mode&quot;: &quot;vertical_takeoff&quot;,
+        &quot;terrain_policy&quot;: {
+          &quot;policy&quot;: &quot;GROUND_REFERENCED_TAKEOFF_CORRIDOR&quot;,
+          &quot;lower_m&quot;: 0.0,
+          &quot;upper_m&quot;: null,
+          &quot;reference_m&quot;: 0.0,
+          &quot;target_m&quot;: null
+        },
+        &quot;airspeed_policy&quot;: {
+          &quot;policy&quot;: &quot;STATIC_AIRSPEED_LIMIT&quot;,
+          &quot;lower_m_s&quot;: 0.0,
+          &quot;upper_m_s&quot;: 18.0,
+          &quot;reference_m_s&quot;: null,
+          &quot;entry_m_s&quot;: 4.535419924018444,
+          &quot;terminal_min_m_s&quot;: 0.0,
+          &quot;terminal_target_m_s&quot;: 0.0,
+          &quot;progress&quot;: 0.16666666666666666,
+          &quot;required_accel_m_s2&quot;: 0.0,
+          &quot;model_accel_limit_m_s2&quot;: null,
+          &quot;reachable&quot;: true
+        }
+      }
+    ],
+    &quot;P_viol_full&quot;: 1.0
+  },
+  &quot;physical_verdict&quot;: {
+    &quot;authoritative&quot;: true,
+    &quot;non_bypassable&quot;: true,
+    &quot;override_allowed&quot;: false,
+    &quot;all_rows_vtol_feasible&quot;: false,
+    &quot;rows&quot;: [
+      {
+        &quot;ok&quot;: false,
+        &quot;source&quot;: &quot;WingMPET/op27-substepped&quot;,
+        &quot;action_consumed&quot;: true,
+        &quot;replay_vtol_feasible&quot;: false,
+        &quot;output_vtol_feasible&quot;: true,
+        &quot;substeps_all_vtol_feasible&quot;: false,
+        &quot;substep_count&quot;: 2,
+        &quot;retired_launch_fixture_present&quot;: false
+      }
+    ]
+  },
+  &quot;ground_support_evidence&quot;: {
+    &quot;asserted&quot;: false,
+    &quot;basis&quot;: &quot;operational_AGL_plus_released_live_ground_speed&quot;,
+    &quot;altitude_agl_m&quot;: -0.16981835554224745,
+    &quot;agl_authority_valid&quot;: true,
+    &quot;simulator_truth_used&quot;: false,
+    &quot;air_relative_speed_m_s&quot;: 1.6871223449707031,
+    &quot;live_ground_speed_m_s&quot;: 0.0,
+    &quot;motion_speed_selected_m_s&quot;: 0.0,
+    &quot;runic_released&quot;: true,
+    &quot;phase&quot;: &quot;vertical_takeoff&quot;,
+    &quot;checks&quot;: {
+      &quot;online_mode&quot;: true,
+      &quot;vertical_takeoff_phase&quot;: true,
+      &quot;operational_agl_valid&quot;: true,
+      &quot;near_ground&quot;: false,
+      &quot;release_state_known&quot;: true,
+      &quot;state_appropriate_motion_stationary&quot;: true
+    },
+    &quot;step_limited&quot;: true,
+    &quot;control_release_is_not_contact_evidence&quot;: true
+  },
+  &quot;timing_s&quot;: {
+    &quot;L2&quot;: 1.4461031300015748,
+    &quot;L3&quot;: 0.3138095480026095,
+    &quot;L4&quot;: 0.09185627000260865,
+    &quot;L5&quot;: 2.5316928870015545
+  }
+}</pre>
+<h2>کار لازم برای عبور واقعی؛ مواردی که هنوز انجام نشده‌اند</h2><ol>
+<li><strong>مرز تماس زمین و AGL:</strong> باید با قرارداد مصوب مشخص شود وقتی IMU/MESA و DEM، AGL منفی می‌دهند ولی FCU زمین را گزارش می‌کند، آغاز takeoff چگونه از نظر فیزیکی معتبر می‌شود. صرف clamp کردن AGL، جابه‌جایی مبدأ، کپی pose از FCU به MESA یا حذف گیت راه‌حل پذیرفته‌شده نیست. replay کوتاه، مقدار اولیهٔ فیزیکی execution-only را نیز مصرف می‌کند؛ آن state به MESA تزریق نمی‌شود و نباید «تمام initialization از MESA» نامیده شود.</li>
+<li><strong>تداوم زمان و فرمان:</strong> segment صد میلی‌ثانیه‌ای با cycle چندثانیه‌ای پوشش پیوسته نمی‌سازد. تحویل فرمان با زمان اعمال تعریف‌شده، پیش‌بینی از anchor معتبر تا همان زمان، و evidence پوشش فاصلهٔ بین تصمیم‌ها لازم است. این زمان‌بندی در این اصلاح پیاده و در Native تأیید نشده است؛ افزایش TTL یا انتقال timestamp پیش‌بینی انجام نشد.</li>
+<li><strong>تکرارپذیری proof:</strong> مشکل رهاکردن زودهنگام RPC اصلاح شد و در آخرین نشست، proof معتبر دریافت شد. این یک segment پذیرفته‌شده است؛ اثبات چند cycle پیوسته هنوز لازم است. خطاهای آینده state/failure و شمار timeout را حفظ می‌کنند.</li>
+<li><strong>انطباق معنا و پاسخ QHOVER:</strong> پذیرش packet و تغییر stick معادل شناسایی پاسخ فیزیکی نیست. هم‌ارزی نگاشت فرمان مدل WingMPET با lean/climb semantics خلبان QHOVER باید با پارامترهای همان نشست و پاسخ واقعی تأیید شود. اصلاح تصادفی gain یا throttle و ادعای موفقیت از ARM انجام نشده است.</li>
+<li><strong>بستن چرخهٔ بازخورد:</strong> پس از عبور موارد بالا، باید دو proof اجرایی هم‌زمان با prediction همان فرمان و مصرف residual در L2 ثبت شود. سپس به‌ترتیب ۱، ۵، ۱۰، ۳۰ و ۶۰ ثانیه و فرود آزموده شود. مراحل وابسته هنوز اجرا/پذیرش نشده‌اند.</li></ol>
+<p class="note">این موارد، کار باقی‌مانده‌اند؛ گزارش به معنی رفع تمام ناسازگاری‌ها یا تکمیل مأموریت نیست. کنترل، باد، مدل دینامیکی و estimator بازطراحی نشده‌اند.</p>
+<h2>آزمون‌ها، prior و build</h2>
+<p>128 passed in 13.75s در آخرین مجموعهٔ آزمون مرزی مرتبط. تعداد مجموعه‌های تکراری با یکدیگر جمع نشده‌اند.</p>
+<p><a href="evidence/tests_release_final.log">خروجی آزمون نهایی</a> — <a href="evidence/tests_prediction_clock.log">آزمون رد prediction با تأخیر</a> — <a href="evidence/final_prior_before_online.json">prior پیش از Online</a></p>
+<p>هیچ سورس کامپایل‌شونده یا binary تغییر نکرد؛ hash هر سه FMU، ArduPilot و JSBSim ثابت ماند.
+    rebuild جدید انجام نشد. reset واقعی نیز آزموده نشد و برای پایداری پس از reset، PASS صادر نمی‌شود.
+    مدل فعلی <code>2839735171b10d218ec96def031250ac1c868c4c78fea10bd9e576017e357232</code> است. دانش و forcing در طول Online byte-exact حفظ شدند.</p>
+<pre dir="ltr">{
+  &quot;source_unchanged_during_final_online&quot;: true,
+  &quot;yaml_unchanged&quot;: true,
+  &quot;handoff_unchanged&quot;: true,
+  &quot;kstore_unchanged&quot;: true,
+  &quot;forcing_unchanged&quot;: true,
+  &quot;compiled_artifacts_unchanged_from_first_run&quot;: true,
+  &quot;binary_hashes&quot;: {
+    &quot;mesa_nav_fmu&quot;: {
+      &quot;sha256&quot;: &quot;3cf10daa41be76b8ac19e663f76f6d417fb996478d8d0354826418c4264ecf37&quot;,
+      &quot;bytes&quot;: 280356
+    },
+    &quot;wingmpet_fmu&quot;: {
+      &quot;sha256&quot;: &quot;c838871e85f96987815795cea9a3c0ecd7d7c19c07c4e110bc436a2ac9986689&quot;,
+      &quot;bytes&quot;: 461139
+    },
+    &quot;micromet_fmu&quot;: {
+      &quot;sha256&quot;: &quot;db039dc85ac2a9802095094ecb506afa961bdf96449cee1a9ca6b3e252dbcac1&quot;,
+      &quot;bytes&quot;: 295567
+    },
+    &quot;arduplane_binary&quot;: {
+      &quot;sha256&quot;: &quot;d98efe6d28c2add78eae55f00ea1b4b4d99e0dfaf7f61469504a6bcc0196341a&quot;,
+      &quot;bytes&quot;: 6037896
+    },
+    &quot;jsbsim_binary&quot;: {
+      &quot;sha256&quot;: &quot;114908b7cb323fc139736f46c344f2b0f06917ac4a0a6984125ea06e6cac06eb&quot;,
+      &quot;bytes&quot;: 3448568
+    }
+  },
+  &quot;handoff_gate&quot;: {
+    &quot;ok&quot;: true,
+    &quot;status&quot;: &quot;READY&quot;,
+    &quot;reason&quot;: &quot;VALID_FINALIZED_SETD_PRIOR_READY&quot;
+  },
+  &quot;model_gate&quot;: {
+    &quot;ok&quot;: true,
+    &quot;reason&quot;: &quot;exact_model_dependencies_match&quot;,
+    &quot;revision&quot;: &quot;phoenix-fourfoot-certificates-r3.06-v1&quot;,
+    &quot;current_model_id&quot;: &quot;2839735171b10d218ec96def031250ac1c868c4c78fea10bd9e576017e357232&quot;,
+    &quot;certificate_model_id&quot;: &quot;2839735171b10d218ec96def031250ac1c868c4c78fea10bd9e576017e357232&quot;,
+    &quot;scope&quot;: &quot;MODEL_IDENTITY_ONLY&quot;,
+    &quot;flight_authority&quot;: false,
+    &quot;current_state_replaced&quot;: false
+  },
+  &quot;reset_performed&quot;: false,
+  &quot;compiled_source_changes&quot;: false,
+  &quot;rebuilt&quot;: false
+}</pre>
+<h2>تصاویر واقعی و اتصال شش پنل</h2><p>تصویرهای زیر از پنجره‌های واقعی همان نشست و با manifest هویت گرفته شده‌اند.
+    captureهای زودهنگام با mode نامشخص برای پذیرش تصویری استفاده نشده‌اند. تصویرهای ARM نشست 57aa مربوط به همان نسخه‌اند؛ به نسخهٔ نهایی تعمیم داده نمی‌شوند.
+    FCU در log استفاده از GPS را گزارش کرده است؛ ادعای GNSS-denied برای خود EKF آردوپایلوت مطرح نیست.</p>
+<h3>1dc72d0033244bcba0b30f3c58b9cbc1 — QHOVER / ARMED</h3>
+<p><a href="evidence/armed_QHOVER_1dc72d00/manifest.json">manifest پنجره‌ها و telemetry</a></p><div class="gallery">
+<figure><a href="evidence/armed_QHOVER_1dc72d00/gui.png"><img loading="lazy" src="evidence/armed_QHOVER_1dc72d00/gui.png"></a><figcaption>gui</figcaption></figure>
+<figure><a href="evidence/armed_QHOVER_1dc72d00/map.png"><img loading="lazy" src="evidence/armed_QHOVER_1dc72d00/map.png"></a><figcaption>map</figcaption></figure>
+<figure><a href="evidence/armed_QHOVER_1dc72d00/ardupilot.png"><img loading="lazy" src="evidence/armed_QHOVER_1dc72d00/ardupilot.png"></a><figcaption>ardupilot</figcaption></figure>
+<figure><a href="evidence/armed_QHOVER_1dc72d00/jsbsim.png"><img loading="lazy" src="evidence/armed_QHOVER_1dc72d00/jsbsim.png"></a><figcaption>jsbsim</figcaption></figure>
+<figure><a href="evidence/armed_QHOVER_1dc72d00/environment.png"><img loading="lazy" src="evidence/armed_QHOVER_1dc72d00/environment.png"></a><figcaption>environment</figcaption></figure>
+<figure><a href="evidence/armed_QHOVER_1dc72d00/console.png"><img loading="lazy" src="evidence/armed_QHOVER_1dc72d00/console.png"></a><figcaption>console</figcaption></figure>
+</div>
+<h3>57aa238718c94b559c0ed78d64bb27ea — QHOVER / ARMED</h3>
+<p><a href="evidence/armed_QHOVER_57aa2387/manifest.json">manifest پنجره‌ها و telemetry</a></p><div class="gallery">
+<figure><a href="evidence/armed_QHOVER_57aa2387/gui.png"><img loading="lazy" src="evidence/armed_QHOVER_57aa2387/gui.png"></a><figcaption>gui</figcaption></figure>
+<figure><a href="evidence/armed_QHOVER_57aa2387/map.png"><img loading="lazy" src="evidence/armed_QHOVER_57aa2387/map.png"></a><figcaption>map</figcaption></figure>
+<figure><a href="evidence/armed_QHOVER_57aa2387/ardupilot.png"><img loading="lazy" src="evidence/armed_QHOVER_57aa2387/ardupilot.png"></a><figcaption>ardupilot</figcaption></figure>
+<figure><a href="evidence/armed_QHOVER_57aa2387/jsbsim.png"><img loading="lazy" src="evidence/armed_QHOVER_57aa2387/jsbsim.png"></a><figcaption>jsbsim</figcaption></figure>
+<figure><a href="evidence/armed_QHOVER_57aa2387/environment.png"><img loading="lazy" src="evidence/armed_QHOVER_57aa2387/environment.png"></a><figcaption>environment</figcaption></figure>
+<figure><a href="evidence/armed_QHOVER_57aa2387/console.png"><img loading="lazy" src="evidence/armed_QHOVER_57aa2387/console.png"></a><figcaption>console</figcaption></figure>
+</div>
+<h3>1dc72d0033244bcba0b30f3c58b9cbc1 — MANUAL / DISARMED</h3>
+<p><a href="evidence/disarmed_MANUAL_1dc72d00/manifest.json">manifest پنجره‌ها و telemetry</a></p><div class="gallery">
+<figure><a href="evidence/disarmed_MANUAL_1dc72d00/gui.png"><img loading="lazy" src="evidence/disarmed_MANUAL_1dc72d00/gui.png"></a><figcaption>gui</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_1dc72d00/map.png"><img loading="lazy" src="evidence/disarmed_MANUAL_1dc72d00/map.png"></a><figcaption>map</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_1dc72d00/ardupilot.png"><img loading="lazy" src="evidence/disarmed_MANUAL_1dc72d00/ardupilot.png"></a><figcaption>ardupilot</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_1dc72d00/jsbsim.png"><img loading="lazy" src="evidence/disarmed_MANUAL_1dc72d00/jsbsim.png"></a><figcaption>jsbsim</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_1dc72d00/environment.png"><img loading="lazy" src="evidence/disarmed_MANUAL_1dc72d00/environment.png"></a><figcaption>environment</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_1dc72d00/console.png"><img loading="lazy" src="evidence/disarmed_MANUAL_1dc72d00/console.png"></a><figcaption>console</figcaption></figure>
+</div>
+<h3>426937a24b7b4e3880393a3cf960d031 — MANUAL / DISARMED</h3>
+<p><a href="evidence/disarmed_MANUAL_426937a2/manifest.json">manifest پنجره‌ها و telemetry</a></p><div class="gallery">
+<figure><a href="evidence/disarmed_MANUAL_426937a2/gui.png"><img loading="lazy" src="evidence/disarmed_MANUAL_426937a2/gui.png"></a><figcaption>gui</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_426937a2/map.png"><img loading="lazy" src="evidence/disarmed_MANUAL_426937a2/map.png"></a><figcaption>map</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_426937a2/ardupilot.png"><img loading="lazy" src="evidence/disarmed_MANUAL_426937a2/ardupilot.png"></a><figcaption>ardupilot</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_426937a2/jsbsim.png"><img loading="lazy" src="evidence/disarmed_MANUAL_426937a2/jsbsim.png"></a><figcaption>jsbsim</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_426937a2/environment.png"><img loading="lazy" src="evidence/disarmed_MANUAL_426937a2/environment.png"></a><figcaption>environment</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_426937a2/console.png"><img loading="lazy" src="evidence/disarmed_MANUAL_426937a2/console.png"></a><figcaption>console</figcaption></figure>
+</div>
+<h3>5eff2313d7024f9b9a991837a260d117 — MANUAL / DISARMED</h3>
+<p><a href="evidence/disarmed_MANUAL_5eff2313/manifest.json">manifest پنجره‌ها و telemetry</a></p><div class="gallery">
+<figure><a href="evidence/disarmed_MANUAL_5eff2313/gui.png"><img loading="lazy" src="evidence/disarmed_MANUAL_5eff2313/gui.png"></a><figcaption>gui</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_5eff2313/map.png"><img loading="lazy" src="evidence/disarmed_MANUAL_5eff2313/map.png"></a><figcaption>map</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_5eff2313/ardupilot.png"><img loading="lazy" src="evidence/disarmed_MANUAL_5eff2313/ardupilot.png"></a><figcaption>ardupilot</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_5eff2313/jsbsim.png"><img loading="lazy" src="evidence/disarmed_MANUAL_5eff2313/jsbsim.png"></a><figcaption>jsbsim</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_5eff2313/environment.png"><img loading="lazy" src="evidence/disarmed_MANUAL_5eff2313/environment.png"></a><figcaption>environment</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_5eff2313/console.png"><img loading="lazy" src="evidence/disarmed_MANUAL_5eff2313/console.png"></a><figcaption>console</figcaption></figure>
+</div>
+<h3>6e71dd0b68db413eb42300c7c4405d3a — MANUAL / DISARMED</h3>
+<p><a href="evidence/disarmed_MANUAL_6e71dd0b/manifest.json">manifest پنجره‌ها و telemetry</a></p><div class="gallery">
+<figure><a href="evidence/disarmed_MANUAL_6e71dd0b/gui.png"><img loading="lazy" src="evidence/disarmed_MANUAL_6e71dd0b/gui.png"></a><figcaption>gui</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_6e71dd0b/map.png"><img loading="lazy" src="evidence/disarmed_MANUAL_6e71dd0b/map.png"></a><figcaption>map</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_6e71dd0b/ardupilot.png"><img loading="lazy" src="evidence/disarmed_MANUAL_6e71dd0b/ardupilot.png"></a><figcaption>ardupilot</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_6e71dd0b/jsbsim.png"><img loading="lazy" src="evidence/disarmed_MANUAL_6e71dd0b/jsbsim.png"></a><figcaption>jsbsim</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_6e71dd0b/environment.png"><img loading="lazy" src="evidence/disarmed_MANUAL_6e71dd0b/environment.png"></a><figcaption>environment</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_6e71dd0b/console.png"><img loading="lazy" src="evidence/disarmed_MANUAL_6e71dd0b/console.png"></a><figcaption>console</figcaption></figure>
+</div>
+<h3>c359d8e4f5f148dab40d25f73727d2bd — MANUAL / DISARMED</h3>
+<p><a href="evidence/disarmed_MANUAL_c359d8e4/manifest.json">manifest پنجره‌ها و telemetry</a></p><div class="gallery">
+<figure><a href="evidence/disarmed_MANUAL_c359d8e4/gui.png"><img loading="lazy" src="evidence/disarmed_MANUAL_c359d8e4/gui.png"></a><figcaption>gui</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_c359d8e4/map.png"><img loading="lazy" src="evidence/disarmed_MANUAL_c359d8e4/map.png"></a><figcaption>map</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_c359d8e4/ardupilot.png"><img loading="lazy" src="evidence/disarmed_MANUAL_c359d8e4/ardupilot.png"></a><figcaption>ardupilot</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_c359d8e4/jsbsim.png"><img loading="lazy" src="evidence/disarmed_MANUAL_c359d8e4/jsbsim.png"></a><figcaption>jsbsim</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_c359d8e4/environment.png"><img loading="lazy" src="evidence/disarmed_MANUAL_c359d8e4/environment.png"></a><figcaption>environment</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_c359d8e4/console.png"><img loading="lazy" src="evidence/disarmed_MANUAL_c359d8e4/console.png"></a><figcaption>console</figcaption></figure>
+</div>
+<h3>d1a94c280dc1478d9e2fad17309cc213 — MANUAL / DISARMED</h3>
+<p><a href="evidence/disarmed_MANUAL_d1a94c28/manifest.json">manifest پنجره‌ها و telemetry</a></p><div class="gallery">
+<figure><a href="evidence/disarmed_MANUAL_d1a94c28/gui.png"><img loading="lazy" src="evidence/disarmed_MANUAL_d1a94c28/gui.png"></a><figcaption>gui</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_d1a94c28/map.png"><img loading="lazy" src="evidence/disarmed_MANUAL_d1a94c28/map.png"></a><figcaption>map</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_d1a94c28/ardupilot.png"><img loading="lazy" src="evidence/disarmed_MANUAL_d1a94c28/ardupilot.png"></a><figcaption>ardupilot</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_d1a94c28/jsbsim.png"><img loading="lazy" src="evidence/disarmed_MANUAL_d1a94c28/jsbsim.png"></a><figcaption>jsbsim</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_d1a94c28/environment.png"><img loading="lazy" src="evidence/disarmed_MANUAL_d1a94c28/environment.png"></a><figcaption>environment</figcaption></figure>
+<figure><a href="evidence/disarmed_MANUAL_d1a94c28/console.png"><img loading="lazy" src="evidence/disarmed_MANUAL_d1a94c28/console.png"></a><figcaption>console</figcaption></figure>
+</div>
+<h3>1dc72d0033244bcba0b30f3c58b9cbc1 — QHOVER / DISARMED</h3>
+<p><a href="evidence/disarmed_QHOVER_1dc72d00/manifest.json">manifest پنجره‌ها و telemetry</a></p><div class="gallery">
+<figure><a href="evidence/disarmed_QHOVER_1dc72d00/gui.png"><img loading="lazy" src="evidence/disarmed_QHOVER_1dc72d00/gui.png"></a><figcaption>gui</figcaption></figure>
+<figure><a href="evidence/disarmed_QHOVER_1dc72d00/map.png"><img loading="lazy" src="evidence/disarmed_QHOVER_1dc72d00/map.png"></a><figcaption>map</figcaption></figure>
+<figure><a href="evidence/disarmed_QHOVER_1dc72d00/ardupilot.png"><img loading="lazy" src="evidence/disarmed_QHOVER_1dc72d00/ardupilot.png"></a><figcaption>ardupilot</figcaption></figure>
+<figure><a href="evidence/disarmed_QHOVER_1dc72d00/jsbsim.png"><img loading="lazy" src="evidence/disarmed_QHOVER_1dc72d00/jsbsim.png"></a><figcaption>jsbsim</figcaption></figure>
+<figure><a href="evidence/disarmed_QHOVER_1dc72d00/environment.png"><img loading="lazy" src="evidence/disarmed_QHOVER_1dc72d00/environment.png"></a><figcaption>environment</figcaption></figure>
+<figure><a href="evidence/disarmed_QHOVER_1dc72d00/console.png"><img loading="lazy" src="evidence/disarmed_QHOVER_1dc72d00/console.png"></a><figcaption>console</figcaption></figure>
+</div>
+<h3>57aa238718c94b559c0ed78d64bb27ea — QHOVER / DISARMED</h3>
+<p><a href="evidence/disarmed_QHOVER_57aa2387/manifest.json">manifest پنجره‌ها و telemetry</a></p><div class="gallery">
+<figure><a href="evidence/disarmed_QHOVER_57aa2387/gui.png"><img loading="lazy" src="evidence/disarmed_QHOVER_57aa2387/gui.png"></a><figcaption>gui</figcaption></figure>
+<figure><a href="evidence/disarmed_QHOVER_57aa2387/map.png"><img loading="lazy" src="evidence/disarmed_QHOVER_57aa2387/map.png"></a><figcaption>map</figcaption></figure>
+<figure><a href="evidence/disarmed_QHOVER_57aa2387/ardupilot.png"><img loading="lazy" src="evidence/disarmed_QHOVER_57aa2387/ardupilot.png"></a><figcaption>ardupilot</figcaption></figure>
+<figure><a href="evidence/disarmed_QHOVER_57aa2387/jsbsim.png"><img loading="lazy" src="evidence/disarmed_QHOVER_57aa2387/jsbsim.png"></a><figcaption>jsbsim</figcaption></figure>
+<figure><a href="evidence/disarmed_QHOVER_57aa2387/environment.png"><img loading="lazy" src="evidence/disarmed_QHOVER_57aa2387/environment.png"></a><figcaption>environment</figcaption></figure>
+<figure><a href="evidence/disarmed_QHOVER_57aa2387/console.png"><img loading="lazy" src="evidence/disarmed_QHOVER_57aa2387/console.png"></a><figcaption>console</figcaption></figure>
+</div>
+<h2>بستهٔ قابل بازبینی</h2><p><a href="evidence/FINAL_RESULT.json">نتیجهٔ ماشین‌خوان و جزئیات cycleها</a> — <a href="evidence/online_local_1s.log">log آخرین Online</a> — <a href="evidence/last_native_observations.json">آخرین سلامت پنل‌های هر نشست</a> — <a href="evidence/visual_inspection.json">ثبت بررسی تصاویر واقعی نشست نهایی</a></p>
+<p>CycleResult و گزارش‌های نهایی در <code>final_native/</code> و log/MAVLink خام نشست‌ها در <code>native_sessions/</code> نگه داشته شده‌اند.</p></main></html>

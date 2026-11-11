@@ -1,0 +1,31 @@
+{
+  "late_exception_handler_probe": {
+    "result": {
+      "status": "PASS",
+      "error": "ValueError('synthetic late binding failure')",
+      "traceback": "synthetic reproduction"
+    },
+    "production_source_changed": false,
+    "scope": "isolated control-flow probe of the original except handler; no Native session"
+  },
+  "negative_relative_height_contact_probe": {
+    "qualified": true,
+    "qualified_time_s": 1.1,
+    "condition": "near_ground_IMU_impact",
+    "height_m": -5.0,
+    "window_s": 0.10000000000000009,
+    "specific_force_error_m_s2": 2.0,
+    "source": "MESA/barometer/IMU only"
+  },
+  "covariance_effect_probe": {
+    "same_candidates_cost_and_feasibility": true,
+    "change": "MESA covariance multiplied by 1e12; all other inputs held fixed",
+    "scope": "direct deterministic Layer4 function replay; not a flight test"
+  },
+  "FMU_false_feasibility_probe": {
+    "source_transaction_id": "rt-993e71f8c87944198c56c12392c55dcc-c000001",
+    "FMU_vtol_feasible": 0.0,
+    "number_of_layer4_feasible_candidates": 9
+  },
+  "negative_height_Layer4_contact_feasible": true
+}

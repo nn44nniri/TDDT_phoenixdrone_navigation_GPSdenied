@@ -1,0 +1,70 @@
+{
+  "schema_version": "2.2",
+  "packet": "ClimateTwinOutput",
+  "required": [
+    "state",
+    "state_semantics",
+    "uncertainty",
+    "quality",
+    "validity",
+    "reliability",
+    "context",
+    "timestamp",
+    "provenance"
+  ],
+  "routing_optional": [
+    "context_id",
+    "stage_id",
+    "tep_cell_id",
+    "operation_code"
+  ],
+  "notes": "U/Q/V/R are distinct and must not be collapsed into confidence.",
+  "state_semantics_required": [
+    "unit",
+    "frame",
+    "source",
+    "timestamp",
+    "quality",
+    "validity_rule"
+  ],
+  "epistemic_required": {
+    "uncertainty": [
+      "std",
+      "variance",
+      "type",
+      "source",
+      "covariance",
+      "availability",
+      "unquantified_outputs"
+    ],
+    "quality": [
+      "score",
+      "flag",
+      "reason"
+    ],
+    "validity": [
+      "score",
+      "reason"
+    ],
+    "reliability": [
+      "prior",
+      "posterior",
+      "evidence_count",
+      "field_evidence_count"
+    ]
+  },
+  "provenance_required": [
+    "model",
+    "model_version",
+    "formalism",
+    "tep_version",
+    "tep_maturity"
+  ],
+  "uncertainty_rules": {
+    "covariance_order": "must equal TEP manifest covariance_variable_order",
+    "novelty_inflation": "applies to std/variance/full covariance",
+    "wind_3dw_gate": "3DW uncertainty is usable for coupling only when wind_3dw_valid==1",
+    "air_density_gate": "air_density uncertainty is usable only when formula_valid==1 and air_density>0",
+    "missing_evidence": "must remain unquantified; never substitute zero/arbitrary uncertainty"
+  }
+}

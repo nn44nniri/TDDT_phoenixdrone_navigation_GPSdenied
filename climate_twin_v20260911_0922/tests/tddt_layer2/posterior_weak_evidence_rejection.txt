@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "<stdin>", line 4, in <module>
+  File "/mnt/data/climate_twin_v20260812_1112/python/tddt_layer2.py", line 178, in create_field_posterior
+    e=json.loads(line); self._validate_evidence(e); ev.append(e)
+                        ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/mnt/data/climate_twin_v20260812_1112/python/tddt_layer2.py", line 166, in _validate_evidence
+    if missing: raise ValueError('field evidence missing required fields: '+','.join(missing))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: field evidence missing required fields: timestamp,source,validation_status,validation_id,provenance,residual

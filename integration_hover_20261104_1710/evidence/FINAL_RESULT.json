@@ -1,0 +1,3580 @@
+{
+  "generated_at": "2026-11-04T18:47:49.658703-05:00",
+  "mission_status": "FAIL",
+  "all_requested_microsteps_completed": false,
+  "closed_loop_2_to_7": "BLOCKED",
+  "accepted_local_hover_seconds": 0,
+  "hover_5_10_30_60_attempted": false,
+  "latest_model_id": "2839735171b10d218ec96def031250ac1c868c4c78fea10bd9e576017e357232",
+  "offline_prior_scope": "Fresh three-cycle diagnostic Offline runs for each model identity; NOT a completed Offline mission",
+  "offline_process_exit_code": 2,
+  "final_online_process_exit_code": 2,
+  "compiled_source_modified": false,
+  "reset_tested": false,
+  "tests": "128 passed in 13.75s",
+  "source_change_count": 24,
+  "steps": [
+    [
+      0,
+      "ثبت سورس، prior، forcing و binary",
+      "PASS",
+      "hash دقیق سورس/گواهی و حفظ KStore؛ reset اجرا نشد."
+    ],
+    [
+      1,
+      "علت‌دارکردن ingress و دریافت دوبارهٔ نمونهٔ منقضی",
+      "PASS",
+      "کد زیرگیت، witness وابسته به thread و retry محدود؛ تغییر هویت/hash فوراً رد می‌شود."
+    ],
+    [
+      2,
+      "۶۰ ثانیه مشاهدهٔ واقعی روی زمین",
+      "PASS",
+      "۱۰۲ مشاهده، ۶۰٫۱۳۸ ثانیه plant، بدون ARM/فرمان، صفر خطای acquisition."
+    ],
+    [
+      3,
+      "واحد/فریم و مقداردهی اولیهٔ bias موجود MESA",
+      "PARTIAL",
+      "ورودی bias با IMU سکون مقداردهی شد؛ صحت ناوبری دینامیکی اثبات نشده است."
+    ],
+    [
+      4,
+      "اندازه‌گیری و کاهش هزینهٔ مسیر",
+      "PARTIAL",
+      "YAML بر اساس محتوای فعلی cache می‌شود و history از کپی‌های forecast حذف شد؛ cycle هنوز چندثانیه‌ای است."
+    ],
+    [
+      5,
+      "گرم‌کردن اجزا پیش از release",
+      "PARTIAL",
+      "آماده‌سازی Layer5 و کالیبراسیون پیش از فرمان انجام می‌شود؛ timing لازم برای handover پیوسته حاصل نشد."
+    ],
+    [
+      6,
+      "state جاری MPC و prediction کوتاه فرمان واقعی",
+      "PARTIAL",
+      "MPC context جاری می‌گیرد؛ replay فرمان دقیق و یک proof اجرای Native ساخته شدند؛ هم‌زمانی جفت هنوز رد می‌شود."
+    ],
+    [
+      7,
+      "قرارداد زمان prediction و execution",
+      "PARTIAL",
+      "source clock حفظ و تأخیر مصنوعاً پنهان نمی‌شود؛ یک residual هم‌زمان Native هنوز پذیرفته نشده است."
+    ],
+    [
+      8,
+      "تحویل پیوستهٔ کنترل بین cycleها",
+      "BLOCKED",
+      "سقف segment برابر ۰٫۱ ثانیه است؛ تداوم پوشش بین cycleهای چندثانیه‌ای پیاده و تأیید نشده است."
+    ],
+    [
+      9,
+      "هویت candidate/command/snapshot و checksum",
+      "PASS",
+      "اصل artifact دست‌نخورده و ورودی موقت MPC جداگانه اعتبارسنجی می‌شود؛ فرمان متفاوت prediction را رد می‌کند."
+    ],
+    [
+      10,
+      "دو cycle واقعی L7→L2",
+      "BLOCKED",
+      "هیچ دو cycle اجرایی همراه residual و مصرف آن در L2 ثبت نشده است."
+    ],
+    [
+      11,
+      "پرواز محلی ۱، ۵ و ۱۰ ثانیه",
+      "BLOCKED",
+      "پروفایل و معیار پذیرش نصب شد؛ حتی سطح ۱ ثانیه تأیید نشده؛ ۵/۱۰ اجرا نشدند."
+    ],
+    [
+      12,
+      "پرواز ۳۰ و ۶۰ ثانیه و فرود",
+      "BLOCKED",
+      "به علت رد سطح مقدماتی اجرا نشد؛ touchdown کنترل‌شده تأیید نشده است."
+    ]
+  ],
+  "attempts": [
+    {
+      "name": "serialization_attempt",
+      "cycles": [
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0001-pre-release-vertical_takeoff",
+          "cycle_file": "serialization_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0001-pre-release-vertical_takeoff.json.gz",
+          "pre_release": true,
+          "status": "DEGRADED",
+          "phase": null,
+          "reference_time_s": 32.907000000000004,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": null,
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_PRE_RELEASE_VERIFY",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 0.8505256480057142,
+            "L3": 0.6157321430000593,
+            "runtime_storage": 0.08368084699759493
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.20096336899587186,
+            "climate": 0.07507353099936154,
+            "native_observation_and_history": 0.5548387220042059,
+            "mesa_alignment_and_propagation": 0.014312045997940004,
+            "wing_and_feedback": 0.005306061000737827,
+            "total": 0.8505052539985627
+          },
+          "current_AGL_m": null,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0002-pre-release-vertical_takeoff",
+          "cycle_file": "serialization_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0002-pre-release-vertical_takeoff.json.gz",
+          "pre_release": true,
+          "status": "DEGRADED",
+          "phase": null,
+          "reference_time_s": 37.106,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": null,
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_PRE_RELEASE_VERIFY",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.3807868389994837,
+            "L3": 0.20587844199326355,
+            "runtime_storage": 0.05325966399686877
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.05216841900255531,
+            "climate": 0.076564495000639,
+            "native_observation_and_history": 1.2235953640047228,
+            "mesa_alignment_and_propagation": 0.0254680450016167,
+            "wing_and_feedback": 0.002542117996199522,
+            "total": 1.3803541540037259
+          },
+          "current_AGL_m": null,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0003-pre-release-vertical_takeoff",
+          "cycle_file": "serialization_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0003-pre-release-vertical_takeoff.json.gz",
+          "pre_release": true,
+          "status": "DEGRADED",
+          "phase": null,
+          "reference_time_s": 39.006,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": null,
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_PRE_RELEASE_VERIFY",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 0.9777346330010914,
+            "L3": 0.17422143700241577,
+            "runtime_storage": 0.05453362100524828
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.05322928199893795,
+            "climate": 0.07445638899662299,
+            "native_observation_and_history": 0.836850231004064,
+            "mesa_alignment_and_propagation": 0.01115655699686613,
+            "wing_and_feedback": 0.0018734999976004474,
+            "total": 0.9775848860008409
+          },
+          "current_AGL_m": null,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0004-pre-release-vertical_takeoff",
+          "cycle_file": "serialization_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0004-pre-release-vertical_takeoff.json.gz",
+          "pre_release": true,
+          "status": "DEGRADED",
+          "phase": null,
+          "reference_time_s": 40.846000000000004,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": null,
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_PRE_RELEASE_VERIFY",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 0.7797012959999847,
+            "L3": 0.16619613299553748,
+            "runtime_storage": 0.04414199700113386
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.04794165999919642,
+            "climate": 0.07064373599860119,
+            "native_observation_and_history": 0.6475923950056313,
+            "mesa_alignment_and_propagation": 0.011254967001150362,
+            "wing_and_feedback": 0.002127731997461524,
+            "total": 0.7795696399989538
+          },
+          "current_AGL_m": null,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0005-pre-release-vertical_takeoff",
+          "cycle_file": "serialization_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0005-pre-release-vertical_takeoff.json.gz",
+          "pre_release": true,
+          "status": "DEGRADED",
+          "phase": null,
+          "reference_time_s": 42.686,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": null,
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_PRE_RELEASE_VERIFY",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 0.8377562499954365,
+            "L3": 0.16202273499948205,
+            "runtime_storage": 0.043238004996965174
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.048900759997195564,
+            "climate": 0.07989068300230429,
+            "native_observation_and_history": 0.6928081059959368,
+            "mesa_alignment_and_propagation": 0.013419996997981798,
+            "wing_and_feedback": 0.002557972999056801,
+            "total": 0.8375977039977442
+          },
+          "current_AGL_m": null,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        }
+      ],
+      "executed_cycles": 0,
+      "L7_OK_cycles": 0
+    },
+    {
+      "name": "registry_attempt",
+      "cycles": [
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0001-pre-release-vertical_takeoff",
+          "cycle_file": "registry_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0001-pre-release-vertical_takeoff.json.gz",
+          "pre_release": true,
+          "status": "OK",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 32.947,
+          "L5_status": "OK",
+          "L5_FINAL": true,
+          "u_cmd": [
+            0.45,
+            -0.65,
+            0.799428517389875,
+            0.0
+          ],
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": null,
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_PRE_RELEASE_VERIFY",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.2932562560017686,
+            "L3": 1.0036961990044801,
+            "L4": 10.416347780999786,
+            "L5": 3.0490629359992454,
+            "L4_full_fidelity": 7.980586762998428,
+            "runtime_storage": 0.8111737749932217
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.18732937099412084,
+            "climate": 0.06990953399508726,
+            "native_observation_and_history": 0.9910081690031802,
+            "mesa_alignment_and_propagation": 0.026093708002008498,
+            "wing_and_feedback": 0.018879575000028126,
+            "total": 1.2932342559943208
+          },
+          "current_AGL_m": 0.1410258217081264,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0002",
+          "cycle_file": "registry_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0002.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 54.488,
+          "L5_status": "FAILED",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": "ValueError('selected Layer4 verified candidate differs from candidate registry')",
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.0476127400033874,
+            "L3": 0.8657869500020752,
+            "L4": 0.1732117700012168,
+            "L5": 1.319214117997035
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.16417030400043586,
+            "climate": 0.07615597599942703,
+            "native_observation_and_history": 0.6439600119992974,
+            "mesa_alignment_and_propagation": 0.1384754070022609,
+            "wing_and_feedback": 0.02393733999633696,
+            "total": 1.0467109119999805
+          },
+          "current_AGL_m": -0.1325737309714441,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0003",
+          "cycle_file": "registry_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0003.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 62.767,
+          "L5_status": "FAILED",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": "ValueError('selected Layer4 verified candidate differs from candidate registry')",
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.004040180996526,
+            "L3": 0.5049060160017689,
+            "L4": 0.1649680639966391,
+            "L5": 0.9254176579997875
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.04658486699918285,
+            "climate": 0.07301354800438276,
+            "native_observation_and_history": 0.8181487620022381,
+            "mesa_alignment_and_propagation": 0.053665179999370594,
+            "wing_and_feedback": 0.012118521000957116,
+            "total": 1.0035418429979472
+          },
+          "current_AGL_m": -0.17656967271409485,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0004",
+          "cycle_file": "registry_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0004.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 68.786,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 0.9949416520030354,
+            "L3": 0.43495052499929443,
+            "L4": 0.1709868149991962
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.04692982800042955,
+            "climate": 0.07482865900237812,
+            "native_observation_and_history": 0.8207737160046236,
+            "mesa_alignment_and_propagation": 0.04190614699473372,
+            "wing_and_feedback": 0.01010323700029403,
+            "total": 0.9945661000019754
+          },
+          "current_AGL_m": -0.2524514774211184,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0005",
+          "cycle_file": "registry_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0005.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 75.806,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 3.341728614999738,
+            "L3": 0.4674226120041567,
+            "L4": 0.1855200580030214
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.05978534300083993,
+            "climate": 0.08733111200126586,
+            "native_observation_and_history": 3.141021643001295,
+            "mesa_alignment_and_propagation": 0.04283982399647357,
+            "wing_and_feedback": 0.010444006999023259,
+            "total": 3.3414314969995758
+          },
+          "current_AGL_m": -0.6684803680520872,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0006",
+          "cycle_file": "registry_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0006.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 83.029,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.182164580997778,
+            "L3": 0.5039508280024165,
+            "L4": 0.19264919100533007
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.05249563899997156,
+            "climate": 0.0739936019963352,
+            "native_observation_and_history": 0.9963140899999416,
+            "mesa_alignment_and_propagation": 0.04681682000227738,
+            "wing_and_feedback": 0.012169437002739869,
+            "total": 1.1818016010001884
+          },
+          "current_AGL_m": -2.537043359479867,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        }
+      ],
+      "executed_cycles": 0,
+      "L7_OK_cycles": 0
+    },
+    {
+      "name": "projection_attempt",
+      "cycles": [
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0002-pre-release-vertical_takeoff",
+          "cycle_file": "projection_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0002-pre-release-vertical_takeoff.json.gz",
+          "pre_release": true,
+          "status": "OK",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 32.384,
+          "L5_status": "OK",
+          "L5_FINAL": true,
+          "u_cmd": [
+            0.45,
+            -0.65,
+            0.799428513197788,
+            0.0
+          ],
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": null,
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_PRE_RELEASE_VERIFY",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 0.8753768460010178,
+            "L3": 0.47900494399800664,
+            "L4": 10.252425701000902,
+            "L5": 2.703841888003808,
+            "L4_full_fidelity": 8.019514346000506,
+            "runtime_storage": 0.4227055239971378
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.18896797199704451,
+            "climate": 0.08185133100050734,
+            "native_observation_and_history": 0.5578820660011843,
+            "mesa_alignment_and_propagation": 0.028576074000739027,
+            "wing_and_feedback": 0.018063580995658413,
+            "total": 0.8753547800006345
+          },
+          "current_AGL_m": 0.1410258217081264,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0003",
+          "cycle_file": "projection_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0003.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 51.685,
+          "L5_status": "FAILED",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": "ValueError('Layer4 execution projection integrity mismatch')",
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.2788963179991697,
+            "L3": 0.2642302960011875,
+            "L4": 0.080506170001172,
+            "L5": 0.7890729209975689
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.03795676099980483,
+            "climate": 0.0659044139974867,
+            "native_observation_and_history": 1.0303335930002504,
+            "mesa_alignment_and_propagation": 0.11915293399943039,
+            "wing_and_feedback": 0.024978059002023656,
+            "total": 1.2783357449952746
+          },
+          "current_AGL_m": 0.05886157131544678,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0004",
+          "cycle_file": "projection_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0004.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 56.804,
+          "L5_status": "FAILED",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": "ValueError('Layer4 execution projection integrity mismatch')",
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.133438925993687,
+            "L3": 0.2512944050031365,
+            "L4": 0.07649114599917084,
+            "L5": 0.8033904379990418
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.0439776269995491,
+            "climate": 0.06690617900312645,
+            "native_observation_and_history": 0.9790882500019507,
+            "mesa_alignment_and_propagation": 0.034683263998886105,
+            "wing_and_feedback": 0.00809671099705156,
+            "total": 1.1327729109980282
+          },
+          "current_AGL_m": -0.04404314410135157,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0005",
+          "cycle_file": "projection_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0005.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 61.464,
+          "L5_status": "FAILED",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": "ValueError('Layer4 execution projection integrity mismatch')",
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 0.8202522619976662,
+            "L3": 0.23289550299523398,
+            "L4": 0.07609040999523131,
+            "L5": 0.921689172006154
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.03905045400460949,
+            "climate": 0.06350342400401132,
+            "native_observation_and_history": 0.6724520169955213,
+            "mesa_alignment_and_propagation": 0.03479685199999949,
+            "wing_and_feedback": 0.010198415999184363,
+            "total": 0.8200107980010216
+          },
+          "current_AGL_m": -0.13841893936432825,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0006",
+          "cycle_file": "projection_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0006.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 65.84400000000001,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 0.9372890710001229,
+            "L3": 0.2436414620024152,
+            "L4": 0.09929709199786885
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.04042023300280562,
+            "climate": 0.07445247000578092,
+            "native_observation_and_history": 0.7835502680027275,
+            "mesa_alignment_and_propagation": 0.0314827010006411,
+            "wing_and_feedback": 0.007145493997086305,
+            "total": 0.9370606640004553
+          },
+          "current_AGL_m": -0.24969525424148742,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0007",
+          "cycle_file": "projection_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0007.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 71.743,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 3.1828935560042737,
+            "L3": 0.261125032993732,
+            "L4": 0.10524621099466458
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.06320259300264297,
+            "climate": 0.08317733799776761,
+            "native_observation_and_history": 2.992192811994755,
+            "mesa_alignment_and_propagation": 0.03564067600382259,
+            "wing_and_feedback": 0.008281208996777423,
+            "total": 3.1825041249976493
+          },
+          "current_AGL_m": -0.6505872976094906,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0008",
+          "cycle_file": "projection_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0008.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 76.663,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.9035943569979281,
+            "L3": 0.2422957899980247,
+            "L4": 0.1031719559978228
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.29438227299397113,
+            "climate": 0.4522284859995125,
+            "native_observation_and_history": 1.116932511999039,
+            "mesa_alignment_and_propagation": 0.03179554700182052,
+            "wing_and_feedback": 0.00793516600242583,
+            "total": 1.903281455997785
+          },
+          "current_AGL_m": -1.6484092483392487,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        }
+      ],
+      "executed_cycles": 0,
+      "L7_OK_cycles": 0
+    },
+    {
+      "name": "proof_timeout_attempt",
+      "cycles": [
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0001-pre-release-vertical_takeoff",
+          "cycle_file": "proof_timeout_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0001-pre-release-vertical_takeoff.json.gz",
+          "pre_release": true,
+          "status": "OK",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 31.967000000000002,
+          "L5_status": "OK",
+          "L5_FINAL": true,
+          "u_cmd": [
+            0.45,
+            -0.65,
+            0.7994285072892588,
+            0.0
+          ],
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": null,
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_PRE_RELEASE_VERIFY",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.2567740329977823,
+            "L3": 0.5012127849986427,
+            "L4": 10.36256274200423,
+            "L5": 2.24062914300157,
+            "L4_full_fidelity": 8.109007797000231,
+            "runtime_storage": 0.48930574899713974
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.1809005709947087,
+            "climate": 0.06727135000255657,
+            "native_observation_and_history": 0.961560231000476,
+            "mesa_alignment_and_propagation": 0.029837447000318207,
+            "wing_and_feedback": 0.017173984000692144,
+            "total": 1.2567535700000008
+          },
+          "current_AGL_m": 0.1410258217081264,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0002",
+          "cycle_file": "proof_timeout_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0002.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 50.829,
+          "L5_status": "OK",
+          "L5_FINAL": true,
+          "u_cmd": [
+            0.45,
+            -0.65,
+            0.7994285072892588,
+            0.0
+          ],
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "FAILED",
+          "L6_reason": "layer6_execution_not_confirmed",
+          "L6_error": "Layer6BridgeError('segment closure proof not received before confirmation deadline')",
+          "submission_attempted": true,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": 50.929,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.264677697996376,
+            "L3": 0.26475084400590276,
+            "L4": 0.08131716099887853,
+            "L5": 2.141624800999125,
+            "L6": 2.517734744993504
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.04231276700011222,
+            "climate": 0.06527981300314423,
+            "native_observation_and_history": 1.0136793970013969,
+            "mesa_alignment_and_propagation": 0.12048686400521547,
+            "wing_and_feedback": 0.022210823000932578,
+            "total": 1.2639814659996773
+          },
+          "current_AGL_m": 0.8388190817343002,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": "C0001",
+            "transaction_id": "workflow-online_jsbsim-e0001-c0002",
+            "u_cmd": [
+              0.45,
+              -0.65,
+              0.7994285072892588,
+              0.0
+            ],
+            "source_snapshot_hash": "9aa886e2dafa8d80c30b9367e2e9aaef30c05eb7f176c5cd8b0c39e7bca6067c",
+            "source_reference_time_s": 50.829,
+            "source_plant_time_s": 50.829,
+            "elapsed_s": 0.8424446299977717,
+            "source": "current Layer2/WingMPET/Layer3 first-move replay"
+          }
+        }
+      ],
+      "executed_cycles": 0,
+      "L7_OK_cycles": 0
+    },
+    {
+      "name": "ground_corridor_attempt",
+      "cycles": [
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0001-pre-release-vertical_takeoff",
+          "cycle_file": "ground_corridor_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0001-pre-release-vertical_takeoff.json.gz",
+          "pre_release": true,
+          "status": "OK",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 32.507,
+          "L5_status": "OK",
+          "L5_FINAL": true,
+          "u_cmd": [
+            0.45,
+            -0.65,
+            0.7994285140880859,
+            0.0
+          ],
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": null,
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_PRE_RELEASE_VERIFY",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 0.9788331100062351,
+            "L3": 0.6921023820032133,
+            "L4": 11.655034224000701,
+            "L5": 2.9682348010028363,
+            "L4_full_fidelity": 9.122726984998735,
+            "runtime_storage": 0.4597114479984157
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.2214947070024209,
+            "climate": 0.07589447100326652,
+            "native_observation_and_history": 0.619521872002224,
+            "mesa_alignment_and_propagation": 0.03677878200687701,
+            "wing_and_feedback": 0.025103536994720344,
+            "total": 0.9788054529999499
+          },
+          "current_AGL_m": 0.1410258217081264,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0002",
+          "cycle_file": "ground_corridor_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0002.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 54.068,
+          "L5_status": "FAILED",
+          "L5_FINAL": true,
+          "u_cmd": [
+            0.45,
+            -0.65,
+            0.7994285140880859,
+            0.0
+          ],
+          "L5_reason": "current_first_move_prediction_rejected",
+          "L5_error": "ValueError(\"current first move physically rejected: ['takeoff_ground_corridor']None\")",
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.407838832004927,
+            "L3": 0.29844063900236506,
+            "L4": 0.09770849499909673,
+            "L5": 2.4332450030051405
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.04564416899665957,
+            "climate": 0.08640221299719997,
+            "native_observation_and_history": 1.0743927790026646,
+            "mesa_alignment_and_propagation": 0.17079059700336074,
+            "wing_and_feedback": 0.029853129999537487,
+            "total": 1.407095317998028
+          },
+          "current_AGL_m": -0.17900949110276088,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0003",
+          "cycle_file": "ground_corridor_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0003.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 61.947,
+          "L5_status": "FAILED",
+          "L5_FINAL": true,
+          "u_cmd": [
+            0.45,
+            -0.65,
+            0.7994285140880859,
+            0.0
+          ],
+          "L5_reason": "current_first_move_prediction_rejected",
+          "L5_error": "ValueError(\"current first move physically rejected: ['takeoff_ground_corridor']None\")",
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 0.9163296580009046,
+            "L3": 0.284624742998858,
+            "L4": 0.09609680699941237,
+            "L5": 2.94045278300473
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.043684328004019335,
+            "climate": 0.08514719500089996,
+            "native_observation_and_history": 0.7112366470028064,
+            "mesa_alignment_and_propagation": 0.06372532599925762,
+            "wing_and_feedback": 0.011968782004259992,
+            "total": 0.915772754997306
+          },
+          "current_AGL_m": -0.2597693849643292,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0004",
+          "cycle_file": "ground_corridor_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0004.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 69.946,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.0043386300021666,
+            "L3": 0.30633156499970937,
+            "L4": 0.12150177800504025
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.0415509349986678,
+            "climate": 0.07741649800300365,
+            "native_observation_and_history": 0.7851331010024296,
+            "mesa_alignment_and_propagation": 0.07964892499876441,
+            "wing_and_feedback": 0.01997388299787417,
+            "total": 1.0037347949983086
+          },
+          "current_AGL_m": -0.41173698632724154,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0005",
+          "cycle_file": "ground_corridor_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0005.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 73.96600000000001,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 0.9421760469995206,
+            "L3": 1.0171113529941067,
+            "L4": 0.31820236899511656
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.06271907699556323,
+            "climate": 0.1021166450009332,
+            "native_observation_and_history": 0.7289965660020243,
+            "mesa_alignment_and_propagation": 0.03454461400542641,
+            "wing_and_feedback": 0.013504768001439516,
+            "total": 0.9418917989969486
+          },
+          "current_AGL_m": -0.637984562536758,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0006",
+          "cycle_file": "ground_corridor_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0006.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 79.129,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 0.5868498950003413,
+            "L3": 0.2920043030026136,
+            "L4": 0.11684416900243377
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.046422396997513715,
+            "climate": 0.0729837030012277,
+            "native_observation_and_history": 0.41674965000129305,
+            "mesa_alignment_and_propagation": 0.04122632199869258,
+            "wing_and_feedback": 0.009215142999892123,
+            "total": 0.5866173969989177
+          },
+          "current_AGL_m": -1.4125539209760518,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        }
+      ],
+      "executed_cycles": 0,
+      "L7_OK_cycles": 0
+    },
+    {
+      "name": "detailed_corridor_attempt",
+      "cycles": [
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0001-pre-release-vertical_takeoff",
+          "cycle_file": "detailed_corridor_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0001-pre-release-vertical_takeoff.json.gz",
+          "pre_release": true,
+          "status": "OK",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 32.567,
+          "L5_status": "OK",
+          "L5_FINAL": true,
+          "u_cmd": [
+            0.45,
+            -0.65,
+            0.7994285151883291,
+            0.0
+          ],
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": null,
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_PRE_RELEASE_VERIFY",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 0.9732984910006053,
+            "L3": 0.6722964779983158,
+            "L4": 11.97662507899804,
+            "L5": 2.6175652949968935,
+            "L4_full_fidelity": 9.374477785000636,
+            "runtime_storage": 0.5915878009982407
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.2043860100020538,
+            "climate": 0.08399038499919698,
+            "native_observation_and_history": 0.6337866320027388,
+            "mesa_alignment_and_propagation": 0.031091498996829614,
+            "wing_and_feedback": 0.02000456300447695,
+            "total": 0.9732732699994813
+          },
+          "current_AGL_m": 0.1410258217081264,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0002",
+          "cycle_file": "detailed_corridor_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0002.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 54.028,
+          "L5_status": "OK",
+          "L5_FINAL": true,
+          "u_cmd": [
+            0.45,
+            -0.65,
+            0.7994285151883291,
+            0.0
+          ],
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": "current_first_move_prediction_rejected",
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.4461031300015748,
+            "L3": 0.3138095480026095,
+            "L4": 0.09185627000260865,
+            "L5": 2.5316928870015545
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.04393877300026361,
+            "climate": 0.09413230799691519,
+            "native_observation_and_history": 1.0965027700003702,
+            "mesa_alignment_and_propagation": 0.18425845599995228,
+            "wing_and_feedback": 0.02672569599963026,
+            "total": 1.4455702970008133
+          },
+          "current_AGL_m": -0.16981835554224745,
+          "predicted_AGL_m": -0.18612849374858342,
+          "prediction_gate": {
+            "ok": false,
+            "status": "REJECTED",
+            "reason": "current_first_move_prediction_rejected",
+            "error": "CurrentCommandPredictionRejected(\"current first move physically rejected: ['takeoff_ground_corridor']\")"
+          },
+          "feasibility": {
+            "safe": false,
+            "physical_mission_safe": false,
+            "action_safe": true,
+            "reasons": [
+              "takeoff_ground_corridor"
+            ],
+            "steps": [
+              {
+                "step": 1,
+                "ok": false,
+                "reasons": [
+                  "takeoff_ground_corridor"
+                ],
+                "mode": "vertical_takeoff",
+                "terrain_policy": {
+                  "policy": "GROUND_REFERENCED_TAKEOFF_CORRIDOR",
+                  "lower_m": 0.0,
+                  "upper_m": null,
+                  "reference_m": 0.0,
+                  "target_m": null
+                },
+                "airspeed_policy": {
+                  "policy": "STATIC_AIRSPEED_LIMIT",
+                  "lower_m_s": 0.0,
+                  "upper_m_s": 18.0,
+                  "reference_m_s": null,
+                  "entry_m_s": 4.535419924018444,
+                  "terminal_min_m_s": 0.0,
+                  "terminal_target_m_s": 0.0,
+                  "progress": 0.16666666666666666,
+                  "required_accel_m_s2": 0.0,
+                  "model_accel_limit_m_s2": null,
+                  "reachable": true
+                }
+              }
+            ],
+            "P_viol_full": 1.0
+          },
+          "physical_verdict": {
+            "authoritative": true,
+            "non_bypassable": true,
+            "override_allowed": false,
+            "all_rows_vtol_feasible": false,
+            "rows": [
+              {
+                "ok": false,
+                "source": "WingMPET/op27-substepped",
+                "action_consumed": true,
+                "replay_vtol_feasible": false,
+                "output_vtol_feasible": true,
+                "substeps_all_vtol_feasible": false,
+                "substep_count": 2,
+                "retired_launch_fixture_present": false
+              }
+            ]
+          },
+          "physical_initialization": {
+            "source": "online_execution_state/Layer6_GUI_MAVLink",
+            "ok": true,
+            "simulation_only": true,
+            "not_field_evidence": true,
+            "air_relative_initialization": false
+          },
+          "ground_support_evidence": {
+            "asserted": false,
+            "basis": "operational_AGL_plus_released_live_ground_speed",
+            "altitude_agl_m": -0.16981835554224745,
+            "agl_authority_valid": true,
+            "simulator_truth_used": false,
+            "air_relative_speed_m_s": 1.6871223449707031,
+            "live_ground_speed_m_s": 0.0,
+            "motion_speed_selected_m_s": 0.0,
+            "runic_released": true,
+            "phase": "vertical_takeoff",
+            "checks": {
+              "online_mode": true,
+              "vertical_takeoff_phase": true,
+              "operational_agl_valid": true,
+              "near_ground": false,
+              "release_state_known": true,
+              "state_appropriate_motion_stationary": true
+            },
+            "step_limited": true,
+            "control_release_is_not_contact_evidence": true
+          },
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0003",
+          "cycle_file": "detailed_corridor_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0003.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 63.727000000000004,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.2536051299975952,
+            "L3": 0.3105229529974167,
+            "L4": 0.1252591160009615
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.04876921800314449,
+            "climate": 0.08015954500297084,
+            "native_observation_and_history": 1.0346051550004631,
+            "mesa_alignment_and_propagation": 0.0731164050012012,
+            "wing_and_feedback": 0.016219113997067325,
+            "total": 1.2528813840035582
+          },
+          "current_AGL_m": -0.26519436672538177,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0004",
+          "cycle_file": "detailed_corridor_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0004.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 70.026,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 3.097800873001688,
+            "L3": 0.3591466159996344,
+            "L4": 0.12216958800127031
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.07487362500251038,
+            "climate": 0.11853475800307933,
+            "native_observation_and_history": 2.8224047260009684,
+            "mesa_alignment_and_propagation": 0.06323736399644986,
+            "wing_and_feedback": 0.018281087002833374,
+            "total": 3.097344414003601
+          },
+          "current_AGL_m": -0.4003476701161617,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0005",
+          "cycle_file": "detailed_corridor_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0005.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 75.96600000000001,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 2.2214883900014684,
+            "L3": 0.33105434799654176,
+            "L4": 0.2595817889960017
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.344267871005286,
+            "climate": 0.46306135399936466,
+            "native_observation_and_history": 1.356083316000877,
+            "mesa_alignment_and_propagation": 0.04743694699573098,
+            "wing_and_feedback": 0.010334740996768232,
+            "total": 2.221194148005452
+          },
+          "current_AGL_m": -0.8433427851418855,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0006",
+          "cycle_file": "detailed_corridor_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0006.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 82.029,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.4345690269983606,
+            "L3": 0.30324123200261965,
+            "L4": 0.1260667110036593
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.22945508599514142,
+            "climate": 0.14512403100525262,
+            "native_observation_and_history": 0.9911866870024824,
+            "mesa_alignment_and_propagation": 0.0534917989934911,
+            "wing_and_feedback": 0.014872369996737689,
+            "total": 1.4341563779962598
+          },
+          "current_AGL_m": -2.3375227167623507,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        }
+      ],
+      "executed_cycles": 0,
+      "L7_OK_cycles": 0
+    },
+    {
+      "name": "final_native",
+      "cycles": [
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0001-pre-release-vertical_takeoff",
+          "cycle_file": "final_native/runtime/cycles/workflow-online_jsbsim-e0001-c0001-pre-release-vertical_takeoff.json.gz",
+          "pre_release": true,
+          "status": "OK",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 33.227000000000004,
+          "L5_status": "OK",
+          "L5_FINAL": true,
+          "u_cmd": [
+            0.45,
+            -0.65,
+            0.7994285167499464,
+            0.0
+          ],
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": null,
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_PRE_RELEASE_VERIFY",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.294141705999209,
+            "L3": 0.6138005739994696,
+            "L4": 12.948173695003788,
+            "L5": 3.3094700619985815,
+            "L4_full_fidelity": 10.308185018002405,
+            "runtime_storage": 0.5703941239989945
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.23694107399933273,
+            "climate": 0.0883801140007563,
+            "native_observation_and_history": 0.9167583629969158,
+            "mesa_alignment_and_propagation": 0.03079053799592657,
+            "wing_and_feedback": 0.021233757994195912,
+            "total": 1.2941165599986562
+          },
+          "current_AGL_m": 0.1410258217081264,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0002",
+          "cycle_file": "final_native/runtime/cycles/workflow-online_jsbsim-e0001-c0002.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 58.208,
+          "L5_status": "OK",
+          "L5_FINAL": true,
+          "u_cmd": [
+            0.45,
+            -0.65,
+            0.7994285167499464,
+            0.0
+          ],
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "EXECUTED",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": true,
+          "native_session_id": "1dc72d0033244bcba0b30f3c58b9cbc1",
+          "execution_duration_bounds_s": {
+            "lower_s": 0.03900000000000148,
+            "upper_s": 0.08100000000000307
+          },
+          "execution_start_bounds_s": {
+            "verified": true,
+            "lower_s": 65.087,
+            "upper_s": 65.108,
+            "clock_domain": "FCU_BOOT",
+            "upper_quantization_s": 0.001,
+            "proof": "pre_send_source_then_write_then_echo_barrier_then_source_on_ordered_stream",
+            "upper_source_observation": {
+              "type": "SCALED_IMU",
+              "source": "MAVLink/SCALED_IMU",
+              "wire_sha256": "e1eac6fe1ee91dacf90995d3c71d3c0add2d12b1dead5558d55ac138e740ee11",
+              "received_monotonic": 37483.029789128,
+              "source_time": {
+                "field": "time_boot_ms",
+                "value": 65107,
+                "unit": "ms",
+                "clock_domain": "FCU_BOOT"
+              },
+              "plant_time_s": 65.107,
+              "history_sequence": 10312,
+              "source_system": 1,
+              "source_component": 1
+            },
+            "exact": false,
+            "clock_rate_assumed": false,
+            "rebase": false
+          },
+          "execution_post_plant_time_s": 65.187,
+          "prediction_target_plant_time_s": 58.308,
+          "prediction_execution_offset_s": 6.878999999999998,
+          "L7_status": "FAILED",
+          "L7_reason": null,
+          "L7_validation_reasons": [
+            "no comparable real/predicted output keys",
+            "native_pair:missing_or_partial_output_pair",
+            "native_pair:missing_or_partial_state_pair",
+            "native_pair:state_pair_source_kind_mismatch",
+            "native_pair:target_plant_time_mismatch_or_missing"
+          ],
+          "L7_native_preparation": {
+            "ok": false,
+            "reason": "Native diagnostic projection differs from direct execution evidence",
+            "persistent_learning_allowed": false
+          },
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 2.5780135419990984,
+            "L3": 0.36802936699677957,
+            "L4": 0.09487893700134009,
+            "L5": 2.3039893260065583,
+            "L6": 2.3045346419967245,
+            "L7": 0.002749267005128786
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.058026362996315584,
+            "climate": 0.10309953700198093,
+            "native_observation_and_history": 2.053191105995211,
+            "mesa_alignment_and_propagation": 0.3204348259969265,
+            "wing_and_feedback": 0.042513255997619126,
+            "total": 2.5772780109982705
+          },
+          "current_AGL_m": 0.906988057437502,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": "C0001",
+            "transaction_id": "workflow-online_jsbsim-e0001-c0002",
+            "u_cmd": [
+              0.45,
+              -0.65,
+              0.7994285167499464,
+              0.0
+            ],
+            "source_snapshot_hash": "388dbe0ee438a948c1650329b758d71e0d74587c828b948c146fa26832748527",
+            "source_reference_time_s": 58.208,
+            "source_plant_time_s": 58.208,
+            "elapsed_s": 1.1033494290022645,
+            "source": "current Layer2/WingMPET/Layer3 first-move replay"
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0003",
+          "cycle_file": "final_native/runtime/cycles/workflow-online_jsbsim-e0001-c0003.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 63.727000000000004,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.2536051299975952,
+            "L3": 0.3105229529974167,
+            "L4": 0.1252591160009615
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.04876921800314449,
+            "climate": 0.08015954500297084,
+            "native_observation_and_history": 1.0346051550004631,
+            "mesa_alignment_and_propagation": 0.0731164050012012,
+            "wing_and_feedback": 0.016219113997067325,
+            "total": 1.2528813840035582
+          },
+          "current_AGL_m": -0.26519436672538177,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0004",
+          "cycle_file": "final_native/runtime/cycles/workflow-online_jsbsim-e0001-c0004.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 70.026,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 3.097800873001688,
+            "L3": 0.3591466159996344,
+            "L4": 0.12216958800127031
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.07487362500251038,
+            "climate": 0.11853475800307933,
+            "native_observation_and_history": 2.8224047260009684,
+            "mesa_alignment_and_propagation": 0.06323736399644986,
+            "wing_and_feedback": 0.018281087002833374,
+            "total": 3.097344414003601
+          },
+          "current_AGL_m": -0.4003476701161617,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0005",
+          "cycle_file": "final_native/runtime/cycles/workflow-online_jsbsim-e0001-c0005.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 75.96600000000001,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 2.2214883900014684,
+            "L3": 0.33105434799654176,
+            "L4": 0.2595817889960017
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.344267871005286,
+            "climate": 0.46306135399936466,
+            "native_observation_and_history": 1.356083316000877,
+            "mesa_alignment_and_propagation": 0.04743694699573098,
+            "wing_and_feedback": 0.010334740996768232,
+            "total": 2.221194148005452
+          },
+          "current_AGL_m": -0.8433427851418855,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        },
+        {
+          "transaction_id": "workflow-online_jsbsim-e0001-c0006",
+          "cycle_file": "final_native/runtime/cycles/workflow-online_jsbsim-e0001-c0006.json.gz",
+          "pre_release": false,
+          "status": "DEGRADED",
+          "phase": "vertical_takeoff",
+          "reference_time_s": 82.029,
+          "L5_status": "HELD",
+          "L5_FINAL": null,
+          "u_cmd": null,
+          "L5_reason": null,
+          "L5_error": null,
+          "L6_status": "HELD",
+          "L6_reason": null,
+          "L6_error": null,
+          "submission_attempted": null,
+          "actuation_executed": null,
+          "native_session_id": null,
+          "execution_duration_bounds_s": null,
+          "execution_start_bounds_s": null,
+          "execution_post_plant_time_s": null,
+          "prediction_target_plant_time_s": null,
+          "prediction_execution_offset_s": null,
+          "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+          "L7_reason": null,
+          "L7_validation_reasons": null,
+          "L7_native_preparation": null,
+          "feedback_to_next_L2": {
+            "present": false,
+            "destinations": [],
+            "layer2_ingress": {
+              "present": false,
+              "consumed": false,
+              "reason": "no_pending_layer7_layer2_feedback"
+            }
+          },
+          "timing_s": {
+            "L2": 1.4345690269983606,
+            "L3": 0.30324123200261965,
+            "L4": 0.1260667110036593
+          },
+          "L2_timing_s": {
+            "setup_and_input_normalization": 0.22945508599514142,
+            "climate": 0.14512403100525262,
+            "native_observation_and_history": 0.9911866870024824,
+            "mesa_alignment_and_propagation": 0.0534917989934911,
+            "wing_and_feedback": 0.014872369996737689,
+            "total": 1.4341563779962598
+          },
+          "current_AGL_m": -2.3375227167623507,
+          "predicted_AGL_m": null,
+          "prediction_gate": {
+            "ok": null,
+            "status": null,
+            "reason": null,
+            "error": null
+          },
+          "feasibility": null,
+          "physical_verdict": null,
+          "physical_initialization": null,
+          "ground_support_evidence": null,
+          "prediction": {
+            "candidate_id": null,
+            "transaction_id": null,
+            "u_cmd": null,
+            "source_snapshot_hash": null,
+            "source_reference_time_s": null,
+            "source_plant_time_s": null,
+            "elapsed_s": null,
+            "source": null
+          }
+        }
+      ],
+      "executed_cycles": 1,
+      "L7_OK_cycles": 0
+    }
+  ],
+  "captures": [
+    {
+      "session_id": "1dc72d0033244bcba0b30f3c58b9cbc1",
+      "folder": "evidence/armed_QHOVER_1dc72d00",
+      "all_six_captured": true,
+      "health_ok": true,
+      "mavlink_connected": true,
+      "mode": "QHOVER",
+      "armed": true,
+      "valid_visual_capture": true
+    },
+    {
+      "session_id": "57aa238718c94b559c0ed78d64bb27ea",
+      "folder": "evidence/armed_QHOVER_57aa2387",
+      "all_six_captured": true,
+      "health_ok": true,
+      "mavlink_connected": true,
+      "mode": "QHOVER",
+      "armed": true,
+      "valid_visual_capture": true
+    },
+    {
+      "session_id": "1dc72d0033244bcba0b30f3c58b9cbc1",
+      "folder": "evidence/disarmed_MANUAL_1dc72d00",
+      "all_six_captured": true,
+      "health_ok": true,
+      "mavlink_connected": true,
+      "mode": "MANUAL",
+      "armed": false,
+      "valid_visual_capture": true
+    },
+    {
+      "session_id": "426937a24b7b4e3880393a3cf960d031",
+      "folder": "evidence/disarmed_MANUAL_426937a2",
+      "all_six_captured": true,
+      "health_ok": true,
+      "mavlink_connected": true,
+      "mode": "MANUAL",
+      "armed": false,
+      "valid_visual_capture": true
+    },
+    {
+      "session_id": "5eff2313d7024f9b9a991837a260d117",
+      "folder": "evidence/disarmed_MANUAL_5eff2313",
+      "all_six_captured": true,
+      "health_ok": true,
+      "mavlink_connected": true,
+      "mode": "MANUAL",
+      "armed": false,
+      "valid_visual_capture": true
+    },
+    {
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "folder": "evidence/disarmed_MANUAL_6e71dd0b",
+      "all_six_captured": true,
+      "health_ok": true,
+      "mavlink_connected": true,
+      "mode": "MANUAL",
+      "armed": false,
+      "valid_visual_capture": true
+    },
+    {
+      "session_id": "c359d8e4f5f148dab40d25f73727d2bd",
+      "folder": "evidence/disarmed_MANUAL_c359d8e4",
+      "all_six_captured": true,
+      "health_ok": true,
+      "mavlink_connected": true,
+      "mode": "MANUAL",
+      "armed": false,
+      "valid_visual_capture": true
+    },
+    {
+      "session_id": "d1a94c280dc1478d9e2fad17309cc213",
+      "folder": "evidence/disarmed_MANUAL_d1a94c28",
+      "all_six_captured": true,
+      "health_ok": true,
+      "mavlink_connected": true,
+      "mode": "MANUAL",
+      "armed": false,
+      "valid_visual_capture": true
+    },
+    {
+      "session_id": "43fc694b32f14a2fa0ec40a38405374b",
+      "folder": "evidence/disarmed_None_43fc694b",
+      "all_six_captured": true,
+      "health_ok": true,
+      "mavlink_connected": false,
+      "mode": null,
+      "armed": null,
+      "valid_visual_capture": false
+    },
+    {
+      "session_id": "46fa4f69cca54f8e8da9251d98891254",
+      "folder": "evidence/disarmed_None_46fa4f69",
+      "all_six_captured": true,
+      "health_ok": true,
+      "mavlink_connected": false,
+      "mode": null,
+      "armed": null,
+      "valid_visual_capture": false
+    },
+    {
+      "session_id": "57aa238718c94b559c0ed78d64bb27ea",
+      "folder": "evidence/disarmed_None_57aa2387",
+      "all_six_captured": true,
+      "health_ok": true,
+      "mavlink_connected": false,
+      "mode": null,
+      "armed": null,
+      "valid_visual_capture": false
+    },
+    {
+      "session_id": "1dc72d0033244bcba0b30f3c58b9cbc1",
+      "folder": "evidence/disarmed_QHOVER_1dc72d00",
+      "all_six_captured": true,
+      "health_ok": true,
+      "mavlink_connected": true,
+      "mode": "QHOVER",
+      "armed": false,
+      "valid_visual_capture": true
+    },
+    {
+      "session_id": "57aa238718c94b559c0ed78d64bb27ea",
+      "folder": "evidence/disarmed_QHOVER_57aa2387",
+      "all_six_captured": true,
+      "health_ok": true,
+      "mavlink_connected": true,
+      "mode": "QHOVER",
+      "armed": false,
+      "valid_visual_capture": true
+    }
+  ],
+  "previous_same_source_physical_rejection": {
+    "transaction_id": "workflow-online_jsbsim-e0001-c0002",
+    "cycle_file": "detailed_corridor_attempt/runtime/cycles/workflow-online_jsbsim-e0001-c0002.json.gz",
+    "pre_release": false,
+    "status": "DEGRADED",
+    "phase": "vertical_takeoff",
+    "reference_time_s": 54.028,
+    "L5_status": "OK",
+    "L5_FINAL": true,
+    "u_cmd": [
+      0.45,
+      -0.65,
+      0.7994285151883291,
+      0.0
+    ],
+    "L5_reason": null,
+    "L5_error": null,
+    "L6_status": "HELD",
+    "L6_reason": "current_first_move_prediction_rejected",
+    "L6_error": null,
+    "submission_attempted": null,
+    "actuation_executed": null,
+    "native_session_id": null,
+    "execution_duration_bounds_s": null,
+    "execution_start_bounds_s": null,
+    "execution_post_plant_time_s": null,
+    "prediction_target_plant_time_s": null,
+    "prediction_execution_offset_s": null,
+    "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+    "L7_reason": null,
+    "L7_validation_reasons": null,
+    "L7_native_preparation": null,
+    "feedback_to_next_L2": {
+      "present": false,
+      "destinations": [],
+      "layer2_ingress": {
+        "present": false,
+        "consumed": false,
+        "reason": "no_pending_layer7_layer2_feedback"
+      }
+    },
+    "timing_s": {
+      "L2": 1.4461031300015748,
+      "L3": 0.3138095480026095,
+      "L4": 0.09185627000260865,
+      "L5": 2.5316928870015545
+    },
+    "L2_timing_s": {
+      "setup_and_input_normalization": 0.04393877300026361,
+      "climate": 0.09413230799691519,
+      "native_observation_and_history": 1.0965027700003702,
+      "mesa_alignment_and_propagation": 0.18425845599995228,
+      "wing_and_feedback": 0.02672569599963026,
+      "total": 1.4455702970008133
+    },
+    "current_AGL_m": -0.16981835554224745,
+    "predicted_AGL_m": -0.18612849374858342,
+    "prediction_gate": {
+      "ok": false,
+      "status": "REJECTED",
+      "reason": "current_first_move_prediction_rejected",
+      "error": "CurrentCommandPredictionRejected(\"current first move physically rejected: ['takeoff_ground_corridor']\")"
+    },
+    "feasibility": {
+      "safe": false,
+      "physical_mission_safe": false,
+      "action_safe": true,
+      "reasons": [
+        "takeoff_ground_corridor"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "ok": false,
+          "reasons": [
+            "takeoff_ground_corridor"
+          ],
+          "mode": "vertical_takeoff",
+          "terrain_policy": {
+            "policy": "GROUND_REFERENCED_TAKEOFF_CORRIDOR",
+            "lower_m": 0.0,
+            "upper_m": null,
+            "reference_m": 0.0,
+            "target_m": null
+          },
+          "airspeed_policy": {
+            "policy": "STATIC_AIRSPEED_LIMIT",
+            "lower_m_s": 0.0,
+            "upper_m_s": 18.0,
+            "reference_m_s": null,
+            "entry_m_s": 4.535419924018444,
+            "terminal_min_m_s": 0.0,
+            "terminal_target_m_s": 0.0,
+            "progress": 0.16666666666666666,
+            "required_accel_m_s2": 0.0,
+            "model_accel_limit_m_s2": null,
+            "reachable": true
+          }
+        }
+      ],
+      "P_viol_full": 1.0
+    },
+    "physical_verdict": {
+      "authoritative": true,
+      "non_bypassable": true,
+      "override_allowed": false,
+      "all_rows_vtol_feasible": false,
+      "rows": [
+        {
+          "ok": false,
+          "source": "WingMPET/op27-substepped",
+          "action_consumed": true,
+          "replay_vtol_feasible": false,
+          "output_vtol_feasible": true,
+          "substeps_all_vtol_feasible": false,
+          "substep_count": 2,
+          "retired_launch_fixture_present": false
+        }
+      ]
+    },
+    "physical_initialization": {
+      "source": "online_execution_state/Layer6_GUI_MAVLink",
+      "ok": true,
+      "simulation_only": true,
+      "not_field_evidence": true,
+      "air_relative_initialization": false
+    },
+    "ground_support_evidence": {
+      "asserted": false,
+      "basis": "operational_AGL_plus_released_live_ground_speed",
+      "altitude_agl_m": -0.16981835554224745,
+      "agl_authority_valid": true,
+      "simulator_truth_used": false,
+      "air_relative_speed_m_s": 1.6871223449707031,
+      "live_ground_speed_m_s": 0.0,
+      "motion_speed_selected_m_s": 0.0,
+      "runic_released": true,
+      "phase": "vertical_takeoff",
+      "checks": {
+        "online_mode": true,
+        "vertical_takeoff_phase": true,
+        "operational_agl_valid": true,
+        "near_ground": false,
+        "release_state_known": true,
+        "state_appropriate_motion_stationary": true
+      },
+      "step_limited": true,
+      "control_release_is_not_contact_evidence": true
+    },
+    "prediction": {
+      "candidate_id": null,
+      "transaction_id": null,
+      "u_cmd": null,
+      "source_snapshot_hash": null,
+      "source_reference_time_s": null,
+      "source_plant_time_s": null,
+      "elapsed_s": null,
+      "source": null
+    }
+  },
+  "latest_executed_cycle": {
+    "transaction_id": "workflow-online_jsbsim-e0001-c0002",
+    "cycle_file": "final_native/runtime/cycles/workflow-online_jsbsim-e0001-c0002.json.gz",
+    "pre_release": false,
+    "status": "DEGRADED",
+    "phase": "vertical_takeoff",
+    "reference_time_s": 58.208,
+    "L5_status": "OK",
+    "L5_FINAL": true,
+    "u_cmd": [
+      0.45,
+      -0.65,
+      0.7994285167499464,
+      0.0
+    ],
+    "L5_reason": null,
+    "L5_error": null,
+    "L6_status": "EXECUTED",
+    "L6_reason": null,
+    "L6_error": null,
+    "submission_attempted": null,
+    "actuation_executed": true,
+    "native_session_id": "1dc72d0033244bcba0b30f3c58b9cbc1",
+    "execution_duration_bounds_s": {
+      "lower_s": 0.03900000000000148,
+      "upper_s": 0.08100000000000307
+    },
+    "execution_start_bounds_s": {
+      "verified": true,
+      "lower_s": 65.087,
+      "upper_s": 65.108,
+      "clock_domain": "FCU_BOOT",
+      "upper_quantization_s": 0.001,
+      "proof": "pre_send_source_then_write_then_echo_barrier_then_source_on_ordered_stream",
+      "upper_source_observation": {
+        "type": "SCALED_IMU",
+        "source": "MAVLink/SCALED_IMU",
+        "wire_sha256": "e1eac6fe1ee91dacf90995d3c71d3c0add2d12b1dead5558d55ac138e740ee11",
+        "received_monotonic": 37483.029789128,
+        "source_time": {
+          "field": "time_boot_ms",
+          "value": 65107,
+          "unit": "ms",
+          "clock_domain": "FCU_BOOT"
+        },
+        "plant_time_s": 65.107,
+        "history_sequence": 10312,
+        "source_system": 1,
+        "source_component": 1
+      },
+      "exact": false,
+      "clock_rate_assumed": false,
+      "rebase": false
+    },
+    "execution_post_plant_time_s": 65.187,
+    "prediction_target_plant_time_s": 58.308,
+    "prediction_execution_offset_s": 6.878999999999998,
+    "L7_status": "FAILED",
+    "L7_reason": null,
+    "L7_validation_reasons": [
+      "no comparable real/predicted output keys",
+      "native_pair:missing_or_partial_output_pair",
+      "native_pair:missing_or_partial_state_pair",
+      "native_pair:state_pair_source_kind_mismatch",
+      "native_pair:target_plant_time_mismatch_or_missing"
+    ],
+    "L7_native_preparation": {
+      "ok": false,
+      "reason": "Native diagnostic projection differs from direct execution evidence",
+      "persistent_learning_allowed": false
+    },
+    "feedback_to_next_L2": {
+      "present": false,
+      "destinations": [],
+      "layer2_ingress": {
+        "present": false,
+        "consumed": false,
+        "reason": "no_pending_layer7_layer2_feedback"
+      }
+    },
+    "timing_s": {
+      "L2": 2.5780135419990984,
+      "L3": 0.36802936699677957,
+      "L4": 0.09487893700134009,
+      "L5": 2.3039893260065583,
+      "L6": 2.3045346419967245,
+      "L7": 0.002749267005128786
+    },
+    "L2_timing_s": {
+      "setup_and_input_normalization": 0.058026362996315584,
+      "climate": 0.10309953700198093,
+      "native_observation_and_history": 2.053191105995211,
+      "mesa_alignment_and_propagation": 0.3204348259969265,
+      "wing_and_feedback": 0.042513255997619126,
+      "total": 2.5772780109982705
+    },
+    "current_AGL_m": 0.906988057437502,
+    "predicted_AGL_m": null,
+    "prediction_gate": {
+      "ok": null,
+      "status": null,
+      "reason": null,
+      "error": null
+    },
+    "feasibility": null,
+    "physical_verdict": null,
+    "physical_initialization": null,
+    "ground_support_evidence": null,
+    "prediction": {
+      "candidate_id": "C0001",
+      "transaction_id": "workflow-online_jsbsim-e0001-c0002",
+      "u_cmd": [
+        0.45,
+        -0.65,
+        0.7994285167499464,
+        0.0
+      ],
+      "source_snapshot_hash": "388dbe0ee438a948c1650329b758d71e0d74587c828b948c146fa26832748527",
+      "source_reference_time_s": 58.208,
+      "source_plant_time_s": 58.208,
+      "elapsed_s": 1.1033494290022645,
+      "source": "current Layer2/WingMPET/Layer3 first-move replay"
+    }
+  },
+  "native_acceptance": {
+    "ARM_from_current_MPC": true,
+    "bounded_L6_execution": true,
+    "same_session_six_panels_captured": true,
+    "L7_residual_accepted": false,
+    "next_L2_feedback_consumption": false,
+    "continuous_hover_accepted": false,
+    "touchdown_accepted": false
+  },
+  "preservation": {
+    "source_unchanged_during_final_online": true,
+    "yaml_unchanged": true,
+    "handoff_unchanged": true,
+    "kstore_unchanged": true,
+    "forcing_unchanged": true,
+    "compiled_artifacts_unchanged_from_first_run": true,
+    "binary_hashes": {
+      "mesa_nav_fmu": {
+        "sha256": "3cf10daa41be76b8ac19e663f76f6d417fb996478d8d0354826418c4264ecf37",
+        "bytes": 280356
+      },
+      "wingmpet_fmu": {
+        "sha256": "c838871e85f96987815795cea9a3c0ecd7d7c19c07c4e110bc436a2ac9986689",
+        "bytes": 461139
+      },
+      "micromet_fmu": {
+        "sha256": "db039dc85ac2a9802095094ecb506afa961bdf96449cee1a9ca6b3e252dbcac1",
+        "bytes": 295567
+      },
+      "arduplane_binary": {
+        "sha256": "d98efe6d28c2add78eae55f00ea1b4b4d99e0dfaf7f61469504a6bcc0196341a",
+        "bytes": 6037896
+      },
+      "jsbsim_binary": {
+        "sha256": "114908b7cb323fc139736f46c344f2b0f06917ac4a0a6984125ea06e6cac06eb",
+        "bytes": 3448568
+      }
+    },
+    "handoff_gate": {
+      "ok": true,
+      "status": "READY",
+      "reason": "VALID_FINALIZED_SETD_PRIOR_READY"
+    },
+    "model_gate": {
+      "ok": true,
+      "reason": "exact_model_dependencies_match",
+      "revision": "phoenix-fourfoot-certificates-r3.06-v1",
+      "current_model_id": "2839735171b10d218ec96def031250ac1c868c4c78fea10bd9e576017e357232",
+      "certificate_model_id": "2839735171b10d218ec96def031250ac1c868c4c78fea10bd9e576017e357232",
+      "scope": "MODEL_IDENTITY_ONLY",
+      "flight_authority": false,
+      "current_state_replaced": false
+    },
+    "reset_performed": false,
+    "compiled_source_changes": false,
+    "rebuilt": false
+  },
+  "limits": [
+    "No accepted continuous flight, dynamic navigation or touchdown proof",
+    "FCU EKF reports GPS use; no claim of GNSS-denied FCU operation",
+    "Physical replay may initialize from execution-only FCU state; this is not MESA re-anchoring",
+    "No artificial forecast retiming, TTL/corridor relaxation or independent ARM test",
+    "The short replay, proof RPC timing change and local profile do not establish continuous execution authority"
+  ]
+}

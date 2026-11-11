@@ -1,0 +1,39 @@
+{
+  "schema": "micromet_grid_dataset_provenance_v2_geojson",
+  "dataset_file": "climate_dataset/micromet_grid_24h.csv",
+  "grid_file": "climate_dataset/grid_cells.csv",
+  "forecast_input": "climate_dataset/openmeteo_24h.csv",
+  "fmu": "fmu/MicroMetTwin.fmu",
+  "region": "region/region_v1.geojson",
+  "region_format": "GeoJSON RFC 7946 / WGS 84",
+  "region_sha256": "2a3c9342c84cf8d10ea58803714c4d4ca30cb5b1f76dc518aa9de0740592eec6",
+  "region_bbox_wgs84": [
+    -105.30999670363443,
+    40.00218350325587,
+    -105.26999890035525,
+    40.03281405830647
+  ],
+  "resolution_m": 1000.0,
+  "vertical_reference": "AGL",
+  "requested_levels_m": [
+    100.0,
+    200.0,
+    300.0,
+    400.0,
+    500.0,
+    600.0,
+    700.0,
+    800.0,
+    900.0,
+    1000.0
+  ],
+  "time_steps": 24,
+  "records": 3360,
+  "terrain_source": "/media/p1/DigitalTwin/TDDT_navigation/datasets/CRP_map/code/boulder_multilayer_map_builder_v20260814_1214/outputs/region_v1_map/terrain_obstacles.tif",
+  "terrain_policy": "require-dem",
+  "horizontal_candidate_cells": 16,
+  "horizontal_valid_terrain_cells": 14,
+  "skipped_outside_terrain": 0,
+  "skipped_terrain_nodata": 2,
+  "spatial_domain_rule": "GeoJSON region intersect valid shared terrain raster"
+}

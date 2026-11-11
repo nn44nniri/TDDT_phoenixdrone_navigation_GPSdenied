@@ -1,0 +1,47 @@
+{
+  "schema_version": "2.2",
+  "representation": [
+    "std",
+    "diagonal_variance",
+    "full_covariance"
+  ],
+  "sources": [
+    "input",
+    "parameter",
+    "model",
+    "numerical",
+    "context"
+  ],
+  "runtime": "nearest TEP cell prior; novelty inflates uncertainty",
+  "claim": "simulation prior until field evidence is validated",
+  "posterior": "field residual covariance blended with simulation prior only after accepted validated field evidence",
+  "unquantified_state_outputs": [
+    "longwave_radiation",
+    "precipitation_local",
+    "velocity_gradient_3dw",
+    "material_derivative_3dw"
+  ],
+  "field_evidence_schema": "../field_evidence_schema.json",
+  "quantified_state_outputs": [
+    "temperature_local",
+    "relative_humidity_local",
+    "wind_speed_terrain",
+    "wind_direction_terrain_deg",
+    "surface_pressure_pa",
+    "shortwave_radiation",
+    "wind_u_3dw",
+    "wind_v_3dw",
+    "diagnostic_vertical_wind",
+    "wind_speed_3d",
+    "air_density"
+  ],
+  "covariance_variable_order_source": "../tep/manifest.json::covariance_variable_order",
+  "runtime_gates": {
+    "wind_u_3dw": "wind_3dw_valid==1",
+    "wind_v_3dw": "wind_3dw_valid==1",
+    "diagnostic_vertical_wind": "wind_3dw_valid==1",
+    "wind_speed_3d": "wind_3dw_valid==1",
+    "air_density": "formula_valid==1 && air_density>0"
+  },
+  "air_density_consistency_check": "Jacobian propagation P_rho = J P_[temperature_local,relative_humidity_local,surface_pressure_pa] J^T compared with ensemble variance per TEP cell"
+}

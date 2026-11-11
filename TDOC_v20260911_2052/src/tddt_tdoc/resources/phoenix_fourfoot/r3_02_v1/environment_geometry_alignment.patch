@@ -1,0 +1,54 @@
+--- a/phoenix_env_adapter/vehicle.py
++++ b/phoenix_env_adapter/vehicle.py
+@@ -1,6 +1,6 @@
+ from __future__ import annotations
+ from pathlib import Path
+-import copy, yaml
++import copy, math, yaml
+ 
+ class PhoenixVehicle:
+     def __init__(self, path: str | Path):
+@@ -9,9 +9,22 @@
+ 
+     def ground_vtol_copy(self, home_alt_msl_m: float):
+         d = copy.deepcopy(self.data)
++        ground=d.get('ground_geometry') or {}
++        if ground.get('revision')!='phoenix-fourfoot-r3.02-v1' or ground.get('body_frame')!='BODY_FRD_CG':
++            raise ValueError('versioned four-foot CG geometry required for environment preparation')
++        contacts=ground.get('contacts') or []
++        if [c.get('name') for c in contacts]!=['TAIL_FOOT_L1','TAIL_FOOT_L2','TAIL_FOOT_R1','TAIL_FOOT_R2']:
++            raise ValueError('four-foot contact contract missing')
++        pitch=math.radians(float(ground['reset_pitch_deg']))
++        height=max(-math.sin(pitch)*float(c['body_frd_m'][0])+math.cos(pitch)*float(c['body_frd_m'][2]) for c in contacts)
++        if not math.isfinite(height) or height<=0 or abs(height-float(ground['cg_height_agl_at_reset_m']))>1e-9:
++            raise ValueError('CG AGL contradicts contact geometry')
+         sim = d.setdefault("simulation_assumptions", {})
+         sim["forward_flight_air_start_only"] = False
+-        sim["initial_agl_m"] = 0.0
++        sim["initial_agl_m"] = height
++        sim["initial_altitude_msl_m"] = float(home_alt_msl_m)+height
++        sim["position_origin"] = "CG"
++        sim["ground_geometry_revision"] = ground['revision']
+         sim["home_alt_msl_m_default"] = float(home_alt_msl_m)
+         sim["home_alt_source"] = "runtime terrain start sample"
+         return d
+--- a/phoenix_env_adapter/prepare.py
++++ b/phoenix_env_adapter/prepare.py
+@@ -27,6 +27,8 @@
+     cs=climate.sample(region.start.lat, region.start.lon, dt)
+     heading=bearing_deg(region.start.lat,region.start.lon,region.destination.lat,region.destination.lon)
+     vehicle=PhoenixVehicle(vehicle_path)
++    aligned_vehicle=vehicle.ground_vtol_copy(hs)
++    cg_agl=aligned_vehicle['simulation_assumptions']['initial_agl_m']
+     vehicle.write_ground_vtol(out/"phoenix_drone_v3_ground_vtol.yaml", hs)
+     (out/"phoenix_tailsitter.parm").write_text(PARAM_TEMPLATE.format(wind_speed=cs.wind_speed_m_s, wind_dir=cs.wind_direction_from_deg))
+     (out/"locations.txt.fragment").write_text(f"PhoenixBoulder={region.start.lat:.8f},{region.start.lon:.8f},{hs:.2f},{heading:.1f}\n")
+@@ -34,7 +36,7 @@
+       "schema_version":"1.0",
+       "simulation_time_utc":dt.isoformat(),
+       "region":{"name":region.name,"bbox":region.bbox},
+-      "home":{"lat":region.start.lat,"lon":region.start.lon,"terrain_msl_m":hs,"initial_agl_m":0.0,"heading_deg":heading},
++      "home":{"lat":region.start.lat,"lon":region.start.lon,"terrain_msl_m":hs,"initial_agl_m":cg_agl,"initial_CG_msl_m":hs+cg_agl,"position_origin":"CG","heading_deg":heading},
+       "destination":{"lat":region.destination.lat,"lon":region.destination.lon,"terrain_msl_m":hd},
+       "climate_at_home":{"temperature_c":cs.temperature_c,"relative_humidity_pct":cs.relative_humidity_pct,
+                          "wind_speed_m_s":cs.wind_speed_m_s,"wind_direction_from_deg":cs.wind_direction_from_deg,

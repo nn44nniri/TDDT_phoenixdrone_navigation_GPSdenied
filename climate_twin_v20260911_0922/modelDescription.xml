@@ -1,0 +1,828 @@
+<?xml version='1.0' encoding='utf-8'?>
+<fmiModelDescription fmiVersion="2.0" modelName="MicroMetTwin" guid="{501a9e15-f039-43fa-85da-bed5414e0ae7}" generationTool="MicroMetTwin native C++17/CMake FMI 2.0 CS exporter" variableNamingConvention="structured" numberOfEventIndicators="0" generationDateAndTime="2026-08-07T21:51:18Z">
+  <CoSimulation modelIdentifier="MicroMet" canHandleVariableCommunicationStepSize="true" canInterpolateInputs="false" maxOutputDerivativeOrder="0" canRunAsynchronuously="false" canBeInstantiatedOnlyOncePerProcess="false" canNotUseMemoryManagementFunctions="true" needsExecutionTool="false" />
+  <UnitDefinitions>
+    <Unit name="1">
+      <BaseUnit />
+    </Unit>
+    <Unit name="deg">
+      <BaseUnit rad="1" factor="0.017453292519943295" />
+    </Unit>
+    <Unit name="rad">
+      <BaseUnit rad="1" />
+    </Unit>
+    <Unit name="m">
+      <BaseUnit m="1" />
+    </Unit>
+    <Unit name="m2">
+      <BaseUnit m="2" />
+    </Unit>
+    <Unit name="s">
+      <BaseUnit s="1" />
+    </Unit>
+    <Unit name="h">
+      <BaseUnit s="1" factor="3600" />
+    </Unit>
+    <Unit name="d">
+      <BaseUnit s="1" factor="86400" />
+    </Unit>
+    <Unit name="m/s">
+      <BaseUnit m="1" s="-1" />
+    </Unit>
+    <Unit name="m/s2">
+      <BaseUnit m="1" s="-2" />
+    </Unit>
+    <Unit name="1/s">
+      <BaseUnit s="-1" />
+    </Unit>
+    <Unit name="1/m">
+      <BaseUnit m="-1" />
+    </Unit>
+    <Unit name="1/km">
+      <BaseUnit m="-1" factor="0.001" />
+    </Unit>
+    <Unit name="K">
+      <BaseUnit K="1" />
+    </Unit>
+    <Unit name="K/m">
+      <BaseUnit K="1" m="-1" />
+    </Unit>
+    <Unit name="degC">
+      <BaseUnit K="1" offset="273.15" />
+    </Unit>
+    <Unit name="degC/m">
+      <BaseUnit K="1" m="-1" />
+    </Unit>
+    <Unit name="Pa">
+      <BaseUnit kg="1" m="-1" s="-2" />
+    </Unit>
+    <Unit name="hPa">
+      <BaseUnit kg="1" m="-1" s="-2" factor="100" />
+    </Unit>
+    <Unit name="W/m2">
+      <BaseUnit kg="1" s="-3" />
+    </Unit>
+    <Unit name="mm/h">
+      <BaseUnit m="1" s="-1" factor="2.7777777777777776e-07" />
+    </Unit>
+    <Unit name="%">
+      <BaseUnit factor="0.01" />
+    </Unit>
+    <Unit name="kg/m3">
+      <BaseUnit kg="1" m="-3" />
+    </Unit>
+  </UnitDefinitions>
+  <ModelVariables>
+    <ScalarVariable name="latitude" valueReference="0" causality="input" variability="continuous">
+      <Real start="47.525190299169076" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="longitude" valueReference="1" causality="input" variability="continuous">
+      <Real start="44.29738495970912" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="elevation" valueReference="2" causality="input" variability="continuous">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="slope_rad_input" valueReference="3" causality="input" variability="continuous">
+      <Real start="0" unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="aspect_rad_input" valueReference="4" causality="input" variability="continuous">
+      <Real start="0" unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="curvature_scaled_input" valueReference="5" causality="input" variability="continuous">
+      <Real start="0" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="lapse_rate" valueReference="6" causality="input" variability="continuous">
+      <Real start="0.0067999999999999996" unit="degC/m" />
+    </ScalarVariable>
+    <ScalarVariable name="vapor_coefficient" valueReference="7" causality="input" variability="continuous">
+      <Real start="0.00040000000000000002" unit="1/m" />
+    </ScalarVariable>
+    <ScalarVariable name="gamma_s" valueReference="8" causality="input" variability="continuous">
+      <Real start="0.57999999999999996" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="gamma_c" valueReference="9" causality="input" variability="continuous">
+      <Real start="0.41999999999999998" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="hour_local" valueReference="10" causality="input" variability="continuous">
+      <Real start="12" unit="h" />
+    </ScalarVariable>
+    <ScalarVariable name="day_of_year" valueReference="11" causality="input" variability="continuous">
+      <Real start="180" unit="d" />
+    </ScalarVariable>
+    <ScalarVariable name="rh700" valueReference="12" causality="input" variability="continuous">
+      <Real start="-1" unit="%" />
+    </ScalarVariable>
+    <ScalarVariable name="barnes_filter_m2" valueReference="13" causality="input" variability="continuous">
+      <Real start="100000000" unit="m2" />
+    </ScalarVariable>
+    <ScalarVariable name="curvature_radius_m" valueReference="14" causality="input" variability="continuous">
+      <Real start="1000" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="zW" valueReference="15" causality="input" variability="continuous">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="zE" valueReference="16" causality="input" variability="continuous">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="zS" valueReference="17" causality="input" variability="continuous">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="zN" valueReference="18" causality="input" variability="continuous">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="zSW" valueReference="19" causality="input" variability="continuous">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="zNE" valueReference="20" causality="input" variability="continuous">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="zNW" valueReference="21" causality="input" variability="continuous">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="zSE" valueReference="22" causality="input" variability="continuous">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="curvature_min" valueReference="23" causality="input" variability="continuous">
+      <Real start="-0.5" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="curvature_max" valueReference="24" causality="input" variability="continuous">
+      <Real start="0.5" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="precipitation_chi_km" valueReference="25" causality="input" variability="continuous">
+      <Real start="0.25" unit="1/km" />
+    </ScalarVariable>
+    <ScalarVariable name="use_dem_curvature" valueReference="26" causality="input" variability="continuous">
+      <Real start="1" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="source0_enabled" valueReference="27" causality="input" variability="continuous">
+      <Real start="1" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="source0_latitude" valueReference="28" causality="input" variability="continuous">
+      <Real start="47.525190299169076" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source0_longitude" valueReference="29" causality="input" variability="continuous">
+      <Real start="44.29738495970912" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source0_elevation" valueReference="30" causality="input" variability="continuous">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="source0_temperature" valueReference="31" causality="input" variability="continuous">
+      <Real start="20" unit="degC" />
+    </ScalarVariable>
+    <ScalarVariable name="source0_relative_humidity" valueReference="32" causality="input" variability="continuous">
+      <Real start="50" unit="%" />
+    </ScalarVariable>
+    <ScalarVariable name="source0_wind_speed" valueReference="33" causality="input" variability="continuous">
+      <Real start="4" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="source0_wind_direction" valueReference="34" causality="input" variability="continuous">
+      <Real start="260" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source0_precipitation" valueReference="35" causality="input" variability="continuous">
+      <Real start="0" unit="mm/h" />
+    </ScalarVariable>
+    <ScalarVariable name="source0_surface_pressure_hpa" valueReference="36" causality="input" variability="continuous">
+      <Real start="1001" unit="hPa" />
+    </ScalarVariable>
+    <ScalarVariable name="source1_enabled" valueReference="37" causality="input" variability="continuous">
+      <Real start="0" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="source1_latitude" valueReference="38" causality="input" variability="continuous">
+      <Real start="47.525190299169076" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source1_longitude" valueReference="39" causality="input" variability="continuous">
+      <Real start="44.29738495970912" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source1_elevation" valueReference="40" causality="input" variability="continuous">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="source1_temperature" valueReference="41" causality="input" variability="continuous">
+      <Real start="20" unit="degC" />
+    </ScalarVariable>
+    <ScalarVariable name="source1_relative_humidity" valueReference="42" causality="input" variability="continuous">
+      <Real start="50" unit="%" />
+    </ScalarVariable>
+    <ScalarVariable name="source1_wind_speed" valueReference="43" causality="input" variability="continuous">
+      <Real start="4" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="source1_wind_direction" valueReference="44" causality="input" variability="continuous">
+      <Real start="260" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source1_precipitation" valueReference="45" causality="input" variability="continuous">
+      <Real start="0" unit="mm/h" />
+    </ScalarVariable>
+    <ScalarVariable name="source1_surface_pressure_hpa" valueReference="46" causality="input" variability="continuous">
+      <Real start="1001" unit="hPa" />
+    </ScalarVariable>
+    <ScalarVariable name="source2_enabled" valueReference="47" causality="input" variability="continuous">
+      <Real start="0" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="source2_latitude" valueReference="48" causality="input" variability="continuous">
+      <Real start="47.525190299169076" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source2_longitude" valueReference="49" causality="input" variability="continuous">
+      <Real start="44.29738495970912" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source2_elevation" valueReference="50" causality="input" variability="continuous">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="source2_temperature" valueReference="51" causality="input" variability="continuous">
+      <Real start="20" unit="degC" />
+    </ScalarVariable>
+    <ScalarVariable name="source2_relative_humidity" valueReference="52" causality="input" variability="continuous">
+      <Real start="50" unit="%" />
+    </ScalarVariable>
+    <ScalarVariable name="source2_wind_speed" valueReference="53" causality="input" variability="continuous">
+      <Real start="4" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="source2_wind_direction" valueReference="54" causality="input" variability="continuous">
+      <Real start="260" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source2_precipitation" valueReference="55" causality="input" variability="continuous">
+      <Real start="0" unit="mm/h" />
+    </ScalarVariable>
+    <ScalarVariable name="source2_surface_pressure_hpa" valueReference="56" causality="input" variability="continuous">
+      <Real start="1001" unit="hPa" />
+    </ScalarVariable>
+    <ScalarVariable name="source3_enabled" valueReference="57" causality="input" variability="continuous">
+      <Real start="0" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="source3_latitude" valueReference="58" causality="input" variability="continuous">
+      <Real start="47.525190299169076" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source3_longitude" valueReference="59" causality="input" variability="continuous">
+      <Real start="44.29738495970912" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source3_elevation" valueReference="60" causality="input" variability="continuous">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="source3_temperature" valueReference="61" causality="input" variability="continuous">
+      <Real start="20" unit="degC" />
+    </ScalarVariable>
+    <ScalarVariable name="source3_relative_humidity" valueReference="62" causality="input" variability="continuous">
+      <Real start="50" unit="%" />
+    </ScalarVariable>
+    <ScalarVariable name="source3_wind_speed" valueReference="63" causality="input" variability="continuous">
+      <Real start="4" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="source3_wind_direction" valueReference="64" causality="input" variability="continuous">
+      <Real start="260" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source3_precipitation" valueReference="65" causality="input" variability="continuous">
+      <Real start="0" unit="mm/h" />
+    </ScalarVariable>
+    <ScalarVariable name="source3_surface_pressure_hpa" valueReference="66" causality="input" variability="continuous">
+      <Real start="1001" unit="hPa" />
+    </ScalarVariable>
+    <ScalarVariable name="source4_enabled" valueReference="67" causality="input" variability="continuous">
+      <Real start="0" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="source4_latitude" valueReference="68" causality="input" variability="continuous">
+      <Real start="47.525190299169076" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source4_longitude" valueReference="69" causality="input" variability="continuous">
+      <Real start="44.29738495970912" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source4_elevation" valueReference="70" causality="input" variability="continuous">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="source4_temperature" valueReference="71" causality="input" variability="continuous">
+      <Real start="20" unit="degC" />
+    </ScalarVariable>
+    <ScalarVariable name="source4_relative_humidity" valueReference="72" causality="input" variability="continuous">
+      <Real start="50" unit="%" />
+    </ScalarVariable>
+    <ScalarVariable name="source4_wind_speed" valueReference="73" causality="input" variability="continuous">
+      <Real start="4" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="source4_wind_direction" valueReference="74" causality="input" variability="continuous">
+      <Real start="260" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="source4_precipitation" valueReference="75" causality="input" variability="continuous">
+      <Real start="0" unit="mm/h" />
+    </ScalarVariable>
+    <ScalarVariable name="source4_surface_pressure_hpa" valueReference="76" causality="input" variability="continuous">
+      <Real start="1001" unit="hPa" />
+    </ScalarVariable>
+    <ScalarVariable name="terrain_dzdx" valueReference="77" causality="input" variability="continuous" description="Terrain elevation gradient dz/dx used by Eq. (12)-(13).">
+      <Real start="0" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="terrain_dzdy" valueReference="78" causality="input" variability="continuous" description="Terrain elevation gradient dz/dy used by Eq. (12)-(13).">
+      <Real start="0" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="derive_slope_aspect_from_gradients" valueReference="79" causality="input" variability="continuous" description="1 derives slope and aspect inside the FMU from dzdx,dzdy; 0 uses legacy direct slope/aspect inputs.">
+      <Real start="1" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="barnes_second_pass_enabled" valueReference="80" causality="input" variability="continuous" description="1 applies the article-described second Barnes successive-correction pass.">
+      <Real start="1" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="barnes_second_pass_radius_factor" valueReference="81" causality="input" variability="continuous" description="Influence-radius ratio for the second Barnes pass.">
+      <Real start="0.5" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="calibration_enabled" valueReference="82" causality="input" variability="continuous" description="1 enables the transparent empirical calibration layer; 0 returns raw formalism outputs.">
+      <Real start="1" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="temperature_bias_c" valueReference="83" causality="input" variability="continuous" description="Additive temperature calibration in degrees Celsius.">
+      <Real start="0.4091377409640393" unit="degC" />
+    </ScalarVariable>
+    <ScalarVariable name="relative_humidity_bias_pct" valueReference="84" causality="input" variability="continuous" description="Additive relative-humidity calibration in percentage points.">
+      <Real start="0.0" unit="%" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_speed_scale" valueReference="85" causality="input" variability="continuous" description="Multiplicative terrain-wind-speed calibration.">
+      <Real start="1.194" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_direction_bias_deg" valueReference="86" causality="input" variability="continuous" description="Additive circular wind-direction calibration in degrees.">
+      <Real start="0.0" unit="deg" />
+    </ScalarVariable>
+    <ScalarVariable name="shortwave_scale" valueReference="87" causality="input" variability="continuous" description="Multiplicative shortwave-radiation calibration.">
+      <Real start="1.69731" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="pressure_bias_pa" valueReference="88" causality="input" variability="continuous" description="Additive pressure calibration after forecast-anchored height correction.">
+      <Real start="0.0" unit="Pa" />
+    </ScalarVariable>
+    <ScalarVariable name="barnes_weight" valueReference="100" causality="output" variability="continuous" initial="calculated">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="temperature_reference" valueReference="101" causality="output" variability="continuous" initial="calculated">
+      <Real unit="degC" />
+    </ScalarVariable>
+    <ScalarVariable name="temperature_local" valueReference="102" causality="output" variability="continuous" initial="calculated">
+      <Real unit="degC" />
+    </ScalarVariable>
+    <ScalarVariable name="saturation_vapor_pressure" valueReference="103" causality="output" variability="continuous" initial="calculated">
+      <Real unit="Pa" />
+    </ScalarVariable>
+    <ScalarVariable name="actual_vapor_pressure" valueReference="104" causality="output" variability="continuous" initial="calculated">
+      <Real unit="Pa" />
+    </ScalarVariable>
+    <ScalarVariable name="dewpoint_local" valueReference="105" causality="output" variability="continuous" initial="calculated">
+      <Real unit="degC" />
+    </ScalarVariable>
+    <ScalarVariable name="dewpoint_lapse_rate" valueReference="106" causality="output" variability="continuous" initial="calculated">
+      <Real unit="degC/m" />
+    </ScalarVariable>
+    <ScalarVariable name="relative_humidity_local" valueReference="107" causality="output" variability="continuous" initial="calculated">
+      <Real unit="%" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_u" valueReference="108" causality="output" variability="continuous" initial="calculated">
+      <Real unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_v" valueReference="109" causality="output" variability="continuous" initial="calculated">
+      <Real unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_speed_background" valueReference="110" causality="output" variability="continuous" initial="calculated">
+      <Real unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_direction_background_rad" valueReference="111" causality="output" variability="continuous" initial="calculated">
+      <Real unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="slope_rad" valueReference="112" causality="output" variability="continuous" initial="calculated">
+      <Real unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="aspect_rad" valueReference="113" causality="output" variability="continuous" initial="calculated">
+      <Real unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="curvature_scaled" valueReference="114" causality="output" variability="continuous" initial="calculated">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="slope_in_wind_direction" valueReference="115" causality="output" variability="continuous" initial="calculated">
+      <Real unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_weight" valueReference="116" causality="output" variability="continuous" initial="calculated">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_speed_terrain" valueReference="117" causality="output" variability="continuous" initial="calculated">
+      <Real unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_direction_diversion" valueReference="118" causality="output" variability="continuous" initial="calculated">
+      <Real unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_direction_terrain_rad" valueReference="119" causality="output" variability="continuous" initial="calculated">
+      <Real unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_u_terrain" valueReference="120" causality="output" variability="continuous" initial="calculated">
+      <Real unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_v_terrain" valueReference="121" causality="output" variability="continuous" initial="calculated">
+      <Real unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="cloud_fraction" valueReference="122" causality="output" variability="continuous" initial="calculated">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="solar_zenith" valueReference="123" causality="output" variability="continuous" initial="calculated">
+      <Real unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="solar_hour_angle" valueReference="124" causality="output" variability="continuous" initial="calculated">
+      <Real unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="solar_declination" valueReference="125" causality="output" variability="continuous" initial="calculated">
+      <Real unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="solar_incidence" valueReference="126" causality="output" variability="continuous" initial="calculated">
+      <Real unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="solar_azimuth" valueReference="127" causality="output" variability="continuous" initial="calculated">
+      <Real unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="direct_transmissivity" valueReference="128" causality="output" variability="continuous" initial="calculated">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="diffuse_transmissivity" valueReference="129" causality="output" variability="continuous" initial="calculated">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="shortwave_radiation" valueReference="130" causality="output" variability="continuous" initial="calculated">
+      <Real unit="W/m2" />
+    </ScalarVariable>
+    <ScalarVariable name="atmospheric_emissivity" valueReference="131" causality="output" variability="continuous" initial="calculated">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="longwave_radiation" valueReference="132" causality="output" variability="continuous" initial="calculated">
+      <Real unit="W/m2" />
+    </ScalarVariable>
+    <ScalarVariable name="surface_pressure_pa" valueReference="133" causality="output" variability="continuous" initial="calculated">
+      <Real unit="Pa" />
+    </ScalarVariable>
+    <ScalarVariable name="precipitation_local" valueReference="134" causality="output" variability="continuous" initial="calculated">
+      <Real unit="mm/h" />
+    </ScalarVariable>
+    <ScalarVariable name="barnes_distance_m" valueReference="135" causality="output" variability="continuous" initial="calculated">
+      <Real unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="saturation_vapor_pressure_source" valueReference="136" causality="output" variability="continuous" initial="calculated">
+      <Real unit="Pa" />
+    </ScalarVariable>
+    <ScalarVariable name="dewpoint_source" valueReference="137" causality="output" variability="continuous" initial="calculated">
+      <Real unit="degC" />
+    </ScalarVariable>
+    <ScalarVariable name="dewpoint_reference" valueReference="138" causality="output" variability="continuous" initial="calculated">
+      <Real unit="degC" />
+    </ScalarVariable>
+    <ScalarVariable name="saturation_vapor_pressure_local" valueReference="139" causality="output" variability="continuous" initial="calculated">
+      <Real unit="Pa" />
+    </ScalarVariable>
+    <ScalarVariable name="actual_vapor_pressure_local" valueReference="140" causality="output" variability="continuous" initial="calculated">
+      <Real unit="Pa" />
+    </ScalarVariable>
+    <ScalarVariable name="curvature_raw" valueReference="141" causality="output" variability="continuous" initial="calculated">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="slope_in_wind_direction_raw" valueReference="142" causality="output" variability="continuous" initial="calculated">
+      <Real unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="rh700_used" valueReference="143" causality="output" variability="continuous" initial="calculated">
+      <Real unit="%" />
+    </ScalarVariable>
+    <ScalarVariable name="coefficient_Xs" valueReference="144" causality="output" variability="continuous" initial="calculated">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="coefficient_Ys" valueReference="145" causality="output" variability="continuous" initial="calculated">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="coefficient_Zs" valueReference="146" causality="output" variability="continuous" initial="calculated">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="surface_pressure_forecast_pa" valueReference="147" causality="output" variability="continuous" initial="calculated">
+      <Real unit="Pa" />
+    </ScalarVariable>
+    <ScalarVariable name="source_elevation_barnes" valueReference="148" causality="output" variability="continuous" initial="calculated">
+      <Real unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="precipitation_reference" valueReference="149" causality="output" variability="continuous" initial="calculated">
+      <Real unit="mm/h" />
+    </ScalarVariable>
+    <ScalarVariable name="enabled_source_count" valueReference="150" causality="output" variability="continuous" initial="calculated" description="Number of enabled meteorological source points.">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="formula_valid" valueReference="151" causality="output" variability="continuous" initial="calculated" description="1 when the MicroMet formalism evaluation is finite and valid; 0 otherwise.">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="formula_error_code" valueReference="152" causality="output" variability="continuous" initial="calculated" description="0=OK, 1=no enabled source, 2=non-finite formalism result.">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="fmi_time_s" valueReference="153" causality="output" variability="continuous" initial="calculated" description="Current FMI communication time in seconds.">
+      <Real unit="s" />
+    </ScalarVariable>
+    <ScalarVariable name="terrain_dzdx_used" valueReference="154" causality="output" variability="continuous" initial="calculated" description="Terrain dz/dx actually used by Eq. (12)-(13).">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="terrain_dzdy_used" valueReference="155" causality="output" variability="continuous" initial="calculated" description="Terrain dz/dy actually used by Eq. (12)-(13).">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="barnes_second_pass_applied" valueReference="156" causality="output" variability="continuous" initial="calculated" description="1 when the Barnes residual correction pass was applied.">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="raw_temperature_local" valueReference="157" causality="output" variability="continuous" initial="calculated" description="Uncalibrated MicroMet temperature after Eqs. (2)-(3).">
+      <Real unit="degC" />
+    </ScalarVariable>
+    <ScalarVariable name="raw_relative_humidity_local" valueReference="158" causality="output" variability="continuous" initial="calculated" description="Uncalibrated MicroMet relative humidity after Eqs. (4)-(7).">
+      <Real unit="%" />
+    </ScalarVariable>
+    <ScalarVariable name="raw_wind_speed_terrain" valueReference="159" causality="output" variability="continuous" initial="calculated" description="Uncalibrated terrain-adjusted wind speed after Eqs. (15)-(17).">
+      <Real unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="raw_wind_direction_terrain_rad" valueReference="160" causality="output" variability="continuous" initial="calculated" description="Uncalibrated terrain-adjusted wind direction after Eqs. (18)-(19).">
+      <Real unit="rad" />
+    </ScalarVariable>
+    <ScalarVariable name="raw_shortwave_radiation" valueReference="161" causality="output" variability="continuous" initial="calculated" description="Uncalibrated shortwave radiation from Eqs. (21)-(28).">
+      <Real unit="W/m2" />
+    </ScalarVariable>
+    <ScalarVariable name="raw_surface_pressure_pa" valueReference="162" causality="output" variability="continuous" initial="calculated" description="Uncalibrated pressure before optional additive calibration.">
+      <Real unit="Pa" />
+    </ScalarVariable>
+    <ScalarVariable name="shortwave_reference_wm2" valueReference="89" causality="input" variability="continuous" description="Optional coarse-forecast shortwave radiation at the requested point; negative disables forecast anchoring.">
+      <Real start="-1" unit="W/m2" />
+    </ScalarVariable>
+    <ScalarVariable name="shortwave_reference_blend" valueReference="90" causality="input" variability="continuous" description="Blend fraction between calibrated MicroMet shortwave and supplied forecast shortwave, constrained to [0,1].">
+      <Real start="0.75" min="0" max="1" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_3dw_enabled" valueReference="170" causality="input" variability="continuous" description="1 enables the independent MicroMet-3DW Extension; legacy MicroMet equations remain unchanged.">
+      <Real start="0" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="altitude_agl_m" valueReference="171" causality="input" variability="continuous" description="Requested height above local DEM ground for the 3DW extension.">
+      <Real start="10" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="fd_dx_m" valueReference="172" causality="input" variability="continuous" description="Finite-difference spacing in local east-west direction.">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="fd_dy_m" valueReference="173" causality="input" variability="continuous" description="Finite-difference spacing in local north-south direction.">
+      <Real start="100" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="fd_dz_m" valueReference="174" causality="input" variability="continuous" description="Finite-difference spacing in vertical direction.">
+      <Real start="10" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="temporal_t0_u10" valueReference="175" causality="input" variability="continuous" description="Terrain-adjusted 10 m wind u at lower forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="temporal_t0_v10" valueReference="176" causality="input" variability="continuous" description="Terrain-adjusted 10 m wind v at lower forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="temporal_t1_u10" valueReference="177" causality="input" variability="continuous" description="Terrain-adjusted 10 m wind u at upper forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="temporal_t1_v10" valueReference="178" causality="input" variability="continuous" description="Terrain-adjusted 10 m wind v at upper forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="temporal_interval_s" valueReference="179" causality="input" variability="continuous" description="Seconds between forecast snapshots used by Eq. 3DW-19.">
+      <Real start="0" unit="s" />
+    </ScalarVariable>
+    <ScalarVariable name="temporal_alpha" valueReference="180" causality="input" variability="continuous" description="Temporal interpolation fraction from Eq. 3DW-1.">
+      <Real start="0" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="profile_level_count" valueReference="181" causality="input" variability="continuous" description="Number of supplied sparse horizontal wind levels; 0 activates documented 10 m power-law fallback.">
+      <Real start="0" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="profile0_agl_m" valueReference="182" causality="input" variability="continuous" description="AGL height of sparse wind profile level 0.">
+      <Real start="10" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="profile0_u_t0" valueReference="183" causality="input" variability="continuous" description="u at profile level 0, lower forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile0_v_t0" valueReference="184" causality="input" variability="continuous" description="v at profile level 0, lower forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile0_u_t1" valueReference="185" causality="input" variability="continuous" description="u at profile level 0, upper forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile0_v_t1" valueReference="186" causality="input" variability="continuous" description="v at profile level 0, upper forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile1_agl_m" valueReference="187" causality="input" variability="continuous" description="AGL height of sparse wind profile level 1.">
+      <Real start="80" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="profile1_u_t0" valueReference="188" causality="input" variability="continuous" description="u at profile level 1, lower forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile1_v_t0" valueReference="189" causality="input" variability="continuous" description="v at profile level 1, lower forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile1_u_t1" valueReference="190" causality="input" variability="continuous" description="u at profile level 1, upper forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile1_v_t1" valueReference="191" causality="input" variability="continuous" description="v at profile level 1, upper forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile2_agl_m" valueReference="192" causality="input" variability="continuous" description="AGL height of sparse wind profile level 2.">
+      <Real start="150" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="profile2_u_t0" valueReference="193" causality="input" variability="continuous" description="u at profile level 2, lower forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile2_v_t0" valueReference="194" causality="input" variability="continuous" description="v at profile level 2, lower forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile2_u_t1" valueReference="195" causality="input" variability="continuous" description="u at profile level 2, upper forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile2_v_t1" valueReference="196" causality="input" variability="continuous" description="v at profile level 2, upper forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile3_agl_m" valueReference="197" causality="input" variability="continuous" description="AGL height of sparse wind profile level 3.">
+      <Real start="220" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="profile3_u_t0" valueReference="198" causality="input" variability="continuous" description="u at profile level 3, lower forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile3_v_t0" valueReference="199" causality="input" variability="continuous" description="v at profile level 3, lower forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile3_u_t1" valueReference="200" causality="input" variability="continuous" description="u at profile level 3, upper forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile3_v_t1" valueReference="201" causality="input" variability="continuous" description="v at profile level 3, upper forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile4_agl_m" valueReference="202" causality="input" variability="continuous" description="AGL height of sparse wind profile level 4.">
+      <Real start="290" unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="profile4_u_t0" valueReference="203" causality="input" variability="continuous" description="u at profile level 4, lower forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile4_v_t0" valueReference="204" causality="input" variability="continuous" description="v at profile level 4, lower forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile4_u_t1" valueReference="205" causality="input" variability="continuous" description="u at profile level 4, upper forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="profile4_v_t1" valueReference="206" causality="input" variability="continuous" description="v at profile level 4, upper forecast snapshot.">
+      <Real start="NaN" unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_profile_power" valueReference="207" causality="input" variability="continuous" description="Fallback vertical wind-profile exponent used only when sparse levels are unavailable.">
+      <Real start="0.143" unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_u_3dw" valueReference="220" causality="output" variability="continuous" initial="calculated" description="3DW east-west wind component.">
+      <Real unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_v_3dw" valueReference="221" causality="output" variability="continuous" initial="calculated" description="3DW north-south wind component.">
+      <Real unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="diagnostic_vertical_wind" valueReference="222" causality="output" variability="continuous" initial="calculated" description="Continuity/DEM-derived diagnostic vertical wind; not convection or turbulence.">
+      <Real unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_speed_3d" valueReference="223" causality="output" variability="continuous" initial="calculated" description="Magnitude of the 3D wind vector.">
+      <Real unit="m/s" />
+    </ScalarVariable>
+    <ScalarVariable name="du_dx" valueReference="224" causality="output" variability="continuous" initial="calculated" description="Velocity-gradient tensor component du/dx.">
+      <Real unit="1/s" />
+    </ScalarVariable>
+    <ScalarVariable name="du_dy" valueReference="225" causality="output" variability="continuous" initial="calculated" description="Velocity-gradient tensor component du/dy.">
+      <Real unit="1/s" />
+    </ScalarVariable>
+    <ScalarVariable name="du_dz" valueReference="226" causality="output" variability="continuous" initial="calculated" description="Velocity-gradient tensor component du/dz.">
+      <Real unit="1/s" />
+    </ScalarVariable>
+    <ScalarVariable name="dv_dx" valueReference="227" causality="output" variability="continuous" initial="calculated" description="Velocity-gradient tensor component dv/dx.">
+      <Real unit="1/s" />
+    </ScalarVariable>
+    <ScalarVariable name="dv_dy" valueReference="228" causality="output" variability="continuous" initial="calculated" description="Velocity-gradient tensor component dv/dy.">
+      <Real unit="1/s" />
+    </ScalarVariable>
+    <ScalarVariable name="dv_dz" valueReference="229" causality="output" variability="continuous" initial="calculated" description="Velocity-gradient tensor component dv/dz.">
+      <Real unit="1/s" />
+    </ScalarVariable>
+    <ScalarVariable name="dw_dx" valueReference="230" causality="output" variability="continuous" initial="calculated" description="Velocity-gradient tensor component dw/dx.">
+      <Real unit="1/s" />
+    </ScalarVariable>
+    <ScalarVariable name="dw_dy" valueReference="231" causality="output" variability="continuous" initial="calculated" description="Velocity-gradient tensor component dw/dy.">
+      <Real unit="1/s" />
+    </ScalarVariable>
+    <ScalarVariable name="dw_dz" valueReference="232" causality="output" variability="continuous" initial="calculated" description="Velocity-gradient tensor component dw/dz.">
+      <Real unit="1/s" />
+    </ScalarVariable>
+    <ScalarVariable name="du_dt" valueReference="233" causality="output" variability="continuous" initial="calculated" description="Local temporal derivative of u.">
+      <Real unit="m/s2" />
+    </ScalarVariable>
+    <ScalarVariable name="dv_dt" valueReference="234" causality="output" variability="continuous" initial="calculated" description="Local temporal derivative of v.">
+      <Real unit="m/s2" />
+    </ScalarVariable>
+    <ScalarVariable name="dw_dt" valueReference="235" causality="output" variability="continuous" initial="calculated" description="Local temporal derivative of w.">
+      <Real unit="m/s2" />
+    </ScalarVariable>
+    <ScalarVariable name="Du_Dt" valueReference="236" causality="output" variability="continuous" initial="calculated" description="Material derivative of u.">
+      <Real unit="m/s2" />
+    </ScalarVariable>
+    <ScalarVariable name="Dv_Dt" valueReference="237" causality="output" variability="continuous" initial="calculated" description="Material derivative of v.">
+      <Real unit="m/s2" />
+    </ScalarVariable>
+    <ScalarVariable name="Dw_Dt" valueReference="238" causality="output" variability="continuous" initial="calculated" description="Material derivative of w.">
+      <Real unit="m/s2" />
+    </ScalarVariable>
+    <ScalarVariable name="continuity_residual" valueReference="239" causality="output" variability="continuous" initial="calculated" description="Numerical divergence residual du/dx+dv/dy+dw/dz.">
+      <Real unit="1/s" />
+    </ScalarVariable>
+    <ScalarVariable name="vertical_interp_lower_level" valueReference="240" causality="output" variability="continuous" initial="calculated" description="Lower AGL profile level used for interpolation.">
+      <Real unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="vertical_interp_upper_level" valueReference="241" causality="output" variability="continuous" initial="calculated" description="Upper AGL profile level used for interpolation.">
+      <Real unit="m" />
+    </ScalarVariable>
+    <ScalarVariable name="temporal_interp_t0_s" valueReference="242" causality="output" variability="continuous" initial="calculated" description="Relative lower forecast snapshot time.">
+      <Real unit="s" />
+    </ScalarVariable>
+    <ScalarVariable name="temporal_interp_t1_s" valueReference="243" causality="output" variability="continuous" initial="calculated" description="Relative upper forecast snapshot time.">
+      <Real unit="s" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_3dw_valid" valueReference="244" causality="output" variability="continuous" initial="calculated" description="1 when all principal 3DW outputs are finite.">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="wind_3dw_profile_mode" valueReference="245" causality="output" variability="continuous" initial="calculated" description="1=sparse-level linear interpolation, 0=documented 10 m fallback profile.">
+      <Real unit="1" />
+    </ScalarVariable>
+    <ScalarVariable name="air_density" valueReference="246" causality="output" variability="continuous" initial="calculated" description="Moist-air density derived from operational pressure, temperature and relative humidity.">
+      <Real unit="kg/m3" />
+    </ScalarVariable>
+  </ModelVariables>
+  <ModelStructure>
+    <Outputs>
+      <Unknown index="90" />
+      <Unknown index="91" />
+      <Unknown index="92" />
+      <Unknown index="93" />
+      <Unknown index="94" />
+      <Unknown index="95" />
+      <Unknown index="96" />
+      <Unknown index="97" />
+      <Unknown index="98" />
+      <Unknown index="99" />
+      <Unknown index="100" />
+      <Unknown index="101" />
+      <Unknown index="102" />
+      <Unknown index="103" />
+      <Unknown index="104" />
+      <Unknown index="105" />
+      <Unknown index="106" />
+      <Unknown index="107" />
+      <Unknown index="108" />
+      <Unknown index="109" />
+      <Unknown index="110" />
+      <Unknown index="111" />
+      <Unknown index="112" />
+      <Unknown index="113" />
+      <Unknown index="114" />
+      <Unknown index="115" />
+      <Unknown index="116" />
+      <Unknown index="117" />
+      <Unknown index="118" />
+      <Unknown index="119" />
+      <Unknown index="120" />
+      <Unknown index="121" />
+      <Unknown index="122" />
+      <Unknown index="123" />
+      <Unknown index="124" />
+      <Unknown index="125" />
+      <Unknown index="126" />
+      <Unknown index="127" />
+      <Unknown index="128" />
+      <Unknown index="129" />
+      <Unknown index="130" />
+      <Unknown index="131" />
+      <Unknown index="132" />
+      <Unknown index="133" />
+      <Unknown index="134" />
+      <Unknown index="135" />
+      <Unknown index="136" />
+      <Unknown index="137" />
+      <Unknown index="138" />
+      <Unknown index="139" />
+      <Unknown index="140" />
+      <Unknown index="141" />
+      <Unknown index="142" />
+      <Unknown index="143" />
+      <Unknown index="144" />
+      <Unknown index="145" />
+      <Unknown index="146" />
+      <Unknown index="147" />
+      <Unknown index="148" />
+      <Unknown index="149" />
+      <Unknown index="150" />
+      <Unknown index="151" />
+      <Unknown index="152" />
+      <Unknown index="193" />
+      <Unknown index="194" />
+      <Unknown index="195" />
+      <Unknown index="196" />
+      <Unknown index="197" />
+      <Unknown index="198" />
+      <Unknown index="199" />
+      <Unknown index="200" />
+      <Unknown index="201" />
+      <Unknown index="202" />
+      <Unknown index="203" />
+      <Unknown index="204" />
+      <Unknown index="205" />
+      <Unknown index="206" />
+      <Unknown index="207" />
+      <Unknown index="208" />
+      <Unknown index="209" />
+      <Unknown index="210" />
+      <Unknown index="211" />
+      <Unknown index="212" />
+      <Unknown index="213" />
+      <Unknown index="214" />
+      <Unknown index="215" />
+      <Unknown index="216" />
+      <Unknown index="217" />
+      <Unknown index="218" />
+      <Unknown index="219" />
+    </Outputs>
+  </ModelStructure>
+</fmiModelDescription>

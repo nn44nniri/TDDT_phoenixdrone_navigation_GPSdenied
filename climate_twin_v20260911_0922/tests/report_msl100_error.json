@@ -1,0 +1,19 @@
+{
+  "ok": false,
+  "error": {
+    "code": "CLIMATE_ALTITUDE_BELOW_GROUND",
+    "message": "Requested MSL altitude is below local terrain for every grid cell in the region.",
+    "details": {
+      "requested_altitude_msl_m": 100.0,
+      "ground_elevation_min_msl_m": 104.75264187722924,
+      "ground_elevation_max_msl_m": 145.8846804049173,
+      "affected_grid_cells": 28,
+      "affected_rows": 672,
+      "vertical_reference": "MSL",
+      "input_dataset": "climate_dataset/micromet_grid_24h.csv",
+      "region_file": "config/region.json",
+      "suggested_action": "Use --elevation-ground-level or request an MSL altitude above local terrain.",
+      "error_file": "reports/parameters_3d/error_msl_100m.json"
+    }
+  }
+}

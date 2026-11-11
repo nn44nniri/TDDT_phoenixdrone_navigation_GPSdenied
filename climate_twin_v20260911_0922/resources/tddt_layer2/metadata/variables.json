@@ -1,0 +1,2196 @@
+{
+  "schema_version": "2.0",
+  "twin_id": "MicroMetTwin",
+  "variables": {
+    "Du_Dt": {
+      "unit": "m/s2",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 236,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "Dv_Dt": {
+      "unit": "m/s2",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 237,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "Dw_Dt": {
+      "unit": "m/s2",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 238,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "actual_vapor_pressure": {
+      "unit": "Pa",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 104,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "actual_vapor_pressure_local": {
+      "unit": "Pa",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 140,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "altitude_agl_m": {
+      "unit": "m",
+      "frame": "AGL_local_terrain",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 171,
+      "source": "3DW_request_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "aspect_rad": {
+      "unit": "rad",
+      "frame": "shared_terrain_local_xy",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 113,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "aspect_rad_input": {
+      "unit": "rad",
+      "frame": "shared_terrain_local_xy",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 4,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "atmospheric_emissivity": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 131,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "barnes_distance_m": {
+      "unit": "m",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 135,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "barnes_filter_m2": {
+      "unit": "m2",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 13,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "barnes_second_pass_applied": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 156,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "barnes_second_pass_enabled": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 80,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "barnes_second_pass_radius_factor": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 81,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "barnes_weight": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 100,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "calibration_enabled": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 82,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "cloud_fraction": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 122,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "coefficient_Xs": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 144,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "coefficient_Ys": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 145,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "coefficient_Zs": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 146,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "continuity_residual": {
+      "unit": "1/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 239,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "curvature_max": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 24,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "curvature_min": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 23,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "curvature_radius_m": {
+      "unit": "m",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 14,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "curvature_raw": {
+      "unit": "1",
+      "frame": "shared_terrain_local_xy",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 141,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "curvature_scaled": {
+      "unit": "1",
+      "frame": "shared_terrain_local_xy",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 114,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "curvature_scaled_input": {
+      "unit": "1",
+      "frame": "shared_terrain_local_xy",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 5,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "day_of_year": {
+      "unit": "d",
+      "frame": "forecast_local_time",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 11,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "derive_slope_aspect_from_gradients": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 79,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "dewpoint_lapse_rate": {
+      "unit": "degC/m",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 106,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "dewpoint_local": {
+      "unit": "degC",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 105,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "dewpoint_reference": {
+      "unit": "degC",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 138,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "dewpoint_source": {
+      "unit": "degC",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 137,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "diagnostic_vertical_wind": {
+      "unit": "m/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 222,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "diffuse_transmissivity": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 129,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "direct_transmissivity": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 128,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "du_dt": {
+      "unit": "m/s2",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 233,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "du_dx": {
+      "unit": "1/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 224,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "du_dy": {
+      "unit": "1/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 225,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "du_dz": {
+      "unit": "1/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 226,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "dv_dt": {
+      "unit": "m/s2",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 234,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "dv_dx": {
+      "unit": "1/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 227,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "dv_dy": {
+      "unit": "1/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 228,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "dv_dz": {
+      "unit": "1/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 229,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "dw_dt": {
+      "unit": "m/s2",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 235,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "dw_dx": {
+      "unit": "1/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 230,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "dw_dy": {
+      "unit": "1/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 231,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "dw_dz": {
+      "unit": "1/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 232,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "elevation": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 2,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "enabled_source_count": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 150,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "fd_dx_m": {
+      "unit": "m",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 172,
+      "source": "3DW_request_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "fd_dy_m": {
+      "unit": "m",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 173,
+      "source": "3DW_request_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "fd_dz_m": {
+      "unit": "m",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 174,
+      "source": "3DW_request_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "fmi_time_s": {
+      "unit": "s",
+      "frame": "FMI_simulation_time",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 153,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "formula_error_code": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 152,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "self_describing_status"
+    },
+    "formula_valid": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 151,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "self_describing_status"
+    },
+    "gamma_c": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 9,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "gamma_s": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 8,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "hour_local": {
+      "unit": "h",
+      "frame": "forecast_local_time",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 10,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "lapse_rate": {
+      "unit": "degC/m",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 6,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "latitude": {
+      "unit": "deg",
+      "frame": "WGS84_geographic",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 0,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "longitude": {
+      "unit": "deg",
+      "frame": "WGS84_geographic",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 1,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "longwave_radiation": {
+      "unit": "W/m2",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 132,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "precipitation_chi_km": {
+      "unit": "1/km",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 25,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "precipitation_local": {
+      "unit": "mm/h",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 134,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "precipitation_reference": {
+      "unit": "mm/h",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 149,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "pressure_bias_pa": {
+      "unit": "Pa",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 88,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile0_agl_m": {
+      "unit": "m",
+      "frame": "AGL_local_terrain",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 182,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile0_u_t0": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 183,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile0_u_t1": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 185,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile0_v_t0": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 184,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile0_v_t1": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 186,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile1_agl_m": {
+      "unit": "m",
+      "frame": "AGL_local_terrain",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 187,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile1_u_t0": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 188,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile1_u_t1": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 190,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile1_v_t0": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 189,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile1_v_t1": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 191,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile2_agl_m": {
+      "unit": "m",
+      "frame": "AGL_local_terrain",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 192,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile2_u_t0": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 193,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile2_u_t1": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 195,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile2_v_t0": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 194,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile2_v_t1": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 196,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile3_agl_m": {
+      "unit": "m",
+      "frame": "AGL_local_terrain",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 197,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile3_u_t0": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 198,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile3_u_t1": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 200,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile3_v_t0": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 199,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile3_v_t1": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 201,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile4_agl_m": {
+      "unit": "m",
+      "frame": "AGL_local_terrain",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 202,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile4_u_t0": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 203,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile4_u_t1": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 205,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile4_v_t0": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 204,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile4_v_t1": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 206,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "profile_level_count": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 181,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "raw_relative_humidity_local": {
+      "unit": "%",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 158,
+      "source": "MicroMet_raw_formalism",
+      "semantic_quality": "raw_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "raw_shortwave_radiation": {
+      "unit": "W/m2",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 161,
+      "source": "MicroMet_raw_formalism",
+      "semantic_quality": "raw_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "raw_surface_pressure_pa": {
+      "unit": "Pa",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 162,
+      "source": "MicroMet_raw_formalism",
+      "semantic_quality": "raw_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "raw_temperature_local": {
+      "unit": "degC",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 157,
+      "source": "MicroMet_raw_formalism",
+      "semantic_quality": "raw_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "raw_wind_direction_terrain_rad": {
+      "unit": "rad",
+      "frame": "meteorological_angle_rad",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 160,
+      "source": "MicroMet_raw_formalism",
+      "semantic_quality": "raw_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "raw_wind_speed_terrain": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 159,
+      "source": "MicroMet_raw_formalism",
+      "semantic_quality": "raw_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "relative_humidity_bias_pct": {
+      "unit": "%",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 84,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "relative_humidity_local": {
+      "unit": "%",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 107,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "rh700": {
+      "unit": "%",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 12,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "rh700_used": {
+      "unit": "%",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 143,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "saturation_vapor_pressure": {
+      "unit": "Pa",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 103,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "saturation_vapor_pressure_local": {
+      "unit": "Pa",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 139,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "saturation_vapor_pressure_source": {
+      "unit": "Pa",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 136,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "shortwave_radiation": {
+      "unit": "W/m2",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 130,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "shortwave_reference_blend": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 90,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "shortwave_reference_wm2": {
+      "unit": "W/m2",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 89,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "shortwave_scale": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 87,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "slope_in_wind_direction": {
+      "unit": "rad",
+      "frame": "meteorological_angle_rad",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 115,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "slope_in_wind_direction_raw": {
+      "unit": "rad",
+      "frame": "meteorological_angle_rad",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 142,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "slope_rad": {
+      "unit": "rad",
+      "frame": "shared_terrain_local_xy",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 112,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "slope_rad_input": {
+      "unit": "rad",
+      "frame": "shared_terrain_local_xy",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 3,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "solar_azimuth": {
+      "unit": "rad",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 127,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "solar_declination": {
+      "unit": "rad",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 125,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "solar_hour_angle": {
+      "unit": "rad",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 124,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "solar_incidence": {
+      "unit": "rad",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 126,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "solar_zenith": {
+      "unit": "rad",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 123,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "source0_elevation": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 30,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source0_enabled": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 27,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source0_latitude": {
+      "unit": "deg",
+      "frame": "WGS84_geographic",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 28,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source0_longitude": {
+      "unit": "deg",
+      "frame": "WGS84_geographic",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 29,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source0_precipitation": {
+      "unit": "mm/h",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 35,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source0_relative_humidity": {
+      "unit": "%",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 32,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source0_surface_pressure_hpa": {
+      "unit": "hPa",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 36,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source0_temperature": {
+      "unit": "degC",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 31,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source0_wind_direction": {
+      "unit": "deg",
+      "frame": "meteorological_from_north_clockwise",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 34,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source0_wind_speed": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 33,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source1_elevation": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 40,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source1_enabled": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 37,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source1_latitude": {
+      "unit": "deg",
+      "frame": "WGS84_geographic",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 38,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source1_longitude": {
+      "unit": "deg",
+      "frame": "WGS84_geographic",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 39,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source1_precipitation": {
+      "unit": "mm/h",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 45,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source1_relative_humidity": {
+      "unit": "%",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 42,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source1_surface_pressure_hpa": {
+      "unit": "hPa",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 46,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source1_temperature": {
+      "unit": "degC",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 41,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source1_wind_direction": {
+      "unit": "deg",
+      "frame": "meteorological_from_north_clockwise",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 44,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source1_wind_speed": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 43,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source2_elevation": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 50,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source2_enabled": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 47,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source2_latitude": {
+      "unit": "deg",
+      "frame": "WGS84_geographic",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 48,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source2_longitude": {
+      "unit": "deg",
+      "frame": "WGS84_geographic",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 49,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source2_precipitation": {
+      "unit": "mm/h",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 55,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source2_relative_humidity": {
+      "unit": "%",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 52,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source2_surface_pressure_hpa": {
+      "unit": "hPa",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 56,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source2_temperature": {
+      "unit": "degC",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 51,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source2_wind_direction": {
+      "unit": "deg",
+      "frame": "meteorological_from_north_clockwise",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 54,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source2_wind_speed": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 53,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source3_elevation": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 60,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source3_enabled": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 57,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source3_latitude": {
+      "unit": "deg",
+      "frame": "WGS84_geographic",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 58,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source3_longitude": {
+      "unit": "deg",
+      "frame": "WGS84_geographic",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 59,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source3_precipitation": {
+      "unit": "mm/h",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 65,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source3_relative_humidity": {
+      "unit": "%",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 62,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source3_surface_pressure_hpa": {
+      "unit": "hPa",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 66,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source3_temperature": {
+      "unit": "degC",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 61,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source3_wind_direction": {
+      "unit": "deg",
+      "frame": "meteorological_from_north_clockwise",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 64,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source3_wind_speed": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 63,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source4_elevation": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 70,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source4_enabled": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 67,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source4_latitude": {
+      "unit": "deg",
+      "frame": "WGS84_geographic",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 68,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source4_longitude": {
+      "unit": "deg",
+      "frame": "WGS84_geographic",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 69,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source4_precipitation": {
+      "unit": "mm/h",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 75,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source4_relative_humidity": {
+      "unit": "%",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 72,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source4_surface_pressure_hpa": {
+      "unit": "hPa",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 76,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source4_temperature": {
+      "unit": "degC",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 71,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source4_wind_direction": {
+      "unit": "deg",
+      "frame": "meteorological_from_north_clockwise",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 74,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source4_wind_speed": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 73,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "source_elevation_barnes": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 148,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "surface_pressure_forecast_pa": {
+      "unit": "Pa",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 147,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "surface_pressure_pa": {
+      "unit": "Pa",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 133,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "temperature_bias_c": {
+      "unit": "degC",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 83,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "temperature_local": {
+      "unit": "degC",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 102,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "temperature_reference": {
+      "unit": "degC",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 101,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "temporal_alpha": {
+      "unit": "1",
+      "frame": "FMI_simulation_time",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 180,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "temporal_interp_t0_s": {
+      "unit": "s",
+      "frame": "FMI_simulation_time",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 242,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "temporal_interp_t1_s": {
+      "unit": "s",
+      "frame": "FMI_simulation_time",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 243,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "temporal_interval_s": {
+      "unit": "s",
+      "frame": "FMI_simulation_time",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 179,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "temporal_t0_u10": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 175,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "temporal_t0_v10": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 176,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "temporal_t1_u10": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 177,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "temporal_t1_v10": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 178,
+      "source": "offline_forecast_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "terrain_dzdx": {
+      "unit": "1",
+      "frame": "shared_terrain_local_xy",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 77,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "terrain_dzdx_used": {
+      "unit": "1",
+      "frame": "shared_terrain_local_xy",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 154,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "terrain_dzdy": {
+      "unit": "1",
+      "frame": "shared_terrain_local_xy",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 78,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "terrain_dzdy_used": {
+      "unit": "1",
+      "frame": "shared_terrain_local_xy",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 155,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "use_dem_curvature": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 26,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "vapor_coefficient": {
+      "unit": "1/m",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 7,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "vertical_interp_lower_level": {
+      "unit": "m",
+      "frame": "AGL_local_terrain",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 240,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "vertical_interp_upper_level": {
+      "unit": "m",
+      "frame": "AGL_local_terrain",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 241,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "wind_3dw_enabled": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 170,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "wind_3dw_profile_mode": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 245,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "wind_3dw_valid": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 244,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "wind_direction_background_rad": {
+      "unit": "rad",
+      "frame": "meteorological_angle_rad",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 111,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "wind_direction_bias_deg": {
+      "unit": "deg",
+      "frame": "meteorological_from_north_clockwise",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 86,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "wind_direction_diversion": {
+      "unit": "rad",
+      "frame": "meteorological_angle_rad",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 118,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "wind_direction_terrain_rad": {
+      "unit": "rad",
+      "frame": "meteorological_angle_rad",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 119,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "wind_profile_power": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 207,
+      "source": "3DW_request_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "wind_speed_3d": {
+      "unit": "m/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 223,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "wind_speed_background": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 110,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "wind_speed_scale": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 85,
+      "source": "MicroMet_configuration",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "wind_speed_terrain": {
+      "unit": "m/s",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 117,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "wind_u": {
+      "unit": "m/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 108,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "wind_u_3dw": {
+      "unit": "m/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 220,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "wind_u_terrain": {
+      "unit": "m/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 120,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "wind_v": {
+      "unit": "m/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 109,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "wind_v_3dw": {
+      "unit": "m/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 221,
+      "source": "MicroMet-3DW_Extension",
+      "semantic_quality": "diagnostic_model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1 && wind_3dw_valid==1"
+    },
+    "wind_v_terrain": {
+      "unit": "m/s",
+      "frame": "local_ENU_east_north_up",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 121,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "wind_weight": {
+      "unit": "1",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 116,
+      "source": "MicroMetTwin_FMU",
+      "semantic_quality": "model_derived",
+      "semantic_validity_rule": "finite && formula_valid==1"
+    },
+    "zE": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 16,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "zN": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 18,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "zNE": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 20,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "zNW": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 21,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "zS": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 17,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "zSE": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 22,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "zSW": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 19,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "zW": {
+      "unit": "m",
+      "frame": "MSL_vertical",
+      "causality": "input",
+      "variability": "continuous",
+      "value_reference": 15,
+      "source": "shared_terrain_or_request_adapter",
+      "semantic_quality": "provided_or_adapter_derived",
+      "semantic_validity_rule": "finite_and_within_declared_domain"
+    },
+    "air_density": {
+      "unit": "kg/m3",
+      "frame": "scalar_local_atmosphere",
+      "causality": "output",
+      "variability": "continuous",
+      "value_reference": 246,
+      "source": "MicroMetTwin_operational_extension",
+      "semantic_quality": "derived_thermodynamic",
+      "semantic_validity_rule": "finite && formula_valid==1 && air_density>0"
+    }
+  }
+}

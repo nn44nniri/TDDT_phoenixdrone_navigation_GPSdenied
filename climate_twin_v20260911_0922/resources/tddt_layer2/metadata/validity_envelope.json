@@ -1,0 +1,59 @@
+{
+  "schema_version": "2.0",
+  "version": "2026-08-12-v1",
+  "hard_rules": [
+    "finite outputs",
+    "0<=relative_humidity_local<=100",
+    "wind_speed_terrain>=0",
+    "surface_pressure_pa>0",
+    "formula_valid==1",
+    "wind_3dw_valid required for 3DW quantities",
+    "air_density>0"
+  ],
+  "ranges_from_simulation_support": {
+    "temperature_local": {
+      "min": 13.955379889857833,
+      "max": 36.86046210997932
+    },
+    "relative_humidity_local": {
+      "min": 6.721825759851494,
+      "max": 24.684246631977846
+    },
+    "wind_speed_terrain": {
+      "min": 1.1747461350002029,
+      "max": 6.484107150249169
+    },
+    "surface_pressure_pa": {
+      "min": 72528.89346663222,
+      "max": 83525.14045465822
+    },
+    "altitude_agl_m": {
+      "min": 100.0,
+      "max": 1000.0
+    },
+    "slope_deg": {
+      "min": 0.788299024105072,
+      "max": 23.066251754760742
+    },
+    "aspect_deg": {
+      "min": 17.582969665527344,
+      "max": 235.8597106933594
+    },
+    "curvature_scaled": {
+      "min": -0.019725462473919583,
+      "max": 0.015520098654592942
+    },
+    "wind_speed_3d": {
+      "min": 0.0,
+      "max": 0.0
+    },
+    "air_density": {
+      "min": 0.8275832993519093,
+      "max": 0.9937344870393098,
+      "unit": "kg/m3",
+      "derived_from": "temperature_local+relative_humidity_local+surface_pressure_pa"
+    }
+  },
+  "claim": "applicability envelope, not field validation",
+  "novelty_policy": "outside TEP support reduces V; invalid physics sets V=0"
+}

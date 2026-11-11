@@ -1,0 +1,1690 @@
+{
+  "schema_version": "2.2",
+  "twin_id": "MicroMetTwin",
+  "domain": "climate/downscaling",
+  "layer": 2,
+  "model": "MicroMetTwin.fmu",
+  "formalism": "micromet_formalism_v2.md",
+  "fmi": "2.0 Co-Simulation",
+  "state_outputs": [
+    "temperature_local",
+    "relative_humidity_local",
+    "wind_speed_terrain",
+    "wind_direction_terrain_deg",
+    "surface_pressure_pa",
+    "shortwave_radiation",
+    "longwave_radiation",
+    "precipitation_local",
+    "wind_u_3dw",
+    "wind_v_3dw",
+    "diagnostic_vertical_wind",
+    "wind_speed_3d",
+    "air_density"
+  ],
+  "input_contract": {
+    "forecast": "offline coarse/point forecast",
+    "terrain": "shared terrain_obstacles.tif via Python adapter",
+    "position": "WGS84 lon/lat + MSL/AGL",
+    "time": "within forecast validity window"
+  },
+  "parameter_contract": {
+    "barnes_filter_km": "configured by caller",
+    "calibration": "explicit FMI calibration inputs",
+    "3dw": "finite-difference/profile parameters"
+  },
+  "operating_domain": {
+    "terrain_policy": "require-dem for TDDT",
+    "vertical_reference": "explicit AGL/MSL",
+    "forecast_range": "no silent extrapolation"
+  },
+  "constraints": [
+    "finite outputs",
+    "0<=relative_humidity_local<=100",
+    "wind_speed_terrain>=0",
+    "surface_pressure_pa>0",
+    "formula_valid==1",
+    "wind_3dw_valid required for 3DW quantities"
+  ],
+  "tolerances": {
+    "continuity_residual": "diagnostic; application-specific threshold must be set by Layer 3/validation policy"
+  },
+  "context_contract": [
+    "context_id",
+    "stage_id",
+    "operation_code",
+    "CRP/SARG prior hooks optional"
+  ],
+  "feedback_contract": "field evidence may be logged in Layer 2 but persistent TEP update is slow/versioned/rollback-capable and must not occur on fast ticks",
+  "architectural_exclusions": [
+    "STD(t)",
+    "network topology G(t)",
+    "coupling K(t)",
+    "network weights W(t)",
+    "Center of Consistency C*(t)",
+    "decision/control"
+  ],
+  "scientific_contract": {
+    "states": [
+      {
+        "name": "temperature_local",
+        "causality": "output",
+        "unit": "degC",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "relative_humidity_local",
+        "causality": "output",
+        "unit": "%",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "wind_speed_terrain",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "wind_direction_terrain_deg",
+        "causality": "output",
+        "unit": "deg",
+        "frame": "meteorological_from_north_clockwise"
+      },
+      {
+        "name": "surface_pressure_pa",
+        "causality": "output",
+        "unit": "Pa",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "shortwave_radiation",
+        "causality": "output",
+        "unit": "W/m2",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "longwave_radiation",
+        "causality": "output",
+        "unit": "W/m2",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "precipitation_local",
+        "causality": "output",
+        "unit": "mm/h",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "wind_u_3dw",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "wind_v_3dw",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "diagnostic_vertical_wind",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "wind_speed_3d",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "air_density",
+        "causality": "output",
+        "unit": "kg/m3",
+        "frame": "scalar_local_atmosphere"
+      }
+    ],
+    "inputs": [
+      {
+        "name": "latitude",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "WGS84_geographic",
+        "start": 47.525190299169076
+      },
+      {
+        "name": "longitude",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "WGS84_geographic",
+        "start": 44.29738495970912
+      },
+      {
+        "name": "elevation",
+        "causality": "input",
+        "unit": "m",
+        "frame": "MSL_vertical",
+        "start": 100.0
+      },
+      {
+        "name": "slope_rad_input",
+        "causality": "input",
+        "unit": "rad",
+        "frame": "shared_terrain_local_xy",
+        "start": 0.0
+      },
+      {
+        "name": "aspect_rad_input",
+        "causality": "input",
+        "unit": "rad",
+        "frame": "shared_terrain_local_xy",
+        "start": 0.0
+      },
+      {
+        "name": "curvature_scaled_input",
+        "causality": "input",
+        "unit": "1",
+        "frame": "shared_terrain_local_xy",
+        "start": 0.0
+      },
+      {
+        "name": "lapse_rate",
+        "causality": "input",
+        "unit": "degC/m",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0068
+      },
+      {
+        "name": "vapor_coefficient",
+        "causality": "input",
+        "unit": "1/m",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0004
+      },
+      {
+        "name": "hour_local",
+        "causality": "input",
+        "unit": "h",
+        "frame": "forecast_local_time",
+        "start": 12.0
+      },
+      {
+        "name": "day_of_year",
+        "causality": "input",
+        "unit": "d",
+        "frame": "forecast_local_time",
+        "start": 180.0
+      },
+      {
+        "name": "rh700",
+        "causality": "input",
+        "unit": "%",
+        "frame": "scalar_local_atmosphere",
+        "start": -1.0
+      },
+      {
+        "name": "barnes_filter_m2",
+        "causality": "input",
+        "unit": "m2",
+        "frame": "scalar_local_atmosphere",
+        "start": 100000000.0
+      },
+      {
+        "name": "curvature_radius_m",
+        "causality": "input",
+        "unit": "m",
+        "frame": "scalar_local_atmosphere",
+        "start": 1000.0
+      },
+      {
+        "name": "zW",
+        "causality": "input",
+        "unit": "m",
+        "frame": "MSL_vertical",
+        "start": 100.0
+      },
+      {
+        "name": "zE",
+        "causality": "input",
+        "unit": "m",
+        "frame": "MSL_vertical",
+        "start": 100.0
+      },
+      {
+        "name": "zS",
+        "causality": "input",
+        "unit": "m",
+        "frame": "MSL_vertical",
+        "start": 100.0
+      },
+      {
+        "name": "zN",
+        "causality": "input",
+        "unit": "m",
+        "frame": "MSL_vertical",
+        "start": 100.0
+      },
+      {
+        "name": "zSW",
+        "causality": "input",
+        "unit": "m",
+        "frame": "MSL_vertical",
+        "start": 100.0
+      },
+      {
+        "name": "zNE",
+        "causality": "input",
+        "unit": "m",
+        "frame": "MSL_vertical",
+        "start": 100.0
+      },
+      {
+        "name": "zNW",
+        "causality": "input",
+        "unit": "m",
+        "frame": "MSL_vertical",
+        "start": 100.0
+      },
+      {
+        "name": "zSE",
+        "causality": "input",
+        "unit": "m",
+        "frame": "MSL_vertical",
+        "start": 100.0
+      },
+      {
+        "name": "curvature_min",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": -0.5
+      },
+      {
+        "name": "curvature_max",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.5
+      },
+      {
+        "name": "use_dem_curvature",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 1.0
+      },
+      {
+        "name": "source0_enabled",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 1.0
+      },
+      {
+        "name": "source0_latitude",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "WGS84_geographic",
+        "start": 47.525190299169076
+      },
+      {
+        "name": "source0_longitude",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "WGS84_geographic",
+        "start": 44.29738495970912
+      },
+      {
+        "name": "source0_elevation",
+        "causality": "input",
+        "unit": "m",
+        "frame": "MSL_vertical",
+        "start": 100.0
+      },
+      {
+        "name": "source0_temperature",
+        "causality": "input",
+        "unit": "degC",
+        "frame": "scalar_local_atmosphere",
+        "start": 20.0
+      },
+      {
+        "name": "source0_relative_humidity",
+        "causality": "input",
+        "unit": "%",
+        "frame": "scalar_local_atmosphere",
+        "start": 50.0
+      },
+      {
+        "name": "source0_wind_speed",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": 4.0
+      },
+      {
+        "name": "source0_wind_direction",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "meteorological_from_north_clockwise",
+        "start": 260.0
+      },
+      {
+        "name": "source0_precipitation",
+        "causality": "input",
+        "unit": "mm/h",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0
+      },
+      {
+        "name": "source0_surface_pressure_hpa",
+        "causality": "input",
+        "unit": "hPa",
+        "frame": "scalar_local_atmosphere",
+        "start": 1001.0
+      },
+      {
+        "name": "source1_enabled",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0
+      },
+      {
+        "name": "source1_latitude",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "WGS84_geographic",
+        "start": 47.525190299169076
+      },
+      {
+        "name": "source1_longitude",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "WGS84_geographic",
+        "start": 44.29738495970912
+      },
+      {
+        "name": "source1_elevation",
+        "causality": "input",
+        "unit": "m",
+        "frame": "MSL_vertical",
+        "start": 100.0
+      },
+      {
+        "name": "source1_temperature",
+        "causality": "input",
+        "unit": "degC",
+        "frame": "scalar_local_atmosphere",
+        "start": 20.0
+      },
+      {
+        "name": "source1_relative_humidity",
+        "causality": "input",
+        "unit": "%",
+        "frame": "scalar_local_atmosphere",
+        "start": 50.0
+      },
+      {
+        "name": "source1_wind_speed",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": 4.0
+      },
+      {
+        "name": "source1_wind_direction",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "meteorological_from_north_clockwise",
+        "start": 260.0
+      },
+      {
+        "name": "source1_precipitation",
+        "causality": "input",
+        "unit": "mm/h",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0
+      },
+      {
+        "name": "source1_surface_pressure_hpa",
+        "causality": "input",
+        "unit": "hPa",
+        "frame": "scalar_local_atmosphere",
+        "start": 1001.0
+      },
+      {
+        "name": "source2_enabled",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0
+      },
+      {
+        "name": "source2_latitude",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "WGS84_geographic",
+        "start": 47.525190299169076
+      },
+      {
+        "name": "source2_longitude",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "WGS84_geographic",
+        "start": 44.29738495970912
+      },
+      {
+        "name": "source2_elevation",
+        "causality": "input",
+        "unit": "m",
+        "frame": "MSL_vertical",
+        "start": 100.0
+      },
+      {
+        "name": "source2_temperature",
+        "causality": "input",
+        "unit": "degC",
+        "frame": "scalar_local_atmosphere",
+        "start": 20.0
+      },
+      {
+        "name": "source2_relative_humidity",
+        "causality": "input",
+        "unit": "%",
+        "frame": "scalar_local_atmosphere",
+        "start": 50.0
+      },
+      {
+        "name": "source2_wind_speed",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": 4.0
+      },
+      {
+        "name": "source2_wind_direction",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "meteorological_from_north_clockwise",
+        "start": 260.0
+      },
+      {
+        "name": "source2_precipitation",
+        "causality": "input",
+        "unit": "mm/h",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0
+      },
+      {
+        "name": "source2_surface_pressure_hpa",
+        "causality": "input",
+        "unit": "hPa",
+        "frame": "scalar_local_atmosphere",
+        "start": 1001.0
+      },
+      {
+        "name": "source3_enabled",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0
+      },
+      {
+        "name": "source3_latitude",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "WGS84_geographic",
+        "start": 47.525190299169076
+      },
+      {
+        "name": "source3_longitude",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "WGS84_geographic",
+        "start": 44.29738495970912
+      },
+      {
+        "name": "source3_elevation",
+        "causality": "input",
+        "unit": "m",
+        "frame": "MSL_vertical",
+        "start": 100.0
+      },
+      {
+        "name": "source3_temperature",
+        "causality": "input",
+        "unit": "degC",
+        "frame": "scalar_local_atmosphere",
+        "start": 20.0
+      },
+      {
+        "name": "source3_relative_humidity",
+        "causality": "input",
+        "unit": "%",
+        "frame": "scalar_local_atmosphere",
+        "start": 50.0
+      },
+      {
+        "name": "source3_wind_speed",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": 4.0
+      },
+      {
+        "name": "source3_wind_direction",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "meteorological_from_north_clockwise",
+        "start": 260.0
+      },
+      {
+        "name": "source3_precipitation",
+        "causality": "input",
+        "unit": "mm/h",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0
+      },
+      {
+        "name": "source3_surface_pressure_hpa",
+        "causality": "input",
+        "unit": "hPa",
+        "frame": "scalar_local_atmosphere",
+        "start": 1001.0
+      },
+      {
+        "name": "source4_enabled",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0
+      },
+      {
+        "name": "source4_latitude",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "WGS84_geographic",
+        "start": 47.525190299169076
+      },
+      {
+        "name": "source4_longitude",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "WGS84_geographic",
+        "start": 44.29738495970912
+      },
+      {
+        "name": "source4_elevation",
+        "causality": "input",
+        "unit": "m",
+        "frame": "MSL_vertical",
+        "start": 100.0
+      },
+      {
+        "name": "source4_temperature",
+        "causality": "input",
+        "unit": "degC",
+        "frame": "scalar_local_atmosphere",
+        "start": 20.0
+      },
+      {
+        "name": "source4_relative_humidity",
+        "causality": "input",
+        "unit": "%",
+        "frame": "scalar_local_atmosphere",
+        "start": 50.0
+      },
+      {
+        "name": "source4_wind_speed",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": 4.0
+      },
+      {
+        "name": "source4_wind_direction",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "meteorological_from_north_clockwise",
+        "start": 260.0
+      },
+      {
+        "name": "source4_precipitation",
+        "causality": "input",
+        "unit": "mm/h",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0
+      },
+      {
+        "name": "source4_surface_pressure_hpa",
+        "causality": "input",
+        "unit": "hPa",
+        "frame": "scalar_local_atmosphere",
+        "start": 1001.0
+      },
+      {
+        "name": "terrain_dzdx",
+        "causality": "input",
+        "unit": "1",
+        "frame": "shared_terrain_local_xy",
+        "start": 0.0
+      },
+      {
+        "name": "terrain_dzdy",
+        "causality": "input",
+        "unit": "1",
+        "frame": "shared_terrain_local_xy",
+        "start": 0.0
+      },
+      {
+        "name": "derive_slope_aspect_from_gradients",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 1.0
+      },
+      {
+        "name": "barnes_second_pass_enabled",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 1.0
+      },
+      {
+        "name": "barnes_second_pass_radius_factor",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.5
+      },
+      {
+        "name": "shortwave_reference_wm2",
+        "causality": "input",
+        "unit": "W/m2",
+        "frame": "scalar_local_atmosphere",
+        "start": -1.0
+      },
+      {
+        "name": "wind_3dw_enabled",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0
+      },
+      {
+        "name": "altitude_agl_m",
+        "causality": "input",
+        "unit": "m",
+        "frame": "AGL_local_terrain",
+        "start": 10.0
+      },
+      {
+        "name": "temporal_t0_u10",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "temporal_t0_v10",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "temporal_t1_u10",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "temporal_t1_v10",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "temporal_interval_s",
+        "causality": "input",
+        "unit": "s",
+        "frame": "FMI_simulation_time",
+        "start": 0.0
+      },
+      {
+        "name": "temporal_alpha",
+        "causality": "input",
+        "unit": "1",
+        "frame": "FMI_simulation_time",
+        "start": 0.0
+      },
+      {
+        "name": "profile_level_count",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0
+      },
+      {
+        "name": "profile0_agl_m",
+        "causality": "input",
+        "unit": "m",
+        "frame": "AGL_local_terrain",
+        "start": 10.0
+      },
+      {
+        "name": "profile0_u_t0",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile0_v_t0",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile0_u_t1",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile0_v_t1",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile1_agl_m",
+        "causality": "input",
+        "unit": "m",
+        "frame": "AGL_local_terrain",
+        "start": 80.0
+      },
+      {
+        "name": "profile1_u_t0",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile1_v_t0",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile1_u_t1",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile1_v_t1",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile2_agl_m",
+        "causality": "input",
+        "unit": "m",
+        "frame": "AGL_local_terrain",
+        "start": 150.0
+      },
+      {
+        "name": "profile2_u_t0",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile2_v_t0",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile2_u_t1",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile2_v_t1",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile3_agl_m",
+        "causality": "input",
+        "unit": "m",
+        "frame": "AGL_local_terrain",
+        "start": 220.0
+      },
+      {
+        "name": "profile3_u_t0",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile3_v_t0",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile3_u_t1",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile3_v_t1",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile4_agl_m",
+        "causality": "input",
+        "unit": "m",
+        "frame": "AGL_local_terrain",
+        "start": 290.0
+      },
+      {
+        "name": "profile4_u_t0",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile4_v_t0",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile4_u_t1",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      },
+      {
+        "name": "profile4_v_t1",
+        "causality": "input",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere",
+        "start": NaN
+      }
+    ],
+    "outputs": [
+      {
+        "name": "barnes_weight",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "temperature_reference",
+        "causality": "output",
+        "unit": "degC",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "temperature_local",
+        "causality": "output",
+        "unit": "degC",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "saturation_vapor_pressure",
+        "causality": "output",
+        "unit": "Pa",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "actual_vapor_pressure",
+        "causality": "output",
+        "unit": "Pa",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "dewpoint_local",
+        "causality": "output",
+        "unit": "degC",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "dewpoint_lapse_rate",
+        "causality": "output",
+        "unit": "degC/m",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "relative_humidity_local",
+        "causality": "output",
+        "unit": "%",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "wind_u",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "wind_v",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "wind_speed_background",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "wind_direction_background_rad",
+        "causality": "output",
+        "unit": "rad",
+        "frame": "meteorological_angle_rad"
+      },
+      {
+        "name": "slope_rad",
+        "causality": "output",
+        "unit": "rad",
+        "frame": "shared_terrain_local_xy"
+      },
+      {
+        "name": "aspect_rad",
+        "causality": "output",
+        "unit": "rad",
+        "frame": "shared_terrain_local_xy"
+      },
+      {
+        "name": "curvature_scaled",
+        "causality": "output",
+        "unit": "1",
+        "frame": "shared_terrain_local_xy"
+      },
+      {
+        "name": "slope_in_wind_direction",
+        "causality": "output",
+        "unit": "rad",
+        "frame": "meteorological_angle_rad"
+      },
+      {
+        "name": "wind_weight",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "wind_speed_terrain",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "wind_direction_diversion",
+        "causality": "output",
+        "unit": "rad",
+        "frame": "meteorological_angle_rad"
+      },
+      {
+        "name": "wind_direction_terrain_rad",
+        "causality": "output",
+        "unit": "rad",
+        "frame": "meteorological_angle_rad"
+      },
+      {
+        "name": "wind_u_terrain",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "wind_v_terrain",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "cloud_fraction",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "solar_zenith",
+        "causality": "output",
+        "unit": "rad",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "solar_hour_angle",
+        "causality": "output",
+        "unit": "rad",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "solar_declination",
+        "causality": "output",
+        "unit": "rad",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "solar_incidence",
+        "causality": "output",
+        "unit": "rad",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "solar_azimuth",
+        "causality": "output",
+        "unit": "rad",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "direct_transmissivity",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "diffuse_transmissivity",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "shortwave_radiation",
+        "causality": "output",
+        "unit": "W/m2",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "atmospheric_emissivity",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "longwave_radiation",
+        "causality": "output",
+        "unit": "W/m2",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "surface_pressure_pa",
+        "causality": "output",
+        "unit": "Pa",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "precipitation_local",
+        "causality": "output",
+        "unit": "mm/h",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "barnes_distance_m",
+        "causality": "output",
+        "unit": "m",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "saturation_vapor_pressure_source",
+        "causality": "output",
+        "unit": "Pa",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "dewpoint_source",
+        "causality": "output",
+        "unit": "degC",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "dewpoint_reference",
+        "causality": "output",
+        "unit": "degC",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "saturation_vapor_pressure_local",
+        "causality": "output",
+        "unit": "Pa",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "actual_vapor_pressure_local",
+        "causality": "output",
+        "unit": "Pa",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "curvature_raw",
+        "causality": "output",
+        "unit": "1",
+        "frame": "shared_terrain_local_xy"
+      },
+      {
+        "name": "slope_in_wind_direction_raw",
+        "causality": "output",
+        "unit": "rad",
+        "frame": "meteorological_angle_rad"
+      },
+      {
+        "name": "rh700_used",
+        "causality": "output",
+        "unit": "%",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "coefficient_Xs",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "coefficient_Ys",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "coefficient_Zs",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "surface_pressure_forecast_pa",
+        "causality": "output",
+        "unit": "Pa",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "source_elevation_barnes",
+        "causality": "output",
+        "unit": "m",
+        "frame": "MSL_vertical"
+      },
+      {
+        "name": "precipitation_reference",
+        "causality": "output",
+        "unit": "mm/h",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "enabled_source_count",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "formula_valid",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "formula_error_code",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "fmi_time_s",
+        "causality": "output",
+        "unit": "s",
+        "frame": "FMI_simulation_time"
+      },
+      {
+        "name": "terrain_dzdx_used",
+        "causality": "output",
+        "unit": "1",
+        "frame": "shared_terrain_local_xy"
+      },
+      {
+        "name": "terrain_dzdy_used",
+        "causality": "output",
+        "unit": "1",
+        "frame": "shared_terrain_local_xy"
+      },
+      {
+        "name": "barnes_second_pass_applied",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "raw_temperature_local",
+        "causality": "output",
+        "unit": "degC",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "raw_relative_humidity_local",
+        "causality": "output",
+        "unit": "%",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "raw_wind_speed_terrain",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "raw_wind_direction_terrain_rad",
+        "causality": "output",
+        "unit": "rad",
+        "frame": "meteorological_angle_rad"
+      },
+      {
+        "name": "raw_shortwave_radiation",
+        "causality": "output",
+        "unit": "W/m2",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "raw_surface_pressure_pa",
+        "causality": "output",
+        "unit": "Pa",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "wind_u_3dw",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "wind_v_3dw",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "diagnostic_vertical_wind",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "wind_speed_3d",
+        "causality": "output",
+        "unit": "m/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "du_dx",
+        "causality": "output",
+        "unit": "1/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "du_dy",
+        "causality": "output",
+        "unit": "1/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "du_dz",
+        "causality": "output",
+        "unit": "1/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "dv_dx",
+        "causality": "output",
+        "unit": "1/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "dv_dy",
+        "causality": "output",
+        "unit": "1/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "dv_dz",
+        "causality": "output",
+        "unit": "1/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "dw_dx",
+        "causality": "output",
+        "unit": "1/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "dw_dy",
+        "causality": "output",
+        "unit": "1/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "dw_dz",
+        "causality": "output",
+        "unit": "1/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "du_dt",
+        "causality": "output",
+        "unit": "m/s2",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "dv_dt",
+        "causality": "output",
+        "unit": "m/s2",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "dw_dt",
+        "causality": "output",
+        "unit": "m/s2",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "Du_Dt",
+        "causality": "output",
+        "unit": "m/s2",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "Dv_Dt",
+        "causality": "output",
+        "unit": "m/s2",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "Dw_Dt",
+        "causality": "output",
+        "unit": "m/s2",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "continuity_residual",
+        "causality": "output",
+        "unit": "1/s",
+        "frame": "local_ENU_east_north_up"
+      },
+      {
+        "name": "vertical_interp_lower_level",
+        "causality": "output",
+        "unit": "m",
+        "frame": "AGL_local_terrain"
+      },
+      {
+        "name": "vertical_interp_upper_level",
+        "causality": "output",
+        "unit": "m",
+        "frame": "AGL_local_terrain"
+      },
+      {
+        "name": "temporal_interp_t0_s",
+        "causality": "output",
+        "unit": "s",
+        "frame": "FMI_simulation_time"
+      },
+      {
+        "name": "temporal_interp_t1_s",
+        "causality": "output",
+        "unit": "s",
+        "frame": "FMI_simulation_time"
+      },
+      {
+        "name": "wind_3dw_valid",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "wind_3dw_profile_mode",
+        "causality": "output",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere"
+      },
+      {
+        "name": "air_density",
+        "causality": "output",
+        "unit": "kg/m3",
+        "frame": "scalar_local_atmosphere"
+      }
+    ],
+    "parameters": [
+      {
+        "name": "gamma_s",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.58
+      },
+      {
+        "name": "gamma_c",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.42
+      },
+      {
+        "name": "precipitation_chi_km",
+        "causality": "input",
+        "unit": "1/km",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.25
+      },
+      {
+        "name": "calibration_enabled",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 1.0
+      },
+      {
+        "name": "temperature_bias_c",
+        "causality": "input",
+        "unit": "degC",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.4091377409640393
+      },
+      {
+        "name": "relative_humidity_bias_pct",
+        "causality": "input",
+        "unit": "%",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0
+      },
+      {
+        "name": "wind_speed_scale",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 1.194
+      },
+      {
+        "name": "wind_direction_bias_deg",
+        "causality": "input",
+        "unit": "deg",
+        "frame": "meteorological_from_north_clockwise",
+        "start": 0.0
+      },
+      {
+        "name": "shortwave_scale",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 1.69731
+      },
+      {
+        "name": "pressure_bias_pa",
+        "causality": "input",
+        "unit": "Pa",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.0
+      },
+      {
+        "name": "shortwave_reference_blend",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "min": 0.0,
+        "max": 1.0,
+        "start": 0.75
+      },
+      {
+        "name": "fd_dx_m",
+        "causality": "input",
+        "unit": "m",
+        "frame": "scalar_local_atmosphere",
+        "start": 100.0
+      },
+      {
+        "name": "fd_dy_m",
+        "causality": "input",
+        "unit": "m",
+        "frame": "scalar_local_atmosphere",
+        "start": 100.0
+      },
+      {
+        "name": "fd_dz_m",
+        "causality": "input",
+        "unit": "m",
+        "frame": "scalar_local_atmosphere",
+        "start": 10.0
+      },
+      {
+        "name": "wind_profile_power",
+        "causality": "input",
+        "unit": "1",
+        "frame": "scalar_local_atmosphere",
+        "start": 0.143
+      }
+    ],
+    "ranges": {
+      "source": "FMI min/max where declared + metadata/validity_envelope.json + TEP support bounds",
+      "air_density": {
+        "min_exclusive": 0.0,
+        "unit": "kg/m3",
+        "note": "operationally derived moist-air density"
+      }
+    },
+    "validity_envelope": "metadata/validity_envelope.json",
+    "physical_constraints": [
+      "0<=relative_humidity_local<=100",
+      "wind_speed_terrain>=0",
+      "surface_pressure_pa>0",
+      "wind norm identities",
+      "continuity identity",
+      "air_density > 0"
+    ],
+    "numerical_constraints": [
+      "all selected outputs finite",
+      "formula_valid==1",
+      "3DW outputs require wind_3dw_valid==1",
+      "finite-difference step-halving convergence check in TEP build"
+    ],
+    "assumptions": [
+      "MicroMet is a downscaling model, not a full CFD/nonhydrostatic atmospheric solver",
+      "shared terrain truth is supplied by terrain_obstacles.tif adapter",
+      "forecast extrapolation is forbidden unless explicitly implemented",
+      "3DW vertical wind is diagnostic"
+    ],
+    "uncertainty_sources": [
+      "input",
+      "parameter",
+      "model/formalism",
+      "numerical",
+      "context/novelty"
+    ],
+    "quality_rules": "metadata/quality_rules.json",
+    "reliability_pass_rules": "metadata/reliability_profile.json + tep/manifest.json:test_framework",
+    "provenance": {
+      "formalism": "micromet_formalism_v2.md",
+      "semantic_schema": "docs/fmi_semantic_schema.json",
+      "tep_manifest": "tep/manifest.json"
+    }
+  },
+  "contract_completeness": [
+    "inputs",
+    "outputs",
+    "states",
+    "parameters",
+    "units",
+    "frames",
+    "ranges",
+    "validity envelope",
+    "physical constraints",
+    "numerical constraints",
+    "assumptions",
+    "uncertainty sources",
+    "quality rules",
+    "reliability pass rules",
+    "provenance"
+  ],
+  "uncertainty_contract": {
+    "quantified_state_outputs": [
+      "temperature_local",
+      "relative_humidity_local",
+      "wind_speed_terrain",
+      "wind_direction_terrain_deg",
+      "surface_pressure_pa",
+      "shortwave_radiation",
+      "wind_u_3dw",
+      "wind_v_3dw",
+      "diagnostic_vertical_wind",
+      "wind_speed_3d",
+      "air_density"
+    ],
+    "covariance_variable_order": "resources/tddt_layer2/tep/manifest.json::covariance_variable_order",
+    "novelty_inflation": "std*=inflate; variance/covariance*=inflate^2",
+    "availability_gates": {
+      "wind_u_3dw": "wind_3dw_valid==1",
+      "wind_v_3dw": "wind_3dw_valid==1",
+      "diagnostic_vertical_wind": "wind_3dw_valid==1",
+      "wind_speed_3d": "wind_3dw_valid==1",
+      "air_density": "formula_valid==1 && air_density>0"
+    },
+    "unquantified_outputs": [
+      "longwave_radiation",
+      "precipitation_local",
+      "velocity_gradient_3dw",
+      "material_derivative_3dw"
+    ],
+    "zero_uncertainty_for_missing_evidence": "forbidden"
+  }
+}

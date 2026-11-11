@@ -1,0 +1,185 @@
+{
+  "tep_name": "MicroMetTwin_TEP",
+  "schema_version": "2.2",
+  "tep_version": "2026-08-12-field-test-v3",
+  "created_at": "2026-08-12T15:27:41.547096+00:00",
+  "twin_id": "MicroMetTwin",
+  "twin_model_version": "MicroMetTwin.fmu",
+  "formalism_version": "micromet_formalism_v2",
+  "simulation_version": "MicroMetTwin.fmu",
+  "generation_method": "Twin Contract -> stratified DOE -> local perturbation ensembles -> physical/numerical/metamorphic checks -> U/Q/V/R -> epistemic cells -> held-out validation",
+  "sampling_method": "deterministic stratified operating-domain DOE with disjoint build/held-out base points",
+  "perturbation_model": {
+    "temperature_C_sigma": 0.35,
+    "RH_pct_sigma": 1.5,
+    "wind_speed_relative_sigma": 0.06,
+    "wind_direction_deg_sigma": 4.0,
+    "pressure_hPa_sigma": 0.7,
+    "terrain_slope_deg_sigma": 0.15,
+    "terrain_aspect_deg_sigma": 0.5,
+    "terrain_curvature_sigma": 0.0005,
+    "altitude_m_sigma": 0.25,
+    "parameter_perturbations": [
+      "lapse_rate",
+      "vapor_coefficient",
+      "gamma_s",
+      "gamma_c",
+      "precipitation_chi_km"
+    ]
+  },
+  "parameter_ranges": {
+    "source": "twin_contract.json + local perturbation model"
+  },
+  "coverage": {
+    "fraction": 1.0,
+    "descriptor": [
+      "altitude_agl_m",
+      "time_index",
+      "slope_deg",
+      "aspect_deg",
+      "curvature_scaled"
+    ],
+    "validity_ranges": {
+      "temperature_local": {
+        "min": 13.955379889857833,
+        "max": 36.86046210997932
+      },
+      "relative_humidity_local": {
+        "min": 6.721825759851494,
+        "max": 24.684246631977846
+      },
+      "wind_speed_terrain": {
+        "min": 1.1747461350002029,
+        "max": 6.484107150249169
+      },
+      "surface_pressure_pa": {
+        "min": 72528.89346663222,
+        "max": 83525.14045465822
+      },
+      "altitude_agl_m": {
+        "min": 100.0,
+        "max": 1000.0
+      },
+      "slope_deg": {
+        "min": 0.788299024105072,
+        "max": 23.066251754760742
+      },
+      "aspect_deg": {
+        "min": 17.582969665527344,
+        "max": 235.8597106933594
+      },
+      "curvature_scaled": {
+        "min": -0.019725462473919583,
+        "max": 0.015520098654592942
+      }
+    }
+  },
+  "validity_ranges": {
+    "temperature_local": {
+      "min": 13.955379889857833,
+      "max": 36.86046210997932
+    },
+    "relative_humidity_local": {
+      "min": 6.721825759851494,
+      "max": 24.684246631977846
+    },
+    "wind_speed_terrain": {
+      "min": 1.1747461350002029,
+      "max": 6.484107150249169
+    },
+    "surface_pressure_pa": {
+      "min": 72528.89346663222,
+      "max": 83525.14045465822
+    },
+    "altitude_agl_m": {
+      "min": 100.0,
+      "max": 1000.0
+    },
+    "slope_deg": {
+      "min": 0.788299024105072,
+      "max": 23.066251754760742
+    },
+    "aspect_deg": {
+      "min": 17.582969665527344,
+      "max": 235.8597106933594
+    },
+    "curvature_scaled": {
+      "min": -0.019725462473919583,
+      "max": 0.015520098654592942
+    }
+  },
+  "cell_count": 18,
+  "min_evidence_per_cell": 24,
+  "resolution": 1.2282461750781108,
+  "evidence_type": "hybrid_field_posterior",
+  "field_evidence_present": false,
+  "maturity": "TEP_hybrid",
+  "uncertainty_representation": "per-cell full covariance + std + diagonal variance from local perturbed FMU ensembles",
+  "quality_definition": "measured weighted convergence, completeness, physical, numerical, metamorphic, repeatability, support and metadata checks",
+  "validity_definition": "applicability/physical envelope and finite numerical outputs",
+  "reliability_definition": "simulation pass/fail with Beta(1,1) regularization; not operational reliability",
+  "held_out_validation": {
+    "file": "heldout_validation.json",
+    "pass": true,
+    "E_TEP_mean_profile_distance": 0.2520850632716174,
+    "out_of_tep_rate": 0.0
+  },
+  "limitations": [
+    "simulation_prior only",
+    "no field-calibrated uncertainty",
+    "3DW state uncertainty and validity support are not quantified by the packaged base dataset/TEP",
+    "longwave and precipitation state uncertainty are not quantified in this TEP",
+    "held-out validation is synthetic, not field validation"
+  ],
+  "provenance": {
+    "dataset": "climate_dataset/micromet_grid_24h.csv",
+    "forecast": "climate_dataset/openmeteo_24h.csv",
+    "fmu_sha256": "e2b07d231dcbecb0e29cd8c4e1ef7cf3f03a4aa9c0f53ede907b0116f8e0a210",
+    "seed": 20260812,
+    "source_documents": [
+      "TDDT_Dynamic_NTwin_TEP_details_FA_v2.md",
+      "micromet_formalism_v2.md"
+    ]
+  },
+  "runtime_lookup": {
+    "method": "nearest epistemic operating cell",
+    "novelty_modifier": true,
+    "freshness_modifier_supported": true,
+    "freshness_lambda_per_s": 0.0,
+    "novelty_radius_standardized": 3.0
+  },
+  "posterior_policy": {
+    "layer": 7,
+    "field_evidence_only": true,
+    "slow": true,
+    "versioned": true,
+    "provenance_required": true,
+    "validation_required": true,
+    "rollback_required": true,
+    "prior_evidence_cap": 20,
+    "posterior_uncertainty": true
+  },
+  "test_framework": {
+    "physical": "RH range, nonnegative wind, positive pressure",
+    "numerical": "formula_valid, wind_3dw_valid, finite diagnostic outputs",
+    "metamorphic": "horizontal/3D wind norm identities and continuity identity",
+    "repeatability": "identical-input deterministic rerun",
+    "convergence": "finite-difference step halving (100/100/10 m -> 50/50/5 m)",
+    "convergence_tolerance": 0.3,
+    "repeatability_tolerance": 1e-10,
+    "metamorphic_tolerance": 1e-07
+  },
+  "scientific_claim": "hybrid prior/posterior; operational maturity requires explicit field-validation policy and sufficient coverage",
+  "field_evidence": true,
+  "parent_tep_version": "2026-08-12-climate-sim-prior-v3",
+  "field_evidence_count": 2,
+  "updated_cells": 1,
+  "rollback_to": "2026-08-12-climate-sim-prior-v3",
+  "validation_status": "accepted",
+  "evidence_validation_ids": [
+    "VAL-001",
+    "VAL-002"
+  ],
+  "prior_evidence_cap": 20,
+  "posterior_uncertainty_updated": true
+}

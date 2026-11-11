@@ -1,0 +1,288 @@
+{
+  "title": "Classified trans-domain Context Reference Pattern dataset",
+  "region_geojson": {
+    "region_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/region/region_v1.geojson",
+    "region_file_sha256": "2a3c9342c84cf8d10ea58803714c4d4ca30cb5b1f76dc518aa9de0740592eec6",
+    "region_name": "Boulder expanded square example",
+    "crs": "OGC:CRS84 / WGS 84 longitude-latitude",
+    "epsg": 4326,
+    "boundary_geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -105.30999670363443,
+            40.00218350325587
+          ],
+          [
+            -105.26999890035525,
+            40.00218350325587
+          ],
+          [
+            -105.26999890035525,
+            40.03281405830647
+          ],
+          [
+            -105.30999670363443,
+            40.03281405830647
+          ],
+          [
+            -105.30999670363443,
+            40.00218350325587
+          ]
+        ]
+      ]
+    },
+    "bounds_wgs84": [
+      -105.30999670363443,
+      40.00218350325587,
+      -105.26999890035525,
+      40.03281405830647
+    ],
+    "origin_wgs84": [
+      -105.3,
+      40.01
+    ],
+    "destination_wgs84": [
+      -105.28,
+      40.025
+    ]
+  },
+  "cluster_count": 32,
+  "minimum_supported_cluster_count": 28,
+  "algorithm": "OneHotEncoder + MiniBatchKMeans + unique observed medoid signatures",
+  "duplicate_full_state_signatures": 0,
+  "canonical_cluster_definition": "C_k=(mu_k,Sigma_k,n_k,q_k)",
+  "runtime_statistics_file": "crp_runtime_statistics.json",
+  "runtime_feature_order": [
+    "temperature_c",
+    "relative_humidity_percent",
+    "wind_speed_ms",
+    "wind_direction_sin",
+    "wind_direction_cos",
+    "terrain_elevation_m",
+    "terrain_slope_deg",
+    "local_relief_m",
+    "building_height_m",
+    "magnetic_anomaly_nt",
+    "magnetic_gradient_nt_per_m"
+  ],
+  "quality_score_range": [
+    0.0,
+    1.0
+  ],
+  "state_columns": [
+    "temperature_state",
+    "humidity_state",
+    "wind_force_state",
+    "wind_direction_state",
+    "slope_state",
+    "local_relief_state",
+    "road_state",
+    "obstacle_type_state",
+    "artificial_height_state",
+    "magnetic_anomaly_state",
+    "magnetic_gradient_state",
+    "time_state",
+    "critical_level"
+  ],
+  "time_bins_utc": [
+    "00_06",
+    "06_12",
+    "12_18",
+    "18_24"
+  ],
+  "source": {
+    "crs": "EPSG:32613",
+    "transform": [
+      9.983676797900085,
+      0.0,
+      473539.5947014014,
+      0.0,
+      -9.973155301290275,
+      4431445.291367799,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "width": 343,
+    "height": 342,
+    "bounds": [
+      473539.5947014014,
+      4428034.472254758,
+      476963.99584308115,
+      4431445.291367799
+    ],
+    "terrain_source": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/terrain_obstacles.tif",
+    "climate_source": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/climate_contexts.tif",
+    "magnetic_source": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/magnetic_anomaly.tif",
+    "region_geojson": {
+      "region_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/region/region_v1.geojson",
+      "region_file_sha256": "2a3c9342c84cf8d10ea58803714c4d4ca30cb5b1f76dc518aa9de0740592eec6",
+      "region_name": "Boulder expanded square example",
+      "crs": "OGC:CRS84 / WGS 84 longitude-latitude",
+      "epsg": 4326,
+      "boundary_geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -105.30999670363443,
+              40.00218350325587
+            ],
+            [
+              -105.26999890035525,
+              40.00218350325587
+            ],
+            [
+              -105.26999890035525,
+              40.03281405830647
+            ],
+            [
+              -105.30999670363443,
+              40.03281405830647
+            ],
+            [
+              -105.30999670363443,
+              40.00218350325587
+            ]
+          ]
+        ]
+      },
+      "bounds_wgs84": [
+        -105.30999670363443,
+        40.00218350325587,
+        -105.26999890035525,
+        40.03281405830647
+      ],
+      "origin_wgs84": [
+        -105.3,
+        40.01
+      ],
+      "destination_wgs84": [
+        -105.28,
+        40.025
+      ]
+    },
+    "region_mask": {
+      "pixel_center_rule": "inside exact GeoJSON geometry; all_touched=false",
+      "raster_cell_count": 117306,
+      "inside_geometry_cell_count": 116557,
+      "inside_geometry_fraction": 0.9936149898555914
+    }
+  },
+  "region_coverage_validation": {
+    "available_bounds_projected": [
+      473539.5947014014,
+      4428034.472254758,
+      476963.99584308115,
+      4431445.291367799
+    ],
+    "requested_bounds_projected": [
+      473539.5947014014,
+      4428034.472254758,
+      476963.99584308115,
+      4431445.291367799
+    ],
+    "coverage_verified": true
+  },
+  "classification_notes": {
+    "temperature": "ETCCDI/Climpact threshold-based operational adaptation",
+    "humidity": "project CRP operational RH classes",
+    "wind_force": "compact Beaufort groups",
+    "wind_direction": "meteorological FROM direction, CALM + 8 compass sectors",
+    "slope": "FAO degree-based classes",
+    "local_relief": "local elevation above ROI minimum; 300 m boundary traceable to UNEP-WCMC concept",
+    "roads": "OSM semantic road classes, not hazard levels",
+    "artificial_height": "FAA-informed 61 m and 152 m boundaries; 15 m and 30 m are project operational divisions",
+    "magnetic_anomaly": "fixed polarity/magnitude bins in nT derived from NOAA NCEI EMAG2 v3",
+    "magnetic_gradient": "horizontal gradient bins in nT/m; high gradients contribute to the project critical flag",
+    "critical_level": "project composite level, not a universal standard hazard level"
+  },
+  "encoder_categories": {
+    "temperature_state": [
+      "T1_VERY_COLD",
+      "T2_COLD",
+      "T3_MILD"
+    ],
+    "humidity_state": [
+      "RH1_LOW",
+      "RH2_MODERATE",
+      "RH3_HIGH"
+    ],
+    "wind_force_state": [
+      "W0_CALM",
+      "W1_LIGHT"
+    ],
+    "wind_direction_state": [
+      "CALM",
+      "W"
+    ],
+    "slope_state": [
+      "S0_GENTLE",
+      "S1_MODERATE",
+      "S2_HIGH",
+      "S3_STEEP",
+      "S4_VERY_STEEP",
+      "S5_SEVERE",
+      "S6_EXTREME"
+    ],
+    "local_relief_state": [
+      "R0_LOW",
+      "R1_MODERATE",
+      "R2_HIGH"
+    ],
+    "road_state": [
+      "ROAD0_NONE",
+      "ROAD1_LIGHT_PATH",
+      "ROAD2_SERVICE",
+      "ROAD3_LOCAL",
+      "ROAD4_COLLECTOR",
+      "ROAD5_MAIN"
+    ],
+    "obstacle_type_state": [
+      "O0_NONE",
+      "O1_WATER_WETLAND",
+      "O2_WOOD_FOREST",
+      "O4_ROCK_SCREE",
+      "O6_BUILDING",
+      "O7_TOWER_MAST_CHIMNEY",
+      "O8_POWER_INFRASTRUCTURE"
+    ],
+    "artificial_height_state": [
+      "H0_NONE",
+      "H1_UNKNOWN_PRESENT",
+      "H2_SHORT",
+      "H3_MEDIUM",
+      "H4_TALL"
+    ],
+    "magnetic_anomaly_state": [
+      "MAG1_NEGATIVE"
+    ],
+    "magnetic_gradient_state": [
+      "MGRAD1_MODERATE"
+    ],
+    "time_state": [
+      "UTC_00_06",
+      "UTC_06_12",
+      "UTC_12_18",
+      "UTC_18_24"
+    ],
+    "critical_level": [
+      "L0_NO_FLAG",
+      "L1_ATTENTION",
+      "L2_WARNING",
+      "L3_CRITICAL"
+    ]
+  },
+  "files": [
+    "crp_cluster_catalog.csv",
+    "crp_cluster_catalog.md",
+    "crp_cell_assignments.csv.gz",
+    "crp_cluster_map.tif",
+    "crp_runtime_statistics.json",
+    "metadata.json",
+    "README.md"
+  ],
+  "plotly_3d_clusters": null
+}

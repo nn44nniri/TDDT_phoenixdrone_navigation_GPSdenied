@@ -1,0 +1,36 @@
+{
+  "schema": "TDDT-Stage8-ClimateSourceRepair-v1",
+  "base_bundle": "TDDT_integrated_fix_v5.tar.gz / TDDT_integrated_fix_v4",
+  "scope": "standalone read-only verifier, documentation and updated historical FMI ctypes test",
+  "local_tests": {
+    "status": "PASS",
+    "count": 14,
+    "run": "./scripts/test_stage8_local.sh"
+  },
+  "clean_overlay_tests": {
+    "status": "PASS",
+    "count": 13,
+    "reason": "overlay includes two Stage8 test modules, while the complete installed package also includes one additional original pytest test"
+  },
+  "site_validation": "PENDING",
+  "fixed": {
+    "historical_fmi_ctypes_test": "use actual packaged FMU GUID and current variable refs",
+    "forcing_binding": "add explicit SHA256, time, per-point shared range and NED wind semantics read-only guard"
+  },
+  "preserved": [
+    "climate_dataset",
+    "central_internet_datasets",
+    "fmu",
+    "resources/tddt_layer2/tep",
+    "runtime",
+    "map/DEM",
+    "ArduPilot",
+    "JSBSim",
+    "TDOC"
+  ],
+  "native_environment_confirmed": false,
+  "native_controller_certified": false,
+  "flight_authorized": false,
+  "fmu_rebuilt": false,
+  "forcing_refreshed": false
+}
