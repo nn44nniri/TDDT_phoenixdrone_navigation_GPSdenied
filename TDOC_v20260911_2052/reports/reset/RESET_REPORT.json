@@ -1,0 +1,148 @@
+{
+  "schema": "TDOC-reset-v2",
+  "package": "2026.9.11.2052",
+  "executed_at": "2026-11-05T01:17:35.379528+00:00",
+  "dry_run": false,
+  "include_external": true,
+  "refresh_external_requested": true,
+  "policy": {
+    "deleted": "TDOC runtime/knowledge + generated reports/logs + provably-contained generated/downloaded external datasets including CRP/Map, SARG, Layer-2 TEP and all TDOC Open-Meteo horizons",
+    "preserved": [
+      "source code",
+      "configs",
+      "formalism/docs",
+      "region/region_v1.geojson",
+      "external library source roots",
+      "Twin/Climate library FMUs"
+    ],
+    "external_safety": "external generated data is removed only at explicit known dataset paths or when containment under its authoritative output/generated/resource root is provable",
+    "refresh_semantics": "refresh is opt-in; reset alone remains purge-only. With --refresh-external, generated external datasets are transactionally staged and automatically restored if preparation fails."
+  },
+  "items": [
+    {
+      "category": "tdoc.runtime_and_knowledge",
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime",
+      "action": "delete",
+      "existed": true,
+      "removed": true,
+      "bytes_before": 11591718,
+      "reason": null
+    },
+    {
+      "category": "tdoc.generated_reports",
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/reports",
+      "action": "delete",
+      "existed": true,
+      "removed": true,
+      "bytes_before": 4124560,
+      "reason": null
+    },
+    {
+      "category": "tdoc.generated_logs",
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/logs",
+      "action": "skip",
+      "existed": false,
+      "removed": false,
+      "bytes_before": 0,
+      "reason": "not present"
+    },
+    {
+      "category": "dataset.map_crp",
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map",
+      "action": "stage_for_refresh",
+      "existed": true,
+      "removed": true,
+      "bytes_before": 63274735,
+      "reason": "transaction backup: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/.refresh_external_transaction_backup/d6fcebcce045__region_v1_map"
+    },
+    {
+      "category": "dataset.route_work",
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work",
+      "action": "stage_for_refresh",
+      "existed": true,
+      "removed": true,
+      "bytes_before": 33670716,
+      "reason": "transaction backup: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/.refresh_external_transaction_backup/c348277ed89b__tdoc_route_cli_work"
+    },
+    {
+      "category": "dataset.sarg",
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/SARG_v20260821_0945/generated/SARG",
+      "action": "stage_for_refresh",
+      "existed": true,
+      "removed": true,
+      "bytes_before": 28638960,
+      "reason": "transaction backup: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/.refresh_external_transaction_backup/e2a6634f1010__SARG"
+    },
+    {
+      "category": "dataset.tep.MESA_NAV",
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/resources/tddt_layer2/MESA_NAV/tep",
+      "action": "stage_for_refresh",
+      "existed": true,
+      "removed": true,
+      "bytes_before": 213170,
+      "reason": "transaction backup: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/.refresh_external_transaction_backup/37c848e366fc__tep"
+    },
+    {
+      "category": "dataset.tep.WingMPET",
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/resources/tddt_layer2/WingMPET/tep",
+      "action": "stage_for_refresh",
+      "existed": true,
+      "removed": true,
+      "bytes_before": 978206,
+      "reason": "transaction backup: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/.refresh_external_transaction_backup/277c6df99b8c__tep"
+    },
+    {
+      "category": "dataset.climate_forcing",
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/climate_twin_v20260911_0922/climate_dataset/openmeteo_24h.csv",
+      "action": "stage_for_refresh",
+      "existed": true,
+      "removed": true,
+      "bytes_before": 54,
+      "reason": "transaction backup: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/.refresh_external_transaction_backup/693ea2b47039__openmeteo_24h.csv"
+    },
+    {
+      "category": "dataset.climate_forcing",
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/climate_twin_v20260911_0922/climate_dataset/tdoc_active_forcing.json",
+      "action": "stage_for_refresh",
+      "existed": true,
+      "removed": true,
+      "bytes_before": 165,
+      "reason": "transaction backup: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/.refresh_external_transaction_backup/d4e51b331143__tdoc_active_forcing.json"
+    }
+  ],
+  "external_notes": [],
+  "interrupted_refresh_recovery": [],
+  "deleted_bytes": 142492284,
+  "ok": true,
+  "errors": [],
+  "report_path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/reports/reset/RESET_REPORT.json",
+  "refresh": {
+    "ok": true,
+    "status": "OK",
+    "started_at": "2026-11-05T01:17:35.485361+00:00",
+    "command": [
+      "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python",
+      "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/scripts/prepare_all.py",
+      "--climate-hours",
+      "24",
+      "--crp-clusters",
+      "32",
+      "--historical-start",
+      "2010-05-20",
+      "--historical-end",
+      "2025-05-20",
+      "--build-fmus",
+      "--build-fmus-refresh",
+      "--reuse-downloaded-datasets"
+    ],
+    "returncode": 0,
+    "elapsed_s": 117.006,
+    "timed_out": false,
+    "stdout_tail": "', 'allowed_claims': ['SITL simulation execution through external Layer5 control and authoritative ArduPilot mixer', 'simulation-level bounded VTOL plant/control-path evidence when the corresponding phase capability passes'], 'prohibited_claims_when_limited': ['validated autonomous ArduPilot tailsitter VTOL controller', 'validated full-envelope Phoenix aerodynamics', 'real-aircraft flight validation'], 'authority': 'source_bound_profile_plus_explicit_validation_evidence'}}, 'claim_limits': {'vtol_autopilot_controller_validated': False, 'true_zero_speed_hover_dynamic_validated': False, 'aerodynamics_full_envelope_validated': False, 'qlpv_nonzero_correction_ready': False, 'real_aircraft_flight_validated': False}, 'claim_scope': {'schema': 'Layer5-Phoenix-claim-scope-v1', 'status': 'CLAIM_LIMITED_TO_SITL', 'scope_ceiling': 'SITL_SIMULATION_ONLY', 'current_sitl_category_permitted': True, 'claim_limits_block_current_sitl_by_themselves': False, 'beyond_sitl_claims_allowed': False, 'unmet_beyond_sitl_claims': ['vtol_autopilot_controller_validated', 'aerodynamics_full_envelope_validated', 'real_aircraft_flight_validated'], 'claim_limits': {'vtol_autopilot_controller_validated': False, 'true_zero_speed_hover_dynamic_validated': False, 'aerodynamics_full_envelope_validated': False, 'qlpv_nonzero_correction_ready': False, 'real_aircraft_flight_validated': False}, 'commissioning_may_upgrade_claim_limits': False, 'runtime_certificate_scope': 'SITL_CONTROL_PATH_COMMISSIONING_ONLY', 'allowed_claims': ['SITL simulation execution through external Layer5 control and authoritative ArduPilot mixer', 'simulation-level bounded VTOL plant/control-path evidence when the corresponding phase capability passes'], 'prohibited_claims_when_limited': ['validated autonomous ArduPilot tailsitter VTOL controller', 'validated full-envelope Phoenix aerodynamics', 'real-aircraft flight validation'], 'authority': 'source_bound_profile_plus_explicit_validation_evidence'}, 'real_aircraft_flight_validated': False, 'differential_thrust_gain': 0.0, 'differential_thrust_authorized': False, 'direct_pwm_allowed': False, 'pwm_mapping_validated': False, 'physical_actuators': ['left_elevon', 'right_elevon', 'left_motor', 'right_motor'], 'logical_command_order': ['aileron_domain', 'elevator_domain', 'throttle_domain', 'rudder_domain'], 'state_contract': ['p_n_3', 'v_n_3', 'q_wxyz_4', 'omega_body_3', 'omega_L', 'omega_R', 'delta_L', 'delta_R', 'SOC'], 'limits': {'elevon_rad': 0.53, 'motor_speed_rad_s': 800.0, 'motor_thrust_N': 5.03296}, 'motor_model': {'tau_up_s': 0.016, 'tau_down_s': 0.02, 'k_T': 7.864e-06, 'k_Q': 0.023}, 'output_functions': {'SERVO1_FUNCTION': 77, 'SERVO2_FUNCTION': 78, 'SERVO3_FUNCTION': 73, 'SERVO4_FUNCTION': 74}, 'pwm_anchors': {'SERVO1': {'min': 1000, 'trim': 1500, 'max': 2000}, 'SERVO2': {'min': 1000, 'trim': 1500, 'max': 2000}, 'SERVO3': {'min': 1000, 'trim': 1000, 'max': 2000}, 'SERVO4': {'min': 1000, 'trim': 1000, 'max': 2000}}, 'sensor_semantics': {'groups': ['airspeed', 'attitude', 'barometer', 'battery', 'gps_bootstrap', 'imu', 'magnetometer', 'position', 'ultrasonic_wind', 'velocity', 'wind'], 'truth_observation_separated': True, 'wind_semantics': {'sensor_observation': 'ULTRASONIC_WIND', 'autopilot_estimate': 'WIND', 'environment_truth': 'JSBSim current_state.wind'}, 'twin_contract': ['MESA_NAV:state+uncertainty', 'WingMPET:trajectory+feasibility+energy', 'Climate:rho+wind+disturbance'], 'raw_sensor_to_pwm': False}, 'airframe_binding': {'inertia': {'frame': 'BODY_FRD_CG; retained diagonal engineering model from pinned JSBSim XML, not an identified rotated SDF inertia tensor', 'Ixx_kg_m2': 0.0147563, 'Iyy_kg_m2': 0.00638929, 'Izz_kg_m2': 0.0177, 'Ixy_kg_m2': 0.0, 'Ixz_kg_m2': 0.0, 'Iyz_kg_m2': 0.0, 'inertial_pose_xyz_m': [0.0, 0.0, 0.0], 'provenance': 'source_identified_official_phoenix_sdf', 'source_sdf_inertial_pose_xyz_m': [0.0, 0.0, 0.157]}, 'geometry': {'wing_span_m': 0.64, 'wing_area_m2': 0.12, 'mean_aerodynamic_chord_m': 0.19, 'root_chord_m': 0.21, 'tip_chord_m': 0.17, 'aspect_ratio': 3.41, 'taper_ratio': 0.81, 'elevon_area_total_m2': 0.03, 'elevon_area_each_m2': 0.015}, 'propwash': {'k_lift': 3.48e-06, 'k_drag': 1.75e-06, 'k_pitch': -3.44e-07, 'left_cp_m': [0.0, 0.195, 0.036], 'right_cp_m': [0.0, -0.195, 0.036], 'forward_axis': [0.0, 0.0, 1.0], 'upward_axis': [1.0, 0.0, 0.0], 'provenance': 'source_identified_official_phoenix_sdf_calibrated_plugin'}, 'uncertainty_ranges': {'wing_area_m2': {'min': 0.11, 'nominal': 0.12, 'max': 0.14, 'confidence': 'medium'}, 'cl_max': {'min': 0.9, 'nominal': 1.05, 'max': 1.2, 'confidence': 'low'}, 'stall_speed_m_s': {'min': 7.9, 'nominal': 9.1, 'max': 10.3, 'confidence': 'low'}, 'cruise_speed_m_s': {'min': 10.0, 'nominal': 13.0, 'max': 17.0, 'confidence': 'low'}, 'maximum_speed_m_s': {'min': 15.0, 'nominal': 18.0, 'max': 22.0, 'confidence': 'low'}, 'battery_mass_kg': {'min': 0.16, 'nominal': 0.18, 'max': 0.2, 'confidence': 'medium'}}, 'forward_aero': {'confidence': 'low', 'provenance': 'engineering_estimate_for_forward_flight_aerodynamic_regime_within_vtol_model', 'source_validated': False}, 'source_validated_components': ['inertia', 'motor_law', 'elevon_joint_limit', 'propwash_coefficients'], 'engineering_estimate_not_source_validated': True}, 'runtime_validation_certificate': {}, 'nominal_tracker_authorized': False, 'nominal_control_ready': False, 'actuator_identification_evidence': {'offline_model_prior_available': True, 'online_measured_servo_dynamics': False, 'online_measured_esc_mapping': False, 'identification_scope': None, 'simulation_only_identification': False, 'nonzero_qlpv_requires_measured_evidence': True, 'zero_correction_nominal_path_allowed_without_measured_identification': True}}, 'qlpv': {'model_loaded': False, 'calibrated': False, 'error': None, 'vertices': 0, 'airframe_binding_required': True, 'airframe_binding_match': False, 'model_source': None, 'model_scope': None, 'simulation_only_model': False, 'phoenix_validation_gates': {'mixer': False, 'servo_dynamics': False, 'esc_mapping': False, 'transition': True, 'full_envelope': False, 'direct_pwm': False, 'nominal_tracker': False, 'nominal_control': False, 'qlpv_nonzero_correction': False, 'airframe_binding_sha256': 'c4daa5ac8f0d5ae988441d4938311564ba796130eaf111845994bcb88817d089', 'profile_sha256': 'fd7551aa06bc27a3d918f50322cebef91c78c68c2a59fd3a84734d41dea4ee8f'}, 'nonzero_correction_authorized': False}, 'documents': {'Formalism_layer5_v4.md': True, 'TDDT_Dynamic_NTwin_Layer5_details_FA_v2.md': True, 'HOW_USAGE_layer4.md': True, 'Summary_layer2_layer3_layer4.md': True}, 'components': {'CI_guard': True, 'candidate_registry': True, 'admissibility': True, 'policy_guidance_adapter': True, 'qlpv_kernel': True, 'decision_confidence': True, 'operational_mode_human_authority': True, 'predictive_safety_filter': True, 'runtime_assurance': True, 'governance_provenance': True, 'layer6_assembler': True, 'single_episode_lifecycle': True, 'knowledge_reference_plane': True, 'SS_SETD_KStore': True, 'KStore_segmented_FILE': True, 'TDDT_KSTORE_ROOT': True, 'fast_meso_slow_aggregation': True, 'MRG': True, 'Phoenix_specialization': True, 'Layer7_evidence': True, 'network_commit': False, 'model_retraining': False, 'direct_pwm': False}, 'compute_profile': {'profile': 'EDGE-ROBUST', 'solve_max': 12, 'sensitivity_top_k': 3, 'cvar_enabled': False, 'covariance_enabled': True, 'chance_enabled': True, 'features': ['Tube', 'HardConstraints', 'Lexicographic', 'PSF', 'RTA', 'Covariance', 'ChanceConstraints', 'TopKSensitivity'], 'safety_bounds_relaxed': False, 'physical_validation_gates_relaxed': False, 'adaptive_complexity_only': True}, 'knowledge_store': {'backend': 'FILE', 'root': '/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/layer5/kstore', 'root_source': 'TDDT_KSTORE_ROOT', 'environment_variable': 'TDDT_KSTORE_ROOT', 'layout': 'segmented-ss+multi-file-setd-v2', 'episode_id': None, 'sequence': 0, 'buffer_records': 0, 'buffer_capacity': 128, 'queue_records': 0, 'queue_capacity': 64, 'offline_episode_completed': False, 'offline_episode_startable': True, 'critical_loss': False, 'health': True, 'faults': [], 'last_record_hash': None, 'recovery': {'performed': False, 'ok': True, 'action': 'none'}, 'interface': ['Open', 'Append', 'Checkpoint', 'AtomicCommit', 'Load', 'Verify', 'Recover', 'Compact'], 'full_dataset_in_ram': False, 'monolithic_ss_stream': False, 'ss_segments': 0, 'ss_segment_records_max': 256, 'ss_segment_bytes_max': 1048576, 'ss_record_bytes_max': 262144, 'setd_multi_file': True, 'setd_component_items_max': 128, 'setd_component_bytes_max': 1048576, 'online_persistent_writes': False}, 'offline_environment': {'ready': False, 'registered': [], 'required': ['WingMPET', 'MESA_NAV', 'Climate'], 'calls': 0, 'layer6_call': False, 'jsbsim_call': False}, 'strict_external': False, 'confidence_reachability': {'formula': 'Formalism_layer5_v4 L5-58N: (positive weighted evidence - nonnegative weighted penalties) / W_positive, clipped to [0,1]', 'normalization': 'W_positive = separation + margin + full_fidelity + freshness weight sum', 'reward_weight_sum': 0.75, 'penalty_weight_sum': 0.25, 'normalization_valid': True, 'max_possible_confidence': 1.0, 'auto_threshold': 0.8, 'auto_reachable': True, 'reason': None, 'threshold_relaxed': False}, 'native_pilot_controller': {'schema': 'TDDT-L5-native-pilot-FF-boundary-v1', 'online_native_pilot_required': True, 'current_native_predictor_implemented': False, 'native_execution_mapping_certified': False, 'pilot_to_actuator_replay_executed': False, 'native_controller_certified': False, 'flight_authorized': False, 'full_fidelity_authority_for_online': False, 'model_only_prior_allowed_for_offline': False, 'raw_verified_candidate_count': 0, 'raw_verified_candidate_ids': [], 'layer4_verification_scopes': [], 'snapshot_hash_declared': False, 'required_evidence': ['candidate_and_snapshot_identity', 'native_controller_model_and_parameters', 'flight_mode_and_spool_initial_state', 'pilot_domain_command_and_commit_duration', 'fcu_post_mixer_actuator_observation', 'jsbsim_plant_time_alignment', 'prediction_observation_residual_with_uncertainty', 'independent_motor_speed_if_rpm_claimed'], 'status': 'BLOCKED_NATIVE_PILOT_CONTROLLER', 'reason': 'native_pilot_controller_prediction_unavailable', 'contract_version': 'v1'}, 'preflight_scope': 'PACKAGE_AND_EXTERNAL_DEPENDENCY_ONLY_NOT_NATIVE_EXECUTION_READINESS', 'deployment_note': 'Full-envelope/transition and non-zero Phoenix qLPV correction remain fail-closed until their explicit validation evidence is supplied; L5-58N confidence normalization is fail-closed when W_positive is non-positive or any confidence weight is negative; AUTO still requires the configured confidence.auto_threshold and all independent safety/governance gates.'}\n      PASS (0.315 s)\n[25/26] Layer 7 feedback/adaptation preflight ...\n      | {\n      |   \"TDDT_KSTORE_ROOT\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/layer5/kstore\",\n      |   \"TDDT_PTLIB_ROOT\": null,\n      |   \"TDDT_TDOC_ROOT\": null,\n      |   \"console_entrypoint\": \"tddt-layer7\",\n      |   \"direct_actuation_allowed\": false,\n      |   \"note\": \"PT_LIB and TDOC are external dependencies; they are not vendored.\",\n      |   \"ok\": true,\n      |   \"project_root\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer7_v20260901_0921\",\n      |   \"ptlib_contract\": null,\n      |   \"ptlib_external_available\": false,\n      |   \"pyproject_present\": true,\n      |   \"pytest_available\": true,\n      |   \"setup_py_present\": true,\n      |   \"tdoc_managed\": true\n      | }\n      PASS (0.141 s)\n[26/26] Validate native Layer6 FlightStack assets ... PASS\nPreparation report: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/reports/preparation/PREPARATION_REPORT.json\nOVERALL: PASS",
+    "semantics": "Official TDOC central preparation pipeline with live progress; external package source trees remain unmodified except their documented generated/output/resource dataset locations.",
+    "transaction": {
+      "status": "COMMITTED",
+      "staged_count": 7
+    }
+  }
+}

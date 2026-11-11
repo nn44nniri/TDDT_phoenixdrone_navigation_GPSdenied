@@ -1,0 +1,509 @@
+{
+  "schema": "TDOC-central-preparation-v4",
+  "package": "TDOC_v20260911_2052",
+  "started_at": "2026-11-05T01:17:35Z",
+  "mode": "offline_sources",
+  "ok": true,
+  "roots": {
+    "TDDT_TWINS_ROOT": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233",
+    "TDDT_CLIMATE_ROOT": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/climate_twin_v20260911_0922",
+    "TDDT_UNIT_ADAPTER_ROOT": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914",
+    "TDDT_BOULDER_ROOT": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215",
+    "TDDT_SARG_PACKAGE_ROOT": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/SARG_v20260821_0945",
+    "TDDT_LAYER3_ROOT": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer3_v20260911_1131",
+    "TDDT_LAYER4_ROOT": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer4_v20260907_0608",
+    "TDDT_LAYER5_ROOT": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer5_v20260911_1510",
+    "TDDT_LAYER6_ROOT": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032",
+    "TDDT_LAYER7_ROOT": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer7_v20260901_0921",
+    "TDDT_SARG_ROOT": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/SARG_v20260821_0945/generated/SARG",
+    "TDDT_MAP_ROOT": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map",
+    "TDDT_CRP_ROOT": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/CRP"
+  },
+  "stages": [
+    {
+      "index": 1,
+      "stage": "Install TDOC package in active Python environment",
+      "ok": true,
+      "installation_mode": "AUTHORITATIVE_SOURCE_TREE_ENTRYPOINT",
+      "editable_install": false,
+      "build_backend_available": false,
+      "source_module_origin": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/__init__.py",
+      "expected_source_module": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/__init__.py",
+      "launcher": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/scripts/tddt-tdoc",
+      "command": [
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/scripts/tddt-tdoc",
+        "--help"
+      ],
+      "returncode": 0,
+      "elapsed_s": 0.162,
+      "output_tail": "usage: tddt-tdoc [-h] [--config CONFIG]\n                 {preflight,audit-integration,run-cycle,demo,status,check-unit-adapter,generate-reports,read-storage,train-online,nav-online,reset} ...\n\nTDOC Runtime Orchestrator for Dynamic N-Twin TDDT\n\npositional arguments:\n  {preflight,audit-integration,run-cycle,demo,status,check-unit-adapter,generate-reports,read-storage,train-online,nav-online,reset}\n    audit-integration   Read-only cross-layer site evidence audit; never\n                        starts SITL/actuation\n    train-online (nav-online)\n                        Run explicit ONLINE_JSBSIM training continuation using\n                        finalized OFFLINE_SE SETD knowledge, native\n                        Layer6Client/GUI/MAVLink, and Layer7\n    reset               Delete TDOC runtime/knowledge and safely-contained\n                        generated external datasets; optionally rebuild them\n                        with --refresh-external\n\noptions:\n  -h, --help            show this help message and exit\n  --config CONFIG",
+      "semantics": "same public tddt_tdoc.cli entry point; no dependency or validation bypass"
+    },
+    {
+      "index": 2,
+      "stage": "Validate all external library roots from environment.sh",
+      "ok": true,
+      "roots": {
+        "TDDT_TWINS_ROOT": {
+          "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233",
+          "missing": [],
+          "ok": true
+        },
+        "TDDT_CLIMATE_ROOT": {
+          "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/climate_twin_v20260911_0922",
+          "missing": [],
+          "ok": true
+        },
+        "TDDT_UNIT_ADAPTER_ROOT": {
+          "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914",
+          "missing": [],
+          "ok": true
+        },
+        "TDDT_BOULDER_ROOT": {
+          "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215",
+          "missing": [],
+          "ok": true
+        },
+        "TDDT_SARG_PACKAGE_ROOT": {
+          "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/SARG_v20260821_0945",
+          "missing": [],
+          "ok": true
+        },
+        "TDDT_LAYER3_ROOT": {
+          "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer3_v20260911_1131",
+          "missing": [],
+          "ok": true
+        },
+        "TDDT_LAYER4_ROOT": {
+          "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer4_v20260907_0608",
+          "missing": [],
+          "ok": true
+        },
+        "TDDT_LAYER5_ROOT": {
+          "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer5_v20260911_1510",
+          "missing": [],
+          "ok": true
+        },
+        "TDDT_LAYER6_ROOT": {
+          "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032",
+          "missing": [],
+          "ok": true
+        },
+        "TDDT_LAYER7_ROOT": {
+          "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer7_v20260901_0921",
+          "missing": [],
+          "ok": true
+        }
+      },
+      "external_only": true
+    },
+    {
+      "index": 3,
+      "stage": "Build/validate Navigation + Flight Simulator Twins",
+      "ok": true,
+      "returncode": 0,
+      "elapsed_s": 1.102,
+      "cwd": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233",
+      "command": [
+        "bash",
+        "scripts/build_all.sh"
+      ],
+      "output_tail": "-- The CXX compiler identification is GNU 14.2.0\n-- Detecting CXX compiler ABI info\n-- Detecting CXX compiler ABI info - done\n-- Check for working CXX compiler: /usr/bin/c++ - skipped\n-- Detecting CXX compile features\n-- Detecting CXX compile features - done\n-- Configuring done (0.2s)\n-- Generating done (0.0s)\n-- Build files have been written to: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/build\n[ 66%] Building CXX object CMakeFiles/WingMPET.dir/src/common/fmi2_runtime.cpp.o\n[ 66%] Building CXX object CMakeFiles/MESA_NAV.dir/src/mesa/model.cpp.o\n[ 66%] Building CXX object CMakeFiles/MESA_NAV.dir/src/common/fmi2_runtime.cpp.o\n[ 66%] Building CXX object CMakeFiles/WingMPET.dir/src/wingmpet/model.cpp.o\n[ 83%] Linking CXX shared library WingMPET.so\n[100%] Linking CXX shared library MESA_NAV.so\n[100%] Built target WingMPET\n[100%] Built target MESA_NAV"
+    },
+    {
+      "index": 4,
+      "stage": "Build Climate Twin FMU",
+      "ok": true,
+      "returncode": 0,
+      "elapsed_s": 0.837,
+      "cwd": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/climate_twin_v20260911_0922",
+      "command": [
+        "bash",
+        "scripts/build_fmu.sh"
+      ],
+      "package_script_ok": true,
+      "tdoc_staging_fallback": false,
+      "fallback_docs": [],
+      "output_tail": "-- The CXX compiler identification is GNU 14.2.0\n-- Detecting CXX compiler ABI info\n-- Detecting CXX compiler ABI info - done\n-- Check for working CXX compiler: /usr/bin/c++ - skipped\n-- Detecting CXX compile features\n-- Detecting CXX compile features - done\n-- Configuring done (0.2s)\n-- Generating done (0.0s)\n-- Build files have been written to: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/climate_twin_v20260911_0922/build/cmake\n[ 66%] Building CXX object CMakeFiles/MicroMet.dir/src/micromet.cpp.o\n[ 66%] Building CXX object CMakeFiles/MicroMet.dir/src/fmi2_wrapper.cpp.o\n[100%] Linking CXX shared library MicroMet.so\n[100%] Built target MicroMet\n/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/climate_twin_v20260911_0922/fmu/MicroMetTwin.fmu"
+    },
+    {
+      "index": 5,
+      "stage": "Refresh FMU build caches after successful compilation",
+      "ok": true,
+      "targets": [
+        {
+          "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/build",
+          "removed": true
+        },
+        {
+          "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/climate_twin_v20260911_0922/build",
+          "removed": true
+        }
+      ],
+      "preserved_final_fmus": [
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/fmus/MESA_NAV.fmu",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/fmus/WingMPET.fmu",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/climate_twin_v20260911_0922/fmu/MicroMetTwin.fmu"
+      ],
+      "missing_final_fmus": [],
+      "semantics": "cleanup is restricted to reproducible build caches/staging; source/config/scripts/final FMUs are preserved"
+    },
+    {
+      "index": 6,
+      "stage": "Prepare ISO unit/frame/time adapter package",
+      "ok": true,
+      "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914",
+      "missing": [],
+      "preparation_action": "source/API readiness; no dedicated compile step",
+      "semantics": "source-only adapter; final API preflight occurs after datasets"
+    },
+    {
+      "index": 7,
+      "stage": "Prepare Boulder map/CRP package",
+      "ok": true,
+      "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215",
+      "missing": [],
+      "preparation_action": "source/API readiness; no dedicated compile step",
+      "semantics": "Python dataset builder package; dataset generation occurs after all packages are ready"
+    },
+    {
+      "index": 8,
+      "stage": "Prepare SARG package",
+      "ok": true,
+      "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/SARG_v20260821_0945",
+      "missing": [],
+      "preparation_action": "source/API readiness; no dedicated compile step",
+      "semantics": "Python dataset builder package; SARG generation occurs after CRP and Layer2 TEP"
+    },
+    {
+      "index": 9,
+      "stage": "Layer-2 official TEP build + current-runtime API compatibility",
+      "ok": true,
+      "returncode": 0,
+      "elapsed_s": 0.729,
+      "cwd": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233",
+      "command": [
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python",
+        "python/build_tddt_layer2_tep.py"
+      ],
+      "builder": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/python/build_tddt_layer2_tep.py",
+      "builder_executed": true,
+      "required_files": [
+        "tep.csv",
+        "manifest.json",
+        "heldout_validation.json",
+        "quality_report.json",
+        "VERSION"
+      ],
+      "validation": {
+        "MESA_NAV": {
+          "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/resources/tddt_layer2/MESA_NAV/tep",
+          "missing": [],
+          "ok": true
+        },
+        "WingMPET": {
+          "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/resources/tddt_layer2/WingMPET/tep",
+          "missing": [],
+          "ok": true
+        },
+        "DomainTwin": {
+          "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/python/twins_fmi/__init__.py",
+          "ok": true
+        }
+      },
+      "output_tail": "MESA_NAV cells 72 coverage 1.0 heldout 0.9791666666666666 quality_min 0.9552261903080242 reliability_min 0.1\nWingMPET cells 330 coverage 1.0 heldout 0.9545454545454546 quality_min 0.9477033027070147 reliability_min 0.1"
+    },
+    {
+      "index": 10,
+      "stage": "Prepare Layer 3 package",
+      "ok": true,
+      "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer3_v20260911_1131",
+      "missing": [],
+      "preparation_action": "source/API readiness; no dedicated compile step",
+      "semantics": "Python Layer3 source package; runtime preflight occurs after CRP/SARG/TEP are available"
+    },
+    {
+      "index": 11,
+      "stage": "Prepare Layer 4 package",
+      "ok": true,
+      "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer4_v20260907_0608",
+      "missing": [],
+      "preparation_action": "source/API readiness; no dedicated compile step",
+      "semantics": "Python Layer4 source package; optimization preflight occurs after Layer3 readiness"
+    },
+    {
+      "index": 12,
+      "stage": "Prepare Layer 5 package",
+      "ok": true,
+      "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer5_v20260911_1510",
+      "missing": [],
+      "preparation_action": "source/API readiness; no dedicated compile step",
+      "semantics": "Python Layer5 source package; decision preflight occurs after Layer4 readiness"
+    },
+    {
+      "index": 13,
+      "stage": "Prepare Layer6 client package",
+      "ok": true,
+      "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032",
+      "missing": [],
+      "preparation_action": "source/API readiness; no dedicated compile step",
+      "semantics": "Native GUI/MAVLink execution gateway; no FlightStack session started during preparation"
+    },
+    {
+      "index": 14,
+      "stage": "Prepare Layer 7 package",
+      "ok": true,
+      "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer7_v20260901_0921",
+      "missing": [],
+      "preparation_action": "source/API readiness; no dedicated compile step",
+      "semantics": "Python Layer7 side module; final feedback/adaptation preflight occurs after core layers"
+    },
+    {
+      "index": 15,
+      "stage": "Validate authoritative region/start/destination",
+      "ok": true,
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/region/region_v1.geojson",
+      "sha256": "2a3c9342c84cf8d10ea58803714c4d4ca30cb5b1f76dc518aa9de0740592eec6",
+      "roles": [
+        "center",
+        "destination",
+        "region_boundary",
+        "start"
+      ],
+      "start": [
+        -105.3,
+        40.01
+      ],
+      "destination": [
+        -105.28,
+        40.025
+      ]
+    },
+    {
+      "index": 16,
+      "stage": "Acquire/reuse online terrain/OSM/climate/magnetic data required by CRP",
+      "ok": true,
+      "skipped": true,
+      "reason": "offline reuse of complete canonical regional map",
+      "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map",
+      "required": [
+        "terrain_obstacles.tif",
+        "climate_contexts.tif",
+        "magnetic_anomaly.tif",
+        "metadata.json"
+      ],
+      "network_access": false
+    },
+    {
+      "index": 17,
+      "stage": "Build canonical CRP dataset",
+      "ok": true,
+      "returncode": 0,
+      "elapsed_s": 21.13,
+      "cwd": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215",
+      "command": [
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python",
+        "build_crp_dataset.py",
+        "--region-file",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/region/region_v1.geojson",
+        "--terrain",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/terrain_obstacles.tif",
+        "--climate",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/climate_contexts.tif",
+        "--magnetic",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/magnetic_anomaly.tif",
+        "--output-root",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map",
+        "--clusters",
+        "32"
+      ],
+      "output_tail": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/build_crp_dataset.py:929: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.\n  geom = shapely_transform(transformer.transform, shapely_shape(region_spec.geometry))\n  Reading and classifying climate, terrain and time domains ━━━━━━━ 100% 0:00:19\nCRP dataset created: \n/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integr\nated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/\nCRP\nClusters: 32; duplicate full signatures: 0"
+    },
+    {
+      "index": 18,
+      "stage": "Build SARG dataset from Twins + Map + CRP",
+      "ok": true,
+      "returncode": 0,
+      "elapsed_s": 89.607,
+      "cwd": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/SARG_v20260821_0945",
+      "command": [
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python",
+        "-m",
+        "sarg_builder.cli",
+        "--twins-library",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233",
+        "--maps",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map",
+        "--crp",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/CRP",
+        "--region-file",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/region/region_v1.geojson",
+        "--output",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/SARG_v20260821_0945/generated/SARG"
+      ],
+      "output_tail": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/SARG_v20260821_0945/generated/SARG"
+    },
+    {
+      "index": 19,
+      "stage": "Reuse centrally cached Climate Twin forcing dataset",
+      "ok": true,
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/internet_datasets/climate_twin/openmeteo_24h.csv",
+      "sha256": "441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc",
+      "network_access": false,
+      "cache_root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/internet_datasets/climate_twin",
+      "runtime_materialization": {
+        "ok": true,
+        "central": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/internet_datasets/climate_twin/openmeteo_24h.csv",
+        "runtime_link": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/climate_twin_v20260911_0922/climate_dataset/openmeteo_24h.csv",
+        "sha256": "441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc",
+        "active_manifest": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/climate_twin_v20260911_0922/climate_dataset/tdoc_active_forcing.json",
+        "single_copy": true
+      }
+    },
+    {
+      "index": 20,
+      "stage": "Inspect route/region and generate CLI route reports",
+      "ok": true,
+      "returncode": 0,
+      "elapsed_s": 2.267,
+      "cwd": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215",
+      "command": [
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python",
+        "map_mosaic_query.py",
+        "route3d",
+        "--terrain-input",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/terrain_obstacles.tif",
+        "--climate-input",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/climate_contexts.tif",
+        "--magnetic-input",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/magnetic_anomaly.tif",
+        "--region-file",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/region/region_v1.geojson",
+        "--mosaic-count",
+        "3",
+        "--hour",
+        "14",
+        "--output-dir",
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work",
+        "--prefix",
+        "tdoc_preflight_route",
+        "--max-grid",
+        "180"
+      ],
+      "output_tail": "       \"temperature_c_12_18\",\n          \"relative_humidity_percent_12_18\",\n          \"wind_u_east_ms_12_18\",\n          \"wind_v_north_ms_12_18\",\n          \"wind_vector_speed_ms_12_18\",\n          \"wind_direction_from_deg_12_18\",\n          \"climate_cluster_id_12_18\",\n          \"cluster_confidence_12_18\",\n          \"temperature_c_18_24\",\n          \"relative_humidity_percent_18_24\",\n          \"wind_u_east_ms_18_24\",\n          \"wind_v_north_ms_18_24\",\n          \"wind_vector_speed_ms_18_24\",\n          \"wind_direction_from_deg_18_24\",\n          \"climate_cluster_id_18_24\",\n          \"cluster_confidence_18_24\"\n        ],\n        \"grid_window\": [\n          0,\n          0,\n          115,\n          343\n        ]\n      },\n      \"magnetic\": {\n        \"output\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_001/tdoc_preflight_route_mosaic_001_magnetic.tif\",\n        \"shape\": [\n          4,\n          343,\n          115\n        ],\n        \"crs\": \"EPSG:32613\",\n        \"bounds_projected\": [\n          473535.7742011989,\n          4428031.087996376,\n          474683.8970329574,\n          4431451.880264718\n        ],\n        \"bounds_wgs84\": [\n          -105.31018038027969,\n          40.00205281233199,\n          -105.29659024559082,\n          40.03290817056252\n        ],\n        \"resolution\": [\n          9.983676797900085,\n          9.973155301290275\n        ],\n        \"bands\": [\n          \"magnetic_anomaly_nt\",\n          \"magnetic_anomaly_error_nt\",\n          \"magnetic_source_code\",\n          \"magnetic_anomaly_gradient_nt_per_m\"\n        ],\n        \"grid_window\": [\n          0,\n          0,\n          115,\n          343\n        ]\n      },\n      \"plots\": {\n        \"terrain_plot_html\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_001/tdoc_preflight_route_mosaic_001_terrain_obstacles_3d.html\",\n        \"climate_plot_html\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_001/tdoc_preflight_route_mosaic_001_climate_dashboard_3d_12_18.html\",\n        \"magnetic_plot_html\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_001/tdoc_preflight_route_mosaic_001_magnetic_anomaly_3d.html\",\n        \"summary_json\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_001/tdoc_preflight_route_mosaic_001_plotly_3d_summary.json\",\n        \"time_bin_utc\": \"12_18\",\n        \"downsample_step\": 2\n      },\n      \"report_json\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_001/tdoc_preflight_route_mosaic_001_report.json\"\n    },\n    {\n      \"index\": 2,\n      \"partition_mode\": \"complete_region_raster_aligned\",\n      \"grid_window\": [\n        115,\n        0,\n        114,\n        343\n      ],\n      \"bounds_projected_requested\": [\n        474683.8970329574,\n        4428031.087996376,\n        475822.036187918,\n        4431451.880264718\n      ],\n      \"bounds_wgs84_requested\": [\n        -105.29672370224756,\n        40.00208801371546,\n        -105.28325655882738,\n        40.03294156138389\n      ],\n      \"nominal_area_km2\": 3.8933376215871927,\n      \"contains_origin\": false,\n      \"contains_destination\": false,\n      \"terrain\": {\n        \"output\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_002/tdoc_preflight_route_mosaic_002_terrain.tif\",\n        \"shape\": [\n          8,\n          343,\n          114\n        ],\n        \"crs\": \"EPSG:32613\",\n        \"bounds_projected\": [\n          474683.8970329574,\n          4428031.087996376,\n          475822.03618791804,\n          4431451.880264718\n        ],\n        \"bounds_wgs84\": [\n          -105.29672370224756,\n          40.00208801371546,\n          -105.28325655882738,\n          40.03294156138389\n        ],\n        \"resolution\": [\n          9.983676797900085,\n          9.973155301290275\n        ],\n        \"bands\": [\n          \"terrain_elevation_m\",\n          \"terrain_slope_deg\",\n          \"terrain_aspect_deg\",\n          \"road_class\",\n          \"building_mask\",\n          \"building_height_m\",\n          \"natural_obstacle_class\",\n          \"artificial_obstacle_class\"\n        ],\n        \"grid_window\": [\n          115,\n          0,\n          114,\n          343\n        ]\n      },\n      \"climate\": {\n        \"output\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_002/tdoc_preflight_route_mosaic_002_climate.tif\",\n        \"shape\": [\n          32,\n          343,\n          114\n        ],\n        \"crs\": \"EPSG:32613\",\n        \"bounds_projected\": [\n          474683.8970329574,\n          4428031.087996376,\n          475822.03618791804,\n          4431451.880264718\n        ],\n        \"bounds_wgs84\": [\n          -105.29672370224756,\n          40.00208801371546,\n          -105.28325655882738,\n          40.03294156138389\n        ],\n        \"resolution\": [\n          9.983676797900085,\n          9.973155301290275\n        ],\n        \"bands\": [\n          \"temperature_c_00_06\",\n          \"relative_humidity_percent_00_06\",\n          \"wind_u_east_ms_00_06\",\n          \"wind_v_north_ms_00_06\",\n          \"wind_vector_speed_ms_00_06\",\n          \"wind_direction_from_deg_00_06\",\n          \"climate_cluster_id_00_06\",\n          \"cluster_confidence_00_06\",\n          \"temperature_c_06_12\",\n          \"relative_humidity_percent_06_12\",\n          \"wind_u_east_ms_06_12\",\n          \"wind_v_north_ms_06_12\",\n          \"wind_vector_speed_ms_06_12\",\n          \"wind_direction_from_deg_06_12\",\n          \"climate_cluster_id_06_12\",\n          \"cluster_confidence_06_12\",\n          \"temperature_c_12_18\",\n          \"relative_humidity_percent_12_18\",\n          \"wind_u_east_ms_12_18\",\n          \"wind_v_north_ms_12_18\",\n          \"wind_vector_speed_ms_12_18\",\n          \"wind_direction_from_deg_12_18\",\n          \"climate_cluster_id_12_18\",\n          \"cluster_confidence_12_18\",\n          \"temperature_c_18_24\",\n          \"relative_humidity_percent_18_24\",\n          \"wind_u_east_ms_18_24\",\n          \"wind_v_north_ms_18_24\",\n          \"wind_vector_speed_ms_18_24\",\n          \"wind_direction_from_deg_18_24\",\n          \"climate_cluster_id_18_24\",\n          \"cluster_confidence_18_24\"\n        ],\n        \"grid_window\": [\n          115,\n          0,\n          114,\n          343\n        ]\n      },\n      \"magnetic\": {\n        \"output\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_002/tdoc_preflight_route_mosaic_002_magnetic.tif\",\n        \"shape\": [\n          4,\n          343,\n          114\n        ],\n        \"crs\": \"EPSG:32613\",\n        \"bounds_projected\": [\n          474683.8970329574,\n          4428031.087996376,\n          475822.03618791804,\n          4431451.880264718\n        ],\n        \"bounds_wgs84\": [\n          -105.29672370224756,\n          40.00208801371546,\n          -105.28325655882738,\n          40.03294156138389\n        ],\n        \"resolution\": [\n          9.983676797900085,\n          9.973155301290275\n        ],\n        \"bands\": [\n          \"magnetic_anomaly_nt\",\n          \"magnetic_anomaly_error_nt\",\n          \"magnetic_source_code\",\n          \"magnetic_anomaly_gradient_nt_per_m\"\n        ],\n        \"grid_window\": [\n          115,\n          0,\n          114,\n          343\n        ]\n      },\n      \"plots\": {\n        \"terrain_plot_html\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_002/tdoc_preflight_route_mosaic_002_terrain_obstacles_3d.html\",\n        \"climate_plot_html\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_002/tdoc_preflight_route_mosaic_002_climate_dashboard_3d_12_18.html\",\n        \"magnetic_plot_html\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_002/tdoc_preflight_route_mosaic_002_magnetic_anomaly_3d.html\",\n        \"summary_json\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_002/tdoc_preflight_route_mosaic_002_plotly_3d_summary.json\",\n        \"time_bin_utc\": \"12_18\",\n        \"downsample_step\": 2\n      },\n      \"report_json\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_002/tdoc_preflight_route_mosaic_002_report.json\"\n    },\n    {\n      \"index\": 3,\n      \"partition_mode\": \"complete_region_raster_aligned\",\n      \"grid_window\": [\n        229,\n        0,\n        115,\n        343\n      ],\n      \"bounds_projected_requested\": [\n        475822.036187918,\n        4428031.087996376,\n        476970.1590196765,\n        4431451.880264718\n      ],\n      \"bounds_wgs84_requested\": [\n        -105.28338401592788,\n        40.002121368321,\n        -105.26980588790084,\n        40.032973689218345\n      ],\n      \"nominal_area_km2\": 3.927489705987081,\n      \"contains_origin\": false,\n      \"contains_destination\": true,\n      \"terrain\": {\n        \"output\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_003/tdoc_preflight_route_mosaic_003_terrain.tif\",\n        \"shape\": [\n          8,\n          343,\n          115\n        ],\n        \"crs\": \"EPSG:32613\",\n        \"bounds_projected\": [\n          475822.036187918,\n          4428031.087996376,\n          476970.1590196765,\n          4431451.880264718\n        ],\n        \"bounds_wgs84\": [\n          -105.28338401592788,\n          40.002121368321,\n          -105.26980588790084,\n          40.032973689218345\n        ],\n        \"resolution\": [\n          9.983676797900085,\n          9.973155301290275\n        ],\n        \"bands\": [\n          \"terrain_elevation_m\",\n          \"terrain_slope_deg\",\n          \"terrain_aspect_deg\",\n          \"road_class\",\n          \"building_mask\",\n          \"building_height_m\",\n          \"natural_obstacle_class\",\n          \"artificial_obstacle_class\"\n        ],\n        \"grid_window\": [\n          229,\n          0,\n          115,\n          343\n        ]\n      },\n      \"climate\": {\n        \"output\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_003/tdoc_preflight_route_mosaic_003_climate.tif\",\n        \"shape\": [\n          32,\n          343,\n          115\n        ],\n        \"crs\": \"EPSG:32613\",\n        \"bounds_projected\": [\n          475822.036187918,\n          4428031.087996376,\n          476970.1590196765,\n          4431451.880264718\n        ],\n        \"bounds_wgs84\": [\n          -105.28338401592788,\n          40.002121368321,\n          -105.26980588790084,\n          40.032973689218345\n        ],\n        \"resolution\": [\n          9.983676797900085,\n          9.973155301290275\n        ],\n        \"bands\": [\n          \"temperature_c_00_06\",\n          \"relative_humidity_percent_00_06\",\n          \"wind_u_east_ms_00_06\",\n          \"wind_v_north_ms_00_06\",\n          \"wind_vector_speed_ms_00_06\",\n          \"wind_direction_from_deg_00_06\",\n          \"climate_cluster_id_00_06\",\n          \"cluster_confidence_00_06\",\n          \"temperature_c_06_12\",\n          \"relative_humidity_percent_06_12\",\n          \"wind_u_east_ms_06_12\",\n          \"wind_v_north_ms_06_12\",\n          \"wind_vector_speed_ms_06_12\",\n          \"wind_direction_from_deg_06_12\",\n          \"climate_cluster_id_06_12\",\n          \"cluster_confidence_06_12\",\n          \"temperature_c_12_18\",\n          \"relative_humidity_percent_12_18\",\n          \"wind_u_east_ms_12_18\",\n          \"wind_v_north_ms_12_18\",\n          \"wind_vector_speed_ms_12_18\",\n          \"wind_direction_from_deg_12_18\",\n          \"climate_cluster_id_12_18\",\n          \"cluster_confidence_12_18\",\n          \"temperature_c_18_24\",\n          \"relative_humidity_percent_18_24\",\n          \"wind_u_east_ms_18_24\",\n          \"wind_v_north_ms_18_24\",\n          \"wind_vector_speed_ms_18_24\",\n          \"wind_direction_from_deg_18_24\",\n          \"climate_cluster_id_18_24\",\n          \"cluster_confidence_18_24\"\n        ],\n        \"grid_window\": [\n          229,\n          0,\n          115,\n          343\n        ]\n      },\n      \"magnetic\": {\n        \"output\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_003/tdoc_preflight_route_mosaic_003_magnetic.tif\",\n        \"shape\": [\n          4,\n          343,\n          115\n        ],\n        \"crs\": \"EPSG:32613\",\n        \"bounds_projected\": [\n          475822.036187918,\n          4428031.087996376,\n          476970.1590196765,\n          4431451.880264718\n        ],\n        \"bounds_wgs84\": [\n          -105.28338401592788,\n          40.002121368321,\n          -105.26980588790084,\n          40.032973689218345\n        ],\n        \"resolution\": [\n          9.983676797900085,\n          9.973155301290275\n        ],\n        \"bands\": [\n          \"magnetic_anomaly_nt\",\n          \"magnetic_anomaly_error_nt\",\n          \"magnetic_source_code\",\n          \"magnetic_anomaly_gradient_nt_per_m\"\n        ],\n        \"grid_window\": [\n          229,\n          0,\n          115,\n          343\n        ]\n      },\n      \"plots\": {\n        \"terrain_plot_html\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_003/tdoc_preflight_route_mosaic_003_terrain_obstacles_3d.html\",\n        \"climate_plot_html\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_003/tdoc_preflight_route_mosaic_003_climate_dashboard_3d_12_18.html\",\n        \"magnetic_plot_html\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_003/tdoc_preflight_route_mosaic_003_magnetic_anomaly_3d.html\",\n        \"summary_json\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_003/tdoc_preflight_route_mosaic_003_plotly_3d_summary.json\",\n        \"time_bin_utc\": \"12_18\",\n        \"downsample_step\": 2\n      },\n      \"report_json\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/mosaic_003/tdoc_preflight_route_mosaic_003_report.json\"\n    }\n  ],\n  \"index_html\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work/route_3d_index.html\"\n}",
+      "tdoc_report_only_artifacts": [
+        "reports/preparation/route_cli/tdoc_preflight_route_route_3d_manifest.json",
+        "reports/preparation/route_cli/route_3d_index.html",
+        "reports/preparation/route_cli/mosaic_003/tdoc_preflight_route_mosaic_003_plotly_3d_summary.json",
+        "reports/preparation/route_cli/mosaic_003/tdoc_preflight_route_mosaic_003_magnetic_anomaly_3d.html",
+        "reports/preparation/route_cli/mosaic_003/tdoc_preflight_route_mosaic_003_terrain_obstacles_3d.html",
+        "reports/preparation/route_cli/mosaic_003/tdoc_preflight_route_mosaic_003_report.json",
+        "reports/preparation/route_cli/mosaic_003/tdoc_preflight_route_mosaic_003_climate_dashboard_3d_12_18.html",
+        "reports/preparation/route_cli/overall_route/tdoc_preflight_route_overall_climate_dashboard_3d_12_18.html",
+        "reports/preparation/route_cli/overall_route/tdoc_preflight_route_overall_plotly_3d_summary.json",
+        "reports/preparation/route_cli/overall_route/tdoc_preflight_route_overall_terrain_obstacles_3d.html",
+        "reports/preparation/route_cli/overall_route/tdoc_preflight_route_overall_magnetic_anomaly_3d.html",
+        "reports/preparation/route_cli/mosaic_002/tdoc_preflight_route_mosaic_002_plotly_3d_summary.json",
+        "reports/preparation/route_cli/mosaic_002/tdoc_preflight_route_mosaic_002_magnetic_anomaly_3d.html",
+        "reports/preparation/route_cli/mosaic_002/tdoc_preflight_route_mosaic_002_climate_dashboard_3d_12_18.html",
+        "reports/preparation/route_cli/mosaic_002/tdoc_preflight_route_mosaic_002_report.json",
+        "reports/preparation/route_cli/mosaic_002/tdoc_preflight_route_mosaic_002_terrain_obstacles_3d.html",
+        "reports/preparation/route_cli/mosaic_001/tdoc_preflight_route_mosaic_001_terrain_obstacles_3d.html",
+        "reports/preparation/route_cli/mosaic_001/tdoc_preflight_route_mosaic_001_climate_dashboard_3d_12_18.html",
+        "reports/preparation/route_cli/mosaic_001/tdoc_preflight_route_mosaic_001_magnetic_anomaly_3d.html",
+        "reports/preparation/route_cli/mosaic_001/tdoc_preflight_route_mosaic_001_report.json",
+        "reports/preparation/route_cli/mosaic_001/tdoc_preflight_route_mosaic_001_plotly_3d_summary.json"
+      ],
+      "external_work_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/tdoc_route_cli_work",
+      "raster_payload_copied_into_tdoc": false
+    },
+    {
+      "index": 21,
+      "stage": "Validate ISO unit/frame/time adapter package/API",
+      "ok": true,
+      "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914"
+    },
+    {
+      "index": 22,
+      "stage": "Layer 3 TDOC adapter preflight",
+      "ok": true,
+      "returncode": 0,
+      "elapsed_s": 0.123,
+      "cwd": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052",
+      "command": [
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python",
+        "-c",
+        "from tddt_tdoc import TDOCConfig; from tddt_tdoc.unit_adapter import UnitAdapterBinding; from tddt_tdoc.adapters.layer2 import Layer2Adapter; from tddt_tdoc.adapters.layer3 import Layer3Adapter; c=TDOCConfig.from_yaml(r\"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/configs/tdoc.yaml\"); u=UnitAdapterBinding(c); a2=Layer2Adapter(c,u); r=Layer3Adapter(c,u,a2).preflight(); print(r); raise SystemExit(0 if r.get(\"ok\") else 2)"
+      ],
+      "output_tail": "{'ok': True, 'root': '/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer3_v20260911_1131', 'missing': [], 'python_modules': {'numpy': True, 'yaml': True, 'pandas': True, 'rasterio': True, 'pyproj': True, 'shapely': True, 'plotly': True}, 'missing_python_modules': [], 'mode': 'TDOC-owned two-phase Layer3: plan_network -> runtime couplings using existing Layer2 instances -> Layer3Engine.step', 'unit_adapter': {'role': 'external ISO unit/frame/time/semantic/covariance adapter', 'binding_owner': 'TDOC/RuntimeScheduler', 'conversion_owner': 'Layer3.1/TDOCAdapter', 'expected_package': 'TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914', 'minimum_api_version': '2.2.0', 'root': '/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914', 'unit_adapter_root': '/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914', 'basename_ok': True, 'missing': [], 'api_probe': {'version': '2.2.0', 'missing_symbols': [], 'smoke': {'unit_1000mm_to_m': 1.0, 'enu_to_ned': [2.0, 1.0, -3.0], 'semantic_same_role': True}, 'smoke_ok': True, 'version_ok': True, 'api_ok': True, 'ok': True}, 'ok': True}, 'alignment_owner': 'Layer3.1', 'adapter_binding_owner': 'TDOC/RuntimeScheduler'}"
+    },
+    {
+      "index": 23,
+      "stage": "Layer 3 strict external runtime/dataset preflight",
+      "ok": true,
+      "returncode": 0,
+      "elapsed_s": 0.472,
+      "cwd": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer3_v20260911_1131",
+      "command": [
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python",
+        "-m",
+        "layer3.cli",
+        "preflight",
+        "--config",
+        "configs/configuration_boulder.yaml"
+      ],
+      "output_tail": "{\n  \"ok\": true,\n  \"python_runtime\": {\n    \"all_ok\": true,\n    \"missing\": [],\n    \"details\": {\n      \"numpy\": {\n        \"pip_requirement\": \"numpy>=1.24\",\n        \"available\": true\n      },\n      \"yaml\": {\n        \"pip_requirement\": \"PyYAML>=6.0\",\n        \"available\": true\n      },\n      \"rasterio\": {\n        \"pip_requirement\": \"rasterio>=1.3\",\n        \"available\": true\n      },\n      \"pyproj\": {\n        \"pip_requirement\": \"pyproj>=3.5\",\n        \"available\": true\n      },\n      \"pandas\": {\n        \"pip_requirement\": \"pandas>=2.0\",\n        \"available\": true\n      },\n      \"plotly\": {\n        \"pip_requirement\": \"plotly>=6.0\",\n        \"available\": true\n      },\n      \"shapely\": {\n        \"pip_requirement\": \"shapely>=2.0\",\n        \"available\": true\n      }\n    }\n  },\n  \"external_packages\": {\n    \"twins\": {\n      \"root\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233\",\n      \"expected_basename\": \"twins_layer2_v20260820_1233\",\n      \"actual_basename\": \"twins_layer2_v20260820_1233\",\n      \"exists\": true,\n      \"basename_ok\": true,\n      \"missing\": [],\n      \"ok\": true,\n      \"how_usage\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/HOW_USAGE.md\"\n    },\n    \"climate\": {\n      \"root\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/climate_twin_v20260911_0922\",\n      \"expected_basename\": \"climate_twin_v20260911_0922\",\n      \"actual_basename\": \"climate_twin_v20260911_0922\",\n      \"exists\": true,\n      \"basename_ok\": true,\n      \"missing\": [],\n      \"ok\": true,\n      \"how_usage\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/climate_twin_v20260911_0922/HOW_USAGE.md\"\n    },\n    \"tdoc\": {\n      \"root\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914\",\n      \"expected_basename\": \"TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914\",\n      \"actual_basename\": \"TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914\",\n      \"exists\": true,\n      \"basename_ok\": true,\n      \"missing\": [],\n      \"ok\": true,\n      \"how_usage\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914/HOW_USAGE.md\"\n    },\n    \"sarg\": {\n      \"root\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/SARG_v20260821_0945\",\n      \"expected_basename\": \"SARG_v20260821_0945\",\n      \"actual_basename\": \"SARG_v20260821_0945\",\n      \"exists\": true,\n      \"basename_ok\": true,\n      \"missing\": [],\n      \"ok\": true,\n      \"how_usage\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/SARG_v20260821_0945/HOW_USAGE.md\"\n    },\n    \"boulder\": {\n      \"root\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215\",\n      \"expected_basename\": \"boulder_multilayer_map_builder_v20260814_1215\",\n      \"actual_basename\": \"boulder_multilayer_map_builder_v20260814_1215\",\n      \"exists\": true,\n      \"basename_ok\": true,\n      \"missing\": [],\n      \"ok\": true,\n      \"how_usage\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/HOW_USAGE.md\"\n    },\n    \"climate_forcing\": {\n      \"path\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/internet_datasets/climate_twin/openmeteo_24h.csv\",\n      \"ok\": true,\n      \"source\": \"environment/central-cache/package-fallback\"\n    },\n    \"all_ok\": true,\n    \"errors\": []\n  },\n  \"how_usage_api_contracts\": {\n    \"all_ok\": true,\n    \"checks\": {\n      \"twins\": {\n        \"ok\": true,\n        \"DomainTwin.evaluate_packet\": \"(self, operation_code: 'int', *, context: 'Mapping[str, Any] | None' = None, context_id: 'str | None' = None, stage_id: 'str | None' = None, source: 'str' = 'runtime_fmi', communication_step: 'float' = 0.001, use_config: 'bool' = True, require_all_inputs: 'bool' = False, reset_before: 'bool' = False, inputs: 'Mapping[str, Any] | None' = None, freshness_age_s: 'float' = 0.0, prior_profile: 'Mapping[str, Any] | None' = None, **named_inputs: 'Any') -> 'TwinPacket'\",\n        \"FormulaFMU.operation_signature\": \"(self, operation_code: 'int') -> 'Mapping[str, Any]'\",\n        \"missing\": []\n      },\n      \"climate\": {\n        \"ok\": true,\n        \"estimate\": \"(args: 'argparse.Namespace') -> 'dict'\",\n        \"packet_from_estimate\": \"(self, result: 'dict', *, context_id='UNSPECIFIED', stage_id='UNSPECIFIED', operation_code='climate_estimate', evidence_log=None, data_age_s=0.0) -> 'dict'\",\n        \"match_tep\": \"(self, result) -> 'TEPMatch'\",\n        \"missing\": []\n      },\n      \"tdoc\": {\n        \"ok\": true,\n        \"UnitConverter.convert\": \"(self, value, from_unit, to_unit, *, quantity_kind=None, uncertainty=None, metadata=None)\",\n        \"missing_adapters\": [],\n        \"missing_params\": []\n      },\n      \"sarg\": {\n        \"ok\": true,\n        \"PRIMARY_KEY\": [\n          \"regime_id\",\n          \"phase_id\",\n          \"crp_id\"\n        ],\n        \"select\": \"(self, regime_id: 'int | None', phase_id: 'int', crp_id: 'int')\",\n        \"select_candidates\": \"(self, phase_id: 'int', crp_id: 'int', regime_ids: 'Iterable[int] | None' = None) -> 'list[dict]'\",\n        \"missing\": []\n      },\n      \"boulder\": {\n        \"ok\": true,\n        \"public_runtime_api\": [\n          \"sample_file\",\n          \"point\",\n          \"time_bin\",\n          \"band_map\"\n        ],\n        \"missing\": [],\n        \"validation\": \"AST public-symbol check + runtime integration test\"\n      }\n    },\n    \"errors\": [],\n    \"authority\": \"each dependency HOW_USAGE.md\"\n  },\n  \"datasets\": {\n    \"sarg\": {\n      \"ok\": true,\n      \"primary_key\": [\n        \"regime_id\",\n        \"phase_id\",\n        \"crp_id\"\n      ],\n      \"records\": 1920,\n      \"patterns\": 1920,\n      \"lookup_index\": 1920,\n      \"expected_records\": 1920,\n      \"scenarios\": 10,\n      \"stage_summary\": 60,\n      \"scenario_contexts\": 320,\n      \"status_codes\": 11,\n      \"fmi_trace\": 320,\n      \"routes\": 320,\n      \"expected_routes\": 320,\n      \"ancillary_contract_files\": true\n    },\n    \"crp\": {\n      \"ok\": true,\n      \"canonical_definition\": \"C_k=(mu_k,Sigma_k,n_k,q_k)\",\n      \"feature_order\": [\n        \"temperature_c\",\n        \"relative_humidity_percent\",\n        \"wind_speed_ms\",\n        \"wind_direction_sin\",\n        \"wind_direction_cos\",\n        \"terrain_elevation_m\",\n        \"terrain_slope_deg\",\n        \"local_relief_m\",\n        \"building_height_m\",\n        \"magnetic_anomaly_nt\",\n        \"magnetic_gradient_nt_per_m\"\n      ],\n      \"cluster_count\": 32,\n      \"catalog_exists\": true,\n      \"assignments_exists\": true,\n      \"cluster_map_exists\": true\n    },\n    \"boulder_raster_alignment\": {\n      \"ok\": true,\n      \"rasters\": [\n        {\n          \"file\": \"terrain_obstacles.tif\",\n          \"crs\": \"EPSG:32613\",\n          \"width\": 343,\n          \"height\": 342\n        },\n        {\n          \"file\": \"climate_contexts.tif\",\n          \"crs\": \"EPSG:32613\",\n          \"width\": 343,\n          \"height\": 342\n        },\n        {\n          \"file\": \"magnetic_anomaly.tif\",\n          \"crs\": \"EPSG:32613\",\n          \"width\": 343,\n          \"height\": 342\n        },\n        {\n          \"file\": \"crp_cluster_map.tif\",\n          \"crs\": \"EPSG:32613\",\n          \"width\": 343,\n          \"height\": 342\n        }\n      ]\n    },\n    \"all_ok\": true,\n    \"errors\": []\n  }\n}"
+    },
+    {
+      "index": 24,
+      "stage": "Layer 4 + Layer 5 model/decision preflight",
+      "ok": true,
+      "returncode": 0,
+      "elapsed_s": 0.315,
+      "cwd": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052",
+      "command": [
+        "bash",
+        "-lc",
+        "cd /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer4_v20260907_0608 && PYTHONPATH=src:${PYTHONPATH:-} /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -m layer4.cli preflight --config configs/configuration_boulder.yaml && cd /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer5_v20260911_1510 && PYTHONPATH=src:${PYTHONPATH:-} /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -c 'from layer5 import Layer5Config,Layer5Engine; c=Layer5Config.from_yaml(\"configs/configuration_phoenix.yaml\"); r=Layer5Engine(c).preflight(strict_external=False); print(r); raise SystemExit(0 if r.get(\"ok\",True) else 2)'"
+      ],
+      "output_tail": "  \"runtime_schema\": \"CRP-runtime-statistics-v1\"\n      },\n      \"usage\": \"validation/provenance only; Layer-3 guidance remains authoritative\"\n    },\n    \"ok\": true\n  },\n  \"strict_external\": false,\n  \"note\": \"Layer 4 can consume an already-harmonized Layer-3 snapshot without directly importing external domain packages; full-fidelity verification requires all external roots.\"\n}\n{'ok': True, 'core_resources_ok': True, 'tdoc': {'ok': True, 'root': '/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914', 'version': '2.2.0', 'missing_symbols': [], 'error': None, 'role': 'layer boundary / unit-frame-time-semantic-covariance authority'}, 'external_dependencies': {'TDDT_LAYER4_ROOT': {'root': '/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer4_v20260907_0608', 'configured': True, 'ok': True, 'missing': [], 'required': 'mode-dependent'}, 'TDDT_LAYER3_ROOT': {'root': '/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer3_v20260911_1131', 'configured': True, 'ok': True, 'missing': [], 'required': 'mode-dependent'}, 'TDDT_TWINS_ROOT': {'root': '/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233', 'configured': True, 'ok': True, 'missing': [], 'required': 'mode-dependent'}, 'TDDT_CLIMATE_ROOT': {'root': '/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/climate_twin_v20260911_0922', 'configured': True, 'ok': True, 'missing': [], 'required': 'mode-dependent'}, 'TDDT_PTLIB_ROOT': {'root': None, 'configured': False, 'ok': False, 'missing': ['pt_lib/__init__.py', 'pt_lib/config.py', 'pt_lib/controller.py', 'pt_lib/lifecycle.py', 'config/pt_lib_sitl.yaml'], 'required': 'mode-dependent'}}, 'phoenix': {'profile': '/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer5_v20260911_1510/resources/phoenix_drone_v3.yaml', 'profile_sha256': 'fd7551aa06bc27a3d918f50322cebef91c78c68c2a59fd3a84734d41dea4ee8f', 'forward_only': False, 'transition_validated': True, 'vtol_autopilot_controller_validated': False, 'vtol_force_model_validated': True, 'hover_equilibrium_validation': 'analytic_force_balance_pass', 'true_zero_speed_hover_validated': False, 'environment_authorized': 'VTOL_PLANT_BOUNDED_CONTROLLER_FORWARD_ONLY', 'mapping_validated': False, 'mixer_validated': False, 'servo_dynamics_identified': False, 'aerodynamics_full_envelope_validated': False, 'esc_mapping_identified': False, 'phase_execution_capability': {'schema': 'Layer5-Phoenix-phase-execution-capability-v1', 'execution_authority': 'Layer5_external_controller_via_PT_LIB_to_ArduPilot_mixer', 'ardupilot_mixer_authoritative': True, 'direct_pwm': False, 'phase_supported': {'vertical_takeoff': False, 'hover': False, 'transition_forward': False, 'transition_back': False, 'vertical_landing': False}, 'phase_blockers': {'vertical_takeoff': ['runtime_control_certificate_not_accepted', 'layer5_nominal_tracker_not_authorized', 'ardupilot_mixer_not_commissioned', 'phase_throttle_execution_range_not_commissioned'], 'hover': ['runtime_control_certificate_not_accepted', 'layer5_nominal_tracker_not_authorized', 'ardupilot_mixer_not_commissioned', 'phase_throttle_execution_range_not_commissioned'], 'transition_forward': ['runtime_control_certificate_not_accepted', 'layer5_nominal_tracker_not_authorized', 'ardupilot_mixer_not_commissioned'], 'transition_back': ['runtime_control_certificate_not_accepted', 'layer5_nominal_tracker_not_authorized', 'ardupilot_mixer_not_commissioned'], 'vertical_landing': ['runtime_control_certificate_not_accepted', 'layer5_nominal_tracker_not_authorized', 'ardupilot_mixer_not_commissioned']}, 'evidence': {'runtime_control_certificate_accepted': False, 'nominal_tracker_authorized': False, 'mixer_validated': False, 'vtol_force_model_validated': True, 'bounded_transition_plant_validated': True, 'hover_equilibrium_validation': 'analytic_force_balance_pass', 'commissioned_phase_throttle_ranges': []}, 'claim_limits': {'vtol_autopilot_controller_validated': False, 'true_zero_speed_hover_dynamic_validated': False, 'aerodynamics_full_envelope_validated': False, 'qlpv_nonzero_correction_ready': False, 'real_aircraft_flight_validated': False}, 'claim_scope': {'schema': 'Layer5-Phoenix-claim-scope-v1', 'status': 'CLAIM_LIMITED_TO_SITL', 'scope_ceiling': 'SITL_SIMULATION_ONLY', 'current_sitl_category_permitted': True, 'claim_limits_block_current_sitl_by_themselves': False, 'beyond_sitl_claims_allowed': False, 'unmet_beyond_sitl_claims': ['vtol_autopilot_controller_validated', 'aerodynamics_full_envelope_validated', 'real_aircraft_flight_validated'], 'claim_limits': {'vtol_autopilot_controller_validated': False, 'true_zero_speed_hover_dynamic_validated': False, 'aerodynamics_full_envelope_validated': False, 'qlpv_nonzero_correction_ready': False, 'real_aircraft_flight_validated': False}, 'commissioning_may_upgrade_claim_limits': False, 'runtime_certificate_scope': 'SITL_CONTROL_PATH_COMMISSIONING_ONLY', 'allowed_claims': ['SITL simulation execution through external Layer5 control and authoritative ArduPilot mixer', 'simulation-level bounded VTOL plant/control-path evidence when the corresponding phase capability passes'], 'prohibited_claims_when_limited': ['validated autonomous ArduPilot tailsitter VTOL controller', 'validated full-envelope Phoenix aerodynamics', 'real-aircraft flight validation'], 'authority': 'source_bound_profile_plus_explicit_validation_evidence'}}, 'claim_limits': {'vtol_autopilot_controller_validated': False, 'true_zero_speed_hover_dynamic_validated': False, 'aerodynamics_full_envelope_validated': False, 'qlpv_nonzero_correction_ready': False, 'real_aircraft_flight_validated': False}, 'claim_scope': {'schema': 'Layer5-Phoenix-claim-scope-v1', 'status': 'CLAIM_LIMITED_TO_SITL', 'scope_ceiling': 'SITL_SIMULATION_ONLY', 'current_sitl_category_permitted': True, 'claim_limits_block_current_sitl_by_themselves': False, 'beyond_sitl_claims_allowed': False, 'unmet_beyond_sitl_claims': ['vtol_autopilot_controller_validated', 'aerodynamics_full_envelope_validated', 'real_aircraft_flight_validated'], 'claim_limits': {'vtol_autopilot_controller_validated': False, 'true_zero_speed_hover_dynamic_validated': False, 'aerodynamics_full_envelope_validated': False, 'qlpv_nonzero_correction_ready': False, 'real_aircraft_flight_validated': False}, 'commissioning_may_upgrade_claim_limits': False, 'runtime_certificate_scope': 'SITL_CONTROL_PATH_COMMISSIONING_ONLY', 'allowed_claims': ['SITL simulation execution through external Layer5 control and authoritative ArduPilot mixer', 'simulation-level bounded VTOL plant/control-path evidence when the corresponding phase capability passes'], 'prohibited_claims_when_limited': ['validated autonomous ArduPilot tailsitter VTOL controller', 'validated full-envelope Phoenix aerodynamics', 'real-aircraft flight validation'], 'authority': 'source_bound_profile_plus_explicit_validation_evidence'}, 'real_aircraft_flight_validated': False, 'differential_thrust_gain': 0.0, 'differential_thrust_authorized': False, 'direct_pwm_allowed': False, 'pwm_mapping_validated': False, 'physical_actuators': ['left_elevon', 'right_elevon', 'left_motor', 'right_motor'], 'logical_command_order': ['aileron_domain', 'elevator_domain', 'throttle_domain', 'rudder_domain'], 'state_contract': ['p_n_3', 'v_n_3', 'q_wxyz_4', 'omega_body_3', 'omega_L', 'omega_R', 'delta_L', 'delta_R', 'SOC'], 'limits': {'elevon_rad': 0.53, 'motor_speed_rad_s': 800.0, 'motor_thrust_N': 5.03296}, 'motor_model': {'tau_up_s': 0.016, 'tau_down_s': 0.02, 'k_T': 7.864e-06, 'k_Q': 0.023}, 'output_functions': {'SERVO1_FUNCTION': 77, 'SERVO2_FUNCTION': 78, 'SERVO3_FUNCTION': 73, 'SERVO4_FUNCTION': 74}, 'pwm_anchors': {'SERVO1': {'min': 1000, 'trim': 1500, 'max': 2000}, 'SERVO2': {'min': 1000, 'trim': 1500, 'max': 2000}, 'SERVO3': {'min': 1000, 'trim': 1000, 'max': 2000}, 'SERVO4': {'min': 1000, 'trim': 1000, 'max': 2000}}, 'sensor_semantics': {'groups': ['airspeed', 'attitude', 'barometer', 'battery', 'gps_bootstrap', 'imu', 'magnetometer', 'position', 'ultrasonic_wind', 'velocity', 'wind'], 'truth_observation_separated': True, 'wind_semantics': {'sensor_observation': 'ULTRASONIC_WIND', 'autopilot_estimate': 'WIND', 'environment_truth': 'JSBSim current_state.wind'}, 'twin_contract': ['MESA_NAV:state+uncertainty', 'WingMPET:trajectory+feasibility+energy', 'Climate:rho+wind+disturbance'], 'raw_sensor_to_pwm': False}, 'airframe_binding': {'inertia': {'frame': 'BODY_FRD_CG; retained diagonal engineering model from pinned JSBSim XML, not an identified rotated SDF inertia tensor', 'Ixx_kg_m2': 0.0147563, 'Iyy_kg_m2': 0.00638929, 'Izz_kg_m2': 0.0177, 'Ixy_kg_m2': 0.0, 'Ixz_kg_m2': 0.0, 'Iyz_kg_m2': 0.0, 'inertial_pose_xyz_m': [0.0, 0.0, 0.0], 'provenance': 'source_identified_official_phoenix_sdf', 'source_sdf_inertial_pose_xyz_m': [0.0, 0.0, 0.157]}, 'geometry': {'wing_span_m': 0.64, 'wing_area_m2': 0.12, 'mean_aerodynamic_chord_m': 0.19, 'root_chord_m': 0.21, 'tip_chord_m': 0.17, 'aspect_ratio': 3.41, 'taper_ratio': 0.81, 'elevon_area_total_m2': 0.03, 'elevon_area_each_m2': 0.015}, 'propwash': {'k_lift': 3.48e-06, 'k_drag': 1.75e-06, 'k_pitch': -3.44e-07, 'left_cp_m': [0.0, 0.195, 0.036], 'right_cp_m': [0.0, -0.195, 0.036], 'forward_axis': [0.0, 0.0, 1.0], 'upward_axis': [1.0, 0.0, 0.0], 'provenance': 'source_identified_official_phoenix_sdf_calibrated_plugin'}, 'uncertainty_ranges': {'wing_area_m2': {'min': 0.11, 'nominal': 0.12, 'max': 0.14, 'confidence': 'medium'}, 'cl_max': {'min': 0.9, 'nominal': 1.05, 'max': 1.2, 'confidence': 'low'}, 'stall_speed_m_s': {'min': 7.9, 'nominal': 9.1, 'max': 10.3, 'confidence': 'low'}, 'cruise_speed_m_s': {'min': 10.0, 'nominal': 13.0, 'max': 17.0, 'confidence': 'low'}, 'maximum_speed_m_s': {'min': 15.0, 'nominal': 18.0, 'max': 22.0, 'confidence': 'low'}, 'battery_mass_kg': {'min': 0.16, 'nominal': 0.18, 'max': 0.2, 'confidence': 'medium'}}, 'forward_aero': {'confidence': 'low', 'provenance': 'engineering_estimate_for_forward_flight_aerodynamic_regime_within_vtol_model', 'source_validated': False}, 'source_validated_components': ['inertia', 'motor_law', 'elevon_joint_limit', 'propwash_coefficients'], 'engineering_estimate_not_source_validated': True}, 'runtime_validation_certificate': {}, 'nominal_tracker_authorized': False, 'nominal_control_ready': False, 'actuator_identification_evidence': {'offline_model_prior_available': True, 'online_measured_servo_dynamics': False, 'online_measured_esc_mapping': False, 'identification_scope': None, 'simulation_only_identification': False, 'nonzero_qlpv_requires_measured_evidence': True, 'zero_correction_nominal_path_allowed_without_measured_identification': True}}, 'qlpv': {'model_loaded': False, 'calibrated': False, 'error': None, 'vertices': 0, 'airframe_binding_required': True, 'airframe_binding_match': False, 'model_source': None, 'model_scope': None, 'simulation_only_model': False, 'phoenix_validation_gates': {'mixer': False, 'servo_dynamics': False, 'esc_mapping': False, 'transition': True, 'full_envelope': False, 'direct_pwm': False, 'nominal_tracker': False, 'nominal_control': False, 'qlpv_nonzero_correction': False, 'airframe_binding_sha256': 'c4daa5ac8f0d5ae988441d4938311564ba796130eaf111845994bcb88817d089', 'profile_sha256': 'fd7551aa06bc27a3d918f50322cebef91c78c68c2a59fd3a84734d41dea4ee8f'}, 'nonzero_correction_authorized': False}, 'documents': {'Formalism_layer5_v4.md': True, 'TDDT_Dynamic_NTwin_Layer5_details_FA_v2.md': True, 'HOW_USAGE_layer4.md': True, 'Summary_layer2_layer3_layer4.md': True}, 'components': {'CI_guard': True, 'candidate_registry': True, 'admissibility': True, 'policy_guidance_adapter': True, 'qlpv_kernel': True, 'decision_confidence': True, 'operational_mode_human_authority': True, 'predictive_safety_filter': True, 'runtime_assurance': True, 'governance_provenance': True, 'layer6_assembler': True, 'single_episode_lifecycle': True, 'knowledge_reference_plane': True, 'SS_SETD_KStore': True, 'KStore_segmented_FILE': True, 'TDDT_KSTORE_ROOT': True, 'fast_meso_slow_aggregation': True, 'MRG': True, 'Phoenix_specialization': True, 'Layer7_evidence': True, 'network_commit': False, 'model_retraining': False, 'direct_pwm': False}, 'compute_profile': {'profile': 'EDGE-ROBUST', 'solve_max': 12, 'sensitivity_top_k': 3, 'cvar_enabled': False, 'covariance_enabled': True, 'chance_enabled': True, 'features': ['Tube', 'HardConstraints', 'Lexicographic', 'PSF', 'RTA', 'Covariance', 'ChanceConstraints', 'TopKSensitivity'], 'safety_bounds_relaxed': False, 'physical_validation_gates_relaxed': False, 'adaptive_complexity_only': True}, 'knowledge_store': {'backend': 'FILE', 'root': '/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/layer5/kstore', 'root_source': 'TDDT_KSTORE_ROOT', 'environment_variable': 'TDDT_KSTORE_ROOT', 'layout': 'segmented-ss+multi-file-setd-v2', 'episode_id': None, 'sequence': 0, 'buffer_records': 0, 'buffer_capacity': 128, 'queue_records': 0, 'queue_capacity': 64, 'offline_episode_completed': False, 'offline_episode_startable': True, 'critical_loss': False, 'health': True, 'faults': [], 'last_record_hash': None, 'recovery': {'performed': False, 'ok': True, 'action': 'none'}, 'interface': ['Open', 'Append', 'Checkpoint', 'AtomicCommit', 'Load', 'Verify', 'Recover', 'Compact'], 'full_dataset_in_ram': False, 'monolithic_ss_stream': False, 'ss_segments': 0, 'ss_segment_records_max': 256, 'ss_segment_bytes_max': 1048576, 'ss_record_bytes_max': 262144, 'setd_multi_file': True, 'setd_component_items_max': 128, 'setd_component_bytes_max': 1048576, 'online_persistent_writes': False}, 'offline_environment': {'ready': False, 'registered': [], 'required': ['WingMPET', 'MESA_NAV', 'Climate'], 'calls': 0, 'layer6_call': False, 'jsbsim_call': False}, 'strict_external': False, 'confidence_reachability': {'formula': 'Formalism_layer5_v4 L5-58N: (positive weighted evidence - nonnegative weighted penalties) / W_positive, clipped to [0,1]', 'normalization': 'W_positive = separation + margin + full_fidelity + freshness weight sum', 'reward_weight_sum': 0.75, 'penalty_weight_sum': 0.25, 'normalization_valid': True, 'max_possible_confidence': 1.0, 'auto_threshold': 0.8, 'auto_reachable': True, 'reason': None, 'threshold_relaxed': False}, 'native_pilot_controller': {'schema': 'TDDT-L5-native-pilot-FF-boundary-v1', 'online_native_pilot_required': True, 'current_native_predictor_implemented': False, 'native_execution_mapping_certified': False, 'pilot_to_actuator_replay_executed': False, 'native_controller_certified': False, 'flight_authorized': False, 'full_fidelity_authority_for_online': False, 'model_only_prior_allowed_for_offline': False, 'raw_verified_candidate_count': 0, 'raw_verified_candidate_ids': [], 'layer4_verification_scopes': [], 'snapshot_hash_declared': False, 'required_evidence': ['candidate_and_snapshot_identity', 'native_controller_model_and_parameters', 'flight_mode_and_spool_initial_state', 'pilot_domain_command_and_commit_duration', 'fcu_post_mixer_actuator_observation', 'jsbsim_plant_time_alignment', 'prediction_observation_residual_with_uncertainty', 'independent_motor_speed_if_rpm_claimed'], 'status': 'BLOCKED_NATIVE_PILOT_CONTROLLER', 'reason': 'native_pilot_controller_prediction_unavailable', 'contract_version': 'v1'}, 'preflight_scope': 'PACKAGE_AND_EXTERNAL_DEPENDENCY_ONLY_NOT_NATIVE_EXECUTION_READINESS', 'deployment_note': 'Full-envelope/transition and non-zero Phoenix qLPV correction remain fail-closed until their explicit validation evidence is supplied; L5-58N confidence normalization is fail-closed when W_positive is non-positive or any confidence weight is negative; AUTO still requires the configured confidence.auto_threshold and all independent safety/governance gates.'}"
+    },
+    {
+      "index": 25,
+      "stage": "Layer 7 feedback/adaptation preflight",
+      "ok": true,
+      "returncode": 0,
+      "elapsed_s": 0.141,
+      "cwd": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer7_v20260901_0921",
+      "command": [
+        "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python",
+        "-m",
+        "tddt_layer7.cli",
+        "--config",
+        "configs/default.json",
+        "preflight"
+      ],
+      "output_tail": "{\n  \"TDDT_KSTORE_ROOT\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/layer5/kstore\",\n  \"TDDT_PTLIB_ROOT\": null,\n  \"TDDT_TDOC_ROOT\": null,\n  \"console_entrypoint\": \"tddt-layer7\",\n  \"direct_actuation_allowed\": false,\n  \"note\": \"PT_LIB and TDOC are external dependencies; they are not vendored.\",\n  \"ok\": true,\n  \"project_root\": \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer7_v20260901_0921\",\n  \"ptlib_contract\": null,\n  \"ptlib_external_available\": false,\n  \"pyproject_present\": true,\n  \"pytest_available\": true,\n  \"setup_py_present\": true,\n  \"tdoc_managed\": true\n}"
+    },
+    {
+      "index": 26,
+      "stage": "Validate native Layer6 FlightStack assets",
+      "ok": true,
+      "root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032",
+      "missing": [],
+      "runtime_started": false,
+      "semantics": "source/assets check only; GUI/MAVLink readiness is checked before Online"
+    }
+  ],
+  "ordering_policy": "All requested FMU compilation and external package preparation complete before generated dataset acquisition or any internet-dependent download begins.",
+  "build_fmus": true,
+  "build_fmus_refresh": true,
+  "finished_at": "2026-11-05T01:19:32Z",
+  "generated": {
+    "map_root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map",
+    "crp_root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/CRP",
+    "sarg_root": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/SARG_v20260821_0945/generated/SARG",
+    "climate_forcing": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/internet_datasets/climate_twin/openmeteo_24h.csv",
+    "route_report_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/reports/preparation/route_cli"
+  }
+}
