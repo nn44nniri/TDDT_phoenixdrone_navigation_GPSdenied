@@ -1,0 +1,5678 @@
+{
+  "model": "WingMPET",
+  "interface": "FMI 2.0 Co-Simulation",
+  "formula_count": 84,
+  "operations": {
+    "1": {
+      "inputs": [],
+      "outputs": [
+        "formalism_version",
+        "active_operation_count",
+        "max_operation_code"
+      ],
+      "name": "formalism_interface_identity",
+      "description": "Reports formalism revision plus active operation count and highest reserved ABI operation code."
+    },
+    "2": {
+      "inputs": [
+        "msl_altitude",
+        "agl_altitude_input",
+        "terrain_height"
+      ],
+      "outputs": [
+        "terrain_height_echo",
+        "computed_agl"
+      ]
+    },
+    "4": {
+      "inputs": [
+        "state_x",
+        "state_y",
+        "state_h",
+        "air_velocity_x",
+        "air_velocity_y",
+        "air_velocity_h"
+      ],
+      "outputs": [
+        "airspeed_norm",
+        "flightpath_angle",
+        "air_heading"
+      ],
+      "regime": "wing_borne_or_transition_when_lambda_w_valid",
+      "description": "Wing-borne reduction only; caller must enforce the mode gate from operation 30."
+    },
+    "5": {
+      "inputs": [
+        "altitude",
+        "external_temperature",
+        "external_pressure",
+        "external_density",
+        "relative_humidity",
+        "airspeed"
+      ],
+      "outputs": [
+        "air_temperature",
+        "air_pressure",
+        "air_density",
+        "virtual_temperature",
+        "dynamic_pressure"
+      ]
+    },
+    "6": {
+      "inputs": [
+        "wind_x",
+        "wind_y",
+        "wind_h",
+        "ground_velocity_x",
+        "ground_velocity_y",
+        "ground_velocity_h",
+        "wind_time_derivative_x",
+        "wind_time_derivative_y",
+        "wind_time_derivative_h",
+        "wind_jacobian_11",
+        "wind_jacobian_12",
+        "wind_jacobian_13",
+        "wind_jacobian_21",
+        "wind_jacobian_22",
+        "wind_jacobian_23",
+        "wind_jacobian_31",
+        "wind_jacobian_32",
+        "wind_jacobian_33"
+      ],
+      "outputs": [
+        "wind_x_echo",
+        "wind_y_echo",
+        "wind_h_echo",
+        "wind_norm",
+        "wind_direction",
+        "wind_jacobian_out_11",
+        "wind_jacobian_out_12",
+        "wind_jacobian_out_13",
+        "wind_jacobian_out_21",
+        "wind_jacobian_out_22",
+        "wind_jacobian_out_23",
+        "wind_jacobian_out_31",
+        "wind_jacobian_out_32",
+        "wind_jacobian_out_33",
+        "wind_partial_t_x",
+        "wind_partial_t_y",
+        "wind_partial_t_h",
+        "wind_material_x",
+        "wind_material_y",
+        "wind_material_h"
+      ]
+    },
+    "7": {
+      "inputs": [
+        "dt",
+        "x",
+        "y",
+        "h",
+        "air_velocity_x",
+        "air_velocity_y",
+        "air_velocity_h",
+        "wind_x",
+        "wind_y",
+        "wind_h",
+        "target_x",
+        "target_y",
+        "target_h"
+      ],
+      "outputs": [
+        "ground_velocity_x",
+        "ground_velocity_y",
+        "ground_velocity_h",
+        "next_x",
+        "next_y",
+        "next_h",
+        "along_track_speed",
+        "groundspeed",
+        "ground_heading",
+        "ground_flightpath",
+        "wind_along_track",
+        "wind_cross_track"
+      ]
+    },
+    "9": {
+      "inputs": [
+        "air_density",
+        "airspeed",
+        "mass",
+        "wing_area",
+        "cd0",
+        "induced_drag_factor",
+        "cl_max",
+        "bank_angle",
+        "flightpath_angle",
+        "lift_command"
+      ],
+      "outputs": [
+        "dynamic_pressure",
+        "load_factor",
+        "lift",
+        "cl",
+        "cd",
+        "drag",
+        "stall_speed",
+        "aerodynamic_power",
+        "stall_constraint_valid"
+      ],
+      "regime": "wing_borne_or_transition_when_lambda_w_valid",
+      "description": "Wing-borne reduction only; caller must enforce the mode gate from operation 30."
+    },
+    "13": {
+      "inputs": [
+        "altitude",
+        "terrain_height",
+        "clearance",
+        "elevated_obstacle_distance",
+        "ground_obstacle_distance",
+        "base_safe_radius",
+        "position_sigma",
+        "wind_sigma",
+        "inflation_factor"
+      ],
+      "outputs": [
+        "terrain_margin",
+        "elevated_obstacle_margin",
+        "ground_obstacle_margin",
+        "obstacle_margin",
+        "terrain_valid",
+        "elevated_obstacle_valid",
+        "ground_obstacle_valid",
+        "safety_valid"
+      ]
+    },
+    "14": {
+      "name": "path_time_energy_accounting",
+      "inputs": [
+        "dt",
+        "groundspeed",
+        "power",
+        "path_length_prev",
+        "time_prev",
+        "energy_prev"
+      ],
+      "outputs": [
+        "segment_length",
+        "segment_time",
+        "segment_energy",
+        "path_length_total",
+        "time_total",
+        "energy_total"
+      ],
+      "description": "Fuel-free Phoenix path/time/electrical-energy accumulation consistent with WingMPET v20260820_1141."
+    },
+    "15": {
+      "inputs": [
+        "x",
+        "y",
+        "h",
+        "goal_x",
+        "goal_y",
+        "goal_h",
+        "initial_goal_distance",
+        "goal_tolerance"
+      ],
+      "outputs": [
+        "goal_distance",
+        "mission_progress",
+        "goal_bearing",
+        "goal_elevation_angle",
+        "goal_reached"
+      ]
+    },
+    "16": {
+      "inputs": [
+        "path_length",
+        "mission_time",
+        "energy",
+        "safety_penalty",
+        "length_reference",
+        "time_reference",
+        "energy_reference",
+        "safety_reference",
+        "weight_length",
+        "weight_time",
+        "weight_energy",
+        "weight_safety"
+      ],
+      "outputs": [
+        "normalized_length_cost",
+        "normalized_time_cost",
+        "normalized_energy_cost",
+        "normalized_safety_cost",
+        "objective"
+      ]
+    },
+    "17": {
+      "inputs": [
+        "path_length",
+        "minimum_length",
+        "epsilon_length",
+        "mission_time",
+        "energy",
+        "weight_time",
+        "weight_energy"
+      ],
+      "outputs": [
+        "length_excess",
+        "epsilon_constraint_valid",
+        "secondary_objective"
+      ]
+    },
+    "20": {
+      "inputs": [
+        "sample_count",
+        "segment_margin_01",
+        "segment_margin_02",
+        "segment_margin_03",
+        "segment_margin_04",
+        "segment_margin_05",
+        "segment_margin_06",
+        "segment_margin_07",
+        "segment_margin_08",
+        "segment_margin_09",
+        "segment_margin_10",
+        "segment_margin_11",
+        "segment_margin_12",
+        "segment_margin_13",
+        "segment_margin_14",
+        "segment_margin_15",
+        "segment_margin_16",
+        "segment_margin_17",
+        "segment_margin_18",
+        "segment_margin_19",
+        "segment_margin_20",
+        "segment_margin_21",
+        "segment_margin_22",
+        "segment_margin_23",
+        "segment_margin_24",
+        "segment_margin_25",
+        "segment_margin_26",
+        "segment_margin_27",
+        "segment_margin_28",
+        "segment_margin_29",
+        "segment_margin_30",
+        "segment_margin_31",
+        "segment_margin_32",
+        "segment_margin_33",
+        "segment_margin_34",
+        "segment_margin_35",
+        "segment_margin_36",
+        "segment_margin_37",
+        "segment_margin_38",
+        "segment_margin_39",
+        "segment_margin_40",
+        "unused_41",
+        "unused_42",
+        "unused_43",
+        "unused_44",
+        "unused_45",
+        "unused_46",
+        "unused_47",
+        "unused_48",
+        "unused_49",
+        "replan_margin_threshold",
+        "wind_model_error",
+        "state_error",
+        "wind_error_threshold",
+        "state_error_threshold"
+      ],
+      "outputs": [
+        "minimum_segment_margin",
+        "whole_segment_safe",
+        "replan_trigger"
+      ]
+    },
+    "27": {
+      "name": "vtol_6dof_step",
+      "inputs": [
+        "dt",
+        "pn",
+        "pe",
+        "pd",
+        "vn",
+        "ve",
+        "vd",
+        "qw",
+        "qx",
+        "qy",
+        "qz",
+        "p_rate",
+        "q_rate",
+        "r_rate",
+        "omega_left",
+        "omega_right",
+        "soc",
+        "left_motor_cmd",
+        "right_motor_cmd",
+        "left_elevon_rad",
+        "right_elevon_rad",
+        "wind_n",
+        "wind_e",
+        "wind_d",
+        "air_density"
+      ],
+      "outputs": [
+        "next_pn",
+        "next_pe",
+        "next_pd",
+        "next_vn",
+        "next_ve",
+        "next_vd",
+        "next_qw",
+        "next_qx",
+        "next_qy",
+        "next_qz",
+        "next_p_rate",
+        "next_q_rate",
+        "next_r_rate",
+        "next_omega_left",
+        "next_omega_right",
+        "next_soc",
+        "airspeed",
+        "alpha",
+        "sideslip",
+        "lambda_w",
+        "thrust_left",
+        "thrust_right",
+        "total_thrust",
+        "predicted_power",
+        "energy_increment",
+        "flight_mode_code",
+        "vtol_feasible",
+        "quality_score",
+        "dynamic_pressure",
+        "cl",
+        "cd",
+        "lift",
+        "drag"
+      ],
+      "description": "Phoenix v3 6-DOF reference step in NED/FRD with two motors, two elevons, mode blending, motor lag, energy surrogate and no thrust-along-airspeed singularity."
+    },
+    "28": {
+      "name": "phoenix_motor_pair",
+      "inputs": [
+        "dt",
+        "omega_left",
+        "omega_right",
+        "left_motor_cmd",
+        "right_motor_cmd"
+      ],
+      "outputs": [
+        "next_omega_left",
+        "next_omega_right",
+        "thrust_left",
+        "thrust_right",
+        "reaction_torque_left",
+        "reaction_torque_right",
+        "total_thrust"
+      ],
+      "description": "Exact discrete first-order Phoenix motor response and source-identified thrust/reaction torque law."
+    },
+    "29": {
+      "name": "phoenix_propwash",
+      "inputs": [
+        "omega_left",
+        "omega_right",
+        "left_elevon_rad",
+        "right_elevon_rad"
+      ],
+      "outputs": [
+        "left_propwash_lift",
+        "right_propwash_lift",
+        "left_propwash_drag",
+        "right_propwash_drag",
+        "left_propwash_pitch_moment",
+        "right_propwash_pitch_moment",
+        "total_propwash_lift",
+        "total_propwash_drag",
+        "total_propwash_pitch_moment"
+      ],
+      "description": "Source-identified Phoenix propwash/elevon low-speed force and moment terms."
+    },
+    "30": {
+      "name": "vtol_mode_envelope",
+      "inputs": [
+        "airspeed",
+        "sideslip",
+        "bank_angle",
+        "flightpath_angle",
+        "p_rate",
+        "q_rate",
+        "r_rate",
+        "load_factor",
+        "total_thrust",
+        "mass",
+        "left_motor_cmd",
+        "right_motor_cmd",
+        "left_elevon_rad",
+        "right_elevon_rad"
+      ],
+      "outputs": [
+        "lambda_w",
+        "flight_mode_code",
+        "motor_bounds_valid",
+        "elevon_bounds_valid",
+        "rate_bounds_valid",
+        "max_airspeed_valid",
+        "load_factor_valid",
+        "wingborne_constraints_valid",
+        "hover_thrust_valid",
+        "vtol_envelope_valid"
+      ],
+      "description": "Mode-aware Phoenix feasibility envelope; stall/sideslip/bank/flightpath are wing-borne only."
+    },
+    "31": {
+      "name": "vtol_power_soc",
+      "inputs": [
+        "dt",
+        "air_density",
+        "airspeed",
+        "total_thrust",
+        "soc",
+        "battery_voltage",
+        "battery_current",
+        "battery_telemetry_valid"
+      ],
+      "outputs": [
+        "lambda_w",
+        "induced_hover_power",
+        "predicted_power",
+        "measured_battery_power",
+        "selected_power",
+        "energy_increment",
+        "next_soc",
+        "continuous_power_valid",
+        "peak_power_valid"
+      ],
+      "description": "Lightweight Phoenix mission power and SoC model with optional measured V*I override."
+    },
+    "32": {
+      "name": "edge_reduced_transition",
+      "inputs": [
+        "dt",
+        "vx",
+        "vz",
+        "pitch",
+        "q_rate",
+        "omega_sum",
+        "soc",
+        "motor_collective",
+        "elevon_collective",
+        "air_density"
+      ],
+      "outputs": [
+        "next_vx",
+        "next_vz",
+        "next_pitch",
+        "next_q_rate",
+        "next_omega_sum",
+        "next_soc",
+        "lambda_w",
+        "predicted_power"
+      ],
+      "description": "Fixed-size longitudinal reduced transition propagation for edge reference generation; not a validation replacement for operation 27."
+    },
+    "33": {
+      "name": "layer2_epistemic_compose",
+      "inputs": [
+        "uncertainty_scalar",
+        "quality_prior",
+        "validity_prior",
+        "reliability_prior",
+        "freshness_score",
+        "completeness_score",
+        "physical_score",
+        "numerical_score",
+        "support_score",
+        "novelty_score",
+        "evidence_count"
+      ],
+      "outputs": [
+        "uncertainty_adjusted",
+        "quality_score",
+        "validity_score",
+        "reliability_score",
+        "quality_flag_code",
+        "novelty_degraded",
+        "evidence_count_echo"
+      ],
+      "description": "O(1) Layer-2 U/Q/V/R composition from TEP prior plus runtime checks; heavy TEP generation remains offline."
+    },
+    "34": {
+      "name": "phoenix_formalism_complete",
+      "inputs": [],
+      "outputs": [
+        "formalism_complete_flag",
+        "vtol_full_envelope_flag",
+        "layer2_contract_flag",
+        "edge_profile_flag"
+      ],
+      "description": "Implementation-completeness flags for formalism v20260820_1141."
+    },
+    "35": {
+      "name": "phoenix_vtol_6dof_ground_supported_step",
+      "inputs": [
+        "dt", "pn", "pe", "pd", "vn", "ve", "vd",
+        "qw", "qx", "qy", "qz", "p_rate", "q_rate", "r_rate",
+        "omega_left", "omega_right", "soc",
+        "left_motor_cmd", "right_motor_cmd", "left_elevon_rad", "right_elevon_rad",
+        "wind_n", "wind_e", "wind_d", "air_density", "ground_supported"
+      ],
+      "outputs": [
+        "next_pn", "next_pe", "next_pd", "next_vn", "next_ve", "next_vd",
+        "next_qw", "next_qx", "next_qy", "next_qz",
+        "next_p_rate", "next_q_rate", "next_r_rate",
+        "next_omega_left", "next_omega_right", "next_soc",
+        "airspeed", "alpha", "sideslip", "lambda_w",
+        "thrust_left", "thrust_right", "total_thrust", "predicted_power",
+        "energy_increment", "flight_mode_code", "vtol_feasible", "quality_score",
+        "dynamic_pressure", "cl", "cd", "lift", "drag"
+      ],
+      "description": "Phoenix v3 6-DOF step with an explicit unilateral ground-contact support assertion for bounded pre-release rotor spool. All common actuator, rate, speed, load and SOC gates remain active."
+    }
+  },
+  "formulas": [
+    {
+      "id": "wingmpet_op01_formalism_version",
+      "operation_code": 1,
+      "inputs": [],
+      "output": {
+        "name": "formalism_version",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "wingmpet_op01_active_operation_count",
+      "operation_code": 1,
+      "inputs": [],
+      "output": {
+        "name": "active_operation_count",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "wingmpet_op01_max_operation_code",
+      "operation_code": 1,
+      "inputs": [],
+      "output": {
+        "name": "max_operation_code",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "wingmpet_op02_terrain_height_echo",
+      "operation_code": 2,
+      "inputs": [
+        {
+          "name": "msl_altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "agl_altitude_input",
+          "bus_index": 2
+        },
+        {
+          "name": "terrain_height",
+          "bus_index": 3
+        }
+      ],
+      "output": {
+        "name": "terrain_height_echo",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "wingmpet_op02_computed_agl",
+      "operation_code": 2,
+      "inputs": [
+        {
+          "name": "msl_altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "agl_altitude_input",
+          "bus_index": 2
+        },
+        {
+          "name": "terrain_height",
+          "bus_index": 3
+        }
+      ],
+      "output": {
+        "name": "computed_agl",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "wingmpet_op04_airspeed_norm",
+      "operation_code": 4,
+      "inputs": [
+        {
+          "name": "state_x",
+          "bus_index": 1
+        },
+        {
+          "name": "state_y",
+          "bus_index": 2
+        },
+        {
+          "name": "state_h",
+          "bus_index": 3
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 6
+        }
+      ],
+      "output": {
+        "name": "airspeed_norm",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "wingmpet_op04_flightpath_angle",
+      "operation_code": 4,
+      "inputs": [
+        {
+          "name": "state_x",
+          "bus_index": 1
+        },
+        {
+          "name": "state_y",
+          "bus_index": 2
+        },
+        {
+          "name": "state_h",
+          "bus_index": 3
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 6
+        }
+      ],
+      "output": {
+        "name": "flightpath_angle",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "wingmpet_op04_air_heading",
+      "operation_code": 4,
+      "inputs": [
+        {
+          "name": "state_x",
+          "bus_index": 1
+        },
+        {
+          "name": "state_y",
+          "bus_index": 2
+        },
+        {
+          "name": "state_h",
+          "bus_index": 3
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 6
+        }
+      ],
+      "output": {
+        "name": "air_heading",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "wingmpet_op05_air_temperature",
+      "operation_code": 5,
+      "inputs": [
+        {
+          "name": "altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "external_temperature",
+          "bus_index": 2
+        },
+        {
+          "name": "external_pressure",
+          "bus_index": 3
+        },
+        {
+          "name": "external_density",
+          "bus_index": 4
+        },
+        {
+          "name": "relative_humidity",
+          "bus_index": 5
+        },
+        {
+          "name": "airspeed",
+          "bus_index": 6
+        }
+      ],
+      "output": {
+        "name": "air_temperature",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "wingmpet_op05_air_pressure",
+      "operation_code": 5,
+      "inputs": [
+        {
+          "name": "altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "external_temperature",
+          "bus_index": 2
+        },
+        {
+          "name": "external_pressure",
+          "bus_index": 3
+        },
+        {
+          "name": "external_density",
+          "bus_index": 4
+        },
+        {
+          "name": "relative_humidity",
+          "bus_index": 5
+        },
+        {
+          "name": "airspeed",
+          "bus_index": 6
+        }
+      ],
+      "output": {
+        "name": "air_pressure",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "wingmpet_op05_air_density",
+      "operation_code": 5,
+      "inputs": [
+        {
+          "name": "altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "external_temperature",
+          "bus_index": 2
+        },
+        {
+          "name": "external_pressure",
+          "bus_index": 3
+        },
+        {
+          "name": "external_density",
+          "bus_index": 4
+        },
+        {
+          "name": "relative_humidity",
+          "bus_index": 5
+        },
+        {
+          "name": "airspeed",
+          "bus_index": 6
+        }
+      ],
+      "output": {
+        "name": "air_density",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "wingmpet_op05_virtual_temperature",
+      "operation_code": 5,
+      "inputs": [
+        {
+          "name": "altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "external_temperature",
+          "bus_index": 2
+        },
+        {
+          "name": "external_pressure",
+          "bus_index": 3
+        },
+        {
+          "name": "external_density",
+          "bus_index": 4
+        },
+        {
+          "name": "relative_humidity",
+          "bus_index": 5
+        },
+        {
+          "name": "airspeed",
+          "bus_index": 6
+        }
+      ],
+      "output": {
+        "name": "virtual_temperature",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "wingmpet_op05_dynamic_pressure",
+      "operation_code": 5,
+      "inputs": [
+        {
+          "name": "altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "external_temperature",
+          "bus_index": 2
+        },
+        {
+          "name": "external_pressure",
+          "bus_index": 3
+        },
+        {
+          "name": "external_density",
+          "bus_index": 4
+        },
+        {
+          "name": "relative_humidity",
+          "bus_index": 5
+        },
+        {
+          "name": "airspeed",
+          "bus_index": 6
+        }
+      ],
+      "output": {
+        "name": "dynamic_pressure",
+        "bus_index": 5
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_x_echo",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_x_echo",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_y_echo",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_y_echo",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_h_echo",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_h_echo",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_norm",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_norm",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_direction",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_direction",
+        "bus_index": 5
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_jacobian_out_11",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_jacobian_out_11",
+        "bus_index": 6
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_jacobian_out_12",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_jacobian_out_12",
+        "bus_index": 7
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_jacobian_out_13",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_jacobian_out_13",
+        "bus_index": 8
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_jacobian_out_21",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_jacobian_out_21",
+        "bus_index": 9
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_jacobian_out_22",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_jacobian_out_22",
+        "bus_index": 10
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_jacobian_out_23",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_jacobian_out_23",
+        "bus_index": 11
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_jacobian_out_31",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_jacobian_out_31",
+        "bus_index": 12
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_jacobian_out_32",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_jacobian_out_32",
+        "bus_index": 13
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_jacobian_out_33",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_jacobian_out_33",
+        "bus_index": 14
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_partial_t_x",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_partial_t_x",
+        "bus_index": 15
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_partial_t_y",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_partial_t_y",
+        "bus_index": 16
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_partial_t_h",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_partial_t_h",
+        "bus_index": 17
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_material_x",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_material_x",
+        "bus_index": 18
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_material_y",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_material_y",
+        "bus_index": 19
+      }
+    },
+    {
+      "id": "wingmpet_op06_wind_material_h",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "wind_x",
+          "bus_index": 1
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 2
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 3
+        },
+        {
+          "name": "ground_velocity_x",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_velocity_y",
+          "bus_index": 5
+        },
+        {
+          "name": "ground_velocity_h",
+          "bus_index": 6
+        },
+        {
+          "name": "wind_time_derivative_x",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_time_derivative_y",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_time_derivative_h",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_jacobian_11",
+          "bus_index": 10
+        },
+        {
+          "name": "wind_jacobian_12",
+          "bus_index": 11
+        },
+        {
+          "name": "wind_jacobian_13",
+          "bus_index": 12
+        },
+        {
+          "name": "wind_jacobian_21",
+          "bus_index": 13
+        },
+        {
+          "name": "wind_jacobian_22",
+          "bus_index": 14
+        },
+        {
+          "name": "wind_jacobian_23",
+          "bus_index": 15
+        },
+        {
+          "name": "wind_jacobian_31",
+          "bus_index": 16
+        },
+        {
+          "name": "wind_jacobian_32",
+          "bus_index": 17
+        },
+        {
+          "name": "wind_jacobian_33",
+          "bus_index": 18
+        }
+      ],
+      "output": {
+        "name": "wind_material_h",
+        "bus_index": 20
+      }
+    },
+    {
+      "id": "wingmpet_op07_ground_velocity_x",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "x",
+          "bus_index": 2
+        },
+        {
+          "name": "y",
+          "bus_index": 3
+        },
+        {
+          "name": "h",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 6
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_x",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 10
+        },
+        {
+          "name": "target_x",
+          "bus_index": 11
+        },
+        {
+          "name": "target_y",
+          "bus_index": 12
+        },
+        {
+          "name": "target_h",
+          "bus_index": 13
+        }
+      ],
+      "output": {
+        "name": "ground_velocity_x",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "wingmpet_op07_ground_velocity_y",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "x",
+          "bus_index": 2
+        },
+        {
+          "name": "y",
+          "bus_index": 3
+        },
+        {
+          "name": "h",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 6
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_x",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 10
+        },
+        {
+          "name": "target_x",
+          "bus_index": 11
+        },
+        {
+          "name": "target_y",
+          "bus_index": 12
+        },
+        {
+          "name": "target_h",
+          "bus_index": 13
+        }
+      ],
+      "output": {
+        "name": "ground_velocity_y",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "wingmpet_op07_ground_velocity_h",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "x",
+          "bus_index": 2
+        },
+        {
+          "name": "y",
+          "bus_index": 3
+        },
+        {
+          "name": "h",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 6
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_x",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 10
+        },
+        {
+          "name": "target_x",
+          "bus_index": 11
+        },
+        {
+          "name": "target_y",
+          "bus_index": 12
+        },
+        {
+          "name": "target_h",
+          "bus_index": 13
+        }
+      ],
+      "output": {
+        "name": "ground_velocity_h",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "wingmpet_op07_next_x",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "x",
+          "bus_index": 2
+        },
+        {
+          "name": "y",
+          "bus_index": 3
+        },
+        {
+          "name": "h",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 6
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_x",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 10
+        },
+        {
+          "name": "target_x",
+          "bus_index": 11
+        },
+        {
+          "name": "target_y",
+          "bus_index": 12
+        },
+        {
+          "name": "target_h",
+          "bus_index": 13
+        }
+      ],
+      "output": {
+        "name": "next_x",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "wingmpet_op07_next_y",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "x",
+          "bus_index": 2
+        },
+        {
+          "name": "y",
+          "bus_index": 3
+        },
+        {
+          "name": "h",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 6
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_x",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 10
+        },
+        {
+          "name": "target_x",
+          "bus_index": 11
+        },
+        {
+          "name": "target_y",
+          "bus_index": 12
+        },
+        {
+          "name": "target_h",
+          "bus_index": 13
+        }
+      ],
+      "output": {
+        "name": "next_y",
+        "bus_index": 5
+      }
+    },
+    {
+      "id": "wingmpet_op07_next_h",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "x",
+          "bus_index": 2
+        },
+        {
+          "name": "y",
+          "bus_index": 3
+        },
+        {
+          "name": "h",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 6
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_x",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 10
+        },
+        {
+          "name": "target_x",
+          "bus_index": 11
+        },
+        {
+          "name": "target_y",
+          "bus_index": 12
+        },
+        {
+          "name": "target_h",
+          "bus_index": 13
+        }
+      ],
+      "output": {
+        "name": "next_h",
+        "bus_index": 6
+      }
+    },
+    {
+      "id": "wingmpet_op07_along_track_speed",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "x",
+          "bus_index": 2
+        },
+        {
+          "name": "y",
+          "bus_index": 3
+        },
+        {
+          "name": "h",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 6
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_x",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 10
+        },
+        {
+          "name": "target_x",
+          "bus_index": 11
+        },
+        {
+          "name": "target_y",
+          "bus_index": 12
+        },
+        {
+          "name": "target_h",
+          "bus_index": 13
+        }
+      ],
+      "output": {
+        "name": "along_track_speed",
+        "bus_index": 7
+      }
+    },
+    {
+      "id": "wingmpet_op07_groundspeed",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "x",
+          "bus_index": 2
+        },
+        {
+          "name": "y",
+          "bus_index": 3
+        },
+        {
+          "name": "h",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 6
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_x",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 10
+        },
+        {
+          "name": "target_x",
+          "bus_index": 11
+        },
+        {
+          "name": "target_y",
+          "bus_index": 12
+        },
+        {
+          "name": "target_h",
+          "bus_index": 13
+        }
+      ],
+      "output": {
+        "name": "groundspeed",
+        "bus_index": 8
+      }
+    },
+    {
+      "id": "wingmpet_op07_ground_heading",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "x",
+          "bus_index": 2
+        },
+        {
+          "name": "y",
+          "bus_index": 3
+        },
+        {
+          "name": "h",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 6
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_x",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 10
+        },
+        {
+          "name": "target_x",
+          "bus_index": 11
+        },
+        {
+          "name": "target_y",
+          "bus_index": 12
+        },
+        {
+          "name": "target_h",
+          "bus_index": 13
+        }
+      ],
+      "output": {
+        "name": "ground_heading",
+        "bus_index": 9
+      }
+    },
+    {
+      "id": "wingmpet_op07_ground_flightpath",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "x",
+          "bus_index": 2
+        },
+        {
+          "name": "y",
+          "bus_index": 3
+        },
+        {
+          "name": "h",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 6
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_x",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 10
+        },
+        {
+          "name": "target_x",
+          "bus_index": 11
+        },
+        {
+          "name": "target_y",
+          "bus_index": 12
+        },
+        {
+          "name": "target_h",
+          "bus_index": 13
+        }
+      ],
+      "output": {
+        "name": "ground_flightpath",
+        "bus_index": 10
+      }
+    },
+    {
+      "id": "wingmpet_op07_wind_along_track",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "x",
+          "bus_index": 2
+        },
+        {
+          "name": "y",
+          "bus_index": 3
+        },
+        {
+          "name": "h",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 6
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_x",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 10
+        },
+        {
+          "name": "target_x",
+          "bus_index": 11
+        },
+        {
+          "name": "target_y",
+          "bus_index": 12
+        },
+        {
+          "name": "target_h",
+          "bus_index": 13
+        }
+      ],
+      "output": {
+        "name": "wind_along_track",
+        "bus_index": 11
+      }
+    },
+    {
+      "id": "wingmpet_op07_wind_cross_track",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "x",
+          "bus_index": 2
+        },
+        {
+          "name": "y",
+          "bus_index": 3
+        },
+        {
+          "name": "h",
+          "bus_index": 4
+        },
+        {
+          "name": "air_velocity_x",
+          "bus_index": 5
+        },
+        {
+          "name": "air_velocity_y",
+          "bus_index": 6
+        },
+        {
+          "name": "air_velocity_h",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_x",
+          "bus_index": 8
+        },
+        {
+          "name": "wind_y",
+          "bus_index": 9
+        },
+        {
+          "name": "wind_h",
+          "bus_index": 10
+        },
+        {
+          "name": "target_x",
+          "bus_index": 11
+        },
+        {
+          "name": "target_y",
+          "bus_index": 12
+        },
+        {
+          "name": "target_h",
+          "bus_index": 13
+        }
+      ],
+      "output": {
+        "name": "wind_cross_track",
+        "bus_index": 12
+      }
+    },
+    {
+      "id": "wingmpet_op09_dynamic_pressure",
+      "operation_code": 9,
+      "inputs": [
+        {
+          "name": "air_density",
+          "bus_index": 1
+        },
+        {
+          "name": "airspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "mass",
+          "bus_index": 3
+        },
+        {
+          "name": "wing_area",
+          "bus_index": 4
+        },
+        {
+          "name": "cd0",
+          "bus_index": 5
+        },
+        {
+          "name": "induced_drag_factor",
+          "bus_index": 6
+        },
+        {
+          "name": "cl_max",
+          "bus_index": 7
+        },
+        {
+          "name": "bank_angle",
+          "bus_index": 8
+        },
+        {
+          "name": "flightpath_angle",
+          "bus_index": 9
+        },
+        {
+          "name": "lift_command",
+          "bus_index": 10
+        }
+      ],
+      "output": {
+        "name": "dynamic_pressure",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "wingmpet_op09_load_factor",
+      "operation_code": 9,
+      "inputs": [
+        {
+          "name": "air_density",
+          "bus_index": 1
+        },
+        {
+          "name": "airspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "mass",
+          "bus_index": 3
+        },
+        {
+          "name": "wing_area",
+          "bus_index": 4
+        },
+        {
+          "name": "cd0",
+          "bus_index": 5
+        },
+        {
+          "name": "induced_drag_factor",
+          "bus_index": 6
+        },
+        {
+          "name": "cl_max",
+          "bus_index": 7
+        },
+        {
+          "name": "bank_angle",
+          "bus_index": 8
+        },
+        {
+          "name": "flightpath_angle",
+          "bus_index": 9
+        },
+        {
+          "name": "lift_command",
+          "bus_index": 10
+        }
+      ],
+      "output": {
+        "name": "load_factor",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "wingmpet_op09_lift",
+      "operation_code": 9,
+      "inputs": [
+        {
+          "name": "air_density",
+          "bus_index": 1
+        },
+        {
+          "name": "airspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "mass",
+          "bus_index": 3
+        },
+        {
+          "name": "wing_area",
+          "bus_index": 4
+        },
+        {
+          "name": "cd0",
+          "bus_index": 5
+        },
+        {
+          "name": "induced_drag_factor",
+          "bus_index": 6
+        },
+        {
+          "name": "cl_max",
+          "bus_index": 7
+        },
+        {
+          "name": "bank_angle",
+          "bus_index": 8
+        },
+        {
+          "name": "flightpath_angle",
+          "bus_index": 9
+        },
+        {
+          "name": "lift_command",
+          "bus_index": 10
+        }
+      ],
+      "output": {
+        "name": "lift",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "wingmpet_op09_cl",
+      "operation_code": 9,
+      "inputs": [
+        {
+          "name": "air_density",
+          "bus_index": 1
+        },
+        {
+          "name": "airspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "mass",
+          "bus_index": 3
+        },
+        {
+          "name": "wing_area",
+          "bus_index": 4
+        },
+        {
+          "name": "cd0",
+          "bus_index": 5
+        },
+        {
+          "name": "induced_drag_factor",
+          "bus_index": 6
+        },
+        {
+          "name": "cl_max",
+          "bus_index": 7
+        },
+        {
+          "name": "bank_angle",
+          "bus_index": 8
+        },
+        {
+          "name": "flightpath_angle",
+          "bus_index": 9
+        },
+        {
+          "name": "lift_command",
+          "bus_index": 10
+        }
+      ],
+      "output": {
+        "name": "cl",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "wingmpet_op09_cd",
+      "operation_code": 9,
+      "inputs": [
+        {
+          "name": "air_density",
+          "bus_index": 1
+        },
+        {
+          "name": "airspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "mass",
+          "bus_index": 3
+        },
+        {
+          "name": "wing_area",
+          "bus_index": 4
+        },
+        {
+          "name": "cd0",
+          "bus_index": 5
+        },
+        {
+          "name": "induced_drag_factor",
+          "bus_index": 6
+        },
+        {
+          "name": "cl_max",
+          "bus_index": 7
+        },
+        {
+          "name": "bank_angle",
+          "bus_index": 8
+        },
+        {
+          "name": "flightpath_angle",
+          "bus_index": 9
+        },
+        {
+          "name": "lift_command",
+          "bus_index": 10
+        }
+      ],
+      "output": {
+        "name": "cd",
+        "bus_index": 5
+      }
+    },
+    {
+      "id": "wingmpet_op09_drag",
+      "operation_code": 9,
+      "inputs": [
+        {
+          "name": "air_density",
+          "bus_index": 1
+        },
+        {
+          "name": "airspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "mass",
+          "bus_index": 3
+        },
+        {
+          "name": "wing_area",
+          "bus_index": 4
+        },
+        {
+          "name": "cd0",
+          "bus_index": 5
+        },
+        {
+          "name": "induced_drag_factor",
+          "bus_index": 6
+        },
+        {
+          "name": "cl_max",
+          "bus_index": 7
+        },
+        {
+          "name": "bank_angle",
+          "bus_index": 8
+        },
+        {
+          "name": "flightpath_angle",
+          "bus_index": 9
+        },
+        {
+          "name": "lift_command",
+          "bus_index": 10
+        }
+      ],
+      "output": {
+        "name": "drag",
+        "bus_index": 6
+      }
+    },
+    {
+      "id": "wingmpet_op09_stall_speed",
+      "operation_code": 9,
+      "inputs": [
+        {
+          "name": "air_density",
+          "bus_index": 1
+        },
+        {
+          "name": "airspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "mass",
+          "bus_index": 3
+        },
+        {
+          "name": "wing_area",
+          "bus_index": 4
+        },
+        {
+          "name": "cd0",
+          "bus_index": 5
+        },
+        {
+          "name": "induced_drag_factor",
+          "bus_index": 6
+        },
+        {
+          "name": "cl_max",
+          "bus_index": 7
+        },
+        {
+          "name": "bank_angle",
+          "bus_index": 8
+        },
+        {
+          "name": "flightpath_angle",
+          "bus_index": 9
+        },
+        {
+          "name": "lift_command",
+          "bus_index": 10
+        }
+      ],
+      "output": {
+        "name": "stall_speed",
+        "bus_index": 7
+      }
+    },
+    {
+      "id": "wingmpet_op09_aerodynamic_power",
+      "operation_code": 9,
+      "inputs": [
+        {
+          "name": "air_density",
+          "bus_index": 1
+        },
+        {
+          "name": "airspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "mass",
+          "bus_index": 3
+        },
+        {
+          "name": "wing_area",
+          "bus_index": 4
+        },
+        {
+          "name": "cd0",
+          "bus_index": 5
+        },
+        {
+          "name": "induced_drag_factor",
+          "bus_index": 6
+        },
+        {
+          "name": "cl_max",
+          "bus_index": 7
+        },
+        {
+          "name": "bank_angle",
+          "bus_index": 8
+        },
+        {
+          "name": "flightpath_angle",
+          "bus_index": 9
+        },
+        {
+          "name": "lift_command",
+          "bus_index": 10
+        }
+      ],
+      "output": {
+        "name": "aerodynamic_power",
+        "bus_index": 8
+      }
+    },
+    {
+      "id": "wingmpet_op09_stall_constraint_valid",
+      "operation_code": 9,
+      "inputs": [
+        {
+          "name": "air_density",
+          "bus_index": 1
+        },
+        {
+          "name": "airspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "mass",
+          "bus_index": 3
+        },
+        {
+          "name": "wing_area",
+          "bus_index": 4
+        },
+        {
+          "name": "cd0",
+          "bus_index": 5
+        },
+        {
+          "name": "induced_drag_factor",
+          "bus_index": 6
+        },
+        {
+          "name": "cl_max",
+          "bus_index": 7
+        },
+        {
+          "name": "bank_angle",
+          "bus_index": 8
+        },
+        {
+          "name": "flightpath_angle",
+          "bus_index": 9
+        },
+        {
+          "name": "lift_command",
+          "bus_index": 10
+        }
+      ],
+      "output": {
+        "name": "stall_constraint_valid",
+        "bus_index": 9
+      }
+    },
+    {
+      "id": "wingmpet_op13_terrain_margin",
+      "operation_code": 13,
+      "inputs": [
+        {
+          "name": "altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "terrain_height",
+          "bus_index": 2
+        },
+        {
+          "name": "clearance",
+          "bus_index": 3
+        },
+        {
+          "name": "elevated_obstacle_distance",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_obstacle_distance",
+          "bus_index": 5
+        },
+        {
+          "name": "base_safe_radius",
+          "bus_index": 6
+        },
+        {
+          "name": "position_sigma",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_sigma",
+          "bus_index": 8
+        },
+        {
+          "name": "inflation_factor",
+          "bus_index": 9
+        }
+      ],
+      "output": {
+        "name": "terrain_margin",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "wingmpet_op13_elevated_obstacle_margin",
+      "operation_code": 13,
+      "inputs": [
+        {
+          "name": "altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "terrain_height",
+          "bus_index": 2
+        },
+        {
+          "name": "clearance",
+          "bus_index": 3
+        },
+        {
+          "name": "elevated_obstacle_distance",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_obstacle_distance",
+          "bus_index": 5
+        },
+        {
+          "name": "base_safe_radius",
+          "bus_index": 6
+        },
+        {
+          "name": "position_sigma",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_sigma",
+          "bus_index": 8
+        },
+        {
+          "name": "inflation_factor",
+          "bus_index": 9
+        }
+      ],
+      "output": {
+        "name": "elevated_obstacle_margin",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "wingmpet_op13_ground_obstacle_margin",
+      "operation_code": 13,
+      "inputs": [
+        {
+          "name": "altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "terrain_height",
+          "bus_index": 2
+        },
+        {
+          "name": "clearance",
+          "bus_index": 3
+        },
+        {
+          "name": "elevated_obstacle_distance",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_obstacle_distance",
+          "bus_index": 5
+        },
+        {
+          "name": "base_safe_radius",
+          "bus_index": 6
+        },
+        {
+          "name": "position_sigma",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_sigma",
+          "bus_index": 8
+        },
+        {
+          "name": "inflation_factor",
+          "bus_index": 9
+        }
+      ],
+      "output": {
+        "name": "ground_obstacle_margin",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "wingmpet_op13_obstacle_margin",
+      "operation_code": 13,
+      "inputs": [
+        {
+          "name": "altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "terrain_height",
+          "bus_index": 2
+        },
+        {
+          "name": "clearance",
+          "bus_index": 3
+        },
+        {
+          "name": "elevated_obstacle_distance",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_obstacle_distance",
+          "bus_index": 5
+        },
+        {
+          "name": "base_safe_radius",
+          "bus_index": 6
+        },
+        {
+          "name": "position_sigma",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_sigma",
+          "bus_index": 8
+        },
+        {
+          "name": "inflation_factor",
+          "bus_index": 9
+        }
+      ],
+      "output": {
+        "name": "obstacle_margin",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "wingmpet_op13_terrain_valid",
+      "operation_code": 13,
+      "inputs": [
+        {
+          "name": "altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "terrain_height",
+          "bus_index": 2
+        },
+        {
+          "name": "clearance",
+          "bus_index": 3
+        },
+        {
+          "name": "elevated_obstacle_distance",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_obstacle_distance",
+          "bus_index": 5
+        },
+        {
+          "name": "base_safe_radius",
+          "bus_index": 6
+        },
+        {
+          "name": "position_sigma",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_sigma",
+          "bus_index": 8
+        },
+        {
+          "name": "inflation_factor",
+          "bus_index": 9
+        }
+      ],
+      "output": {
+        "name": "terrain_valid",
+        "bus_index": 5
+      }
+    },
+    {
+      "id": "wingmpet_op13_elevated_obstacle_valid",
+      "operation_code": 13,
+      "inputs": [
+        {
+          "name": "altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "terrain_height",
+          "bus_index": 2
+        },
+        {
+          "name": "clearance",
+          "bus_index": 3
+        },
+        {
+          "name": "elevated_obstacle_distance",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_obstacle_distance",
+          "bus_index": 5
+        },
+        {
+          "name": "base_safe_radius",
+          "bus_index": 6
+        },
+        {
+          "name": "position_sigma",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_sigma",
+          "bus_index": 8
+        },
+        {
+          "name": "inflation_factor",
+          "bus_index": 9
+        }
+      ],
+      "output": {
+        "name": "elevated_obstacle_valid",
+        "bus_index": 6
+      }
+    },
+    {
+      "id": "wingmpet_op13_ground_obstacle_valid",
+      "operation_code": 13,
+      "inputs": [
+        {
+          "name": "altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "terrain_height",
+          "bus_index": 2
+        },
+        {
+          "name": "clearance",
+          "bus_index": 3
+        },
+        {
+          "name": "elevated_obstacle_distance",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_obstacle_distance",
+          "bus_index": 5
+        },
+        {
+          "name": "base_safe_radius",
+          "bus_index": 6
+        },
+        {
+          "name": "position_sigma",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_sigma",
+          "bus_index": 8
+        },
+        {
+          "name": "inflation_factor",
+          "bus_index": 9
+        }
+      ],
+      "output": {
+        "name": "ground_obstacle_valid",
+        "bus_index": 7
+      }
+    },
+    {
+      "id": "wingmpet_op13_safety_valid",
+      "operation_code": 13,
+      "inputs": [
+        {
+          "name": "altitude",
+          "bus_index": 1
+        },
+        {
+          "name": "terrain_height",
+          "bus_index": 2
+        },
+        {
+          "name": "clearance",
+          "bus_index": 3
+        },
+        {
+          "name": "elevated_obstacle_distance",
+          "bus_index": 4
+        },
+        {
+          "name": "ground_obstacle_distance",
+          "bus_index": 5
+        },
+        {
+          "name": "base_safe_radius",
+          "bus_index": 6
+        },
+        {
+          "name": "position_sigma",
+          "bus_index": 7
+        },
+        {
+          "name": "wind_sigma",
+          "bus_index": 8
+        },
+        {
+          "name": "inflation_factor",
+          "bus_index": 9
+        }
+      ],
+      "output": {
+        "name": "safety_valid",
+        "bus_index": 8
+      }
+    },
+    {
+      "id": "wingmpet_op14_segment_length",
+      "operation_code": 14,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "groundspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "power",
+          "bus_index": 3
+        },
+        {
+          "name": "path_length_prev",
+          "bus_index": 4
+        },
+        {
+          "name": "time_prev",
+          "bus_index": 5
+        },
+        {
+          "name": "energy_prev",
+          "bus_index": 6
+        }
+      ],
+      "output": {
+        "name": "segment_length",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "wingmpet_op14_segment_time",
+      "operation_code": 14,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "groundspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "power",
+          "bus_index": 3
+        },
+        {
+          "name": "path_length_prev",
+          "bus_index": 4
+        },
+        {
+          "name": "time_prev",
+          "bus_index": 5
+        },
+        {
+          "name": "energy_prev",
+          "bus_index": 6
+        }
+      ],
+      "output": {
+        "name": "segment_time",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "wingmpet_op14_segment_energy",
+      "operation_code": 14,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "groundspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "power",
+          "bus_index": 3
+        },
+        {
+          "name": "path_length_prev",
+          "bus_index": 4
+        },
+        {
+          "name": "time_prev",
+          "bus_index": 5
+        },
+        {
+          "name": "energy_prev",
+          "bus_index": 6
+        }
+      ],
+      "output": {
+        "name": "segment_energy",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "wingmpet_op14_path_length_total",
+      "operation_code": 14,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "groundspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "power",
+          "bus_index": 3
+        },
+        {
+          "name": "path_length_prev",
+          "bus_index": 4
+        },
+        {
+          "name": "time_prev",
+          "bus_index": 5
+        },
+        {
+          "name": "energy_prev",
+          "bus_index": 6
+        }
+      ],
+      "output": {
+        "name": "path_length_total",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "wingmpet_op14_time_total",
+      "operation_code": 14,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "groundspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "power",
+          "bus_index": 3
+        },
+        {
+          "name": "path_length_prev",
+          "bus_index": 4
+        },
+        {
+          "name": "time_prev",
+          "bus_index": 5
+        },
+        {
+          "name": "energy_prev",
+          "bus_index": 6
+        }
+      ],
+      "output": {
+        "name": "time_total",
+        "bus_index": 5
+      }
+    },
+    {
+      "id": "wingmpet_op14_energy_total",
+      "operation_code": 14,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        },
+        {
+          "name": "groundspeed",
+          "bus_index": 2
+        },
+        {
+          "name": "power",
+          "bus_index": 3
+        },
+        {
+          "name": "path_length_prev",
+          "bus_index": 4
+        },
+        {
+          "name": "time_prev",
+          "bus_index": 5
+        },
+        {
+          "name": "energy_prev",
+          "bus_index": 6
+        }
+      ],
+      "output": {
+        "name": "energy_total",
+        "bus_index": 6
+      }
+    },
+    {
+      "id": "wingmpet_op15_goal_distance",
+      "operation_code": 15,
+      "inputs": [
+        {
+          "name": "x",
+          "bus_index": 1
+        },
+        {
+          "name": "y",
+          "bus_index": 2
+        },
+        {
+          "name": "h",
+          "bus_index": 3
+        },
+        {
+          "name": "goal_x",
+          "bus_index": 4
+        },
+        {
+          "name": "goal_y",
+          "bus_index": 5
+        },
+        {
+          "name": "goal_h",
+          "bus_index": 6
+        },
+        {
+          "name": "initial_goal_distance",
+          "bus_index": 7
+        },
+        {
+          "name": "goal_tolerance",
+          "bus_index": 8
+        }
+      ],
+      "output": {
+        "name": "goal_distance",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "wingmpet_op15_mission_progress",
+      "operation_code": 15,
+      "inputs": [
+        {
+          "name": "x",
+          "bus_index": 1
+        },
+        {
+          "name": "y",
+          "bus_index": 2
+        },
+        {
+          "name": "h",
+          "bus_index": 3
+        },
+        {
+          "name": "goal_x",
+          "bus_index": 4
+        },
+        {
+          "name": "goal_y",
+          "bus_index": 5
+        },
+        {
+          "name": "goal_h",
+          "bus_index": 6
+        },
+        {
+          "name": "initial_goal_distance",
+          "bus_index": 7
+        },
+        {
+          "name": "goal_tolerance",
+          "bus_index": 8
+        }
+      ],
+      "output": {
+        "name": "mission_progress",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "wingmpet_op15_goal_bearing",
+      "operation_code": 15,
+      "inputs": [
+        {
+          "name": "x",
+          "bus_index": 1
+        },
+        {
+          "name": "y",
+          "bus_index": 2
+        },
+        {
+          "name": "h",
+          "bus_index": 3
+        },
+        {
+          "name": "goal_x",
+          "bus_index": 4
+        },
+        {
+          "name": "goal_y",
+          "bus_index": 5
+        },
+        {
+          "name": "goal_h",
+          "bus_index": 6
+        },
+        {
+          "name": "initial_goal_distance",
+          "bus_index": 7
+        },
+        {
+          "name": "goal_tolerance",
+          "bus_index": 8
+        }
+      ],
+      "output": {
+        "name": "goal_bearing",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "wingmpet_op15_goal_elevation_angle",
+      "operation_code": 15,
+      "inputs": [
+        {
+          "name": "x",
+          "bus_index": 1
+        },
+        {
+          "name": "y",
+          "bus_index": 2
+        },
+        {
+          "name": "h",
+          "bus_index": 3
+        },
+        {
+          "name": "goal_x",
+          "bus_index": 4
+        },
+        {
+          "name": "goal_y",
+          "bus_index": 5
+        },
+        {
+          "name": "goal_h",
+          "bus_index": 6
+        },
+        {
+          "name": "initial_goal_distance",
+          "bus_index": 7
+        },
+        {
+          "name": "goal_tolerance",
+          "bus_index": 8
+        }
+      ],
+      "output": {
+        "name": "goal_elevation_angle",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "wingmpet_op15_goal_reached",
+      "operation_code": 15,
+      "inputs": [
+        {
+          "name": "x",
+          "bus_index": 1
+        },
+        {
+          "name": "y",
+          "bus_index": 2
+        },
+        {
+          "name": "h",
+          "bus_index": 3
+        },
+        {
+          "name": "goal_x",
+          "bus_index": 4
+        },
+        {
+          "name": "goal_y",
+          "bus_index": 5
+        },
+        {
+          "name": "goal_h",
+          "bus_index": 6
+        },
+        {
+          "name": "initial_goal_distance",
+          "bus_index": 7
+        },
+        {
+          "name": "goal_tolerance",
+          "bus_index": 8
+        }
+      ],
+      "output": {
+        "name": "goal_reached",
+        "bus_index": 5
+      }
+    },
+    {
+      "id": "wingmpet_op16_normalized_length_cost",
+      "operation_code": 16,
+      "inputs": [
+        {
+          "name": "path_length",
+          "bus_index": 1
+        },
+        {
+          "name": "mission_time",
+          "bus_index": 2
+        },
+        {
+          "name": "energy",
+          "bus_index": 3
+        },
+        {
+          "name": "safety_penalty",
+          "bus_index": 4
+        },
+        {
+          "name": "length_reference",
+          "bus_index": 5
+        },
+        {
+          "name": "time_reference",
+          "bus_index": 6
+        },
+        {
+          "name": "energy_reference",
+          "bus_index": 7
+        },
+        {
+          "name": "safety_reference",
+          "bus_index": 8
+        },
+        {
+          "name": "weight_length",
+          "bus_index": 9
+        },
+        {
+          "name": "weight_time",
+          "bus_index": 10
+        },
+        {
+          "name": "weight_energy",
+          "bus_index": 11
+        },
+        {
+          "name": "weight_safety",
+          "bus_index": 12
+        }
+      ],
+      "output": {
+        "name": "normalized_length_cost",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "wingmpet_op16_normalized_time_cost",
+      "operation_code": 16,
+      "inputs": [
+        {
+          "name": "path_length",
+          "bus_index": 1
+        },
+        {
+          "name": "mission_time",
+          "bus_index": 2
+        },
+        {
+          "name": "energy",
+          "bus_index": 3
+        },
+        {
+          "name": "safety_penalty",
+          "bus_index": 4
+        },
+        {
+          "name": "length_reference",
+          "bus_index": 5
+        },
+        {
+          "name": "time_reference",
+          "bus_index": 6
+        },
+        {
+          "name": "energy_reference",
+          "bus_index": 7
+        },
+        {
+          "name": "safety_reference",
+          "bus_index": 8
+        },
+        {
+          "name": "weight_length",
+          "bus_index": 9
+        },
+        {
+          "name": "weight_time",
+          "bus_index": 10
+        },
+        {
+          "name": "weight_energy",
+          "bus_index": 11
+        },
+        {
+          "name": "weight_safety",
+          "bus_index": 12
+        }
+      ],
+      "output": {
+        "name": "normalized_time_cost",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "wingmpet_op16_normalized_energy_cost",
+      "operation_code": 16,
+      "inputs": [
+        {
+          "name": "path_length",
+          "bus_index": 1
+        },
+        {
+          "name": "mission_time",
+          "bus_index": 2
+        },
+        {
+          "name": "energy",
+          "bus_index": 3
+        },
+        {
+          "name": "safety_penalty",
+          "bus_index": 4
+        },
+        {
+          "name": "length_reference",
+          "bus_index": 5
+        },
+        {
+          "name": "time_reference",
+          "bus_index": 6
+        },
+        {
+          "name": "energy_reference",
+          "bus_index": 7
+        },
+        {
+          "name": "safety_reference",
+          "bus_index": 8
+        },
+        {
+          "name": "weight_length",
+          "bus_index": 9
+        },
+        {
+          "name": "weight_time",
+          "bus_index": 10
+        },
+        {
+          "name": "weight_energy",
+          "bus_index": 11
+        },
+        {
+          "name": "weight_safety",
+          "bus_index": 12
+        }
+      ],
+      "output": {
+        "name": "normalized_energy_cost",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "wingmpet_op16_normalized_safety_cost",
+      "operation_code": 16,
+      "inputs": [
+        {
+          "name": "path_length",
+          "bus_index": 1
+        },
+        {
+          "name": "mission_time",
+          "bus_index": 2
+        },
+        {
+          "name": "energy",
+          "bus_index": 3
+        },
+        {
+          "name": "safety_penalty",
+          "bus_index": 4
+        },
+        {
+          "name": "length_reference",
+          "bus_index": 5
+        },
+        {
+          "name": "time_reference",
+          "bus_index": 6
+        },
+        {
+          "name": "energy_reference",
+          "bus_index": 7
+        },
+        {
+          "name": "safety_reference",
+          "bus_index": 8
+        },
+        {
+          "name": "weight_length",
+          "bus_index": 9
+        },
+        {
+          "name": "weight_time",
+          "bus_index": 10
+        },
+        {
+          "name": "weight_energy",
+          "bus_index": 11
+        },
+        {
+          "name": "weight_safety",
+          "bus_index": 12
+        }
+      ],
+      "output": {
+        "name": "normalized_safety_cost",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "wingmpet_op16_objective",
+      "operation_code": 16,
+      "inputs": [
+        {
+          "name": "path_length",
+          "bus_index": 1
+        },
+        {
+          "name": "mission_time",
+          "bus_index": 2
+        },
+        {
+          "name": "energy",
+          "bus_index": 3
+        },
+        {
+          "name": "safety_penalty",
+          "bus_index": 4
+        },
+        {
+          "name": "length_reference",
+          "bus_index": 5
+        },
+        {
+          "name": "time_reference",
+          "bus_index": 6
+        },
+        {
+          "name": "energy_reference",
+          "bus_index": 7
+        },
+        {
+          "name": "safety_reference",
+          "bus_index": 8
+        },
+        {
+          "name": "weight_length",
+          "bus_index": 9
+        },
+        {
+          "name": "weight_time",
+          "bus_index": 10
+        },
+        {
+          "name": "weight_energy",
+          "bus_index": 11
+        },
+        {
+          "name": "weight_safety",
+          "bus_index": 12
+        }
+      ],
+      "output": {
+        "name": "objective",
+        "bus_index": 5
+      }
+    },
+    {
+      "id": "wingmpet_op17_length_excess",
+      "operation_code": 17,
+      "inputs": [
+        {
+          "name": "path_length",
+          "bus_index": 1
+        },
+        {
+          "name": "minimum_length",
+          "bus_index": 2
+        },
+        {
+          "name": "epsilon_length",
+          "bus_index": 3
+        },
+        {
+          "name": "mission_time",
+          "bus_index": 4
+        },
+        {
+          "name": "energy",
+          "bus_index": 5
+        },
+        {
+          "name": "weight_time",
+          "bus_index": 6
+        },
+        {
+          "name": "weight_energy",
+          "bus_index": 7
+        }
+      ],
+      "output": {
+        "name": "length_excess",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "wingmpet_op17_epsilon_constraint_valid",
+      "operation_code": 17,
+      "inputs": [
+        {
+          "name": "path_length",
+          "bus_index": 1
+        },
+        {
+          "name": "minimum_length",
+          "bus_index": 2
+        },
+        {
+          "name": "epsilon_length",
+          "bus_index": 3
+        },
+        {
+          "name": "mission_time",
+          "bus_index": 4
+        },
+        {
+          "name": "energy",
+          "bus_index": 5
+        },
+        {
+          "name": "weight_time",
+          "bus_index": 6
+        },
+        {
+          "name": "weight_energy",
+          "bus_index": 7
+        }
+      ],
+      "output": {
+        "name": "epsilon_constraint_valid",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "wingmpet_op17_secondary_objective",
+      "operation_code": 17,
+      "inputs": [
+        {
+          "name": "path_length",
+          "bus_index": 1
+        },
+        {
+          "name": "minimum_length",
+          "bus_index": 2
+        },
+        {
+          "name": "epsilon_length",
+          "bus_index": 3
+        },
+        {
+          "name": "mission_time",
+          "bus_index": 4
+        },
+        {
+          "name": "energy",
+          "bus_index": 5
+        },
+        {
+          "name": "weight_time",
+          "bus_index": 6
+        },
+        {
+          "name": "weight_energy",
+          "bus_index": 7
+        }
+      ],
+      "output": {
+        "name": "secondary_objective",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "wingmpet_op20_minimum_segment_margin",
+      "operation_code": 20,
+      "inputs": [
+        {
+          "name": "sample_count",
+          "bus_index": 1
+        },
+        {
+          "name": "segment_margin_01",
+          "bus_index": 2
+        },
+        {
+          "name": "segment_margin_02",
+          "bus_index": 3
+        },
+        {
+          "name": "segment_margin_03",
+          "bus_index": 4
+        },
+        {
+          "name": "segment_margin_04",
+          "bus_index": 5
+        },
+        {
+          "name": "segment_margin_05",
+          "bus_index": 6
+        },
+        {
+          "name": "segment_margin_06",
+          "bus_index": 7
+        },
+        {
+          "name": "segment_margin_07",
+          "bus_index": 8
+        },
+        {
+          "name": "segment_margin_08",
+          "bus_index": 9
+        },
+        {
+          "name": "segment_margin_09",
+          "bus_index": 10
+        },
+        {
+          "name": "segment_margin_10",
+          "bus_index": 11
+        },
+        {
+          "name": "segment_margin_11",
+          "bus_index": 12
+        },
+        {
+          "name": "segment_margin_12",
+          "bus_index": 13
+        },
+        {
+          "name": "segment_margin_13",
+          "bus_index": 14
+        },
+        {
+          "name": "segment_margin_14",
+          "bus_index": 15
+        },
+        {
+          "name": "segment_margin_15",
+          "bus_index": 16
+        },
+        {
+          "name": "segment_margin_16",
+          "bus_index": 17
+        },
+        {
+          "name": "segment_margin_17",
+          "bus_index": 18
+        },
+        {
+          "name": "segment_margin_18",
+          "bus_index": 19
+        },
+        {
+          "name": "segment_margin_19",
+          "bus_index": 20
+        },
+        {
+          "name": "segment_margin_20",
+          "bus_index": 21
+        },
+        {
+          "name": "segment_margin_21",
+          "bus_index": 22
+        },
+        {
+          "name": "segment_margin_22",
+          "bus_index": 23
+        },
+        {
+          "name": "segment_margin_23",
+          "bus_index": 24
+        },
+        {
+          "name": "segment_margin_24",
+          "bus_index": 25
+        },
+        {
+          "name": "segment_margin_25",
+          "bus_index": 26
+        },
+        {
+          "name": "segment_margin_26",
+          "bus_index": 27
+        },
+        {
+          "name": "segment_margin_27",
+          "bus_index": 28
+        },
+        {
+          "name": "segment_margin_28",
+          "bus_index": 29
+        },
+        {
+          "name": "segment_margin_29",
+          "bus_index": 30
+        },
+        {
+          "name": "segment_margin_30",
+          "bus_index": 31
+        },
+        {
+          "name": "segment_margin_31",
+          "bus_index": 32
+        },
+        {
+          "name": "segment_margin_32",
+          "bus_index": 33
+        },
+        {
+          "name": "segment_margin_33",
+          "bus_index": 34
+        },
+        {
+          "name": "segment_margin_34",
+          "bus_index": 35
+        },
+        {
+          "name": "segment_margin_35",
+          "bus_index": 36
+        },
+        {
+          "name": "segment_margin_36",
+          "bus_index": 37
+        },
+        {
+          "name": "segment_margin_37",
+          "bus_index": 38
+        },
+        {
+          "name": "segment_margin_38",
+          "bus_index": 39
+        },
+        {
+          "name": "segment_margin_39",
+          "bus_index": 40
+        },
+        {
+          "name": "segment_margin_40",
+          "bus_index": 41
+        },
+        {
+          "name": "unused_41",
+          "bus_index": 42
+        },
+        {
+          "name": "unused_42",
+          "bus_index": 43
+        },
+        {
+          "name": "unused_43",
+          "bus_index": 44
+        },
+        {
+          "name": "unused_44",
+          "bus_index": 45
+        },
+        {
+          "name": "unused_45",
+          "bus_index": 46
+        },
+        {
+          "name": "unused_46",
+          "bus_index": 47
+        },
+        {
+          "name": "unused_47",
+          "bus_index": 48
+        },
+        {
+          "name": "unused_48",
+          "bus_index": 49
+        },
+        {
+          "name": "unused_49",
+          "bus_index": 50
+        },
+        {
+          "name": "replan_margin_threshold",
+          "bus_index": 51
+        },
+        {
+          "name": "wind_model_error",
+          "bus_index": 52
+        },
+        {
+          "name": "state_error",
+          "bus_index": 53
+        },
+        {
+          "name": "wind_error_threshold",
+          "bus_index": 54
+        },
+        {
+          "name": "state_error_threshold",
+          "bus_index": 55
+        }
+      ],
+      "output": {
+        "name": "minimum_segment_margin",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "wingmpet_op20_whole_segment_safe",
+      "operation_code": 20,
+      "inputs": [
+        {
+          "name": "sample_count",
+          "bus_index": 1
+        },
+        {
+          "name": "segment_margin_01",
+          "bus_index": 2
+        },
+        {
+          "name": "segment_margin_02",
+          "bus_index": 3
+        },
+        {
+          "name": "segment_margin_03",
+          "bus_index": 4
+        },
+        {
+          "name": "segment_margin_04",
+          "bus_index": 5
+        },
+        {
+          "name": "segment_margin_05",
+          "bus_index": 6
+        },
+        {
+          "name": "segment_margin_06",
+          "bus_index": 7
+        },
+        {
+          "name": "segment_margin_07",
+          "bus_index": 8
+        },
+        {
+          "name": "segment_margin_08",
+          "bus_index": 9
+        },
+        {
+          "name": "segment_margin_09",
+          "bus_index": 10
+        },
+        {
+          "name": "segment_margin_10",
+          "bus_index": 11
+        },
+        {
+          "name": "segment_margin_11",
+          "bus_index": 12
+        },
+        {
+          "name": "segment_margin_12",
+          "bus_index": 13
+        },
+        {
+          "name": "segment_margin_13",
+          "bus_index": 14
+        },
+        {
+          "name": "segment_margin_14",
+          "bus_index": 15
+        },
+        {
+          "name": "segment_margin_15",
+          "bus_index": 16
+        },
+        {
+          "name": "segment_margin_16",
+          "bus_index": 17
+        },
+        {
+          "name": "segment_margin_17",
+          "bus_index": 18
+        },
+        {
+          "name": "segment_margin_18",
+          "bus_index": 19
+        },
+        {
+          "name": "segment_margin_19",
+          "bus_index": 20
+        },
+        {
+          "name": "segment_margin_20",
+          "bus_index": 21
+        },
+        {
+          "name": "segment_margin_21",
+          "bus_index": 22
+        },
+        {
+          "name": "segment_margin_22",
+          "bus_index": 23
+        },
+        {
+          "name": "segment_margin_23",
+          "bus_index": 24
+        },
+        {
+          "name": "segment_margin_24",
+          "bus_index": 25
+        },
+        {
+          "name": "segment_margin_25",
+          "bus_index": 26
+        },
+        {
+          "name": "segment_margin_26",
+          "bus_index": 27
+        },
+        {
+          "name": "segment_margin_27",
+          "bus_index": 28
+        },
+        {
+          "name": "segment_margin_28",
+          "bus_index": 29
+        },
+        {
+          "name": "segment_margin_29",
+          "bus_index": 30
+        },
+        {
+          "name": "segment_margin_30",
+          "bus_index": 31
+        },
+        {
+          "name": "segment_margin_31",
+          "bus_index": 32
+        },
+        {
+          "name": "segment_margin_32",
+          "bus_index": 33
+        },
+        {
+          "name": "segment_margin_33",
+          "bus_index": 34
+        },
+        {
+          "name": "segment_margin_34",
+          "bus_index": 35
+        },
+        {
+          "name": "segment_margin_35",
+          "bus_index": 36
+        },
+        {
+          "name": "segment_margin_36",
+          "bus_index": 37
+        },
+        {
+          "name": "segment_margin_37",
+          "bus_index": 38
+        },
+        {
+          "name": "segment_margin_38",
+          "bus_index": 39
+        },
+        {
+          "name": "segment_margin_39",
+          "bus_index": 40
+        },
+        {
+          "name": "segment_margin_40",
+          "bus_index": 41
+        },
+        {
+          "name": "unused_41",
+          "bus_index": 42
+        },
+        {
+          "name": "unused_42",
+          "bus_index": 43
+        },
+        {
+          "name": "unused_43",
+          "bus_index": 44
+        },
+        {
+          "name": "unused_44",
+          "bus_index": 45
+        },
+        {
+          "name": "unused_45",
+          "bus_index": 46
+        },
+        {
+          "name": "unused_46",
+          "bus_index": 47
+        },
+        {
+          "name": "unused_47",
+          "bus_index": 48
+        },
+        {
+          "name": "unused_48",
+          "bus_index": 49
+        },
+        {
+          "name": "unused_49",
+          "bus_index": 50
+        },
+        {
+          "name": "replan_margin_threshold",
+          "bus_index": 51
+        },
+        {
+          "name": "wind_model_error",
+          "bus_index": 52
+        },
+        {
+          "name": "state_error",
+          "bus_index": 53
+        },
+        {
+          "name": "wind_error_threshold",
+          "bus_index": 54
+        },
+        {
+          "name": "state_error_threshold",
+          "bus_index": 55
+        }
+      ],
+      "output": {
+        "name": "whole_segment_safe",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "wingmpet_op20_replan_trigger",
+      "operation_code": 20,
+      "inputs": [
+        {
+          "name": "sample_count",
+          "bus_index": 1
+        },
+        {
+          "name": "segment_margin_01",
+          "bus_index": 2
+        },
+        {
+          "name": "segment_margin_02",
+          "bus_index": 3
+        },
+        {
+          "name": "segment_margin_03",
+          "bus_index": 4
+        },
+        {
+          "name": "segment_margin_04",
+          "bus_index": 5
+        },
+        {
+          "name": "segment_margin_05",
+          "bus_index": 6
+        },
+        {
+          "name": "segment_margin_06",
+          "bus_index": 7
+        },
+        {
+          "name": "segment_margin_07",
+          "bus_index": 8
+        },
+        {
+          "name": "segment_margin_08",
+          "bus_index": 9
+        },
+        {
+          "name": "segment_margin_09",
+          "bus_index": 10
+        },
+        {
+          "name": "segment_margin_10",
+          "bus_index": 11
+        },
+        {
+          "name": "segment_margin_11",
+          "bus_index": 12
+        },
+        {
+          "name": "segment_margin_12",
+          "bus_index": 13
+        },
+        {
+          "name": "segment_margin_13",
+          "bus_index": 14
+        },
+        {
+          "name": "segment_margin_14",
+          "bus_index": 15
+        },
+        {
+          "name": "segment_margin_15",
+          "bus_index": 16
+        },
+        {
+          "name": "segment_margin_16",
+          "bus_index": 17
+        },
+        {
+          "name": "segment_margin_17",
+          "bus_index": 18
+        },
+        {
+          "name": "segment_margin_18",
+          "bus_index": 19
+        },
+        {
+          "name": "segment_margin_19",
+          "bus_index": 20
+        },
+        {
+          "name": "segment_margin_20",
+          "bus_index": 21
+        },
+        {
+          "name": "segment_margin_21",
+          "bus_index": 22
+        },
+        {
+          "name": "segment_margin_22",
+          "bus_index": 23
+        },
+        {
+          "name": "segment_margin_23",
+          "bus_index": 24
+        },
+        {
+          "name": "segment_margin_24",
+          "bus_index": 25
+        },
+        {
+          "name": "segment_margin_25",
+          "bus_index": 26
+        },
+        {
+          "name": "segment_margin_26",
+          "bus_index": 27
+        },
+        {
+          "name": "segment_margin_27",
+          "bus_index": 28
+        },
+        {
+          "name": "segment_margin_28",
+          "bus_index": 29
+        },
+        {
+          "name": "segment_margin_29",
+          "bus_index": 30
+        },
+        {
+          "name": "segment_margin_30",
+          "bus_index": 31
+        },
+        {
+          "name": "segment_margin_31",
+          "bus_index": 32
+        },
+        {
+          "name": "segment_margin_32",
+          "bus_index": 33
+        },
+        {
+          "name": "segment_margin_33",
+          "bus_index": 34
+        },
+        {
+          "name": "segment_margin_34",
+          "bus_index": 35
+        },
+        {
+          "name": "segment_margin_35",
+          "bus_index": 36
+        },
+        {
+          "name": "segment_margin_36",
+          "bus_index": 37
+        },
+        {
+          "name": "segment_margin_37",
+          "bus_index": 38
+        },
+        {
+          "name": "segment_margin_38",
+          "bus_index": 39
+        },
+        {
+          "name": "segment_margin_39",
+          "bus_index": 40
+        },
+        {
+          "name": "segment_margin_40",
+          "bus_index": 41
+        },
+        {
+          "name": "unused_41",
+          "bus_index": 42
+        },
+        {
+          "name": "unused_42",
+          "bus_index": 43
+        },
+        {
+          "name": "unused_43",
+          "bus_index": 44
+        },
+        {
+          "name": "unused_44",
+          "bus_index": 45
+        },
+        {
+          "name": "unused_45",
+          "bus_index": 46
+        },
+        {
+          "name": "unused_46",
+          "bus_index": 47
+        },
+        {
+          "name": "unused_47",
+          "bus_index": 48
+        },
+        {
+          "name": "unused_48",
+          "bus_index": 49
+        },
+        {
+          "name": "unused_49",
+          "bus_index": 50
+        },
+        {
+          "name": "replan_margin_threshold",
+          "bus_index": 51
+        },
+        {
+          "name": "wind_model_error",
+          "bus_index": 52
+        },
+        {
+          "name": "state_error",
+          "bus_index": 53
+        },
+        {
+          "name": "wind_error_threshold",
+          "bus_index": 54
+        },
+        {
+          "name": "state_error_threshold",
+          "bus_index": 55
+        }
+      ],
+      "output": {
+        "name": "replan_trigger",
+        "bus_index": 3
+      }
+    }
+  ],
+  "operation_count": 22,
+  "formalism_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141.md",
+  "interface_revision": 2,
+  "implementation_profile": "Phoenix dual-rotor tailsitter VTOL; native C++ FMI 2.0 Co-Simulation; edge-oriented",
+  "active_aircraft_config": "config/phoenix_drone_v3.yaml",
+  "removed_operation_codes": {
+    "3": "Generic problem echo is not a formula in WingMPET v20260820_1141.",
+    "8": "Legacy point-mass thrust-along-airspeed dynamics contradict the 6-DOF VTOL reference model.",
+    "10": "Ungated fixed-wing envelope is superseded by mode-aware VTOL operation 30.",
+    "11": "Legacy generic propeller/electrical model is not the Phoenix v3 power formalism; operation 31 is canonical.",
+    "12": "Combustion propulsion/fuel is explicitly empty for Phoenix v3.",
+    "18": "Generic eight-control transcription is not actuator-limited to the two Phoenix motors and two elevons.",
+    "19": "Legacy point-mass full model is superseded by operation 27/default canonical VTOL path.",
+    "21": "Placeholder guarantee echo is not a formalism equation.",
+    "22": "Placeholder guarantee check is not a formalism equation.",
+    "23": "Placeholder data echo is not a formalism equation.",
+    "24": "Placeholder solver echo is not a formalism equation.",
+    "25": "Placeholder final echo is not a formalism equation.",
+    "26": "Legacy completeness placeholder is superseded by operation 34."
+  },
+  "active_operation_codes": [
+    1,
+    2,
+    4,
+    5,
+    6,
+    7,
+    9,
+    13,
+    14,
+    15,
+    16,
+    17,
+    20,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35
+  ],
+  "max_operation_code": 35,
+  "cleanup_profile": "formalism_1141_only"
+}

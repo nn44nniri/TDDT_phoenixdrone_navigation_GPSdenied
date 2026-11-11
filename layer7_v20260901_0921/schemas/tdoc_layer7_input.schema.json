@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TDOC -> TDDT Layer 7 input",
+  "type": "object",
+  "required": [
+    "ExecutionEvidence",
+    "PredictionEvidence",
+    "NetworkSnapshot"
+  ],
+  "properties": {
+    "transaction_id": {
+      "type": "string"
+    },
+    "v": {
+      "type": [
+        "string",
+        "integer"
+      ]
+    },
+    "ExecutionEvidence": {
+      "type": "object",
+      "required": [
+        "y_real",
+        "version",
+        "timestamp",
+        "evidence_type",
+        "observation_id",
+        "input_observation_id",
+        "decision_id",
+        "correlates_to_decision_id",
+        "command_id",
+        "correlates_to_actuator_command_id",
+        "actuator_feedback_id",
+        "output_semantics"
+      ],
+      "properties": {
+        "y_real": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "version": {
+          "type": [
+            "string",
+            "integer"
+          ]
+        },
+        "timestamp": {
+          "type": "number"
+        },
+        "evidence_type": {
+          "enum": [
+            "simulation",
+            "reference",
+            "HIL",
+            "field"
+          ]
+        },
+        "observation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "input_observation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "correlates_to_decision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "correlates_to_actuator_command_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "output_semantics": {
+          "$ref": "#/$defs/semanticMap"
+        },
+        "actuator_feedback_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "PredictionEvidence": {
+      "type": "object",
+      "required": [
+        "y_hat_td",
+        "version",
+        "timestamp",
+        "output_semantics"
+      ],
+      "properties": {
+        "y_hat_td": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "version": {
+          "type": [
+            "string",
+            "integer"
+          ]
+        },
+        "timestamp": {
+          "type": "number"
+        },
+        "output_semantics": {
+          "$ref": "#/$defs/semanticMap"
+        }
+      }
+    },
+    "NetworkSnapshot": {
+      "type": "object",
+      "required": [
+        "version",
+        "timestamp",
+        "twin_validity"
+      ],
+      "properties": {
+        "version": {
+          "type": [
+            "string",
+            "integer"
+          ]
+        },
+        "timestamp": {
+          "type": "number"
+        },
+        "twin_validity": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "twin_quality": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "twin_freshness": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "DecisionTrace": {
+      "type": "object"
+    },
+    "AdaptationHints": {
+      "type": "object"
+    }
+  },
+  "$defs": {
+    "semanticMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "quantity",
+          "unit",
+          "frame"
+        ],
+        "properties": {
+          "quantity": {
+            "type": "string",
+            "minLength": 1
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "frame": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

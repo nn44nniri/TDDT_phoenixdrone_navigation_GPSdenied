@@ -1,0 +1,74 @@
+{
+  "schema_version": "3.0",
+  "twin_id": "MESA_NAV",
+  "kind": "applicability_prior_not_field_validation",
+  "novelty_validity_cap": 0.5,
+  "ranges": {
+    "dt": {
+      "min": 1e-05,
+      "max": 0.2,
+      "unit": "s"
+    },
+    "airspeed": {
+      "min": 0.0,
+      "max": 18.0,
+      "unit": "m/s"
+    },
+    "max_airspeed": {
+      "min": 12.0,
+      "max": 30.0,
+      "unit": "m/s"
+    },
+    "absolute_pressure": {
+      "min": 1000.0,
+      "max": 110000.0,
+      "unit": "Pa"
+    },
+    "air_density": {
+      "min": 0.2,
+      "max": 1.6,
+      "unit": "kg/m3"
+    },
+    "nis_gate": {
+      "min": 0.1,
+      "max": 100.0,
+      "unit": "1"
+    },
+    "forgetting_factor": {
+      "min": 0.8,
+      "max": 1.0,
+      "unit": "1"
+    },
+    "ultrasonic_wind_age_s": {
+      "min": 0.0,
+      "max": 2.0,
+      "unit": "s",
+      "note": "actual max age is versioned/calibrated; 2 s is an envelope cap, not an update default"
+    }
+  },
+  "assumptions": [
+    "Phoenix dual-rotor tailsitter VTOL",
+    "NED navigation state",
+    "ULTRASONIC_WIND is physical independent observation only when present",
+    "fixed-wing pseudo-constraints are mode-aware",
+    "no network coupling inside FMU"
+  ],
+  "envelope_version": "2026-08-20-v3-vtol",
+  "maturity": "simulation_prior",
+  "novelty_policy": {
+    "uncertainty_multiplier": 2.0,
+    "quality_multiplier": 0.6,
+    "validity_cap": 0.5,
+    "reliability_multiplier": 0.6
+  },
+  "freshness_policy": {
+    "lambda_per_second": 0.001,
+    "minimum_multiplier": 0.25
+  },
+  "hardware_profile": "phoenix_drone_v3.yaml",
+  "mode_policy": {
+    "hover": "stall/sideslip/coordinated-turn disabled",
+    "transition": "fixed-wing factors weighted by lambda_w",
+    "wing_borne": "fixed-wing constraints enabled"
+  }
+}

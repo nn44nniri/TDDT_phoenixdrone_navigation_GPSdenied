@@ -1,0 +1,183 @@
+{
+  "transaction_id": "EXAMPLE-TXN",
+  "v": "7",
+  "ExecutionEvidence": {
+    "y_real": {
+      "x": 10.8,
+      "energy": 4.4
+    },
+    "u_cmd": {
+      "thr": 0.5
+    },
+    "u_applied": {
+      "thr": 0.49
+    },
+    "x_obs": {
+      "x": 10.8
+    },
+    "timestamp": 100.0,
+    "planned_timestamp": 99.95,
+    "version": "7",
+    "evidence_type": "field",
+    "observation_id": "obs-1",
+    "input_observation_id": "obs-1",
+    "decision_id": "dec-1",
+    "correlates_to_decision_id": "dec-1",
+    "command_id": "EXAMPLE-CMD",
+    "correlates_to_actuator_command_id": "EXAMPLE-CMD",
+    "output_semantics": {
+      "x": {
+        "quantity": "position",
+        "unit": "m",
+        "frame": "ENU"
+      },
+      "energy": {
+        "quantity": "energy",
+        "unit": "J",
+        "frame": "scalar"
+      }
+    },
+    "actuator_feedback_id": "EXAMPLE-FEEDBACK",
+    "provenance": {
+      "transaction_id": "EXAMPLE-TXN",
+      "candidate_id": "EXAMPLE-CAND",
+      "snapshot_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "command_id": "EXAMPLE-CMD",
+      "flight_mode": "QHOVER",
+      "plant_time_s": 100.0,
+      "state_semantics": {
+        "x": {
+          "quantity": "position",
+          "unit": "m",
+          "frame": "NED"
+        }
+      },
+      "observation_kind": "physical_state"
+    }
+  },
+  "PredictionEvidence": {
+    "y_hat_td": {
+      "x": 10.0,
+      "energy": 4.0
+    },
+    "x_hat_td": {
+      "x": 10.1
+    },
+    "sigma_pred": {
+      "x": 0.2,
+      "energy": 0.2
+    },
+    "timestamp": 100.0,
+    "version": "7",
+    "output_semantics": {
+      "x": {
+        "quantity": "position",
+        "unit": "m",
+        "frame": "ENU"
+      },
+      "energy": {
+        "quantity": "energy",
+        "unit": "J",
+        "frame": "scalar"
+      }
+    },
+    "provenance": {
+      "transaction_id": "EXAMPLE-TXN",
+      "candidate_id": "EXAMPLE-CAND",
+      "snapshot_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "command_id": "EXAMPLE-CMD",
+      "flight_mode": "QHOVER",
+      "plant_time_s": 100.0,
+      "state_semantics": {
+        "x": {
+          "quantity": "position",
+          "unit": "m",
+          "frame": "NED"
+        }
+      },
+      "prediction_kind": "native_controller_state",
+      "target_plant_timestamp": 100.0
+    }
+  },
+  "NetworkSnapshot": {
+    "std": {
+      "x": 10.1
+    },
+    "weights": {
+      "MESA": 0.34,
+      "WingMPET": 0.33,
+      "MicroMet": 0.33
+    },
+    "twin_validity": {
+      "MESA": 1.0,
+      "WingMPET": 1.0,
+      "MicroMet": 1.0
+    },
+    "twin_quality": {
+      "MESA": 1.0,
+      "WingMPET": 1.0,
+      "MicroMet": 1.0
+    },
+    "twin_freshness": {
+      "MESA": 1.0,
+      "WingMPET": 1.0,
+      "MicroMet": 1.0
+    },
+    "couplings": {
+      "MESA->WingMPET": 0.5
+    },
+    "topology": [
+      [
+        "MESA",
+        "WingMPET"
+      ]
+    ],
+    "coc_cost": 0.2,
+    "margin": 0.5,
+    "uncertainty": 0.25,
+    "timestamp": 100.0,
+    "version": "7",
+    "boundary_safe": true,
+    "content_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "DecisionTrace": {
+    "real_cost": 1.0,
+    "feasible_reference_cost": 0.9,
+    "timestamp": 100.0,
+    "version": "7"
+  },
+  "AdaptationHints": {
+    "model_error": {
+      "MESA": 0.4
+    },
+    "source_quality": 1.0,
+    "source_validity": 1.0,
+    "source_freshness": 1.0,
+    "source_credibility": 1.0,
+    "maturity": 0.3,
+    "structural_error": 0.2,
+    "tep_centroids": {
+      "MESA": [
+        [
+          10.0
+        ]
+      ]
+    },
+    "tep_descriptor": {
+      "MESA": [
+        10.1
+      ]
+    },
+    "tep_max_distance": {
+      "MESA": 2.0
+    },
+    "crp_id": "CRP-demo",
+    "sarg_id": "SARG-demo",
+    "crp_match_quality": 1.0,
+    "mrg_confidence": 1.0,
+    "mrg": {
+      "guidance": "demo",
+      "confidence": 1.0
+    }
+  }
+}

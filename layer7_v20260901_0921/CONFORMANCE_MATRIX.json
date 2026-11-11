@@ -1,0 +1,294 @@
+{
+  "package": "layer7_v20260901_0921",
+  "formalism": "Formalism_layer7_v2.md",
+  "reference": "TDDT_Dynamic_NTwin_Layer7_details_FA_v2.md",
+  "tdoc_reference": "TDDT_Dynamic_NTwin_TDOC_details_FA_v4.md",
+  "status": "implemented-regression-verified-with-explicit-TDOC-owned-validation-and-rollback-contracts",
+  "requirements": [
+    {
+      "id": "L7-EVIDENCE",
+      "formulas": "L7-5..10",
+      "status": "implemented",
+      "code": [
+        "evidence.py",
+        "models.py"
+      ],
+      "tests": [
+        "test_evidence_residuals.py"
+      ]
+    },
+    {
+      "id": "L7-DECOMP",
+      "formulas": "L7-11..13,L7-124..137",
+      "status": "implemented-online-plus-explicit-offline-API",
+      "code": [
+        "residuals.py"
+      ],
+      "tests": [
+        "test_evidence_residuals.py"
+      ]
+    },
+    {
+      "id": "L7-GP",
+      "formulas": "L7-14..23",
+      "status": "implemented",
+      "code": [
+        "gp.py"
+      ],
+      "tests": [
+        "test_gp_drift_attribution.py"
+      ]
+    },
+    {
+      "id": "L7-ATTR",
+      "formulas": "L7-24..27",
+      "status": "implemented-edge-factorized-BN",
+      "code": [
+        "attribution.py"
+      ],
+      "tests": [
+        "test_gp_drift_attribution.py"
+      ]
+    },
+    {
+      "id": "L7-DRIFT",
+      "formulas": "L7-28..32",
+      "status": "implemented-truncated",
+      "code": [
+        "drift.py"
+      ],
+      "tests": [
+        "test_gp_drift_attribution.py"
+      ]
+    },
+    {
+      "id": "L7-ESS",
+      "formulas": "L7-33..35",
+      "status": "implemented",
+      "code": [
+        "triggers.py"
+      ],
+      "tests": [
+        "test_routing_triggers.py"
+      ]
+    },
+    {
+      "id": "L7-TEP",
+      "formulas": "L7-36..40,L7-138..142",
+      "status": "implemented-core-and-hooks",
+      "code": [
+        "reliability.py",
+        "kstore.py",
+        "pipeline.py"
+      ],
+      "tests": [
+        "test_graph_reliability_kstore.py"
+      ]
+    },
+    {
+      "id": "L7-TRIGGER",
+      "formulas": "L7-41..43,L7-143..144",
+      "status": "implemented",
+      "code": [
+        "triggers.py",
+        "config.py"
+      ],
+      "tests": [
+        "test_routing_triggers.py"
+      ]
+    },
+    {
+      "id": "L7-ROUTE",
+      "formulas": "L7-44,L7-145..153",
+      "status": "implemented",
+      "code": [
+        "routing.py"
+      ],
+      "tests": [
+        "test_routing_triggers.py"
+      ]
+    },
+    {
+      "id": "L7-ANTI-COMP",
+      "formulas": "L7-49..51",
+      "status": "implemented",
+      "code": [
+        "safety.py",
+        "pipeline.py"
+      ],
+      "tests": [
+        "test_tdoc_pipeline.py"
+      ]
+    },
+    {
+      "id": "L7-TWIN-UPDATE",
+      "formulas": "L7-52..59,L7-154..158",
+      "status": "implemented-with-supplied-Jacobians/bounds",
+      "code": [
+        "adaptation.py"
+      ],
+      "tests": [
+        "test_adaptation_validation.py"
+      ]
+    },
+    {
+      "id": "L7-WKG",
+      "formulas": "L7-60..74",
+      "status": "implemented",
+      "code": [
+        "adaptation.py",
+        "graph.py"
+      ],
+      "tests": [
+        "test_graph_reliability_kstore.py",
+        "test_adaptation_validation.py"
+      ]
+    },
+    {
+      "id": "L7-EPS-OMEGA",
+      "formulas": "L7-159..161",
+      "status": "implemented-with-field-hints",
+      "code": [
+        "adaptation.py"
+      ],
+      "tests": [
+        "test_adaptation_validation.py"
+      ]
+    },
+    {
+      "id": "L7-HIDDEN-LOOP",
+      "formulas": "L7-79..82,L7-162..163",
+      "status": "implemented-bounded",
+      "code": [
+        "graph.py"
+      ],
+      "tests": [
+        "test_graph_reliability_kstore.py"
+      ]
+    },
+    {
+      "id": "L7-SAFETY-STABILITY",
+      "formulas": "L7-83..91",
+      "status": "implemented-fail-closed",
+      "code": [
+        "safety.py",
+        "validation.py"
+      ],
+      "tests": [
+        "test_adaptation_validation.py"
+      ]
+    },
+    {
+      "id": "L7-SHADOW",
+      "formulas": "L7-92..96",
+      "status": "implemented-metric-contract",
+      "code": [
+        "validation.py"
+      ],
+      "tests": [
+        "test_adaptation_validation.py"
+      ]
+    },
+    {
+      "id": "L7-COMMIT",
+      "formulas": "L7-97..104",
+      "status": "implemented-TDOC-two-phase",
+      "code": [
+        "commit.py",
+        "tdoc_adapter.py"
+      ],
+      "tests": [
+        "test_tdoc_pipeline.py"
+      ]
+    },
+    {
+      "id": "L7-GOV",
+      "formulas": "L7-100..101",
+      "status": "implemented",
+      "code": [
+        "governance.py",
+        "validation.py"
+      ],
+      "tests": [
+        "test_adaptation_validation.py"
+      ]
+    },
+    {
+      "id": "L7-OSC-CATA",
+      "formulas": "L7-164..168",
+      "status": "implemented-bounded",
+      "code": [
+        "graph.py",
+        "safety.py",
+        "pipeline.py"
+      ],
+      "tests": [
+        "test_graph_reliability_kstore.py"
+      ]
+    },
+    {
+      "id": "L7-TEP-NOVELTY",
+      "formulas": "L7-105..106",
+      "status": "implemented-fail-closed-when-unknown-for-slow",
+      "code": [
+        "safety.py",
+        "pipeline.py"
+      ],
+      "tests": [
+        "test_tdoc_pipeline.py"
+      ]
+    },
+    {
+      "id": "L7-FEEDBACK",
+      "formulas": "L7-107..110,L7-169..170",
+      "status": "implemented",
+      "code": [
+        "pipeline.py"
+      ],
+      "tests": [
+        "test_tdoc_pipeline.py"
+      ]
+    },
+    {
+      "id": "L7-COMPLIANCE",
+      "formulas": "L7-171..172",
+      "status": "implemented",
+      "code": [
+        "pipeline.py"
+      ],
+      "tests": [
+        "test_formalism_compliance.py"
+      ]
+    },
+    {
+      "id": "TDOC-115-116",
+      "formulas": "TDOC Eq.115-116",
+      "status": "implemented-side-module",
+      "code": [
+        "tdoc_adapter.py"
+      ],
+      "tests": [
+        "test_tdoc_pipeline.py"
+      ]
+    },
+    {
+      "id": "L7-PACKAGING-CLI",
+      "formulas": "deployment/integration support",
+      "status": "implemented-editable-install-compatible",
+      "code": [
+        "pyproject.toml",
+        "setup.py",
+        "src/tddt_layer7/cli.py",
+        "src/tddt_layer7/config.py",
+        "scripts/install_editable.sh"
+      ],
+      "tests": [
+        "test_packaging_entrypoint.py"
+      ],
+      "notes": "Project root is explicitly installable; tddt-layer7 console entry point and pytest dependency are declared; relative config paths fall back to the editable project root."
+    }
+  ],
+  "package_version": "0.3.0",
+  "tests": 46,
+  "verification": "46/46 regression tests pass; preflight/demo/process/offline paths exercised; final tarball re-extract verification recorded externally in release process."
+}

@@ -1,0 +1,2611 @@
+{
+  "scenario": {
+    "name": "MESA_NAV_all_formulas_future_view",
+    "context_id": "CRP_future_demo",
+    "stage_id": "cruise",
+    "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+    "communication_step": 0.001,
+    "common_inputs": {
+      "dt": 0.01,
+      "air_density": 1.1,
+      "airspeed": 13.0,
+      "absolute_pressure": 90000.0,
+      "wind_map_n": 3.0,
+      "wind_map_e": 1.0,
+      "wind_map_d": 0.0
+    },
+    "operation_inputs": {}
+  },
+  "twin": "MESA_NAV",
+  "fmu": "/mnt/data/work_twins_purge/twins_layer2_v20260820_1232/fmus/MESA_NAV.fmu",
+  "config": "/mnt/data/work_twins_purge/twins_layer2_v20260820_1232/config/phoenix_drone_v3.yaml",
+  "operations": {
+    "1": {
+      "inputs": {},
+      "outputs": {
+        "formalism_version": 4.0,
+        "active_operation_count": 24.0,
+        "max_operation_code": 27.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "formalism_version": 4.0,
+          "active_operation_count": 24.0,
+          "max_operation_code": 27.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "formalism_version": 0.0,
+            "active_operation_count": 0.0,
+            "max_operation_code": 0.0
+          },
+          "variance_by_output": {
+            "formalism_version": 0.0,
+            "active_operation_count": 0.0,
+            "max_operation_code": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP01_E001",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 1.0,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 1,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.001,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 1,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP01_E001"
+      },
+      "all_outputs_finite": true
+    },
+    "3": {
+      "inputs": {
+        "event_timestamp": 10.0,
+        "event_age": 0.05,
+        "late_max": 0.2,
+        "future_tolerance": 0.05
+      },
+      "outputs": {
+        "synchronized_timestamp": 10.0,
+        "age_accepted": 1.0,
+        "future_accepted": 1.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "synchronized_timestamp": 10.0,
+          "age_accepted": 1.0,
+          "future_accepted": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "synchronized_timestamp": 0.05976434843407889,
+            "age_accepted": 0.0,
+            "future_accepted": 0.0
+          },
+          "variance_by_output": {
+            "synchronized_timestamp": 0.003571777343749988,
+            "age_accepted": 0.0,
+            "future_accepted": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP03_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.999912777466852,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 3,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.002,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 3,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP03_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "4": {
+      "inputs": {},
+      "outputs": {
+        "error_state_or_variance_01": 100.0,
+        "error_state_or_variance_02": 100.0,
+        "error_state_or_variance_03": 100.0,
+        "error_state_or_variance_04": 100.0,
+        "error_state_or_variance_05": 100.0,
+        "error_state_or_variance_06": 100.0,
+        "error_state_or_variance_07": 0.0,
+        "error_state_or_variance_08": 0.0,
+        "error_state_or_variance_09": 0.0,
+        "error_state_or_variance_10": 0.0,
+        "error_state_or_variance_11": 0.0,
+        "error_state_or_variance_12": 0.0,
+        "error_state_or_variance_13": 0.0,
+        "error_state_or_variance_14": 0.0,
+        "error_state_or_variance_15": 0.0,
+        "error_state_or_variance_16": 0.0,
+        "error_state_or_variance_17": 0.0,
+        "error_state_or_variance_18": 0.0,
+        "error_state_or_variance_19": 0.0,
+        "error_state_or_variance_20": 0.0,
+        "error_state_or_variance_21": 0.0,
+        "error_state_or_variance_22": 0.0,
+        "error_state_or_variance_23": 0.0,
+        "error_state_or_variance_24": 0.0,
+        "error_state_or_variance_25": 0.0,
+        "error_state_or_variance_26": 0.0,
+        "error_state_or_variance_27": 0.0,
+        "error_state_or_variance_28": 0.0,
+        "error_state_or_variance_29": 0.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "error_state_or_variance_01": 100.0,
+          "error_state_or_variance_02": 100.0,
+          "error_state_or_variance_03": 100.0,
+          "error_state_or_variance_04": 100.0,
+          "error_state_or_variance_05": 100.0,
+          "error_state_or_variance_06": 100.0,
+          "error_state_or_variance_07": 0.0,
+          "error_state_or_variance_08": 0.0,
+          "error_state_or_variance_09": 0.0,
+          "error_state_or_variance_10": 0.0,
+          "error_state_or_variance_11": 0.0,
+          "error_state_or_variance_12": 0.0,
+          "error_state_or_variance_13": 0.0,
+          "error_state_or_variance_14": 0.0,
+          "error_state_or_variance_15": 0.0,
+          "error_state_or_variance_16": 0.0,
+          "error_state_or_variance_17": 0.0,
+          "error_state_or_variance_18": 0.0,
+          "error_state_or_variance_19": 0.0,
+          "error_state_or_variance_20": 0.0,
+          "error_state_or_variance_21": 0.0,
+          "error_state_or_variance_22": 0.0,
+          "error_state_or_variance_23": 0.0,
+          "error_state_or_variance_24": 0.0,
+          "error_state_or_variance_25": 0.0,
+          "error_state_or_variance_26": 0.0,
+          "error_state_or_variance_27": 0.0,
+          "error_state_or_variance_28": 0.0,
+          "error_state_or_variance_29": 0.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "error_state_or_variance_01": 0.0,
+            "error_state_or_variance_02": 0.0,
+            "error_state_or_variance_03": 0.0,
+            "error_state_or_variance_04": 0.0,
+            "error_state_or_variance_05": 0.0,
+            "error_state_or_variance_06": 0.0,
+            "error_state_or_variance_07": 0.0,
+            "error_state_or_variance_08": 0.0,
+            "error_state_or_variance_09": 0.0,
+            "error_state_or_variance_10": 0.0,
+            "error_state_or_variance_11": 0.0,
+            "error_state_or_variance_12": 0.0,
+            "error_state_or_variance_13": 0.0,
+            "error_state_or_variance_14": 0.0,
+            "error_state_or_variance_15": 0.0,
+            "error_state_or_variance_16": 0.0,
+            "error_state_or_variance_17": 0.0,
+            "error_state_or_variance_18": 0.0,
+            "error_state_or_variance_19": 0.0,
+            "error_state_or_variance_20": 0.0,
+            "error_state_or_variance_21": 0.0,
+            "error_state_or_variance_22": 0.0,
+            "error_state_or_variance_23": 0.0,
+            "error_state_or_variance_24": 0.0,
+            "error_state_or_variance_25": 0.0,
+            "error_state_or_variance_26": 0.0,
+            "error_state_or_variance_27": 0.0,
+            "error_state_or_variance_28": 0.0,
+            "error_state_or_variance_29": 0.0
+          },
+          "variance_by_output": {
+            "error_state_or_variance_01": 0.0,
+            "error_state_or_variance_02": 0.0,
+            "error_state_or_variance_03": 0.0,
+            "error_state_or_variance_04": 0.0,
+            "error_state_or_variance_05": 0.0,
+            "error_state_or_variance_06": 0.0,
+            "error_state_or_variance_07": 0.0,
+            "error_state_or_variance_08": 0.0,
+            "error_state_or_variance_09": 0.0,
+            "error_state_or_variance_10": 0.0,
+            "error_state_or_variance_11": 0.0,
+            "error_state_or_variance_12": 0.0,
+            "error_state_or_variance_13": 0.0,
+            "error_state_or_variance_14": 0.0,
+            "error_state_or_variance_15": 0.0,
+            "error_state_or_variance_16": 0.0,
+            "error_state_or_variance_17": 0.0,
+            "error_state_or_variance_18": 0.0,
+            "error_state_or_variance_19": 0.0,
+            "error_state_or_variance_20": 0.0,
+            "error_state_or_variance_21": 0.0,
+            "error_state_or_variance_22": 0.0,
+            "error_state_or_variance_23": 0.0,
+            "error_state_or_variance_24": 0.0,
+            "error_state_or_variance_25": 0.0,
+            "error_state_or_variance_26": 0.0,
+            "error_state_or_variance_27": 0.0,
+            "error_state_or_variance_28": 0.0,
+            "error_state_or_variance_29": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP04_E001",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 1.0,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 4,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.003,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 4,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP04_E001"
+      },
+      "all_outputs_finite": true
+    },
+    "5": {
+      "inputs": {
+        "dt": 0.01
+      },
+      "outputs": {
+        "position_n": 0.0,
+        "position_e": 0.0,
+        "position_d": 4.903324999999999e-06,
+        "velocity_n": 0.0,
+        "velocity_e": 0.0,
+        "velocity_d": 0.00980665
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "position_n": 0.0,
+          "position_e": 0.0,
+          "position_d": 4.903324999999999e-06,
+          "velocity_n": 0.0,
+          "velocity_e": 0.0,
+          "velocity_d": 0.00980665
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "position_n": 0.0,
+            "position_e": 0.0,
+            "position_d": 0.0,
+            "velocity_n": 0.0,
+            "velocity_e": 0.0,
+            "velocity_d": 0.0
+          },
+          "variance_by_output": {
+            "position_n": 0.0,
+            "position_e": 0.0,
+            "position_d": 0.0,
+            "velocity_n": 0.0,
+            "velocity_e": 0.0,
+            "velocity_d": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP05_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 1.0,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 5,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.004,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 5,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP05_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "6": {
+      "inputs": {
+        "process_noise_diag_01": 0.01,
+        "process_noise_diag_02": 0.01,
+        "process_noise_diag_03": 0.01,
+        "process_noise_diag_04": 0.01,
+        "process_noise_diag_05": 0.01,
+        "process_noise_diag_06": 0.01,
+        "process_noise_diag_07": 0.01,
+        "process_noise_diag_08": 0.01,
+        "process_noise_diag_09": 0.01,
+        "process_noise_diag_10": 0.01,
+        "process_noise_diag_11": 0.01,
+        "process_noise_diag_12": 0.01,
+        "process_noise_diag_13": 0.01,
+        "process_noise_diag_14": 0.01,
+        "process_noise_diag_15": 0.01,
+        "process_noise_diag_16": 0.01,
+        "process_noise_diag_17": 0.01,
+        "process_noise_diag_18": 0.01,
+        "process_noise_diag_19": 0.01,
+        "process_noise_diag_20": 0.01,
+        "process_noise_diag_21": 0.01,
+        "process_noise_diag_22": 0.01,
+        "process_noise_diag_23": 0.01,
+        "process_noise_diag_24": 0.01,
+        "process_noise_diag_25": 0.01,
+        "process_noise_diag_26": 0.01,
+        "process_noise_diag_27": 0.01,
+        "process_noise_diag_28": 0.01,
+        "process_noise_diag_29": 0.01
+      },
+      "outputs": {
+        "covariance_propagation_ok": 1.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "covariance_propagation_ok": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "covariance_propagation_ok": 0.0
+          },
+          "variance_by_output": {
+            "covariance_propagation_ok": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP06_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 1.0,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 6,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.005,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 6,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP06_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "7": {
+      "inputs": {
+        "air_density": 1.1,
+        "pitot_pressure": 92.95,
+        "predicted_airspeed": 13.0,
+        "airspeed_variance": 1.0
+      },
+      "outputs": {
+        "airspeed_from_pitot": 13.0,
+        "pitot_residual": 0.0,
+        "pitot_nis": 0.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "airspeed_from_pitot": 13.0,
+          "pitot_residual": 0.0,
+          "pitot_nis": 0.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "airspeed_from_pitot": 0.045521748972688465,
+            "pitot_residual": 0.08231976609915825,
+            "pitot_nis": 0.007823166743507916
+          },
+          "variance_by_output": {
+            "airspeed_from_pitot": 0.002072229629532463,
+            "pitot_residual": 0.006776543890620125,
+            "pitot_nis": 6.120193789672826e-05
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP07_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9986504678296478,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 7,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.006,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 7,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP07_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "9": {
+      "inputs": {
+        "mag_bx": 2e-05,
+        "mag_by": 2e-06,
+        "mag_bz": 4.2e-05,
+        "map_mag_n": 2e-05,
+        "map_mag_e": 2e-06,
+        "map_mag_d": 4.2e-05,
+        "mag_variance": 4e-12,
+        "nis_gate": 6.0
+      },
+      "outputs": {
+        "mag_norm_residual": 0.0,
+        "mag_nis": 0.0,
+        "mag_anchor_valid": 1.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "mag_norm_residual": 0.0,
+          "mag_nis": 0.0,
+          "mag_anchor_valid": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "mag_norm_residual": 3.655469928085975e-07,
+            "mag_nis": 6.756197545866648e-05,
+            "mag_anchor_valid": 0.0
+          },
+          "variance_by_output": {
+            "mag_norm_residual": 1.3362460395140881e-13,
+            "mag_nis": 4.564620527877451e-09,
+            "mag_anchor_valid": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP09_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9999990268630183,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 9,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.007,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 9,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP09_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "10": {
+      "inputs": {
+        "absolute_pressure": 90000.0,
+        "log_pressure_prior": 11.407564949312402,
+        "log_scale_height": 9.035986984831405,
+        "pressure_grad_n": 0.0,
+        "pressure_grad_e": 0.0,
+        "pressure_variance": 100.0,
+        "nis_gate": 6.0,
+        "pressure_time_scale": 30.0
+      },
+      "outputs": {
+        "pressure_residual": 5.837286209953163e-10,
+        "pressure_nis": 3.407391029690936e-21,
+        "pressure_robust_weight": 1.0,
+        "pressure_anchor_valid": 1.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "pressure_residual": 5.837286209953163e-10,
+          "pressure_nis": 3.407391029690936e-21,
+          "pressure_robust_weight": 1.0,
+          "pressure_anchor_valid": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "pressure_residual": 0.06838888387618063,
+            "pressure_nis": 4.4439688229707896e-05,
+            "pressure_robust_weight": 0.0,
+            "pressure_anchor_valid": 0.0
+          },
+          "variance_by_output": {
+            "pressure_residual": 0.004677039437829719,
+            "pressure_nis": 1.9748858899536387e-09,
+            "pressure_robust_weight": 0.0,
+            "pressure_anchor_valid": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP10_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9575826471839767,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.4,
+          "posterior": 0.4,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 10,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.008,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 10,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP10_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "11": {
+      "inputs": {
+        "terrain_flow_anchor_residual": 0.1,
+        "jacobian_n": 1.0,
+        "jacobian_e": 0.5,
+        "measurement_variance": 1.0,
+        "nis_gate": 6.0
+      },
+      "outputs": {
+        "terrain_flow_update_residual": 0.1,
+        "terrain_flow_update_nis": 7.935716726655727e-05,
+        "terrain_flow_update_weight": 1.0,
+        "terrain_flow_update_valid": 1.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "terrain_flow_update_residual": 0.1,
+          "terrain_flow_update_nis": 7.935716726655727e-05,
+          "terrain_flow_update_weight": 1.0,
+          "terrain_flow_update_valid": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "terrain_flow_update_residual": 0.0005976434843407911,
+            "terrain_flow_update_nis": 0.0009902207633777263,
+            "terrain_flow_update_weight": 0.0,
+            "terrain_flow_update_valid": 0.0
+          },
+          "variance_by_output": {
+            "terrain_flow_update_residual": 3.5717773437500146e-07,
+            "terrain_flow_update_nis": 9.805371602243668e-07,
+            "terrain_flow_update_weight": 0.0,
+            "terrain_flow_update_valid": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP11_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.999982774766647,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 11,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.009000000000000001,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 11,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP11_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "12": {
+      "inputs": {
+        "mag_anchor_residual": 0.1,
+        "jacobian_n": 1.0,
+        "jacobian_e": 0.5,
+        "measurement_variance": 1.0,
+        "nis_gate": 6.0
+      },
+      "outputs": {
+        "mag_update_residual": 0.1,
+        "mag_update_nis": 0.0002399311471739088,
+        "mag_update_weight": 1.0,
+        "mag_update_valid": 1.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "mag_update_residual": 0.1,
+          "mag_update_nis": 0.0002399311471739088,
+          "mag_update_weight": 1.0,
+          "mag_update_valid": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "mag_update_residual": 0.0005976434843407911,
+            "mag_update_nis": 0.0001738071355729252,
+            "mag_update_weight": 0.0,
+            "mag_update_valid": 0.0
+          },
+          "variance_by_output": {
+            "mag_update_residual": 3.5717773437500146e-07,
+            "mag_update_nis": 3.02089203760652e-08,
+            "mag_update_weight": 0.0,
+            "mag_update_valid": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP12_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9999916179711509,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 12,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.010000000000000002,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 12,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP12_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "13": {
+      "inputs": {
+        "pressure_anchor_residual": 0.1,
+        "jacobian_n": 1.0,
+        "jacobian_e": 0.5,
+        "measurement_variance": 1.0,
+        "nis_gate": 6.0
+      },
+      "outputs": {
+        "pressure_update_residual": 0.1,
+        "pressure_update_nis": 0.00045823077952114843,
+        "pressure_update_weight": 1.0,
+        "pressure_update_valid": 1.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "pressure_update_residual": 0.1,
+          "pressure_update_nis": 0.00045823077952114843,
+          "pressure_update_weight": 1.0,
+          "pressure_update_valid": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "pressure_update_residual": 0.0005976434843407911,
+            "pressure_update_nis": 0.00015998316792146562,
+            "pressure_update_weight": 0.0,
+            "pressure_update_valid": 0.0
+          },
+          "variance_by_output": {
+            "pressure_update_residual": 3.5717773437500146e-07,
+            "pressure_update_nis": 2.5594614018187867e-08,
+            "pressure_update_weight": 0.0,
+            "pressure_update_valid": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP13_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.999991799493171,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 13,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.011000000000000003,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 13,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP13_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "14": {
+      "inputs": {
+        "residual": 0.1,
+        "innovation_variance": 1.0,
+        "nis_gate": 6.0,
+        "student_nu": 4.0
+      },
+      "outputs": {
+        "nis": 0.010000000000000002,
+        "robust_weight": 1.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "nis": 0.010000000000000002,
+          "robust_weight": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "nis": 0.00011595615591571025,
+            "robust_weight": 0.0
+          },
+          "variance_by_output": {
+            "nis": 1.3445830094748504e-08,
+            "robust_weight": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP14_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9999973958173615,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 14,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.012000000000000004,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 14,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP14_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "15": {
+      "inputs": {
+        "min_information_eigenvalue": 0.5,
+        "min_condition_score": 0.25
+      },
+      "outputs": {
+        "information_lambda_min": 0.0,
+        "information_lambda_max": 0.0,
+        "conditional_observability_score": 0.0,
+        "information_determinant": 0.0,
+        "observable_2d": 0.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "information_lambda_min": 0.0,
+          "information_lambda_max": 0.0,
+          "conditional_observability_score": 0.0,
+          "information_determinant": 0.0,
+          "observable_2d": 0.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "information_lambda_min": 0.0,
+            "information_lambda_max": 0.0,
+            "conditional_observability_score": 0.0,
+            "information_determinant": 0.0,
+            "observable_2d": 0.0
+          },
+          "variance_by_output": {
+            "information_lambda_min": 0.0,
+            "information_lambda_max": 0.0,
+            "conditional_observability_score": 0.0,
+            "information_determinant": 0.0,
+            "observable_2d": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP15_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 1.0,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 15,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.013000000000000005,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 15,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP15_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "16": {
+      "inputs": {
+        "parameter_index": 1.0,
+        "basis_value": 1.0,
+        "measurement": 1.1,
+        "forgetting_factor": 0.99
+      },
+      "outputs": {
+        "rls_parameter": 1.0892167541340727,
+        "rls_variance": 0.9901970492127862,
+        "rls_residual": 1.1
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "rls_parameter": 1.0892167541340727,
+          "rls_variance": 0.9901970492127862,
+          "rls_residual": 1.1
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "rls_parameter": 0.012714922712039247,
+            "rls_variance": 0.012580372830837438,
+            "rls_residual": 0.020877757012631958
+          },
+          "variance_by_output": {
+            "rls_parameter": 0.0001616692595731315,
+            "rls_variance": 0.0001582657805628728,
+            "rls_residual": 0.0004358807378785029
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP16_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9993358643287805,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 16,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.014000000000000005,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 16,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP16_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "17": {
+      "inputs": {
+        "background_time_constant": 10.0
+      },
+      "outputs": {
+        "background_filter_gain": 9.999500016666385e-05
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "background_filter_gain": 9.999500016666385e-05
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "background_filter_gain": 5.982301803242501e-07
+          },
+          "variance_by_output": {
+            "background_filter_gain": 3.578793486507848e-13
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP17_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9999999738012497,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 17,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.015000000000000006,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 17,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP17_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "18": {
+      "inputs": {
+        "descriptor_01": 0.02,
+        "descriptor_02": 0.04,
+        "descriptor_03": 0.06,
+        "descriptor_04": 0.08,
+        "descriptor_05": 0.1,
+        "descriptor_06": 0.12,
+        "descriptor_07": 0.14,
+        "descriptor_08": 0.16,
+        "descriptor_09": 0.18,
+        "descriptor_10": 0.2,
+        "descriptor_11": 0.22,
+        "descriptor_12": 0.24,
+        "descriptor_13": 0.26,
+        "descriptor_14": 0.28,
+        "descriptor_15": 0.3,
+        "descriptor_16": 0.32,
+        "descriptor_scale": 1.0,
+        "acceptance_threshold": 0.5,
+        "store_descriptor": 1.0,
+        "relative_displacement_n": 5.0,
+        "relative_displacement_e": 2.0
+      },
+      "outputs": {
+        "revisit_score": 0.06587475442640298,
+        "revisit_accepted": 0.0,
+        "pseudo_displacement_n": 0.0,
+        "pseudo_displacement_e": 0.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "revisit_score": 0.06587475442640298,
+          "revisit_accepted": 0.0,
+          "pseudo_displacement_n": 0.0,
+          "pseudo_displacement_e": 0.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "revisit_score": 0.04051287922726439,
+            "revisit_accepted": 0.0,
+            "pseudo_displacement_n": 0.03140586131600271,
+            "pseudo_displacement_e": 0.01249609313945764
+          },
+          "variance_by_output": {
+            "revisit_score": 0.0016412933832829105,
+            "revisit_accepted": 0.0,
+            "pseudo_displacement_n": 0.0009863281249999955,
+            "pseudo_displacement_e": 0.00015615234375000029
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP18_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9994223383483627,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 18,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.016000000000000007,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 18,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP18_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "19": {
+      "inputs": {
+        "info_11": 2.0,
+        "info_12": 0.1,
+        "info_22": 1.5,
+        "candidate_count": 3.0,
+        "candidate_01_info11": 2.1,
+        "candidate_01_info12": 0.1,
+        "candidate_01_info22": 1.605,
+        "candidate_02_info11": 2.16,
+        "candidate_02_info12": 0.1,
+        "candidate_02_info22": 1.65,
+        "candidate_03_info11": 2.22,
+        "candidate_03_info12": 0.1,
+        "candidate_03_info22": 1.695,
+        "candidate_04_info11": 2.2800000000000002,
+        "candidate_04_info12": 0.1,
+        "candidate_04_info22": 1.74,
+        "candidate_05_info11": 2.34,
+        "candidate_05_info12": 0.1,
+        "candidate_05_info22": 1.785,
+        "candidate_06_info11": 2.4,
+        "candidate_06_info12": 0.1,
+        "candidate_06_info22": 1.83,
+        "candidate_07_info11": 2.46,
+        "candidate_07_info12": 0.1,
+        "candidate_07_info22": 1.875,
+        "candidate_08_info11": 2.52,
+        "candidate_08_info12": 0.1,
+        "candidate_08_info22": 1.92,
+        "candidate_09_info11": 2.58,
+        "candidate_09_info12": 0.1,
+        "candidate_09_info22": 1.9649999999999999,
+        "candidate_10_info11": 2.64,
+        "candidate_10_info12": 0.1,
+        "candidate_10_info22": 2.01,
+        "candidate_11_info11": 2.7,
+        "candidate_11_info12": 0.1,
+        "candidate_11_info22": 2.0549999999999997,
+        "candidate_12_info11": 2.76,
+        "candidate_12_info12": 0.1,
+        "candidate_12_info22": 2.1,
+        "candidate_13_info11": 2.8200000000000003,
+        "candidate_13_info12": 0.1,
+        "candidate_13_info22": 2.145,
+        "candidate_14_info11": 2.88,
+        "candidate_14_info12": 0.1,
+        "candidate_14_info22": 2.19,
+        "candidate_15_info11": 2.94,
+        "candidate_15_info12": 0.1,
+        "candidate_15_info22": 2.235,
+        "candidate_16_info11": 3.0,
+        "candidate_16_info12": 0.1,
+        "candidate_16_info22": 2.2800000000000002,
+        "candidate_17_info11": 3.06,
+        "candidate_17_info12": 0.1,
+        "candidate_17_info22": 2.325,
+        "candidate_18_info11": 3.12,
+        "candidate_18_info12": 0.1,
+        "candidate_18_info22": 2.37,
+        "candidate_19_info11": 3.1799999999999997,
+        "candidate_19_info12": 0.1,
+        "candidate_19_info22": 2.415,
+        "candidate_20_info11": 3.24,
+        "candidate_20_info12": 0.1,
+        "candidate_20_info22": 2.46
+      },
+      "outputs": {
+        "best_candidate_index": 2.0,
+        "best_lambda_min": 3.1573579728833656
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "best_candidate_index": 2.0,
+          "best_lambda_min": 3.1573579728833656
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "best_candidate_index": 0.0,
+            "best_lambda_min": 0.012574467111379972
+          },
+          "variance_by_output": {
+            "best_candidate_index": 0.0,
+            "best_lambda_min": 0.00015811722313517659
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP19_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9999118777799261,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 19,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.017000000000000008,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 19,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP19_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "21": {
+      "inputs": {},
+      "outputs": {
+        "covariance_diagonal_01": 5.444635310810419,
+        "covariance_diagonal_02": 21.77592353075869,
+        "covariance_diagonal_03": 100.01005,
+        "covariance_diagonal_04": 100.01005,
+        "covariance_diagonal_05": 100.01005,
+        "covariance_diagonal_06": 100.01005,
+        "covariance_diagonal_07": 1.010001,
+        "covariance_diagonal_08": 1.010001,
+        "covariance_diagonal_09": 1.010001,
+        "covariance_diagonal_10": 1.010001,
+        "covariance_diagonal_11": 1.010001,
+        "covariance_diagonal_12": 1.010001,
+        "covariance_diagonal_13": 1.010001,
+        "covariance_diagonal_14": 1.010001,
+        "covariance_diagonal_15": 1.010001,
+        "covariance_diagonal_16": 1.010001,
+        "covariance_diagonal_17": 1.010001,
+        "covariance_diagonal_18": 1.010001,
+        "covariance_diagonal_19": 1.010001,
+        "covariance_diagonal_20": 1.010001,
+        "covariance_diagonal_21": 1.010001,
+        "covariance_diagonal_22": 1.010001,
+        "covariance_diagonal_23": 1.010001,
+        "covariance_diagonal_24": 1.010001,
+        "covariance_diagonal_25": 1.010001,
+        "covariance_diagonal_26": 1.010001,
+        "covariance_diagonal_27": 1.010001,
+        "covariance_diagonal_28": 1.010001,
+        "covariance_diagonal_29": 1.010001
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "covariance_diagonal_01": 5.444635310810419,
+          "covariance_diagonal_02": 21.77592353075869,
+          "covariance_diagonal_03": 100.01005,
+          "covariance_diagonal_04": 100.01005,
+          "covariance_diagonal_05": 100.01005,
+          "covariance_diagonal_06": 100.01005,
+          "covariance_diagonal_07": 1.010001,
+          "covariance_diagonal_08": 1.010001,
+          "covariance_diagonal_09": 1.010001,
+          "covariance_diagonal_10": 1.010001,
+          "covariance_diagonal_11": 1.010001,
+          "covariance_diagonal_12": 1.010001,
+          "covariance_diagonal_13": 1.010001,
+          "covariance_diagonal_14": 1.010001,
+          "covariance_diagonal_15": 1.010001,
+          "covariance_diagonal_16": 1.010001,
+          "covariance_diagonal_17": 1.010001,
+          "covariance_diagonal_18": 1.010001,
+          "covariance_diagonal_19": 1.010001,
+          "covariance_diagonal_20": 1.010001,
+          "covariance_diagonal_21": 1.010001,
+          "covariance_diagonal_22": 1.010001,
+          "covariance_diagonal_23": 1.010001,
+          "covariance_diagonal_24": 1.010001,
+          "covariance_diagonal_25": 1.010001,
+          "covariance_diagonal_26": 1.010001,
+          "covariance_diagonal_27": 1.010001,
+          "covariance_diagonal_28": 1.010001,
+          "covariance_diagonal_29": 1.010001
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "covariance_diagonal_01": 0.0,
+            "covariance_diagonal_02": 0.0,
+            "covariance_diagonal_03": 0.0,
+            "covariance_diagonal_04": 0.0,
+            "covariance_diagonal_05": 0.0,
+            "covariance_diagonal_06": 0.0,
+            "covariance_diagonal_07": 0.0,
+            "covariance_diagonal_08": 0.0,
+            "covariance_diagonal_09": 0.0,
+            "covariance_diagonal_10": 0.0,
+            "covariance_diagonal_11": 0.0,
+            "covariance_diagonal_12": 0.0,
+            "covariance_diagonal_13": 0.0,
+            "covariance_diagonal_14": 0.0,
+            "covariance_diagonal_15": 0.0,
+            "covariance_diagonal_16": 0.0,
+            "covariance_diagonal_17": 0.0,
+            "covariance_diagonal_18": 0.0,
+            "covariance_diagonal_19": 0.0,
+            "covariance_diagonal_20": 0.0,
+            "covariance_diagonal_21": 0.0,
+            "covariance_diagonal_22": 0.0,
+            "covariance_diagonal_23": 0.0,
+            "covariance_diagonal_24": 0.0,
+            "covariance_diagonal_25": 0.0,
+            "covariance_diagonal_26": 0.0,
+            "covariance_diagonal_27": 0.0,
+            "covariance_diagonal_28": 0.0,
+            "covariance_diagonal_29": 0.0
+          },
+          "variance_by_output": {
+            "covariance_diagonal_01": 0.0,
+            "covariance_diagonal_02": 0.0,
+            "covariance_diagonal_03": 0.0,
+            "covariance_diagonal_04": 0.0,
+            "covariance_diagonal_05": 0.0,
+            "covariance_diagonal_06": 0.0,
+            "covariance_diagonal_07": 0.0,
+            "covariance_diagonal_08": 0.0,
+            "covariance_diagonal_09": 0.0,
+            "covariance_diagonal_10": 0.0,
+            "covariance_diagonal_11": 0.0,
+            "covariance_diagonal_12": 0.0,
+            "covariance_diagonal_13": 0.0,
+            "covariance_diagonal_14": 0.0,
+            "covariance_diagonal_15": 0.0,
+            "covariance_diagonal_16": 0.0,
+            "covariance_diagonal_17": 0.0,
+            "covariance_diagonal_18": 0.0,
+            "covariance_diagonal_19": 0.0,
+            "covariance_diagonal_20": 0.0,
+            "covariance_diagonal_21": 0.0,
+            "covariance_diagonal_22": 0.0,
+            "covariance_diagonal_23": 0.0,
+            "covariance_diagonal_24": 0.0,
+            "covariance_diagonal_25": 0.0,
+            "covariance_diagonal_26": 0.0,
+            "covariance_diagonal_27": 0.0,
+            "covariance_diagonal_28": 0.0,
+            "covariance_diagonal_29": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP21_E001",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 1.0,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 21,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.01800000000000001,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 21,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP21_E001"
+      },
+      "all_outputs_finite": true
+    },
+    "22": {
+      "inputs": {},
+      "outputs": {},
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {},
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {},
+          "variance_by_output": {},
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP22_E001",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 1.0,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 22,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.01900000000000001,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 22,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP22_E001"
+      },
+      "all_outputs_finite": true
+    },
+    "23": {
+      "inputs": {
+        "wind_obs_n": 3.0,
+        "wind_obs_e": 1.0,
+        "wind_obs_d": 0.0,
+        "sample_age_s": 0.02,
+        "max_age_s": 0.5,
+        "variance_n": 0.25,
+        "variance_e": 0.25,
+        "variance_d": 0.25,
+        "process_variance_n": 0.02,
+        "process_variance_e": 0.02,
+        "process_variance_d": 0.02,
+        "prior_wind_n": 3.0,
+        "prior_wind_e": 1.0,
+        "prior_wind_d": 0.0,
+        "bias_n": 0.0,
+        "bias_e": 0.0,
+        "bias_d": 0.0,
+        "prior_variance_n": 1.0,
+        "prior_variance_e": 1.0,
+        "prior_variance_d": 1.0,
+        "nis_gate": 6.0
+      },
+      "outputs": {
+        "updated_wind_n": 3.0,
+        "updated_wind_e": 1.0,
+        "updated_wind_d": 0.0,
+        "residual_n": 0.0,
+        "residual_e": 0.0,
+        "residual_d": 0.0,
+        "effective_variance_n": 0.2504,
+        "effective_variance_e": 0.2504,
+        "effective_variance_d": 0.2504,
+        "nis": 0.0,
+        "update_valid": 1.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "updated_wind_n": 3.0,
+          "updated_wind_e": 1.0,
+          "updated_wind_d": 0.0,
+          "residual_n": 0.0,
+          "residual_e": 0.0,
+          "residual_d": 0.0,
+          "effective_variance_n": 0.2504,
+          "effective_variance_e": 0.2504,
+          "effective_variance_d": 0.2504,
+          "nis": 0.0,
+          "update_valid": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "updated_wind_n": 0.015919014039408874,
+            "updated_wind_e": 0.006405406746784387,
+            "updated_wind_d": 0.0009154790429034937,
+            "residual_n": 0.021122081667875048,
+            "residual_e": 0.0006147598616532963,
+            "residual_d": 0.0009425644457409796,
+            "effective_variance_n": 0.0014294505784501106,
+            "effective_variance_e": 0.00149175393227152,
+            "effective_variance_d": 0.001560581967822247,
+            "nis": 0.0009536740617198026,
+            "update_valid": 0.0
+          },
+          "variance_by_output": {
+            "updated_wind_n": 0.00025341500798689684,
+            "updated_wind_e": 4.102923559175094e-05,
+            "updated_wind_d": 8.381018779954968e-07,
+            "residual_n": 0.0004461423339843832,
+            "residual_e": 3.7792968749998007e-07,
+            "residual_d": 8.884277343750001e-07,
+            "effective_variance_n": 2.0433289562313556e-06,
+            "effective_variance_e": 2.2253297944475425e-06,
+            "effective_variance_d": 2.4354160782919567e-06,
+            "nis": 9.094942159971458e-07,
+            "update_valid": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP23_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9998394473810078,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 23,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.02000000000000001,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 23,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP23_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "24": {
+      "inputs": {
+        "airspeed": 13.0,
+        "groundspeed": 16.0,
+        "bank_angle": 0.1,
+        "sideslip": 0.20943951023931956,
+        "load_factor": 1.0,
+        "p_rate": 0.0,
+        "q_rate": 0.0,
+        "r_rate": 0.0,
+        "stall_speed": 9.431288689739402,
+        "command_min_speed": 12.0,
+        "max_airspeed": 18.0,
+        "max_load_factor": 2.5,
+        "max_sideslip": 0.20943951023931956,
+        "min_lambda": 0.0
+      },
+      "outputs": {
+        "lambda_w": 1.0,
+        "stall_residual": 0.0,
+        "sideslip_factor_enabled": 1.0,
+        "coordinated_turn_factor_enabled": 1.0,
+        "max_airspeed_valid": 1.0,
+        "load_factor_valid": 1.0,
+        "body_rate_valid": 1.0,
+        "mechanical_constraints_valid": 1.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "lambda_w": 1.0,
+          "stall_residual": 0.0,
+          "sideslip_factor_enabled": 1.0,
+          "coordinated_turn_factor_enabled": 1.0,
+          "max_airspeed_valid": 1.0,
+          "load_factor_valid": 1.0,
+          "body_rate_valid": 1.0,
+          "mechanical_constraints_valid": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "lambda_w": 0.0,
+            "stall_residual": 0.0,
+            "sideslip_factor_enabled": 0.0,
+            "coordinated_turn_factor_enabled": 0.0,
+            "max_airspeed_valid": 0.0,
+            "load_factor_valid": 0.0,
+            "body_rate_valid": 0.0,
+            "mechanical_constraints_valid": 0.4841229182759271
+          },
+          "variance_by_output": {
+            "lambda_w": 0.0,
+            "stall_residual": 0.0,
+            "sideslip_factor_enabled": 0.0,
+            "coordinated_turn_factor_enabled": 0.0,
+            "max_airspeed_valid": 0.0,
+            "load_factor_valid": 0.0,
+            "body_rate_valid": 0.0,
+            "mechanical_constraints_valid": 0.23437500000000003
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP24_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9975661545071836,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 24,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.02100000000000001,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 24,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP24_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "25": {
+      "inputs": {
+        "left_motor_norm": 0.62,
+        "right_motor_norm": 0.62,
+        "left_elevon_rad": 0.0,
+        "right_elevon_rad": 0.0
+      },
+      "outputs": {
+        "u_sum": 0.62,
+        "u_delta": 0.0,
+        "delta_sum": 0.0,
+        "delta_delta": 0.0,
+        "basis_1": 1.0,
+        "basis_2": 0.62,
+        "basis_3": 0.0,
+        "basis_4": 0.3844,
+        "basis_5": 0.0,
+        "basis_6": 0.0,
+        "basis_7": 0.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "u_sum": 0.62,
+          "u_delta": 0.0,
+          "delta_sum": 0.0,
+          "delta_delta": 0.0,
+          "basis_1": 1.0,
+          "basis_2": 0.62,
+          "basis_3": 0.0,
+          "basis_4": 0.3844,
+          "basis_5": 0.0,
+          "basis_6": 0.0,
+          "basis_7": 0.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "u_sum": 0.0030630735272914444,
+            "u_delta": 0.0021786108452047513,
+            "delta_sum": 0.000518634682212586,
+            "delta_delta": 0.000351388846000766,
+            "basis_1": 0.0,
+            "basis_2": 0.0030630735272914444,
+            "basis_3": 0.0021786108452047513,
+            "basis_4": 0.003798629342305727,
+            "basis_5": 9.286328727685293e-06,
+            "basis_6": 0.000518634682212586,
+            "basis_7": 0.000351388846000766
+          },
+          "variance_by_output": {
+            "u_sum": 9.38241943359365e-06,
+            "u_delta": 4.746345214843761e-06,
+            "delta_sum": 2.689819335937501e-07,
+            "delta_delta": 1.2347412109375003e-07,
+            "basis_1": 0.0,
+            "basis_2": 9.38241943359365e-06,
+            "basis_3": 4.746345214843761e-06,
+            "basis_4": 1.4429584880226042e-05,
+            "basis_5": 8.623590123863315e-11,
+            "basis_6": 2.689819335937501e-07,
+            "basis_7": 1.2347412109375003e-07
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP25_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9999358986685021,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 25,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.022000000000000013,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 25,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP25_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "26": {
+      "inputs": {
+        "uncertainty_scalar": 0.5,
+        "quality_prior": 0.95,
+        "validity_prior": 0.95,
+        "reliability_prior": 0.95,
+        "freshness_score": 0.95,
+        "completeness_score": 0.95,
+        "innovation_score": 0.95,
+        "numerical_score": 0.95,
+        "anchor_score": 0.95,
+        "novelty_score": 0.05,
+        "evidence_count": 64.0
+      },
+      "outputs": {
+        "uncertainty_adjusted": 0.525,
+        "quality_score": 0.7350918906249998,
+        "validity_score": 0.95,
+        "reliability_score": 0.95,
+        "quality_flag_code": 1.0,
+        "novelty_degraded": 0.0,
+        "evidence_count_echo": 64.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "uncertainty_adjusted": 0.525,
+          "quality_score": 0.7350918906249998,
+          "validity_score": 0.95,
+          "reliability_score": 0.95,
+          "quality_flag_code": 1.0,
+          "novelty_degraded": 0.0,
+          "evidence_count_echo": 64.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "uncertainty_adjusted": 0.0030733200206092557,
+            "quality_score": 0.006927625158193883,
+            "validity_score": 0.0,
+            "reliability_score": 0.0059356442412423676,
+            "quality_flag_code": 0.0,
+            "novelty_degraded": 0.0,
+            "evidence_count_echo": 0.0
+          },
+          "variance_by_output": {
+            "uncertainty_adjusted": 9.445295949077675e-06,
+            "quality_score": 4.7991990332440825e-05,
+            "validity_score": 0.0,
+            "reliability_score": 3.523187255859368e-05,
+            "quality_flag_code": 0.0,
+            "novelty_degraded": 0.0,
+            "evidence_count_echo": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP26_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9999004483840438,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 26,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.023000000000000013,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 26,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP26_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "27": {
+      "inputs": {},
+      "outputs": {
+        "formalism_complete_flag": 1.0,
+        "error_state_dimension": 29.0,
+        "physical_ultrasonic_semantics_flag": 1.0,
+        "mode_aware_constraints_flag": 1.0,
+        "layer2_contract_flag": 1.0,
+        "edge_profile_flag": 1.0
+      },
+      "packet": {
+        "twin_id": "MESA_NAV",
+        "state": {
+          "formalism_complete_flag": 1.0,
+          "error_state_dimension": 29.0,
+          "physical_ultrasonic_semantics_flag": 1.0,
+          "mode_aware_constraints_flag": 1.0,
+          "layer2_contract_flag": 1.0,
+          "edge_profile_flag": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "formalism_complete_flag": 0.0,
+            "error_state_dimension": 0.0,
+            "physical_ultrasonic_semantics_flag": 0.0,
+            "mode_aware_constraints_flag": 0.0,
+            "layer2_contract_flag": 0.0,
+            "edge_profile_flag": 0.0
+          },
+          "variance_by_output": {
+            "formalism_complete_flag": 0.0,
+            "error_state_dimension": 0.0,
+            "physical_ultrasonic_semantics_flag": 0.0,
+            "mode_aware_constraints_flag": 0.0,
+            "layer2_contract_flag": 0.0,
+            "edge_profile_flag": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "MESA_NAV_OP27_E001",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 1.0,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 27,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.024000000000000014,
+        "provenance": {
+          "source": "test-senarios/mesa_nav_all_formulas_scenario.py",
+          "fmu": "MESA_NAV.fmu",
+          "fmu_sha256": "f9cab8d26246b379127e36db305b7a01b9fd5ef569f14ff39ad6281eb1cee24f",
+          "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 27,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "MESA_NAV_OP27_E001"
+      },
+      "all_outputs_finite": true
+    }
+  },
+  "twin_id": "MESA_NAV",
+  "operation_codes": [
+    1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "summary": {
+    "operation_count": 24,
+    "output_count": 153,
+    "all_operations_executed": true,
+    "all_outputs_finite": true,
+    "quality_flags": {
+      "good": 24,
+      "degraded": 0,
+      "invalid": 0
+    },
+    "tep_novelty_operation_codes": [],
+    "validity_degraded_operation_codes": [],
+    "scenario_inputs_are": "engineering verification priors; not measured field truth"
+  }
+}

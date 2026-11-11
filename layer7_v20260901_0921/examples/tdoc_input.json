@@ -1,0 +1,154 @@
+{
+  "transaction_id": "example-001",
+  "v": "1",
+  "ExecutionEvidence": {
+    "y_real": {
+      "position_error": 1.4,
+      "energy": 12.2
+    },
+    "u_cmd": {
+      "throttle": 0.55
+    },
+    "u_applied": {
+      "throttle": 0.54
+    },
+    "x_obs": {
+      "x": 1.4
+    },
+    "timestamp": 1000.0,
+    "planned_timestamp": 999.95,
+    "version": "1",
+    "evidence_type": "field",
+    "observation_id": "obs-001",
+    "decision_id": "dec-001",
+    "command_id": "cmd-001",
+    "input_observation_id": "obs-001",
+    "correlates_to_decision_id": "dec-001",
+    "correlates_to_actuator_command_id": "cmd-001",
+    "output_semantics": {
+      "position_error": {
+        "quantity": "position_error",
+        "unit": "m",
+        "frame": "ENU"
+      },
+      "energy": {
+        "quantity": "energy",
+        "unit": "J",
+        "frame": "scalar"
+      }
+    }
+  },
+  "PredictionEvidence": {
+    "y_hat_td": {
+      "position_error": 0.4,
+      "energy": 11.9
+    },
+    "x_hat_td": {
+      "x": 0.5
+    },
+    "sigma_pred": {
+      "position_error": 0.25,
+      "energy": 0.2
+    },
+    "timestamp": 1000.0,
+    "version": "1",
+    "output_semantics": {
+      "position_error": {
+        "quantity": "position_error",
+        "unit": "m",
+        "frame": "ENU"
+      },
+      "energy": {
+        "quantity": "energy",
+        "unit": "J",
+        "frame": "scalar"
+      }
+    }
+  },
+  "NetworkSnapshot": {
+    "std": {
+      "x": 0.5
+    },
+    "weights": {
+      "MESA-NAV": 0.34,
+      "WingMPET": 0.33,
+      "MicroMetTwin": 0.33
+    },
+    "couplings": {
+      "MESA-NAV->WingMPET": 0.5
+    },
+    "topology": [
+      [
+        "MESA-NAV",
+        "WingMPET"
+      ]
+    ],
+    "coc_cost": 0.15,
+    "margin": 0.5,
+    "uncertainty": 0.2,
+    "timestamp": 1000.0,
+    "version": "1",
+    "boundary_safe": true,
+    "twin_validity": {
+      "MESA-NAV": 1.0,
+      "WingMPET": 1.0,
+      "MicroMetTwin": 1.0
+    },
+    "twin_quality": {
+      "MESA-NAV": 1.0,
+      "WingMPET": 1.0,
+      "MicroMetTwin": 1.0
+    },
+    "twin_freshness": {
+      "MESA-NAV": 1.0,
+      "WingMPET": 1.0,
+      "MicroMetTwin": 1.0
+    },
+    "twin_reliability": {
+      "MESA-NAV": 0.5,
+      "WingMPET": 0.5,
+      "MicroMetTwin": 0.5
+    }
+  },
+  "DecisionTrace": {
+    "real_cost": 1.2,
+    "feasible_reference_cost": 1.0,
+    "constraint_violations": 0,
+    "timestamp": 1000.0,
+    "version": "1"
+  },
+  "AdaptationHints": {
+    "model_error": {
+      "MESA-NAV": 0.4
+    },
+    "source_quality": 1.0,
+    "source_validity": 1.0,
+    "source_freshness": 1.0,
+    "source_credibility": 1.0,
+    "maturity": 0.4,
+    "structural_error": 0.2,
+    "tep_centroids": {
+      "MESA-NAV": [
+        [
+          0.5
+        ]
+      ]
+    },
+    "tep_descriptor": {
+      "MESA-NAV": [
+        0.6
+      ]
+    },
+    "tep_max_distance": {
+      "MESA-NAV": 1.0
+    },
+    "crp_id": "CRP-1",
+    "sarg_id": "SARG-1",
+    "crp_match_quality": 1.0,
+    "mrg_confidence": 1.0,
+    "mrg": {
+      "guidance": "reference",
+      "confidence": 1.0
+    }
+  }
+}

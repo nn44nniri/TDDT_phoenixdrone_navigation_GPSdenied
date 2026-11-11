@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.16)
+project(twins_fmu LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/common)
+add_library(MESA_NAV SHARED src/common/fmi2_runtime.cpp src/mesa/model.cpp)
+set_target_properties(MESA_NAV PROPERTIES PREFIX "" OUTPUT_NAME "MESA_NAV")
+add_library(WingMPET SHARED src/common/fmi2_runtime.cpp src/wingmpet/model.cpp)
+set_target_properties(WingMPET PROPERTIES PREFIX "" OUTPUT_NAME "WingMPET")
+
+# Native FMUs must not require a Python/runtime language installation.
+if(UNIX AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  target_link_options(MESA_NAV PRIVATE -static-libstdc++ -static-libgcc)
+  target_link_options(WingMPET PRIVATE -static-libstdc++ -static-libgcc)
+endif()

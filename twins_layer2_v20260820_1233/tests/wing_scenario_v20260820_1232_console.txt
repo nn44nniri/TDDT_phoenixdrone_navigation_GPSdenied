@@ -1,0 +1,2498 @@
+{
+  "scenario": {
+    "name": "WingMPET_all_formulas_future_view",
+    "context_id": "CRP_future_demo",
+    "stage_id": "cruise",
+    "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+    "communication_step": 0.001,
+    "common_inputs": {
+      "dt": 0.02,
+      "altitude": 1000.0,
+      "state_h": 1000.0,
+      "terrain_height": 900.0,
+      "air_density": 1.1,
+      "external_density": 1.1,
+      "external_pressure": 90000.0,
+      "external_temperature": 288.15,
+      "relative_humidity": 0.45,
+      "airspeed": 13.0,
+      "wind_x": 3.0,
+      "wind_y": 1.0,
+      "wind_h": 0.0
+    },
+    "operation_inputs": {}
+  },
+  "twin": "WingMPET",
+  "fmu": "/mnt/data/work_twins_purge/twins_layer2_v20260820_1232/fmus/WingMPET.fmu",
+  "config": "/mnt/data/work_twins_purge/twins_layer2_v20260820_1232/config/phoenix_drone_v3.yaml",
+  "operations": {
+    "1": {
+      "inputs": {},
+      "outputs": {
+        "formalism_version": 3.0,
+        "operation_count": 34.0,
+        "interface_revision": 2.0
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "formalism_version": 3.0,
+          "operation_count": 34.0,
+          "interface_revision": 2.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "formalism_version": 0.0,
+            "operation_count": 0.0,
+            "interface_revision": 0.0
+          },
+          "variance_by_output": {
+            "formalism_version": 0.0,
+            "operation_count": 0.0,
+            "interface_revision": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP01_E001",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 1.0,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 1,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.001,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 1,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP01_E001"
+      },
+      "all_outputs_finite": true
+    },
+    "2": {
+      "inputs": {
+        "msl_altitude": 1000.0,
+        "agl_altitude_input": 100.0,
+        "terrain_height": 900.0
+      },
+      "outputs": {
+        "terrain_height_echo": 900.0,
+        "computed_agl": 100.0
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "terrain_height_echo": 900.0,
+          "computed_agl": 100.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "terrain_height_echo": 5.653055036880507,
+            "computed_agl": 9.760761288828858
+          },
+          "variance_by_output": {
+            "terrain_height_echo": 31.957031250000068,
+            "computed_agl": 95.27246093749999
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP02_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.997868993236394,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 2,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.002,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 2,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP02_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "4": {
+      "inputs": {
+        "state_x": 0.0,
+        "state_y": 0.0,
+        "state_h": 1000.0,
+        "air_velocity_x": 13.0,
+        "air_velocity_y": 0.5,
+        "air_velocity_h": 0.0
+      },
+      "outputs": {
+        "airspeed_norm": 13.009611831257688,
+        "flightpath_angle": 0.0,
+        "air_heading": 0.03844259002118798
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "airspeed_norm": 13.009611831257688,
+          "flightpath_angle": 0.0,
+          "air_heading": 0.03844259002118798
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "airspeed_norm": 0.0811503553666233,
+            "flightpath_angle": 4.389980673822945e-05,
+            "air_heading": 0.0003510102372257567
+          },
+          "variance_by_output": {
+            "airspeed_norm": 0.006585380176129246,
+            "flightpath_angle": 1.927193031653896e-09,
+            "air_heading": 1.2320818663728198e-07
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP04_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9999045121350836,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 4,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.003,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 4,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP04_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "5": {
+      "inputs": {
+        "altitude": 1000.0,
+        "external_temperature": 288.15,
+        "external_pressure": 90000.0,
+        "external_density": 1.1,
+        "relative_humidity": 0.45,
+        "airspeed": 13.0
+      },
+      "outputs": {
+        "air_temperature": 288.15,
+        "air_pressure": 90000.0,
+        "air_density": 1.1,
+        "virtual_temperature": 289.07989704183694,
+        "dynamic_pressure": 92.95
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "air_temperature": 288.15,
+          "air_pressure": 90000.0,
+          "air_density": 1.1,
+          "virtual_temperature": 289.07989704183694,
+          "dynamic_pressure": 92.95
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "air_temperature": 1.7714305413540248,
+            "air_pressure": 565.3055036880521,
+            "air_density": 0.0068728512267017,
+            "virtual_temperature": 1.8837642807710606,
+            "dynamic_pressure": 0.9426399541270992
+          },
+          "variance_by_output": {
+            "air_temperature": 3.1379661628418134,
+            "air_pressure": 319570.3125000023,
+            "air_density": 4.7236083984375064e-05,
+            "virtual_temperature": 3.5485678655089115,
+            "dynamic_pressure": 0.8885700831167397
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP05_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.999693019317201,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.5,
+          "posterior": 0.5,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 5,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.004,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 5,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP05_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "6": {
+      "inputs": {
+        "wind_x": 3.0,
+        "wind_y": 1.0,
+        "wind_h": 0.0,
+        "ground_velocity_x": 16.0,
+        "ground_velocity_y": 1.5,
+        "ground_velocity_h": 0.0,
+        "wind_time_derivative_x": 0.0,
+        "wind_time_derivative_y": 0.0,
+        "wind_time_derivative_h": 0.0,
+        "wind_jacobian_11": 0.001,
+        "wind_jacobian_12": 0.0,
+        "wind_jacobian_13": 0.0,
+        "wind_jacobian_21": 0.0,
+        "wind_jacobian_22": 0.0,
+        "wind_jacobian_23": 0.0,
+        "wind_jacobian_31": 0.0,
+        "wind_jacobian_32": 0.0,
+        "wind_jacobian_33": 0.0
+      },
+      "outputs": {
+        "wind_x_echo": 3.0,
+        "wind_y_echo": 1.0,
+        "wind_h_echo": 0.0,
+        "wind_norm": 3.1622776601683795,
+        "wind_direction": 0.3217505543966422,
+        "wind_jacobian_out_11": 0.001,
+        "wind_jacobian_out_12": 0.0,
+        "wind_jacobian_out_13": 0.0,
+        "wind_jacobian_out_21": 0.0,
+        "wind_jacobian_out_22": 0.0,
+        "wind_jacobian_out_23": 0.0,
+        "wind_jacobian_out_31": 0.0,
+        "wind_jacobian_out_32": 0.0,
+        "wind_jacobian_out_33": 0.0,
+        "wind_partial_t_x": 0.0,
+        "wind_partial_t_y": 0.0,
+        "wind_partial_t_h": 0.0,
+        "wind_material_x": 0.016,
+        "wind_material_y": 0.0,
+        "wind_material_h": 0.0
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "wind_x_echo": 3.0,
+          "wind_y_echo": 1.0,
+          "wind_h_echo": 0.0,
+          "wind_norm": 3.1622776601683795,
+          "wind_direction": 0.3217505543966422,
+          "wind_jacobian_out_11": 0.001,
+          "wind_jacobian_out_12": 0.0,
+          "wind_jacobian_out_13": 0.0,
+          "wind_jacobian_out_21": 0.0,
+          "wind_jacobian_out_22": 0.0,
+          "wind_jacobian_out_23": 0.0,
+          "wind_jacobian_out_31": 0.0,
+          "wind_jacobian_out_32": 0.0,
+          "wind_jacobian_out_33": 0.0,
+          "wind_partial_t_x": 0.0,
+          "wind_partial_t_y": 0.0,
+          "wind_partial_t_h": 0.0,
+          "wind_material_x": 0.016,
+          "wind_material_y": 0.0,
+          "wind_material_h": 0.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "wind_x_echo": 0.01792930453022375,
+            "wind_y_echo": 0.006147598616533125,
+            "wind_h_echo": 0.0006281172263200557,
+            "wind_norm": 0.017749175680825072,
+            "wind_direction": 0.0020966580804363645,
+            "wind_jacobian_out_11": 6.147598616533151e-06,
+            "wind_jacobian_out_12": 0.0005976434843407899,
+            "wind_jacobian_out_13": 0.0005728219618694801,
+            "wind_jacobian_out_21": 0.0006147598616533126,
+            "wind_jacobian_out_22": 0.0006248046569728814,
+            "wind_jacobian_out_23": 0.0006248046569728814,
+            "wind_jacobian_out_31": 0.0006147598616533126,
+            "wind_jacobian_out_32": 0.0005728219618694801,
+            "wind_jacobian_out_33": 0.0005976434843407899,
+            "wind_partial_t_x": 0.0005976434843407899,
+            "wind_partial_t_y": 0.0006248046569728814,
+            "wind_partial_t_h": 0.0006281172263200557,
+            "wind_material_x": 0.0009526826878093953,
+            "wind_material_y": 0.010474648756910857,
+            "wind_material_h": 0.009671834319041938
+          },
+          "variance_by_output": {
+            "wind_x_echo": 0.0003214599609375019,
+            "wind_y_echo": 3.779296874999999e-05,
+            "wind_h_echo": 3.9453125e-07,
+            "wind_norm": 0.0003150332373487922,
+            "wind_direction": 4.395975106259101e-06,
+            "wind_jacobian_out_11": 3.779296875000031e-11,
+            "wind_jacobian_out_12": 3.57177734375e-07,
+            "wind_jacobian_out_13": 3.281250000000001e-07,
+            "wind_jacobian_out_21": 3.7792968750000003e-07,
+            "wind_jacobian_out_22": 3.9038085937500004e-07,
+            "wind_jacobian_out_23": 3.9038085937500004e-07,
+            "wind_jacobian_out_31": 3.7792968750000003e-07,
+            "wind_jacobian_out_32": 3.281250000000001e-07,
+            "wind_jacobian_out_33": 3.57177734375e-07,
+            "wind_partial_t_x": 3.57177734375e-07,
+            "wind_partial_t_y": 3.9038085937500004e-07,
+            "wind_partial_t_h": 3.9453125e-07,
+            "wind_material_x": 9.076043036517338e-07,
+            "wind_material_y": 0.00010971826658065415,
+            "wind_material_h": 9.354437909499742e-05
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP06_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9998954265931138,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 6,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.005,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 6,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP06_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "7": {
+      "inputs": {
+        "dt": 0.02,
+        "x": 0.0,
+        "y": 0.0,
+        "h": 1000.0,
+        "air_velocity_x": 13.0,
+        "air_velocity_y": 0.5,
+        "air_velocity_h": 0.0,
+        "wind_x": 3.0,
+        "wind_y": 1.0,
+        "wind_h": 0.0,
+        "target_x": 1000.0,
+        "target_y": 200.0,
+        "target_h": 1000.0
+      },
+      "outputs": {
+        "ground_velocity_x": 16.0,
+        "ground_velocity_y": 1.5,
+        "ground_velocity_h": 0.0,
+        "next_x": 0.32,
+        "next_y": 0.03,
+        "next_h": 1000.0,
+        "along_track_speed": 15.983465013761998,
+        "groundspeed": 16.070158679988197,
+        "ground_heading": 0.09347678115858947,
+        "ground_flightpath": 0.0,
+        "wind_along_track": 3.1378581622109447,
+        "wind_cross_track": 0.02441949795743481
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "ground_velocity_x": 16.0,
+          "ground_velocity_y": 1.5,
+          "ground_velocity_h": 0.0,
+          "next_x": 0.32,
+          "next_y": 0.03,
+          "next_h": 1000.0,
+          "along_track_speed": 15.983465013761998,
+          "groundspeed": 16.070158679988197,
+          "ground_heading": 0.09347678115858947,
+          "ground_flightpath": 0.0,
+          "wind_along_track": 3.1378581622109447,
+          "wind_cross_track": 0.02441949795743481
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "ground_velocity_x": 0.08750348765370669,
+            "ground_velocity_y": 0.0065364064572974835,
+            "ground_velocity_h": 0.0008022090928872208,
+            "next_x": 0.001534314870304899,
+            "next_y": 0.0008051541512095711,
+            "next_h": 7.810057136071926,
+            "along_track_speed": 0.08737005109363676,
+            "groundspeed": 0.08692370298139206,
+            "ground_heading": 0.0007471166735923164,
+            "ground_flightpath": 5.0035585792896034e-05,
+            "wind_along_track": 0.023603039297312813,
+            "wind_cross_track": 0.001193893339963058
+          },
+          "variance_by_output": {
+            "ground_velocity_x": 0.0076568603515623996,
+            "ground_velocity_y": 4.272460937500024e-05,
+            "ground_velocity_h": 6.435394287109377e-07,
+            "next_x": 2.354122121238739e-06,
+            "next_y": 6.482732072100049e-07,
+            "next_h": 60.99699246870802,
+            "along_track_speed": 0.007633525828104696,
+            "groundspeed": 0.007555730139997266,
+            "ground_heading": 5.581833239596479e-07,
+            "ground_flightpath": 2.5035598456382596e-09,
+            "wind_along_track": 0.000557103464070493,
+            "wind_cross_track": 1.425381307208146e-06
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP07_E002",
+          "novelty_distance": 1.0,
+          "adjustment_factor": 1.25,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9998792956070798,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.774637178782552,
+          "posterior": 0.774637178782552,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 1.0
+        },
+        "context": {
+          "operation_code": 7,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 1.0
+        },
+        "timestamp": 0.006,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 7,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP07_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "9": {
+      "inputs": {
+        "air_density": 1.1,
+        "airspeed": 13.0,
+        "mass": 0.7000000000000001,
+        "wing_area": 0.12,
+        "cd0": 0.045,
+        "induced_drag_factor": 0.13322121352558203,
+        "cl_max": 1.05,
+        "bank_angle": 0.1,
+        "flightpath_angle": 0.0,
+        "lift_command": 6.864654999999999
+      },
+      "outputs": {
+        "dynamic_pressure": 92.95,
+        "load_factor": 1.0050209184004553,
+        "lift": 6.864654999999999,
+        "cl": 0.6154433387125694,
+        "cd": 0.09546026607942645,
+        "drag": 1.0647638078499226,
+        "stall_speed": 9.952741868805335,
+        "aerodynamic_power": 13.841929502048995,
+        "stall_constraint_valid": 1.0
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "dynamic_pressure": 92.95,
+          "load_factor": 1.0050209184004553,
+          "lift": 6.864654999999999,
+          "cl": 0.6154433387125694,
+          "cd": 0.09546026607942645,
+          "drag": 1.0647638078499226,
+          "stall_speed": 9.952741868805335,
+          "aerodynamic_power": 13.841929502048995,
+          "stall_constraint_valid": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "dynamic_pressure": 1.4284679725789344,
+            "load_factor": 6.307865064161968e-05,
+            "lift": 0.04220114358097723,
+            "cl": 0.010553104797174166,
+            "cd": 0.001965944906026878,
+            "drag": 0.009345348833848818,
+            "stall_speed": 0.06617108168371064,
+            "aerodynamic_power": 0.09245354983021184,
+            "stall_constraint_valid": 0.0
+          },
+          "variance_by_output": {
+            "dynamic_pressure": 2.0405207486837713,
+            "load_factor": 3.978916166767506e-09,
+            "lift": 0.0017809365195422555,
+            "cl": 0.00011136802086014039,
+            "cd": 3.86493937353303e-06,
+            "drag": 8.733554482631947e-05,
+            "stall_speed": 0.004378612051192305,
+            "aerodynamic_power": 0.008547658876207464,
+            "stall_constraint_valid": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP09_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9997279934571303,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 9,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.007,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 9,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP09_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "13": {
+      "inputs": {
+        "altitude": 1000.0,
+        "terrain_height": 900.0,
+        "clearance": 50.0,
+        "elevated_obstacle_distance": 100.0,
+        "ground_obstacle_distance": 100.0,
+        "base_safe_radius": 20.0,
+        "position_sigma": 2.0,
+        "wind_sigma": 2.0,
+        "inflation_factor": 3.0
+      },
+      "outputs": {
+        "terrain_margin": 50.0,
+        "elevated_obstacle_margin": 68.0,
+        "ground_obstacle_margin": 68.0,
+        "obstacle_margin": 68.0,
+        "terrain_valid": 1.0,
+        "elevated_obstacle_valid": 1.0,
+        "ground_obstacle_valid": 1.0,
+        "safety_valid": 1.0
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "terrain_margin": 50.0,
+          "elevated_obstacle_margin": 68.0,
+          "ground_obstacle_margin": 68.0,
+          "obstacle_margin": 68.0,
+          "terrain_valid": 1.0,
+          "elevated_obstacle_valid": 1.0,
+          "ground_obstacle_valid": 1.0,
+          "safety_valid": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "terrain_margin": 6.776351917698779,
+            "elevated_obstacle_margin": 0.6780624357781211,
+            "ground_obstacle_margin": 0.6293575165279448,
+            "obstacle_margin": 0.5331803301600712,
+            "terrain_valid": 0.0,
+            "elevated_obstacle_valid": 0.0,
+            "ground_obstacle_valid": 0.0,
+            "safety_valid": 0.0
+          },
+          "variance_by_output": {
+            "terrain_margin": 45.91894531249992,
+            "elevated_obstacle_margin": 0.4597686668133586,
+            "ground_obstacle_margin": 0.3960908836102223,
+            "obstacle_margin": 0.2842812644696025,
+            "terrain_valid": 0.0,
+            "elevated_obstacle_valid": 0.0,
+            "ground_obstacle_valid": 0.0,
+            "safety_valid": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP13_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9990862413926909,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.5,
+          "posterior": 0.5,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 13,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.008,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 13,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP13_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "14": {
+      "inputs": {
+        "dt": 0.02,
+        "groundspeed": 16.0,
+        "power": 120.0,
+        "path_length_prev": 1000.0,
+        "time_prev": 60.0,
+        "energy_prev": 20000.0
+      },
+      "outputs": {
+        "segment_length": 0.32,
+        "segment_time": 0.02,
+        "segment_energy": 2.4,
+        "path_length_total": 1000.32,
+        "time_total": 60.02,
+        "energy_total": 20002.4
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "segment_length": 0.32,
+          "segment_time": 0.02,
+          "segment_energy": 2.4,
+          "path_length_total": 1000.32,
+          "time_total": 60.02,
+          "energy_total": 20002.4
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "segment_length": 0.0019765488508514586,
+            "segment_time": 7.470543554259884e-05,
+            "segment_energy": 0.010002319904165865,
+            "segment_fuel": 4.672710611894252e-06,
+            "path_length_total": 7.4697826935363,
+            "time_total": 0.429637361523462,
+            "energy_total": 149.4159577318848,
+            "fuel_total": 0.0007821565021852992
+          },
+          "variance_by_output": {
+            "segment_length": 3.906745359802221e-06,
+            "segment_time": 5.58090209960939e-09,
+            "segment_energy": 0.00010004640346527264,
+            "segment_fuel": 2.1834224462509156e-11,
+            "path_length_total": 55.79765348865442,
+            "time_total": 0.18458826241684198,
+            "energy_total": 22325.12842493638,
+            "fuel_total": 6.11768793910742e-07
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP14_E002",
+          "novelty_distance": 1.0,
+          "adjustment_factor": 1.25,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9998537876707144,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.774637178782552,
+          "posterior": 0.774637178782552,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 1.0
+        },
+        "context": {
+          "operation_code": 14,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 1.0
+        },
+        "timestamp": 0.009000000000000001,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 14,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP14_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "15": {
+      "inputs": {
+        "x": 0.0,
+        "y": 0.0,
+        "h": 1000.0,
+        "goal_x": 1000.0,
+        "goal_y": 200.0,
+        "goal_h": 1000.0,
+        "initial_goal_distance": 1019.803902718557,
+        "goal_tolerance": 10.0
+      },
+      "outputs": {
+        "goal_distance": 1019.803902718557,
+        "mission_progress": 0.0,
+        "goal_bearing": 0.19739555984988075,
+        "goal_elevation_angle": 0.0,
+        "goal_reached": 0.0
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "goal_distance": 1019.803902718557,
+          "mission_progress": 0.0,
+          "goal_bearing": 0.19739555984988075,
+          "goal_elevation_angle": 0.0,
+          "goal_reached": 0.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "goal_distance": 6.098814458657105,
+            "mission_progress": 0.005489857570856094,
+            "goal_bearing": 0.0017585673946534522,
+            "goal_elevation_angle": 0.010416205182909267,
+            "goal_reached": 0.0
+          },
+          "variance_by_output": {
+            "goal_distance": 37.195537801124956,
+            "mission_progress": 3.0138536148285973e-05,
+            "goal_bearing": 3.092559281538231e-06,
+            "goal_elevation_angle": 0.00010849733041246588,
+            "goal_reached": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP15_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9998063850750297,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 15,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.010000000000000002,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 15,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP15_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "16": {
+      "inputs": {
+        "path_length": 1000.0,
+        "mission_time": 75.0,
+        "energy": 20000.0,
+        "safety_penalty": 0.0,
+        "length_reference": 1000.0,
+        "time_reference": 75.0,
+        "energy_reference": 20000.0,
+        "safety_reference": 1.0,
+        "weight_length": 0.25,
+        "weight_time": 0.25,
+        "weight_energy": 0.25,
+        "weight_safety": 0.25
+      },
+      "outputs": {
+        "normalized_length_cost": 1.0,
+        "normalized_time_cost": 1.0,
+        "normalized_energy_cost": 1.0,
+        "normalized_safety_cost": 0.0,
+        "objective": 0.75
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "normalized_length_cost": 1.0,
+          "normalized_time_cost": 1.0,
+          "normalized_energy_cost": 1.0,
+          "normalized_safety_cost": 0.0,
+          "objective": 0.75
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "normalized_length_cost": 0.009167469650055965,
+            "normalized_time_cost": 0.009160045136121188,
+            "normalized_energy_cost": 0.010242008649239322,
+            "normalized_safety_cost": 0.0006226533966887921,
+            "objective": 0.004458873902992421
+          },
+          "variance_by_output": {
+            "normalized_length_cost": 8.404249978469724e-05,
+            "normalized_time_cost": 8.390642689577743e-05,
+            "normalized_energy_cost": 0.00010489874117109308,
+            "normalized_safety_cost": 3.876972524080903e-07,
+            "objective": 1.9881556482786865e-05
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP16_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9997242827548608,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 16,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.011000000000000003,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 16,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP16_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "17": {
+      "inputs": {
+        "path_length": 1000.0,
+        "minimum_length": 950.0,
+        "epsilon_length": 0.1,
+        "mission_time": 75.0,
+        "energy": 20000.0,
+        "weight_time": 0.25,
+        "weight_energy": 0.25
+      },
+      "outputs": {
+        "length_excess": 50.0,
+        "epsilon_constraint_valid": 0.0,
+        "secondary_objective": 1e+30
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "length_excess": 50.0,
+          "epsilon_constraint_valid": 0.0,
+          "secondary_objective": 1e+30
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "length_excess": 6.849152405361922,
+            "epsilon_constraint_valid": 0.0,
+            "secondary_objective": 0.0
+          },
+          "variance_by_output": {
+            "length_excess": 46.910888671875,
+            "epsilon_constraint_valid": 0.0,
+            "secondary_objective": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP17_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.99794063807914,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 17,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.012000000000000004,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 17,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP17_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "20": {
+      "inputs": {
+        "sample_count": 10.0,
+        "segment_margin_01": 30.0,
+        "segment_margin_02": 30.0,
+        "segment_margin_03": 30.0,
+        "segment_margin_04": 30.0,
+        "segment_margin_05": 30.0,
+        "segment_margin_06": 30.0,
+        "segment_margin_07": 30.0,
+        "segment_margin_08": 30.0,
+        "segment_margin_09": 30.0,
+        "segment_margin_10": 30.0,
+        "segment_margin_11": 30.0,
+        "segment_margin_12": 30.0,
+        "segment_margin_13": 30.0,
+        "segment_margin_14": 30.0,
+        "segment_margin_15": 30.0,
+        "segment_margin_16": 30.0,
+        "segment_margin_17": 30.0,
+        "segment_margin_18": 30.0,
+        "segment_margin_19": 30.0,
+        "segment_margin_20": 30.0,
+        "segment_margin_21": 30.0,
+        "segment_margin_22": 30.0,
+        "segment_margin_23": 30.0,
+        "segment_margin_24": 30.0,
+        "segment_margin_25": 30.0,
+        "segment_margin_26": 30.0,
+        "segment_margin_27": 30.0,
+        "segment_margin_28": 30.0,
+        "segment_margin_29": 30.0,
+        "segment_margin_30": 30.0,
+        "segment_margin_31": 30.0,
+        "segment_margin_32": 30.0,
+        "segment_margin_33": 30.0,
+        "segment_margin_34": 30.0,
+        "segment_margin_35": 30.0,
+        "segment_margin_36": 30.0,
+        "segment_margin_37": 30.0,
+        "segment_margin_38": 30.0,
+        "segment_margin_39": 30.0,
+        "segment_margin_40": 30.0,
+        "unused_41": 0.0,
+        "unused_42": 0.0,
+        "unused_43": 0.0,
+        "unused_44": 0.0,
+        "unused_45": 0.0,
+        "unused_46": 0.0,
+        "unused_47": 0.0,
+        "unused_48": 0.0,
+        "unused_49": 0.0,
+        "replan_margin_threshold": 10.0,
+        "wind_model_error": 1.0,
+        "state_error": 1.0,
+        "wind_error_threshold": 5.0,
+        "state_error_threshold": 5.0
+      },
+      "outputs": {
+        "minimum_segment_margin": 30.0,
+        "whole_segment_safe": 1.0,
+        "replan_trigger": 0.0
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "minimum_segment_margin": 30.0,
+          "whole_segment_safe": 1.0,
+          "replan_trigger": 0.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "minimum_segment_margin": 0.018749999999998934,
+            "whole_segment_safe": 0.0,
+            "replan_trigger": 0.0
+          },
+          "variance_by_output": {
+            "minimum_segment_margin": 0.00035156249999996003,
+            "whole_segment_safe": 0.0,
+            "replan_trigger": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP20_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.999991588686319,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 20,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.013000000000000005,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 20,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP20_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "27": {
+      "inputs": {
+        "dt": 0.02,
+        "pn": 0.0,
+        "pe": 0.0,
+        "pd": -100.0,
+        "vn": 13.0,
+        "ve": 0.0,
+        "vd": 0.0,
+        "qw": 1.0,
+        "qx": 0.0,
+        "qy": 0.0,
+        "qz": 0.0,
+        "p_rate": 0.0,
+        "q_rate": 0.0,
+        "r_rate": 0.0,
+        "omega_left": 560.0,
+        "omega_right": 560.0,
+        "soc": 1.0,
+        "left_motor_cmd": 0.62,
+        "right_motor_cmd": 0.62,
+        "left_elevon_rad": 0.0,
+        "right_elevon_rad": 0.0,
+        "wind_n": 3.0,
+        "wind_e": 1.0,
+        "wind_d": 0.0,
+        "air_density": 1.1
+      },
+      "outputs": {
+        "next_pn": 0.26128236575654235,
+        "next_pe": 1.8000015060656166e-05,
+        "next_pd": -99.99809026958842,
+        "next_vn": 13.128236575654235,
+        "next_ve": 0.0018000015060656166,
+        "next_vd": 0.19097304115902158,
+        "next_qw": 1.0,
+        "next_qx": 0.0,
+        "next_qy": 0.0,
+        "next_qz": 0.0,
+        "next_p_rate": 0.011598736059826021,
+        "next_q_rate": 0.019947597209105657,
+        "next_r_rate": -0.00966974174687066,
+        "next_omega_left": 519.5442842349723,
+        "next_omega_right": 519.5442842349723,
+        "next_soc": 0.999986077384874,
+        "airspeed": 10.04987562112089,
+        "alpha": 0.0,
+        "sideslip": -0.09966865249116202,
+        "lambda_w": 0.2515731508127787,
+        "thrust_left": 2.12270013444359,
+        "thrust_right": 2.12270013444359,
+        "total_thrust": 4.24540026888718,
+        "predicted_power": 51.37444981477708,
+        "energy_increment": 1.0274889962955416,
+        "flight_mode_code": 1.0,
+        "vtol_feasible": 1.0,
+        "quality_score": 0.9496853698374442,
+        "dynamic_pressure": 55.550000000000004,
+        "cl": 0.1,
+        "cd": 0.04634,
+        "lift": 0.6666000000000001,
+        "drag": 0.30890244
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "next_pn": 0.26128236575654235,
+          "next_pe": 1.8000015060656166e-05,
+          "next_pd": -99.99809026958842,
+          "next_vn": 13.128236575654235,
+          "next_ve": 0.0018000015060656166,
+          "next_vd": 0.19097304115902158,
+          "next_qw": 1.0,
+          "next_qx": 0.0,
+          "next_qy": 0.0,
+          "next_qz": 0.0,
+          "next_p_rate": 0.011598736059826021,
+          "next_q_rate": 0.019947597209105657,
+          "next_r_rate": -0.00966974174687066,
+          "next_omega_left": 519.5442842349723,
+          "next_omega_right": 519.5442842349723,
+          "next_soc": 0.999986077384874,
+          "airspeed": 10.04987562112089,
+          "alpha": 0.0,
+          "sideslip": -0.09966865249116202,
+          "lambda_w": 0.2515731508127787,
+          "thrust_left": 2.12270013444359,
+          "thrust_right": 2.12270013444359,
+          "total_thrust": 4.24540026888718,
+          "predicted_power": 51.37444981477708,
+          "energy_increment": 1.0274889962955416,
+          "flight_mode_code": 1.0,
+          "vtol_feasible": 1.0,
+          "quality_score": 0.9496853698374442,
+          "dynamic_pressure": 55.550000000000004,
+          "cl": 0.1,
+          "cd": 0.04634,
+          "lift": 0.6666000000000001,
+          "drag": 0.30890244
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "next_pn": 0.001402888120990722,
+            "next_pe": 0.0007806265525491121,
+            "next_pd": 0.7810135913262681,
+            "next_vn": 0.09680231166366446,
+            "next_ve": 0.0008165048455146352,
+            "next_vd": 0.0017244847295832006,
+            "next_qw": 3.869071871798917e-07,
+            "next_qx": 0.000780798676781165,
+            "next_qy": 0.0007645629654035524,
+            "next_qz": 0.0007452691032806321,
+            "next_p_rate": 0.001450383877043408,
+            "next_q_rate": 0.001542234441296171,
+            "next_r_rate": 0.001310970215374134,
+            "next_omega_left": 2.2806230138958568,
+            "next_omega_right": 2.332176721394884,
+            "next_soc": 0.004621941803183369,
+            "airspeed": 0.07451958826423322,
+            "alpha": 0.0015260512238455533,
+            "sideslip": 0.0011150532205665398,
+            "lambda_w": 0.033775103970225755,
+            "thrust_left": 0.019175697375427233,
+            "thrust_right": 0.019635335958392404,
+            "total_thrust": 0.027730230477093654,
+            "predicted_power": 1.2606056390062637,
+            "energy_increment": 0.012061395467863714,
+            "flight_mode_code": 0.0,
+            "vtol_feasible": 0.0,
+            "quality_score": 0.006755020794045138,
+            "dynamic_pressure": 0.7064853170828166,
+            "cl": 0.005257889233548068,
+            "cd": 0.00014132512513241767,
+            "lift": 0.036806625502054005,
+            "drag": 0.004137312360536308
+          },
+          "variance_by_output": {
+            "next_pn": 1.9680950800168786e-06,
+            "next_pe": 6.093778145447118e-07,
+            "next_pd": 0.6099822298363549,
+            "next_vn": 0.009370687543429228,
+            "next_ve": 6.666801627488783e-07,
+            "next_vd": 2.9738475825656446e-06,
+            "next_qw": 1.4969717149145577e-13,
+            "next_qx": 6.096465736632181e-07,
+            "next_qy": 5.845565280666738e-07,
+            "next_qz": 5.554260363047175e-07,
+            "next_p_rate": 2.103613390787468e-06,
+            "next_q_rate": 2.378487071920113e-06,
+            "next_r_rate": 1.7186429055981034e-06,
+            "next_omega_left": 5.201241331511422,
+            "next_omega_right": 5.43904825981619,
+            "next_soc": 2.1362346032013932e-05,
+            "airspeed": 0.005553169035070844,
+            "alpha": 2.3288323378005113e-06,
+            "sideslip": 1.2433436846958125e-06,
+            "lambda_w": 0.0011407576481995592,
+            "thrust_left": 0.0003677073698339669,
+            "thrust_right": 0.0003855464181989377,
+            "total_thrust": 0.0007689656823127338,
+            "predicted_power": 1.5891265770943903,
+            "energy_increment": 0.00014547726063220332,
+            "flight_mode_code": 0.0,
+            "vtol_feasible": 0.0,
+            "quality_score": 4.563030592798221e-05,
+            "dynamic_pressure": 0.4991215032536078,
+            "cl": 2.7645399192260692e-05,
+            "cd": 1.9972790993693515e-08,
+            "lift": 0.0013547276808484525,
+            "drag": 1.7117353568646514e-05
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP27_E002",
+          "novelty_distance": 1.0,
+          "adjustment_factor": 1.25,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.99978004668105,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.774637178782552,
+          "posterior": 0.774637178782552,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 1.0
+        },
+        "context": {
+          "operation_code": 27,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 1.0
+        },
+        "timestamp": 0.014000000000000005,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 27,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP27_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "28": {
+      "inputs": {
+        "dt": 0.02,
+        "omega_left": 560.0,
+        "omega_right": 560.0,
+        "left_motor_cmd": 0.62,
+        "right_motor_cmd": 0.62
+      },
+      "outputs": {
+        "next_omega_left": 519.5442842349723,
+        "next_omega_right": 519.5442842349723,
+        "thrust_left": 2.12270013444359,
+        "thrust_right": 2.12270013444359,
+        "reaction_torque_left": -0.04882210309220257,
+        "reaction_torque_right": 0.04882210309220257,
+        "total_thrust": 4.24540026888718
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "next_omega_left": 519.5442842349723,
+          "next_omega_right": 519.5442842349723,
+          "thrust_left": 2.12270013444359,
+          "thrust_right": 2.12270013444359,
+          "reaction_torque_left": -0.04882210309220257,
+          "reaction_torque_right": 0.04882210309220257,
+          "total_thrust": 4.24540026888718
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "next_omega_left": 2.471064029064039,
+            "next_omega_right": 2.5389446156886097,
+            "thrust_left": 0.020777996197225236,
+            "thrust_right": 0.021326700317613093,
+            "reaction_torque_left": 0.0004778939125361781,
+            "reaction_torque_right": 0.0004905141073051017,
+            "total_thrust": 0.027509327844504612
+          },
+          "variance_by_output": {
+            "next_omega_left": 6.106157435734202,
+            "next_omega_right": 6.446239761534183,
+            "thrust_left": 0.00043172512597190635,
+            "thrust_right": 0.0004548281464372785,
+            "reaction_torque_left": 2.2838259163913621e-07,
+            "reaction_torque_right": 2.406040894653208e-07,
+            "total_thrust": 0.0007567631184564369
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP28_E002",
+          "novelty_distance": 1.0,
+          "adjustment_factor": 1.25,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9998245341459583,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.774637178782552,
+          "posterior": 0.774637178782552,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 1.0
+        },
+        "context": {
+          "operation_code": 28,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 1.0
+        },
+        "timestamp": 0.015000000000000006,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 28,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP28_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "29": {
+      "inputs": {
+        "omega_left": 560.0,
+        "omega_right": 560.0,
+        "left_elevon_rad": 0.0,
+        "right_elevon_rad": 0.0
+      },
+      "outputs": {
+        "left_propwash_lift": 0.0,
+        "right_propwash_lift": 0.0,
+        "left_propwash_drag": 0.0,
+        "right_propwash_drag": 0.0,
+        "left_propwash_pitch_moment": -0.0,
+        "right_propwash_pitch_moment": -0.0,
+        "total_propwash_lift": 0.0,
+        "total_propwash_drag": 0.0,
+        "total_propwash_pitch_moment": -0.0
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "left_propwash_lift": 0.0,
+          "right_propwash_lift": 0.0,
+          "left_propwash_drag": 0.0,
+          "right_propwash_drag": 0.0,
+          "left_propwash_pitch_moment": -0.0,
+          "right_propwash_pitch_moment": -0.0,
+          "total_propwash_lift": 0.0,
+          "total_propwash_drag": 0.0,
+          "total_propwash_pitch_moment": -0.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "left_propwash_lift": 0.0006889426774478986,
+            "right_propwash_lift": 0.0006863999833352482,
+            "left_propwash_drag": 1.8249935808198323e-07,
+            "right_propwash_drag": 1.857170871390608e-07,
+            "left_propwash_pitch_moment": 6.810237960979227e-05,
+            "right_propwash_pitch_moment": 6.785103283543832e-05,
+            "total_propwash_lift": 0.0011385122869666052,
+            "total_propwash_drag": 2.9906823939462837e-07,
+            "total_propwash_pitch_moment": 0.00011254259388405521
+          },
+          "variance_by_output": {
+            "left_propwash_lift": 4.746420128090792e-07,
+            "right_propwash_lift": 4.7114493712262897e-07,
+            "left_propwash_drag": 3.330601570033594e-14,
+            "right_propwash_drag": 3.4490836455417505e-14,
+            "left_propwash_pitch_moment": 4.63793410851625e-09,
+            "right_propwash_pitch_moment": 4.603762656835729e-09,
+            "total_propwash_lift": 1.2962102275739295e-06,
+            "total_propwash_drag": 8.944181181460274e-14,
+            "total_propwash_pitch_moment": 1.2665835438151381e-08
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP29_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9999866373690764,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 29,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.016000000000000007,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 29,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP29_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "30": {
+      "inputs": {
+        "airspeed": 13.0,
+        "sideslip": 0.20943951023931956,
+        "bank_angle": 0.1,
+        "flightpath_angle": 0.0,
+        "p_rate": 0.0,
+        "q_rate": 0.0,
+        "r_rate": 0.0,
+        "load_factor": 1.0,
+        "total_thrust": 6.5,
+        "mass": 0.7000000000000001,
+        "left_motor_cmd": 0.62,
+        "right_motor_cmd": 0.62,
+        "left_elevon_rad": 0.0,
+        "right_elevon_rad": 0.0
+      },
+      "outputs": {
+        "lambda_w": 1.0,
+        "flight_mode_code": 2.0,
+        "motor_bounds_valid": 1.0,
+        "elevon_bounds_valid": 1.0,
+        "rate_bounds_valid": 1.0,
+        "max_airspeed_valid": 1.0,
+        "load_factor_valid": 1.0,
+        "wingborne_constraints_valid": 0.0,
+        "hover_thrust_valid": 0.0,
+        "vtol_envelope_valid": 0.0
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "lambda_w": 1.0,
+          "flight_mode_code": 2.0,
+          "motor_bounds_valid": 1.0,
+          "elevon_bounds_valid": 1.0,
+          "rate_bounds_valid": 1.0,
+          "max_airspeed_valid": 1.0,
+          "load_factor_valid": 1.0,
+          "wingborne_constraints_valid": 0.0,
+          "hover_thrust_valid": 0.0,
+          "vtol_envelope_valid": 0.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "lambda_w": 0.0,
+            "flight_mode_code": 0.0,
+            "motor_bounds_valid": 0.0,
+            "elevon_bounds_valid": 0.0,
+            "rate_bounds_valid": 0.0,
+            "max_airspeed_valid": 0.0,
+            "load_factor_valid": 0.0,
+            "wingborne_constraints_valid": 0.4841229182759271,
+            "hover_thrust_valid": 0.0,
+            "vtol_envelope_valid": 0.4841229182759271
+          },
+          "variance_by_output": {
+            "lambda_w": 0.0,
+            "flight_mode_code": 0.0,
+            "motor_bounds_valid": 0.0,
+            "elevon_bounds_valid": 0.0,
+            "rate_bounds_valid": 0.0,
+            "max_airspeed_valid": 0.0,
+            "load_factor_valid": 0.0,
+            "wingborne_constraints_valid": 0.23437500000000003,
+            "hover_thrust_valid": 0.0,
+            "vtol_envelope_valid": 0.23437500000000003
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP30_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9961058472114939,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 30,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.017000000000000008,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 30,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP30_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "31": {
+      "inputs": {
+        "dt": 0.02,
+        "air_density": 1.1,
+        "airspeed": 13.0,
+        "total_thrust": 6.5,
+        "soc": 1.0,
+        "battery_voltage": 11.1,
+        "battery_current": 8.0,
+        "battery_telemetry_valid": 0.0
+      },
+      "outputs": {
+        "lambda_w": 1.0,
+        "induced_hover_power": 82.37756938822338,
+        "predicted_power": 148.2456140350877,
+        "measured_battery_power": 0.0,
+        "selected_power": 148.2456140350877,
+        "energy_increment": 2.964912280701754,
+        "next_soc": 0.9999598250368469,
+        "continuous_power_valid": 1.0,
+        "peak_power_valid": 1.0
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "lambda_w": 1.0,
+          "induced_hover_power": 82.37756938822338,
+          "predicted_power": 148.2456140350877,
+          "measured_battery_power": 0.0,
+          "selected_power": 148.2456140350877,
+          "energy_increment": 2.964912280701754,
+          "next_soc": 0.9999598250368469,
+          "continuous_power_valid": 1.0,
+          "peak_power_valid": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "lambda_w": 0.0,
+            "induced_hover_power": 0.9653929175363206,
+            "predicted_power": 1.92219676110194,
+            "measured_battery_power": 0.0,
+            "selected_power": 1.92219676110194,
+            "energy_increment": 0.016004990930282896,
+            "next_soc": 0.004622082156022486,
+            "continuous_power_valid": 0.0,
+            "peak_power_valid": 0.0
+          },
+          "variance_by_output": {
+            "lambda_w": 0.0,
+            "induced_hover_power": 0.9319834852292892,
+            "predicted_power": 3.694840388390788,
+            "measured_battery_power": 0.0,
+            "selected_power": 3.694840388390788,
+            "energy_increment": 0.0002561597346784377,
+            "next_soc": 2.136364345702148e-05,
+            "continuous_power_valid": 0.0,
+            "peak_power_valid": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP31_E002",
+          "novelty_distance": 1.0,
+          "adjustment_factor": 1.25,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9997943904113223,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.774637178782552,
+          "posterior": 0.774637178782552,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 1.0
+        },
+        "context": {
+          "operation_code": 31,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 1.0
+        },
+        "timestamp": 0.01800000000000001,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 31,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP31_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "32": {
+      "inputs": {
+        "dt": 0.02,
+        "vx": 8.0,
+        "vz": 0.0,
+        "pitch": 0.4,
+        "q_rate": 0.0,
+        "omega_sum": 1120.0,
+        "soc": 1.0,
+        "motor_collective": 0.62,
+        "elevon_collective": 0.0,
+        "air_density": 1.1
+      },
+      "outputs": {
+        "next_vx": 8.12031607974158,
+        "next_vz": 0.14526417738010014,
+        "next_pitch": 0.4,
+        "next_q_rate": 0.050244080328174186,
+        "next_omega_sum": 1039.0885684699447,
+        "next_soc": 0.9999882160596048,
+        "lambda_w": 0.0,
+        "predicted_power": 43.48274005839112
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "next_vx": 8.12031607974158,
+          "next_vz": 0.14526417738010014,
+          "next_pitch": 0.4,
+          "next_q_rate": 0.050244080328174186,
+          "next_omega_sum": 1039.0885684699447,
+          "next_soc": 0.9999882160596048,
+          "lambda_w": 0.0,
+          "predicted_power": 43.48274005839112
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "next_vx": 0.061671698168229636,
+            "next_vz": 0.0008195402481806382,
+            "next_pitch": 0.0031230442034051605,
+            "next_q_rate": 0.001418579259995258,
+            "next_omega_sum": 4.306920552651572,
+            "next_soc": 0.0038223011830725018,
+            "lambda_w": 0.0,
+            "predicted_power": 0.5723228887830217
+          },
+          "variance_by_output": {
+            "next_vx": 0.0038033983549532182,
+            "next_vz": 6.716462183879821e-07,
+            "next_pitch": 9.753405096422572e-06,
+            "next_q_rate": 2.0123671168886944e-06,
+            "next_omega_sum": 18.549564646852527,
+            "next_soc": 1.4609986334117446e-05,
+            "lambda_w": 0.0,
+            "predicted_power": 0.3275534890249431
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP32_E002",
+          "novelty_distance": 1.0,
+          "adjustment_factor": 1.25,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.999857039862086,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "within_validity_envelope"
+          ]
+        },
+        "reliability": {
+          "prior": 0.774637178782552,
+          "posterior": 0.774637178782552,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 1.0
+        },
+        "context": {
+          "operation_code": 32,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 1.0
+        },
+        "timestamp": 0.01900000000000001,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 32,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP32_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "33": {
+      "inputs": {
+        "uncertainty_scalar": 0.5,
+        "quality_prior": 0.95,
+        "validity_prior": 0.95,
+        "reliability_prior": 0.95,
+        "freshness_score": 0.95,
+        "completeness_score": 0.95,
+        "physical_score": 0.95,
+        "numerical_score": 0.95,
+        "support_score": 0.95,
+        "novelty_score": 0.05,
+        "evidence_count": 64.0
+      },
+      "outputs": {
+        "uncertainty_adjusted": 0.525,
+        "quality_score": 0.7350918906249998,
+        "validity_score": 0.95,
+        "reliability_score": 0.95,
+        "quality_flag_code": 1.0,
+        "novelty_degraded": 0.0,
+        "evidence_count_echo": 64.0
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "uncertainty_adjusted": 0.525,
+          "quality_score": 0.7350918906249998,
+          "validity_score": 0.95,
+          "reliability_score": 0.95,
+          "quality_flag_code": 1.0,
+          "novelty_degraded": 0.0,
+          "evidence_count_echo": 64.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "uncertainty_adjusted": 0.0030733200206092557,
+            "quality_score": 0.006927625158193883,
+            "validity_score": 0.0,
+            "reliability_score": 0.0059356442412423676,
+            "quality_flag_code": 0.0,
+            "novelty_degraded": 0.0,
+            "evidence_count_echo": 0.0
+          },
+          "variance_by_output": {
+            "uncertainty_adjusted": 9.445295949077675e-06,
+            "quality_score": 4.7991990332440825e-05,
+            "validity_score": 0.0,
+            "reliability_score": 3.523187255859368e-05,
+            "quality_flag_code": 0.0,
+            "novelty_degraded": 0.0,
+            "evidence_count_echo": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP33_E002",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 0.9999004483840438,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 33,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.02000000000000001,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 33,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP33_E002"
+      },
+      "all_outputs_finite": true
+    },
+    "34": {
+      "inputs": {},
+      "outputs": {
+        "formalism_complete_flag": 1.0,
+        "vtol_full_envelope_flag": 1.0,
+        "layer2_contract_flag": 1.0,
+        "edge_profile_flag": 1.0
+      },
+      "packet": {
+        "twin_id": "WingMPET",
+        "state": {
+          "formalism_complete_flag": 1.0,
+          "vtol_full_envelope_flag": 1.0,
+          "layer2_contract_flag": 1.0,
+          "edge_profile_flag": 1.0
+        },
+        "uncertainty": {
+          "type": "simulation_prior_local_ensemble",
+          "representation": "std+diagonal_variance",
+          "by_output": {
+            "formalism_complete_flag": 0.0,
+            "vtol_full_envelope_flag": 0.0,
+            "layer2_contract_flag": 0.0,
+            "edge_profile_flag": 0.0
+          },
+          "variance_by_output": {
+            "formalism_complete_flag": 0.0,
+            "vtol_full_envelope_flag": 0.0,
+            "layer2_contract_flag": 0.0,
+            "edge_profile_flag": 0.0
+          },
+          "source": "simulation_prior_verification",
+          "tep_cell_id": "WingMPET_OP34_E001",
+          "novelty_distance": 0.0,
+          "adjustment_factor": 1.0,
+          "claim": "simulation-derived prior; not field-calibrated uncertainty"
+        },
+        "quality": {
+          "score": 1.0,
+          "flag": "good",
+          "reason": [
+            "finite_numeric",
+            "output_completeness",
+            "TEP_prior",
+            "freshness_multiplier=1"
+          ]
+        },
+        "validity": {
+          "score": 1.0,
+          "reason": [
+            "no_applicable_runtime_range_rule"
+          ]
+        },
+        "reliability": {
+          "prior": 0.9,
+          "posterior": 0.9,
+          "kind": "verification_prior_no_field_evidence",
+          "evidence_count": 8,
+          "field_evidence_count": 0,
+          "source": "simulation_prior_verification",
+          "novelty_distance": 0.0
+        },
+        "context": {
+          "operation_code": 34,
+          "freshness_age_s": 0.0,
+          "tep_novelty": false,
+          "tep_distance": 0.0
+        },
+        "timestamp": 0.02100000000000001,
+        "provenance": {
+          "source": "test-senarios/wingmpet_all_formulas_scenario.py",
+          "fmu": "WingMPET.fmu",
+          "fmu_sha256": "b59712e01b7ebf0ff79bbfe3951261ab5e7ad4f75fbda71ee4e8312445ceea9c",
+          "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+          "tep_version": "2026-08-20-sim-v3-vtol",
+          "tep_maturity": "TEP_sim",
+          "formula_catalog_version": "unknown",
+          "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+          "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency"
+        },
+        "operation_code": 34,
+        "context_id": "CRP_future_demo",
+        "stage_id": "cruise",
+        "tep_cell_id": "WingMPET_OP34_E001"
+      },
+      "all_outputs_finite": true
+    }
+  },
+  "twin_id": "WingMPET",
+  "operation_codes": [
+    1,
+    2,
+    4,
+    5,
+    6,
+    7,
+    9,
+    13,
+    14,
+    15,
+    16,
+    17,
+    20,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34
+  ],
+  "summary": {
+    "operation_count": 21,
+    "output_count": 171,
+    "all_operations_executed": true,
+    "all_outputs_finite": true,
+    "quality_flags": {
+      "good": 21,
+      "degraded": 0,
+      "invalid": 0
+    },
+    "tep_novelty_operation_codes": [],
+    "validity_degraded_operation_codes": [],
+    "scenario_inputs_are": "engineering verification priors; not measured field truth"
+  }
+}
+
+SUMMARY: {'operation_count': 21, 'output_count': 171, 'all_operations_executed': True, 'all_outputs_finite': True, 'quality_flags': {'good': 21, 'degraded': 0, 'invalid': 0}, 'tep_novelty_operation_codes': [], 'validity_degraded_operation_codes': [], 'scenario_inputs_are': 'engineering verification priors; not measured field truth'}

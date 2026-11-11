@@ -1,0 +1,180 @@
+{
+  "schema_version": "4.0",
+  "twin_id": "WingMPET",
+  "kind": "applicability_prior_not_field_validation",
+  "novelty_validity_cap": 0.5,
+  "ranges": {
+    "dt": {
+      "min": 1e-05,
+      "max": 1.0,
+      "unit": "s"
+    },
+    "airspeed": {
+      "min": 0.0,
+      "max": 18.0,
+      "unit": "m/s"
+    },
+    "Va": {
+      "min": 0.0,
+      "max": 18.0,
+      "unit": "m/s"
+    },
+    "altitude": {
+      "min": 0.0,
+      "max": 1000.0,
+      "unit": "m"
+    },
+    "h": {
+      "min": 0.0,
+      "max": 2000.0,
+      "unit": "m"
+    },
+    "bank_angle": {
+      "min": -0.7853981633974483,
+      "max": 0.7853981633974483,
+      "unit": "rad"
+    },
+    "bank_cmd": {
+      "min": -0.7853981633974483,
+      "max": 0.7853981633974483,
+      "unit": "rad"
+    },
+    "flightpath_angle": {
+      "min": -0.3490658503988659,
+      "max": 0.3490658503988659,
+      "unit": "rad"
+    },
+    "relative_humidity": {
+      "min": 0.0,
+      "max": 1.0,
+      "unit": "1"
+    },
+    "rho": {
+      "min": 0.2,
+      "max": 1.6,
+      "unit": "kg/m3"
+    },
+    "soc": {
+      "min": 0.0,
+      "max": 1.0,
+      "unit": "1"
+    },
+    "left_motor_cmd": {
+      "min": 0.0,
+      "max": 1.0,
+      "unit": "1"
+    },
+    "right_motor_cmd": {
+      "min": 0.0,
+      "max": 1.0,
+      "unit": "1"
+    },
+    "left_elevon_rad": {
+      "min": -0.53,
+      "max": 0.53,
+      "unit": "rad"
+    },
+    "right_elevon_rad": {
+      "min": -0.53,
+      "max": 0.53,
+      "unit": "rad"
+    }
+  },
+  "assumptions": [
+    "Phoenix dual-rotor tailsitter VTOL",
+    "NED navigation / FRD body",
+    "mode-aware hover-transition-wing-borne dynamics",
+    "two motors + two elevons only",
+    "no network coupling inside FMU"
+  ],
+  "envelope_version": "2026-09-15-v4-vtol-phase-aware",
+  "maturity": "simulation_prior",
+  "novelty_policy": {
+    "uncertainty_multiplier": 2.0,
+    "quality_multiplier": 0.6,
+    "validity_cap": 0.5,
+    "reliability_multiplier": 0.6
+  },
+  "freshness_policy": {
+    "lambda_per_second": 0.001,
+    "minimum_multiplier": 0.25
+  },
+  "hardware_profile": "phoenix_drone_v3.yaml",
+  "mode_policy": {
+    "hover": "stall/sideslip/coordinated-turn disabled",
+    "transition": "wing-borne factors smoothly weighted by lambda_w",
+    "wing_borne": "stall/sideslip/bank/flightpath active"
+  },
+  "mode_ranges": {
+    "vertical_up": {
+      "flightpath_angle": {
+        "enabled": false,
+        "reason": "fixed-wing flightpath constraint not applicable in vertical VTOL"
+      }
+    },
+    "hover": {
+      "flightpath_angle": {
+        "enabled": false,
+        "reason": "flightpath angle ill-conditioned/non-binding near hover"
+      }
+    },
+    "transition": {
+      "flightpath_angle": {
+        "enabled": false,
+        "reason": "transition uses full-envelope mode gate; wing-borne flightpath bound is smoothly activated elsewhere"
+      }
+    },
+    "wing_borne": {
+      "flightpath_angle": {
+        "min": -0.3490658503988659,
+        "max": 0.3490658503988659,
+        "unit": "rad"
+      }
+    },
+    "vertical_down": {
+      "flightpath_angle": {
+        "enabled": false,
+        "reason": "fixed-wing flightpath constraint not applicable in vertical VTOL"
+      }
+    }
+  },
+  "phase_family_map": {
+    "vertical_takeoff": "vertical_up",
+    "hover": "hover",
+    "transition_forward": "transition",
+    "transition_back": "transition",
+    "climb": "wing_borne",
+    "cruise": "wing_borne",
+    "turn": "wing_borne",
+    "approach": "wing_borne",
+    "vertical_landing": "vertical_down"
+  },
+  "novelty_metric": "phase-family local operating variables; absolute mission coordinates excluded",
+  "novelty_excluded_features": [
+    "agl_altitude_input",
+    "altitude",
+    "energy_prev",
+    "energy_reference",
+    "goal_h",
+    "goal_x",
+    "goal_y",
+    "h",
+    "initial_goal_distance",
+    "mission_time",
+    "msl_altitude",
+    "path_length",
+    "path_length_prev",
+    "pd",
+    "pe",
+    "pn",
+    "state_h",
+    "state_x",
+    "state_y",
+    "target_h",
+    "target_x",
+    "target_y",
+    "time_prev",
+    "x",
+    "y"
+  ]
+}

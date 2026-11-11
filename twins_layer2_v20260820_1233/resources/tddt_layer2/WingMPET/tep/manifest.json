@@ -1,0 +1,853 @@
+{
+  "schema_version": "4.0",
+  "tep_name": "WingMPET_TEP",
+  "tep_version": "2026-09-15-sim-v4-vtol-phase-aware",
+  "created_at": "2026-11-05T01:17:38.383491+00:00",
+  "twin_id": "WingMPET",
+  "twin_model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+  "formalism_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+  "simulation_version": "native-C++ FMI2 package 20260820_1202",
+  "generation_method": "3-center deterministic stratified DOE per operation + 8 local perturbation trials + physical/numerical/metamorphic checks",
+  "sampling_method": "deterministic_stratified",
+  "perturbation_model": {
+    "local_fraction": 0.01,
+    "distribution": "deterministic zero-mean phase sequence"
+  },
+  "parameter_ranges": {
+    "msl_altitude": [
+      878.75,
+      1128.75
+    ],
+    "agl_altitude_input": [
+      87.875,
+      112.875
+    ],
+    "terrain_height": [
+      790.875,
+      1015.875
+    ],
+    "state_x": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "state_y": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "state_h": [
+      878.75,
+      1128.75
+    ],
+    "air_velocity_x": [
+      -3.005,
+      16.65
+    ],
+    "air_velocity_y": [
+      -3.005,
+      3.525
+    ],
+    "air_velocity_h": [
+      -5.1,
+      5.1
+    ],
+    "altitude": [
+      878.75,
+      1128.75
+    ],
+    "external_temperature": [
+      253.21181249999995,
+      325.24931250000003
+    ],
+    "external_pressure": [
+      79087.5,
+      101587.5
+    ],
+    "external_density": [
+      0.966625,
+      1.2416250000000002
+    ],
+    "relative_humidity": [
+      0.3954375,
+      0.5079375
+    ],
+    "airspeed": [
+      -2.81,
+      16.65
+    ],
+    "wind_x": [
+      -0.15000000000000036,
+      6.15
+    ],
+    "wind_y": [
+      -2.05,
+      4.05
+    ],
+    "wind_h": [
+      -3.005,
+      3.005
+    ],
+    "ground_velocity_x": [
+      -3.005,
+      19.8
+    ],
+    "ground_velocity_y": [
+      -3.005,
+      4.575
+    ],
+    "ground_velocity_h": [
+      -5.1,
+      5.1
+    ],
+    "wind_time_derivative_x": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "wind_time_derivative_y": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "wind_time_derivative_h": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "wind_jacobian_11": [
+      -0.00905,
+      0.01105
+    ],
+    "wind_jacobian_12": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "wind_jacobian_13": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "wind_jacobian_21": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "wind_jacobian_22": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "wind_jacobian_23": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "wind_jacobian_31": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "wind_jacobian_32": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "wind_jacobian_33": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "dt": [
+      -0.0005000000000000004,
+      0.0205
+    ],
+    "x": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "y": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "h": [
+      878.75,
+      1128.75
+    ],
+    "target_x": [
+      878.75,
+      1128.75
+    ],
+    "target_y": [
+      175.75,
+      225.75
+    ],
+    "target_h": [
+      878.75,
+      1128.75
+    ],
+    "air_density": [
+      0.945,
+      1.2550000000000003
+    ],
+    "mass": [
+      0.615125,
+      0.7901250000000001
+    ],
+    "wing_area": [
+      0.104,
+      0.136
+    ],
+    "cd0": [
+      0.032749999999999994,
+      0.05725
+    ],
+    "induced_drag_factor": [
+      0.11656015284930292,
+      0.15037344476700074
+    ],
+    "cl_max": [
+      0.9226875,
+      1.1851875
+    ],
+    "bank_angle": [
+      -0.20500000000000002,
+      0.30500000000000005
+    ],
+    "flightpath_angle": [
+      -1.9993361431346415,
+      1.9993361431346415
+    ],
+    "lift_command": [
+      6.032315581249999,
+      7.7484793312499995
+    ],
+    "clearance": [
+      43.9375,
+      56.4375
+    ],
+    "elevated_obstacle_distance": [
+      87.875,
+      112.875
+    ],
+    "ground_obstacle_distance": [
+      87.875,
+      112.875
+    ],
+    "base_safe_radius": [
+      17.575,
+      22.575
+    ],
+    "position_sigma": [
+      1.7574999999999998,
+      2.2575000000000003
+    ],
+    "wind_sigma": [
+      1.7574999999999998,
+      2.2575000000000003
+    ],
+    "inflation_factor": [
+      2.6362499999999995,
+      3.3862500000000004
+    ],
+    "groundspeed": [
+      -3.005,
+      19.8
+    ],
+    "power": [
+      105.45,
+      135.45
+    ],
+    "path_length_prev": [
+      878.75,
+      1128.75
+    ],
+    "time_prev": [
+      52.725,
+      67.725
+    ],
+    "energy_prev": [
+      17575.0,
+      22575.0
+    ],
+    "goal_x": [
+      878.75,
+      1128.75
+    ],
+    "goal_y": [
+      175.75,
+      225.75
+    ],
+    "goal_h": [
+      878.75,
+      1128.75
+    ],
+    "initial_goal_distance": [
+      896.1526795139318,
+      1151.103655193571
+    ],
+    "goal_tolerance": [
+      8.7875,
+      11.2875
+    ],
+    "path_length": [
+      878.75,
+      1128.75
+    ],
+    "mission_time": [
+      65.90625,
+      84.65625
+    ],
+    "energy": [
+      17575.0,
+      22575.0
+    ],
+    "safety_penalty": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "length_reference": [
+      878.75,
+      1128.75
+    ],
+    "time_reference": [
+      65.90625,
+      84.65625
+    ],
+    "energy_reference": [
+      17575.0,
+      22575.0
+    ],
+    "safety_reference": [
+      0.8787499999999999,
+      1.1287500000000001
+    ],
+    "weight_length": [
+      0.21968749999999998,
+      0.28218750000000004
+    ],
+    "weight_time": [
+      0.21968749999999998,
+      0.28218750000000004
+    ],
+    "weight_energy": [
+      0.21968749999999998,
+      0.28218750000000004
+    ],
+    "weight_safety": [
+      0.21968749999999998,
+      0.28218750000000004
+    ],
+    "minimum_length": [
+      834.8125,
+      1072.3125
+    ],
+    "epsilon_length": [
+      0.085,
+      0.115
+    ],
+    "segment_margin_01": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_02": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_03": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_04": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_05": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_06": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_07": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_08": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_09": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_10": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_11": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_12": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_13": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_14": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_15": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_16": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_17": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_18": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_19": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_20": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_21": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_22": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_23": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_24": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_25": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_26": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_27": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_28": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_29": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_30": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_31": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_32": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_33": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_34": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_35": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_36": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_37": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_38": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_39": [
+      26.3625,
+      33.8625
+    ],
+    "segment_margin_40": [
+      26.3625,
+      33.8625
+    ],
+    "unused_41": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "unused_42": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "unused_43": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "unused_44": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "unused_45": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "unused_46": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "unused_47": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "unused_48": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "unused_49": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "replan_margin_threshold": [
+      8.7875,
+      11.2875
+    ],
+    "state_error": [
+      0.8787499999999999,
+      1.1287500000000001
+    ],
+    "wind_error_threshold": [
+      4.39375,
+      5.64375
+    ],
+    "state_error_threshold": [
+      4.39375,
+      5.64375
+    ],
+    "pn": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "pe": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "pd": [
+      -112.875,
+      -87.875
+    ],
+    "vn": [
+      -3.005,
+      16.65
+    ],
+    "ve": [
+      -3.005,
+      3.005
+    ],
+    "vd": [
+      -5.1,
+      5.1
+    ],
+    "qw": [
+      0.8787499999999999,
+      1.1287500000000001
+    ],
+    "qx": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "qy": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "qz": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "p_rate": [
+      -0.505,
+      0.505
+    ],
+    "q_rate": [
+      -0.505,
+      0.505
+    ],
+    "r_rate": [
+      -0.505,
+      0.505
+    ],
+    "omega_left": [
+      492.1,
+      632.1
+    ],
+    "omega_right": [
+      492.1,
+      632.1
+    ],
+    "soc": [
+      0.8999999999999999,
+      1.05
+    ],
+    "left_motor_cmd": [
+      0.4225,
+      0.856
+    ],
+    "right_motor_cmd": [
+      0.4225,
+      0.856
+    ],
+    "left_elevon_rad": [
+      -0.10500000000000001,
+      0.10500000000000001
+    ],
+    "right_elevon_rad": [
+      -0.10500000000000001,
+      0.10500000000000001
+    ],
+    "wind_n": [
+      2.6362499999999995,
+      3.3862500000000004
+    ],
+    "wind_e": [
+      0.8787499999999999,
+      1.1287500000000001
+    ],
+    "wind_d": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "sideslip": [
+      -0.155,
+      0.3699114857512855
+    ],
+    "load_factor": [
+      0.8787499999999999,
+      1.1287500000000001
+    ],
+    "total_thrust": [
+      5.711875,
+      7.336875
+    ],
+    "battery_voltage": [
+      9.754125,
+      12.529124999999999
+    ],
+    "battery_current": [
+      7.029999999999999,
+      9.030000000000001
+    ],
+    "vx": [
+      7.029999999999999,
+      9.030000000000001
+    ],
+    "vz": [
+      -0.015000000000000001,
+      0.015000000000000001
+    ],
+    "pitch": [
+      0.35150000000000003,
+      0.4515
+    ],
+    "omega_sum": [
+      984.2,
+      1264.2
+    ],
+    "motor_collective": [
+      0.4225,
+      0.856
+    ],
+    "elevon_collective": [
+      -0.10500000000000001,
+      0.10500000000000001
+    ],
+    "uncertainty_scalar": [
+      0.43937499999999996,
+      0.5643750000000001
+    ],
+    "quality_prior": [
+      0.8348125,
+      1.0
+    ],
+    "reliability_prior": [
+      0.8348125,
+      1.0
+    ],
+    "freshness_score": [
+      0.8348125,
+      1.0
+    ],
+    "completeness_score": [
+      0.8348125,
+      1.0
+    ],
+    "physical_score": [
+      0.8348125,
+      1.0
+    ],
+    "numerical_score": [
+      0.8348125,
+      1.0
+    ],
+    "support_score": [
+      0.8348125,
+      1.0
+    ],
+    "novelty_score": [
+      0.0375,
+      0.0625
+    ],
+    "ground_supported": [
+      0.085,
+      0.115
+    ]
+  },
+  "coverage": 1.0,
+  "coverage_definition": "all declared operation codes have phase-family epistemic cells for Phoenix VTOL and held-out checks",
+  "cell_count": 330,
+  "operation_count": 22,
+  "cells_per_operation": 15,
+  "phase_families": [
+    "vertical_up",
+    "hover",
+    "transition",
+    "wing_borne",
+    "vertical_down"
+  ],
+  "novelty_excluded_features": [
+    "agl_altitude_input",
+    "altitude",
+    "energy_prev",
+    "energy_reference",
+    "goal_h",
+    "goal_x",
+    "goal_y",
+    "h",
+    "initial_goal_distance",
+    "mission_time",
+    "msl_altitude",
+    "path_length",
+    "path_length_prev",
+    "pd",
+    "pe",
+    "pn",
+    "state_h",
+    "state_x",
+    "state_y",
+    "target_h",
+    "target_x",
+    "target_y",
+    "time_prev",
+    "x",
+    "y"
+  ],
+  "phase_scale_floors": {
+    "airspeed": 3.0,
+    "Va": 3.0,
+    "groundspeed": 3.0,
+    "air_velocity_x": 3.0,
+    "air_velocity_y": 3.0,
+    "air_velocity_h": 3.0,
+    "ground_velocity_x": 3.0,
+    "ground_velocity_y": 3.0,
+    "ground_velocity_h": 3.0,
+    "vn": 3.0,
+    "ve": 3.0,
+    "vd": 3.0,
+    "wind_x": 3.0,
+    "wind_y": 3.0,
+    "wind_h": 3.0,
+    "flightpath_angle": 0.35,
+    "bank_angle": 0.2,
+    "bank_cmd": 0.2,
+    "sideslip": 0.15,
+    "p_rate": 0.5,
+    "q_rate": 0.5,
+    "r_rate": 0.5,
+    "left_motor_cmd": 0.1,
+    "right_motor_cmd": 0.1,
+    "motor_collective": 0.1,
+    "left_elevon_rad": 0.1,
+    "right_elevon_rad": 0.1,
+    "elevon_collective": 0.1,
+    "soc": 0.05,
+    "air_density": 0.1,
+    "rho": 0.1
+  },
+  "min_evidence_per_cell": 8,
+  "resolution": {
+    "average_normalized_cell_diameter": 6.017650313454419,
+    "definition": "diameter in per-cell normalized coordinates"
+  },
+  "evidence_type": "simulation_prior",
+  "evidence_kind": "simulation/verification prior only",
+  "field_evidence_present": false,
+  "field_evidence": false,
+  "maturity": "TEP_sim",
+  "uncertainty_representation": "per-output standard deviation + diagonal variance from local ensemble",
+  "quality_definition": "weighted convergence/completeness/physical/numerical/support/repeatability/metamorphic score",
+  "validity_definition": "runtime validity envelope + local pass fraction",
+  "reliability_definition": "Beta(1,1)-regularized simulation verification pass rate",
+  "held_out_validation": {
+    "file": "heldout_validation.json",
+    "pass_rate": 0.9545454545454546,
+    "count": 44
+  },
+  "novelty_radius": 3.0,
+  "novelty_policy": {
+    "uncertainty_multiplier": 2.0,
+    "quality_multiplier": 0.6,
+    "validity_cap": 0.5,
+    "reliability_multiplier": 0.6
+  },
+  "freshness_policy": {
+    "lambda_per_second": 0.001,
+    "minimum_multiplier": 0.25
+  },
+  "raw_trials_archived": true,
+  "raw_trials_file": "raw_trials.jsonl.gz",
+  "raw_trials_release_policy": "retained reproducible simulation-prior audit; no field evidence",
+  "generator_revision": "2026-09-20-v3-audited-state-outputs",
+  "reliability_regularization": "Beta(1,1)",
+  "update_policy": {
+    "runtime_read_only": true,
+    "field_evidence_required_for_posterior": true,
+    "slow_versioned": true,
+    "rollback_capable": true,
+    "no_field_evidence_action": "keep_prior"
+  },
+  "limitations": [
+    "simulation prior only",
+    "no field calibration",
+    "deterministic DOE is verification-oriented, not a substitute for operational validation"
+  ],
+  "provenance": {
+    "source_documents": [
+      "WingMPET_formalism",
+      "TDDT_Dynamic_NTwin_Layer2_details_FA_v2.md",
+      "TDDT_Dynamic_NTwin_TEP_details_FA_v2.md"
+    ],
+    "generator": "python/build_tddt_layer2_tep.py"
+  }
+}

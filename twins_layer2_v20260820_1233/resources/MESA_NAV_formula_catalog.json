@@ -1,0 +1,3278 @@
+{
+  "model": "MESA_NAV",
+  "interface": "FMI 2.0 Co-Simulation",
+  "formula_count": 110,
+  "operations": {
+    "1": {
+      "inputs": [],
+      "outputs": [
+        "formalism_version",
+        "active_operation_count",
+        "max_operation_code"
+      ],
+      "name": "formalism_interface_identity",
+      "description": "Reports formalism revision plus active operation count and highest reserved ABI operation code."
+    },
+    "3": {
+      "inputs": [
+        "event_timestamp",
+        "event_age",
+        "late_max",
+        "future_tolerance"
+      ],
+      "outputs": [
+        "synchronized_timestamp",
+        "age_accepted",
+        "future_accepted"
+      ]
+    },
+    "4": {
+      "inputs": [],
+      "outputs": [
+        "error_state_or_variance_01",
+        "error_state_or_variance_02",
+        "error_state_or_variance_03",
+        "error_state_or_variance_04",
+        "error_state_or_variance_05",
+        "error_state_or_variance_06",
+        "error_state_or_variance_07",
+        "error_state_or_variance_08",
+        "error_state_or_variance_09",
+        "error_state_or_variance_10",
+        "error_state_or_variance_11",
+        "error_state_or_variance_12",
+        "error_state_or_variance_13",
+        "error_state_or_variance_14",
+        "error_state_or_variance_15",
+        "error_state_or_variance_16",
+        "error_state_or_variance_17",
+        "error_state_or_variance_18",
+        "error_state_or_variance_19",
+        "error_state_or_variance_20",
+        "error_state_or_variance_21",
+        "error_state_or_variance_22",
+        "error_state_or_variance_23",
+        "error_state_or_variance_24",
+        "error_state_or_variance_25",
+        "error_state_or_variance_26",
+        "error_state_or_variance_27",
+        "error_state_or_variance_28",
+        "error_state_or_variance_29"
+      ]
+    },
+    "5": {
+      "inputs": [
+        "dt"
+      ],
+      "outputs": [
+        "position_n",
+        "position_e",
+        "position_d",
+        "velocity_n",
+        "velocity_e",
+        "velocity_d"
+      ]
+    },
+    "6": {
+      "inputs": [
+        "process_noise_diag_01",
+        "process_noise_diag_02",
+        "process_noise_diag_03",
+        "process_noise_diag_04",
+        "process_noise_diag_05",
+        "process_noise_diag_06",
+        "process_noise_diag_07",
+        "process_noise_diag_08",
+        "process_noise_diag_09",
+        "process_noise_diag_10",
+        "process_noise_diag_11",
+        "process_noise_diag_12",
+        "process_noise_diag_13",
+        "process_noise_diag_14",
+        "process_noise_diag_15",
+        "process_noise_diag_16",
+        "process_noise_diag_17",
+        "process_noise_diag_18",
+        "process_noise_diag_19",
+        "process_noise_diag_20",
+        "process_noise_diag_21",
+        "process_noise_diag_22",
+        "process_noise_diag_23",
+        "process_noise_diag_24",
+        "process_noise_diag_25",
+        "process_noise_diag_26",
+        "process_noise_diag_27",
+        "process_noise_diag_28",
+        "process_noise_diag_29"
+      ],
+      "outputs": [
+        "covariance_propagation_ok"
+      ]
+    },
+    "7": {
+      "inputs": [
+        "air_density",
+        "pitot_pressure",
+        "predicted_airspeed",
+        "airspeed_variance"
+      ],
+      "outputs": [
+        "airspeed_from_pitot",
+        "pitot_residual",
+        "pitot_nis"
+      ]
+    },
+    "9": {
+      "inputs": [
+        "mag_bx",
+        "mag_by",
+        "mag_bz",
+        "map_mag_n",
+        "map_mag_e",
+        "map_mag_d",
+        "mag_variance",
+        "nis_gate"
+      ],
+      "outputs": [
+        "mag_norm_residual",
+        "mag_nis",
+        "mag_anchor_valid"
+      ]
+    },
+    "10": {
+      "inputs": [
+        "absolute_pressure",
+        "log_pressure_prior",
+        "log_scale_height",
+        "pressure_grad_n",
+        "pressure_grad_e",
+        "pressure_variance",
+        "nis_gate",
+        "pressure_time_scale"
+      ],
+      "outputs": [
+        "pressure_residual",
+        "pressure_nis",
+        "pressure_robust_weight",
+        "pressure_anchor_valid"
+      ]
+    },
+    "11": {
+      "inputs": [
+        "terrain_flow_anchor_residual",
+        "jacobian_n",
+        "jacobian_e",
+        "measurement_variance",
+        "nis_gate"
+      ],
+      "outputs": [
+        "terrain_flow_update_residual",
+        "terrain_flow_update_nis",
+        "terrain_flow_update_weight",
+        "terrain_flow_update_valid"
+      ],
+      "name": "terrain_flow_anchor_scalar_update",
+      "description": "Robust scalar ESKF update for the validated terrain-flow/wind-map anchor defined in MESA-NAV v20260820_1141."
+    },
+    "12": {
+      "inputs": [
+        "mag_anchor_residual",
+        "jacobian_n",
+        "jacobian_e",
+        "measurement_variance",
+        "nis_gate"
+      ],
+      "outputs": [
+        "mag_update_residual",
+        "mag_update_nis",
+        "mag_update_weight",
+        "mag_update_valid"
+      ]
+    },
+    "13": {
+      "inputs": [
+        "pressure_anchor_residual",
+        "jacobian_n",
+        "jacobian_e",
+        "measurement_variance",
+        "nis_gate"
+      ],
+      "outputs": [
+        "pressure_update_residual",
+        "pressure_update_nis",
+        "pressure_update_weight",
+        "pressure_update_valid"
+      ]
+    },
+    "14": {
+      "inputs": [
+        "residual",
+        "innovation_variance",
+        "nis_gate",
+        "student_nu"
+      ],
+      "outputs": [
+        "nis",
+        "robust_weight"
+      ]
+    },
+    "15": {
+      "inputs": [
+        "min_information_eigenvalue",
+        "min_condition_score"
+      ],
+      "outputs": [
+        "information_lambda_min",
+        "information_lambda_max",
+        "conditional_observability_score",
+        "information_determinant",
+        "observable_2d"
+      ]
+    },
+    "16": {
+      "inputs": [
+        "parameter_index",
+        "basis_value",
+        "measurement",
+        "forgetting_factor"
+      ],
+      "outputs": [
+        "rls_parameter",
+        "rls_variance",
+        "rls_residual"
+      ]
+    },
+    "17": {
+      "inputs": [
+        "background_time_constant"
+      ],
+      "outputs": [
+        "background_filter_gain"
+      ]
+    },
+    "18": {
+      "inputs": [
+        "descriptor_01",
+        "descriptor_02",
+        "descriptor_03",
+        "descriptor_04",
+        "descriptor_05",
+        "descriptor_06",
+        "descriptor_07",
+        "descriptor_08",
+        "descriptor_09",
+        "descriptor_10",
+        "descriptor_11",
+        "descriptor_12",
+        "descriptor_13",
+        "descriptor_14",
+        "descriptor_15",
+        "descriptor_16",
+        "descriptor_scale",
+        "acceptance_threshold",
+        "store_descriptor",
+        "relative_displacement_n",
+        "relative_displacement_e"
+      ],
+      "outputs": [
+        "revisit_score",
+        "revisit_accepted",
+        "pseudo_displacement_n",
+        "pseudo_displacement_e"
+      ]
+    },
+    "19": {
+      "inputs": [
+        "info_11",
+        "info_12",
+        "info_22",
+        "candidate_count",
+        "candidate_01_info11",
+        "candidate_01_info12",
+        "candidate_01_info22",
+        "candidate_02_info11",
+        "candidate_02_info12",
+        "candidate_02_info22",
+        "candidate_03_info11",
+        "candidate_03_info12",
+        "candidate_03_info22",
+        "candidate_04_info11",
+        "candidate_04_info12",
+        "candidate_04_info22",
+        "candidate_05_info11",
+        "candidate_05_info12",
+        "candidate_05_info22",
+        "candidate_06_info11",
+        "candidate_06_info12",
+        "candidate_06_info22",
+        "candidate_07_info11",
+        "candidate_07_info12",
+        "candidate_07_info22",
+        "candidate_08_info11",
+        "candidate_08_info12",
+        "candidate_08_info22",
+        "candidate_09_info11",
+        "candidate_09_info12",
+        "candidate_09_info22",
+        "candidate_10_info11",
+        "candidate_10_info12",
+        "candidate_10_info22",
+        "candidate_11_info11",
+        "candidate_11_info12",
+        "candidate_11_info22",
+        "candidate_12_info11",
+        "candidate_12_info12",
+        "candidate_12_info22",
+        "candidate_13_info11",
+        "candidate_13_info12",
+        "candidate_13_info22",
+        "candidate_14_info11",
+        "candidate_14_info12",
+        "candidate_14_info22",
+        "candidate_15_info11",
+        "candidate_15_info12",
+        "candidate_15_info22",
+        "candidate_16_info11",
+        "candidate_16_info12",
+        "candidate_16_info22",
+        "candidate_17_info11",
+        "candidate_17_info12",
+        "candidate_17_info22",
+        "candidate_18_info11",
+        "candidate_18_info12",
+        "candidate_18_info22",
+        "candidate_19_info11",
+        "candidate_19_info12",
+        "candidate_19_info22",
+        "candidate_20_info11",
+        "candidate_20_info12",
+        "candidate_20_info22"
+      ],
+      "outputs": [
+        "best_candidate_index",
+        "best_lambda_min"
+      ]
+    },
+    "21": {
+      "inputs": [],
+      "outputs": [
+        "covariance_diagonal_01",
+        "covariance_diagonal_02",
+        "covariance_diagonal_03",
+        "covariance_diagonal_04",
+        "covariance_diagonal_05",
+        "covariance_diagonal_06",
+        "covariance_diagonal_07",
+        "covariance_diagonal_08",
+        "covariance_diagonal_09",
+        "covariance_diagonal_10",
+        "covariance_diagonal_11",
+        "covariance_diagonal_12",
+        "covariance_diagonal_13",
+        "covariance_diagonal_14",
+        "covariance_diagonal_15",
+        "covariance_diagonal_16",
+        "covariance_diagonal_17",
+        "covariance_diagonal_18",
+        "covariance_diagonal_19",
+        "covariance_diagonal_20",
+        "covariance_diagonal_21",
+        "covariance_diagonal_22",
+        "covariance_diagonal_23",
+        "covariance_diagonal_24",
+        "covariance_diagonal_25",
+        "covariance_diagonal_26",
+        "covariance_diagonal_27",
+        "covariance_diagonal_28",
+        "covariance_diagonal_29"
+      ]
+    },
+    "22": {
+      "inputs": [],
+      "outputs": []
+    },
+    "23": {
+      "name": "ultrasonic_wind_update",
+      "inputs": [
+        "wind_obs_n",
+        "wind_obs_e",
+        "wind_obs_d",
+        "sample_age_s",
+        "max_age_s",
+        "variance_n",
+        "variance_e",
+        "variance_d",
+        "process_variance_n",
+        "process_variance_e",
+        "process_variance_d",
+        "prior_wind_n",
+        "prior_wind_e",
+        "prior_wind_d",
+        "bias_n",
+        "bias_e",
+        "bias_d",
+        "prior_variance_n",
+        "prior_variance_e",
+        "prior_variance_d",
+        "nis_gate"
+      ],
+      "outputs": [
+        "updated_wind_n",
+        "updated_wind_e",
+        "updated_wind_d",
+        "residual_n",
+        "residual_e",
+        "residual_d",
+        "effective_variance_n",
+        "effective_variance_e",
+        "effective_variance_d",
+        "nis",
+        "update_valid"
+      ],
+      "description": "Age-aware physical ULTRASONIC_WIND NED update; no JSBSim truth or MAVLink WIND synthesis."
+    },
+    "24": {
+      "name": "vtol_mode_constraints",
+      "inputs": [
+        "airspeed",
+        "groundspeed",
+        "bank_angle",
+        "sideslip",
+        "load_factor",
+        "p_rate",
+        "q_rate",
+        "r_rate",
+        "stall_speed",
+        "command_min_speed",
+        "max_airspeed",
+        "max_load_factor",
+        "max_sideslip",
+        "min_lambda"
+      ],
+      "outputs": [
+        "lambda_w",
+        "stall_residual",
+        "sideslip_factor_enabled",
+        "coordinated_turn_factor_enabled",
+        "max_airspeed_valid",
+        "load_factor_valid",
+        "body_rate_valid",
+        "mechanical_constraints_valid"
+      ],
+      "description": "Mode-aware MESA mechanical constraints for Phoenix hover-transition-wing-borne flight."
+    },
+    "25": {
+      "name": "phoenix_actuator_interference_basis",
+      "inputs": [
+        "left_motor_norm",
+        "right_motor_norm",
+        "left_elevon_rad",
+        "right_elevon_rad"
+      ],
+      "outputs": [
+        "u_sum",
+        "u_delta",
+        "delta_sum",
+        "delta_delta",
+        "basis_1",
+        "basis_2",
+        "basis_3",
+        "basis_4",
+        "basis_5",
+        "basis_6",
+        "basis_7"
+      ],
+      "description": "Seven-term algebraic interference regressor built only from the two Phoenix motors and two elevons."
+    },
+    "26": {
+      "name": "layer2_epistemic_compose",
+      "inputs": [
+        "uncertainty_scalar",
+        "quality_prior",
+        "validity_prior",
+        "reliability_prior",
+        "freshness_score",
+        "completeness_score",
+        "innovation_score",
+        "numerical_score",
+        "anchor_score",
+        "novelty_score",
+        "evidence_count"
+      ],
+      "outputs": [
+        "uncertainty_adjusted",
+        "quality_score",
+        "validity_score",
+        "reliability_score",
+        "quality_flag_code",
+        "novelty_degraded",
+        "evidence_count_echo"
+      ],
+      "description": "O(1) Layer-2 U/Q/V/R composition from TEP prior plus estimator runtime checks."
+    },
+    "27": {
+      "name": "mesa_phoenix_formalism_complete",
+      "inputs": [],
+      "outputs": [
+        "formalism_complete_flag",
+        "error_state_dimension",
+        "physical_ultrasonic_semantics_flag",
+        "mode_aware_constraints_flag",
+        "layer2_contract_flag",
+        "edge_profile_flag"
+      ],
+      "description": "Implementation-completeness flags for MESA Phoenix-FA v20260820_1141."
+    }
+  },
+  "formulas": [
+    {
+      "id": "mesa_nav_op01_formalism_version",
+      "operation_code": 1,
+      "inputs": [],
+      "output": {
+        "name": "formalism_version",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op01_active_operation_count",
+      "operation_code": 1,
+      "inputs": [],
+      "output": {
+        "name": "active_operation_count",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op01_max_operation_code",
+      "operation_code": 1,
+      "inputs": [],
+      "output": {
+        "name": "max_operation_code",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "mesa_nav_op03_synchronized_timestamp",
+      "operation_code": 3,
+      "inputs": [
+        {
+          "name": "event_timestamp",
+          "bus_index": 1
+        },
+        {
+          "name": "event_age",
+          "bus_index": 2
+        },
+        {
+          "name": "late_max",
+          "bus_index": 3
+        },
+        {
+          "name": "future_tolerance",
+          "bus_index": 4
+        }
+      ],
+      "output": {
+        "name": "synchronized_timestamp",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op03_age_accepted",
+      "operation_code": 3,
+      "inputs": [
+        {
+          "name": "event_timestamp",
+          "bus_index": 1
+        },
+        {
+          "name": "event_age",
+          "bus_index": 2
+        },
+        {
+          "name": "late_max",
+          "bus_index": 3
+        },
+        {
+          "name": "future_tolerance",
+          "bus_index": 4
+        }
+      ],
+      "output": {
+        "name": "age_accepted",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op03_future_accepted",
+      "operation_code": 3,
+      "inputs": [
+        {
+          "name": "event_timestamp",
+          "bus_index": 1
+        },
+        {
+          "name": "event_age",
+          "bus_index": 2
+        },
+        {
+          "name": "late_max",
+          "bus_index": 3
+        },
+        {
+          "name": "future_tolerance",
+          "bus_index": 4
+        }
+      ],
+      "output": {
+        "name": "future_accepted",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_01",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_01",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_02",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_02",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_03",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_03",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_04",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_04",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_05",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_05",
+        "bus_index": 5
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_06",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_06",
+        "bus_index": 6
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_07",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_07",
+        "bus_index": 7
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_08",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_08",
+        "bus_index": 8
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_09",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_09",
+        "bus_index": 9
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_10",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_10",
+        "bus_index": 10
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_11",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_11",
+        "bus_index": 11
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_12",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_12",
+        "bus_index": 12
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_13",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_13",
+        "bus_index": 13
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_14",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_14",
+        "bus_index": 14
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_15",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_15",
+        "bus_index": 15
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_16",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_16",
+        "bus_index": 16
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_17",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_17",
+        "bus_index": 17
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_18",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_18",
+        "bus_index": 18
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_19",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_19",
+        "bus_index": 19
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_20",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_20",
+        "bus_index": 20
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_21",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_21",
+        "bus_index": 21
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_22",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_22",
+        "bus_index": 22
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_23",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_23",
+        "bus_index": 23
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_24",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_24",
+        "bus_index": 24
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_25",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_25",
+        "bus_index": 25
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_26",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_26",
+        "bus_index": 26
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_27",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_27",
+        "bus_index": 27
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_28",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_28",
+        "bus_index": 28
+      }
+    },
+    {
+      "id": "mesa_nav_op04_error_state_or_variance_29",
+      "operation_code": 4,
+      "inputs": [],
+      "output": {
+        "name": "error_state_or_variance_29",
+        "bus_index": 29
+      }
+    },
+    {
+      "id": "mesa_nav_op05_position_n",
+      "operation_code": 5,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        }
+      ],
+      "output": {
+        "name": "position_n",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op05_position_e",
+      "operation_code": 5,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        }
+      ],
+      "output": {
+        "name": "position_e",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op05_position_d",
+      "operation_code": 5,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        }
+      ],
+      "output": {
+        "name": "position_d",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "mesa_nav_op05_velocity_n",
+      "operation_code": 5,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        }
+      ],
+      "output": {
+        "name": "velocity_n",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "mesa_nav_op05_velocity_e",
+      "operation_code": 5,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        }
+      ],
+      "output": {
+        "name": "velocity_e",
+        "bus_index": 5
+      }
+    },
+    {
+      "id": "mesa_nav_op05_velocity_d",
+      "operation_code": 5,
+      "inputs": [
+        {
+          "name": "dt",
+          "bus_index": 1
+        }
+      ],
+      "output": {
+        "name": "velocity_d",
+        "bus_index": 6
+      }
+    },
+    {
+      "id": "mesa_nav_op06_covariance_propagation_ok",
+      "operation_code": 6,
+      "inputs": [
+        {
+          "name": "process_noise_diag_01",
+          "bus_index": 1
+        },
+        {
+          "name": "process_noise_diag_02",
+          "bus_index": 2
+        },
+        {
+          "name": "process_noise_diag_03",
+          "bus_index": 3
+        },
+        {
+          "name": "process_noise_diag_04",
+          "bus_index": 4
+        },
+        {
+          "name": "process_noise_diag_05",
+          "bus_index": 5
+        },
+        {
+          "name": "process_noise_diag_06",
+          "bus_index": 6
+        },
+        {
+          "name": "process_noise_diag_07",
+          "bus_index": 7
+        },
+        {
+          "name": "process_noise_diag_08",
+          "bus_index": 8
+        },
+        {
+          "name": "process_noise_diag_09",
+          "bus_index": 9
+        },
+        {
+          "name": "process_noise_diag_10",
+          "bus_index": 10
+        },
+        {
+          "name": "process_noise_diag_11",
+          "bus_index": 11
+        },
+        {
+          "name": "process_noise_diag_12",
+          "bus_index": 12
+        },
+        {
+          "name": "process_noise_diag_13",
+          "bus_index": 13
+        },
+        {
+          "name": "process_noise_diag_14",
+          "bus_index": 14
+        },
+        {
+          "name": "process_noise_diag_15",
+          "bus_index": 15
+        },
+        {
+          "name": "process_noise_diag_16",
+          "bus_index": 16
+        },
+        {
+          "name": "process_noise_diag_17",
+          "bus_index": 17
+        },
+        {
+          "name": "process_noise_diag_18",
+          "bus_index": 18
+        },
+        {
+          "name": "process_noise_diag_19",
+          "bus_index": 19
+        },
+        {
+          "name": "process_noise_diag_20",
+          "bus_index": 20
+        },
+        {
+          "name": "process_noise_diag_21",
+          "bus_index": 21
+        },
+        {
+          "name": "process_noise_diag_22",
+          "bus_index": 22
+        },
+        {
+          "name": "process_noise_diag_23",
+          "bus_index": 23
+        },
+        {
+          "name": "process_noise_diag_24",
+          "bus_index": 24
+        },
+        {
+          "name": "process_noise_diag_25",
+          "bus_index": 25
+        },
+        {
+          "name": "process_noise_diag_26",
+          "bus_index": 26
+        },
+        {
+          "name": "process_noise_diag_27",
+          "bus_index": 27
+        },
+        {
+          "name": "process_noise_diag_28",
+          "bus_index": 28
+        },
+        {
+          "name": "process_noise_diag_29",
+          "bus_index": 29
+        }
+      ],
+      "output": {
+        "name": "covariance_propagation_ok",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op07_airspeed_from_pitot",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "air_density",
+          "bus_index": 1
+        },
+        {
+          "name": "pitot_pressure",
+          "bus_index": 2
+        },
+        {
+          "name": "predicted_airspeed",
+          "bus_index": 3
+        },
+        {
+          "name": "airspeed_variance",
+          "bus_index": 4
+        }
+      ],
+      "output": {
+        "name": "airspeed_from_pitot",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op07_pitot_residual",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "air_density",
+          "bus_index": 1
+        },
+        {
+          "name": "pitot_pressure",
+          "bus_index": 2
+        },
+        {
+          "name": "predicted_airspeed",
+          "bus_index": 3
+        },
+        {
+          "name": "airspeed_variance",
+          "bus_index": 4
+        }
+      ],
+      "output": {
+        "name": "pitot_residual",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op07_pitot_nis",
+      "operation_code": 7,
+      "inputs": [
+        {
+          "name": "air_density",
+          "bus_index": 1
+        },
+        {
+          "name": "pitot_pressure",
+          "bus_index": 2
+        },
+        {
+          "name": "predicted_airspeed",
+          "bus_index": 3
+        },
+        {
+          "name": "airspeed_variance",
+          "bus_index": 4
+        }
+      ],
+      "output": {
+        "name": "pitot_nis",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "mesa_nav_op09_mag_norm_residual",
+      "operation_code": 9,
+      "inputs": [
+        {
+          "name": "mag_bx",
+          "bus_index": 1
+        },
+        {
+          "name": "mag_by",
+          "bus_index": 2
+        },
+        {
+          "name": "mag_bz",
+          "bus_index": 3
+        },
+        {
+          "name": "map_mag_n",
+          "bus_index": 4
+        },
+        {
+          "name": "map_mag_e",
+          "bus_index": 5
+        },
+        {
+          "name": "map_mag_d",
+          "bus_index": 6
+        },
+        {
+          "name": "mag_variance",
+          "bus_index": 7
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 8
+        }
+      ],
+      "output": {
+        "name": "mag_norm_residual",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op09_mag_nis",
+      "operation_code": 9,
+      "inputs": [
+        {
+          "name": "mag_bx",
+          "bus_index": 1
+        },
+        {
+          "name": "mag_by",
+          "bus_index": 2
+        },
+        {
+          "name": "mag_bz",
+          "bus_index": 3
+        },
+        {
+          "name": "map_mag_n",
+          "bus_index": 4
+        },
+        {
+          "name": "map_mag_e",
+          "bus_index": 5
+        },
+        {
+          "name": "map_mag_d",
+          "bus_index": 6
+        },
+        {
+          "name": "mag_variance",
+          "bus_index": 7
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 8
+        }
+      ],
+      "output": {
+        "name": "mag_nis",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op09_mag_anchor_valid",
+      "operation_code": 9,
+      "inputs": [
+        {
+          "name": "mag_bx",
+          "bus_index": 1
+        },
+        {
+          "name": "mag_by",
+          "bus_index": 2
+        },
+        {
+          "name": "mag_bz",
+          "bus_index": 3
+        },
+        {
+          "name": "map_mag_n",
+          "bus_index": 4
+        },
+        {
+          "name": "map_mag_e",
+          "bus_index": 5
+        },
+        {
+          "name": "map_mag_d",
+          "bus_index": 6
+        },
+        {
+          "name": "mag_variance",
+          "bus_index": 7
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 8
+        }
+      ],
+      "output": {
+        "name": "mag_anchor_valid",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "mesa_nav_op10_pressure_residual",
+      "operation_code": 10,
+      "inputs": [
+        {
+          "name": "absolute_pressure",
+          "bus_index": 1
+        },
+        {
+          "name": "log_pressure_prior",
+          "bus_index": 2
+        },
+        {
+          "name": "log_scale_height",
+          "bus_index": 3
+        },
+        {
+          "name": "pressure_grad_n",
+          "bus_index": 4
+        },
+        {
+          "name": "pressure_grad_e",
+          "bus_index": 5
+        },
+        {
+          "name": "pressure_variance",
+          "bus_index": 6
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 7
+        },
+        {
+          "name": "pressure_time_scale",
+          "bus_index": 8
+        }
+      ],
+      "output": {
+        "name": "pressure_residual",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op10_pressure_nis",
+      "operation_code": 10,
+      "inputs": [
+        {
+          "name": "absolute_pressure",
+          "bus_index": 1
+        },
+        {
+          "name": "log_pressure_prior",
+          "bus_index": 2
+        },
+        {
+          "name": "log_scale_height",
+          "bus_index": 3
+        },
+        {
+          "name": "pressure_grad_n",
+          "bus_index": 4
+        },
+        {
+          "name": "pressure_grad_e",
+          "bus_index": 5
+        },
+        {
+          "name": "pressure_variance",
+          "bus_index": 6
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 7
+        },
+        {
+          "name": "pressure_time_scale",
+          "bus_index": 8
+        }
+      ],
+      "output": {
+        "name": "pressure_nis",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op10_pressure_robust_weight",
+      "operation_code": 10,
+      "inputs": [
+        {
+          "name": "absolute_pressure",
+          "bus_index": 1
+        },
+        {
+          "name": "log_pressure_prior",
+          "bus_index": 2
+        },
+        {
+          "name": "log_scale_height",
+          "bus_index": 3
+        },
+        {
+          "name": "pressure_grad_n",
+          "bus_index": 4
+        },
+        {
+          "name": "pressure_grad_e",
+          "bus_index": 5
+        },
+        {
+          "name": "pressure_variance",
+          "bus_index": 6
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 7
+        },
+        {
+          "name": "pressure_time_scale",
+          "bus_index": 8
+        }
+      ],
+      "output": {
+        "name": "pressure_robust_weight",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "mesa_nav_op10_pressure_anchor_valid",
+      "operation_code": 10,
+      "inputs": [
+        {
+          "name": "absolute_pressure",
+          "bus_index": 1
+        },
+        {
+          "name": "log_pressure_prior",
+          "bus_index": 2
+        },
+        {
+          "name": "log_scale_height",
+          "bus_index": 3
+        },
+        {
+          "name": "pressure_grad_n",
+          "bus_index": 4
+        },
+        {
+          "name": "pressure_grad_e",
+          "bus_index": 5
+        },
+        {
+          "name": "pressure_variance",
+          "bus_index": 6
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 7
+        },
+        {
+          "name": "pressure_time_scale",
+          "bus_index": 8
+        }
+      ],
+      "output": {
+        "name": "pressure_anchor_valid",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "mesa_nav_op11_flow_update_residual",
+      "operation_code": 11,
+      "inputs": [
+        {
+          "name": "flow_anchor_residual",
+          "bus_index": 1
+        },
+        {
+          "name": "jacobian_n",
+          "bus_index": 2
+        },
+        {
+          "name": "jacobian_e",
+          "bus_index": 3
+        },
+        {
+          "name": "measurement_variance",
+          "bus_index": 4
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 5
+        }
+      ],
+      "output": {
+        "name": "flow_update_residual",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op11_flow_update_nis",
+      "operation_code": 11,
+      "inputs": [
+        {
+          "name": "flow_anchor_residual",
+          "bus_index": 1
+        },
+        {
+          "name": "jacobian_n",
+          "bus_index": 2
+        },
+        {
+          "name": "jacobian_e",
+          "bus_index": 3
+        },
+        {
+          "name": "measurement_variance",
+          "bus_index": 4
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 5
+        }
+      ],
+      "output": {
+        "name": "flow_update_nis",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op11_flow_update_weight",
+      "operation_code": 11,
+      "inputs": [
+        {
+          "name": "flow_anchor_residual",
+          "bus_index": 1
+        },
+        {
+          "name": "jacobian_n",
+          "bus_index": 2
+        },
+        {
+          "name": "jacobian_e",
+          "bus_index": 3
+        },
+        {
+          "name": "measurement_variance",
+          "bus_index": 4
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 5
+        }
+      ],
+      "output": {
+        "name": "flow_update_weight",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "mesa_nav_op11_flow_update_valid",
+      "operation_code": 11,
+      "inputs": [
+        {
+          "name": "flow_anchor_residual",
+          "bus_index": 1
+        },
+        {
+          "name": "jacobian_n",
+          "bus_index": 2
+        },
+        {
+          "name": "jacobian_e",
+          "bus_index": 3
+        },
+        {
+          "name": "measurement_variance",
+          "bus_index": 4
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 5
+        }
+      ],
+      "output": {
+        "name": "flow_update_valid",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "mesa_nav_op12_mag_update_residual",
+      "operation_code": 12,
+      "inputs": [
+        {
+          "name": "mag_anchor_residual",
+          "bus_index": 1
+        },
+        {
+          "name": "jacobian_n",
+          "bus_index": 2
+        },
+        {
+          "name": "jacobian_e",
+          "bus_index": 3
+        },
+        {
+          "name": "measurement_variance",
+          "bus_index": 4
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 5
+        }
+      ],
+      "output": {
+        "name": "mag_update_residual",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op12_mag_update_nis",
+      "operation_code": 12,
+      "inputs": [
+        {
+          "name": "mag_anchor_residual",
+          "bus_index": 1
+        },
+        {
+          "name": "jacobian_n",
+          "bus_index": 2
+        },
+        {
+          "name": "jacobian_e",
+          "bus_index": 3
+        },
+        {
+          "name": "measurement_variance",
+          "bus_index": 4
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 5
+        }
+      ],
+      "output": {
+        "name": "mag_update_nis",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op12_mag_update_weight",
+      "operation_code": 12,
+      "inputs": [
+        {
+          "name": "mag_anchor_residual",
+          "bus_index": 1
+        },
+        {
+          "name": "jacobian_n",
+          "bus_index": 2
+        },
+        {
+          "name": "jacobian_e",
+          "bus_index": 3
+        },
+        {
+          "name": "measurement_variance",
+          "bus_index": 4
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 5
+        }
+      ],
+      "output": {
+        "name": "mag_update_weight",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "mesa_nav_op12_mag_update_valid",
+      "operation_code": 12,
+      "inputs": [
+        {
+          "name": "mag_anchor_residual",
+          "bus_index": 1
+        },
+        {
+          "name": "jacobian_n",
+          "bus_index": 2
+        },
+        {
+          "name": "jacobian_e",
+          "bus_index": 3
+        },
+        {
+          "name": "measurement_variance",
+          "bus_index": 4
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 5
+        }
+      ],
+      "output": {
+        "name": "mag_update_valid",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "mesa_nav_op13_pressure_update_residual",
+      "operation_code": 13,
+      "inputs": [
+        {
+          "name": "pressure_anchor_residual",
+          "bus_index": 1
+        },
+        {
+          "name": "jacobian_n",
+          "bus_index": 2
+        },
+        {
+          "name": "jacobian_e",
+          "bus_index": 3
+        },
+        {
+          "name": "measurement_variance",
+          "bus_index": 4
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 5
+        }
+      ],
+      "output": {
+        "name": "pressure_update_residual",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op13_pressure_update_nis",
+      "operation_code": 13,
+      "inputs": [
+        {
+          "name": "pressure_anchor_residual",
+          "bus_index": 1
+        },
+        {
+          "name": "jacobian_n",
+          "bus_index": 2
+        },
+        {
+          "name": "jacobian_e",
+          "bus_index": 3
+        },
+        {
+          "name": "measurement_variance",
+          "bus_index": 4
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 5
+        }
+      ],
+      "output": {
+        "name": "pressure_update_nis",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op13_pressure_update_weight",
+      "operation_code": 13,
+      "inputs": [
+        {
+          "name": "pressure_anchor_residual",
+          "bus_index": 1
+        },
+        {
+          "name": "jacobian_n",
+          "bus_index": 2
+        },
+        {
+          "name": "jacobian_e",
+          "bus_index": 3
+        },
+        {
+          "name": "measurement_variance",
+          "bus_index": 4
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 5
+        }
+      ],
+      "output": {
+        "name": "pressure_update_weight",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "mesa_nav_op13_pressure_update_valid",
+      "operation_code": 13,
+      "inputs": [
+        {
+          "name": "pressure_anchor_residual",
+          "bus_index": 1
+        },
+        {
+          "name": "jacobian_n",
+          "bus_index": 2
+        },
+        {
+          "name": "jacobian_e",
+          "bus_index": 3
+        },
+        {
+          "name": "measurement_variance",
+          "bus_index": 4
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 5
+        }
+      ],
+      "output": {
+        "name": "pressure_update_valid",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "mesa_nav_op14_nis",
+      "operation_code": 14,
+      "inputs": [
+        {
+          "name": "residual",
+          "bus_index": 1
+        },
+        {
+          "name": "innovation_variance",
+          "bus_index": 2
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 3
+        },
+        {
+          "name": "student_nu",
+          "bus_index": 4
+        }
+      ],
+      "output": {
+        "name": "nis",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op14_robust_weight",
+      "operation_code": 14,
+      "inputs": [
+        {
+          "name": "residual",
+          "bus_index": 1
+        },
+        {
+          "name": "innovation_variance",
+          "bus_index": 2
+        },
+        {
+          "name": "nis_gate",
+          "bus_index": 3
+        },
+        {
+          "name": "student_nu",
+          "bus_index": 4
+        }
+      ],
+      "output": {
+        "name": "robust_weight",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op15_information_lambda_min",
+      "operation_code": 15,
+      "inputs": [
+        {
+          "name": "min_information_eigenvalue",
+          "bus_index": 1
+        },
+        {
+          "name": "min_condition_score",
+          "bus_index": 2
+        }
+      ],
+      "output": {
+        "name": "information_lambda_min",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op15_information_lambda_max",
+      "operation_code": 15,
+      "inputs": [
+        {
+          "name": "min_information_eigenvalue",
+          "bus_index": 1
+        },
+        {
+          "name": "min_condition_score",
+          "bus_index": 2
+        }
+      ],
+      "output": {
+        "name": "information_lambda_max",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op15_conditional_observability_score",
+      "operation_code": 15,
+      "inputs": [
+        {
+          "name": "min_information_eigenvalue",
+          "bus_index": 1
+        },
+        {
+          "name": "min_condition_score",
+          "bus_index": 2
+        }
+      ],
+      "output": {
+        "name": "conditional_observability_score",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "mesa_nav_op15_information_determinant",
+      "operation_code": 15,
+      "inputs": [
+        {
+          "name": "min_information_eigenvalue",
+          "bus_index": 1
+        },
+        {
+          "name": "min_condition_score",
+          "bus_index": 2
+        }
+      ],
+      "output": {
+        "name": "information_determinant",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "mesa_nav_op15_observable_2d",
+      "operation_code": 15,
+      "inputs": [
+        {
+          "name": "min_information_eigenvalue",
+          "bus_index": 1
+        },
+        {
+          "name": "min_condition_score",
+          "bus_index": 2
+        }
+      ],
+      "output": {
+        "name": "observable_2d",
+        "bus_index": 5
+      }
+    },
+    {
+      "id": "mesa_nav_op16_rls_parameter",
+      "operation_code": 16,
+      "inputs": [
+        {
+          "name": "parameter_index",
+          "bus_index": 1
+        },
+        {
+          "name": "basis_value",
+          "bus_index": 2
+        },
+        {
+          "name": "measurement",
+          "bus_index": 3
+        },
+        {
+          "name": "forgetting_factor",
+          "bus_index": 4
+        }
+      ],
+      "output": {
+        "name": "rls_parameter",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op16_rls_variance",
+      "operation_code": 16,
+      "inputs": [
+        {
+          "name": "parameter_index",
+          "bus_index": 1
+        },
+        {
+          "name": "basis_value",
+          "bus_index": 2
+        },
+        {
+          "name": "measurement",
+          "bus_index": 3
+        },
+        {
+          "name": "forgetting_factor",
+          "bus_index": 4
+        }
+      ],
+      "output": {
+        "name": "rls_variance",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op16_rls_residual",
+      "operation_code": 16,
+      "inputs": [
+        {
+          "name": "parameter_index",
+          "bus_index": 1
+        },
+        {
+          "name": "basis_value",
+          "bus_index": 2
+        },
+        {
+          "name": "measurement",
+          "bus_index": 3
+        },
+        {
+          "name": "forgetting_factor",
+          "bus_index": 4
+        }
+      ],
+      "output": {
+        "name": "rls_residual",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "mesa_nav_op17_background_filter_gain",
+      "operation_code": 17,
+      "inputs": [
+        {
+          "name": "background_time_constant",
+          "bus_index": 1
+        }
+      ],
+      "output": {
+        "name": "background_filter_gain",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op18_revisit_score",
+      "operation_code": 18,
+      "inputs": [
+        {
+          "name": "descriptor_01",
+          "bus_index": 1
+        },
+        {
+          "name": "descriptor_02",
+          "bus_index": 2
+        },
+        {
+          "name": "descriptor_03",
+          "bus_index": 3
+        },
+        {
+          "name": "descriptor_04",
+          "bus_index": 4
+        },
+        {
+          "name": "descriptor_05",
+          "bus_index": 5
+        },
+        {
+          "name": "descriptor_06",
+          "bus_index": 6
+        },
+        {
+          "name": "descriptor_07",
+          "bus_index": 7
+        },
+        {
+          "name": "descriptor_08",
+          "bus_index": 8
+        },
+        {
+          "name": "descriptor_09",
+          "bus_index": 9
+        },
+        {
+          "name": "descriptor_10",
+          "bus_index": 10
+        },
+        {
+          "name": "descriptor_11",
+          "bus_index": 11
+        },
+        {
+          "name": "descriptor_12",
+          "bus_index": 12
+        },
+        {
+          "name": "descriptor_13",
+          "bus_index": 13
+        },
+        {
+          "name": "descriptor_14",
+          "bus_index": 14
+        },
+        {
+          "name": "descriptor_15",
+          "bus_index": 15
+        },
+        {
+          "name": "descriptor_16",
+          "bus_index": 16
+        },
+        {
+          "name": "descriptor_scale",
+          "bus_index": 17
+        },
+        {
+          "name": "acceptance_threshold",
+          "bus_index": 18
+        },
+        {
+          "name": "store_descriptor",
+          "bus_index": 19
+        },
+        {
+          "name": "relative_displacement_n",
+          "bus_index": 20
+        },
+        {
+          "name": "relative_displacement_e",
+          "bus_index": 21
+        }
+      ],
+      "output": {
+        "name": "revisit_score",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op18_revisit_accepted",
+      "operation_code": 18,
+      "inputs": [
+        {
+          "name": "descriptor_01",
+          "bus_index": 1
+        },
+        {
+          "name": "descriptor_02",
+          "bus_index": 2
+        },
+        {
+          "name": "descriptor_03",
+          "bus_index": 3
+        },
+        {
+          "name": "descriptor_04",
+          "bus_index": 4
+        },
+        {
+          "name": "descriptor_05",
+          "bus_index": 5
+        },
+        {
+          "name": "descriptor_06",
+          "bus_index": 6
+        },
+        {
+          "name": "descriptor_07",
+          "bus_index": 7
+        },
+        {
+          "name": "descriptor_08",
+          "bus_index": 8
+        },
+        {
+          "name": "descriptor_09",
+          "bus_index": 9
+        },
+        {
+          "name": "descriptor_10",
+          "bus_index": 10
+        },
+        {
+          "name": "descriptor_11",
+          "bus_index": 11
+        },
+        {
+          "name": "descriptor_12",
+          "bus_index": 12
+        },
+        {
+          "name": "descriptor_13",
+          "bus_index": 13
+        },
+        {
+          "name": "descriptor_14",
+          "bus_index": 14
+        },
+        {
+          "name": "descriptor_15",
+          "bus_index": 15
+        },
+        {
+          "name": "descriptor_16",
+          "bus_index": 16
+        },
+        {
+          "name": "descriptor_scale",
+          "bus_index": 17
+        },
+        {
+          "name": "acceptance_threshold",
+          "bus_index": 18
+        },
+        {
+          "name": "store_descriptor",
+          "bus_index": 19
+        },
+        {
+          "name": "relative_displacement_n",
+          "bus_index": 20
+        },
+        {
+          "name": "relative_displacement_e",
+          "bus_index": 21
+        }
+      ],
+      "output": {
+        "name": "revisit_accepted",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op18_pseudo_displacement_n",
+      "operation_code": 18,
+      "inputs": [
+        {
+          "name": "descriptor_01",
+          "bus_index": 1
+        },
+        {
+          "name": "descriptor_02",
+          "bus_index": 2
+        },
+        {
+          "name": "descriptor_03",
+          "bus_index": 3
+        },
+        {
+          "name": "descriptor_04",
+          "bus_index": 4
+        },
+        {
+          "name": "descriptor_05",
+          "bus_index": 5
+        },
+        {
+          "name": "descriptor_06",
+          "bus_index": 6
+        },
+        {
+          "name": "descriptor_07",
+          "bus_index": 7
+        },
+        {
+          "name": "descriptor_08",
+          "bus_index": 8
+        },
+        {
+          "name": "descriptor_09",
+          "bus_index": 9
+        },
+        {
+          "name": "descriptor_10",
+          "bus_index": 10
+        },
+        {
+          "name": "descriptor_11",
+          "bus_index": 11
+        },
+        {
+          "name": "descriptor_12",
+          "bus_index": 12
+        },
+        {
+          "name": "descriptor_13",
+          "bus_index": 13
+        },
+        {
+          "name": "descriptor_14",
+          "bus_index": 14
+        },
+        {
+          "name": "descriptor_15",
+          "bus_index": 15
+        },
+        {
+          "name": "descriptor_16",
+          "bus_index": 16
+        },
+        {
+          "name": "descriptor_scale",
+          "bus_index": 17
+        },
+        {
+          "name": "acceptance_threshold",
+          "bus_index": 18
+        },
+        {
+          "name": "store_descriptor",
+          "bus_index": 19
+        },
+        {
+          "name": "relative_displacement_n",
+          "bus_index": 20
+        },
+        {
+          "name": "relative_displacement_e",
+          "bus_index": 21
+        }
+      ],
+      "output": {
+        "name": "pseudo_displacement_n",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "mesa_nav_op18_pseudo_displacement_e",
+      "operation_code": 18,
+      "inputs": [
+        {
+          "name": "descriptor_01",
+          "bus_index": 1
+        },
+        {
+          "name": "descriptor_02",
+          "bus_index": 2
+        },
+        {
+          "name": "descriptor_03",
+          "bus_index": 3
+        },
+        {
+          "name": "descriptor_04",
+          "bus_index": 4
+        },
+        {
+          "name": "descriptor_05",
+          "bus_index": 5
+        },
+        {
+          "name": "descriptor_06",
+          "bus_index": 6
+        },
+        {
+          "name": "descriptor_07",
+          "bus_index": 7
+        },
+        {
+          "name": "descriptor_08",
+          "bus_index": 8
+        },
+        {
+          "name": "descriptor_09",
+          "bus_index": 9
+        },
+        {
+          "name": "descriptor_10",
+          "bus_index": 10
+        },
+        {
+          "name": "descriptor_11",
+          "bus_index": 11
+        },
+        {
+          "name": "descriptor_12",
+          "bus_index": 12
+        },
+        {
+          "name": "descriptor_13",
+          "bus_index": 13
+        },
+        {
+          "name": "descriptor_14",
+          "bus_index": 14
+        },
+        {
+          "name": "descriptor_15",
+          "bus_index": 15
+        },
+        {
+          "name": "descriptor_16",
+          "bus_index": 16
+        },
+        {
+          "name": "descriptor_scale",
+          "bus_index": 17
+        },
+        {
+          "name": "acceptance_threshold",
+          "bus_index": 18
+        },
+        {
+          "name": "store_descriptor",
+          "bus_index": 19
+        },
+        {
+          "name": "relative_displacement_n",
+          "bus_index": 20
+        },
+        {
+          "name": "relative_displacement_e",
+          "bus_index": 21
+        }
+      ],
+      "output": {
+        "name": "pseudo_displacement_e",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "mesa_nav_op19_best_candidate_index",
+      "operation_code": 19,
+      "inputs": [
+        {
+          "name": "info_11",
+          "bus_index": 1
+        },
+        {
+          "name": "info_12",
+          "bus_index": 2
+        },
+        {
+          "name": "info_22",
+          "bus_index": 3
+        },
+        {
+          "name": "candidate_count",
+          "bus_index": 4
+        },
+        {
+          "name": "candidate_01_info11",
+          "bus_index": 5
+        },
+        {
+          "name": "candidate_01_info12",
+          "bus_index": 6
+        },
+        {
+          "name": "candidate_01_info22",
+          "bus_index": 7
+        },
+        {
+          "name": "candidate_02_info11",
+          "bus_index": 8
+        },
+        {
+          "name": "candidate_02_info12",
+          "bus_index": 9
+        },
+        {
+          "name": "candidate_02_info22",
+          "bus_index": 10
+        },
+        {
+          "name": "candidate_03_info11",
+          "bus_index": 11
+        },
+        {
+          "name": "candidate_03_info12",
+          "bus_index": 12
+        },
+        {
+          "name": "candidate_03_info22",
+          "bus_index": 13
+        },
+        {
+          "name": "candidate_04_info11",
+          "bus_index": 14
+        },
+        {
+          "name": "candidate_04_info12",
+          "bus_index": 15
+        },
+        {
+          "name": "candidate_04_info22",
+          "bus_index": 16
+        },
+        {
+          "name": "candidate_05_info11",
+          "bus_index": 17
+        },
+        {
+          "name": "candidate_05_info12",
+          "bus_index": 18
+        },
+        {
+          "name": "candidate_05_info22",
+          "bus_index": 19
+        },
+        {
+          "name": "candidate_06_info11",
+          "bus_index": 20
+        },
+        {
+          "name": "candidate_06_info12",
+          "bus_index": 21
+        },
+        {
+          "name": "candidate_06_info22",
+          "bus_index": 22
+        },
+        {
+          "name": "candidate_07_info11",
+          "bus_index": 23
+        },
+        {
+          "name": "candidate_07_info12",
+          "bus_index": 24
+        },
+        {
+          "name": "candidate_07_info22",
+          "bus_index": 25
+        },
+        {
+          "name": "candidate_08_info11",
+          "bus_index": 26
+        },
+        {
+          "name": "candidate_08_info12",
+          "bus_index": 27
+        },
+        {
+          "name": "candidate_08_info22",
+          "bus_index": 28
+        },
+        {
+          "name": "candidate_09_info11",
+          "bus_index": 29
+        },
+        {
+          "name": "candidate_09_info12",
+          "bus_index": 30
+        },
+        {
+          "name": "candidate_09_info22",
+          "bus_index": 31
+        },
+        {
+          "name": "candidate_10_info11",
+          "bus_index": 32
+        },
+        {
+          "name": "candidate_10_info12",
+          "bus_index": 33
+        },
+        {
+          "name": "candidate_10_info22",
+          "bus_index": 34
+        },
+        {
+          "name": "candidate_11_info11",
+          "bus_index": 35
+        },
+        {
+          "name": "candidate_11_info12",
+          "bus_index": 36
+        },
+        {
+          "name": "candidate_11_info22",
+          "bus_index": 37
+        },
+        {
+          "name": "candidate_12_info11",
+          "bus_index": 38
+        },
+        {
+          "name": "candidate_12_info12",
+          "bus_index": 39
+        },
+        {
+          "name": "candidate_12_info22",
+          "bus_index": 40
+        },
+        {
+          "name": "candidate_13_info11",
+          "bus_index": 41
+        },
+        {
+          "name": "candidate_13_info12",
+          "bus_index": 42
+        },
+        {
+          "name": "candidate_13_info22",
+          "bus_index": 43
+        },
+        {
+          "name": "candidate_14_info11",
+          "bus_index": 44
+        },
+        {
+          "name": "candidate_14_info12",
+          "bus_index": 45
+        },
+        {
+          "name": "candidate_14_info22",
+          "bus_index": 46
+        },
+        {
+          "name": "candidate_15_info11",
+          "bus_index": 47
+        },
+        {
+          "name": "candidate_15_info12",
+          "bus_index": 48
+        },
+        {
+          "name": "candidate_15_info22",
+          "bus_index": 49
+        },
+        {
+          "name": "candidate_16_info11",
+          "bus_index": 50
+        },
+        {
+          "name": "candidate_16_info12",
+          "bus_index": 51
+        },
+        {
+          "name": "candidate_16_info22",
+          "bus_index": 52
+        },
+        {
+          "name": "candidate_17_info11",
+          "bus_index": 53
+        },
+        {
+          "name": "candidate_17_info12",
+          "bus_index": 54
+        },
+        {
+          "name": "candidate_17_info22",
+          "bus_index": 55
+        },
+        {
+          "name": "candidate_18_info11",
+          "bus_index": 56
+        },
+        {
+          "name": "candidate_18_info12",
+          "bus_index": 57
+        },
+        {
+          "name": "candidate_18_info22",
+          "bus_index": 58
+        },
+        {
+          "name": "candidate_19_info11",
+          "bus_index": 59
+        },
+        {
+          "name": "candidate_19_info12",
+          "bus_index": 60
+        },
+        {
+          "name": "candidate_19_info22",
+          "bus_index": 61
+        },
+        {
+          "name": "candidate_20_info11",
+          "bus_index": 62
+        },
+        {
+          "name": "candidate_20_info12",
+          "bus_index": 63
+        },
+        {
+          "name": "candidate_20_info22",
+          "bus_index": 64
+        }
+      ],
+      "output": {
+        "name": "best_candidate_index",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op19_best_lambda_min",
+      "operation_code": 19,
+      "inputs": [
+        {
+          "name": "info_11",
+          "bus_index": 1
+        },
+        {
+          "name": "info_12",
+          "bus_index": 2
+        },
+        {
+          "name": "info_22",
+          "bus_index": 3
+        },
+        {
+          "name": "candidate_count",
+          "bus_index": 4
+        },
+        {
+          "name": "candidate_01_info11",
+          "bus_index": 5
+        },
+        {
+          "name": "candidate_01_info12",
+          "bus_index": 6
+        },
+        {
+          "name": "candidate_01_info22",
+          "bus_index": 7
+        },
+        {
+          "name": "candidate_02_info11",
+          "bus_index": 8
+        },
+        {
+          "name": "candidate_02_info12",
+          "bus_index": 9
+        },
+        {
+          "name": "candidate_02_info22",
+          "bus_index": 10
+        },
+        {
+          "name": "candidate_03_info11",
+          "bus_index": 11
+        },
+        {
+          "name": "candidate_03_info12",
+          "bus_index": 12
+        },
+        {
+          "name": "candidate_03_info22",
+          "bus_index": 13
+        },
+        {
+          "name": "candidate_04_info11",
+          "bus_index": 14
+        },
+        {
+          "name": "candidate_04_info12",
+          "bus_index": 15
+        },
+        {
+          "name": "candidate_04_info22",
+          "bus_index": 16
+        },
+        {
+          "name": "candidate_05_info11",
+          "bus_index": 17
+        },
+        {
+          "name": "candidate_05_info12",
+          "bus_index": 18
+        },
+        {
+          "name": "candidate_05_info22",
+          "bus_index": 19
+        },
+        {
+          "name": "candidate_06_info11",
+          "bus_index": 20
+        },
+        {
+          "name": "candidate_06_info12",
+          "bus_index": 21
+        },
+        {
+          "name": "candidate_06_info22",
+          "bus_index": 22
+        },
+        {
+          "name": "candidate_07_info11",
+          "bus_index": 23
+        },
+        {
+          "name": "candidate_07_info12",
+          "bus_index": 24
+        },
+        {
+          "name": "candidate_07_info22",
+          "bus_index": 25
+        },
+        {
+          "name": "candidate_08_info11",
+          "bus_index": 26
+        },
+        {
+          "name": "candidate_08_info12",
+          "bus_index": 27
+        },
+        {
+          "name": "candidate_08_info22",
+          "bus_index": 28
+        },
+        {
+          "name": "candidate_09_info11",
+          "bus_index": 29
+        },
+        {
+          "name": "candidate_09_info12",
+          "bus_index": 30
+        },
+        {
+          "name": "candidate_09_info22",
+          "bus_index": 31
+        },
+        {
+          "name": "candidate_10_info11",
+          "bus_index": 32
+        },
+        {
+          "name": "candidate_10_info12",
+          "bus_index": 33
+        },
+        {
+          "name": "candidate_10_info22",
+          "bus_index": 34
+        },
+        {
+          "name": "candidate_11_info11",
+          "bus_index": 35
+        },
+        {
+          "name": "candidate_11_info12",
+          "bus_index": 36
+        },
+        {
+          "name": "candidate_11_info22",
+          "bus_index": 37
+        },
+        {
+          "name": "candidate_12_info11",
+          "bus_index": 38
+        },
+        {
+          "name": "candidate_12_info12",
+          "bus_index": 39
+        },
+        {
+          "name": "candidate_12_info22",
+          "bus_index": 40
+        },
+        {
+          "name": "candidate_13_info11",
+          "bus_index": 41
+        },
+        {
+          "name": "candidate_13_info12",
+          "bus_index": 42
+        },
+        {
+          "name": "candidate_13_info22",
+          "bus_index": 43
+        },
+        {
+          "name": "candidate_14_info11",
+          "bus_index": 44
+        },
+        {
+          "name": "candidate_14_info12",
+          "bus_index": 45
+        },
+        {
+          "name": "candidate_14_info22",
+          "bus_index": 46
+        },
+        {
+          "name": "candidate_15_info11",
+          "bus_index": 47
+        },
+        {
+          "name": "candidate_15_info12",
+          "bus_index": 48
+        },
+        {
+          "name": "candidate_15_info22",
+          "bus_index": 49
+        },
+        {
+          "name": "candidate_16_info11",
+          "bus_index": 50
+        },
+        {
+          "name": "candidate_16_info12",
+          "bus_index": 51
+        },
+        {
+          "name": "candidate_16_info22",
+          "bus_index": 52
+        },
+        {
+          "name": "candidate_17_info11",
+          "bus_index": 53
+        },
+        {
+          "name": "candidate_17_info12",
+          "bus_index": 54
+        },
+        {
+          "name": "candidate_17_info22",
+          "bus_index": 55
+        },
+        {
+          "name": "candidate_18_info11",
+          "bus_index": 56
+        },
+        {
+          "name": "candidate_18_info12",
+          "bus_index": 57
+        },
+        {
+          "name": "candidate_18_info22",
+          "bus_index": 58
+        },
+        {
+          "name": "candidate_19_info11",
+          "bus_index": 59
+        },
+        {
+          "name": "candidate_19_info12",
+          "bus_index": 60
+        },
+        {
+          "name": "candidate_19_info22",
+          "bus_index": 61
+        },
+        {
+          "name": "candidate_20_info11",
+          "bus_index": 62
+        },
+        {
+          "name": "candidate_20_info12",
+          "bus_index": 63
+        },
+        {
+          "name": "candidate_20_info22",
+          "bus_index": 64
+        }
+      ],
+      "output": {
+        "name": "best_lambda_min",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_01",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_01",
+        "bus_index": 1
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_02",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_02",
+        "bus_index": 2
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_03",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_03",
+        "bus_index": 3
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_04",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_04",
+        "bus_index": 4
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_05",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_05",
+        "bus_index": 5
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_06",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_06",
+        "bus_index": 6
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_07",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_07",
+        "bus_index": 7
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_08",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_08",
+        "bus_index": 8
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_09",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_09",
+        "bus_index": 9
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_10",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_10",
+        "bus_index": 10
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_11",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_11",
+        "bus_index": 11
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_12",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_12",
+        "bus_index": 12
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_13",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_13",
+        "bus_index": 13
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_14",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_14",
+        "bus_index": 14
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_15",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_15",
+        "bus_index": 15
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_16",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_16",
+        "bus_index": 16
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_17",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_17",
+        "bus_index": 17
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_18",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_18",
+        "bus_index": 18
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_19",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_19",
+        "bus_index": 19
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_20",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_20",
+        "bus_index": 20
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_21",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_21",
+        "bus_index": 21
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_22",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_22",
+        "bus_index": 22
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_23",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_23",
+        "bus_index": 23
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_24",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_24",
+        "bus_index": 24
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_25",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_25",
+        "bus_index": 25
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_26",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_26",
+        "bus_index": 26
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_27",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_27",
+        "bus_index": 27
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_28",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_28",
+        "bus_index": 28
+      }
+    },
+    {
+      "id": "mesa_nav_op21_covariance_diagonal_29",
+      "operation_code": 21,
+      "inputs": [],
+      "output": {
+        "name": "covariance_diagonal_29",
+        "bus_index": 29
+      }
+    }
+  ],
+  "operation_count": 24,
+  "formalism_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141.md",
+  "interface_revision": 2,
+  "implementation_profile": "Phoenix dual-rotor tailsitter VTOL; native C++ FMI 2.0 Co-Simulation; edge-oriented",
+  "active_aircraft_config": "config/phoenix_drone_v3.yaml",
+  "removed_operation_codes": {
+    "2": "Generic contract echo is not a formula in MESA-NAV v20260820_1141.",
+    "8": "Airflow-relative pseudo-sensor is explicitly removed by MESA-NAV v20260820_1141; physical ULTRASONIC_WIND is operation 23.",
+    "20": "Fixed-wing-only ungated mechanical constraint is superseded by mode-aware VTOL operation 24."
+  },
+  "active_operation_codes": [
+    1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "max_operation_code": 27,
+  "cleanup_profile": "formalism_1141_only"
+}

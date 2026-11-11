@@ -1,0 +1,40 @@
+{
+  "test": "STAGE6_LAYER7_EVIDENCE_BOUNDARY",
+  "source": "TDDT_integrated_fix_v5.tar.gz",
+  "scope": "SOURCE_CONTRACT_LOCAL_ONLY",
+  "new_guard_tests": {
+    "passed": 22,
+    "failed": 0,
+    "exit_code": 0
+  },
+  "full_pytest": {
+    "passed": 69,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0
+  },
+  "clean_extract_test": "PASS",
+  "site_integration_test": "PENDING",
+  "modifications": [
+    "src/tddt_layer7/native_pair.py",
+    "src/tddt_layer7/evidence.py",
+    "src/tddt_layer7/pipeline.py",
+    "tests/test_stage6_native_pair_boundary.py",
+    "scripts/validate_stage6_native_pair.py",
+    "scripts/test_stage6_local.sh"
+  ],
+  "legacy_field_inputs": "LEGACY_MODEL_OR_DIAGNOSTIC_ONLY",
+  "native_pairs": "PAIR_COMPARABLE_DIAGNOSTIC_ONLY_NEVER_CERTIFIED",
+  "native_controller_certified": false,
+  "dynamic_validation_certified": false,
+  "operational_commit_authorized_by_stage6": false,
+  "flight_authorized": false,
+  "runtime_data_included": false,
+  "external_tdoc_adapter_modified": false,
+  "limitations": [
+    "no independent native source authentication",
+    "no native ArduPilot controller predictor",
+    "no full physical FF certificate",
+    "no actual flight or GNSS-denied certification"
+  ]
+}

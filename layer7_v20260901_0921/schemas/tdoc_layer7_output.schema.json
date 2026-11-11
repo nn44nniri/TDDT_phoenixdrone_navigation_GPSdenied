@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TDDT Layer 7 -> TDOC output",
+  "type": "object",
+  "required": ["transaction_id", "mode", "evidence_ok", "route", "candidate", "validation", "commit", "compliance", "feedback_layer2", "feedback_layer31", "feedback_layer32", "feedback_layer33"],
+  "properties": {
+    "transaction_id": {"type": "string"},
+    "mode": {"enum": ["ACTIVE", "REJECT", "COLLECT_ONLY", "LOCKED", "DEGRADED"]},
+    "evidence_ok": {"type": "boolean"},
+    "feedback_layer2": {"$ref": "#/$defs/l2"},
+    "feedback_layer31": {"$ref": "#/$defs/l31"},
+    "feedback_layer32": {"$ref": "#/$defs/l32"},
+    "feedback_layer33": {"$ref": "#/$defs/l33"}
+  },
+  "$defs": {
+    "l2": {
+      "type": "object",
+      "properties": {
+        "StateResidualEvidence": {
+          "type": "object",
+          "additionalProperties": {"type": "number"},
+          "description": "Same-transaction prediction-minus-realization residual evidence; never an actuator or direct state write."
+        }
+      },
+      "anyOf": [
+        {"maxProperties": 0},
+        {"required": ["DeltaX","DeltaB","DeltaTheta","DeltaU","DeltaQ","DeltaV","DeltaR","TEP_candidate","Reason","rho_attr","nu_new"]}
+      ]
+    },
+    "l31": {
+      "type": "object",
+      "anyOf": [
+        {"maxProperties": 0},
+        {"required": ["DeltaT_unit","DeltaT_frame","Delta_h","DeltaSigma_STD","DeltaSemanticMap","DeltaFreshnessPolicy","Reason","nu_new"]}
+      ]
+    },
+    "l32": {
+      "type": "object",
+      "anyOf": [
+        {"maxProperties": 0},
+        {"required": ["DeltaW","DeltaK","G_candidate","DeltaEpsilon","DeltaOmega","DeltaLambda_C","DeltaCyclePolicy","Reason","nu_new"]}
+      ]
+    },
+    "l33": {
+      "type": "object",
+      "anyOf": [
+        {"maxProperties": 0},
+        {"required": ["DeltaDelta_t","DeltaDelta_t_m","DeltaDelta_T","DeltaFreshnessThreshold","DeltaAggregationPolicy","DeltaCommitBoundary","DeltaGammaEnvelope","Reason","nu_new"]}
+      ]
+    }
+  }
+}

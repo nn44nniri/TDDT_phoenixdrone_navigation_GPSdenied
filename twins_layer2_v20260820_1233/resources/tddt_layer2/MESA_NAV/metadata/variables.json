@@ -1,0 +1,28 @@
+{
+  "schema_version": "2.0",
+  "twin_id": "MESA_NAV",
+  "state_examples": [
+    "rN",
+    "rE",
+    "rD",
+    "vN",
+    "vE",
+    "vD",
+    "heading",
+    "flightpath",
+    "airspeed",
+    "wN",
+    "wE",
+    "wD",
+    "bu_n",
+    "bu_e",
+    "bu_d",
+    "mode_lambda_w"
+  ],
+  "signal_schema": "../../signal_schema.json",
+  "formula_catalog": "../../formula_catalog.json",
+  "note": "All scalar FMI units/frames remain defined by the embedded signal_schema.json; this file defines Layer-2 state semantics.",
+  "deprecated_semantics": [
+    "flow_bx/flow_by/flow_bz are retained as ABI-compatible legacy variables but do not act as the physical 3-D wind sensor in Phoenix-FA"
+  ]
+}

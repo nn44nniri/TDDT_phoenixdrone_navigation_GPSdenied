@@ -1,0 +1,425 @@
+--- a/tests/test_online_guidance_sequence_v1742.py
++++ b/tests/test_online_guidance_sequence_v1742.py
+@@ -45,33 +45,39 @@
+ def adapter(tmp_path):
+     cfg=TDOCConfig.from_yaml(ROOT/'configs/tdoc.yaml')
+     cfg.data['runtime']['root']=str(tmp_path/'runtime')
+-    pr=tmp_path/'pt_lib_v20260914_1308'; pr.mkdir(parents=True,exist_ok=True)
+-    os.environ['TDDT_PTLIB_ROOT']=str(pr)
++    # Native fixture does not activate the retired PT_LIB environment root.
+     return Layer6OnlineAdapter(cfg,L5())
+ 
+ 
+-def test_tdoc_policy_is_canonical_and_fail_closed(tmp_path):
+-    a=adapter(tmp_path); p=a._online_guidance_policy()
+-    assert p['owner']=='TDOC/RuntimeScheduler'
+-    assert p['safety']['fail_closed'] is True
+-    assert p['safety']['direct_pwm'] is False
+-    assert p['safety']['direct_jsbsim_actuator_injection'] is False
+-    assert p['safety']['mixer_owner']=='ArduPilotController.fmu'
+-    assert p['sequence'][:3]==['prepare','set_initial_geospatial_state','connect']
+-    assert p['operations']['precheck']['require_ready'] is True
+-    assert p['operations']['acquire_trim']['require_ready'] is True
++def test_native_control_session_is_canonical_and_fail_closed(tmp_path):
++    a=adapter(tmp_path)
++    assert a.SOURCE == 'Layer6/GUI/MAVLink'
++    assert a.MODES == ('ONLINE_JSBSIM',)
++    assert not hasattr(a,'_online_guidance_policy')
++    assert not hasattr(a,'_open_runtime_session')
++    assert not hasattr(a,'_make_ptlib')
++    assert a._option('transport',None) is None or a.config.get('layers.layer6.online.transport')=='Layer6Client_GUI_MAVLink'
++    assert a.config.get('layers.layer6.online.direct_pwm') is False
++    assert a.config.get('layers.layer6.online.execution_rate_hz')==30.0
+ 
+ 
+-def test_tdoc_executes_public_preparation_order(tmp_path,monkeypatch):
+-    a=adapter(tmp_path); pt=PT(); a._pt=pt
+-    monkeypatch.setattr(a,'_ptlib_log_target',lambda: tmp_path/'logs')
+-    monkeypatch.setattr(a,'_pin_ptlib_logging',lambda _pt: {'ok':True,'directory':str(tmp_path/'logs')})
+-    monkeypatch.setattr(a,'_ptlib_log_evidence',lambda _pt=None: {'ok':True})
+-    a._session_open=False
+-    session=a._open_runtime_session(pt)
+-    assert pt.calls[:3]==['prepare','set_initial_geospatial_state','connect']
+-    prep=a._execute_tdoc_control_preparation(pt)
+-    assert prep['owner']=='TDOC/RuntimeScheduler' and prep['ready'] is True
+-    assert pt.calls==['prepare','set_initial_geospatial_state','connect','precheck','set_mode','set_home','arm','enable_gnss_denied','acquire_trim','set_environment']
+-    assert prep['command_api']=='PTLibFmiClient.send_pilot_command'
+-    assert prep['mixer_owner']=='ArduPilotController.fmu'
++
++def test_native_preparation_checks_control_prediction_before_ground_arm(tmp_path,monkeypatch):
++    a=adapter(tmp_path)
++    calls=[]
++    monkeypatch.setattr(a,'prepare_online_transport_session',lambda: calls.append('transport') or
++        {'ok':True,'status':'READY','ready':True,'startup_actuation':False})
++    class Model:
++        def online_control_readiness(self):
++            calls.append('layer5_readiness')
++            return {'ok':True,'nominal_control_ready':False,
++                    'flight_release_blockers':['native_pilot_controller_prediction_unavailable']}
++    a.layer5=Model()
++    monkeypatch.setattr(a,'_prepare_ground_arm',lambda: calls.append('ARM') or {'ok':True})
++    result=a.prepare_online_control_session()
++    assert calls==['transport','layer5_readiness']
++    assert result['status']=='NOT_READY' and result['transport_ready'] is True
++    assert result['reason']=='native_pilot_controller_prediction_unavailable'
++    assert result['actuation_executed'] is False
++    assert result['startup_actuation'] is False
++
+--- a/tests/test_online_summary_and_logging_v2041_fix.py
++++ b/tests/test_online_summary_and_logging_v2041_fix.py
+@@ -9,10 +9,16 @@
+     assert "os.replace(tmp,target)" in s
+     assert "_write_workflow_summary(overall,report_root,online_training=bool(args.online_training))" in s
+ 
+-def test_ptlib_logging_policy_is_explicitly_external_root_relative():
+-    cfg=(ROOT/'configs/tdoc.yaml').read_text()
++def test_native_config_uses_gui_mavlink_and_no_ptlib_log_authority():
++    from tddt_tdoc.config import TDOCConfig
++    from tddt_tdoc.adapters.layer6 import Layer6OnlineAdapter
++    cfg=TDOCConfig.from_yaml(ROOT/'configs/tdoc.yaml')
++    assert cfg.get('layers.layer6.online.transport')=='Layer6Client_GUI_MAVLink'
++    assert cfg.get('layers.layer6.online.direct_pwm') is False
++    assert cfg.get('layers.layer6.online.execution_rate_hz')==30.0
+     src=(ROOT/'src/tddt_tdoc/adapters/layer6.py').read_text()
+-    assert 'ptlib_log_directory: logs' in cfg
+-    assert 'absolute_external_ptlib_root' in src
+-    assert 'external_package_modified' in src
+-    assert 'ptlib_logging' in src
++    assert 'Layer6/GUI/MAVLink' in src
++    assert '_get_client' in src and 'gui_status' in src
++    assert '_ptlib_log_target' not in src
++    assert '_open_runtime_session' not in src
++
+--- a/tests/test_preparation_mission_driver.py
++++ b/tests/test_preparation_mission_driver.py
+@@ -3,13 +3,13 @@
+ 
+ ROOT=Path(__file__).parents[1]
+ 
+-def test_prepare_all_bootstraps_all_packages_before_dataset_generation_and_stage08_uses_official_tep_builder():
+-    t=(ROOT/'scripts/prepare_all.py').read_text(encoding='utf-8')
++def test_prepare_all_bootstraps_native_sources_before_datasets_and_tep_stage08_is_official():
++    src=(ROOT/'scripts/prepare_all.py').read_text(encoding='utf-8')
++    body=src[src.index('def main():'):]
+     anchors=[
+         'prepare_tdoc_entrypoint(report,no_install=bool(a.no_install))',
+         'check_roots(roots,report)',
+         "run(report,'Build/validate Navigation + Flight Simulator Twins'",
+-        'build_climate(climate,report)',
+         "source_package_ready(report,'Prepare ISO unit/frame/time adapter package'",
+         "source_package_ready(report,'Prepare Boulder map/CRP package'",
+         "source_package_ready(report,'Prepare SARG package'",
+@@ -17,23 +17,24 @@
+         "source_package_ready(report,'Prepare Layer 3 package'",
+         "source_package_ready(report,'Prepare Layer 4 package'",
+         "source_package_ready(report,'Prepare Layer 5 package'",
+-        "source_package_ready(report,'Prepare PT_LIB package'",
++        "source_package_ready(report,'Prepare Layer6 client package'",
+         "source_package_ready(report,'Prepare Layer 7 package'",
+         'validate_region(region,report)',
+-        "run(report,'Acquire/reuse online terrain/OSM/climate/magnetic data required by CRP'",
+         "run(report,'Build canonical CRP dataset'",
+         "run(report,'Build SARG dataset from Twins + Map + CRP'",
+         "run(report,'Download current Climate Twin forcing data to central internet dataset cache'",
+         "run(report,'Inspect route/region and generate CLI route reports'",
+     ]
+-    pos=[t.index(x,t.index('def main():')) for x in anchors]
+-    assert pos==sorted(pos)
+-    assert "python/build_tddt_layer2_tep.py" in t
+-    assert "TEP_FILES=('tep.csv','manifest.json','heldout_validation.json','quality_report.json','VERSION')" in t
+-    assert "total_stages=(27 if a.build_fmus_refresh else (26 if build_fmus else 25))" in t
+-    assert "'--build-fmus'" in t and "'--build-fmus-refresh'" in t
+-    assert "Layer 3 strict external runtime/dataset preflight" in t
+-    assert 'map_mosaic_query.py' in t and 'route3d' in t and 'download_openmeteo.py' in t and 'sarg_builder.cli' in t
++    indices=[body.index(s) for s in anchors]
++    assert indices==sorted(indices)
++    assert "TEP_FILES=('tep.csv','manifest.json','heldout_validation.json','quality_report.json','VERSION')" in src
++    assert 'python/build_tddt_layer2_tep.py' in src
++    assert 'total_stages=26 if a.build_fmus_refresh else 25' in body
++    assert "--build-fmus" in body and "--build-fmus-refresh" in body
++    assert 'Layer 3 strict external runtime/dataset preflight' in body
++    assert 'Prepare PT_LIB package' not in body
++    assert 'build_execution_fmus' not in body
++
+ 
+ 
+ def test_prepare_all_preserves_validation_only_compatibility():
+@@ -103,11 +104,16 @@
+     assert 'no dependency or validation bypass' in text
+ 
+ 
+-def test_offline_reuse_propagates_disconnected_policy_to_execution_fmu_build():
+-    text=(ROOT/'scripts/prepare_all.py').read_text(encoding='utf-8')
+-    assert "cmd.append('-DTDDT_FETCH_DISCONNECTED=ON')" in text
+-    assert "env['TDDT_SKIP_BOOTSTRAP']='1'" in text
+-    assert 'offline_reuse=reuse_downloaded' in text
++def test_offline_reuse_prohibits_network_and_retired_execution_fmu_build():
++    src=(ROOT/'scripts/prepare_all.py').read_text(encoding='utf-8')
++    assert 'reuse_downloaded=bool(a.reuse_downloaded_datasets or a.no_download)' in src
++    assert 'no_download=bool(reuse_downloaded or validation_only)' in src
++    assert "if no_download: cmd.append('--offline')" in src
++    assert "reason='offline reuse of complete canonical regional map'" in src
++    assert "network_access=False" in src
++    assert 'build_execution_fmus' not in src
++    assert 'TDDT_FETCH_DISCONNECTED' not in src
++
+ 
+ 
+ def test_online_not_ready_always_writes_online_reports(tmp_path):
+--- a/tests/test_problem09_rtmo_execution_semantics.py
++++ b/tests/test_problem09_rtmo_execution_semantics.py
+@@ -1,13 +1,16 @@
+ from pathlib import Path
+ ROOT=Path(__file__).resolve().parents[1]
+ 
+-def test_problem09_workflow_uses_phase_execution_capability_not_blanket_autopilot_flag():
++def test_problem09_workflow_uses_phase_execution_capability_and_native_mixer():
+     s=(ROOT/'scripts/run_training_workflows.py').read_text(encoding='utf-8')
+-    assert "phase_execution_capability" in s
+-    assert "phase_supported" in s
+-    assert "vtol_exec_ready" in s
++    assert 'phase_execution_capability' in s
++    assert 'phase_supported' in s
++    assert 'vtol_exec_ready' in s
+     assert "vtol_autopilot_controller_validated':bool" in s
+-    assert "Layer5 external controller -> PT_LIB -> ArduPilot authoritative mixer -> JSBSim" in s
++    assert 'Layer5 external controller -> Layer6 -> ArduPilot authoritative mixer -> JSBSim' in s
++    assert 'Layer5 external controller -> PT_LIB -> ArduPilot' not in s
++    assert 'direct PWM forbidden' in s
++
+ 
+ def test_problem09_layer5_adapter_exports_phase_execution_capability():
+     s=(ROOT/'src/tddt_tdoc/adapters/layer5.py').read_text(encoding='utf-8')
+--- a/tests/test_problem12_phase_completion_and_fmu_switch.py
++++ b/tests/test_problem12_phase_completion_and_fmu_switch.py
+@@ -57,31 +57,37 @@
+     assert out['all_required_phases'] is False
+ 
+ 
+-def test_fmu_refresh_cleanup_only_removes_reproducible_build_caches(tmp_path):
+-    twins=tmp_path/'twins'; climate=tmp_path/'climate'; sim=tmp_path/'sim'
+-    for d in (twins,climate,sim): d.mkdir()
+-    (twins/'build').mkdir(); (twins/'build/junk').write_text('x')
+-    (climate/'build').mkdir(); (climate/'build/junk').write_text('x')
+-    (sim/'build').mkdir(); (sim/'build/junk').write_text('x')
+-    (sim/'.venv-build').mkdir(); (sim/'.venv-build/junk').write_text('x')
+-    (twins/'fmus').mkdir(); (twins/'fmus/MESA_NAV.fmu').write_text('m'); (twins/'fmus/WingMPET.fmu').write_text('w')
+-    (climate/'fmu').mkdir(); (climate/'fmu/MicroMetTwin.fmu').write_text('c')
+-    (sim/'FMU').mkdir(); (sim/'FMU/ArduPilotController.fmu').write_text('a'); (sim/'FMU/JSBSimPhoenix.fmu').write_text('j')
+-    for base in (twins,climate,sim):
+-        (base/'src').mkdir(); (base/'src/keep.cpp').write_text('keep')
+-        (base/'scripts').mkdir(); (base/'scripts/keep.sh').write_text('keep')
++def test_native_refresh_removes_only_twin_climate_build_caches(tmp_path):
++    twins=tmp_path/'twins';climate=tmp_path/'climate';native=tmp_path/'native'
++    for d in (twins,climate,native): d.mkdir()
++    for d in (twins,climate,native):
++        (d/'build').mkdir();(d/'build/junk').write_text('temporary')
++        (d/'src').mkdir();(d/'src/keep.cpp').write_text('source')
++    for rel in ('fmus/MESA_NAV.fmu','fmus/WingMPET.fmu'):
++        p=twins/rel;p.parent.mkdir(exist_ok=True);p.write_bytes(b'fmubinary')
++    fmu=climate/'fmu/MicroMetTwin.fmu';fmu.parent.mkdir();fmu.write_bytes(b'climatefmu')
++    native_src=native/'src/keep.cpp'
+     report={'stages':[],'_total':1,'ok':True}
+-    rec=prep.cleanup_fmu_build_caches(report,twins,climate,sim)
++    rec=prep.cleanup_fmu_build_caches(report,twins,climate)
+     assert rec['ok'] is True
++    assert len(rec['preserved_final_fmus'])==3
+     assert not (twins/'build').exists() and not (climate/'build').exists()
+-    assert not (sim/'build').exists() and not (sim/'.venv-build').exists()
+-    assert (twins/'fmus/MESA_NAV.fmu').is_file()
+-    assert (climate/'fmu/MicroMetTwin.fmu').is_file()
+-    assert (sim/'FMU/ArduPilotController.fmu').is_file()
+-    assert (sim/'src/keep.cpp').is_file() and (sim/'scripts/keep.sh').is_file()
++    assert (native/'build/junk').read_text()=='temporary'
++    assert native_src.read_text()=='source'
++    assert (twins/'src/keep.cpp').read_text()=='source'
++    assert (climate/'src/keep.cpp').read_text()=='source'
++    assert all(p.is_file() for p in (twins/'fmus/MESA_NAV.fmu',twins/'fmus/WingMPET.fmu',fmu))
+ 
+ 
+-def test_prepare_pipeline_places_execution_fmu_build_before_internet_acquisition():
++
++def test_prepare_pipeline_builds_twin_fmus_before_internet_and_never_exec_fmus():
+     src=inspect.getsource(prep.main)
+-    assert src.index('build_execution_fmus(') < src.index("Acquire/reuse online terrain/OSM/climate/magnetic data required by CRP")
+-    assert src.index('build_execution_fmus(') < src.index('Download current Climate Twin forcing data to central internet dataset cache')
++    before='Build/validate Navigation + Flight Simulator Twins'
++    after='Acquire/reuse online terrain/OSM/climate/magnetic data required by CRP'
++    climate='Download current Climate Twin forcing data to central internet dataset cache'
++    assert src.index(before)<src.index(after)
++    assert src.index(before)<src.index(climate)
++    assert src.index("source_package_ready(report,'Prepare Layer6 client package'")<src.index(after)
++    assert 'build_execution_fmus' not in src
++    assert 'Prepare Layer6 client package' in src
++
+--- a/tests/test_online_episode_reporting_v1216.py
++++ b/tests/test_online_episode_reporting_v1216.py
+@@ -26,24 +26,29 @@
+     assert cp2.returncode==0 and '--offline' in cp2.stdout and '--online-episodes' in cp2.stdout
+ 
+ 
+-def test_strict_online_contract_does_not_pass_on_one_good_cycle(tmp_path):
++def test_strict_online_contract_rejects_legacy_uncorrelated_observation(tmp_path):
+     mod=_load_workflow_module()
+     class Cfg:
+         runtime_root=tmp_path/'runtime'
+         package_root=ROOT
+-        def get(self,*a,**k): return k.get('default') if k else None
++        def get(self,*a,**k):return k.get('default') if k else None
+     args=argparse.Namespace(online_training=True,terrain_grid_n=20,online_episodes=0)
+     records=[
+-        {'status':'DEGRADED','offline_knowledge_handoff':{'ok':True,'setd_package_id':'SETD-1'},'knowledge':{},'layer7_status':'OK',
+-         'layer6_runtime':{'status':'OBSERVATION_ONLY','source':'Layer6/PT_LIB','live_runtime_evidence':True,'validation_only':False}},
+-        {'status':'DEGRADED','offline_knowledge_handoff':{'ok':True,'setd_package_id':'SETD-1'},'knowledge':{},'layer7_status':'HELD',
+-         'layer6_runtime':{'status':'HELD','source':None,'live_runtime_evidence':False,'validation_only':False}},
++        {'status':'DEGRADED','offline_knowledge_handoff':{'ok':True,'setd_package_id':'SETD-1'},
++         'knowledge':{},'layer7_status':'OK','layer6_runtime':{'status':'OBSERVATION_ONLY',
++         'source':'Layer6/PT_LIB','live_runtime_evidence':True,'validation_only':False}},
++        {'status':'DEGRADED','offline_knowledge_handoff':{'ok':True,'setd_package_id':'SETD-1'},
++         'knowledge':{},'layer7_status':'HELD','layer6_runtime':{'status':'HELD',
++         'source':None,'live_runtime_evidence':False,'validation_only':False}},
+     ]
+-    out=mod._write_online_reports(None,Cfg(),records,2,args,tmp_path/'reports',prefix='missing-prefix-')
+-    c=out['online_training_contract']; d=out['orchestration_diagnostics']
++    out=mod._write_online_reports(None,Cfg(),records,2,args,tmp_path/'reports',prefix='historical-noncorrelated-')
++    c=out['online_training_contract'];d=out['orchestration_diagnostics']
+     assert c['contract_ok'] is False
+-    assert c['runtime_coverage_ratio']==0.5 and c['layer7_coverage_ratio']==0.5
+-    assert d['ptlib_invoked'] is True and d['live_runtime_evidence_cycles']==1 and d['held_cycles']==1
++    assert c['runtime_coverage_ratio']==0.0 and c['layer7_coverage_ratio']==0.5
++    assert d['ptlib_invoked'] is False
++    assert d['live_runtime_evidence_cycles']==0
++    assert c['execution_correlated_observation_cycles']==0
++
+ 
+ 
+ def test_reporting_extracts_live_layer6_geographic_position():
+--- a/tests/test_problem19_qlpv_nonzero_readiness.py
++++ b/tests/test_problem19_qlpv_nonzero_readiness.py
+@@ -37,19 +37,23 @@
+     }
+ 
+ 
+-def test_tdoc_applies_v2_identification_and_reports_nonzero_qLPV_capability(tmp_path,monkeypatch):
++def test_legacy_qlpv_sitl_certificate_does_not_certify_native_pilot_controller(tmp_path,monkeypatch):
+     _clear_layer5()
+     monkeypatch.setenv('TDDT_LAYER5_ROOT',str(L5))
+     cfg=TDOCConfig.from_yaml(TDOC/'configs/tdoc.yaml')
+     cfg.data['runtime']['root']=str(tmp_path/'runtime')
++    assert cfg.get('layers.layer6.online.transport')=='Layer6Client_GUI_MAVLink'
+     a=Layer5Adapter(cfg)
+     out=a.apply_online_control_certificate(_cert_v2())
+     assert out['ok'] is True, out
+     assert out['qlpv_runtime_model_binding']['ok'] is True
+     rd=a.online_control_readiness()
+-    assert rd['nominal_control_ready'] is True
+-    assert rd['qlpv_nonzero_correction_ready'] is True
+-    assert rd['qlpv_nonzero_correction_blockers']==[]
+-    assert rd['qlpv_status']['model_source']=='runtime_sitl_actuator_identification_v1'
+-    assert rd['qlpv_status']['simulation_only_model'] is True
+-    assert rd['required_semantics']['direct_pwm_required'] is False
++    assert rd['readiness_scope']=='NATIVE_INTERFACE_AND_ACCEPTED_MODEL_PRIOR'
++    assert rd['nominal_control_ready'] is False
++    assert rd['qlpv_nonzero_correction_ready'] is False
++    assert rd['execution_mapping_certified'] is False
++    assert rd['mission_executability_authority'] is False
++    assert rd['current_phase_release_authority'] is False
++    assert 'native_pilot_controller_prediction_unavailable' in rd['flight_release_blockers']
++    assert rd['claim_scope']['beyond_sitl_claims_allowed'] is False
++
+--- a/tests/test_solution9_ptlib_demo_semantic_firewall.py
++++ b/tests/test_solution9_ptlib_demo_semantic_firewall.py
+@@ -10,24 +10,28 @@
+ 
+ class _L5: pass
+ 
+-def test_online_policy_uses_demo_for_lifecycle_only_and_layer5_for_commands():
+-    obj=yaml.safe_load((ROOT/"configs/online_guidance_sequence.yaml").read_text())
+-    assert obj["reference"]["package"]=="pt_lib_v20260914_1308"
+-    assert obj["reference"]["lifecycle_only"] is True
+-    assert obj["reference"]["random_command_envelope_import"] is False
+-    assert obj["reference"]["random_demo_commands_authoritative"] is False
+-    ctl=obj["operations"]["control_loop"]
+-    assert ctl["command_source"]=="Layer5_FINAL_pilot_domain_only"
+-    assert ctl["random_demo_envelope_import"] is False
+-    assert ctl["random_demo_command_authority"] is False
+-    # Runtime loader must accept the authoritative policy as-is.
+-    got=Layer6OnlineAdapter(_Cfg(),_L5())._online_guidance_policy()
+-    assert got["reference"]["lifecycle_only"] is True
++def test_current_online_policy_references_native_gui_and_preserves_layer5_command_authority():
++    from tddt_tdoc.config import TDOCConfig
++    cfg=TDOCConfig.from_yaml(ROOT/'configs/tdoc.yaml')
++    assert cfg.get('layers.layer6.online.transport')=='Layer6Client_GUI_MAVLink'
++    assert cfg.get('layers.layer6.online.direct_pwm') is False
++    obj=yaml.safe_load((ROOT/'configs/online_guidance_sequence.yaml').read_text())
++    assert obj['reference']['package']=='layer6_v20261007_1032'
++    assert obj['reference'].get('random_demo_commands_authoritative') is not True
++    assert obj['reference'].get('random_command_envelope_import') is not True
++    assert Layer6OnlineAdapter.SOURCE=='Layer6/GUI/MAVLink'
++    assert Layer6OnlineAdapter.MODES==('ONLINE_JSBSIM',)
+ 
+-def test_layer6_source_contains_no_random_demo_envelope_as_operational_bound():
+-    src=(ROOT/"src/tddt_tdoc/adapters/layer6.py").read_text()
+-    assert 'command_authority":"Layer5_FINAL_pilot_domain_only"' in src
+-    assert 'demo_envelope_imported":False' in src
+-    assert 'demo_command_authority":False' in src
+-    assert 'min_throttle' not in src
+-    assert 'max_throttle' not in src
++
++def test_native_layer6_has_only_layer5_final_and_no_ptlib_operational_demo_limits():
++    import inspect
++    src=inspect.getsource(Layer6OnlineAdapter.invoke)
++    assert 'gates' in src and 'FINAL' in src
++    assert 'verify_native_execution_evidence' in src
++    assert 'native_execution_model_not_verified' in src
++    assert 'Layer5 FINAL requires complete layer6_package' in src
++    assert 'direct_pwm' in src or 'DecisionEnvelope' in src
++    assert '_make_ptlib' not in src
++    assert 'random_demo_command_authority' not in src
++    assert 'min_throttle' not in src and 'max_throttle' not in src
++
+--- a/tests/test_solution3_v3_phoenix_frame_semantics.py
++++ b/tests/test_solution3_v3_phoenix_frame_semantics.py
+@@ -56,18 +56,29 @@
+         f.close()
+ 
+ 
+-def test_jsbsim_source_and_config_encode_tailsitter_runic_for_next_rebuild():
+-    root=_root(); pkg=root/"ardupilot_JSBsim_v20260914_1308"
+-    cpp=(pkg/"source/JSBSimPhoenix/JSBSimPhoenix.cpp").read_text()
+-    # Ground RunIC is vertical; airborne initialization remains conventional.
+-    assert 'set(*x.fdm,"ic/theta-deg",ground_start?90.0:0.0)' in cpp
+-    for p in (pkg/"source/JSBSimPhoenix/resources/bridge_config.yaml",
+-              root/"pt_lib_v20260914_1308/integrations/jsbsim/bridge_config.yaml"):
+-        assert "pitch_deg: 90.0" in p.read_text()
++def test_native_jsbsim_reset_and_airframe_represent_current_tailsitter_start():
++    import xml.etree.ElementTree as ET
++    root=_root()
++    native=root/'layer6_v20261007_1032'/'FlightStack'
++    source=native/'ardupilot/Tools/autotest/aircraft/phoenix_v3'
++    assert (source/'phoenix_v3.xml').is_file(), source
++    reset=ET.parse(source/'reset.xml').getroot()
++    theta=reset.find('theta')
++    assert theta is not None and theta.attrib.get('unit')=='DEG'
++    assert math.isclose(float(theta.text),89.0,abs_tol=1e-9)
++    # A source XML being present is not a controller- or flight-authority certificate.
++    assert 'phoenix' in (source/'phoenix_v3.xml').read_text().lower()
+ 
+ 
+-def test_existing_production_fmu_is_not_falsely_relabelled_as_rebuilt():
+-    # Source/config are corrected, but a production JSBSim rebuild requires the
+-    # official upstream source. The existing FMU must remain byte-identifiable.
+-    root=_root(); fmu=root/"ardupilot_JSBsim_v20260914_1308/FMU/JSBSimPhoenix.fmu"
+-    assert fmu.is_file() and fmu.stat().st_size > 1_000_000
++
++def test_native_jsbsim_binary_is_present_without_claiming_retired_fmu_provenance():
++    root=_root();native=root/'layer6_v20261007_1032'/'FlightStack'
++    binary=native/'jsbsim/build/src/JSBSim'
++    assert binary.is_file() and binary.stat().st_size>0, binary
++    assert (native/'ardupilot/Tools/autotest/aircraft/phoenix_v3/reset.xml').is_file()
++    env=(root/'TDOC_v20260911_2052/configs/environment.sh').read_text()
++    assert 'unset TDDT_PTLIB_ROOT EXT_FMU_SIM_ROOT' in env
++    # Verify the native binary is real; the presence check does not certify
++    # rebuild reproducibility, source/binary hash linkage or flight fitness.
++    assert 'ardupilot_JSBsim_v20260914_1308' not in env
++

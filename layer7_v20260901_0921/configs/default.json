@@ -1,0 +1,81 @@
+{
+  "gp": {
+    "max_points": 32,
+    "length_scale": 1.0,
+    "signal_variance": 1.0,
+    "noise_variance": 0.05,
+    "novelty_variance": 0.2
+  },
+  "drift": {
+    "max_run_length": 32,
+    "hazard": 0.02,
+    "persistence_lambda": 0.2,
+    "anomaly_threshold": 3.0,
+    "bias_threshold": 0.1
+  },
+  "thresholds": {
+    "domain": 1.0,
+    "alignment": 0.5,
+    "coupling": 1.0,
+    "synchronization": 0.5,
+    "decision": 0.5,
+    "execution": 0.25,
+    "latency": 0.25,
+    "attribution_confidence": 0.45,
+    "fast_anomaly": 2.0,
+    "meso_persistence": 0.45,
+    "meso_attr_confidence": 0.35,
+    "meso_min_evidence": 3,
+    "slow_structural_error": 0.75,
+    "slow_ess_min": 3.0,
+    "slow_maturity_min": 0.6,
+    "catastrophic": 4.0,
+    "topology_chatter": 0.5,
+    "oscillation": 0.6,
+    "stability_margin": 0.001,
+    "shadow_min_improvement": -1e-09,
+    "rollback_degradation": 0.25,
+    "max_uncertainty": 10.0
+  },
+  "rates": {
+    "fast_state": 0.5,
+    "meso_relation": 0.1,
+    "slow_structural": 0.02,
+    "weight": 0.05,
+    "coupling": 0.05,
+    "epsilon": 0.02,
+    "omega": 0.01,
+    "policy": 0.02,
+    "constraints": 0.02,
+    "oscillation_decay": 0.5
+  },
+  "edge": {
+    "fast_period_s": 1.0,
+    "fast_per_meso": 3,
+    "meso_per_slow": 2,
+    "max_cycle_candidates": 8,
+    "max_edges": 64,
+    "topology_dwell_ticks": 2,
+    "shadow_window": 24,
+    "post_commit_monitor_ticks": 6,
+    "evidence_window": 64,
+    "oscillation_window": 8,
+    "kstore_max_records": 256,
+    "kstore_segment_records": 64,
+    "kstore_max_segments": 8,
+    "setd_max_packages": 32,
+    "freshness_max_s": 2.0,
+    "require_semantic_metadata": true,
+    "require_ptlib_correlation": true
+  },
+  "knowledge": {
+    "simulation_prior_cap": 10.0,
+    "simulation_power": 0.2,
+    "epsilon_quantile": 0.95,
+    "require_context_for_persistent": true
+  },
+  "fail_closed_structural": true,
+  "require_field_for_persistent": true,
+  "tdoc_managed": true,
+  "direct_actuation_allowed": false
+}
