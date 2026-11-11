@@ -1,0 +1,209 @@
+version: 6
+controller:
+  preferred_name_contains: Logitech
+  index: 0
+  update_hz: 30
+  deadzone: 0.08
+  expo: 0.2
+  max_pitch: 1.0
+  max_roll: 1.0
+  max_yaw: 1.0
+  invert_pitch: true
+  invert_roll: false
+  invert_yaw: false
+axes:
+  left_x: 0
+  left_y: 1
+  left_trigger: 2
+  right_x: 3
+  right_y: 4
+  right_trigger: 5
+  dpad_x_axis: 6
+  dpad_y_axis: 7
+  trigger_released_value: -1.0
+  trigger_pressed_value: 1.0
+jstest_kernel_reference:
+  axis_0: ABS_X
+  axis_1: ABS_Y
+  axis_2: ABS_RX
+  axis_3: ABS_RY
+  axis_4: ABS_Z
+  axis_5: ABS_RZ
+  axis_6: ABS_HAT0X
+  axis_7: ABS_HAT0Y
+pygame_runtime_reference:
+  axis_0: LEFT_X
+  axis_1: LEFT_Y
+  axis_2: LT
+  axis_3: RIGHT_X
+  axis_4: RIGHT_Y
+  axis_5: RT
+  hat_0: DPAD_XY
+buttons:
+  a: 0
+  b: 1
+  x: 2
+  y: 3
+  lb: 4
+  rb: 5
+  back: 6
+  start: 7
+  mode: 8
+  left_stick: 9
+  right_stick: 10
+hat:
+  index: 0
+  use_pygame_hat_first: true
+modes:
+  a: QHOVER
+  b: FBWA
+  x: QSTABILIZE
+  y: QLOITER
+throttle:
+  initial: 0
+  trigger_rate_per_second: 350
+  bumper_step: 35
+  minimum: 0
+  maximum: 1000
+  neutral_hover_hint: 500
+safety:
+  arm_hold_seconds: 1.5
+  disarm_hold_seconds: 1.5
+  require_throttle_below_for_arm: 100
+  allow_force_arm: false
+  allow_force_disarm: false
+  disconnect_neutral_seconds: 0.5
+  disconnect_neutral_throttle: 500
+mavlink:
+  connection: udpin:0.0.0.0:14552
+  source_system: 255
+  source_component: 191
+  heartbeat_timeout_seconds: 10
+  command_ack_timeout_seconds: 3
+  reconnect_seconds: 2
+actions:
+  qstabilize:
+    label: QSTABILIZE
+    kind: mode
+    value: QSTABILIZE
+    gui_button: QSTABILIZE
+  qhover:
+    label: QHOVER
+    kind: mode
+    value: QHOVER
+    gui_button: QHOVER
+  fbwa:
+    label: FBWA
+    kind: mode
+    value: FBWA
+    gui_button: FBWA
+  qloiter:
+    label: QLOITER
+    kind: mode
+    value: QLOITER
+    gui_button: QLOITER
+  arm:
+    label: ARM
+    kind: arm
+    gui_button: ARM
+    hold_seconds: 1.5
+  disarm:
+    label: DISARM
+    kind: disarm
+    gui_button: DISARM
+    hold_seconds: 1.5
+  throttle_step_up:
+    label: Throttle + step
+    kind: throttle_step
+    delta: 35
+  throttle_step_down:
+    label: Throttle - step
+    kind: throttle_step
+    delta: -35
+  throttle_increase:
+    label: Throttle increase
+    kind: axis
+  throttle_decrease:
+    label: Throttle decrease
+    kind: axis
+  pitch_positive:
+    label: Pitch +
+    kind: axis
+  pitch_negative:
+    label: Pitch -
+    kind: axis
+  roll_positive:
+    label: Roll +
+    kind: axis
+  roll_negative:
+    label: Roll -
+    kind: axis
+  yaw_positive:
+    label: Yaw +
+    kind: axis
+  yaw_negative:
+    label: Yaw -
+    kind: axis
+  roll:
+    label: Roll
+    kind: axis
+  pitch:
+    label: Pitch
+    kind: axis
+  yaw:
+    label: Yaw
+    kind: axis
+  right_y_aux:
+    label: Right stick Y / Aux
+    kind: axis
+  dpad:
+    label: D-Pad / Hat
+    kind: axis
+  neutral_attitude:
+    label: NEUTRAL ATTITUDE
+    kind: neutral
+    gui_button: NEUTRAL ATTITUDE
+  throttle_zero:
+    label: THROTTLE ZERO
+    kind: throttle_zero
+    gui_button: THROTTLE ZERO
+bindings:
+  gamepad_buttons:
+    a: qhover
+    b: fbwa
+    x: qstabilize
+    y: qloiter
+    lb: throttle_step_down
+    rb: throttle_step_up
+    back: disarm
+    start: arm
+    mode: null
+    left_stick: null
+    right_stick: null
+  gamepad_axes:
+    left_x: roll
+    left_y: pitch
+    right_x: yaw
+    right_y: right_y_aux
+    left_trigger: throttle_decrease
+    right_trigger: throttle_increase
+    dpad: dpad
+  keyboard:
+    W: pitch_positive
+    S: pitch_negative
+    A: roll_negative
+    D: roll_positive
+    Q: yaw_negative
+    E: yaw_positive
+    R: throttle_increase
+    F: throttle_decrease
+    '1': qstabilize
+    '2': qhover
+    '3': fbwa
+    '4': qloiter
+
+layer6:
+  virtual_pilot_host: 127.0.0.1
+  virtual_pilot_port: 14660
+  virtual_input_ttl_seconds: 0.25
+  precedence: digital_pilot_when_active

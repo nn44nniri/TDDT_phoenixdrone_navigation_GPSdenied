@@ -1,0 +1,26 @@
+{
+  "schema": "TDOC-Phoenix-frame-attitude-convention-v1",
+  "navigation_frame": "NED",
+  "canonical_body_frame": "FRD",
+  "phoenix_source_axes": {
+    "forward": [0, 0, 1],
+    "upward": [1, 0, 0],
+    "mapping_to_FRD": "body_x=source_z; body_y=source_y; body_z=-source_x"
+  },
+  "rotor_thrust_axis": "+body-X",
+  "phase_fallback_attitude": {
+    "on_ground": {"pitch_deg": 90.0},
+    "vertical_takeoff": {"pitch_deg": 90.0},
+    "hover": {"pitch_deg": 90.0},
+    "transition_forward": {"entry_pitch_deg": 90.0, "policy": "preserve live attitude once available"},
+    "climb": {"policy": "live/kinematic attitude"},
+    "cruise": {"policy": "live/kinematic attitude"},
+    "turn": {"policy": "live/kinematic attitude"},
+    "approach": {"policy": "live/kinematic attitude"},
+    "transition_back": {"policy": "preserve live/kinematic attitude toward vertical"},
+    "vertical_landing": {"pitch_deg": 90.0},
+    "touchdown": {"pitch_deg": 90.0}
+  },
+  "authority_rule": "A complete live physical quaternion is authoritative and is never overwritten by fallback phase attitude.",
+  "evidence_scope": "simulation-only frame/attitude contract; not FIELD validation"
+}

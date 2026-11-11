@@ -1,0 +1,240 @@
+{"venvs": [{"venv": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13", "yaml_origin": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/lib/python3.13/site-packages/yaml/__init__.py"}, {"venv": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/phoenix_environment_adapter_v2/.venv", "yaml_origin": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/phoenix_environment_adapter_v2/.venv/lib/python3.13/site-packages/yaml/__init__.py"}]}
+{"step": "R3.02", "status": "PASS", "environment_source_aligned": true, "profile": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/twins_layer2_v20260820_1233/config/phoenix_drone_v3.yaml", "profile_sha256": "68f3f4e611e370aac01607345a3d972e4f6627ce9b75f8c82052bdcff4fbbd89", "native_model_installed": false, "flight_ready": false}
+{"step": "R4.02", "status": "PASS", "files": ["phoenix_env_adapter/cli.py", "phoenix_env_adapter/bound.py", "phoenix_env_adapter/native_forcing.py"], "environment_started": false}
+{"status": "PASS", "revision": "native-PQR-frame-matched-r6.04-v1", "phase": "before", "source_only": true, "native_compile_required": true, "flight_authorized": false}
+{"step": "R3.03", "status": "PASS", "four_foot_source_staged": true, "data_profile_sha256": "68f3f4e611e370aac01607345a3d972e4f6627ce9b75f8c82052bdcff4fbbd89", "native_compile_required": true, "flight_ready": false, "actuation_authority": false}
+JSBSim: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/jsbsim/build/src/JSBSim
+
+  JSBSim Version: 1.3.2.dev1 Oct  7 2026 10:51:52
+
+[1/6] Validating packaged Phoenix v3 files...
+PASS: four-foot Reset uses explicit CG AGL, 89 deg and zero body speed.
+PASS: Phoenix model, tailsitter outputs and SITL airspeed parameter contracts are present.
+PASS: Phoenix v3 runscript/reset/servo mapping present in /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/models/phoenix_v3/patched_source/SIM_JSBSim.cpp.
+PASS: Phoenix v3 package validation complete.
+[2/6] Backup created: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/.phoenix_v3_preinstall_backups/20261104_202111
+[3/6] Installing Phoenix aircraft model and parameter profile...
+Installed phoenix_v3 v3 aircraft model, ground-VTOL reset and default parameter profile.
+[4/6] Installing/upgrading SIM_JSBSim Phoenix integration...
+Phoenix v3 SIM_JSBSim integration already present; nothing to do.
+[5/6] Validating installed checkout...
+PASS: four-foot Reset uses explicit CG AGL, 89 deg and zero body speed.
+PASS: Phoenix model, tailsitter outputs and SITL airspeed parameter contracts are present.
+PASS: Phoenix v3 runscript/reset/servo mapping present in /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/models/phoenix_v3/patched_source/SIM_JSBSim.cpp.
+PASS: Phoenix v3 runscript/reset/servo mapping present in /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/libraries/SITL/SIM_JSBSim.cpp.
+PASS: ArduPilot checkout already contains Phoenix v3 integration.
+PASS: Phoenix v3 package validation complete.
+[6/6] Build skipped. Re-run with --build to compile automatically.
+
+Phoenix v3 preinstall complete.
+ArduPilot root: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot
+Backup: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/.phoenix_v3_preinstall_backups/20261104_202111
+
+Runtime command:
+  cd "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot"
+  ./Tools/autotest/sim_vehicle.py -v ArduPlane -f jsbsim:phoenix_v3 -L PhoenixBoulder -w \
+    --add-param-file=Tools/autotest/default_params/phoenix_v3.parm \
+    --console --map --out=udp:127.0.0.1:14551 --out=udp:127.0.0.1:14552
+
+After the first launch, verify generated runtime files with:
+  "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/models/phoenix_v3/scripts/verify_runtime.sh" "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot"
+{"status": "PASS", "revision": "native-PQR-frame-matched-r6.04-v1", "phase": "after", "source_only": true, "native_compile_required": true, "flight_authorized": false}
+Setting top to                           : /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot 
+Setting out to                           : /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build 
+Autoconfiguration                        : enabled 
+Checking for program 'python'            : /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python 
+Checking for python version >= 3.9.0     : 3.13.5 
+Setting board to                         : sitl 
+Processing /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/libraries/AP_HAL_SITL/hwdef/sitl/hwdef.dat
+Writing hwdef setup in /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/hwdef.h
+Using toolchain                          : native 
+Checking for 'g++' (C++ compiler)        : /usr/bin/g++ 
+Checking for 'gcc' (C compiler)          : /usr/bin/gcc 
+Checking for c flags '-MMD'              : yes 
+Checking for cxx flags '-MMD'            : yes 
+CXX Compiler                             : g++ 14.2.0 
+Checking for need to link with librt     : not necessary 
+Checking for feenableexcept              : yes 
+Enabling -Werror                         : no 
+Enabled OpenDroneID                      : no 
+Enabled firmware ID checking             : no 
+GPS Debug Logging                        : no 
+Checking for HAVE_CMATH_ISFINITE         : yes 
+Checking for HAVE_CMATH_ISINF            : yes 
+Checking for HAVE_CMATH_ISNAN            : yes 
+Checking for NEED_CMATH_ISFINITE_STD_NAMESPACE : yes 
+Checking for NEED_CMATH_ISINF_STD_NAMESPACE    : yes 
+Checking for NEED_CMATH_ISNAN_STD_NAMESPACE    : yes 
+Checking for header endian.h                   : yes 
+Checking for header byteswap.h                 : yes 
+Checking for HAVE_MEMRCHR                      : yes 
+Configured VSCode Intellisense:                : no 
+DC_DSDL compiler in                            : /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/modules/DroneCAN/dronecan_dsdlc 
+Source is git repository                       : yes 
+Update submodules                              : yes 
+Checking for program 'git'                     : /usr/bin/git 
+Littlefs                                       : disabled 
+Checking for program 'size'                    : /usr/bin/size 
+Benchmarks                                     : disabled 
+Unit tests                                     : enabled 
+Scripting                                      : maybe 
+Scripting runtime checks                       : enabled 
+Debug build                                    : disabled 
+Coverage build                                 : disabled 
+Consistent build                               : disabled 
+Force 32-bit build                             : disabled 
+Checking for program 'rsync'                   : /usr/bin/rsync 
+Removing target_list file /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/target_list
+'configure' finished successfully (0.991s)
+Waf: Entering directory `/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl'
+Embedding file autotest_fixtures.txt:Tools/autotest/default_params/copter-X.parm
+Embedding file autotest_fixtures/long_names/dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd/file:Tools/autotest/default_params/copter-X.parm
+Embedding file autotest_fixtures/long_names/ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff:Tools/autotest/default_params/copter-X.parm
+Embedding file autotest_fixtures/nested/sub.txt:Tools/autotest/default_params/copter-X.parm
+Embedding file autotest_fixtures/nested/sub/file:Tools/autotest/default_params/copter-X.parm
+Embedding file default_params/airsim-quadX.parm:Tools/autotest/default_params/airsim-quadX.parm
+Embedding file default_params/airsim-rover.parm:Tools/autotest/default_params/airsim-rover.parm
+Embedding file default_params/balancebot.parm:Tools/autotest/default_params/balancebot.parm
+Embedding file default_params/blimp-motor.parm:Tools/autotest/default_params/blimp-motor.parm
+Embedding file default_params/blimp.parm:Tools/autotest/default_params/blimp.parm
+Embedding file default_params/copter-X.parm:Tools/autotest/default_params/copter-X.parm
+Embedding file default_params/copter-beacon.parm:Tools/autotest/default_params/copter-beacon.parm
+Embedding file default_params/copter-bfx.parm:Tools/autotest/default_params/copter-bfx.parm
+Embedding file default_params/copter-coax.parm:Tools/autotest/default_params/copter-coax.parm
+Embedding file default_params/copter-cwx.parm:Tools/autotest/default_params/copter-cwx.parm
+Embedding file default_params/copter-deca-cwx.parm:Tools/autotest/default_params/copter-deca-cwx.parm
+Embedding file default_params/copter-deca.parm:Tools/autotest/default_params/copter-deca.parm
+Embedding file default_params/copter-djix.parm:Tools/autotest/default_params/copter-djix.parm
+Embedding file default_params/copter-dodecahexa.parm:Tools/autotest/default_params/copter-dodecahexa.parm
+Embedding file default_params/copter-dotriaconta_octaquad_x.parm:Tools/autotest/default_params/copter-dotriaconta_octaquad_x.parm
+Embedding file default_params/copter-gimbal.parm:Tools/autotest/default_params/copter-gimbal.parm
+Embedding file default_params/copter-gps-for-yaw-nmea.parm:Tools/autotest/default_params/copter-gps-for-yaw-nmea.parm
+Embedding file default_params/copter-gps-for-yaw.parm:Tools/autotest/default_params/copter-gps-for-yaw.parm
+Embedding file default_params/copter-heli-ddfptail.parm:Tools/autotest/default_params/copter-heli-ddfptail.parm
+Embedding file default_params/copter-heli-ddvptail.parm:Tools/autotest/default_params/copter-heli-ddvptail.parm
+Embedding file default_params/copter-heli-dual.parm:Tools/autotest/default_params/copter-heli-dual.parm
+Embedding file default_params/copter-heli-gas.parm:Tools/autotest/default_params/copter-heli-gas.parm
+Embedding file default_params/copter-heli.parm:Tools/autotest/default_params/copter-heli.parm
+Embedding file default_params/copter-heliquad.parm:Tools/autotest/default_params/copter-heliquad.parm
+Embedding file default_params/copter-hexa-cwx.parm:Tools/autotest/default_params/copter-hexa-cwx.parm
+Embedding file default_params/copter-hexa-dji.parm:Tools/autotest/default_params/copter-hexa-dji.parm
+Embedding file default_params/copter-hexa.parm:Tools/autotest/default_params/copter-hexa.parm
+Embedding file default_params/copter-hexadeca_octa.parm:Tools/autotest/default_params/copter-hexadeca_octa.parm
+Embedding file default_params/copter-hexadeca_octa_cwx.parm:Tools/autotest/default_params/copter-hexadeca_octa_cwx.parm
+Embedding file default_params/copter-octa-cwx.parm:Tools/autotest/default_params/copter-octa-cwx.parm
+Embedding file default_params/copter-octa-dji.parm:Tools/autotest/default_params/copter-octa-dji.parm
+Embedding file default_params/copter-octa.parm:Tools/autotest/default_params/copter-octa.parm
+Embedding file default_params/copter-octaquad-cor.parm:Tools/autotest/default_params/copter-octaquad-cor.parm
+Embedding file default_params/copter-octaquad-cw-cor.parm:Tools/autotest/default_params/copter-octaquad-cw-cor.parm
+Embedding file default_params/copter-octaquad-cwx.parm:Tools/autotest/default_params/copter-octaquad-cwx.parm
+Embedding file default_params/copter-octaquad.parm:Tools/autotest/default_params/copter-octaquad.parm
+Embedding file default_params/copter-optflow.parm:Tools/autotest/default_params/copter-optflow.parm
+Embedding file default_params/copter-ppp-periph.parm:Tools/autotest/default_params/copter-ppp-periph.parm
+Embedding file default_params/copter-ppp.parm:Tools/autotest/default_params/copter-ppp.parm
+Embedding file default_params/copter-rangefinder.parm:Tools/autotest/default_params/copter-rangefinder.parm
+Embedding file default_params/copter-single.parm:Tools/autotest/default_params/copter-single.parm
+Embedding file default_params/copter-tri.parm:Tools/autotest/default_params/copter-tri.parm
+Embedding file default_params/copter-vicon.parm:Tools/autotest/default_params/copter-vicon.parm
+Embedding file default_params/copter-winch.parm:Tools/autotest/default_params/copter-winch.parm
+Embedding file default_params/copter-wind-estimates.parm:Tools/autotest/default_params/copter-wind-estimates.parm
+Embedding file default_params/copter-y6.parm:Tools/autotest/default_params/copter-y6.parm
+Embedding file default_params/copter.parm:Tools/autotest/default_params/copter.parm
+Embedding file default_params/firefly.parm:Tools/autotest/default_params/firefly.parm
+Embedding file default_params/gazebo-iris.parm:Tools/autotest/default_params/gazebo-iris.parm
+Embedding file default_params/gazebo-zephyr.parm:Tools/autotest/default_params/gazebo-zephyr.parm
+Embedding file default_params/glider.parm:Tools/autotest/default_params/glider.parm
+Embedding file default_params/motorboat.parm:Tools/autotest/default_params/motorboat.parm
+Embedding file default_params/msposd.parm:Tools/autotest/default_params/msposd.parm
+Embedding file default_params/periph-battmon.parm:Tools/autotest/default_params/periph-battmon.parm
+Embedding file default_params/periph-compass.parm:Tools/autotest/default_params/periph-compass.parm
+Embedding file default_params/periph-ppp.parm:Tools/autotest/default_params/periph-ppp.parm
+Embedding file default_params/periph.parm:Tools/autotest/default_params/periph.parm
+Embedding file default_params/phoenix_v3.parm:Tools/autotest/default_params/phoenix_v3.parm
+Embedding file default_params/plane-dspoilers.parm:Tools/autotest/default_params/plane-dspoilers.parm
+Embedding file default_params/plane-elevons.parm:Tools/autotest/default_params/plane-elevons.parm
+Embedding file default_params/plane-ice.parm:Tools/autotest/default_params/plane-ice.parm
+Embedding file default_params/plane-jet.parm:Tools/autotest/default_params/plane-jet.parm
+Embedding file default_params/plane-redundant.parm:Tools/autotest/default_params/plane-redundant.parm
+Embedding file default_params/plane-soaring.parm:Tools/autotest/default_params/plane-soaring.parm
+Embedding file default_params/plane-tailsitter.parm:Tools/autotest/default_params/plane-tailsitter.parm
+Embedding file default_params/plane-vtail.parm:Tools/autotest/default_params/plane-vtail.parm
+Embedding file default_params/quad-can.parm:Tools/autotest/default_params/quad-can.parm
+Embedding file default_params/quad-periph.parm:Tools/autotest/default_params/quad-periph.parm
+Embedding file default_params/quadplane-can.parm:Tools/autotest/default_params/quadplane-can.parm
+Embedding file default_params/quadplane-cl84.parm:Tools/autotest/default_params/quadplane-cl84.parm
+Embedding file default_params/quadplane-copter_tailsitter.parm:Tools/autotest/default_params/quadplane-copter_tailsitter.parm
+Embedding file default_params/quadplane-ice.parm:Tools/autotest/default_params/quadplane-ice.parm
+Embedding file default_params/quadplane-periph.parm:Tools/autotest/default_params/quadplane-periph.parm
+Embedding file default_params/quadplane-ppp-periph.parm:Tools/autotest/default_params/quadplane-ppp-periph.parm
+Embedding file default_params/quadplane-ppp.parm:Tools/autotest/default_params/quadplane-ppp.parm
+Embedding file default_params/quadplane-tilt.parm:Tools/autotest/default_params/quadplane-tilt.parm
+Embedding file default_params/quadplane-tilthvec.parm:Tools/autotest/default_params/quadplane-tilthvec.parm
+Embedding file default_params/quadplane-tilttri.parm:Tools/autotest/default_params/quadplane-tilttri.parm
+Embedding file default_params/quadplane-tilttrivec.parm:Tools/autotest/default_params/quadplane-tilttrivec.parm
+Embedding file default_params/quadplane-tri.parm:Tools/autotest/default_params/quadplane-tri.parm
+Embedding file default_params/quadplane.parm:Tools/autotest/default_params/quadplane.parm
+Embedding file default_params/rover-omni3mecanum.parm:Tools/autotest/default_params/rover-omni3mecanum.parm
+Embedding file default_params/rover-skid.parm:Tools/autotest/default_params/rover-skid.parm
+Embedding file default_params/rover-vectored.parm:Tools/autotest/default_params/rover-vectored.parm
+Embedding file default_params/rover.parm:Tools/autotest/default_params/rover.parm
+Embedding file default_params/sailboat-motor.parm:Tools/autotest/default_params/sailboat-motor.parm
+Embedding file default_params/sailboat.parm:Tools/autotest/default_params/sailboat.parm
+Embedding file default_params/stratoblimp.parm:Tools/autotest/default_params/stratoblimp.parm
+Embedding file default_params/sub-6dof.parm:Tools/autotest/default_params/sub-6dof.parm
+Embedding file default_params/sub-gps-for-yaw-nmea.parm:Tools/autotest/default_params/sub-gps-for-yaw-nmea.parm
+Embedding file default_params/sub.parm:Tools/autotest/default_params/sub.parm
+Embedding file default_params/tracker-gps-for-yaw.parm:Tools/autotest/default_params/tracker-gps-for-yaw.parm
+Embedding file locations.txt:Tools/autotest/locations.txt
+Embedding file models/Callisto.json:Tools/autotest/models/Callisto.json
+Embedding file models/Callisto.parm:Tools/autotest/models/Callisto.parm
+Embedding file models/freestyle.json:Tools/autotest/models/freestyle.json
+Embedding file models/freestyle.parm:Tools/autotest/models/freestyle.parm
+Embedding file models/heliquad.json:Tools/autotest/models/heliquad.json
+Embedding file models/mt11_thermal.h264:Tools/autotest/models/mt11_thermal.h264
+Embedding file models/mt11_visible.h264:Tools/autotest/models/mt11_visible.h264
+Embedding file models/plane-3d.parm:Tools/autotest/models/plane-3d.parm
+Embedding file models/plane-reverse-rc-pitch-yaw.parm:Tools/autotest/models/plane-reverse-rc-pitch-yaw.parm
+Embedding file models/plane-reverse-servo-pitch-yaw.parm:Tools/autotest/models/plane-reverse-servo-pitch-yaw.parm
+Embedding file models/plane.parm:Tools/autotest/models/plane.parm
+Embedding file models/skywalker_2013.json:Tools/autotest/models/skywalker_2013.json
+Embedding file models/xplane_heli.json:Tools/autotest/models/xplane_heli.json
+Embedding file models/xplane_plane.json:Tools/autotest/models/xplane_plane.json
+Embedding file vehicleinfo.json:Tools/autotest/pysim/vehicleinfo.json
+No target_list file found, creating
+Generating compile_commands.json
+Build commands will be stored in build/sitl/compile_commands.json
+Generating compile_commands.json
+Build commands will be stored in build/sitl/compile_commands.json
+[1430/1431] Linking build/sitl/bin/arduplane
+[1431/1431] checking symbols build/sitl/bin/arduplane
+Waf: Leaving directory `/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl'
+
+BUILD SUMMARY
+Build directory: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl
+Target         Text (B)  Data (B)  BSS (B)  Total Flash Used (B)  Free Flash (B)  External Flash Used (B)
+---------------------------------------------------------------------------------------------------------
+bin/arduplane   4727556    222269   245704               4949825  Not Applicable  Not Applicable         
+
+'plane' finished successfully (2.244s)
+{
+  "schema": "Phoenix-native-realtime-model-build-v1",
+  "model_sha256": "7507016a8903090605afe310497af6f4d3e1b569f9af90aa388502324ddb5c3a",
+  "parameter_sha256": "56714d1d571e35315e27b52a5462905011606c853a2f5f1923c97888ec8877de",
+  "source_xml_sha256": "9118bfac6cb1bbaa05142f1c0f419fe570414be8b1dbdeffb591e7b898f64da9",
+  "generator_sha256": "00a1aa84469bdef746935112c89ee4344c01103ed6f47d098920e02ee8ed7bad",
+  "model_type": "interpreted JSBSim XML; no C++/FMU/binary mutation",
+  "wing_blend_speed_m_s": [
+    9.1,
+    12.0
+  ],
+  "propwash_source": "existing Phoenix/WingMPET source coefficients",
+  "surface_sign_source": "ArduPlane pitch demand versus source physical Cm_delta",
+  "GNSS_receivers": "disabled",
+  "new_sensor_types": [],
+  "flight_ready": false,
+  "dynamic_qualification": "requires same-session Native test"
+}
+{"wx": {"path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/lib/python3.13/site-packages/wx/__init__.py", "version": "4.2.3"}, "cv2": {"path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/lib/python3.13/site-packages/cv2/__init__.py", "version": "5.0.0"}, "numpy": {"path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/lib/python3.13/site-packages/numpy/__init__.py", "version": "2.5.3"}, "PIL": {"path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/lib/python3.13/site-packages/PIL/__init__.py", "version": "12.3.0"}, "pymavlink": {"path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/lib/python3.13/site-packages/pymavlink/__init__.py", "version": "2.4.50"}, "MAVProxy.modules.mavproxy_map": {"path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/lib/python3.13/site-packages/MAVProxy/modules/mavproxy_map/__init__.py", "version": null}}
+{"derived_profile": "rebuilt", "forcing_binding_verified": false}
+
+[20:21:15] Four-foot model/data repair and native rebuild completed; flight readiness is not granted.

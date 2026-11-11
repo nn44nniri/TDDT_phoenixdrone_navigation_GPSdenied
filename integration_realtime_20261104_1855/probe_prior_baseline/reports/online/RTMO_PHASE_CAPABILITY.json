@@ -1,0 +1,605 @@
+{
+  "schema": "TDOC-RTMO-phase-capability-v7",
+  "ready_11phase": false,
+  "blocked_phases": [
+    "vertical_takeoff",
+    "hover",
+    "transition_forward",
+    "climb",
+    "cruise",
+    "turn",
+    "approach",
+    "transition_back",
+    "vertical_landing",
+    "touchdown"
+  ],
+  "phases": {
+    "on_ground": {
+      "semantic_role": "passive_boundary",
+      "requires_l4_l5_control_evidence": false,
+      "l4_verified": false,
+      "l4_feasible_seen": false,
+      "l5_admissible": false,
+      "execution_supported": true,
+      "boundary_state_supported": true,
+      "boundary_evidence": {
+        "supported": true,
+        "source": "online_native_layer6_current_operational_state",
+        "authority": "current GUI/MAVLink telemetry; no historical boundary evidence",
+        "checks": {
+          "episode_preparation_ok": true,
+          "native_connection_ready": true,
+          "fresh_telemetry": true,
+          "on_ground": true,
+          "groundspeed_stationary": true,
+          "relative_altitude_grounded": true,
+          "reported_velocity_stationary": true
+        },
+        "simulation_only": true,
+        "not_field_evidence": true,
+        "reason": "current_ground_contact_state_valid"
+      },
+      "verified_cycles": [],
+      "verified_reference_times": [],
+      "l5_final_cycles": [],
+      "joint_control_proof_cycles": [],
+      "same_cycle_joint_control_proof": null,
+      "live_registry_evidence": {
+        "required": true,
+        "available": true,
+        "snapshot_versions": [],
+        "snapshot_hashes": [],
+        "model_hashes": [],
+        "parameter_hashes": [],
+        "effective_climate_epochs": [],
+        "effective_climate_fingerprints": [],
+        "l5_decision_ids": []
+      },
+      "certificate_guard": {
+        "certificate_contract_ready": false,
+        "reusable_certificate_count": 0,
+        "bank_entries_for_phase": 0,
+        "reasons": [
+          "no_verified_ff_certificate_for_phase"
+        ],
+        "schemas": [],
+        "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+        "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+      },
+      "capability": true,
+      "blockers": [],
+      "evidence_type": "LIVE_RUNTIME_BOUNDARY+live_execution_profile"
+    },
+    "vertical_takeoff": {
+      "semantic_role": "controlled_phase",
+      "requires_l4_l5_control_evidence": true,
+      "l4_verified": true,
+      "l4_feasible_seen": true,
+      "l5_admissible": true,
+      "execution_supported": true,
+      "boundary_state_supported": null,
+      "boundary_evidence": null,
+      "verified_cycles": [
+        3,
+        2
+      ],
+      "verified_reference_times": [
+        2.001,
+        32.567
+      ],
+      "l5_final_cycles": [
+        3,
+        2
+      ],
+      "joint_control_proof_cycles": [
+        3
+      ],
+      "same_cycle_joint_control_proof": true,
+      "live_registry_evidence": {
+        "required": true,
+        "available": true,
+        "snapshot_versions": [
+          "L3-policy-v1"
+        ],
+        "snapshot_hashes": [
+          "774f4669e40c27a143a7fb6f192b8918f753ba12264f76e4436ca370b5c3e9d1",
+          "aac418d43cea8f43c93c5906afa2ae0779256927415465ecd03ad87ddfdd2a71"
+        ],
+        "model_hashes": [
+          "891afa795a69619a31be0f1a7a52231e0dfa4ea6d3ae8d46813877e755cc9b8b"
+        ],
+        "parameter_hashes": [
+          "eeb82702f5bf452c49011b434e49df85098e01095ce726eefc32a0bc258f6dd3"
+        ],
+        "effective_climate_epochs": [
+          "2026-10-28T16:00:00"
+        ],
+        "effective_climate_fingerprints": [
+          "441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc"
+        ],
+        "l5_decision_ids": [
+          "L5D-b9ff178706264074",
+          "L5D-3012a7accc3f4807"
+        ]
+      },
+      "certificate_guard": {
+        "certificate_contract_ready": false,
+        "reusable_certificate_count": 0,
+        "bank_entries_for_phase": 76,
+        "reasons": [
+          "certificate_model_dependencies_missing_or_changed",
+          "certificate_model_hash_not_current"
+        ],
+        "schemas": [
+          "Layer4-FF-certificate-v4"
+        ],
+        "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+        "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+      },
+      "capability": false,
+      "blockers": [
+        "layer4_ff_certificate_not_reusable_for_phase"
+      ],
+      "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+    },
+    "hover": {
+      "semantic_role": "controlled_phase",
+      "requires_l4_l5_control_evidence": true,
+      "l4_verified": false,
+      "l4_feasible_seen": false,
+      "l5_admissible": false,
+      "execution_supported": true,
+      "boundary_state_supported": null,
+      "boundary_evidence": null,
+      "verified_cycles": [],
+      "verified_reference_times": [],
+      "l5_final_cycles": [],
+      "joint_control_proof_cycles": [],
+      "same_cycle_joint_control_proof": false,
+      "live_registry_evidence": {
+        "required": true,
+        "available": true,
+        "snapshot_versions": [],
+        "snapshot_hashes": [],
+        "model_hashes": [],
+        "parameter_hashes": [],
+        "effective_climate_epochs": [],
+        "effective_climate_fingerprints": [],
+        "l5_decision_ids": []
+      },
+      "certificate_guard": {
+        "certificate_contract_ready": false,
+        "reusable_certificate_count": 0,
+        "bank_entries_for_phase": 0,
+        "reasons": [
+          "no_verified_ff_certificate_for_phase"
+        ],
+        "schemas": [],
+        "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+        "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+      },
+      "capability": false,
+      "blockers": [
+        "l4_not_full_fidelity_verified_for_phase",
+        "l5_not_final_admissible_for_phase",
+        "no_same_cycle_joint_control_proof_for_phase",
+        "layer4_ff_certificate_not_reusable_for_phase"
+      ],
+      "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+    },
+    "transition_forward": {
+      "semantic_role": "controlled_phase",
+      "requires_l4_l5_control_evidence": true,
+      "l4_verified": false,
+      "l4_feasible_seen": false,
+      "l5_admissible": false,
+      "execution_supported": true,
+      "boundary_state_supported": null,
+      "boundary_evidence": null,
+      "verified_cycles": [],
+      "verified_reference_times": [],
+      "l5_final_cycles": [],
+      "joint_control_proof_cycles": [],
+      "same_cycle_joint_control_proof": false,
+      "live_registry_evidence": {
+        "required": true,
+        "available": true,
+        "snapshot_versions": [],
+        "snapshot_hashes": [],
+        "model_hashes": [],
+        "parameter_hashes": [],
+        "effective_climate_epochs": [],
+        "effective_climate_fingerprints": [],
+        "l5_decision_ids": []
+      },
+      "certificate_guard": {
+        "certificate_contract_ready": false,
+        "reusable_certificate_count": 0,
+        "bank_entries_for_phase": 72,
+        "reasons": [
+          "certificate_model_dependencies_missing_or_changed"
+        ],
+        "schemas": [
+          "Layer4-FF-certificate-v4"
+        ],
+        "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+        "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+      },
+      "capability": false,
+      "blockers": [
+        "l4_not_full_fidelity_verified_for_phase",
+        "l5_not_final_admissible_for_phase",
+        "no_same_cycle_joint_control_proof_for_phase",
+        "layer4_ff_certificate_not_reusable_for_phase"
+      ],
+      "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+    },
+    "climb": {
+      "semantic_role": "controlled_phase",
+      "requires_l4_l5_control_evidence": true,
+      "l4_verified": false,
+      "l4_feasible_seen": false,
+      "l5_admissible": false,
+      "execution_supported": true,
+      "boundary_state_supported": null,
+      "boundary_evidence": null,
+      "verified_cycles": [],
+      "verified_reference_times": [],
+      "l5_final_cycles": [],
+      "joint_control_proof_cycles": [],
+      "same_cycle_joint_control_proof": false,
+      "live_registry_evidence": {
+        "required": true,
+        "available": true,
+        "snapshot_versions": [],
+        "snapshot_hashes": [],
+        "model_hashes": [],
+        "parameter_hashes": [],
+        "effective_climate_epochs": [],
+        "effective_climate_fingerprints": [],
+        "l5_decision_ids": []
+      },
+      "certificate_guard": {
+        "certificate_contract_ready": false,
+        "reusable_certificate_count": 0,
+        "bank_entries_for_phase": 132,
+        "reasons": [
+          "certificate_model_dependencies_missing_or_changed"
+        ],
+        "schemas": [
+          "Layer4-FF-certificate-v4"
+        ],
+        "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+        "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+      },
+      "capability": false,
+      "blockers": [
+        "l4_not_full_fidelity_verified_for_phase",
+        "l5_not_final_admissible_for_phase",
+        "no_same_cycle_joint_control_proof_for_phase",
+        "layer4_ff_certificate_not_reusable_for_phase"
+      ],
+      "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+    },
+    "cruise": {
+      "semantic_role": "controlled_phase",
+      "requires_l4_l5_control_evidence": true,
+      "l4_verified": false,
+      "l4_feasible_seen": false,
+      "l5_admissible": false,
+      "execution_supported": true,
+      "boundary_state_supported": null,
+      "boundary_evidence": null,
+      "verified_cycles": [],
+      "verified_reference_times": [],
+      "l5_final_cycles": [],
+      "joint_control_proof_cycles": [],
+      "same_cycle_joint_control_proof": false,
+      "live_registry_evidence": {
+        "required": true,
+        "available": true,
+        "snapshot_versions": [],
+        "snapshot_hashes": [],
+        "model_hashes": [],
+        "parameter_hashes": [],
+        "effective_climate_epochs": [],
+        "effective_climate_fingerprints": [],
+        "l5_decision_ids": []
+      },
+      "certificate_guard": {
+        "certificate_contract_ready": false,
+        "reusable_certificate_count": 0,
+        "bank_entries_for_phase": 281,
+        "reasons": [
+          "certificate_model_dependencies_missing_or_changed"
+        ],
+        "schemas": [
+          "Layer4-FF-certificate-v4"
+        ],
+        "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+        "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+      },
+      "capability": false,
+      "blockers": [
+        "l4_not_full_fidelity_verified_for_phase",
+        "l5_not_final_admissible_for_phase",
+        "no_same_cycle_joint_control_proof_for_phase",
+        "layer4_ff_certificate_not_reusable_for_phase"
+      ],
+      "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+    },
+    "turn": {
+      "semantic_role": "controlled_phase",
+      "requires_l4_l5_control_evidence": true,
+      "l4_verified": false,
+      "l4_feasible_seen": false,
+      "l5_admissible": false,
+      "execution_supported": true,
+      "boundary_state_supported": null,
+      "boundary_evidence": null,
+      "verified_cycles": [],
+      "verified_reference_times": [],
+      "l5_final_cycles": [],
+      "joint_control_proof_cycles": [],
+      "same_cycle_joint_control_proof": false,
+      "live_registry_evidence": {
+        "required": true,
+        "available": true,
+        "snapshot_versions": [],
+        "snapshot_hashes": [],
+        "model_hashes": [],
+        "parameter_hashes": [],
+        "effective_climate_epochs": [],
+        "effective_climate_fingerprints": [],
+        "l5_decision_ids": []
+      },
+      "certificate_guard": {
+        "certificate_contract_ready": false,
+        "reusable_certificate_count": 0,
+        "bank_entries_for_phase": 68,
+        "reasons": [
+          "certificate_model_dependencies_missing_or_changed"
+        ],
+        "schemas": [
+          "Layer4-FF-certificate-v4"
+        ],
+        "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+        "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+      },
+      "capability": false,
+      "blockers": [
+        "l4_not_full_fidelity_verified_for_phase",
+        "l5_not_final_admissible_for_phase",
+        "no_same_cycle_joint_control_proof_for_phase",
+        "layer4_ff_certificate_not_reusable_for_phase"
+      ],
+      "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+    },
+    "approach": {
+      "semantic_role": "controlled_phase",
+      "requires_l4_l5_control_evidence": true,
+      "l4_verified": false,
+      "l4_feasible_seen": false,
+      "l5_admissible": false,
+      "execution_supported": true,
+      "boundary_state_supported": null,
+      "boundary_evidence": null,
+      "verified_cycles": [],
+      "verified_reference_times": [],
+      "l5_final_cycles": [],
+      "joint_control_proof_cycles": [],
+      "same_cycle_joint_control_proof": false,
+      "live_registry_evidence": {
+        "required": true,
+        "available": true,
+        "snapshot_versions": [],
+        "snapshot_hashes": [],
+        "model_hashes": [],
+        "parameter_hashes": [],
+        "effective_climate_epochs": [],
+        "effective_climate_fingerprints": [],
+        "l5_decision_ids": []
+      },
+      "certificate_guard": {
+        "certificate_contract_ready": false,
+        "reusable_certificate_count": 0,
+        "bank_entries_for_phase": 64,
+        "reasons": [
+          "certificate_model_dependencies_missing_or_changed"
+        ],
+        "schemas": [
+          "Layer4-FF-certificate-v4"
+        ],
+        "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+        "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+      },
+      "capability": false,
+      "blockers": [
+        "l4_not_full_fidelity_verified_for_phase",
+        "l5_not_final_admissible_for_phase",
+        "no_same_cycle_joint_control_proof_for_phase",
+        "layer4_ff_certificate_not_reusable_for_phase"
+      ],
+      "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+    },
+    "transition_back": {
+      "semantic_role": "controlled_phase",
+      "requires_l4_l5_control_evidence": true,
+      "l4_verified": false,
+      "l4_feasible_seen": false,
+      "l5_admissible": false,
+      "execution_supported": true,
+      "boundary_state_supported": null,
+      "boundary_evidence": null,
+      "verified_cycles": [],
+      "verified_reference_times": [],
+      "l5_final_cycles": [],
+      "joint_control_proof_cycles": [],
+      "same_cycle_joint_control_proof": false,
+      "live_registry_evidence": {
+        "required": true,
+        "available": true,
+        "snapshot_versions": [],
+        "snapshot_hashes": [],
+        "model_hashes": [],
+        "parameter_hashes": [],
+        "effective_climate_epochs": [],
+        "effective_climate_fingerprints": [],
+        "l5_decision_ids": []
+      },
+      "certificate_guard": {
+        "certificate_contract_ready": false,
+        "reusable_certificate_count": 0,
+        "bank_entries_for_phase": 321,
+        "reasons": [
+          "certificate_model_dependencies_missing_or_changed"
+        ],
+        "schemas": [
+          "Layer4-FF-certificate-v4"
+        ],
+        "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+        "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+      },
+      "capability": false,
+      "blockers": [
+        "l4_not_full_fidelity_verified_for_phase",
+        "l5_not_final_admissible_for_phase",
+        "no_same_cycle_joint_control_proof_for_phase",
+        "layer4_ff_certificate_not_reusable_for_phase"
+      ],
+      "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+    },
+    "vertical_landing": {
+      "semantic_role": "controlled_phase",
+      "requires_l4_l5_control_evidence": true,
+      "l4_verified": false,
+      "l4_feasible_seen": false,
+      "l5_admissible": false,
+      "execution_supported": true,
+      "boundary_state_supported": null,
+      "boundary_evidence": null,
+      "verified_cycles": [],
+      "verified_reference_times": [],
+      "l5_final_cycles": [],
+      "joint_control_proof_cycles": [],
+      "same_cycle_joint_control_proof": false,
+      "live_registry_evidence": {
+        "required": true,
+        "available": true,
+        "snapshot_versions": [],
+        "snapshot_hashes": [],
+        "model_hashes": [],
+        "parameter_hashes": [],
+        "effective_climate_epochs": [],
+        "effective_climate_fingerprints": [],
+        "l5_decision_ids": []
+      },
+      "certificate_guard": {
+        "certificate_contract_ready": false,
+        "reusable_certificate_count": 0,
+        "bank_entries_for_phase": 0,
+        "reasons": [
+          "no_verified_ff_certificate_for_phase"
+        ],
+        "schemas": [],
+        "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+        "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+      },
+      "capability": false,
+      "blockers": [
+        "l4_not_full_fidelity_verified_for_phase",
+        "l5_not_final_admissible_for_phase",
+        "no_same_cycle_joint_control_proof_for_phase",
+        "layer4_ff_certificate_not_reusable_for_phase"
+      ],
+      "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+    },
+    "touchdown": {
+      "semantic_role": "passive_boundary",
+      "requires_l4_l5_control_evidence": false,
+      "l4_verified": false,
+      "l4_feasible_seen": false,
+      "l5_admissible": false,
+      "execution_supported": true,
+      "boundary_state_supported": false,
+      "boundary_evidence": {},
+      "verified_cycles": [],
+      "verified_reference_times": [],
+      "l5_final_cycles": [],
+      "joint_control_proof_cycles": [],
+      "same_cycle_joint_control_proof": null,
+      "live_registry_evidence": {
+        "required": true,
+        "available": true,
+        "snapshot_versions": [],
+        "snapshot_hashes": [],
+        "model_hashes": [],
+        "parameter_hashes": [],
+        "effective_climate_epochs": [],
+        "effective_climate_fingerprints": [],
+        "l5_decision_ids": []
+      },
+      "certificate_guard": {
+        "certificate_contract_ready": false,
+        "reusable_certificate_count": 0,
+        "bank_entries_for_phase": 0,
+        "reasons": [
+          "no_verified_ff_certificate_for_phase"
+        ],
+        "schemas": [],
+        "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+        "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+      },
+      "capability": false,
+      "blockers": [
+        "passive_boundary_evidence_not_satisfied"
+      ],
+      "evidence_type": "LIVE_RUNTIME_BOUNDARY+live_execution_profile"
+    }
+  },
+  "source": "TDOC live capability registry + live Layer4 certificate bank + current execution profile",
+  "mission_certification": {
+    "schema": "TDOC-RTMO-mission-certification-v1",
+    "fully_certified": false,
+    "blocked_phases": [
+      "vertical_takeoff",
+      "hover",
+      "transition_forward",
+      "climb",
+      "cruise",
+      "turn",
+      "approach",
+      "transition_back",
+      "vertical_landing",
+      "touchdown"
+    ],
+    "admission_authority": false,
+    "runtime_release_policy": "CURRENT_PHASE_AND_TRANSITION_LOCAL"
+  },
+  "synthetic_final_forbidden": true,
+  "execution_profile": {
+    "forward_only": true,
+    "vtol_force_model_validated": false,
+    "vtol_autopilot_controller_validated": false,
+    "phase_execution_capability": {
+      "phase_supported": {
+        "vertical_takeoff": true,
+        "hover": true,
+        "transition_forward": true,
+        "climb": true,
+        "cruise": true,
+        "turn": true,
+        "approach": true,
+        "transition_back": true,
+        "vertical_landing": true
+      },
+      "scope": "SITL_CLOSED_LOOP",
+      "actuation_authority": false
+    },
+    "claim_scope": {},
+    "claim_limits": {},
+    "commissioned_nominal_control": true,
+    "authority_semantics": "Layer5 external controller -> Layer6 -> ArduPilot authoritative mixer -> JSBSim; direct PWM forbidden",
+    "claim_semantics": "SITL commissioning does not upgrade autonomous-ArduPilot, full-envelope-aerodynamics, or real-aircraft validation claims"
+  }
+}

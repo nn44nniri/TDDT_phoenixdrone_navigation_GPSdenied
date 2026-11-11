@@ -1,0 +1,3759 @@
+--- a/SETUP.md
++++ b/SETUP.md
+@@ -213,3 +213,35 @@
+ `integration_hover_20261104_1710/FINAL_NATIVE_REPORT_FA.html`. Opening panels or
+ reaching ARM alone does not pass the closed-loop flight test.
+ 
++
++## Native realtime VTOL prototype (sensor-only navigation profile)
++
++The integrated config now selects `tdoc.realtime.enabled: true`. The canonical
++`nav-online` command routes through the explicit realtime Layer2–7 profile.
++See `layer6_v20261007_1032/docs/NATIVE_REALTIME_VTOL_FA.md` for its sensor boundary,
++clock/lease contract, EKF3 configuration and qualification limits. Allow the
++configured 60-second stationary sensor calibration before ARM.
++
++After compiled source changes, rebuild before producing a new compatible prior:
++
++```bash
++source "$TDDT_ORCHESTRATOR_ROOT/configs/environment_fixed.sh"
++"$TDDT_LAYER6_ROOT/scripts/install_flightstack_rev1.sh" \
++  --base-dir "$TDDT_LAYER6_ROOT" --repair-model-only
++cd "$TDDT_ORCHESTRATOR_ROOT"
++$PYTHON -m tddt_tdoc.cli --config configs/tdoc.yaml reset \
++  --refresh-external --reuse-downloaded-datasets --climate-hours 24 \
++  --build-fmus --build-fmus-refresh
++./scripts/run_training_workflows.sh --offline
++$PYTHON -m tddt_tdoc.cli --config configs/tdoc.yaml nav-online \
++  --reuse-existing-offline-knowledge --online-episodes 1 \
++  --online-max-cycles-per-episode-auto
++```
++
++Do not reset or refresh forcing between accepting that prior and Online. A new
++build changes artifact identities and requires a new compatible Offline prior.
++A short commissioning run may add `--online-local-hover-seconds 60
++--online-local-hover-height-m 3`; this is a hover test, not a destination mission.
++A cycle's prediction, actual MAVLink execution receipt and Layer7 feedback are
++recorded in `runtime/realtime/<run-id>/cycles.jsonl`. Physical simulator pose is
++retained separately for independent validation and is never a MESA observation.
+--- a/TDOC_v20260911_2052/configs/tdoc.yaml
++++ b/TDOC_v20260911_2052/configs/tdoc.yaml
+@@ -173,6 +173,12 @@
+ # TDOC-RTMO complementary mission orchestration (TDOC_RTMO_Complement_FA_v2).
+ # This policy changes orchestration only; Layer2..Layer7 internals remain authoritative.
+ tdoc:
++  realtime:
++    enabled: true
++    profile: native-sensor-vtol-prototype-v1
++    stationary_calibration_s: 60.0
++    route_height_m: 10.0
++    route_speed_m_s: 6.0
+   knowledge_policy:
+     # Versioned OFFLINE evidence prior. It never grants FINAL or execution authority.
+     artifact: knowledge/policy/online_policy.json.gz
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer6.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer6.py
+@@ -433,7 +433,7 @@
+                             raise ValueError('fresh native telemetry/forcing required')
+                         if self._option("require_fcu_estimator_ready",False):
+                             from ..native_control_binding import fcu_estimator_ready
+-                            if not fcu_estimator_ready(status):
++                            if not fcu_estimator_ready(status,require_horizontal_position=getattr(self,'readiness_requires_horizontal_position',True)):
+                                 raise ValueError("FCU estimator/pre-arm health not ready: "+str({"ekf_status":(status or {}).get("ekf_status"),"fcu_health":(status or {}).get("fcu_health")}))
+                         from layer6.status import CORE_CHANNELS,validate_observation_status
+                         if not validate_observation_status(status,required=(*CORE_CHANNELS,'SERVO_OUTPUT_RAW','SYS_STATUS'))['ok']:
+@@ -471,7 +471,11 @@
+                 from ..unit_adapter import UnitAdapterBinding
+                 unit=UnitAdapterBinding(self.config);unit.activate()
+                 from tdoc_unit_converter import adapters as iso
+-                observed=iso.wgs84_to_ecef(math.radians(float(status["latitude_deg"])),math.radians(float(status["longitude_deg"])),float(status["altitude_msl_m"]))
++                reference=status
++                if getattr(self,'origin_validation_physical',False):
++                    from ..native_control_binding import native_physical_origin_reference
++                    reference=native_physical_origin_reference(native_status,status)
++                observed=iso.wgs84_to_ecef(math.radians(float(reference["latitude_deg"])),math.radians(float(reference["longitude_deg"])),float(reference["altitude_msl_m"]))
+                 target=iso.wgs84_to_ecef(math.radians(known["latitude_deg"]),math.radians(known["longitude_deg"]),known["altitude_msl_m"])
+                 if math.sqrt(sum((float(a)-float(b))**2 for a,b in zip(observed,target)))>float(self._option("origin_tolerance_m",50.0)):
+                     raise ValueError("live FCU validation position does not match surveyed mission origin")
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/cli.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/cli.py
+@@ -40,6 +40,9 @@
+     q.add_argument("--online-max-cycles-per-episode-auto",action="store_true",help="Automatically resolve the per-mission safety cap from the offline baseline or route geometry")
+     q.add_argument('--online-local-hover-seconds',type=float,help='Explicit local takeoff/hover/landing test, 1..60 seconds; keeps normal safety gates')
+     q.add_argument('--online-local-hover-height-m',type=float,default=3.,help='Local hover objective height, 1..10 metres')
++    q.add_argument('--online-realtime-vtol',action='store_true',help='Sensor-restricted 10 Hz TDDT VTOL prototype with bounded continuous command leases')
++    q.add_argument('--online-realtime-goal-offset-m',type=float,help='Explicit short-route commissioning distance along the configured mission bearing')
++    q.add_argument('--online-realtime-output',help='Directory for Native wire evidence, all seven stages and mission outcome')
+     q.add_argument("--online-origin-tolerance-m",type=float,default=50.0,help="Maximum allowed horizontal offset from the mission origin at the first live cycle of each episode")
+     q.add_argument("--online-goal-tolerance-m",type=float,default=25.0,help="Horizontal destination tolerance used to terminate an online episode")
+     q.add_argument("--online-touchdown-altitude-m",type=float,default=2.5,help="Maximum relative/AGL altitude for automatic touchdown completion when altitude evidence is available")
+@@ -124,6 +127,24 @@
+         else:
+             print(f"[{args.cmd}] offline knowledge mode=RUN_OFFLINE_FIRST (no reusable handoff detected)",flush=True)
+         if args.offline_knowledge_manifest and "--offline-knowledge-manifest" not in cmd: cmd += ["--offline-knowledge-manifest",args.offline_knowledge_manifest]
++        if args.online_realtime_vtol or cfg.get('tdoc.realtime.enabled',False):
++            if args.online_episodes!=1 or not (force_reuse or auto_reuse):
++                print(json.dumps({'ok':False,'status':'REFUSED','reason':'realtime profile requires one episode and an accepted current Offline prior'}));return 2
++            from .realtime import run_realtime_mission
++            goal=None
++            if args.online_realtime_goal_offset_m is not None:
++                if args.online_realtime_goal_offset_m<0:
++                    print(json.dumps({'ok':False,'status':'REFUSED','reason':'negative commissioning route distance'}));return 2
++                from pyproj import Geod
++                region=json.loads((cfg.package_root/'region/region_v1.geojson').read_text())
++                roles={f['properties'].get('feature_role'):f['geometry']['coordinates'] for f in region['features']}
++                geod=Geod(ellps='WGS84');bearing,_,_=geod.inv(*roles['start'],*roles['destination'])
++                lon,lat,_=geod.fwd(*roles['start'],bearing,args.online_realtime_goal_offset_m);goal=[lon,lat]
++            result=run_realtime_mission(cfg,hover_seconds=args.online_local_hover_seconds,
++                height_m=args.online_local_hover_height_m,
++                max_cycles=20000 if args.online_max_cycles_per_episode_auto else args.online_max_cycles_per_episode,
++                goal_override=goal,output=args.online_realtime_output)
++            return 0 if result['status']=='PASS' else 2
+         if args.online_validation_fixture: cmd += ["--online-validation-fixture",args.online_validation_fixture]
+         from .diagnostics import run_workflow
+         return run_workflow(cmd,cfg.package_root,enabled=bool(args.debug_log))
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/model_compatibility.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/model_compatibility.py
+@@ -89,7 +89,24 @@
+         'jsbsim_binary':fs/'jsbsim/build/src/JSBSim',
+         'ardupilot_default_parameters':fs/'ardupilot/Tools/autotest/default_params/phoenix_v3.parm',
+         'pilot_configuration':fs/'phoenix_controller/config/f310_phoenix.yaml',
++        'coarse_geomagnetic_map':fs/'ardupilot/libraries/AP_Declination/tables.cpp',
++        'native_realtime_model_generator':l6/'scripts/apply_native_realtime_model.py',
++        'native_realtime_model_source':l6/'configs/phoenix_native_base.xml',
++        'native_realtime_parameter_source':l6/'configs/native_realtime_vtol.parm',
++        'native_realtime_environment_generator':l6/'scripts/apply_native_realtime_environment.py',
++        'native_standard_installer':l6/'scripts/install_flightstack_rev1.sh',
++        'native_base_alignment_installer':l6/'scripts/apply_r3_03_model_alignment.py',
++        'layer2_standard_build':twins/'scripts/build_all.sh',
++        'layer2_packager':twins/'scripts/package_fmus.py',
+     }
++    for p in sorted((twins/'src').rglob('*')):
++        if p.is_file() and p.suffix in ('.cpp','.h'):
++            paths['layer2/source/'+p.relative_to(twins/'src').as_posix()]=p
++    for p in sorted((twins/'python/twins_fmi').glob('*.py')):
++        paths['layer2/python/'+p.name]=p
++    l7=config.path_value('TDDT_LAYER7_ROOT',required=True)
++    for p in sorted((l7/'src/tddt_layer7').rglob('*.py')):
++        paths['layer7/'+p.relative_to(l7/'src/tddt_layer7').as_posix()]=p
+     # Configurations and executable Python model/mapping code also affect replay.
+     for env_key,label in [('TDDT_LAYER3_ROOT','layer3'),('TDDT_LAYER4_ROOT','layer4'),('TDDT_LAYER5_ROOT','layer5')]:
+         root=config.path_value(env_key,required=True)
+@@ -125,6 +142,10 @@
+     for name in ('mesa_nav_fmu','wingmpet_fmu'):
+         with ZipFile(paths[name]) as z:
+             embedded=hashlib.sha256(z.read('resources/phoenix_drone_v3.yaml')).hexdigest()
++            for key,p in paths.items():
++                if key.startswith('layer2/source/'):
++                    if z.read('sources/src/'+key.removeprefix('layer2/source/'))!=p.read_bytes():
++                        raise ValueError('FMU requires a standard rebuild after source change: '+name+'/'+key)
+         if embedded!=artifacts['layer2_profile']['sha256']:
+             raise ValueError('stale embedded Phoenix profile: '+name)
+     if any(_stat(p)!=stats[name] for name,p in paths.items()):
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/native_control_binding.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/native_control_binding.py
+@@ -50,7 +50,23 @@
+         return False
+ 
+ 
+-def fcu_estimator_ready(status):
++def native_physical_origin_reference(native_status,status):
++    """Startup validation only; this reference must never seed MESA state."""
++    import time,math
++    sid=(status.get('status_quality') or {}).get('native_session_id')
++    panel=(native_status.get('panels') or {}).get('evidence') or {}
++    physical=panel.get('physical_map') or {};point=physical.get('position') or {}
++    if (not sid or native_status.get('session_id')!=sid or panel.get('session_id')!=sid
++        or physical.get('ready') is not True or physical.get('navigation_input') is not False
++        or point.get('source')!='SIM_STATE; visualization only' or point.get('navigation_input') is not False
++        or not 0<=time.monotonic()-point.get('received_monotonic_s',-1)<=.5):
++        raise ValueError('fresh same-session physical origin validation reference required')
++    result={k:float(point[k]) for k in ('latitude_deg','longitude_deg','altitude_msl_m')}
++    if not all(math.isfinite(v) for v in result.values()):raise ValueError('invalid physical origin reference')
++    return result
++
++
++def fcu_estimator_ready(status,*,require_horizontal_position=True):
+     """Flight-controller readiness only; never a TDDT navigation observation."""
+     try:
+         if 'schema' in status or 'telemetry_metadata' in status:
+@@ -62,6 +78,11 @@
+         flags=int(status["ekf_status"]["flags"])
+         # ArduPilot EKF_ATTITUDE, VELOCITY_HORIZ/VERT, POS_HORIZ_ABS/VERT_ABS.
+         required=1|2|4|16|32
++        if not require_horizontal_position:
++            # QHOVER/QSTABILIZE use attitude and vertical control. Global XY is
++            # owned by sensor MESA/MPC in this explicit GNSS-denied prototype.
++            if status.get('mode') not in ('QHOVER','QSTABILIZE'):return False
++            required=1|2|4|32
+         if flags & required != required or flags & 1024:  # EKF_UNINITIALIZED
+             return False
+         health=status["fcu_health"]
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/phoenix_geometry.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/phoenix_geometry.py
+@@ -55,10 +55,28 @@
+         raise ValueError('aligned geometry manifest hash mismatch')
+     manifest=json.loads(raw)
+     target=config.path_value('TDDT_LAYER6_ROOT',required=True)/'FlightStack/ardupilot/Tools/autotest/aircraft/phoenix_v3'
++    model_variant='R3.03'
+     for name in ('phoenix_v3.xml',):
+         p=target/name
+         if not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest()!=manifest['files'][name]['sha256']:
+-            raise ValueError('native ground geometry deployment mismatch; R3.03 required: '+name)
++            # The RT model changes aerodynamic/control expressions, not the
++            # reference contacts, mass, inertia or CG. Admit only its exact,
++            # reproducible source generation from the pinned original model.
++            import importlib.util,xml.etree.ElementTree as ET
++            l6=config.path_value('TDDT_LAYER6_ROOT',required=True)
++            base=l6/'configs/phoenix_native_base.xml';generator=l6/'scripts/apply_native_realtime_model.py'
++            if not base.is_file() or hashlib.sha256(base.read_bytes()).hexdigest()!=manifest['files'][name]['sha256']:
++                raise ValueError('native RT base geometry reference mismatch')
++            spec=importlib.util.spec_from_file_location('tddt_native_rt_model',generator)
++            module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
++            if not p.is_file() or p.read_bytes()!=module.model_bytes():
++                raise ValueError('native ground geometry/model deployment mismatch: '+name)
++            def nodes(e):return [(n.tag,n.attrib,(n.text or '').strip()) for n in e.iter()]
++            original=ET.parse(base).getroot();actual_model=ET.parse(p).getroot()
++            for section in ('metrics','mass_balance','ground_reactions'):
++                if nodes(original.find(section))!=nodes(actual_model.find(section)):
++                    raise ValueError('RT profile changed reference geometry: '+section)
++            model_variant='native-realtime-vtol-v1 / R3.03 reference geometry'
+     reset=target/'reset.xml'
+     if not reset.is_file():
+         raise ValueError('native Reset geometry missing')
+@@ -92,5 +110,7 @@
+         raise ValueError('native generated Reset geometry mismatch; R3.03 rebuild required')
+     # Runtime SIM_JSBSim regenerates reset.xml. Its source/binary update is owned
+     # by R3.03; matching an on-disk template alone never grants flight authority.
+-    return {**manifest,'installed_reset_sha256':hashlib.sha256(reset.read_bytes()).hexdigest(),
++    return {**manifest,'installed_model_variant':model_variant,
++            'installed_model_sha256':hashlib.sha256((target/'phoenix_v3.xml').read_bytes()).hexdigest(),
++            'installed_reset_sha256':hashlib.sha256(reset.read_bytes()).hexdigest(),
+             'reset_origin_binding_verified':False,'flight_ready':False}
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/realtime.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/realtime.py
+@@ -0,0 +1,288 @@
++"""TDOC-owned asynchronous realtime VTOL mission using only approved sensors.
++
++Heavy import/dataset work precedes ARM. Layer6 keeps the current short lease at
++30Hz while TDOC replans at 10Hz. Layer7 matches the original prediction tube at
++the measured plant time and returns model-only feedback to the next Layer2 tick.
++"""
++from copy import deepcopy
++from datetime import datetime,timedelta
++import hashlib,json,math,sys,threading,time,traceback,uuid
++from pathlib import Path
++from types import SimpleNamespace
++import numpy as np
++from pyproj import Geod
++
++from .adapters.layer2 import Layer2Adapter
++from .adapters.layer5 import Layer5Adapter
++from .adapters.layer6 import Layer6OnlineAdapter
++from .model_compatibility import capture_model_dependencies
++from .knowledge_handoff import OfflineKnowledgeHandoff
++
++
++class ContactSupport:
++    """Latch barometer/IMU support evidence through motor-cut transients.
++
++    Commanded slow descent is not a stall. No pose from the physical simulator
++    enters this detector, including its near-ground impact alternative.
++    """
++    def __init__(self):self.samples=[];self.certificate=None
++    def update(self,t,height,down_velocity,force_error):
++        if self.certificate is not None:return self.certificate
++        self.samples.append((t,height,down_velocity,force_error))
++        self.samples=[s for s in self.samples if t-s[0]<=.7]
++        recent=[s for s in self.samples if t-s[0]<=.4]
++        span=recent[-1][0]-recent[0][0]
++        stationary=(span>=.3 and max(s[1] for s in recent)<.2
++            and max(s[1] for s in recent)-min(s[1] for s in recent)<.04
++            and all(abs(s[2])<.08 and s[3]<.5 for s in recent))
++        impact=(height<.15 and force_error>1.2
++            and any(s[2]>.1 and s[1]>.08 for s in self.samples[:-1]))
++        if stationary or impact:
++            self.certificate={'qualified':True,'qualified_time_s':t,
++                'condition':'barometric_stall' if stationary else 'near_ground_IMU_impact',
++                'height_m':height,'window_s':span,'specific_force_error_m_s2':force_error,
++                'source':'MESA/barometer/IMU only'}
++        return self.certificate
++
++
++class ClimatePrediction:
++    def __init__(self,cfg,binding,initial_time):
++        self.cfg=cfg;self.binding=binding;self.point=(0.,0.,0.,initial_time)
++        self.value=None;self.error=None;self.stop=False
++        self.calculate();self.thread=threading.Thread(target=self.run,daemon=True);self.thread.start()
++    def calculate(self):
++        from estimate_climate import estimate
++        n,e,d,t=self.point;o=self.binding['mission_origin'];geod=Geod(ellps='WGS84')
++        lon,lat,_=geod.fwd(o['longitude_deg'],o['latitude_deg'],math.degrees(math.atan2(e,n)),math.hypot(n,e))
++        epoch=datetime.fromisoformat(self.binding['effective_climate_epoch'])
++        args=SimpleNamespace(fmu=str(self.cfg.path_value('TDDT_CLIMATE_ROOT')/'fmu/MicroMetTwin.fmu'),
++            input=self.binding['forcing_file'],time=(epoch+timedelta(seconds=t)).isoformat(),
++            latitude=lat,longitude=lon,elevation_sea_level=float(o['altitude_msl_m'])-d,
++            elevation_ground_level=None,dem=str(self.cfg.path_value('TDDT_MAP_ROOT')/'terrain_obstacles.tif'),
++            dem_dir=None,terrain_policy='require-dem',curvature_radius_m=1000.,ground_elevation_m=None,
++            slope_deg=0.,aspect_deg=0.,curvature=0.,barnes_filter_km=20.,with_metadata=False,
++            wind_3dw_dx_m=100.,wind_3dw_dy_m=100.,wind_3dw_dz_m=10.,wind_profile_power=.143)
++        est=estimate(args)
++        if est.get('ok') is False:raise ValueError('MicroMet query rejected: '+str(est.get('error')))
++        out=est.get('fmu_outputs') or est
++        self.value={'twin_id':'MicroMetTwin','time_s':t,'wind_ned_m_s':[
++            float(out['wind_v_3dw']),float(out['wind_u_3dw']),-float(out['diagnostic_vertical_wind'])],
++            'air_density_kg_m3':float(out['air_density']),'source':'bound cached forcing through MicroMet FMU',
++            'forcing_sha256':self.binding['forcing_file_sha256'],'model_only':True,
++            'received_monotonic':time.monotonic()}
++    def run(self):
++        while not self.stop:
++            time.sleep(.5)
++            if self.stop:break
++            try:self.calculate();self.error=None
++            except Exception as exc:self.error=repr(exc)
++    def close(self):self.stop=True;self.thread.join(timeout=5)
++
++
++def run_realtime_mission(cfg,*,hover_seconds=None,height_m=3.,max_cycles=20000,goal_override=None,output=None):
++    l2=Layer2Adapter(cfg);legacy_l5=Layer5Adapter(cfg);legacy_l5._ensure()
++    l6=Layer6OnlineAdapter(cfg,legacy_l5);io=None;climate=None
++    l6.readiness_requires_horizontal_position=False
++    l6.origin_validation_physical=True
++    run_id='rt-'+uuid.uuid4().hex;out=Path(output or cfg.runtime_root/'realtime'/run_id);out.mkdir(parents=True,exist_ok=True)
++    result={'schema':'TDOC-realtime-mission-result-v1','status':'FAIL','run_id':run_id,
++        'navigation_sensors':['GYROSCOPE','ACCELEROMETER','MAGNETOMETER','BAROMETER','AIRSPEED'],
++        'ULTRASONIC_WIND':'MISSING','GNSS_used':False,'odometry_used':False,'vision_used':False,
++        'inner_FCU_attitude_backend':'AP_NavEKF3 with IMU/mag/baro; never MESA observation',
++        'route_profile':'VTOL translation; no wing-borne phase certification'}
++    result['requested_hover_seconds']=hover_seconds
++    pending={};next_feedback=None;accepted=0;consumed=0;cycles=0;last_tx=None
++    try:
++        ready=l6.prepare_online_transport_session()
++        if not ready.get('ok'):raise RuntimeError('Native startup: '+str({k:ready.get(k) for k in ('stage','error')}))
++        status=l6._status();sid=status['status_quality']['native_session_id'];result['native_session_id']=sid
++        from layer6.realtime import RealtimeIO
++        from layer6.native_session import session_health
++        from layer6.binding import context_guard
++        session=ready['native_session'];binding_path=session['binding_file'];guard=context_guard(binding_path);binding=guard.check()
++        result['binding_hash']=binding['binding_hash'];result['model_id']=binding['model_id']
++        io=RealtimeIO(sid,out/'telemetry_wire.jsonl')
++        names=['SIM_GPS1_ENABLE','SIM_GPS2_ENABLE','SIM_GPS3_ENABLE','SIM_GPS4_ENABLE',
++            'GPS1_TYPE','GPS2_TYPE','AHRS_EKF_TYPE','Q_A_ANGLE_MAX','Q_PILOT_SPD_UP','Q_PILOT_SPD_DN',
++            'Q_TAILSIT_INPUT','RC1_DZ','RC2_DZ','RC3_DZ','EK3_SRC1_POSXY','EK3_SRC1_VELXY',
++            'EK3_SRC1_POSZ','EK3_SRC1_VELZ','EK3_SRC1_YAW']
++        readbacks=io.request_parameters(names);parameters={k:v['value'] for k,v in readbacks.items()}
++        if any(parameters[n]!=0 for n in names[:6]):raise ValueError('GNSS receiver/simulation readback not disabled')
++        if parameters['AHRS_EKF_TYPE']!=3 or [parameters[n] for n in names[-5:]]!=[0.,0.,1.,0.,1.]:
++            raise ValueError('FCU sensor-only EKF3 configuration not verified')
++        result['parameter_readbacks']=readbacks
++        result['surveyed_origin_frame']=io.set_surveyed_origin(binding['mission_origin'])
++        l2._ensure()
++        from twins_fmi.realtime import RealtimeTwins
++        from layer3.realtime import atomic_snapshot
++        from layer4.realtime import predict
++        from layer5.realtime import decide
++        from tddt_layer7.realtime import feedback
++        origin=binding['mission_origin'];initial_time=0.
++        deadline=time.monotonic()+8
++        while time.monotonic()<deadline:
++            try:measurements,samples,validation=io.sample(-1.);initial_time=samples[-1]['plant_time_s'];break
++            except RuntimeError:time.sleep(.05)
++        else:raise RuntimeError('approved sensor channels unavailable')
++        climate=ClimatePrediction(cfg,binding,initial_time)
++        after=initial_time;calibration=[];cal_start=initial_time
++        calibration_duration=float(cfg.get('tdoc.realtime.stationary_calibration_s',60.))
++        if not 3.<=calibration_duration<=300.:raise ValueError('stationary calibration duration outside 3..300s')
++        while after-cal_start<calibration_duration:
++            measurements,samples,validation=io.sample(after)
++            if samples:
++                after=samples[-1]['plant_time_s'];calibration.extend(samples)
++                climate.point=(0.,0.,0.,after)
++            if validation['HEARTBEAT']['data']['base_mode']&128:raise ValueError('stationary initialization requires DISARMED')
++            time.sleep(.05)
++        twins=RealtimeTwins(l2,origin,calibration,climate.value)
++        result['calibration']=twins.calibration
++        geod=Geod(ellps='WGS84')
++        region=json.loads((cfg.package_root/'region/region_v1.geojson').read_text())
++        goal=next(f['geometry']['coordinates'] for f in region['features'] if f['properties'].get('feature_role')=='destination')
++        if goal_override is not None:goal=list(goal_override)
++        if hover_seconds is not None:goal=[origin['longitude_deg'],origin['latitude_deg']]
++        bearing,_,distance=geod.inv(origin['longitude_deg'],origin['latitude_deg'],goal[0],goal[1])
++        target=np.array([distance*math.cos(math.radians(bearing)),distance*math.sin(math.radians(bearing)),0.])
++        altitude=float(height_m if hover_seconds is not None else cfg.get('tdoc.realtime.route_height_m',10.))
++        route_speed=float(cfg.get('tdoc.realtime.route_speed_m_s',4.))
++        result['goal_lonlat']=goal;result['route_distance_m']=distance;result['cruise_height_above_launch_m']=altitude
++        arm_health=session_health(sid)
++        if not arm_health['ok'] or not arm_health['panels']['evidence'].get('physical_map',{}).get('ready'):
++            raise RuntimeError('six live panels including physical simulator map required before ARM')
++        # Separate lifecycle command before any climb/lean command. No force-arm.
++        client=l6._get_client();arm_start=time.monotonic();last_arm=0.
++        while time.monotonic()-arm_start<12.:
++            if time.monotonic()-last_arm>.4:
++                client.submit_command([0.,0.,0.,0.],mode='QHOVER',discrete=('ARM',),ttl_s=.8,
++                    transaction_id=run_id+'-arm',provenance={'execution_scope':'SITL_RT_MPC_LIFECYCLE'})
++                last_arm=time.monotonic()
++            measurements,samples,validation=io.sample(twins.last)
++            twins.step(measurements,samples)
++            if validation['HEARTBEAT']['data']['base_mode']&128:break
++            time.sleep(.08)
++        else:raise RuntimeError('normal FCU ARM not confirmed: '+str(list(io.text)))
++        twins.takeoff_requested=True
++        phase='vertical_takeoff';hover_start=None;ground_since=None;support=ContactSupport();phase_start=twins.last
++        next_tick=time.monotonic();health_at=0.;health=None;last_print=0.;max_latency=0.
++        (out/'startup.json').write_text(json.dumps(result,indent=2))
++        with (out/'cycles.jsonl').open('w',buffering=1) as log:
++            while cycles<max_cycles:
++                cycle_start=time.monotonic();cycles+=1;tx=run_id+f'-c{cycles:06d}'
++                measurements,samples,validation=io.sample(twins.last)
++                if time.monotonic()-measurements['HIGHRES_IMU']['received_monotonic']>.3:
++                    raise ValueError('source observation stale before control')
++                if next_feedback is not None:consumed+=1
++                nav=twins.step(measurements,samples,next_feedback);next_feedback=None
++                p=np.array(nav['position_ned_m']);v=np.array(nav['velocity_ned_m_s']);height=-p[2]
++                climate.point=(*p,nav['time_s'])
++                current_climate=deepcopy(climate.value)
++                if (time.monotonic()-current_climate['received_monotonic']>3.
++                    or not 0<=nav['time_s']-current_climate['time_s']<=3.):
++                    raise RuntimeError('MicroMet prediction stale: '+str(climate.error))
++                if time.monotonic()-health_at>1.:
++                    health=session_health(sid);health_at=time.monotonic()
++                    if not health['ok']:raise RuntimeError('Native six-panel health: '+str(health['reason']))
++                    if not health['panels']['evidence'].get('physical_map',{}).get('ready'):
++                        raise RuntimeError('physical simulator map telemetry unavailable')
++                    if any(io.parameters[n]['value']!=0 for n in names[:6]):raise ValueError('GNSS configuration changed')
++                if phase=='vertical_takeoff' and height>altitude-.5 and abs(v[2])<.5:
++                    phase='hover' if hover_seconds is not None else 'cruise_vtol';phase_start=nav['time_s'];hover_start=None
++                if phase=='hover':
++                    qualified=bool(np.linalg.norm(p[:2])<=5 and abs(height-altitude)<=1 and np.linalg.norm(v)<1.)
++                    if not qualified:hover_start=None
++                    elif hover_start is None:hover_start=nav['time_s']
++                    if hover_start is not None and nav['time_s']-hover_start>=hover_seconds+3.:
++                        phase='vertical_landing';phase_start=nav['time_s']
++                if phase=='cruise_vtol' and np.linalg.norm(p[:2]-target[:2])<3 and np.linalg.norm(v[:2])<.8:
++                    phase='vertical_landing';phase_start=nav['time_s']
++                imu_data=measurements['HIGHRES_IMU']['data']
++                specific_force_error=abs(np.linalg.norm([imu_data[k] for k in ('xacc','yacc','zacc')])-9.80665)
++                if phase=='vertical_landing' and height<1.5:
++                    phase='landing_flare';phase_start=nav['time_s']
++                if phase in ('vertical_landing','landing_flare'):
++                    if support.update(nav['time_s'],height,v[2],specific_force_error):
++                        phase='contact_settle';phase_start=nav['time_s']
++                ref=target.copy() if phase in ('cruise_vtol','vertical_landing','landing_flare','contact_settle') else np.zeros(3)
++                ref[2]=.8 if phase in ('vertical_landing','landing_flare','contact_settle') else -altitude
++                reference={'position_ned_m':ref.tolist(),'speed_m_s':route_speed if phase=='cruise_vtol' else 2.}
++                if phase=='contact_settle':
++                    reference['contact_evidence']=deepcopy(support.certificate)
++                twins.climate=deepcopy(current_climate)
++                wing=twins.wing_packet(nav,(validation.get('SERVO_OUTPUT_RAW') or {}).get('data') or {})
++                snapshot=atomic_snapshot(nav,wing,current_climate,phase=phase,
++                    reference=reference,
++                    transaction_id=tx,origin=origin,feedback_hash=nav['feedback_consumed'])
++                forecast=predict(snapshot);decision=decide(snapshot,forecast,parameters,
++                    heading_reference=math.radians(origin['heading_deg']))
++                elapsed=time.monotonic()-measurements['HIGHRES_IMU']['received_monotonic']
++                if elapsed>.3:raise ValueError('source observation expired before MPC submission')
++                # New declared bounded-lease protocol: the 2s prediction tube
++                # covers the 0.5s command lease. The old 0.1s segment contract is
++                # not relabelled or silently extended.
++                ack=client.submit_command(decision['u_cmd'],mode=decision['mode'],transaction_id=tx,ttl_s=.5,
++                    provenance={'execution_scope':'SITL_RT_MPC_V1','snapshot_hash':snapshot['snapshot_hash'],
++                        'candidate_id':decision['candidate_id'],'model_id':binding['model_id']},
++                    safety={'psf':True,'rta':True},execution_rate_hz=30.)
++                last_tx=tx;decision['intake_instance_id']=ack.raw['command_instance_id'];pending[tx]=decision
++                twins.model['last_command_acceleration_ne_m_s2']=decision['prediction']['acceleration_ne_m_s2']
++                receipt=io.receipt();f=feedback(nav,receipt,pending,twins.model)
++                if f['ok']:accepted+=1;next_feedback=f
++                if cycles>100 and accepted<2:raise RuntimeError('two qualified Layer7 feedback cycles were not produced')
++                for key in list(pending):
++                    if nav['time_s']-pending[key]['source_time_s']>2.:pending.pop(key)
++                landed=(validation.get('EXTENDED_SYS_STATE') or {}).get('data',{}).get('landed_state')==1
++                if phase=='contact_settle' and landed and height<.8 and abs(v[2])<.4:
++                    if ground_since is None:ground_since=nav['time_s']
++                else:ground_since=None
++                complete=ground_since is not None and nav['time_s']-ground_since>=2.
++                record={'transaction_id':tx,'phase':phase,'L2':{'navigation':nav,'wing':wing,'climate':current_climate},
++                    'L3':snapshot,'L4':forecast,'L5':decision,'L6':{'intake':ack.raw,'execution_receipt':receipt},
++                    'L7':f,'external_validation_only':{k:validation.get(k) for k in
++                        ('GLOBAL_POSITION_INT','ATTITUDE','ATTITUDE_QUATERNION','SIM_STATE','GPS_RAW_INT','EXTENDED_SYS_STATE')},
++                    'health':{'ok':health['ok'],'session_id':sid,'panels_ready':health['panels_ready'],
++                        'physical_map':health['panels']['evidence']['physical_map']},
++                    'cycle_wall_s':time.monotonic()-cycle_start,'accepted_feedback':accepted,'consumed_feedback':consumed}
++                log.write(json.dumps(record,separators=(',',':'),allow_nan=False)+'\n')
++                max_latency=max(max_latency,record['cycle_wall_s'])
++                if time.monotonic()-last_print>1.:
++                    print(f"[RT {cycles:05}] {phase} t={nav['time_s']:.2f} h={height:.2f} NE={p[0]:.2f}/{p[1]:.2f} v={np.linalg.norm(v):.2f} L7={accepted}/{consumed} u={np.round(decision['u_cmd'],3).tolist()} cycle={record['cycle_wall_s']:.3f}s",flush=True)
++                    last_print=time.monotonic()
++                if complete:
++                    for _ in range(10):
++                        client.submit_command([0.,0.,0.,0.],mode='QSTABILIZE',discrete=('DISARM',),ttl_s=.5,
++                            transaction_id=run_id+'-disarm',provenance={'execution_scope':'SITL_RT_MPC_LIFECYCLE'})
++                        time.sleep(.2)
++                        _,_,validation=io.sample(twins.last)
++                        if not validation['HEARTBEAT']['data']['base_mode']&128:break
++                    else:raise RuntimeError('normal DISARM not confirmed')
++                    final=(validation.get('SIM_STATE') or {}).get('data') or {}
++                    if not final:raise RuntimeError('independent physical validation unavailable')
++                    if not final.get('lon_int') or not final.get('lat_int'):
++                        raise RuntimeError('high-precision MAVLink2 physical validation unavailable')
++                    lon,lat=final['lon_int']*1e-7,final['lat_int']*1e-7
++                    _,_,actual_error=geod.inv(lon,lat,goal[0],goal[1])
++                    result.update(actual_goal_error_m=actual_error,touchdown_confirmed=True,
++                        disarm_confirmed=True,estimated_goal_error_m=float(np.linalg.norm(p[:2]-target[:2])),
++                        status='PASS' if actual_error<=25 and accepted>=2 and consumed>=2 else 'FAIL')
++                    # Retain the same live stream/windows for independent
++                    # DISARM observation and capture before owned-session close.
++                    time.sleep(2.)
++                    break
++                if nav['time_s']-phase_start>900:raise RuntimeError('phase timeout')
++                next_tick+=.1;delay=next_tick-time.monotonic()
++                if delay>0:time.sleep(delay)
++                elif delay<-.2:next_tick=time.monotonic()
++            else:raise RuntimeError('mission cycle cap reached')
++        result.update(cycles=cycles,accepted_feedback=accepted,consumed_feedback=consumed,max_cycle_wall_s=max_latency)
++        guard.check()
++    except (Exception,KeyboardInterrupt) as exc:
++        result['error']=repr(exc);result['traceback']=traceback.format_exc();traceback.print_exc()
++    finally:
++        if io:io.close()
++        if climate:climate.close()
++        l6.close();legacy_l5.close();l2.close()
++        result.update(cycles=cycles,accepted_feedback=accepted,consumed_feedback=consumed)
++        (out/'MISSION_RESULT.json').write_text(json.dumps(result,indent=2,default=str))
++        print('REALTIME_RESULT',out/'MISSION_RESULT.json',result['status'],result.get('error',''),flush=True)
++    return result
+--- a/TDOC_v20260911_2052/tests/test_native_forward_flow.py
++++ b/TDOC_v20260911_2052/tests/test_native_forward_flow.py
+@@ -0,0 +1,19 @@
++from pathlib import Path
++import math
++import pytest
++from twins_fmi import FormulaFMU
++
++
++def test_compiled_wing_fmu_distinguishes_broadside_translation_from_chord_flow():
++    root=Path(__file__).resolve().parents[2]/'twins_layer2_v20260820_1233'
++    with FormulaFMU(root/'fmus/WingMPET.fmu',config=root/'config/phoenix_drone_v3.yaml') as f:
++        args=dict(dt=.01,pn=0.,pe=0.,pd=-10.,vn=13.,ve=0.,vd=0.,
++            p_rate=0.,q_rate=0.,r_rate=0.,omega_left=700.,omega_right=700.,soc=.9,
++            left_motor_cmd=.875,right_motor_cmd=.875,left_elevon_rad=0.,right_elevon_rad=0.,
++            wind_n=0.,wind_e=0.,wind_d=0.,air_density=1.225)
++        upright=f.evaluate_operation(27,**args,qw=math.sqrt(.5),qx=0.,qy=math.sqrt(.5),qz=0.)
++        wingborne=f.evaluate_operation(27,**args,qw=1.,qx=0.,qy=0.,qz=0.)
++        assert upright['airspeed']==pytest.approx(13.)
++        assert upright['lambda_w']==0.
++        assert wingborne['lambda_w']==1.
++        assert all(math.isfinite(v) for v in upright.values())
+--- a/TDOC_v20260911_2052/tests/test_r4_03_native_forcing.py
++++ b/TDOC_v20260911_2052/tests/test_r4_03_native_forcing.py
+@@ -107,8 +107,13 @@
+     home=b['mission_origin']
+     def clock():return SimpleNamespace(time_boot_ms=10000,get_type=lambda:'GLOBAL_POSITION_INT',get_srcSystem=lambda:1,get_srcComponent=lambda:1,
+         lat=round(home['latitude_deg']*1e7),lon=round(home['longitude_deg']*1e7),alt=round(home['altitude_msl_m']*1000))
++    physical=SimpleNamespace(get_type=lambda:'SIM_STATE',get_srcSystem=lambda:1,get_srcComponent=lambda:1,
++        lat_int=round(home['latitude_deg']*1e7),lon_int=round(home['longitude_deg']*1e7),
++        lat=round(home['latitude_deg']*1e7),lon=round(home['longitude_deg']*1e7),alt=home['altitude_msl_m'])
++    after=clock();after.time_boot_ms=10050
++    frames=[clock(),physical,after]
+     original=link.recv_match
+-    link.recv_match=lambda **kw:clock() if isinstance(kw.get('type'),list) else original(**kw)
++    link.recv_match=lambda **kw:frames.pop(0) if isinstance(kw.get('type'),list) else original(**kw)
+     link.wait_heartbeat=lambda **kw:clock();link.close=lambda:setattr(link,'closed',True)
+     monkeypatch.setitem(sys.modules,'pymavlink',SimpleNamespace(mavutil=SimpleNamespace(mavlink_connection=lambda endpoint:link)))
+     target=tmp_path/'state.json'
+@@ -117,6 +122,9 @@
+     assert all(r['value'] is None and not r['verified'] and not r['applied'] for r in state['unsupported_fields'].values())
+     assert not state['runtime_clock_synchronization_verified'] and not state['UTC_mapping_verified']
+     assert not state['actuation_authority'] and not state['navigation_truth_injection']
++    assert state['environment_position_source']=='MAVLink/SIM_STATE physical forcing only'
++    assert state['environment_position_time_bounds_s']==[10.,10.05]
++    assert state['navigation_observation_generated'] is False
+ 
+ 
+ def test_runtime_failure_replaces_preexisting_success(bound,tmp_path,monkeypatch):
+@@ -148,3 +156,14 @@
+     with pytest.raises(RuntimeError,match='clock unavailable'):
+         run_bound_runtime(bound[0],tmp_path/'state.json',mavlink='clock-without-position',max_updates=1)
+     assert not json.loads((tmp_path/'state.json').read_text())['readback_verified']
++
++
++def test_physical_weather_position_never_accepts_unbounded_or_navigation_injecting_state():
++    state,_=verified();state.update(environment_position_source='MAVLink/SIM_STATE physical forcing only',
++        environment_position_time_bounds_s=[9.95,10.],environment_position_time_s=9.95,
++        navigation_observation_generated=False)
++    assert validate_wind_application(state)
++    state['environment_position_time_bounds_s']=[9.,10.]
++    with pytest.raises(ValueError,match='conservative native clock bounds'):validate_wind_application(state)
++    state['environment_position_time_bounds_s']=[9.95,10.];state['navigation_observation_generated']=True
++    with pytest.raises(ValueError,match='no navigation injection'):validate_wind_application(state)
+--- a/TDOC_v20260911_2052/tests/test_realtime_sensor_contract.py
++++ b/TDOC_v20260911_2052/tests/test_realtime_sensor_contract.py
+@@ -0,0 +1,236 @@
++from copy import deepcopy
++import math
++import pytest
++
++from twins_fmi.realtime import RealtimeTwins
++from layer3.realtime import atomic_snapshot
++from layer4.realtime import predict
++from layer5.realtime import decide
++from tddt_layer7.realtime import feedback,digest
++
++
++def snapshot():
++    nav={'time_s':10.,'position_ned_m':[0.,0.,-3.],'velocity_ned_m_s':[0.]*3,
++         'q_wxyz':[math.sqrt(.5),0.,math.sqrt(.5),0.],'body_rates_rad_s':[0.]*3,
++         'truth_used':False,'GNSS_used':False,'vision_used':False,'odometry_used':False}
++    wing={'time_s':10.,'reduced_inner_loop':{'disturbance_ned_m_s2':[0.]*3,
++        'inner_loop_tau_s':.35,'feedback_version':0},'maximum_total_thrust_N':10.,'mass_kg':.65,'FMU_operation':27}
++    return atomic_snapshot(nav,wing,{'wind_ned_m_s':[2.,-3.,0.]},phase='hover',
++        reference={'position_ned_m':[0.,0.,-3.]},transaction_id='tx',origin={})
++
++
++@pytest.mark.parametrize('forbidden',['POSITION','VELOCITY','ATTITUDE','SIM_STATE','ODOMETRY','VISION_POSITION_ESTIMATE','WIND'])
++def test_navigation_boundary_rejects_forbidden_measurements(forbidden):
++    nav=RealtimeTwins.__new__(RealtimeTwins)
++    with pytest.raises(ValueError,match='unapproved navigation'):
++        nav.step({forbidden:{}},[])
++
++
++def test_atomic_snapshot_does_not_share_mutable_twin_state_and_rejects_truth():
++    s=snapshot();original=s['snapshot_hash'];s['twins']['MESA_NAV']['vision_used']=True
++    with pytest.raises(ValueError,match='sensor set'):
++        atomic_snapshot(s['twins']['MESA_NAV'],s['twins']['WingMPET'],s['twins']['MicroMetTwin'],
++            phase='hover',reference=s['reference'],transaction_id='other',origin={})
++    assert snapshot()['snapshot_hash']==original
++
++
++def parameters():
++    return {'Q_A_ANGLE_MAX':30.,'RC1_DZ':30.,'RC2_DZ':30.,'RC3_DZ':30.,
++            'Q_PILOT_SPD_UP':2.5,'Q_PILOT_SPD_DN':0.,'Q_TAILSIT_INPUT':0.}
++
++
++def test_same_cycle_candidate_mpc_hover_and_climb_use_qhover_semantics():
++    s=snapshot();forecast=predict(s)
++    assert len(forecast['candidates'])==9
++    assert all(c['prediction_tube'][0]['time_s']==10. for c in forecast['candidates'])
++    d=decide(s,forecast,parameters(),heading_reference=0.)
++    assert d['gates']['FINAL'] and d['u_cmd']==pytest.approx([0.,0.,.5,0.])
++    s['reference']['position_ned_m'][2]=-8.
++    d=decide(s,predict(s),parameters(),heading_reference=0.)
++    assert d['mapping']['climb_rate_up_m_s']==1.2
++    assert d['u_cmd'][2]==pytest.approx(.5+.03+.47*1.2/2.5)
++    forecast['snapshot_hash']='old'
++    with pytest.raises(ValueError,match='snapshot mismatch'):decide(s,forecast,parameters(),heading_reference=0.)
++
++
++def test_real_wire_witness_pairs_only_the_sent_command_and_original_time():
++    from test_r6_03_first_move_segment import close
++    from layer6.telemetry_source import native_source_contract
++    _,ctx,_,proof=close(native_source_contract());st=proof['snapshot'];t=st['plant_time_s']
++    requested=ctx['requested_gui_state'];u=[requested[k] for k in ('roll','pitch','throttle','yaw')]
++    decision={'snapshot_hash':'source','candidate_id':'C1','u_cmd':u,'intake_instance_id':ctx['instance_id'],
++        'source_time_s':t-.1,'prediction':{'prediction_tube':[
++            {'time_s':t-.1,'state':[0.]*6},{'time_s':t+1.,'state':[0.]*6}]}}
++    receipt={'correlation':st['command_correlation'],'execution_witness':st,'armed':True,'mode':'QHOVER'}
++    nav={'time_s':t,'position_ned_m':[0.]*3,'velocity_ned_m_s':[0.]*3}
++    model={'disturbance_ned_m_s2':[0.]*3,'inner_loop_tau_s':.35,'feedback_version':0}
++    pending={'tx':deepcopy(decision)};out=feedback(nav,receipt,pending,model)
++    assert out['ok'] and out['sensor_only'] and not out['FCU_pose_feedback']
++    assert out['prediction_source_time_s']==t-.1 and not out['prediction_retimed']
++    assert pending=={}
++    nav['time_s']=t+3.
++    assert feedback(nav,receipt,{'tx':deepcopy(decision)},model)['reason']=='observation_outside_original_prediction_time'
++    nav['time_s']=t
++    forged=deepcopy(receipt);forged['correlation']['record']['barrier_nonce']+=1
++    forged['correlation']['record_hash']=digest(forged['correlation']['record'])
++    assert feedback(nav,forged,{'tx':deepcopy(decision)},model)['ok'] is False
++
++
++def test_stationary_vertical_tailsitter_attitude_is_not_euler_singular():
++    import numpy as np
++    from scipy.spatial.transform import Rotation
++    from twins_fmi.realtime import stationary_attitude
++    reference=np.array([.20663262,.02780473,.47078424])
++    expected=Rotation.from_euler('z',45.6,degrees=True)*Rotation.from_euler('y',90,degrees=True)
++    acc=expected.inv().apply([0.,0.,-9.80665])
++    mag=expected.inv().apply(reference)
++    for noise in (-1e-5,1e-5):
++        measured=acc+np.array([0.,noise,noise])
++        actual=stationary_attitude(measured,mag,reference)
++        assert (expected.inv()*actual).magnitude()<1e-4
++    with pytest.raises(ValueError,match='independent'):
++        stationary_attitude([1.,0.,0.],[1.,0.,0.],reference)
++
++
++def test_ground_motor_cut_requires_sensor_qualified_contact_and_mode_matches_receipt():
++    s=snapshot();s['phase']='contact_settle';s['twins']['MESA_NAV']['position_ned_m'][2]=-.2
++    s['reference']['contact_evidence']={'qualified':True,'qualified_time_s':9.8,
++        'source':'MESA/barometer/IMU only'}
++    d=decide(s,predict(s),parameters(),heading_reference=0.)
++    assert d['mode']=='QSTABILIZE' and d['u_cmd']==[0.]*4
++    s['reference']['contact_evidence']['qualified_time_s']=-3.
++    with pytest.raises(ValueError,match='no safe model candidate'):
++        decide(s,predict(s),parameters(),heading_reference=0.)
++    s['reference']['contact_evidence']['qualified_time_s']=9.8
++    s['twins']['MESA_NAV']['position_ned_m'][2]=-3.
++    with pytest.raises(ValueError,match='no safe model candidate'):
++        decide(s,predict(s),parameters(),heading_reference=0.)
++
++
++def test_landing_contact_does_not_confuse_flare_descent_with_ground_support():
++    from tddt_tdoc.realtime import ContactSupport
++    support=ContactSupport()
++    for k in range(40):
++        assert support.update(k*.1,.8-k*.02,.2,.03) is None
++    for k in range(10):
++        certificate=support.update(4.+k*.1,.015,.01,.05)
++    assert certificate['qualified'] and certificate['condition']=='barometric_stall'
++    assert support.update(5.1,.02,1.,8.) is certificate
++
++
++def test_only_near_ground_impact_after_descent_can_latch_motor_cut():
++    from tddt_tdoc.realtime import ContactSupport
++    support=ContactSupport()
++    assert support.update(1.,2.,.3,4.) is None
++    assert support.update(1.1,.2,.2,.02) is None
++    certificate=support.update(1.2,.04,.1,2.)
++    assert certificate['condition']=='near_ground_IMU_impact'
++    s=snapshot();s['phase']='contact_settle';n=s['twins']['MESA_NAV'];n['position_ned_m'][2]=-.04
++    n['body_rates_rad_s']=[9.,9.,9.]
++    s['reference']['contact_evidence']={**certificate,'qualified_time_s':9.9}
++    assert decide(s,predict(s),parameters(),heading_reference=0.)['u_cmd']==[0.]*4
++    s['phase']='hover'
++    with pytest.raises(ValueError,match='body-rate'):
++        decide(s,predict(s),parameters(),heading_reference=0.)
++
++
++def test_native_mesa_fmu_keeps_powered_translation_and_liftoff_impulse():
++    import numpy as np
++    from pathlib import Path
++    from scipy.spatial.transform import Rotation
++    from tddt_tdoc.config import TDOCConfig
++    from tddt_tdoc.adapters.layer2 import Layer2Adapter
++    from twins_fmi.realtime import geomagnetic_reference
++    root=Path(__file__).resolve().parents[2]
++    cfg=TDOCConfig.from_yaml(root/'TDOC_v20260911_2052/configs/tdoc.yaml')
++    adapter=Layer2Adapter(cfg)
++    try:
++        attitude=Rotation.from_euler('y',90,degrees=True)
++        reference,_=geomagnetic_reference(root/'layer6_v20261007_1032/FlightStack/ardupilot/libraries/AP_Declination/tables.cpp',40.01,-105.3)
++        mag=attitude.inv().apply(reference)
++        def sample(t,acc):
++            force=attitude.inv().apply(acc)
++            return {'plant_time_s':t,'wire_sha256':str(t),'data':dict(zip(
++                ('xacc','yacc','zacc','xgyro','ygyro','zgyro','xmag','ymag','zmag','pressure_alt','fields_updated'),
++                [*force,0.,0.,0.,*mag,1000.,0]),mavpackettype='HIGHRES_IMU')}
++        cal=[sample(i*.01,[0.,0.,-9.80665]) for i in range(301)]
++        twins=RealtimeTwins(adapter,{'latitude_deg':40.01,'longitude_deg':-105.3,'heading_deg':0.},cal,
++            {'wind_ned_m_s':[0.,0.,0.],'air_density_kg_m3':1.})
++        twins.takeoff_requested=True
++        for i in range(1,201):
++            row=sample(3.+i*.01,[.5,0.,-10.30665])
++            nav=twins.step({'HIGHRES_IMU':row,'ULTRASONIC_WIND':{'present':False}},[row])
++        assert nav['velocity_ned_m_s']==pytest.approx([1.,0.,-1.],abs=.005)
++        assert nav['initial_ground_support'] is False
++        assert nav['airborne_gravity_pseudo_measurement'] is False
++    finally:adapter.close()
++
++
++def test_scalar_pitot_without_wind_observation_cannot_anchor_ground_velocity():
++    import numpy as np
++    nav=RealtimeTwins.__new__(RealtimeTwins)
++    nav.wind=np.array([2.,-1.,.4]);nav.P=np.eye(9)
++    initial_cov=nav.P[:6,:6].copy();state=np.array([0.,0.,0.,.5,.2,-.1])
++    for _ in range(100):out=nav._pitot_wind_only(1.8,state)
++    assert out['navigation_state_corrected'] is False
++    assert np.array_equal(nav.P[:6,:6],initial_cov)
++    assert np.array_equal(state,np.array([0.,0.,0.,.5,.2,-.1]))
++
++
++def test_vtol_readiness_accepts_const_position_only_with_valid_vertical_ekf_and_real_prearm_health():
++    from tddt_tdoc.native_control_binding import fcu_estimator_ready
++    s={'mode':'QHOVER','telemetry_age_s':{'SYS_STATUS':.1,'EKF_STATUS_REPORT':.1},
++       'ekf_status':{'flags':167},'fcu_health':{'onboard_control_sensors_present':268435456,
++       'onboard_control_sensors_health':268435456}}
++    assert not fcu_estimator_ready(s)
++    assert fcu_estimator_ready(s,require_horizontal_position=False)
++    s['fcu_health']['onboard_control_sensors_health']=0
++    assert not fcu_estimator_ready(s,require_horizontal_position=False)
++    s['fcu_health']['onboard_control_sensors_health']=268435456;s['mode']='QLOITER'
++    assert not fcu_estimator_ready(s,require_horizontal_position=False)
++
++
++def test_physical_launch_check_requires_same_session_and_no_navigation_use():
++    import time
++    from tddt_tdoc.native_control_binding import native_physical_origin_reference
++    status={'status_quality':{'native_session_id':'session'}}
++    p={'latitude_deg':40.,'longitude_deg':-105.,'altitude_msl_m':1800.,'received_monotonic_s':time.monotonic(),
++       'source':'SIM_STATE; visualization only','navigation_input':False}
++    n={'session_id':'session','panels':{'evidence':{'session_id':'session','physical_map':{
++       'ready':True,'navigation_input':False,'position':p}}}}
++    assert native_physical_origin_reference(n,status)['latitude_deg']==40.
++    n['session_id']='other'
++    with pytest.raises(ValueError,match='same-session'):native_physical_origin_reference(n,status)
++    n['session_id']='session';p['navigation_input']=True
++    with pytest.raises(ValueError,match='validation reference'):native_physical_origin_reference(n,status)
++
++
++def test_earth_rates_use_own_navigation_state_and_coriolis_adds_no_energy():
++    import numpy as np
++    from twins_fmi.realtime import navigation_earth_model
++    origin={'latitude_deg':40.,'longitude_deg':-105.,'altitude_msl_m':1800.}
++    lat,lon,transport,earth=navigation_earth_model(origin,np.array([0.,0.,0.,10.,0.,0.]))
++    assert (lat,lon)==pytest.approx((40.,-105.))
++    assert transport[1]<0 and earth[0]>0 and earth[2]<0
++    correction=-np.cross(2*earth+transport,[10.,0.,0.])
++    assert correction[1]>0 and correction@np.array([10.,0.,0.])==pytest.approx(0.)
++    _,_,stationary,_=navigation_earth_model(origin,np.zeros(6))
++    assert stationary==pytest.approx([0.,0.,0.])
++
++
++def test_landing_flare_levels_attitude_and_limits_descent_without_zero_velocity_anchor():
++    s=snapshot();s['phase']='landing_flare';s['twins']['MESA_NAV']['position_ned_m'][2]=-.7
++    s['twins']['MESA_NAV']['velocity_ned_m_s']=[.3,-.2,.1]
++    s['reference']['position_ned_m']=[0.,0.,.8]
++    forecast=predict(s);d=decide(s,forecast,parameters(),heading_reference=1.)
++    assert len(forecast['candidates'])==1 and d['mode']=='QHOVER'
++    assert d['u_cmd']==pytest.approx([0.,0.,.423,0.])
++    assert forecast['candidates'][0]['prediction_tube'][0]['state'][3:5]==[.3,-.2]
++
++
++def test_atomic_network_rejects_wing_using_a_different_climate_sample():
++    s=snapshot();wing=s['twins']['WingMPET'];climate=s['twins']['MicroMetTwin']
++    climate.update(time_s=10.,forcing_sha256='forcing')
++    wing.update(climate_input_time_s=9.,climate_input_forcing_sha256='forcing')
++    with pytest.raises(ValueError,match='climate inputs differ'):
++        atomic_snapshot(s['twins']['MESA_NAV'],wing,climate,phase=s['phase'],reference=s['reference'],transaction_id='new',origin={})
+--- a/layer3_v20260911_1131/src/layer3/realtime.py
++++ b/layer3_v20260911_1131/src/layer3/realtime.py
+@@ -0,0 +1,33 @@
++"""Atomic three-twin network for the explicitly scoped realtime VTOL profile."""
++from copy import deepcopy
++import hashlib,json,math
++
++
++def digest(obj):
++    return hashlib.sha256(json.dumps(obj,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
++
++
++def atomic_snapshot(nav,wing,climate,*,phase,reference,transaction_id,origin,feedback_hash=None):
++    t=float(nav['time_s'])
++    if abs(float(wing['time_s'])-t)>1e-9:raise ValueError('non-atomic twin source time')
++    if 'climate_input_time_s' in wing:
++        if (wing['climate_input_time_s']!=climate.get('time_s')
++            or wing.get('climate_input_forcing_sha256')!=climate.get('forcing_sha256')):
++            raise ValueError('WingMPET climate inputs differ from the atomic MicroMet snapshot')
++    if nav.get('truth_used') or nav.get('GNSS_used') or nav.get('odometry_used') or nav.get('vision_used'):
++        raise ValueError('navigation source outside allowed sensor set')
++    data={'schema':'TDDT-realtime-atomic-snapshot-v1','transaction_id':transaction_id,
++        'time_s':t,'frame':'LOCAL_NED_MISSION_ORIGIN','origin':origin,
++        'phase':phase,'reference':reference,'twins':{'MESA_NAV':nav,'WingMPET':wing,'MicroMetTwin':climate},
++        'couplings':[{'source':'MicroMetTwin.wind_ned_m_s','target':'MESA_NAV.initial_wind_prior; not an observation'},
++                     {'source':'MicroMetTwin.current_wind/density','target':'WingMPET.current_physical_model_inputs'},
++                     {'source':'MESA_NAV.position/velocity/attitude','target':'WingMPET.current_state'},
++                     {'source':'WingMPET.reduced_inner_loop','target':'Layer4.reachable_predictions'},
++                     {'source':'Layer7.model_residual','target':'Layer2.WingMPET.model_parameters'}],
++        'feedback_route_hash':feedback_hash,'navigation_authority':'MESA',
++        'constraints':{'max_airspeed_m_s':18.,'max_lean_deg':8.,'max_climb_m_s':1.2,
++                       'max_navigation_age_s':.3,'command_lease_s':.5},
++        'snapshot_atomic':True,'prior_role':'model/candidate warm start only'}
++    # Round-trip rejects NaN and breaks mutable aliases before publication.
++    data=json.loads(json.dumps(data,allow_nan=False));data['snapshot_hash']=digest(data)
++    return data
+--- a/layer4_v20260907_0608/src/layer4/realtime.py
++++ b/layer4_v20260907_0608/src/layer4/realtime.py
+@@ -0,0 +1,68 @@
++"""Bounded candidate rollouts of the native closed-inner-loop WingMPET twin.
++
++The high-fidelity FMU supplies physical state/capability alongside an identified
++low-order AP inner-loop response. It is not the old raw-motor affine mapping.
++Prediction times stay in the actual source clock; no delayed output is retimed.
++"""
++import math
++import numpy as np
++
++
++def predict(snapshot):
++    nav=snapshot['twins']['MESA_NAV'];wing=snapshot['twins']['WingMPET']
++    x=np.array(nav['position_ned_m']+nav['velocity_ned_m_s'],float)
++    if snapshot['phase']=='contact_settle':
++        evidence=snapshot['reference'].get('contact_evidence',{})
++        qualified=(evidence.get('qualified') is True and -x[2]<.8
++                   and 0<=snapshot['time_s']-evidence.get('qualified_time_s',-999)<=12.
++                   and evidence.get('source')=='MESA/barometer/IMU only')
++        rows=[{'time_s':snapshot['time_s']+k*.1,
++               'state':np.r_[x[:3],x[3:]*math.exp(-k*.1/.2)].tolist()} for k in range(21)]
++        return {'schema':'Layer4-realtime-candidates-v1','snapshot_hash':snapshot['snapshot_hash'],
++            'source_time_s':snapshot['time_s'],'actuation_authority':False,
++            'candidates':[{'candidate_id':'CONTACT-SUPPORT','acceleration_ne_m_s2':[0.,0.],
++                'climb_rate_up_m_s':0.,'prediction_tube':rows,'cost':0.,'feasible':bool(qualified),
++                'model':'qualified ground contact support; no airborne zero-velocity observation',
++                'source_snapshot_hash':snapshot['snapshot_hash'],'source_time_s':snapshot['time_s'],
++                'physical_FMU_operation':wing['FMU_operation']}]}
++    target=np.array(snapshot['reference']['position_ned_m'],float)
++    vmax=float(snapshot['reference'].get('speed_m_s',3.))
++    vref=.45*(target-x[:3]);speed=np.linalg.norm(vref[:2])
++    if speed>vmax:vref[:2]*=vmax/speed
++    flare=snapshot['phase']=='landing_flare'
++    if flare:vref[:2]=x[3:5]
++    vref[2]=np.clip(vref[2],-1.2,.25 if flare else .8)
++    model=wing['reduced_inner_loop'];bias=np.array(model['disturbance_ned_m_s2'],float)
++    # Identified Native attitude response is around one second. A fast outer
++    # velocity loop fighting that lag produces alternating lean saturation.
++    desired=.25*(vref[:2]-x[3:5])-bias[:2]
++    previous=np.array(model.get('last_command_acceleration_ne_m_s2',[0.,0.]),float)
++    if flare:desired[:]=0.
++    limit=9.80665*math.tan(math.radians(snapshot['constraints']['max_lean_deg']))
++    candidates=[];dt=.1;horizon=20
++    neighbourhood=(0.,) if flare else (-.1,0.,.1)
++    for i,dn in enumerate(neighbourhood):
++        for j,de in enumerate(neighbourhood):
++            a=desired+np.array([dn,de]);norm=np.linalg.norm(a)
++            if norm>limit:a*=limit/norm
++            z=x.copy();rows=[{'time_s':snapshot['time_s'],'state':z.tolist()}];cost=0.
++            response=np.array(wing.get('initial_acceleration_ne_m_s2',[0.,0.]),float)
++            tau=float(model['inner_loop_tau_s'])
++            for k in range(horizon):
++                response+=(1.-math.exp(-dt/tau))*(a-response)
++                acc=np.r_[response+bias[:2],1.5*(vref[2]-z[5])]
++                z[:3]+=z[3:]*dt+.5*acc*dt*dt;z[3:]+=acc*dt
++                desired_position=x[:3]+vref*(k+1)*dt
++                cost+=float(np.sum((z[3:]-vref)**2)+.15*np.sum((z[:3]-desired_position)**2)
++                            +.025*np.sum(a*a)+.5*np.sum((a-previous)**2))
++                rows.append({'time_s':snapshot['time_s']+(k+1)*dt,'state':z.tolist()})
++            safe=bool(np.all(np.isfinite(z)) and np.linalg.norm(a)<=limit+1e-8
++                      and wing['maximum_total_thrust_N']/wing['mass_kg']>9.80665/math.cos(math.radians(18)))
++            candidates.append({'candidate_id':f'RT-{i}-{j}','acceleration_ne_m_s2':a.tolist(),
++                'climb_rate_up_m_s':float(-vref[2]),'prediction_tube':rows,'cost':cost,
++                'feasible':safe,'model':'WingMPET/AP-inner-loop-reduced-v1',
++                'source_snapshot_hash':snapshot['snapshot_hash'],'source_time_s':snapshot['time_s'],
++                'physical_FMU_operation':wing['FMU_operation'],'scenarios':'bounded control neighbourhood',
++                'prediction_error_state':'Layer7 sensor-domain feedback; not Native truth'})
++    return {'schema':'Layer4-realtime-candidates-v1','snapshot_hash':snapshot['snapshot_hash'],
++        'source_time_s':snapshot['time_s'],'candidates':candidates,'actuation_authority':False}
+--- a/layer5_v20260911_1510/src/layer5/realtime.py
++++ b/layer5_v20260911_1510/src/layer5/realtime.py
+@@ -0,0 +1,59 @@
++"""Receding-horizon candidate MPC and source-parameter QHOVER pilot mapping."""
++import math
++import numpy as np
++from scipy.spatial.transform import Rotation
++
++
++def wrap(angle):return (angle+math.pi)%(2*math.pi)-math.pi
++
++
++def decide(snapshot,forecast,parameters,*,heading_reference):
++    if forecast['snapshot_hash']!=snapshot['snapshot_hash']:raise ValueError('MPC snapshot mismatch')
++    feasible=[c for c in forecast['candidates'] if c['feasible']]
++    if not feasible:raise ValueError('no safe model candidate')
++    c=min(feasible,key=lambda row:row['cost']);nav=snapshot['twins']['MESA_NAV']
++    if nav.get('airspeed_m_s') is not None and not 0<=nav['airspeed_m_s']<=snapshot['constraints']['max_airspeed_m_s']:
++        raise ValueError('RTA measured airspeed envelope exceeded')
++    contact_cut=snapshot['phase']=='contact_settle' and c['candidate_id']=='CONTACT-SUPPORT'
++    if not contact_cut and any(abs(v)>limit for v,limit in zip(nav['body_rates_rad_s'],np.radians([300.,200.,150.]))):
++        raise ValueError('RTA body-rate envelope exceeded')
++    q=nav['q_wxyz'];r=Rotation.from_quat([*q[1:],q[0]])*Rotation.from_euler('y',-90,degrees=True)
++    observed_angles=r.as_euler('xyz')
++    if not contact_cut and max(abs(observed_angles[0]),abs(observed_angles[1]))>math.radians(25.):
++        raise ValueError('RTA observed VTOL lean envelope exceeded')
++    heading=observed_angles[2];an,ae=c['acceleration_ne_m_s2'];g=9.80665
++    forward=math.cos(heading)*an+math.sin(heading)*ae
++    right=-math.sin(heading)*an+math.cos(heading)*ae
++    roll=math.atan2(right,g);pitch=-math.atan2(forward,g)
++    angle_max=math.radians(parameters['Q_A_ANGLE_MAX'])
++    def axis(angle,dz):
++        fraction=min(1.,abs(angle)/angle_max)
++        return math.copysign(dz+(1.-dz)*fraction,angle) if fraction>1e-4 else 0.
++    # MANUAL_CONTROL.x is reversed by GCS_MAVLINK_Plane::manual_override;
++    # GUI elevator therefore has the opposite sign of AP's desired lean pitch.
++    a=axis(roll,parameters['RC1_DZ']/500.)
++    e=-axis(pitch,parameters['RC2_DZ']/500.)
++    climb=c['climb_rate_up_m_s'];dz=parameters['RC3_DZ']/1000.
++    max_up=parameters['Q_PILOT_SPD_UP'];max_down=parameters['Q_PILOT_SPD_DN'] or max_up
++    throttle=.5 if abs(climb)<.03 else .5+math.copysign(dz+(.5-dz)*min(1.,abs(climb)/(max_up if climb>0 else max_down)),climb)
++    yaw_error=wrap(heading_reference-heading)
++    yaw=float(np.clip(.5*yaw_error,-.15,.15))
++    u=[a,e,throttle,yaw]
++    mode='QHOVER'
++    if snapshot['phase']=='landing_flare':u=[0.,0.,throttle,0.]
++    if snapshot['phase']=='contact_settle':
++        # QHOVER retains a vertical controller and cannot certify motors stopped.
++        # Only a qualified low-height, latched contact candidate permits
++        # zero pilot throttle in manual-throttle QSTABILIZE before normal DISARM.
++        if c['candidate_id']!='CONTACT-SUPPORT':raise ValueError('contact candidate missing')
++        u=[0.,0.,0.,0.];mode='QSTABILIZE'
++    if not all(math.isfinite(v) for v in u) or not 0<=throttle<=1:raise ValueError('pilot domain violation')
++    if parameters['Q_TAILSIT_INPUT']!=0:raise ValueError('uncommissioned tailsitter input convention')
++    return {'schema':'Layer5-realtime-MPC-v1','transaction_id':snapshot['transaction_id'],
++        'candidate_id':c['candidate_id'],'snapshot_hash':snapshot['snapshot_hash'],
++        'source_time_s':snapshot['time_s'],'u_cmd':u,'mode':mode,
++        'gates':{'MPC':True,'PSF':True,'RTA':True,'FINAL':True},
++        'prediction':c,'control_semantics':'AP QHOVER lean/climb/yaw; not motor-domain u',
++        'mapping':{'roll_rad':roll,'pitch_rad':pitch,'heading_rad':heading,
++            'climb_rate_up_m_s':climb,'source':'same-session AP parameter readbacks'},
++        'command_lease_s':snapshot['constraints']['command_lease_s'],'direct_pwm':False}
+--- a/layer6_v20261007_1032/FlightStack/ardupilot/Tools/autotest/aircraft/phoenix_v3/phoenix_v3.xml
++++ b/layer6_v20261007_1032/FlightStack/ardupilot/Tools/autotest/aircraft/phoenix_v3/phoenix_v3.xml
+@@ -1,8 +1,5 @@
+ <?xml version="1.0"?>
+-<fdm_config name="Phoenix" version="2.0" release="BETA"
+-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+-  xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
+-
++<fdm_config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Phoenix native VTOL/WingMPET blend RT-v1" version="2.0" release="BETA" xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
+   <fileheader>
+     <author>Generated for ArduPilot SITL + JSBSim integration from phoenix_drone_v3.yaml</author>
+     <filecreationdate>2026-09-30</filecreationdate>
+@@ -15,7 +12,6 @@
+       aircraft performance claims.
+     </description>
+   </fileheader>
+-
+   <metrics>
+     <wingarea unit="M2">0.12</wingarea>
+     <wingspan unit="M">0.64</wingspan>
+@@ -25,16 +21,21 @@
+     <vtailarea unit="M2">0.0001</vtailarea>
+     <vtailarm unit="M">0.19</vtailarm>
+     <location name="AERORP" unit="M">
+-      <x>0.0</x><y>0.0</y><z>0.0</z>
++      <x>0.0</x>
++      <y>0.0</y>
++      <z>0.0</z>
+     </location>
+     <location name="EYEPOINT" unit="M">
+-      <x>0.0</x><y>0.0</y><z>0.0</z>
++      <x>0.0</x>
++      <y>0.0</y>
++      <z>0.0</z>
+     </location>
+     <location name="VRP" unit="M">
+-      <x>0.0</x><y>0.0</y><z>0.0</z>
++      <x>0.0</x>
++      <y>0.0</y>
++      <z>0.0</z>
+     </location>
+   </metrics>
+-
+   <mass_balance>
+     <ixx unit="KG*M2">0.0147563</ixx>
+     <iyy unit="KG*M2">0.00638929</iyy>
+@@ -44,20 +45,17 @@
+     <iyz unit="KG*M2">0.0</iyz>
+     <emptywt unit="KG">0.65</emptywt>
+     <location name="CG" unit="M">
+-      <x>0.0</x><y>0.0</y><z>0.0</z>
++      <x>0.0</x>
++      <y>0.0</y>
++      <z>0.0</z>
+     </location>
+   </mass_balance>
+-
+-  <!--
+-    S02.04 candidate four-foot tailsitter contact geometry (Phoenix D archive).
+-    Source: archive/s02-02-phoenix-d-for-s02-04-v1 (NOT a measured-gear certificate).
+-    Each independent STRUCTURE contact requires Native T2 verification of load
+-    bearing and terrain compatibility. Do not infer G02 PASS from this geometry.
+-  -->
+   <ground_reactions>
+     <contact type="STRUCTURE" name="TAIL_FOOT_L1">
+       <location unit="M">
+-        <x>0.140</x><y>-0.280</y><z>0.060</z>
++        <x>0.140</x>
++        <y>-0.280</y>
++        <z>0.060</z>
+       </location>
+       <static_friction>0.80</static_friction>
+       <dynamic_friction>0.50</dynamic_friction>
+@@ -67,7 +65,9 @@
+     </contact>
+     <contact type="STRUCTURE" name="TAIL_FOOT_L2">
+       <location unit="M">
+-        <x>0.140</x><y>-0.280</y><z>-0.060</z>
++        <x>0.140</x>
++        <y>-0.280</y>
++        <z>-0.060</z>
+       </location>
+       <static_friction>0.80</static_friction>
+       <dynamic_friction>0.50</dynamic_friction>
+@@ -77,7 +77,9 @@
+     </contact>
+     <contact type="STRUCTURE" name="TAIL_FOOT_R1">
+       <location unit="M">
+-        <x>0.140</x><y>0.280</y><z>0.060</z>
++        <x>0.140</x>
++        <y>0.280</y>
++        <z>0.060</z>
+       </location>
+       <static_friction>0.80</static_friction>
+       <dynamic_friction>0.50</dynamic_friction>
+@@ -87,7 +89,9 @@
+     </contact>
+     <contact type="STRUCTURE" name="TAIL_FOOT_R2">
+       <location unit="M">
+-        <x>0.140</x><y>0.280</y><z>-0.060</z>
++        <x>0.140</x>
++        <y>0.280</y>
++        <z>-0.060</z>
+       </location>
+       <static_friction>0.80</static_friction>
+       <dynamic_friction>0.50</dynamic_friction>
+@@ -96,21 +100,9 @@
+       <damping_coeff unit="LBS/FT/SEC">2.0</damping_coeff>
+     </contact>
+   </ground_reactions>
+-
+-  <!--
+-    Propulsion is represented by two body-axis external forces rather than by a
+-    fuel-engine model. The ArduPilot Phoenix connector patch writes independent
+-    commands to fcs/left-motor-cmd-norm and fcs/right-motor-cmd-norm.
+-
+-    JSBSim body X is treated as the Phoenix forward/thrust axis. When the tailsitter
+-    is near 90 deg pitch this axis is approximately vertical in the local frame.
+-    Lateral motor positions are a simplified reduction of the source CP data; exact
+-    frame transformation remains an engineering-estimate item from the source YAML.
+-  -->
+   <external_reactions>
+     <property>fcs/left-motor-cmd-norm</property>
+     <property>fcs/right-motor-cmd-norm</property>
+-
+     <force name="left_motor_thrust" frame="BODY">
+       <function>
+         <product>
+@@ -120,11 +112,16 @@
+         </product>
+       </function>
+       <location unit="M">
+-        <x>0.0</x><y>-0.195</y><z>0.0</z>
+-      </location>
+-      <direction><x>1.0</x><y>0.0</y><z>0.0</z></direction>
++        <x>0.0</x>
++        <y>-0.195</y>
++        <z>0.0</z>
++      </location>
++      <direction>
++        <x>1.0</x>
++        <y>0.0</y>
++        <z>0.0</z>
++      </direction>
+     </force>
+-
+     <force name="right_motor_thrust" frame="BODY">
+       <function>
+         <product>
+@@ -134,12 +131,16 @@
+         </product>
+       </function>
+       <location unit="M">
+-        <x>0.0</x><y>0.195</y><z>0.0</z>
+-      </location>
+-      <direction><x>1.0</x><y>0.0</y><z>0.0</z></direction>
++        <x>0.0</x>
++        <y>0.195</y>
++        <z>0.0</z>
++      </location>
++      <direction>
++        <x>1.0</x>
++        <y>0.0</y>
++        <z>0.0</z>
++      </direction>
+     </force>
+-
+-    <!-- Reaction torques derived from source moment_constant_m * max_thrust. -->
+     <moment name="left_prop_reaction" frame="BODY">
+       <function>
+         <product>
+@@ -148,9 +149,12 @@
+           <property>fcs/left-motor-pos-norm</property>
+         </product>
+       </function>
+-      <direction><x>-1.0</x><y>0.0</y><z>0.0</z></direction>
++      <direction>
++        <x>-1.0</x>
++        <y>0.0</y>
++        <z>0.0</z>
++      </direction>
+     </moment>
+-
+     <moment name="right_prop_reaction" frame="BODY">
+       <function>
+         <product>
+@@ -159,50 +163,208 @@
+           <property>fcs/right-motor-pos-norm</property>
+         </product>
+       </function>
+-      <direction><x>1.0</x><y>0.0</y><z>0.0</z></direction>
++      <direction>
++        <x>1.0</x>
++        <y>0.0</y>
++        <z>0.0</z>
++      </direction>
++    </moment>
++    <force name="left_native_propwash_lift" frame="BODY">
++      <function>
++        <product>
++          <value>0.5006944780716753</value>
++          <difference>
++            <value>1</value>
++            <property>aero/tddt-wing-blend</property>
++          </difference>
++          <property>fcs/left-motor-pos-norm</property>
++          <property>fcs/left-motor-pos-norm</property>
++          <property>fcs/left-elevon-pos-rad</property>
++        </product>
++      </function>
++      <location unit="M">
++        <x>-0.036</x>
++        <y>-0.195</y>
++        <z>0.0</z>
++      </location>
++      <direction>
++        <x>0</x>
++        <y>0</y>
++        <z>-1</z>
++      </direction>
++    </force>
++    <force name="left_native_propwash_drag" frame="BODY">
++      <function>
++        <product>
++          <value>0.2517860162716757</value>
++          <difference>
++            <value>1</value>
++            <property>aero/tddt-wing-blend</property>
++          </difference>
++          <property>fcs/left-motor-pos-norm</property>
++          <property>fcs/left-motor-pos-norm</property>
++          <property>fcs/left-elevon-pos-rad</property>
++          <property>fcs/left-elevon-pos-rad</property>
++        </product>
++      </function>
++      <location unit="M">
++        <x>-0.036</x>
++        <y>-0.195</y>
++        <z>0.0</z>
++      </location>
++      <direction>
++        <x>-1</x>
++        <y>0</y>
++        <z>0</z>
++      </direction>
++    </force>
++    <moment name="left_native_propwash_pitch" frame="BODY">
++      <function>
++        <product>
++          <value>-0.1623816827848828</value>
++          <difference>
++            <value>1</value>
++            <property>aero/tddt-wing-blend</property>
++          </difference>
++          <property>fcs/left-motor-pos-norm</property>
++          <property>fcs/left-motor-pos-norm</property>
++          <property>fcs/left-elevon-pos-rad</property>
++        </product>
++      </function>
++      <direction>
++        <x>0</x>
++        <y>1</y>
++        <z>0</z>
++      </direction>
++    </moment>
++    <force name="right_native_propwash_lift" frame="BODY">
++      <function>
++        <product>
++          <value>0.5006944780716753</value>
++          <difference>
++            <value>1</value>
++            <property>aero/tddt-wing-blend</property>
++          </difference>
++          <property>fcs/right-motor-pos-norm</property>
++          <property>fcs/right-motor-pos-norm</property>
++          <property>fcs/right-elevon-pos-rad</property>
++        </product>
++      </function>
++      <location unit="M">
++        <x>-0.036</x>
++        <y>0.195</y>
++        <z>0.0</z>
++      </location>
++      <direction>
++        <x>0</x>
++        <y>0</y>
++        <z>-1</z>
++      </direction>
++    </force>
++    <force name="right_native_propwash_drag" frame="BODY">
++      <function>
++        <product>
++          <value>0.2517860162716757</value>
++          <difference>
++            <value>1</value>
++            <property>aero/tddt-wing-blend</property>
++          </difference>
++          <property>fcs/right-motor-pos-norm</property>
++          <property>fcs/right-motor-pos-norm</property>
++          <property>fcs/right-elevon-pos-rad</property>
++          <property>fcs/right-elevon-pos-rad</property>
++        </product>
++      </function>
++      <location unit="M">
++        <x>-0.036</x>
++        <y>0.195</y>
++        <z>0.0</z>
++      </location>
++      <direction>
++        <x>-1</x>
++        <y>0</y>
++        <z>0</z>
++      </direction>
++    </force>
++    <moment name="right_native_propwash_pitch" frame="BODY">
++      <function>
++        <product>
++          <value>-0.1623816827848828</value>
++          <difference>
++            <value>1</value>
++            <property>aero/tddt-wing-blend</property>
++          </difference>
++          <property>fcs/right-motor-pos-norm</property>
++          <property>fcs/right-motor-pos-norm</property>
++          <property>fcs/right-elevon-pos-rad</property>
++        </product>
++      </function>
++      <direction>
++        <x>0</x>
++        <y>1</y>
++        <z>0</z>
++      </direction>
+     </moment>
+   </external_reactions>
+-
+-  <propulsion/>
+-
++  <propulsion />
+   <flight_control name="Phoenix command adaptation">
+     <property>fcs/left-elevon-cmd-norm</property>
+     <property>fcs/right-elevon-cmd-norm</property>
+-
+     <channel name="Elevons">
+       <pure_gain name="fcs/left-elevon-pos-rad">
+         <input>fcs/left-elevon-cmd-norm</input>
+         <gain>0.53</gain>
+-        <clipto><min>-0.53</min><max>0.53</max></clipto>
++        <clipto>
++          <min>-0.53</min>
++          <max>0.53</max>
++        </clipto>
+       </pure_gain>
+       <pure_gain name="fcs/right-elevon-pos-rad">
+         <input>fcs/right-elevon-cmd-norm</input>
+         <gain>0.53</gain>
+-        <clipto><min>-0.53</min><max>0.53</max></clipto>
++        <clipto>
++          <min>-0.53</min>
++          <max>0.53</max>
++        </clipto>
+       </pure_gain>
+     </channel>
+-
+     <channel name="Twin motors">
+-      <!-- One symmetric first-order approximation of 0.016/0.020 s source motor lags. -->
+       <lag_filter name="fcs/left-motor-pos-norm">
+         <input>fcs/left-motor-cmd-norm</input>
+         <c1>55.555556</c1>
+-        <clipto><min>0.0</min><max>1.0</max></clipto>
++        <clipto>
++          <min>0.0</min>
++          <max>1.0</max>
++        </clipto>
+       </lag_filter>
+       <lag_filter name="fcs/right-motor-pos-norm">
+         <input>fcs/right-motor-cmd-norm</input>
+         <c1>55.555556</c1>
+-        <clipto><min>0.0</min><max>1.0</max></clipto>
++        <clipto>
++          <min>0.0</min>
++          <max>1.0</max>
++        </clipto>
+       </lag_filter>
+     </channel>
+   </flight_control>
+-
+-  <!--
+-    Forward-flight derivatives below come directly from the engineering-estimate
+-    section of phoenix_drone_v3.yaml. They are intentionally marked BETA and must
+-    not be interpreted as identified Phoenix aerodynamics.
+-  -->
+   <aerodynamics>
++    <function name="aero/tddt-wing-blend">
++      <table>
++        <independentVar lookup="row">velocities/u-aero-fps</independentVar>
++        <tableData>
++-98.4251968504 0
++0 0
++29.8556430446 0
++31.1679790026 0.0518266431588
++32.8083989501 0.229160687195
++34.4488188976 0.474148181557
++36.0892388451 0.725285989585
++37.7296587927 0.92107097462
++39.3700787402 1
++98.4251968504 1
++</tableData>
++      </table>
++    </function>
+     <axis name="LIFT">
+       <function name="aero/force/lift">
+         <product>
+@@ -210,7 +372,10 @@
+           <property>metrics/Sw-sqft</property>
+           <sum>
+             <value>0.10</value>
+-            <product><value>3.40</value><property>aero/alpha-rad</property></product>
++            <product>
++              <value>3.40</value>
++              <property>aero/alpha-rad</property>
++            </product>
+             <product>
+               <value>2.50</value>
+               <property>aero/ci2vel</property>
+@@ -224,10 +389,10 @@
+               </sum>
+             </product>
+           </sum>
++          <property>aero/tddt-wing-blend</property>
+         </product>
+       </function>
+     </axis>
+-
+     <axis name="DRAG">
+       <function name="aero/force/drag">
+         <product>
+@@ -235,17 +400,28 @@
+           <property>metrics/Sw-sqft</property>
+           <sum>
+             <value>0.045</value>
+-            <!-- k * (CL0 + CLalpha*alpha)^2, control/rate contribution omitted. -->
+             <product>
+               <value>0.134</value>
+-              <sum><value>0.10</value><product><value>3.40</value><property>aero/alpha-rad</property></product></sum>
+-              <sum><value>0.10</value><product><value>3.40</value><property>aero/alpha-rad</property></product></sum>
++              <sum>
++                <value>0.10</value>
++                <product>
++                  <value>3.40</value>
++                  <property>aero/alpha-rad</property>
++                </product>
++              </sum>
++              <sum>
++                <value>0.10</value>
++                <product>
++                  <value>3.40</value>
++                  <property>aero/alpha-rad</property>
++                </product>
++              </sum>
+             </product>
+           </sum>
++          <property>aero/tddt-wing-blend</property>
+         </product>
+       </function>
+     </axis>
+-
+     <axis name="SIDE">
+       <function name="aero/force/side">
+         <product>
+@@ -253,10 +429,10 @@
+           <property>metrics/Sw-sqft</property>
+           <value>-0.35</value>
+           <property>aero/beta-rad</property>
++          <property>aero/tddt-wing-blend</property>
+         </product>
+       </function>
+     </axis>
+-
+     <axis name="ROLL">
+       <function name="aero/moment/roll">
+         <product>
+@@ -264,20 +440,30 @@
+           <property>metrics/Sw-sqft</property>
+           <property>metrics/bw-ft</property>
+           <sum>
+-            <product><value>-0.08</value><property>aero/beta-rad</property></product>
+-            <product><value>-0.45</value><property>aero/bi2vel</property><property>velocities/p-aero-rad_sec</property></product>
++            <product>
++              <value>-0.08</value>
++              <property>aero/beta-rad</property>
++            </product>
++            <product>
++              <value>-0.45</value>
++              <property>aero/bi2vel</property>
++              <property>velocities/p-aero-rad_sec</property>
++            </product>
+             <product>
+               <value>0.09</value>
+               <sum>
+                 <property>fcs/right-elevon-pos-rad</property>
+-                <product><value>-1.0</value><property>fcs/left-elevon-pos-rad</property></product>
++                <product>
++                  <value>-1.0</value>
++                  <property>fcs/left-elevon-pos-rad</property>
++                </product>
+               </sum>
+             </product>
+           </sum>
++          <property>aero/tddt-wing-blend</property>
+         </product>
+       </function>
+     </axis>
+-
+     <axis name="PITCH">
+       <function name="aero/moment/pitch">
+         <product>
+@@ -286,8 +472,15 @@
+           <property>metrics/cbarw-ft</property>
+           <sum>
+             <value>0.02</value>
+-            <product><value>-0.55</value><property>aero/alpha-rad</property></product>
+-            <product><value>-5.0</value><property>aero/ci2vel</property><property>velocities/q-aero-rad_sec</property></product>
++            <product>
++              <value>-0.55</value>
++              <property>aero/alpha-rad</property>
++            </product>
++            <product>
++              <value>-5.0</value>
++              <property>aero/ci2vel</property>
++              <property>velocities/q-aero-rad_sec</property>
++            </product>
+             <product>
+               <value>-0.40</value>
+               <sum>
+@@ -296,10 +489,10 @@
+               </sum>
+             </product>
+           </sum>
++          <property>aero/tddt-wing-blend</property>
+         </product>
+       </function>
+     </axis>
+-
+     <axis name="YAW">
+       <function name="aero/moment/yaw">
+         <product>
+@@ -307,14 +500,21 @@
+           <property>metrics/Sw-sqft</property>
+           <property>metrics/bw-ft</property>
+           <sum>
+-            <product><value>0.08</value><property>aero/beta-rad</property></product>
+-            <product><value>-0.18</value><property>aero/bi2vel</property><property>velocities/r-aero-rad_sec</property></product>
++            <product>
++              <value>0.08</value>
++              <property>aero/beta-rad</property>
++            </product>
++            <product>
++              <value>-0.18</value>
++              <property>aero/bi2vel</property>
++              <property>velocities/r-aero-rad_sec</property>
++            </product>
+           </sum>
++          <property>aero/tddt-wing-blend</property>
+         </product>
+       </function>
+     </axis>
+   </aerodynamics>
+-  <!-- TDDT_STAGE2_NATIVE_NORMALIZED_LOGGER_V1: instrumentation only; NO RPM property exists in this model -->
+   <output name="tddt_stage2_native_normalized.csv" type="CSV" rate="200">
+     <property>fcs/left-motor-cmd-norm</property>
+     <property>fcs/right-motor-cmd-norm</property>
+--- a/layer6_v20261007_1032/FlightStack/ardupilot/Tools/autotest/default_params/phoenix_v3.parm
++++ b/layer6_v20261007_1032/FlightStack/ardupilot/Tools/autotest/default_params/phoenix_v3.parm
+@@ -23,7 +23,7 @@
+ SERVO4_MAX 2000
+ 
+ RUDD_DT_GAIN 0
+-AHRS_EKF_TYPE 10
++AHRS_EKF_TYPE 3
+ ARSPD_TYPE 100
+ BATT_MONITOR 4
+ BATT_CAPACITY 2200
+@@ -34,22 +34,77 @@
+ ARSPD_AUTOCAL 0
+ INS_GYR_CAL 0
+ 
+-INS_ACCOFFS_X 0.001
+-INS_ACCOFFS_Y 0.001
+-INS_ACCOFFS_Z 0.001
+-INS_ACCSCAL_X 1.001
+-INS_ACCSCAL_Y 1.001
+-INS_ACCSCAL_Z 1.001
++INS_ACCOFFS_X 0.00001
++INS_ACCOFFS_Y 0.00001
++INS_ACCOFFS_Z 0.00001
++INS_ACCSCAL_X 1.0
++INS_ACCSCAL_Y 1.0
++INS_ACCSCAL_Z 1.0
+ 
+-INS_ACC2OFFS_X 0.001
+-INS_ACC2OFFS_Y 0.001
+-INS_ACC2OFFS_Z 0.001
+-INS_ACC2SCAL_X 1.001
+-INS_ACC2SCAL_Y 1.001
+-INS_ACC2SCAL_Z 1.001
++INS_ACC2OFFS_X 0.00001
++INS_ACC2OFFS_Y 0.00001
++INS_ACC2OFFS_Z 0.00001
++INS_ACC2SCAL_X 1.0
++INS_ACC2SCAL_Y 1.0
++INS_ACC2SCAL_Z 1.0
+ 
+-SIM_GPS1_ENABLE 1
+-SIM_GPS2_ENABLE 1
+-SIM_GPS3_ENABLE 1
+-SIM_GPS4_ENABLE 1
++# GNSS-denied SITL. AHRS_EKF_TYPE=3 uses the sensor EKF inner-loop attitude
++# backend; TDDT navigation uses only its approved IMU/mag/baro/pitot sensors.
++SIM_GPS1_ENABLE 0
++SIM_GPS2_ENABLE 0
++SIM_GPS3_ENABLE 0
++SIM_GPS4_ENABLE 0
+ 
++
++# No GNSS receivers are installed in this simulation navigation profile.
++GPS1_TYPE 0
++GPS2_TYPE 0
++# Prototype commissioning baseline: no artificial triangular gyro-bias ramp.
++# Stock sensor noise and measured gyro/accelerometer bias handling remain active.
++SIM_DRIFT_SPEED 0
++
++# Elevon signs: positive AP pitch demand requires negative physical deflection.
++SERVO1_REVERSED 1
++SERVO2_REVERSED 1
++
++# Native .65kg dual-rotor commissioning: bounded inner-loop bandwidth, no
++# unqualified fixed-wing default feedforward on VTOL propwash surfaces.
++Q_A_ANG_RLL_P 1.8
++Q_A_ANG_PIT_P 1.8
++Q_A_ANG_YAW_P 1.5
++Q_A_RAT_RLL_P 0.04
++Q_A_RAT_RLL_I 0.02
++Q_A_RAT_RLL_D 0.001
++Q_A_RAT_RLL_FF 0
++Q_A_RAT_RLL_IMAX 0.12
++Q_A_RAT_PIT_P 0.16
++Q_A_RAT_PIT_I 0.06
++Q_A_RAT_PIT_D 0.001
++Q_A_RAT_PIT_FF 0
++Q_A_RAT_PIT_IMAX 0.12
++Q_A_RAT_YAW_P 0.12
++Q_A_RAT_YAW_I 0.03
++Q_A_RAT_YAW_D 0.001
++Q_A_RAT_YAW_FF 0
++Q_A_RAT_YAW_IMAX 0.12
++
++# No GNSS, external navigation, optical flow or odometry aiding for EKF3.
++EK3_ENABLE 1
++EK2_ENABLE 0
++EK3_SRC1_POSXY 0
++EK3_SRC1_VELXY 0
++EK3_SRC1_POSZ 1
++EK3_SRC1_VELZ 0
++EK3_SRC1_YAW 1
++
++# Start disarmed in VTOL: fixed-wing EKF bootstrap explicitly requires GPS lock.
++# QHOVER clears the fly-forward assumption; normal EKF/arming checks remain on.
++INITIAL_MODE 18
++
++# Mode ownership belongs to the Digital Pilot. An idle RC mode switch must not
++# overwrite INITIAL_MODE with a fixed-wing MANUAL slot during EKF bootstrap.
++FLTMODE_CH 0
++
++# Keep a healthy, initialized attitude/vertical EKF in VTOL without XY aiding.
++# ArduPlane's DCM fallback otherwise insists on horizontal navigation validity.
++AHRS_OPTIONS 2
+--- a/layer6_v20261007_1032/FlightStack/models/phoenix_v3/aircraft/phoenix_v3/phoenix_v3.xml
++++ b/layer6_v20261007_1032/FlightStack/models/phoenix_v3/aircraft/phoenix_v3/phoenix_v3.xml
+@@ -1,8 +1,5 @@
+ <?xml version="1.0"?>
+-<fdm_config name="Phoenix" version="2.0" release="BETA"
+-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+-  xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
+-
++<fdm_config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Phoenix native VTOL/WingMPET blend RT-v1" version="2.0" release="BETA" xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
+   <fileheader>
+     <author>Generated for ArduPilot SITL + JSBSim integration from phoenix_drone_v3.yaml</author>
+     <filecreationdate>2026-09-30</filecreationdate>
+@@ -15,7 +12,6 @@
+       aircraft performance claims.
+     </description>
+   </fileheader>
+-
+   <metrics>
+     <wingarea unit="M2">0.12</wingarea>
+     <wingspan unit="M">0.64</wingspan>
+@@ -25,16 +21,21 @@
+     <vtailarea unit="M2">0.0001</vtailarea>
+     <vtailarm unit="M">0.19</vtailarm>
+     <location name="AERORP" unit="M">
+-      <x>0.0</x><y>0.0</y><z>0.0</z>
++      <x>0.0</x>
++      <y>0.0</y>
++      <z>0.0</z>
+     </location>
+     <location name="EYEPOINT" unit="M">
+-      <x>0.0</x><y>0.0</y><z>0.0</z>
++      <x>0.0</x>
++      <y>0.0</y>
++      <z>0.0</z>
+     </location>
+     <location name="VRP" unit="M">
+-      <x>0.0</x><y>0.0</y><z>0.0</z>
++      <x>0.0</x>
++      <y>0.0</y>
++      <z>0.0</z>
+     </location>
+   </metrics>
+-
+   <mass_balance>
+     <ixx unit="KG*M2">0.0147563</ixx>
+     <iyy unit="KG*M2">0.00638929</iyy>
+@@ -44,20 +45,17 @@
+     <iyz unit="KG*M2">0.0</iyz>
+     <emptywt unit="KG">0.65</emptywt>
+     <location name="CG" unit="M">
+-      <x>0.0</x><y>0.0</y><z>0.0</z>
++      <x>0.0</x>
++      <y>0.0</y>
++      <z>0.0</z>
+     </location>
+   </mass_balance>
+-
+-  <!--
+-    S02.04 candidate four-foot tailsitter contact geometry (Phoenix D archive).
+-    Source: archive/s02-02-phoenix-d-for-s02-04-v1 (NOT a measured-gear certificate).
+-    Each independent STRUCTURE contact requires Native T2 verification of load
+-    bearing and terrain compatibility. Do not infer G02 PASS from this geometry.
+-  -->
+   <ground_reactions>
+     <contact type="STRUCTURE" name="TAIL_FOOT_L1">
+       <location unit="M">
+-        <x>0.140</x><y>-0.280</y><z>0.060</z>
++        <x>0.140</x>
++        <y>-0.280</y>
++        <z>0.060</z>
+       </location>
+       <static_friction>0.80</static_friction>
+       <dynamic_friction>0.50</dynamic_friction>
+@@ -67,7 +65,9 @@
+     </contact>
+     <contact type="STRUCTURE" name="TAIL_FOOT_L2">
+       <location unit="M">
+-        <x>0.140</x><y>-0.280</y><z>-0.060</z>
++        <x>0.140</x>
++        <y>-0.280</y>
++        <z>-0.060</z>
+       </location>
+       <static_friction>0.80</static_friction>
+       <dynamic_friction>0.50</dynamic_friction>
+@@ -77,7 +77,9 @@
+     </contact>
+     <contact type="STRUCTURE" name="TAIL_FOOT_R1">
+       <location unit="M">
+-        <x>0.140</x><y>0.280</y><z>0.060</z>
++        <x>0.140</x>
++        <y>0.280</y>
++        <z>0.060</z>
+       </location>
+       <static_friction>0.80</static_friction>
+       <dynamic_friction>0.50</dynamic_friction>
+@@ -87,7 +89,9 @@
+     </contact>
+     <contact type="STRUCTURE" name="TAIL_FOOT_R2">
+       <location unit="M">
+-        <x>0.140</x><y>0.280</y><z>-0.060</z>
++        <x>0.140</x>
++        <y>0.280</y>
++        <z>-0.060</z>
+       </location>
+       <static_friction>0.80</static_friction>
+       <dynamic_friction>0.50</dynamic_friction>
+@@ -96,21 +100,9 @@
+       <damping_coeff unit="LBS/FT/SEC">2.0</damping_coeff>
+     </contact>
+   </ground_reactions>
+-
+-  <!--
+-    Propulsion is represented by two body-axis external forces rather than by a
+-    fuel-engine model. The ArduPilot Phoenix connector patch writes independent
+-    commands to fcs/left-motor-cmd-norm and fcs/right-motor-cmd-norm.
+-
+-    JSBSim body X is treated as the Phoenix forward/thrust axis. When the tailsitter
+-    is near 90 deg pitch this axis is approximately vertical in the local frame.
+-    Lateral motor positions are a simplified reduction of the source CP data; exact
+-    frame transformation remains an engineering-estimate item from the source YAML.
+-  -->
+   <external_reactions>
+     <property>fcs/left-motor-cmd-norm</property>
+     <property>fcs/right-motor-cmd-norm</property>
+-
+     <force name="left_motor_thrust" frame="BODY">
+       <function>
+         <product>
+@@ -120,11 +112,16 @@
+         </product>
+       </function>
+       <location unit="M">
+-        <x>0.0</x><y>-0.195</y><z>0.0</z>
+-      </location>
+-      <direction><x>1.0</x><y>0.0</y><z>0.0</z></direction>
++        <x>0.0</x>
++        <y>-0.195</y>
++        <z>0.0</z>
++      </location>
++      <direction>
++        <x>1.0</x>
++        <y>0.0</y>
++        <z>0.0</z>
++      </direction>
+     </force>
+-
+     <force name="right_motor_thrust" frame="BODY">
+       <function>
+         <product>
+@@ -134,12 +131,16 @@
+         </product>
+       </function>
+       <location unit="M">
+-        <x>0.0</x><y>0.195</y><z>0.0</z>
+-      </location>
+-      <direction><x>1.0</x><y>0.0</y><z>0.0</z></direction>
++        <x>0.0</x>
++        <y>0.195</y>
++        <z>0.0</z>
++      </location>
++      <direction>
++        <x>1.0</x>
++        <y>0.0</y>
++        <z>0.0</z>
++      </direction>
+     </force>
+-
+-    <!-- Reaction torques derived from source moment_constant_m * max_thrust. -->
+     <moment name="left_prop_reaction" frame="BODY">
+       <function>
+         <product>
+@@ -148,9 +149,12 @@
+           <property>fcs/left-motor-pos-norm</property>
+         </product>
+       </function>
+-      <direction><x>-1.0</x><y>0.0</y><z>0.0</z></direction>
++      <direction>
++        <x>-1.0</x>
++        <y>0.0</y>
++        <z>0.0</z>
++      </direction>
+     </moment>
+-
+     <moment name="right_prop_reaction" frame="BODY">
+       <function>
+         <product>
+@@ -159,50 +163,208 @@
+           <property>fcs/right-motor-pos-norm</property>
+         </product>
+       </function>
+-      <direction><x>1.0</x><y>0.0</y><z>0.0</z></direction>
++      <direction>
++        <x>1.0</x>
++        <y>0.0</y>
++        <z>0.0</z>
++      </direction>
++    </moment>
++    <force name="left_native_propwash_lift" frame="BODY">
++      <function>
++        <product>
++          <value>0.5006944780716753</value>
++          <difference>
++            <value>1</value>
++            <property>aero/tddt-wing-blend</property>
++          </difference>
++          <property>fcs/left-motor-pos-norm</property>
++          <property>fcs/left-motor-pos-norm</property>
++          <property>fcs/left-elevon-pos-rad</property>
++        </product>
++      </function>
++      <location unit="M">
++        <x>-0.036</x>
++        <y>-0.195</y>
++        <z>0.0</z>
++      </location>
++      <direction>
++        <x>0</x>
++        <y>0</y>
++        <z>-1</z>
++      </direction>
++    </force>
++    <force name="left_native_propwash_drag" frame="BODY">
++      <function>
++        <product>
++          <value>0.2517860162716757</value>
++          <difference>
++            <value>1</value>
++            <property>aero/tddt-wing-blend</property>
++          </difference>
++          <property>fcs/left-motor-pos-norm</property>
++          <property>fcs/left-motor-pos-norm</property>
++          <property>fcs/left-elevon-pos-rad</property>
++          <property>fcs/left-elevon-pos-rad</property>
++        </product>
++      </function>
++      <location unit="M">
++        <x>-0.036</x>
++        <y>-0.195</y>
++        <z>0.0</z>
++      </location>
++      <direction>
++        <x>-1</x>
++        <y>0</y>
++        <z>0</z>
++      </direction>
++    </force>
++    <moment name="left_native_propwash_pitch" frame="BODY">
++      <function>
++        <product>
++          <value>-0.1623816827848828</value>
++          <difference>
++            <value>1</value>
++            <property>aero/tddt-wing-blend</property>
++          </difference>
++          <property>fcs/left-motor-pos-norm</property>
++          <property>fcs/left-motor-pos-norm</property>
++          <property>fcs/left-elevon-pos-rad</property>
++        </product>
++      </function>
++      <direction>
++        <x>0</x>
++        <y>1</y>
++        <z>0</z>
++      </direction>
++    </moment>
++    <force name="right_native_propwash_lift" frame="BODY">
++      <function>
++        <product>
++          <value>0.5006944780716753</value>
++          <difference>
++            <value>1</value>
++            <property>aero/tddt-wing-blend</property>
++          </difference>
++          <property>fcs/right-motor-pos-norm</property>
++          <property>fcs/right-motor-pos-norm</property>
++          <property>fcs/right-elevon-pos-rad</property>
++        </product>
++      </function>
++      <location unit="M">
++        <x>-0.036</x>
++        <y>0.195</y>
++        <z>0.0</z>
++      </location>
++      <direction>
++        <x>0</x>
++        <y>0</y>
++        <z>-1</z>
++      </direction>
++    </force>
++    <force name="right_native_propwash_drag" frame="BODY">
++      <function>
++        <product>
++          <value>0.2517860162716757</value>
++          <difference>
++            <value>1</value>
++            <property>aero/tddt-wing-blend</property>
++          </difference>
++          <property>fcs/right-motor-pos-norm</property>
++          <property>fcs/right-motor-pos-norm</property>
++          <property>fcs/right-elevon-pos-rad</property>
++          <property>fcs/right-elevon-pos-rad</property>
++        </product>
++      </function>
++      <location unit="M">
++        <x>-0.036</x>
++        <y>0.195</y>
++        <z>0.0</z>
++      </location>
++      <direction>
++        <x>-1</x>
++        <y>0</y>
++        <z>0</z>
++      </direction>
++    </force>
++    <moment name="right_native_propwash_pitch" frame="BODY">
++      <function>
++        <product>
++          <value>-0.1623816827848828</value>
++          <difference>
++            <value>1</value>
++            <property>aero/tddt-wing-blend</property>
++          </difference>
++          <property>fcs/right-motor-pos-norm</property>
++          <property>fcs/right-motor-pos-norm</property>
++          <property>fcs/right-elevon-pos-rad</property>
++        </product>
++      </function>
++      <direction>
++        <x>0</x>
++        <y>1</y>
++        <z>0</z>
++      </direction>
+     </moment>
+   </external_reactions>
+-
+-  <propulsion/>
+-
++  <propulsion />
+   <flight_control name="Phoenix command adaptation">
+     <property>fcs/left-elevon-cmd-norm</property>
+     <property>fcs/right-elevon-cmd-norm</property>
+-
+     <channel name="Elevons">
+       <pure_gain name="fcs/left-elevon-pos-rad">
+         <input>fcs/left-elevon-cmd-norm</input>
+         <gain>0.53</gain>
+-        <clipto><min>-0.53</min><max>0.53</max></clipto>
++        <clipto>
++          <min>-0.53</min>
++          <max>0.53</max>
++        </clipto>
+       </pure_gain>
+       <pure_gain name="fcs/right-elevon-pos-rad">
+         <input>fcs/right-elevon-cmd-norm</input>
+         <gain>0.53</gain>
+-        <clipto><min>-0.53</min><max>0.53</max></clipto>
++        <clipto>
++          <min>-0.53</min>
++          <max>0.53</max>
++        </clipto>
+       </pure_gain>
+     </channel>
+-
+     <channel name="Twin motors">
+-      <!-- One symmetric first-order approximation of 0.016/0.020 s source motor lags. -->
+       <lag_filter name="fcs/left-motor-pos-norm">
+         <input>fcs/left-motor-cmd-norm</input>
+         <c1>55.555556</c1>
+-        <clipto><min>0.0</min><max>1.0</max></clipto>
++        <clipto>
++          <min>0.0</min>
++          <max>1.0</max>
++        </clipto>
+       </lag_filter>
+       <lag_filter name="fcs/right-motor-pos-norm">
+         <input>fcs/right-motor-cmd-norm</input>
+         <c1>55.555556</c1>
+-        <clipto><min>0.0</min><max>1.0</max></clipto>
++        <clipto>
++          <min>0.0</min>
++          <max>1.0</max>
++        </clipto>
+       </lag_filter>
+     </channel>
+   </flight_control>
+-
+-  <!--
+-    Forward-flight derivatives below come directly from the engineering-estimate
+-    section of phoenix_drone_v3.yaml. They are intentionally marked BETA and must
+-    not be interpreted as identified Phoenix aerodynamics.
+-  -->
+   <aerodynamics>
++    <function name="aero/tddt-wing-blend">
++      <table>
++        <independentVar lookup="row">velocities/u-aero-fps</independentVar>
++        <tableData>
++-98.4251968504 0
++0 0
++29.8556430446 0
++31.1679790026 0.0518266431588
++32.8083989501 0.229160687195
++34.4488188976 0.474148181557
++36.0892388451 0.725285989585
++37.7296587927 0.92107097462
++39.3700787402 1
++98.4251968504 1
++</tableData>
++      </table>
++    </function>
+     <axis name="LIFT">
+       <function name="aero/force/lift">
+         <product>
+@@ -210,7 +372,10 @@
+           <property>metrics/Sw-sqft</property>
+           <sum>
+             <value>0.10</value>
+-            <product><value>3.40</value><property>aero/alpha-rad</property></product>
++            <product>
++              <value>3.40</value>
++              <property>aero/alpha-rad</property>
++            </product>
+             <product>
+               <value>2.50</value>
+               <property>aero/ci2vel</property>
+@@ -224,10 +389,10 @@
+               </sum>
+             </product>
+           </sum>
++          <property>aero/tddt-wing-blend</property>
+         </product>
+       </function>
+     </axis>
+-
+     <axis name="DRAG">
+       <function name="aero/force/drag">
+         <product>
+@@ -235,17 +400,28 @@
+           <property>metrics/Sw-sqft</property>
+           <sum>
+             <value>0.045</value>
+-            <!-- k * (CL0 + CLalpha*alpha)^2, control/rate contribution omitted. -->
+             <product>
+               <value>0.134</value>
+-              <sum><value>0.10</value><product><value>3.40</value><property>aero/alpha-rad</property></product></sum>
+-              <sum><value>0.10</value><product><value>3.40</value><property>aero/alpha-rad</property></product></sum>
++              <sum>
++                <value>0.10</value>
++                <product>
++                  <value>3.40</value>
++                  <property>aero/alpha-rad</property>
++                </product>
++              </sum>
++              <sum>
++                <value>0.10</value>
++                <product>
++                  <value>3.40</value>
++                  <property>aero/alpha-rad</property>
++                </product>
++              </sum>
+             </product>
+           </sum>
++          <property>aero/tddt-wing-blend</property>
+         </product>
+       </function>
+     </axis>
+-
+     <axis name="SIDE">
+       <function name="aero/force/side">
+         <product>
+@@ -253,10 +429,10 @@
+           <property>metrics/Sw-sqft</property>
+           <value>-0.35</value>
+           <property>aero/beta-rad</property>
++          <property>aero/tddt-wing-blend</property>
+         </product>
+       </function>
+     </axis>
+-
+     <axis name="ROLL">
+       <function name="aero/moment/roll">
+         <product>
+@@ -264,20 +440,30 @@
+           <property>metrics/Sw-sqft</property>
+           <property>metrics/bw-ft</property>
+           <sum>
+-            <product><value>-0.08</value><property>aero/beta-rad</property></product>
+-            <product><value>-0.45</value><property>aero/bi2vel</property><property>velocities/p-aero-rad_sec</property></product>
++            <product>
++              <value>-0.08</value>
++              <property>aero/beta-rad</property>
++            </product>
++            <product>
++              <value>-0.45</value>
++              <property>aero/bi2vel</property>
++              <property>velocities/p-aero-rad_sec</property>
++            </product>
+             <product>
+               <value>0.09</value>
+               <sum>
+                 <property>fcs/right-elevon-pos-rad</property>
+-                <product><value>-1.0</value><property>fcs/left-elevon-pos-rad</property></product>
++                <product>
++                  <value>-1.0</value>
++                  <property>fcs/left-elevon-pos-rad</property>
++                </product>
+               </sum>
+             </product>
+           </sum>
++          <property>aero/tddt-wing-blend</property>
+         </product>
+       </function>
+     </axis>
+-
+     <axis name="PITCH">
+       <function name="aero/moment/pitch">
+         <product>
+@@ -286,8 +472,15 @@
+           <property>metrics/cbarw-ft</property>
+           <sum>
+             <value>0.02</value>
+-            <product><value>-0.55</value><property>aero/alpha-rad</property></product>
+-            <product><value>-5.0</value><property>aero/ci2vel</property><property>velocities/q-aero-rad_sec</property></product>
++            <product>
++              <value>-0.55</value>
++              <property>aero/alpha-rad</property>
++            </product>
++            <product>
++              <value>-5.0</value>
++              <property>aero/ci2vel</property>
++              <property>velocities/q-aero-rad_sec</property>
++            </product>
+             <product>
+               <value>-0.40</value>
+               <sum>
+@@ -296,10 +489,10 @@
+               </sum>
+             </product>
+           </sum>
++          <property>aero/tddt-wing-blend</property>
+         </product>
+       </function>
+     </axis>
+-
+     <axis name="YAW">
+       <function name="aero/moment/yaw">
+         <product>
+@@ -307,14 +500,21 @@
+           <property>metrics/Sw-sqft</property>
+           <property>metrics/bw-ft</property>
+           <sum>
+-            <product><value>0.08</value><property>aero/beta-rad</property></product>
+-            <product><value>-0.18</value><property>aero/bi2vel</property><property>velocities/r-aero-rad_sec</property></product>
++            <product>
++              <value>0.08</value>
++              <property>aero/beta-rad</property>
++            </product>
++            <product>
++              <value>-0.18</value>
++              <property>aero/bi2vel</property>
++              <property>velocities/r-aero-rad_sec</property>
++            </product>
+           </sum>
++          <property>aero/tddt-wing-blend</property>
+         </product>
+       </function>
+     </axis>
+   </aerodynamics>
+-  <!-- TDDT_STAGE2_NATIVE_NORMALIZED_LOGGER_V1: instrumentation only; NO RPM property exists in this model -->
+   <output name="tddt_stage2_native_normalized.csv" type="CSV" rate="200">
+     <property>fcs/left-motor-cmd-norm</property>
+     <property>fcs/right-motor-cmd-norm</property>
+--- a/layer6_v20261007_1032/FlightStack/models/phoenix_v3/default_params/phoenix_v3.parm
++++ b/layer6_v20261007_1032/FlightStack/models/phoenix_v3/default_params/phoenix_v3.parm
+@@ -23,7 +23,7 @@
+ SERVO4_MAX 2000
+ 
+ RUDD_DT_GAIN 0
+-AHRS_EKF_TYPE 10
++AHRS_EKF_TYPE 3
+ ARSPD_TYPE 100
+ BATT_MONITOR 4
+ BATT_CAPACITY 2200
+@@ -34,22 +34,77 @@
+ ARSPD_AUTOCAL 0
+ INS_GYR_CAL 0
+ 
+-INS_ACCOFFS_X 0.001
+-INS_ACCOFFS_Y 0.001
+-INS_ACCOFFS_Z 0.001
+-INS_ACCSCAL_X 1.001
+-INS_ACCSCAL_Y 1.001
+-INS_ACCSCAL_Z 1.001
++INS_ACCOFFS_X 0.00001
++INS_ACCOFFS_Y 0.00001
++INS_ACCOFFS_Z 0.00001
++INS_ACCSCAL_X 1.0
++INS_ACCSCAL_Y 1.0
++INS_ACCSCAL_Z 1.0
+ 
+-INS_ACC2OFFS_X 0.001
+-INS_ACC2OFFS_Y 0.001
+-INS_ACC2OFFS_Z 0.001
+-INS_ACC2SCAL_X 1.001
+-INS_ACC2SCAL_Y 1.001
+-INS_ACC2SCAL_Z 1.001
++INS_ACC2OFFS_X 0.00001
++INS_ACC2OFFS_Y 0.00001
++INS_ACC2OFFS_Z 0.00001
++INS_ACC2SCAL_X 1.0
++INS_ACC2SCAL_Y 1.0
++INS_ACC2SCAL_Z 1.0
+ 
+-SIM_GPS1_ENABLE 1
+-SIM_GPS2_ENABLE 1
+-SIM_GPS3_ENABLE 1
+-SIM_GPS4_ENABLE 1
++# GNSS-denied SITL. AHRS_EKF_TYPE=3 uses the sensor EKF inner-loop attitude
++# backend; TDDT navigation uses only its approved IMU/mag/baro/pitot sensors.
++SIM_GPS1_ENABLE 0
++SIM_GPS2_ENABLE 0
++SIM_GPS3_ENABLE 0
++SIM_GPS4_ENABLE 0
+ 
++
++# No GNSS receivers are installed in this simulation navigation profile.
++GPS1_TYPE 0
++GPS2_TYPE 0
++# Prototype commissioning baseline: no artificial triangular gyro-bias ramp.
++# Stock sensor noise and measured gyro/accelerometer bias handling remain active.
++SIM_DRIFT_SPEED 0
++
++# Elevon signs: positive AP pitch demand requires negative physical deflection.
++SERVO1_REVERSED 1
++SERVO2_REVERSED 1
++
++# Native .65kg dual-rotor commissioning: bounded inner-loop bandwidth, no
++# unqualified fixed-wing default feedforward on VTOL propwash surfaces.
++Q_A_ANG_RLL_P 1.8
++Q_A_ANG_PIT_P 1.8
++Q_A_ANG_YAW_P 1.5
++Q_A_RAT_RLL_P 0.04
++Q_A_RAT_RLL_I 0.02
++Q_A_RAT_RLL_D 0.001
++Q_A_RAT_RLL_FF 0
++Q_A_RAT_RLL_IMAX 0.12
++Q_A_RAT_PIT_P 0.16
++Q_A_RAT_PIT_I 0.06
++Q_A_RAT_PIT_D 0.001
++Q_A_RAT_PIT_FF 0
++Q_A_RAT_PIT_IMAX 0.12
++Q_A_RAT_YAW_P 0.12
++Q_A_RAT_YAW_I 0.03
++Q_A_RAT_YAW_D 0.001
++Q_A_RAT_YAW_FF 0
++Q_A_RAT_YAW_IMAX 0.12
++
++# No GNSS, external navigation, optical flow or odometry aiding for EKF3.
++EK3_ENABLE 1
++EK2_ENABLE 0
++EK3_SRC1_POSXY 0
++EK3_SRC1_VELXY 0
++EK3_SRC1_POSZ 1
++EK3_SRC1_VELZ 0
++EK3_SRC1_YAW 1
++
++# Start disarmed in VTOL: fixed-wing EKF bootstrap explicitly requires GPS lock.
++# QHOVER clears the fly-forward assumption; normal EKF/arming checks remain on.
++INITIAL_MODE 18
++
++# Mode ownership belongs to the Digital Pilot. An idle RC mode switch must not
++# overwrite INITIAL_MODE with a fixed-wing MANUAL slot during EKF bootstrap.
++FLTMODE_CH 0
++
++# Keep a healthy, initialized attitude/vertical EKF in VTOL without XY aiding.
++# ArduPlane's DCM fallback otherwise insists on horizontal navigation validity.
++AHRS_OPTIONS 2
+--- a/layer6_v20261007_1032/FlightStack/phoenix_environment_adapter_v2/phoenix_env_adapter/bound.py
++++ b/layer6_v20261007_1032/FlightStack/phoenix_environment_adapter_v2/phoenix_env_adapter/bound.py
+@@ -136,17 +136,26 @@
+         while True:
+             if time.monotonic()-last_clock_received>2.:
+                 raise RuntimeError('native source clock stalled; no wall-time substitution')
+-            msg=master.recv_match(type=['ATTITUDE','GLOBAL_POSITION_INT','SYSTEM_TIME'],blocking=True,timeout=2.)
++            msg=master.recv_match(type=['ATTITUDE','GLOBAL_POSITION_INT','SYSTEM_TIME','SIM_STATE'],blocking=True,timeout=2.)
+             if msg is None:raise RuntimeError('native plant clock unavailable; no wall-time substitution')
+-            observation=clock.observe(msg,received=time.monotonic())
++            received=time.monotonic()
++            if msg.get_type()=='SIM_STATE':
++                if (msg.get_srcSystem(),msg.get_srcComponent())!=target:continue
++                if newest_observation is None:continue
++                lat=getattr(msg,'lat_int',0) or msg.lat
++                lon=getattr(msg,'lon_int',0) or msg.lon
++                position=dict(latitude=lat*1e-7,longitude=lon*1e-7,altitude_msl_m=msg.alt)
++                if not all(math.isfinite(v) for v in position.values()):
++                    raise ValueError('invalid physical weather position')
++                # Lower clock bound precedes this SIM_STATE on the same stream.
++                # Sampling occurs only on the subsequent native clock event.
++                position_time=newest_observation['event']['plant_time_s']
++                position_received=received
++                continue
++            observation=clock.observe(msg,received=received)
+             if observation is None:continue
+             plant=observation['event']['plant_time_s']
+             channel=msg.get_type()
+-            if channel=='GLOBAL_POSITION_INT':
+-                position=dict(latitude=msg.lat/1e7,longitude=msg.lon/1e7,altitude_msl_m=msg.alt/1000.)
+-                if not (-90<=position['latitude']<=90 and -180<=position['longitude']<=180):
+-                    raise ValueError('native environment position out of range')
+-                position_time=plant;position_received=observation['event']['received_monotonic_s']
+             if observation['newest']:
+                 newest_observation=observation
+                 last_clock_received=observation['event']['received_monotonic_s']
+@@ -167,7 +176,10 @@
+             state=provider.sample(plant,source='MAVLink/'+observation['event']['message_type']+'.time_boot_ms',**position)
+             state.update(sampled_monotonic=state['updated_monotonic'],application_pending=True)
+             state.update(clock_mapping=clock.mapping(observation),runtime_clock_mapping_verified=True)
+-            state.update(environment_position_source='MAVLink/GLOBAL_POSITION_INT',
++            state.update(environment_position_source='MAVLink/SIM_STATE physical forcing only',
++                environment_position_time_bounds_s=[position_time,plant],
++                position_clock_semantics='ordered lower/upper native clock bounds, not a fabricated SIM_STATE timestamp',
++                navigation_observation_generated=False,
+                 environment_position_time_s=position_time,environment_position_received_monotonic=position_received)
+             # Invalidate the previous success before any non-atomic parameter changes.
+             provider.publish(state_file,state)
+--- a/layer6_v20261007_1032/configs/native_realtime_vtol.parm
++++ b/layer6_v20261007_1032/configs/native_realtime_vtol.parm
+@@ -0,0 +1,110 @@
++# Phoenix dual-rotor tailsitter - ArduPlane SITL parameters
++Q_ENABLE 1
++Q_TAILSIT_ENABLE 1
++Q_FRAME_CLASS 10
++Q_TAILSIT_MOTMX 0
++
++SERVO1_FUNCTION 77
++SERVO2_FUNCTION 78
++SERVO3_FUNCTION 73
++SERVO4_FUNCTION 74
++
++SERVO1_MIN 1000
++SERVO1_TRIM 1500
++SERVO1_MAX 2000
++SERVO2_MIN 1000
++SERVO2_TRIM 1500
++SERVO2_MAX 2000
++SERVO3_MIN 1000
++SERVO3_TRIM 1000
++SERVO3_MAX 2000
++SERVO4_MIN 1000
++SERVO4_TRIM 1000
++SERVO4_MAX 2000
++
++RUDD_DT_GAIN 0
++AHRS_EKF_TYPE 3
++ARSPD_TYPE 100
++BATT_MONITOR 4
++BATT_CAPACITY 2200
++TERRAIN_ENABLE 0
++TERRAIN_FOLLOW 0
++ARSPD_USE 1
++ARSPD_SKIP_CAL 1
++ARSPD_AUTOCAL 0
++INS_GYR_CAL 0
++
++INS_ACCOFFS_X 0.00001
++INS_ACCOFFS_Y 0.00001
++INS_ACCOFFS_Z 0.00001
++INS_ACCSCAL_X 1.0
++INS_ACCSCAL_Y 1.0
++INS_ACCSCAL_Z 1.0
++
++INS_ACC2OFFS_X 0.00001
++INS_ACC2OFFS_Y 0.00001
++INS_ACC2OFFS_Z 0.00001
++INS_ACC2SCAL_X 1.0
++INS_ACC2SCAL_Y 1.0
++INS_ACC2SCAL_Z 1.0
++
++# GNSS-denied SITL. AHRS_EKF_TYPE=3 uses the sensor EKF inner-loop attitude
++# backend; TDDT navigation uses only its approved IMU/mag/baro/pitot sensors.
++SIM_GPS1_ENABLE 0
++SIM_GPS2_ENABLE 0
++SIM_GPS3_ENABLE 0
++SIM_GPS4_ENABLE 0
++
++
++# No GNSS receivers are installed in this simulation navigation profile.
++GPS1_TYPE 0
++GPS2_TYPE 0
++# Prototype commissioning baseline: no artificial triangular gyro-bias ramp.
++# Stock sensor noise and measured gyro/accelerometer bias handling remain active.
++SIM_DRIFT_SPEED 0
++
++# Elevon signs: positive AP pitch demand requires negative physical deflection.
++SERVO1_REVERSED 1
++SERVO2_REVERSED 1
++
++# Native .65kg dual-rotor commissioning: bounded inner-loop bandwidth, no
++# unqualified fixed-wing default feedforward on VTOL propwash surfaces.
++Q_A_ANG_RLL_P 1.8
++Q_A_ANG_PIT_P 1.8
++Q_A_ANG_YAW_P 1.5
++Q_A_RAT_RLL_P 0.04
++Q_A_RAT_RLL_I 0.02
++Q_A_RAT_RLL_D 0.001
++Q_A_RAT_RLL_FF 0
++Q_A_RAT_RLL_IMAX 0.12
++Q_A_RAT_PIT_P 0.16
++Q_A_RAT_PIT_I 0.06
++Q_A_RAT_PIT_D 0.001
++Q_A_RAT_PIT_FF 0
++Q_A_RAT_PIT_IMAX 0.12
++Q_A_RAT_YAW_P 0.12
++Q_A_RAT_YAW_I 0.03
++Q_A_RAT_YAW_D 0.001
++Q_A_RAT_YAW_FF 0
++Q_A_RAT_YAW_IMAX 0.12
++
++# No GNSS, external navigation, optical flow or odometry aiding for EKF3.
++EK3_ENABLE 1
++EK2_ENABLE 0
++EK3_SRC1_POSXY 0
++EK3_SRC1_VELXY 0
++EK3_SRC1_POSZ 1
++EK3_SRC1_VELZ 0
++EK3_SRC1_YAW 1
++
++# Start disarmed in VTOL: fixed-wing EKF bootstrap explicitly requires GPS lock.
++# QHOVER clears the fly-forward assumption; normal EKF/arming checks remain on.
++INITIAL_MODE 18
++
++# Mode ownership belongs to the Digital Pilot. An idle RC mode switch must not
++# overwrite INITIAL_MODE with a fixed-wing MANUAL slot during EKF bootstrap.
++FLTMODE_CH 0
++
++# Keep a healthy, initialized attitude/vertical EKF in VTOL without XY aiding.
++# ArduPlane's DCM fallback otherwise insists on horizontal navigation validity.
++AHRS_OPTIONS 2
+--- a/layer6_v20261007_1032/configs/phoenix_native_base.xml
++++ b/layer6_v20261007_1032/configs/phoenix_native_base.xml
+@@ -0,0 +1,331 @@
++<?xml version="1.0"?>
++<fdm_config name="Phoenix" version="2.0" release="BETA"
++  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++  xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
++
++  <fileheader>
++    <author>Generated for ArduPilot SITL + JSBSim integration from phoenix_drone_v3.yaml</author>
++    <filecreationdate>2026-09-30</filecreationdate>
++    <version>1.0</version>
++    <description>
++      Source-informed simplified Phoenix dual-rotor tailsitter model. Source-identified
++      mass, inertia, geometry, motor thrust and selected propwash data are retained.
++      Conventional forward-flight derivatives and the JSBSim frame reduction remain
++      engineering estimates. This model is for SITL integration testing, not validated
++      aircraft performance claims.
++    </description>
++  </fileheader>
++
++  <metrics>
++    <wingarea unit="M2">0.12</wingarea>
++    <wingspan unit="M">0.64</wingspan>
++    <chord unit="M">0.19</chord>
++    <htailarea unit="M2">0.0001</htailarea>
++    <htailarm unit="M">0.19</htailarm>
++    <vtailarea unit="M2">0.0001</vtailarea>
++    <vtailarm unit="M">0.19</vtailarm>
++    <location name="AERORP" unit="M">
++      <x>0.0</x><y>0.0</y><z>0.0</z>
++    </location>
++    <location name="EYEPOINT" unit="M">
++      <x>0.0</x><y>0.0</y><z>0.0</z>
++    </location>
++    <location name="VRP" unit="M">
++      <x>0.0</x><y>0.0</y><z>0.0</z>
++    </location>
++  </metrics>
++
++  <mass_balance>
++    <ixx unit="KG*M2">0.0147563</ixx>
++    <iyy unit="KG*M2">0.00638929</iyy>
++    <izz unit="KG*M2">0.0177</izz>
++    <ixy unit="KG*M2">0.0</ixy>
++    <ixz unit="KG*M2">0.0</ixz>
++    <iyz unit="KG*M2">0.0</iyz>
++    <emptywt unit="KG">0.65</emptywt>
++    <location name="CG" unit="M">
++      <x>0.0</x><y>0.0</y><z>0.0</z>
++    </location>
++  </mass_balance>
++
++  <!--
++    S02.04 candidate four-foot tailsitter contact geometry (Phoenix D archive).
++    Source: archive/s02-02-phoenix-d-for-s02-04-v1 (NOT a measured-gear certificate).
++    Each independent STRUCTURE contact requires Native T2 verification of load
++    bearing and terrain compatibility. Do not infer G02 PASS from this geometry.
++  -->
++  <ground_reactions>
++    <contact type="STRUCTURE" name="TAIL_FOOT_L1">
++      <location unit="M">
++        <x>0.140</x><y>-0.280</y><z>0.060</z>
++      </location>
++      <static_friction>0.80</static_friction>
++      <dynamic_friction>0.50</dynamic_friction>
++      <rolling_friction>0.02</rolling_friction>
++      <spring_coeff unit="LBS/FT">12.0</spring_coeff>
++      <damping_coeff unit="LBS/FT/SEC">2.0</damping_coeff>
++    </contact>
++    <contact type="STRUCTURE" name="TAIL_FOOT_L2">
++      <location unit="M">
++        <x>0.140</x><y>-0.280</y><z>-0.060</z>
++      </location>
++      <static_friction>0.80</static_friction>
++      <dynamic_friction>0.50</dynamic_friction>
++      <rolling_friction>0.02</rolling_friction>
++      <spring_coeff unit="LBS/FT">12.0</spring_coeff>
++      <damping_coeff unit="LBS/FT/SEC">2.0</damping_coeff>
++    </contact>
++    <contact type="STRUCTURE" name="TAIL_FOOT_R1">
++      <location unit="M">
++        <x>0.140</x><y>0.280</y><z>0.060</z>
++      </location>
++      <static_friction>0.80</static_friction>
++      <dynamic_friction>0.50</dynamic_friction>
++      <rolling_friction>0.02</rolling_friction>
++      <spring_coeff unit="LBS/FT">12.0</spring_coeff>
++      <damping_coeff unit="LBS/FT/SEC">2.0</damping_coeff>
++    </contact>
++    <contact type="STRUCTURE" name="TAIL_FOOT_R2">
++      <location unit="M">
++        <x>0.140</x><y>0.280</y><z>-0.060</z>
++      </location>
++      <static_friction>0.80</static_friction>
++      <dynamic_friction>0.50</dynamic_friction>
++      <rolling_friction>0.02</rolling_friction>
++      <spring_coeff unit="LBS/FT">12.0</spring_coeff>
++      <damping_coeff unit="LBS/FT/SEC">2.0</damping_coeff>
++    </contact>
++  </ground_reactions>
++
++  <!--
++    Propulsion is represented by two body-axis external forces rather than by a
++    fuel-engine model. The ArduPilot Phoenix connector patch writes independent
++    commands to fcs/left-motor-cmd-norm and fcs/right-motor-cmd-norm.
++
++    JSBSim body X is treated as the Phoenix forward/thrust axis. When the tailsitter
++    is near 90 deg pitch this axis is approximately vertical in the local frame.
++    Lateral motor positions are a simplified reduction of the source CP data; exact
++    frame transformation remains an engineering-estimate item from the source YAML.
++  -->
++  <external_reactions>
++    <property>fcs/left-motor-cmd-norm</property>
++    <property>fcs/right-motor-cmd-norm</property>
++
++    <force name="left_motor_thrust" frame="BODY">
++      <function>
++        <product>
++          <value>1.131313</value>
++          <property>fcs/left-motor-pos-norm</property>
++          <property>fcs/left-motor-pos-norm</property>
++        </product>
++      </function>
++      <location unit="M">
++        <x>0.0</x><y>-0.195</y><z>0.0</z>
++      </location>
++      <direction><x>1.0</x><y>0.0</y><z>0.0</z></direction>
++    </force>
++
++    <force name="right_motor_thrust" frame="BODY">
++      <function>
++        <product>
++          <value>1.131313</value>
++          <property>fcs/right-motor-pos-norm</property>
++          <property>fcs/right-motor-pos-norm</property>
++        </product>
++      </function>
++      <location unit="M">
++        <x>0.0</x><y>0.195</y><z>0.0</z>
++      </location>
++      <direction><x>1.0</x><y>0.0</y><z>0.0</z></direction>
++    </force>
++
++    <!-- Reaction torques derived from source moment_constant_m * max_thrust. -->
++    <moment name="left_prop_reaction" frame="BODY">
++      <function>
++        <product>
++          <value>0.08538</value>
++          <property>fcs/left-motor-pos-norm</property>
++          <property>fcs/left-motor-pos-norm</property>
++        </product>
++      </function>
++      <direction><x>-1.0</x><y>0.0</y><z>0.0</z></direction>
++    </moment>
++
++    <moment name="right_prop_reaction" frame="BODY">
++      <function>
++        <product>
++          <value>0.08538</value>
++          <property>fcs/right-motor-pos-norm</property>
++          <property>fcs/right-motor-pos-norm</property>
++        </product>
++      </function>
++      <direction><x>1.0</x><y>0.0</y><z>0.0</z></direction>
++    </moment>
++  </external_reactions>
++
++  <propulsion/>
++
++  <flight_control name="Phoenix command adaptation">
++    <property>fcs/left-elevon-cmd-norm</property>
++    <property>fcs/right-elevon-cmd-norm</property>
++
++    <channel name="Elevons">
++      <pure_gain name="fcs/left-elevon-pos-rad">
++        <input>fcs/left-elevon-cmd-norm</input>
++        <gain>0.53</gain>
++        <clipto><min>-0.53</min><max>0.53</max></clipto>
++      </pure_gain>
++      <pure_gain name="fcs/right-elevon-pos-rad">
++        <input>fcs/right-elevon-cmd-norm</input>
++        <gain>0.53</gain>
++        <clipto><min>-0.53</min><max>0.53</max></clipto>
++      </pure_gain>
++    </channel>
++
++    <channel name="Twin motors">
++      <!-- One symmetric first-order approximation of 0.016/0.020 s source motor lags. -->
++      <lag_filter name="fcs/left-motor-pos-norm">
++        <input>fcs/left-motor-cmd-norm</input>
++        <c1>55.555556</c1>
++        <clipto><min>0.0</min><max>1.0</max></clipto>
++      </lag_filter>
++      <lag_filter name="fcs/right-motor-pos-norm">
++        <input>fcs/right-motor-cmd-norm</input>
++        <c1>55.555556</c1>
++        <clipto><min>0.0</min><max>1.0</max></clipto>
++      </lag_filter>
++    </channel>
++  </flight_control>
++
++  <!--
++    Forward-flight derivatives below come directly from the engineering-estimate
++    section of phoenix_drone_v3.yaml. They are intentionally marked BETA and must
++    not be interpreted as identified Phoenix aerodynamics.
++  -->
++  <aerodynamics>
++    <axis name="LIFT">
++      <function name="aero/force/lift">
++        <product>
++          <property>aero/qbar-psf</property>
++          <property>metrics/Sw-sqft</property>
++          <sum>
++            <value>0.10</value>
++            <product><value>3.40</value><property>aero/alpha-rad</property></product>
++            <product>
++              <value>2.50</value>
++              <property>aero/ci2vel</property>
++              <property>velocities/q-aero-rad_sec</property>
++            </product>
++            <product>
++              <value>0.225</value>
++              <sum>
++                <property>fcs/left-elevon-pos-rad</property>
++                <property>fcs/right-elevon-pos-rad</property>
++              </sum>
++            </product>
++          </sum>
++        </product>
++      </function>
++    </axis>
++
++    <axis name="DRAG">
++      <function name="aero/force/drag">
++        <product>
++          <property>aero/qbar-psf</property>
++          <property>metrics/Sw-sqft</property>
++          <sum>
++            <value>0.045</value>
++            <!-- k * (CL0 + CLalpha*alpha)^2, control/rate contribution omitted. -->
++            <product>
++              <value>0.134</value>
++              <sum><value>0.10</value><product><value>3.40</value><property>aero/alpha-rad</property></product></sum>
++              <sum><value>0.10</value><product><value>3.40</value><property>aero/alpha-rad</property></product></sum>
++            </product>
++          </sum>
++        </product>
++      </function>
++    </axis>
++
++    <axis name="SIDE">
++      <function name="aero/force/side">
++        <product>
++          <property>aero/qbar-psf</property>
++          <property>metrics/Sw-sqft</property>
++          <value>-0.35</value>
++          <property>aero/beta-rad</property>
++        </product>
++      </function>
++    </axis>
++
++    <axis name="ROLL">
++      <function name="aero/moment/roll">
++        <product>
++          <property>aero/qbar-psf</property>
++          <property>metrics/Sw-sqft</property>
++          <property>metrics/bw-ft</property>
++          <sum>
++            <product><value>-0.08</value><property>aero/beta-rad</property></product>
++            <product><value>-0.45</value><property>aero/bi2vel</property><property>velocities/p-aero-rad_sec</property></product>
++            <product>
++              <value>0.09</value>
++              <sum>
++                <property>fcs/right-elevon-pos-rad</property>
++                <product><value>-1.0</value><property>fcs/left-elevon-pos-rad</property></product>
++              </sum>
++            </product>
++          </sum>
++        </product>
++      </function>
++    </axis>
++
++    <axis name="PITCH">
++      <function name="aero/moment/pitch">
++        <product>
++          <property>aero/qbar-psf</property>
++          <property>metrics/Sw-sqft</property>
++          <property>metrics/cbarw-ft</property>
++          <sum>
++            <value>0.02</value>
++            <product><value>-0.55</value><property>aero/alpha-rad</property></product>
++            <product><value>-5.0</value><property>aero/ci2vel</property><property>velocities/q-aero-rad_sec</property></product>
++            <product>
++              <value>-0.40</value>
++              <sum>
++                <property>fcs/left-elevon-pos-rad</property>
++                <property>fcs/right-elevon-pos-rad</property>
++              </sum>
++            </product>
++          </sum>
++        </product>
++      </function>
++    </axis>
++
++    <axis name="YAW">
++      <function name="aero/moment/yaw">
++        <product>
++          <property>aero/qbar-psf</property>
++          <property>metrics/Sw-sqft</property>
++          <property>metrics/bw-ft</property>
++          <sum>
++            <product><value>0.08</value><property>aero/beta-rad</property></product>
++            <product><value>-0.18</value><property>aero/bi2vel</property><property>velocities/r-aero-rad_sec</property></product>
++          </sum>
++        </product>
++      </function>
++    </axis>
++  </aerodynamics>
++  <!-- TDDT_STAGE2_NATIVE_NORMALIZED_LOGGER_V1: instrumentation only; NO RPM property exists in this model -->
++  <output name="tddt_stage2_native_normalized.csv" type="CSV" rate="200">
++    <property>fcs/left-motor-cmd-norm</property>
++    <property>fcs/right-motor-cmd-norm</property>
++    <property>fcs/left-motor-pos-norm</property>
++    <property>fcs/right-motor-pos-norm</property>
++    <property>fcs/left-elevon-cmd-norm</property>
++    <property>fcs/right-elevon-cmd-norm</property>
++    <property>fcs/left-elevon-pos-rad</property>
++    <property>fcs/right-elevon-pos-rad</property>
++    <property>velocities/v-north-fps</property>
++    <property>velocities/v-east-fps</property>
++    <property>velocities/v-down-fps</property>
++  </output>
++</fdm_config>
+--- a/layer6_v20261007_1032/docs/NATIVE_REALTIME_VTOL_FA.md
++++ b/layer6_v20261007_1032/docs/NATIVE_REALTIME_VTOL_FA.md
+@@ -0,0 +1,52 @@
++# قرارداد نمونهٔ Native حسگرمحور
++
++این افزونه یک مسیر اجرایی صریح برای نمونهٔ VTOL است. TDOC همچنان مالک orchestration است. این مسیر گواهی envelope کامل، transition بال‌ثابت یا پرواز سخت‌افزاری صادر نمی‌کند. وضعیت واقعی قبولی هر اجرا فقط در `MISSION_RESULT.json` و ارزیابی مستقل همان نشست مشخص است.
++
++## مسیر محاسبه و اجرا
++
++| لایه | پیاده‌سازی پروفایل | نقش |
++| --- | --- | --- |
++| ۲ | `twins_fmi/realtime.py` | propagation اصلی MESA با FMU، تصحیح با حسگرهای مجاز، اجرای WingMPET و MicroMet اصلی |
++| ۳ | `layer3/realtime.py` | snapshot مستقل و دارای hash از سه Twin و couplingها |
++| ۴ | `layer4/realtime.py` | ۹ rollout بر پایهٔ شتاب جاری FMU و مدل پاسخ حلقهٔ داخلی؛ افق ۲ ثانیه |
++| ۵ | `layer5/realtime.py` | انتخاب MPC، قیود سرعت/lean/نرخ، تبدیل شتاب به lean و climb با پارامترهای واقعی FCU |
++| ۶ | `Layer6Client`، GUI و `layer6/realtime.py` | intake، نگه‌داری فرمان، MAVLink واقعی، receipt دارای مدرک raw و زمان ارسال |
++| ۷ | `tddt_layer7/realtime.py` | تطبیق فرمان واقعی با prediction در زمان اصلی؛ residual حسگرمحور و به‌روزرسانی مدل برای چرخهٔ بعد لایهٔ ۲ |
++
++TDOC در `tddt_tdoc/realtime.py` این توابع را در package واقعی هر لایه فراخوانی می‌کند. cadence تصمیم ۱۰ Hz، cadence اجرای خلبان مجازی ۳۰ Hz و lease فرمان ۰٫۵ ثانیه است. این یک قرارداد تازه و محدود است؛ قرارداد قدیمی segment صد میلی‌ثانیه‌ای بازبرچسب‌گذاری نشده است. snapshot، candidate، transaction، instance، raw MAVLink و clock bounds در لاگ ثبت می‌شوند. تأخیر execution باعث جابه‌جایی زمان prediction نمی‌شود.
++
++## مرز حسگر و ناوبری
++
++ورودی عملیاتی MESA فقط IMU، magnetometer، barometer و scalar airspeed است. `ULTRASONIC_WIND` بدون نمونهٔ واقعی missing می‌ماند. هیچ odometry، بینایی، POSITION، VELOCITY، ATTITUDE، GPS یا SIM_STATE به رابط اندازه‌گیری MESA وارد نمی‌شود. وضعیت، سرعت و quaternion ناوبری از propagation حسگرهای MESA می‌آیند.
++
++مقداردهی اولیه با alignment دو بردار جاذبه و میدان مغناطیسی انجام می‌شود؛ در وضعیت عمودی دم‌نشین از ترکیب تکین Euler roll/yaw استفاده نمی‌شود. قید سکون مبدأ پیش از اولین شتاب powered آزاد می‌شود. در پرواز، شتاب انتقالی به‌عنوان جاذبه فرض نمی‌شود. pitot اسکالر در نبود باد مستقل فقط مدل اندازهٔ باد را اصلاح می‌کند و سرعت زمینی را anchor نمی‌کند. این انتخاب به معنای رفع مسئلهٔ observability افقی یا تضمین عدم drift بلندمدت نیست.
++
++این پروفایل estimator مکمل quaternion و covariance نه‌بعدی position/velocity/wind در کنار propagator FMU دارد؛ ادعای پیاده‌سازی کامل covariance و تمام anchorهای formalism بیست‌ونه‌بعدی MESA ندارد.
++
++پیکربندی فعلی FCU، EKF3 با IMU/magnetometer/barometer است. startup در QHOVER بدون ARM انجام می‌شود و FLTMODE_CH=0 مانع بازنویسی مد توسط کلید RC بی‌استفاده می‌شود؛ گیت‌های estimator و ARM فعال‌اند. GPS1/2 و هر چهار SIM_GPS غیرفعال‌اند؛ POSXY/VELXY و external navigation aiding غیرفعال‌اند. مبدأ نقشهٔ EKF با `SET_GPS_GLOBAL_ORIGIN` از نقطهٔ شروعِ از پیش معلوم تنظیم و readback می‌شود؛ نام این پیام به معنی تزریق GPS fix نیست. هیچ GPS_INPUT/HIL_GPS فرستاده نمی‌شود.
++
++`SIM_STATE` فقط برای ارزیابی مستقل، نمایش مسیر فیزیکی و محاسبهٔ نیروهای محیطی شبیه‌ساز استفاده می‌شود. مسیر هواشناسیِ فیزیکی با زمان‌های clock مجاور کران‌گذاری می‌شود و sample باد مصنوعی برای MESA نمی‌سازد. این داده به snapshot کنترلی یا residual ناوبری Layer7 وارد نمی‌شود. تصاویر و پنل نقشه، telemetry همان نشست FCU را نشان می‌دهند.
++
++## مدل و پایان مأموریت
++
++مولد استاندارد `scripts/apply_native_realtime_model.py`، XML Native را از `configs/phoenix_native_base.xml` بازتولید می‌کند. هندسهٔ تماس، جرم و اینرسی نسخهٔ مبنا حفظ می‌شود؛ propwash از ضرایب موجود WingMPET وارد می‌شود. در فیزیک کامل operationهای ۲۷/۳۵ WingMPET و مدل Native، گذار بال بر حسب جریان مثبت در امتداد chord بدنه است؛ سرعت عرضی به‌تنهایی گذار ایجاد نمی‌کند. operationهای diagnostic قدیمی که فقط scalar speed می‌گیرند، شاهد گذار VTOL نیستند.
++
++علامت سرووها، بهره‌های کنترل داخلی، GPS و backend از `configs/native_realtime_vtol.parm` نصب می‌شوند. نصب استاندارد پس از اعتبارسنجی نسخهٔ مبنا و build، overlay را دوباره اعمال می‌کند. تغییر C++ بدون build پذیرفته نمی‌شود: sourceهای داخل FMU باید با source جاری package یکسان باشند.
++
++مأموریت از ARM عادی و QHOVER عبور می‌کند. نزدیک پایان نزول، توقف نزول در ارتفاع پایین با بارومتر و IMU لازم است تا candidate تماس زمین مجاز شود. سپس Layer5 فرمان QSTABILIZE با گاز صفر می‌دهد و روی زمین بودن و DISARM عادی بررسی می‌شوند. abort یا بسته‌شدن پنجره، touchdown محسوب نمی‌شود.
++
++## دانش قبلی و دامنهٔ ادعا
++
++قبل از نشست، integrity و model/forcing binding دانش آفلاین بررسی می‌شود. prior جای state تازه را نمی‌گیرد. artifact فاقد پوشش همهٔ فازها، گواهی کنترل همهٔ فازها نیست و نباید چنین معرفی شود. اجرای آفلاین کوتاهِ عیب‌یابی فقط prior جزئی برای بررسی model identity تولید می‌کند؛ با آموزش کامل مأموریت یکسان نیست.
++
++PASS مسیر کامل نیازمند ارزیابی مستقل موقعیت فیزیکی، مقصد، تماس زمین، DISARM، حلقهٔ feedback و حضور معتبر هر شش پنجره در همان نشست است. PASS آزمون hover یا package preflight به معنی PASS مسیر کامل نیست.
++
++## اصلاح مدل ناوبری مسیر بلند و تماس زمین
++
++مرجع میدان مغناطیسی از جدول آفلاینِ ثابت، در مختصات **تخمینی خود MESA** ارزیابی می‌شود؛ بردار میدانِ مبدأ برای تمام مسیر ثابت نگه داشته نمی‌شود. rate انتقال چارچوب local-NED و شتاب Coriolis با WGS84 و state تخمینی محاسبه می‌شوند. gyro بومی JSBSim از `FGPropagate::GetPQR` نسبت به Earth-fixed است؛ در تبدیل آن به نرخ attitude محلی فقط transport rate کم می‌شود. این یک تصحیح مدل فیزیکی است، نه حسگر موقعیت و نه ورود SIM_STATE به MESA. position در این پروفایل، تقریب محلی مأموریت کوتاه است؛ attitude و velocity در local-NED جاری بیان می‌شوند. مدل نویز IMU بومی تغییر نکرده است.
++
++MicroMet جاریِ snapshot، ورودی wind/density همان فراخوانی WingMPET می‌شود؛ timestamp و forcing hash ورودی Wing با snapshot لایهٔ ۳ تطبیق می‌خورد. wind اولیهٔ MESA، prior است و با بادسنج مصنوعی جایگزین نمی‌شود.
++
++زیر ارتفاع تخمینی ۱٫۵ متر، مرحلهٔ `landing_flare` فرمان lean/yaw را خنثی و نزول را به ۰٫۲۵ متر بر ثانیه محدود می‌کند. نزول آهسته، توقف روی زمین محسوب نمی‌شود. تماس با ارتفاع بارومتری زیر ۲۰ سانتی‌متر و سکون عمودی زیر ۸ سانتی‌متر بر ثانیه و تغییر ارتفاع کمتر از ۴ سانتی‌متر در پنجرهٔ حداقل ۰٫۳ ثانیه تأیید می‌شود؛ یا ضربهٔ IMU پس از نزول، زیر ۱۵ سانتی‌متر آن را تأیید می‌کند. این فرض ارتفاع، مخصوص زمین تقریباً هم‌تراز مبدأ در نمونهٔ SITL است.
++
++شاهد تماس برای حداکثر ۱۲ ثانیه latch می‌شود. تنها candidate قطع موتور در QSTABILIZE مجاز است از جهش گذرای نرخ/lean هنگام تماس عبور کند؛ هیچ فرمان پرواز چنین استثنایی ندارد. صحت مشاهده، ارتفاع پایین و سن شاهد همچنان کنترل می‌شوند. سپس telemetry واقعی ON_GROUND و DISARM و تماس فیزیکی مستقل لازم است؛ صدور فرمان قطع موتور به‌تنهایی PASS نیست.
+--- a/layer6_v20261007_1032/scripts/apply_native_realtime_environment.py
++++ b/layer6_v20261007_1032/scripts/apply_native_realtime_environment.py
+@@ -0,0 +1,62 @@
++#!/usr/bin/env python3
++"""Reproducible physical-weather position coupling, never a navigation sensor.
++
++The FCU sensor EKF without XY aiding need not export a global position. Weather
++forces must be evaluated at the physical simulator point, not at an invalid EKF
++coordinate. SIM_STATE is confined to physics forcing and independent displays.
++Its time is conservatively bounded by adjacent ordered native-clock events.
++"""
++import argparse,hashlib,json
++from pathlib import Path
++ROOT=Path(__file__).resolve().parents[1]
++BASE_SHA='9565c71ddf31e6b3438a6d1c0a74dc99ebba707454e8a8aae19edb7d11837b25'
++
++
++def content():
++    base=(ROOT/'resources/r4_02_v1/phoenix_env_adapter/bound.py').read_bytes()
++    if hashlib.sha256(base).hexdigest()!=BASE_SHA:raise ValueError('unknown base weather adapter')
++    text=base.decode()
++    text=text.replace("type=['ATTITUDE','GLOBAL_POSITION_INT','SYSTEM_TIME']", "type=['ATTITUDE','GLOBAL_POSITION_INT','SYSTEM_TIME','SIM_STATE']")
++    before="""            observation=clock.observe(msg,received=time.monotonic())"""
++    after="""            received=time.monotonic()
++            if msg.get_type()=='SIM_STATE':
++                if (msg.get_srcSystem(),msg.get_srcComponent())!=target:continue
++                if newest_observation is None:continue
++                lat=getattr(msg,'lat_int',0) or msg.lat
++                lon=getattr(msg,'lon_int',0) or msg.lon
++                position=dict(latitude=lat*1e-7,longitude=lon*1e-7,altitude_msl_m=msg.alt)
++                if not all(math.isfinite(v) for v in position.values()):
++                    raise ValueError('invalid physical weather position')
++                # Lower clock bound precedes this SIM_STATE on the same stream.
++                # Sampling occurs only on the subsequent native clock event.
++                position_time=newest_observation['event']['plant_time_s']
++                position_received=received
++                continue
++            observation=clock.observe(msg,received=received)"""
++    if text.count(before)!=1:raise ValueError('weather clock seam changed')
++    text=text.replace(before,after)
++    start=text.index("            if channel=='GLOBAL_POSITION_INT':")
++    end=text.index("            if observation['newest']:",start)
++    text=text[:start]+text[end:]
++    text=text.replace("environment_position_source='MAVLink/GLOBAL_POSITION_INT',", "environment_position_source='MAVLink/SIM_STATE physical forcing only',\n                environment_position_time_bounds_s=[position_time,plant],\n                position_clock_semantics='ordered lower/upper native clock bounds, not a fabricated SIM_STATE timestamp',\n                navigation_observation_generated=False,")
++    return base,text.encode()
++
++
++def apply(root,restore=False):
++    target=Path(root)/'phoenix_env_adapter/bound.py';base,overlay=content()
++    existing=target.read_bytes() if target.exists() else None
++    if restore:
++        if existing!=overlay:return {'status':'DELEGATED_TO_PINNED_R4_INSTALLER','modified':False}
++        data=base
++    else:
++        if existing not in (base,overlay):raise ValueError('unknown installed weather adapter; refusing overwrite')
++        data=overlay
++    if data!=existing:target.write_bytes(data)
++    return {'status':'PASS','phase':'base' if restore else 'physical-weather',
++            'source_sha256':hashlib.sha256(data).hexdigest(),'new_sensor_types':[],
++            'MESA_navigation_input':False,'truth_position_scope':'simulator weather forcing only'}
++
++
++if __name__=='__main__':
++    p=argparse.ArgumentParser();p.add_argument('--environment-root',required=True,type=Path);p.add_argument('--restore-base',action='store_true');a=p.parse_args()
++    print(json.dumps(apply(a.environment_root,a.restore_base)))
+--- a/layer6_v20261007_1032/scripts/apply_native_realtime_model.py
++++ b/layer6_v20261007_1032/scripts/apply_native_realtime_model.py
+@@ -0,0 +1,86 @@
++#!/usr/bin/env python3
++"""Reproducible interpreted JSBSim profile, using existing WingMPET VTOL physics.
++
++This changes the model XML and parameter source, never an opaque binary. The
++standard FlightStack installer invokes it after restoring/building its base.
++Original contact geometry, mass, inertia and motor law remain source-bound.
++"""
++import argparse,hashlib,json,math
++from pathlib import Path
++import xml.etree.ElementTree as ET
++
++ROOT=Path(__file__).resolve().parents[1]
++CONFIG=ROOT/'configs'
++POUND_FORCE=4.4482216152605
++POUND_FOOT=1.3558179483314
++
++
++def model_bytes():
++    root=ET.fromstring((CONFIG/'phoenix_native_base.xml').read_bytes())
++    root.set('name','Phoenix native VTOL/WingMPET blend RT-v1')
++    aero=root.find('aerodynamics')
++    fun=ET.Element('function',name='aero/tddt-wing-blend')
++    table=ET.SubElement(fun,'table');ET.SubElement(table,'independentVar',lookup='row').text='velocities/u-aero-fps'
++    rows=[]
++    for v in [-30.,0.,9.1,9.5,10.,10.5,11.,11.5,12.,30.]:
++        u=max(0.,min(1.,(v-9.1)/(12.-9.1)));rows.append(f'{v/.3048:.12g} {u*u*(3-2*u):.12g}')
++    ET.SubElement(table,'tableData').text='\n'+'\n'.join(rows)+'\n';aero.insert(0,fun)
++    for axis in aero.findall('axis'):
++        for function in axis.findall('function'):
++            product=function.find('product')
++            if product is None:raise ValueError('unrecognized source aerodynamic expression')
++            ET.SubElement(product,'property').text='aero/tddt-wing-blend'
++    external=root.find('external_reactions')
++    def expression(parent,motor,delta,coefficient,squared_delta=False):
++        product=ET.SubElement(ET.SubElement(parent,'function'),'product')
++        ET.SubElement(product,'value').text=f'{coefficient:.16g}'
++        diff=ET.SubElement(product,'difference');ET.SubElement(diff,'value').text='1'
++        ET.SubElement(diff,'property').text='aero/tddt-wing-blend'
++        for _ in range(2):ET.SubElement(product,'property').text=f'fcs/{motor}-motor-pos-norm'
++        ET.SubElement(product,'property').text=f'fcs/{delta}-elevon-pos-rad'
++        if squared_delta:ET.SubElement(product,'property').text=f'fcs/{delta}-elevon-pos-rad'
++    for side,y in [('left',-.195),('right',.195)]:
++        # WingMPET source: L=k_L omega^2 delta, D=k_D omega^2 delta^2,
++        # M_pitch=k_M omega^2 delta. JSBSim force/moment functions use lbf/lbft.
++        for kind,k,direction,squared in [('lift',3.48e-6,(0,0,-1),False),('drag',1.75e-6,(-1,0,0),True)]:
++            force=ET.SubElement(external,'force',name=f'{side}_native_propwash_{kind}',frame='BODY')
++            expression(force,side,side,k*800**2/POUND_FORCE,squared)
++            loc=ET.SubElement(force,'location',unit='M')
++            for name,value in zip(('x','y','z'),(-.036,y,0.)):ET.SubElement(loc,name).text=str(value)
++            vec=ET.SubElement(force,'direction')
++            for name,value in zip(('x','y','z'),direction):ET.SubElement(vec,name).text=str(value)
++        moment=ET.SubElement(external,'moment',name=f'{side}_native_propwash_pitch',frame='BODY')
++        expression(moment,side,side,-3.44e-7*800**2/POUND_FOOT)
++        vec=ET.SubElement(moment,'direction')
++        for name,value in zip(('x','y','z'),(0,1,0)):ET.SubElement(vec,name).text=str(value)
++    ET.indent(root,space='  ')
++    return b'<?xml version="1.0"?>\n'+ET.tostring(root,encoding='utf-8')+b'\n'
++
++
++def expected_hash():return hashlib.sha256(model_bytes()).hexdigest()
++
++
++def apply(fs):
++    fs=Path(fs);data=model_bytes();parameters=(CONFIG/'native_realtime_vtol.parm').read_bytes()
++    outputs=[fs/'models/phoenix_v3/aircraft/phoenix_v3/phoenix_v3.xml',
++             fs/'ardupilot/Tools/autotest/aircraft/phoenix_v3/phoenix_v3.xml']
++    param_outputs=[fs/'models/phoenix_v3/default_params/phoenix_v3.parm',
++                   fs/'ardupilot/Tools/autotest/default_params/phoenix_v3.parm']
++    for p in outputs:p.write_bytes(data)
++    for p in param_outputs:p.write_bytes(parameters)
++    manifest={'schema':'Phoenix-native-realtime-model-build-v1','model_sha256':expected_hash(),
++        'parameter_sha256':hashlib.sha256(parameters).hexdigest(),
++        'source_xml_sha256':hashlib.sha256((CONFIG/'phoenix_native_base.xml').read_bytes()).hexdigest(),
++        'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
++        'model_type':'interpreted JSBSim XML; no C++/FMU/binary mutation',
++        'wing_blend_speed_m_s':[9.1,12.],'propwash_source':'existing Phoenix/WingMPET source coefficients',
++        'surface_sign_source':'ArduPlane pitch demand versus source physical Cm_delta',
++        'GNSS_receivers':'disabled','new_sensor_types':[],
++        'flight_ready':False,'dynamic_qualification':'requires same-session Native test'}
++    (fs/'models/phoenix_v3/native_realtime_build.json').write_text(json.dumps(manifest,indent=2))
++    return manifest
++
++
++if __name__=='__main__':
++    p=argparse.ArgumentParser();p.add_argument('--flightstack-dir',type=Path,default=ROOT/'FlightStack');a=p.parse_args()
++    print(json.dumps(apply(a.flightstack_dir),indent=2))
+--- a/layer6_v20261007_1032/scripts/apply_r3_03_model_alignment.py
++++ b/layer6_v20261007_1032/scripts/apply_r3_03_model_alignment.py
+@@ -67,7 +67,8 @@
+     fs = fs.resolve(strict=True)
+     model = fs/'models/phoenix_v3'
+     aircraft = model/'aircraft/phoenix_v3/phoenix_v3.xml'
+-    if sha(aircraft) not in OLD_MODELS | {alignment['files']['phoenix_v3.xml']['sha256']}:
++    from apply_native_realtime_model import expected_hash
++    if sha(aircraft) not in OLD_MODELS | {alignment['files']['phoenix_v3.xml']['sha256'],expected_hash()}:
+         raise ValueError('unrecognized packaged aircraft; refusing overwrite')
+     expected = contract['tools']
+     current = {name: sha(model/name) for name in expected}
+@@ -172,9 +173,12 @@
+     if args.repair_venvs_only:
+         print(json.dumps({'venvs':relocate_venvs(args.flightstack_dir.resolve())}))
+         return
++    if args.refresh_ground_profile:
++        # This post-build operation must not restage the pre-R6 bridge/model.
++        # The installer has already validated, overlaid and compiled the stack.
++        print(json.dumps(refresh_ground_profile(args.flightstack_dir.resolve())))
++        return
+     result = apply(args.flightstack_dir)
+-    if args.refresh_ground_profile:
+-        result.update(refresh_ground_profile(args.flightstack_dir.resolve()))
+     print(json.dumps(result))
+ 
+ 
+--- a/layer6_v20261007_1032/scripts/install_flightstack_rev1.sh
++++ b/layer6_v20261007_1032/scripts/install_flightstack_rev1.sh
+@@ -99,6 +99,7 @@
+     "$PYTHON" -B ./waf configure --board sitl
+     "$PYTHON" -B ./waf plane
+   )
++  python3 "$SCRIPT_DIR/apply_native_realtime_model.py" --flightstack-dir "$FLIGHTSTACK_DIR"
+ }
+ 
+ if [[ "$REPAIR_MODEL_ONLY" == 1 ]]; then
+@@ -109,7 +110,9 @@
+   export PYTHON="$AP_VENV/bin/python"
+   export PATH="$FLIGHTSTACK_DIR/jsbsim/build/src:$PATH"
+   python3 "$SCRIPT_DIR/apply_r3_02_environment_alignment.py" --environment-root "$FLIGHTSTACK_DIR/phoenix_environment_adapter_v2"
++  python3 "$SCRIPT_DIR/apply_native_realtime_environment.py" --environment-root "$FLIGHTSTACK_DIR/phoenix_environment_adapter_v2" --restore-base
+   python3 "$SCRIPT_DIR/apply_r4_02_environment_binding.py" --environment-root "$FLIGHTSTACK_DIR/phoenix_environment_adapter_v2"
++  python3 "$SCRIPT_DIR/apply_native_realtime_environment.py" --environment-root "$FLIGHTSTACK_DIR/phoenix_environment_adapter_v2"
+   install_aligned_model
+   check_replay_map
+   python3 "$SCRIPT_DIR/apply_r3_03_model_alignment.py" --flightstack-dir "$FLIGHTSTACK_DIR" --refresh-ground-profile
+@@ -207,6 +210,7 @@
+ tar -xzf "$ENV_ARCHIVE" --strip-components=1 -C "$FLIGHTSTACK_DIR/phoenix_environment_adapter_v2"
+ python3 "$ALIGNMENT_HELPER" --environment-root "$FLIGHTSTACK_DIR/phoenix_environment_adapter_v2"
+ python3 "$SCRIPT_DIR/apply_r4_02_environment_binding.py" --environment-root "$FLIGHTSTACK_DIR/phoenix_environment_adapter_v2"
++python3 "$SCRIPT_DIR/apply_native_realtime_environment.py" --environment-root "$FLIGHTSTACK_DIR/phoenix_environment_adapter_v2"
+ cd "$FLIGHTSTACK_DIR/phoenix_environment_adapter_v2"
+ chmod +x ./scripts/install.sh
+ ./scripts/install.sh
+--- a/layer6_v20261007_1032/src/gui/phoenix_f310_gui.py
++++ b/layer6_v20261007_1032/src/gui/phoenix_f310_gui.py
+@@ -738,7 +738,26 @@
+                         'error':'native_session_id mismatch; stale GUI boot request'}).encode(),addr)
+                 continue
+             if typ in ('state','action') and not gate.admit(msg,addr):continue
+-            if typ=='segment_status_request':
++            if typ=='realtime_receipt_request':
++                from layer6.command_correlation import context_from_state
++                if msg.get('native_session_id')!=native_id:continue
++                if self.link:
++                    self.link.drain()
++                    context=context_from_state(self.virtual_state,deadline=self.virtual_deadline)
++                    correlation=self.link.command_correlation.snapshot(context)
++                    from layer6.status import project_status
++                    projected=project_status(self.link,active_command_context=context)
++                    proof={k:projected.get(k) for k in ('session_id','applied_transaction_id',
++                        'command_first_sent_monotonic','applied_pilot_command','command_correlation')}
++                    proof.update(monotonic_domain_id=projected['domain'],telemetry_metadata=projected['metadata'],
++                        target_system=self.link.target_system,target_component=self.link.target_component)
++                    reply={'schema':'Layer6-realtime-receipt-v1','request_id':msg.get('request_id'),
++                        'native_session_id':native_id,'recorded_monotonic':time.monotonic(),
++                        'mode':self.link.mode,'armed':self.link.armed,'correlation':correlation,
++                        'execution_witness':proof}
++                else:reply={'schema':'Layer6-realtime-receipt-v1','request_id':msg.get('request_id'),'error':'not_connected'}
++                self.virtual_sock.sendto(json.dumps(reply,separators=(',',':'),allow_nan=False).encode(),addr)
++            elif typ=='segment_status_request':
+                 from layer6.segments import STATUS_SCHEMA
+                 from layer6.cancellation import token
+                 if self.link:self.link.drain();sync_gui_segment(self)
+--- a/layer6_v20261007_1032/src/layer6/binding.py
++++ b/layer6_v20261007_1032/src/layer6/binding.py
+@@ -130,7 +130,15 @@
+     if state['plant_time_source'] not in ('MAVLink/ATTITUDE.time_boot_ms','MAVLink/GLOBAL_POSITION_INT.time_boot_ms','MAVLink/SYSTEM_TIME.time_boot_ms'):
+         raise ValueError('native forcing requires observed FCU clock')
+     if state['plant_time_s']<5.5:raise ValueError('native wind startup delay not elapsed')
+-    if (state.get('environment_position_source')!='MAVLink/GLOBAL_POSITION_INT'
++    position_source=state.get('environment_position_source')
++    if position_source=='MAVLink/SIM_STATE physical forcing only':
++        bounds=state.get('environment_position_time_bounds_s')
++        if (not isinstance(bounds,list) or len(bounds)!=2 or not all(finite(v) for v in bounds)
++            or bounds[0]!=state.get('environment_position_time_s') or bounds[1]!=state['plant_time_s']
++            or not 0<=bounds[1]-bounds[0]<=.25
++            or state.get('navigation_observation_generated') is not False):
++            raise ValueError('physical weather position requires conservative native clock bounds and no navigation injection')
++    if (position_source not in ('MAVLink/GLOBAL_POSITION_INT','MAVLink/SIM_STATE physical forcing only')
+         or not finite(state.get('environment_position_time_s'))
+         or not finite(state.get('environment_position_received_monotonic'))
+         or not 0<=state['plant_time_s']-state['environment_position_time_s']<=1.
+--- a/layer6_v20261007_1032/src/layer6/mavlink_link.py
++++ b/layer6_v20261007_1032/src/layer6/mavlink_link.py
+@@ -80,6 +80,18 @@
+         self.segments=SegmentExecution(self)
+         self.battery={k:None for k in self.battery};self.servo_output_raw={}
+         self._update_heartbeat(hb)
++        # A GNSS-denied FCU cannot discover its home from a disabled receiver.
++        # Install the surveyed mission origin once, through this same GUI link;
++        # this is initialization, never a recurring navigation observation.
++        import os
++        binding_path=os.environ.get('TDDT_NATIVE_BINDING_FILE')
++        if binding_path:
++            from .binding import context_guard
++            origin=context_guard(binding_path).binding['mission_origin']
++            self.master.mav.command_long_send(self.target_system,self.target_component,
++                mavutil.mavlink.MAV_CMD_DO_SET_HOME,0,0,0,0,0,
++                float(origin['latitude_deg']),float(origin['longitude_deg']),
++                float(origin['terrain_elevation_msl_m']))
+         from .status import observe_status
+         observe_status(self,hb)
+         self.request_telemetry()
+--- a/layer6_v20261007_1032/src/layer6/native_panels.py
++++ b/layer6_v20261007_1032/src/layer6/native_panels.py
+@@ -28,13 +28,25 @@
+         self.position = None
+         self.heartbeat = None
+         self.position_updates = 0
++        self.physical_position=None
++        self.physical_updates=0
+ 
+     def receive(self, msg, target_system, *, now=None):
+         now = time.monotonic() if now is None else now
+         if not target_system or msg.get_srcSystem() != target_system:
+             return
+         kind = msg.get_type()
+-        if kind == 'HEARTBEAT':
++        if kind == 'SIM_STATE':
++            lat=getattr(msg,'lat_int',0) or msg.lat;lon=getattr(msg,'lon_int',0) or msg.lon
++            c=math.sqrt(.5);w=c*(msg.q1+msg.q3);x=c*(msg.q2+msg.q4)
++            y=c*(msg.q3-msg.q1);z=c*(msg.q4-msg.q2)
++            yaw=math.degrees(math.atan2(2*(w*z+x*y),1-2*(y*y+z*z)))%360.
++            self.physical_position={'latitude_deg':lat*1e-7,'longitude_deg':lon*1e-7,
++                'heading_deg':yaw,'altitude_msl_m':msg.alt,'received_monotonic_s':now,
++                'target_system':target_system,'source':'SIM_STATE; visualization only',
++                'navigation_input':False}
++            self.physical_updates+=1
++        elif kind == 'HEARTBEAT':
+             from pymavlink import mavutil
+             self.heartbeat = {'received_monotonic_s': now,
+                               'target_system': target_system,
+@@ -69,6 +81,11 @@
+                 'master': MASTER, 'recorded_monotonic_s': now,
+                 'heartbeat': self.heartbeat, 'position': self.position,
+                 'position_updates': self.position_updates,
++                'physical_map':{'position':self.physical_position,'position_updates':self.physical_updates,
++                    'ready':bool(self.physical_position and now-self.physical_position['received_monotonic_s']<1.
++                        and self.physical_updates>=2 and 'PhysicsVehicle%u'%position.get('target_system',0)
++                        in (getattr(map_module,'have_vehicle',{}) or {})),
++                    'navigation_input':False},
+                 'map': {'alive': _alive(window),
+                         'wx_ready': bool(ready_event and ready_event.is_set()),
+                         'child_pid': getattr(getattr(window, 'child', None), 'pid', None),
+@@ -132,6 +149,16 @@
+                 return
+             self.last = now
+             map_module = self.module('map'); console_module = self.module('console')
++            physical=self.evidence.physical_position
++            if map_module is not None and physical is not None:
++                # Keep the physical simulator trace explicit. Sensor EKF global
++                # position is an estimate and may drift in GNSS-denied flight.
++                # This display path has no connection to the MESA input API.
++                map_module.map_settings.showahrspos=0
++                vehicle='Vehicle%u'%physical['target_system']
++                map_module.update_vehicle_icon_to_loc('Physics',vehicle,'green',True,
++                    (physical['latitude_deg'],physical['longitude_deg']),physical['heading_deg'])
++                map_module.map.set_follow_object('Physics'+vehicle,True)
+             record = self.evidence.snapshot(map_module, console_module, now=now)
+             if console_module is not None:
+                 console = console_module.mpstate.console
+@@ -139,12 +166,16 @@
+                 position = record['position'] or {}; heartbeat = record['heartbeat'] or {}
+                 console.set_status('NativeSession', 'Native ' + session_id[:8], row=4)
+                 console.set_status('NativeFCUTime', 'FCU boot %.3f s' % (position.get('time_boot_ms', 0) / 1000.), row=4)
++                if physical:
++                    console.set_status('NativePhysics','JSBSim %.7f %.7f | %.2fm (display only)'%(
++                        physical['latitude_deg'],physical['longitude_deg'],physical['altitude_msl_m']),row=5)
+             if map_module is not None and record['map']['alive']:
+                 from MAVProxy.modules.mavproxy_map.mp_slipmap_util import SlipInfoText
+                 heartbeat = record['heartbeat'] or {}; position = record['position'] or {}
+                 text = 'Native %s | %s | %s | FCU %.3f s\nFCU position: visualization only' % (
+                     session_id[:8], heartbeat.get('mode', 'UNKNOWN'),
+                     'ARMED' if heartbeat.get('armed') else 'DISARMED', position.get('time_boot_ms', 0) / 1000.)
++                if physical:text+='\nGreen: JSBSim physical pose; display only, no navigation input'
+                 map_module.map.add_object(SlipInfoText('native_session', text))
+             write(folder / 'native_panels.json', record)
+ 
+--- a/layer6_v20261007_1032/src/layer6/native_session.py
++++ b/layer6_v20261007_1032/src/layer6/native_session.py
+@@ -175,7 +175,8 @@
+ def mavproxy_command(venv):
+  """All required panels observe the existing sole FCU master and output fanout."""
+  return [Path(venv)/'mavproxy.py','--master=tcp:127.0.0.1:5760',
+-  '--out=udp:127.0.0.1:14551','--out=tcpin:127.0.0.1:14552','--streamrate=20',
++  '--out=udp:127.0.0.1:14551','--out=tcpin:127.0.0.1:14552',
++  '--out=tcpin:127.0.0.1:14553','--streamrate=20',
+   '--map','--console','--load-module=layer6.native_panels','--non-interactive']
+ 
+ def jsbsim_observer(folder,data):
+@@ -205,6 +206,9 @@
+     write(folder/'jsbsim_window.json',record)
+     print('JSBSim pid=%s | FCU %.3f s | %s | %s | same-session telemetry=%s'%(
+           backend['pid'],record['plant_time_s'],record['mode'],'ARMED' if record['armed'] else 'DISARMED',panels['ready']),flush=True)
++    physical=(evidence.get('physical_map') or {}).get('position')
++    if physical:print('Physical (display only): %.7f %.7f | %.2f m MSL'%(
++        physical['latitude_deg'],physical['longitude_deg'],physical['altitude_msl_m']),flush=True)
+   time.sleep(.05)
+ 
+ def worker(folder,terminal):
+@@ -217,7 +221,7 @@
+  # Binding validation supplies authoritative TDOC package root; no independent dataset.
+  from .binding import load_context
+  _,cfg=load_context(folder/'binding.json');tdoc=cfg.package_root
+- env=dict(os.environ,TDDT_NATIVE_SESSION_ID=data['session_id'],TDDT_NATIVE_BINDING_FILE=str(folder/'binding.json'),TDDT_NATIVE_ENVIRONMENT_STATE=str(folder/'environment_state.json'),
++ env=dict(os.environ,MAVLINK20='1',TDDT_NATIVE_SESSION_ID=data['session_id'],TDDT_NATIVE_BINDING_FILE=str(folder/'binding.json'),TDDT_NATIVE_ENVIRONMENT_STATE=str(folder/'environment_state.json'),
+   TDDT_NATIVE_PANELS_STATE=str(folder/'native_panels.json'),
+   PYTHONPATH=os.pathsep.join([str(ROOT/'src'),str(tdoc/'src'),str(fs/'phoenix_environment_adapter_v2'),os.environ.get('PYTHONPATH','')]),
+   PATH=str(fs/'jsbsim/build/src')+os.pathsep+os.environ['PATH'],PYTHONDONTWRITEBYTECODE='1',TMPDIR='/tmp')
+@@ -247,6 +251,15 @@
+    p=launch('environment_prepare',[python,'-B','-m','phoenix_env_adapter.cli','prepare','--binding',folder/'binding.json','--output',folder/'environment'])
+    if p.wait(timeout=25)!=0:raise RuntimeError('bound environment prepare failed')
+    children.remove(('environment_prepare',p))
++   # Sensor EKF has no GNSS receiver to establish its geographic frame. Set
++   # only the surveyed launch origin before weather queries can consume an
++   # uninitialized GLOBAL_POSITION_INT=(0,0). No live position fix is injected.
++   from .realtime import RealtimeIO
++   bootstrap=RealtimeIO(data['session_id'],folder/'origin_bootstrap_wire.jsonl')
++   try:
++    origin_proof=bootstrap.set_surveyed_origin(binding['mission_origin'],timeout=20.)
++    write(folder/'surveyed_origin_bootstrap.json',origin_proof)
++   finally:bootstrap.close()
+    launch('environment',[python,'-B','-m','phoenix_env_adapter.cli','runtime','--binding',folder/'binding.json','--state-file',folder/'environment_state.json','--mavlink','udpin:127.0.0.1:14551','--update-hz','1'])
+   elif terminal=='terminal3':
+    launch('intake',[native_python,'-B','-m','layer6.service','--listen','127.0.0.1:14661','--gui','127.0.0.1:14660','--rate-hz','30'])
+--- a/layer6_v20261007_1032/src/layer6/realtime.py
++++ b/layer6_v20261007_1032/src/layer6/realtime.py
+@@ -0,0 +1,126 @@
++"""Same-session telemetry and GUI execution receipts for the SITL realtime profile.
++
++Only IMU, magnetometer, barometer and pitot enter the measurement interface.
++SIM_STATE is recorded only for independent physical validation; odometry and
++vision are never requested. None is exposed as a navigation measurement.
++GPS and FCU state messages are validation-only, never navigation inputs.
++This connection sends stream/parameter requests, never flight commands.
++"""
++from collections import deque
++from copy import deepcopy
++import hashlib
++import json
++import socket
++import threading
++import time
++import uuid
++
++from pymavlink import mavutil
++
++
++class RealtimeIO:
++    def __init__(self, session_id, log_path):
++        self.session_id=session_id
++        self.latest={};self.imu=deque(maxlen=10000)
++        self.parameters={};self.text=deque(maxlen=50);self.lock=threading.Lock();self.stop=False
++        self.master=mavutil.mavlink_connection('tcp:127.0.0.1:14553',source_system=254,source_component=192)
++        hb=self.master.wait_heartbeat(timeout=12)
++        if hb is None or hb.get_srcSystem()!=1:raise RuntimeError('same Native FCU heartbeat unavailable')
++        self._put(hb)
++        for name,hz in [('HIGHRES_IMU',100),('SCALED_IMU',50),('VFR_HUD',20),
++                        ('SERVO_OUTPUT_RAW',20),('EXTENDED_SYS_STATE',5),('GPS_RAW_INT',2),('SIM_STATE',10)]:
++            self.master.mav.command_long_send(1,1,mavutil.mavlink.MAV_CMD_SET_MESSAGE_INTERVAL,0,
++                getattr(mavutil.mavlink,'MAVLINK_MSG_ID_'+name),int(1e6/hz),0,0,0,0,0)
++        self.log=open(log_path,'a',buffering=1)
++        self.thread=threading.Thread(target=self._read,daemon=True);self.thread.start()
++        self.rpc=socket.socket(socket.AF_INET,socket.SOCK_DGRAM);self.rpc.bind(('127.0.0.1',0))
++
++    def _put(self,msg):
++        if msg.get_srcSystem()!=1 or msg.get_srcComponent()!=1:return
++        now=time.monotonic();name=msg.get_type();wire=bytes(msg.get_msgbuf())
++        row={'type':name,'received_monotonic':now,'data':msg.to_dict(),
++             'wire_sha256':hashlib.sha256(wire).hexdigest(),'wire_hex':wire.hex(),
++             'native_session_id':self.session_id}
++        with self.lock:
++            if name=='HIGHRES_IMU':
++                row['plant_time_s']=msg.time_usec*1e-6;self.imu.append(row)
++            if name=='SCALED_IMU':row['plant_time_s']=msg.time_boot_ms*.001
++            if name=='PARAM_VALUE':
++                key=msg.param_id.decode().rstrip('\x00') if isinstance(msg.param_id,bytes) else msg.param_id
++                self.parameters[key]={'value':float(msg.param_value),'wire_sha256':row['wire_sha256']}
++            if name=='STATUSTEXT':self.text.append(str(msg.text))
++            self.latest[name]=row
++        return row
++
++    def _read(self):
++        try:
++            while not self.stop:
++                msg=self.master.recv_match(blocking=True,timeout=.05)
++                if msg is None:continue
++                row=self._put(msg)
++                if row:self.log.write(json.dumps(row,separators=(',',':'))+'\n')
++        except Exception as exc:self.error=repr(exc)
++
++    def request_parameters(self,names,timeout=8.):
++        end=time.monotonic()+timeout
++        while time.monotonic()<end:
++            with self.lock:missing=[n for n in names if n not in self.parameters]
++            if not missing:return {n:deepcopy(self.parameters[n]) for n in names}
++            for n in missing:self.master.mav.param_request_read_send(1,1,n.encode(),-1)
++            time.sleep(.15)
++        raise RuntimeError('parameter readback missing: '+str(missing))
++
++    def set_surveyed_origin(self,origin,timeout=12.):
++        """Set the known launch coordinate frame, never inject a GNSS fix.
++
++        SET_GPS_GLOBAL_ORIGIN is the MAVLink name for configuring EKF's frame;
++        no GPS_INPUT/HIL_GPS/position/velocity observation is transmitted.
++        """
++        lat=int(round(origin['latitude_deg']*1e7));lon=int(round(origin['longitude_deg']*1e7))
++        alt=int(round(origin['terrain_elevation_msl_m']*1000.));end=time.monotonic()+timeout
++        while time.monotonic()<end:
++            self.master.mav.set_gps_global_origin_send(1,lat,lon,alt)
++            self.master.mav.command_long_send(1,1,mavutil.mavlink.MAV_CMD_REQUEST_MESSAGE,0,
++                mavutil.mavlink.MAVLINK_MSG_ID_GPS_GLOBAL_ORIGIN,0,0,0,0,0,0)
++            time.sleep(.3)
++            with self.lock:row=deepcopy(self.latest.get('GPS_GLOBAL_ORIGIN'))
++            if row:
++                d=row['data']
++                if abs(d['latitude']-lat)<=1 and abs(d['longitude']-lon)<=1 and abs(d['altitude']-alt)<=100:
++                    return {'source':'surveyed launch frame; no GNSS observation','verified_readback':row}
++        raise RuntimeError('surveyed EKF origin frame readback unavailable')
++
++    def sample(self,after):
++        with self.lock:
++            latest=deepcopy(self.latest)
++            samples=[deepcopy(r) for r in self.imu if r['plant_time_s']>after]
++        for name,age in [('HIGHRES_IMU',.3),('HEARTBEAT',2.),('VFR_HUD',.5)]:
++            if name not in latest or not 0<=time.monotonic()-latest[name]['received_monotonic']<=age:
++                raise RuntimeError('stale or missing '+name+'; '+str(getattr(self,'error',None)))
++        # Strict projection: no FCU position, velocity or attitude crosses this
++        # sensor interface, even though the independent validation log has them.
++        h=latest['HIGHRES_IMU']
++        pitot=latest['VFR_HUD']
++        measurements={'HIGHRES_IMU':h,'AIRSPEED':{
++            'received_monotonic':pitot['received_monotonic'],
++            'wire_sha256':pitot['wire_sha256'],'airspeed_m_s':pitot['data']['airspeed'],
++            'source':'AP_Airspeed via VFR_HUD.airspeed only'},
++            'ULTRASONIC_WIND':{'present':False,'reason':'no actual sensor sample'}}
++        return measurements,samples,latest
++
++    def receipt(self,timeout=.12):
++        request=uuid.uuid4().hex;end=time.monotonic()+timeout
++        self.rpc.sendto(json.dumps({'type':'realtime_receipt_request','request_id':request,
++                                   'native_session_id':self.session_id}).encode(),('127.0.0.1',14660))
++        while time.monotonic()<end:
++            self.rpc.settimeout(max(.001,end-time.monotonic()))
++            try:data,peer=self.rpc.recvfrom(65535)
++            except socket.timeout:return None
++            if peer!=('127.0.0.1',14660):continue
++            reply=json.loads(data)
++            if (reply.get('schema')=='Layer6-realtime-receipt-v1' and reply.get('request_id')==request
++                and reply.get('native_session_id')==self.session_id):return reply
++        return None
++
++    def close(self):
++        self.stop=True;self.thread.join(timeout=2);self.log.close();self.rpc.close();self.master.close()
+--- a/layer6_v20261007_1032/src/layer6/telemetry_source.py
++++ b/layer6_v20261007_1032/src/layer6/telemetry_source.py
+@@ -4,7 +4,7 @@
+ import os
+ from pathlib import Path
+ 
+-PINS={'libraries/GCS_MAVLink/GCS_Common.cpp': '6a2240bb47b287abab6c1b2b16356dc5bdd26e8a06e07db7f0761f57472118e8', 'ArduPlane/GCS_MAVLink_Plane.cpp': '6613576d08aacd6751e338f384ab39b875658be86023ed766ab2423d7033a09f', 'libraries/AP_AHRS/AP_AHRS.cpp': '5d7299be22da98843a7927d29ec6a5c4106c1630217c331204272dcf27a58c5c', 'libraries/AP_AHRS/AP_AHRS_View.cpp': 'f3be05925b889d027fbff2dfe3a5c2fbfa71e2a79bce1f615579d585b845ce5a', 'libraries/AP_Math/quaternion.cpp': '86f59857f0a1c7e853b19fe473340297ba271d2831d6da7496126fa73948c276', 'libraries/AP_NavEKF3/AP_NavEKF3_Outputs.cpp': 'f2214b959f986c39cf0ccf12def9601f169b33a6ba75c80802a4ca1787e62ca3', 'libraries/AP_InertialSensor/AP_InertialSensor_Backend.cpp': '9618e915e155b8f17c7ef2ede4d779c308fb49a000cf47465c499e21c0ac1987', 'modules/mavlink/message_definitions/v1.0/common.xml': 'fbac92d0689c9b1bc03b49ebc5cdf989f3fc23026c3c856f7224e4b9af1b5f53', 'modules/mavlink/message_definitions/v1.0/ardupilotmega.xml': '8cff0bf2ae5bec60d16118bf37e1ec6e9f55f54aecc486df0b18f89977479047', 'build/sitl/bin/arduplane': 'd98efe6d28c2add78eae55f00ea1b4b4d99e0dfaf7f61469504a6bcc0196341a', 'libraries/AP_AHRS/AP_AHRS_SIM.cpp': 'b5530729f799b277f38bdd6dc451edaf7b24ec1208ecd8e9feb4e2e1cf3d5ad4', 'libraries/AP_AHRS/AP_AHRS_Backend.h': 'dae52844052c38d068f4ec6476d5037affaadbd62fc872f43bbb8055df5f2535', 'ArduPlane/tailsitter.cpp': '6a6023cfbcd456f56d19c7d22fd2d5e1d3b056a3804640df96455ab434b57467', 'ArduPlane/quadplane.cpp': '4bf1946ed0c211da57be85a432116d4f1923d4240705bf3922723957ff00d99a', 'Tools/autotest/default_params/phoenix_v3.parm': '85c6edeed9a0800e0c38a59bb558c06b2fbe627dd5904992d72995ee10572c2f', 'libraries/SITL/SIM_JSBSim.cpp': 'c266189df071f2c3e7eb857e9173fa1f7167529fa2b8f8c2ac396e20b558d192', 'libraries/SITL/SIM_JSBSim.h': '265ac98833293b696989aea2990c226244d48c928a42d9ec77e9a4c262c47005', 'libraries/SITL/SIM_JSBSimBodyRates.h': '9d0a7a6b05e83fa9fb304f8f9cefd9b0a2619a601ae08ef9154ef41efb43687a'}
++PINS={'libraries/GCS_MAVLink/GCS_Common.cpp': '6a2240bb47b287abab6c1b2b16356dc5bdd26e8a06e07db7f0761f57472118e8', 'ArduPlane/GCS_MAVLink_Plane.cpp': '6613576d08aacd6751e338f384ab39b875658be86023ed766ab2423d7033a09f', 'libraries/AP_AHRS/AP_AHRS.cpp': '5d7299be22da98843a7927d29ec6a5c4106c1630217c331204272dcf27a58c5c', 'libraries/AP_AHRS/AP_AHRS_View.cpp': 'f3be05925b889d027fbff2dfe3a5c2fbfa71e2a79bce1f615579d585b845ce5a', 'libraries/AP_Math/quaternion.cpp': '86f59857f0a1c7e853b19fe473340297ba271d2831d6da7496126fa73948c276', 'libraries/AP_NavEKF3/AP_NavEKF3_Outputs.cpp': 'f2214b959f986c39cf0ccf12def9601f169b33a6ba75c80802a4ca1787e62ca3', 'libraries/AP_InertialSensor/AP_InertialSensor_Backend.cpp': '9618e915e155b8f17c7ef2ede4d779c308fb49a000cf47465c499e21c0ac1987', 'modules/mavlink/message_definitions/v1.0/common.xml': 'fbac92d0689c9b1bc03b49ebc5cdf989f3fc23026c3c856f7224e4b9af1b5f53', 'modules/mavlink/message_definitions/v1.0/ardupilotmega.xml': '8cff0bf2ae5bec60d16118bf37e1ec6e9f55f54aecc486df0b18f89977479047', 'build/sitl/bin/arduplane': '336b4d0e9a0bcf326eafc1f5b027f9a2c5114f16d9efdb154ea36d17f2d1d056', 'libraries/AP_AHRS/AP_AHRS_SIM.cpp': 'b5530729f799b277f38bdd6dc451edaf7b24ec1208ecd8e9feb4e2e1cf3d5ad4', 'libraries/AP_AHRS/AP_AHRS_Backend.h': 'dae52844052c38d068f4ec6476d5037affaadbd62fc872f43bbb8055df5f2535', 'ArduPlane/tailsitter.cpp': '6a6023cfbcd456f56d19c7d22fd2d5e1d3b056a3804640df96455ab434b57467', 'ArduPlane/quadplane.cpp': '4bf1946ed0c211da57be85a432116d4f1923d4240705bf3922723957ff00d99a', 'Tools/autotest/default_params/phoenix_v3.parm': 'e030ab28268e4fe33451b73ca64b6dcbec44a7732e0854e67eaecf153c90d4cc', 'libraries/SITL/SIM_JSBSim.cpp': 'c266189df071f2c3e7eb857e9173fa1f7167529fa2b8f8c2ac396e20b558d192', 'libraries/SITL/SIM_JSBSim.h': '265ac98833293b696989aea2990c226244d48c928a42d9ec77e9a4c262c47005', 'libraries/SITL/SIM_JSBSimBodyRates.h': '9d0a7a6b05e83fa9fb304f8f9cefd9b0a2619a601ae08ef9154ef41efb43687a'}
+ 
+ def native_source_contract(root=None):
+     root=Path(root or os.environ.get('TDDT_LAYER6_ROOT') or Path(__file__).resolve().parents[2])
+@@ -17,7 +17,7 @@
+     identity=hashlib.sha256(json.dumps(PINS,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+     return {'schema':'Layer6-local-sender-contract-r5.03-v1','contract_id':identity,
+         'deployment_verified':not errors,'mismatched_files':errors,'observed_sha256':actual,
+-        'default_AHRS_EKF_TYPE':10,'default_backend':'AP_AHRS_SIM','GNSS_denied_estimator_verified':False,
++        'default_AHRS_EKF_TYPE':3,'default_backend':'AP_NavEKF3 (configuration; health requires runtime evidence)','GNSS_denied_estimator_verified':False,
+         'scope':'pinned_local_ArduPilot_sender_semantics','peer_attested':False,
+         'imu_frame':'BODY_FRD','attitude_frame':'BODY_FRD_TO_NED',
+         'quaternion_order':'wxyz','display_offset_applied_to_body':False,
+--- a/layer7_v20260901_0921/src/tddt_layer7/realtime.py
++++ b/layer7_v20260901_0921/src/tddt_layer7/realtime.py
+@@ -0,0 +1,54 @@
++"""Time-matched, command-correlated sensor-domain feedback; never FCU truth aiding."""
++import hashlib,json
++import numpy as np
++
++
++def digest(obj):
++    return hashlib.sha256(json.dumps(obj,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
++
++
++def feedback(nav,receipt,pending,model):
++    if not receipt:return {'ok':False,'reason':'receipt_pending'}
++    correlation=receipt.get('correlation') or {};record=correlation.get('record') or {}
++    context=record.get('context') or {};tx=context.get('transaction_id')
++    if correlation.get('available') is not True or correlation.get('record_hash')!=digest(record):
++        return {'ok':False,'reason':'bounded_MAVLink_receipt_pending'}
++    if (not record.get('transport_write_verified') or not record.get('ordered_stream')
++        or not record.get('local_source_contract_verified') or receipt.get('armed') is not True
++        or receipt.get('mode') not in ('QHOVER','QSTABILIZE')):
++        return {'ok':False,'reason':'Native_execution_not_qualified'}
++    if tx not in pending:return {'ok':False,'reason':'unknown_or_already_consumed_command'}
++    decision=pending[tx];requested=context.get('requested_gui_state') or {}
++    if receipt.get('mode')!=decision.get('mode','QHOVER'):
++        return {'ok':False,'reason':'executed_mode_mismatch'}
++    from layer6.command_correlation import verified_send_bounds
++    if verified_send_bounds(receipt.get('execution_witness') or {},tx) is None:
++        return {'ok':False,'reason':'raw_MAVLink_temporal_witness_rejected'}
++    if context.get('instance_id')!=decision.get('intake_instance_id'):
++        return {'ok':False,'reason':'command_instance_mismatch'}
++    if [requested.get(k) for k in ('roll','pitch','throttle','yaw')]!=decision['u_cmd']:
++        return {'ok':False,'reason':'executed_command_identity_mismatch'}
++    tube=decision['prediction']['prediction_tube'];t=float(nav['time_s'])
++    if not tube[0]['time_s']<t<=tube[-1]['time_s']:
++        return {'ok':False,'reason':'observation_outside_original_prediction_time'}
++    bounds=record.get('plant_time_bounds') or {}
++    if not bounds.get('verified') or t<float(bounds['upper_s']):
++        return {'ok':False,'reason':'observation_not_after_verified_command_send'}
++    times=np.array([row['time_s'] for row in tube]);states=np.array([row['state'] for row in tube])
++    predicted=np.array([np.interp(t,times,states[:,j]) for j in range(6)])
++    actual=np.array(nav['position_ned_m']+nav['velocity_ned_m_s']);residual=actual-predicted
++    age=t-decision['source_time_s'];old=np.array(model['disturbance_ned_m_s2'])
++    # Model adaptation from the approved-sensor reconstructed velocity only.
++    # No FCU POSITION/VELOCITY/ATTITUDE residual is routed into MESA.
++    correction=np.clip(residual[3:]/max(.1,age),-2.,2.)
++    update={'disturbance_ned_m_s2':np.clip(old+.06*correction,-2.,2.).tolist(),
++        'feedback_version':int(model['feedback_version'])+1,'feedback_source':tx,
++        'inner_loop_tau_s':float(model['inner_loop_tau_s'])}
++    evidence={'ok':True,'source_transaction_id':tx,'source_snapshot_hash':decision['snapshot_hash'],
++        'candidate_id':decision['candidate_id'],'observation_time_s':t,
++        'prediction_source_time_s':decision['source_time_s'],'prediction_retimed':False,
++        'state_residual':residual.tolist(),'receipt_record_hash':correlation['record_hash'],
++        'model_update':update,'destination':'Layer2/model-only','sensor_only':True,
++        'FCU_pose_feedback':False,'GNSS_used':False,'actual_u_cmd':decision['u_cmd']}
++    evidence['route_hash']=digest(evidence);pending.pop(tx)
++    return evidence
+--- a/twins_layer2_v20260820_1233/python/twins_fmi/realtime.py
++++ b/twins_layer2_v20260820_1233/python/twins_fmi/realtime.py
+@@ -0,0 +1,240 @@
++"""Sensor-restricted realtime MESA aiding and the three Layer2 FMU twins.
++
++Approved measurements: gyro, accelerometer, magnetometer, barometer, scalar
++pitot. An absent ultrasonic sensor remains absent. No FCU pose/velocity/attitude,
++SIM_STATE, odometry, vision or simulated wind is an estimator measurement.
++"""
++import math
++import re,hashlib
++import numpy as np
++from scipy.spatial.transform import Rotation
++
++
++def rotation(q):
++    return Rotation.from_quat([q[1],q[2],q[3],q[0]])
++
++
++def stationary_attitude(acceleration, magnetic, magnetic_reference):
++    """Body-to-NED attitude from two approved vectors, including pitch=90deg.
++
++    Euler roll plus surveyed yaw is singular for a tailsitter on its tail.
++    Wahba alignment avoids choosing an arbitrary roll from accelerometer noise.
++    Gravity has greater weight because the coarse magnetic map is a prior.
++    """
++    acc=np.array(acceleration,float,copy=True);mag=np.array(magnetic,float,copy=True)
++    reference=np.array(magnetic_reference,float,copy=True)
++    if min(np.linalg.norm(acc),np.linalg.norm(mag),np.linalg.norm(reference))<1e-6:
++        raise ValueError('stationary attitude requires gravity and compass')
++    acc/=np.linalg.norm(acc);mag/=np.linalg.norm(mag);reference/=np.linalg.norm(reference)
++    if np.linalg.norm(np.cross(acc,mag))<.1:
++        raise ValueError('stationary attitude vectors insufficiently independent')
++    attitude,residual=Rotation.align_vectors([[0.,0.,-1.],reference],[acc,mag],weights=[100.,1.])
++    if residual>.15:raise ValueError('stationary gravity/compass inconsistent with magnetic prior')
++    return attitude
++
++
++class GeomagneticMap:
++    """Immutable offline field model; query only at the own estimated location."""
++    def __init__(self,path):
++        raw=path.read_bytes();text=raw.decode();self.sha256=hashlib.sha256(raw).hexdigest();self.tables=[]
++        for name in ('intensity','declination','inclination'):
++            body=re.search(name+r'_table\[LAT_TABLE_SIZE\]\[LON_TABLE_SIZE\]\s*=\s*\{(.*?)\n\};',text,re.S).group(1)
++            self.tables.append(np.array([float(v) for v in re.findall(r'([-+]?\d+\.\d+)f',body)]).reshape(19,37))
++
++    def at(self,latitude,longitude):
++        if not -90<=latitude<=90 or not -180<=longitude<=180:raise ValueError('field query outside geodetic domain')
++        i=min(17,int(math.floor((latitude+90)/10)));j=min(35,int(math.floor((longitude+180)/10)))
++        fy=(latitude+90)/10-i;fx=(longitude+180)/10-j
++        strength,decl,incl=[(1-fy)*((1-fx)*a[i,j]+fx*a[i,j+1])+fy*((1-fx)*a[i+1,j]+fx*a[i+1,j+1]) for a in self.tables]
++        decl,incl=math.radians(decl),math.radians(incl)
++        return np.array([strength*math.cos(incl)*math.cos(decl),strength*math.cos(incl)*math.sin(decl),strength*math.sin(incl)])
++
++
++def geomagnetic_reference(path,latitude,longitude):
++    field=GeomagneticMap(path)
++    return field.at(latitude,longitude),field.sha256
++
++
++def navigation_earth_model(origin,state):
++    """WGS84 local-NED transport and Coriolis; no position observation.
++
++    Native JSBSim PQR is Earth-relative (FGPropagate::GetPQR), not inertial.
++    Thus gyro propagation removes transport rate only, not Earth spin twice.
++    Position remains a local mission approximation over this short region.
++    """
++    lat=math.radians(origin['latitude_deg'])+state[0]/6362000.
++    e2=.00669437999014;radius=6378137.;s=math.sin(lat)
++    rn=radius/math.sqrt(1-e2*s*s);rm=radius*(1-e2)/(1-e2*s*s)**1.5
++    h=origin.get('altitude_msl_m',origin.get('terrain_elevation_msl_m',1800.))-state[2]
++    lon=math.radians(origin['longitude_deg'])+state[1]/((rn+h)*math.cos(lat))
++    transport=np.array([state[4]/(rn+h),-state[3]/(rm+h),-state[4]*math.tan(lat)/(rn+h)])
++    earth=7.292115e-5*np.array([math.cos(lat),0.,-math.sin(lat)])
++    return math.degrees(lat),math.degrees(lon),transport,earth
++
++
++class RealtimeTwins:
++    def __init__(self, adapter, origin, calibration, climate):
++        adapter._ensure();self.adapter=adapter;self.mesa=adapter.mesa;self.wing=adapter.wing
++        self.origin=origin;self.climate=dict(climate);self.last=float(calibration[-1]['plant_time_s'])
++        self.last_baro=None;self.last_pitot=None;self.feedback_consumed=None
++        self.takeoff_requested=False;self.initial_ground_support=True;self.baro_height_lpf=0.
++        fields=('xacc','yacc','zacc','xgyro','ygyro','zgyro','xmag','ymag','zmag','pressure_alt')
++        means={k:float(np.mean([s['data'][k] for s in calibration])) for k in fields}
++        if len(calibration)<100 or self.last-calibration[0]['plant_time_s']<2.:
++            raise ValueError('measured stationary calibration interval too short')
++        acc=np.array([means[k] for k in fields[:3]])
++        gyro=np.array([means[k] for k in fields[3:6]])
++        if np.linalg.norm(gyro)>.05 or abs(np.linalg.norm(acc)-9.80665)>.8:
++            raise ValueError('stationary IMU calibration outside support envelope')
++        self.baro0=means['pressure_alt']
++        self.magnetic_map=GeomagneticMap(adapter.config.path_value('TDDT_LAYER6_ROOT')/'FlightStack/ardupilot/libraries/AP_Declination/tables.cpp')
++        self.mag0=self.magnetic_map.at(origin['latitude_deg'],origin['longitude_deg']);self.magnetic_map_hash=self.magnetic_map.sha256
++        r=stationary_attitude(acc,[means[k] for k in fields[6:9]],self.mag0)
++        q=r.as_quat();q=np.r_[q[3],q[:3]]
++        self.acc_bias=acc*(1.-9.80665/np.linalg.norm(acc));self.gyro_bias=gyro
++        self.mesa.fmu.set(rN=0.,rE=0.,rD=0.,vN=0.,vE=0.,vD=0.,
++            qw=q[0],qx=q[1],qy=q[2],qz=q[3],
++            bgx=gyro[0],bgy=gyro[1],bgz=gyro[2],
++            bfx=self.acc_bias[0],bfy=self.acc_bias[1],bfz=self.acc_bias[2])
++        self.wind=np.array(climate['wind_ned_m_s'],float)
++        self.P=np.diag([.01]*3+[.005]*3+[4.]*3)
++        self.model={'disturbance_ned_m_s2':[0.,0.,0.],'inner_loop_tau_s':1.0,
++                    'feedback_version':0,'feedback_source':None}
++        motor=self.wing.fmu.operation_signature(28)
++        maximum=self.wing.fmu.evaluate_operation(28,inputs=dict(zip(motor['inputs'],[.01,800.,800.,1.,1.])))
++        self.maximum_thrust=float(maximum['total_thrust'])
++        self.calibration={'gyro_bias_rad_s':gyro.tolist(),'accel_bias_m_s2':self.acc_bias.tolist(),
++            'initial_q_wxyz':q.tolist(),'baro_initial_m':self.baro0,
++            'source':'stationary accelerometer + magnetometer + offline geomagnetic map (Wahba)',
++            'FCU_pose_used':False,'GNSS_used':False}
++
++    def state(self):
++        v=self.mesa.fmu.get('rN','rE','rD','vN','vE','vD','qw','qx','qy','qz')
++        return np.array([v[k] for k in ('rN','rE','rD','vN','vE','vD')]),np.array([v[k] for k in ('qw','qx','qy','qz')])
++
++    def _correct(self,residual,H,variance):
++        state,q=self.state();x=np.r_[state,self.wind];H=np.asarray(H,float);S=float(H@self.P@H+variance)
++        nis=float(residual*residual/S)
++        if not math.isfinite(nis) or nis>100.:return {'accepted':False,'nis':nis}
++        weight=min(1.,math.sqrt(9./max(nis,1e-9)))
++        S=float(H@self.P@H+variance/weight);K=self.P@H/S;x+=K*residual
++        I=np.eye(9)-np.outer(K,H);self.P=I@self.P@I.T+np.outer(K,K)*variance/weight
++        self.mesa.fmu.set(**dict(zip(('rN','rE','rD','vN','vE','vD'),map(float,x[:6]))));self.wind=x[6:]
++        return {'accepted':True,'nis':nis,'residual':float(residual),'variance':variance,'weight':weight}
++
++    def _pitot_wind_only(self,airspeed,state):
++        # With no independent wind sample, |v-w| has a translation gauge.
++        # Do not turn an uncertain weather wind into a ground-velocity sensor.
++        relative=state[3:]-self.wind;speed=np.linalg.norm(relative)
++        if speed<=.5:return {'accepted':False,'reason':'pitot norm derivative singular'}
++        direction=relative/speed;H=-direction;P=self.P[6:,6:]
++        variance=.25+float(direction@self.P[3:6,3:6]@direction)
++        residual=airspeed-speed;S=float(H@P@H+variance);nis=residual*residual/S
++        if nis>100:return {'accepted':False,'nis':float(nis)}
++        K=P@H/S;self.wind+=K*residual;I=np.eye(3)-np.outer(K,H)
++        self.P[6:,6:]=I@P@I.T+np.outer(K,K)*variance
++        return {'accepted':True,'nis':float(nis),'residual':float(residual),
++                'navigation_state_corrected':False,'scope':'wind-norm model only; missing independent wind sample'}
++
++    def step(self,measurements,samples,feedback=None):
++        if set(measurements)-{'HIGHRES_IMU','AIRSPEED','ULTRASONIC_WIND'}:
++            raise ValueError('unapproved navigation measurement')
++        if (measurements.get('ULTRASONIC_WIND') or {}).get('present'):
++            raise ValueError('ultrasonic samples require their independent registered source')
++        # Release the launch zero-velocity constraint before the first powered
++        # acceleration. Waiting for barometric height discards the liftoff
++        # impulse and biases the entire airborne velocity estimate.
++        if self.takeoff_requested:self.initial_ground_support=False
++        if feedback is not None:
++            if feedback.get('destination')!='Layer2/model-only' or feedback.get('sensor_only') is not True:
++                raise ValueError('unapproved Layer7 navigation feedback')
++            self.model.update(feedback['model_update']);self.feedback_consumed=feedback['route_hash']
++        count=0
++        for row in samples:
++            t=float(row['plant_time_s']);dt=t-self.last
++            if dt<=0:continue
++            if dt>.15:raise ValueError('missing HIGHRES_IMU integration interval '+str(dt))
++            d=row['data']
++            if d.get('mavpackettype')!='HIGHRES_IMU':raise ValueError('unapproved IMU source')
++            previous,qprev=self.state();lat,lon,transport,earth=navigation_earth_model(self.origin,previous)
++            gyro=np.array([d[k] for k in ('xgyro','ygyro','zgyro')])-rotation(qprev).inv().apply(transport)
++            self.mesa.fmu.set(imu_gx=gyro[0],imu_gy=gyro[1],imu_gz=gyro[2],
++                              imu_ax=d['xacc'],imu_ay=d['yacc'],imu_az=d['zacc'])
++            self.mesa.fmu.evaluate_operation(5,inputs={'dt':dt},communication_step=dt)
++            propagated,_=self.state();coriolis=-np.cross(2*earth+transport,previous[3:])
++            propagated[:3]+=.5*dt*dt*coriolis;propagated[3:]+=dt*coriolis
++            self.mesa.fmu.set(**dict(zip(('rN','rE','rD','vN','vE','vD'),propagated)))
++            self.mag0=self.magnetic_map.at(lat,lon)
++            F=np.eye(9);F[:3,3:6]=np.eye(3)*dt
++            self.P=F@self.P@F.T+np.diag([1e-6]*3+[.0004]*3+[.001]*3)*dt
++            # A direction-only compass innovation aids attitude, not position.
++            x,q=self.state();r=rotation(q);mag=np.array([d[k] for k in ('xmag','ymag','zmag')])
++            if .5*np.linalg.norm(self.mag0)<np.linalg.norm(mag)<1.5*np.linalg.norm(self.mag0):
++                predicted=r.inv().apply(self.mag0);error=np.cross(mag/np.linalg.norm(mag),predicted/np.linalg.norm(predicted))
++                force=np.array([d[k] for k in ('xacc','yacc','zacc')])-self.acc_bias
++                expected_acc=np.array(self.model.get('last_command_acceleration_ne_m_s2',[0.,0.]))+np.array(self.model['disturbance_ned_m_s2'][:2])
++                if self.initial_ground_support and abs(np.linalg.norm(force)-9.80665)<.4:
++                    expected=r.inv().apply([0.,0.,-1.])
++                    error+=.5*np.cross(force/np.linalg.norm(force),expected)
++                if self.initial_ground_support:
++                    self.gyro_bias=np.clip(self.gyro_bias-.05*dt*error,-.03,.03)
++                self.mesa.fmu.set(bgx=self.gyro_bias[0],bgy=self.gyro_bias[1],bgz=self.gyro_bias[2])
++                gain=1.5 if self.initial_ground_support else .1
++                updated=(r*Rotation.from_rotvec(gain*dt*error)).as_quat()
++                self.mesa.fmu.set(qw=updated[3],qx=updated[0],qy=updated[1],qz=updated[2])
++            self.last=t;count+=1
++        h=measurements['HIGHRES_IMU'];d=h['data'];updates={}
++        if h['plant_time_s']!=self.last:raise ValueError('sensor snapshot/IMU cursor mismatch')
++        if h['wire_sha256']!=self.last_baro and d['fields_updated']&0x800:
++            x,_=self.state();z=-(float(d['pressure_alt'])-self.baro0)
++            self.baro_height_lpf=.9*self.baro_height_lpf+.1*(-z)
++            updates['barometer']=self._correct(z-x[2],[0,0,1,0,0,0,0,0,0],.09)
++            self.last_baro=h['wire_sha256']
++        pitot=measurements.get('AIRSPEED') or {}
++        if pitot.get('wire_sha256')!=self.last_pitot and pitot.get('airspeed_m_s') is not None:
++            airspeed=float(pitot['airspeed_m_s']);x,_=self.state()
++            if 0<=airspeed<=18:
++                updates['pitot']=self._pitot_wind_only(airspeed,x)
++            self.last_pitot=pitot.get('wire_sha256')
++        # One launch-support constraint, qualified by the known stationary
++        # initialization and measured barometric lift. Never re-anchor airborne
++        # navigation, and never use FCU position as a zero-velocity detector.
++        if self.takeoff_requested and self.baro_height_lpf>.4:self.initial_ground_support=False
++        if self.initial_ground_support:
++            self.mesa.fmu.set(rN=0.,rE=0.,vN=0.,vE=0.,vD=0.)
++        x,q=self.state()
++        if not np.all(np.isfinite(np.r_[x,q])):raise ValueError('nonfinite MESA state')
++        return {'twin_id':'MESA_NAV','time_s':self.last,'position_ned_m':x[:3].tolist(),
++            'velocity_ned_m_s':x[3:].tolist(),'q_wxyz':q.tolist(),'covariance':self.P.tolist(),
++            'body_rates_rad_s':[float(d[k])-self.gyro_bias[i] for i,k in enumerate(('xgyro','ygyro','zgyro'))],
++            'initial_ground_support':self.initial_ground_support,
++            'airborne_gravity_pseudo_measurement':False,
++            'airspeed_m_s':pitot.get('airspeed_m_s'),
++            'earth_model':'WGS84 transport + Coriolis; native Earth-relative gyro',
++            'attitude_frame':'BODY_FRD_TO_CURRENT_LOCAL_NED','velocity_frame':'CURRENT_LOCAL_NED',
++            'position_frame':'LOCAL_MISSION_NED_APPROXIMATION',
++            'wind_estimate_ned_m_s':self.wind.tolist(),'magnetic_map_sha256':self.magnetic_map_hash,
++            'sensor_updates':updates,'integrated_IMU_samples':count,
++            'source_wire_sha256':h['wire_sha256'],'navigation_authority':'MESA',
++            'feedback_consumed':self.feedback_consumed,'truth_used':False,'GNSS_used':False,
++            'odometry_used':False,'vision_used':False}
++
++    def wing_packet(self,nav,servo):
++        x=nav['position_ned_m']+nav['velocity_ned_m_s'];q=nav['q_wxyz']
++        motors=[max(0.,min(1.,(float(servo.get('servo%d_raw'%i,1000))-1000.)/1000.)) for i in (3,4)]
++        inp=dict(zip(('pn','pe','pd','vn','ve','vd'),x));inp.update(dict(zip(('qw','qx','qy','qz'),q)))
++        rates=nav['body_rates_rad_s']
++        inp.update(dt=.01,p_rate=rates[0],q_rate=rates[1],r_rate=rates[2],omega_left=800*motors[0],omega_right=800*motors[1],soc=1.,
++            left_motor_cmd=motors[0],right_motor_cmd=motors[1],
++            left_elevon_rad=np.clip((float(servo.get('servo1_raw',1500))-1500.)/500.,-1.,1.)*math.pi/6,
++            right_elevon_rad=np.clip((float(servo.get('servo2_raw',1500))-1500.)/500.,-1.,1.)*math.pi/6,
++            wind_n=self.climate['wind_ned_m_s'][0],wind_e=self.climate['wind_ned_m_s'][1],
++            wind_d=self.climate['wind_ned_m_s'][2],air_density=self.climate['air_density_kg_m3'])
++        out=self.wing.fmu.evaluate_operation(27,inputs=inp,communication_step=.01)
++        return {'twin_id':'WingMPET','time_s':nav['time_s'],'FMU_operation':27,'physical_outputs':out,
++            'reduced_inner_loop':dict(self.model),'maximum_total_thrust_N':self.maximum_thrust,'mass_kg':.65,
++            'initial_acceleration_ne_m_s2':[(out['next_vn']-x[3])/.01,(out['next_ve']-x[4])/.01],
++            'climate_input_time_s':self.climate.get('time_s'),'climate_input_source':'current atomic MicroMet model; not wind observation',
++            'climate_input_forcing_sha256':self.climate.get('forcing_sha256'),
++            'parameter_source':'Phoenix source motor law / integration mass',
++            'scope':'SITL native inner-loop predictive control; no ground-contact truth injection'}
+--- a/twins_layer2_v20260820_1233/src/wingmpet/model.cpp
++++ b/twins_layer2_v20260820_1233/src/wingmpet/model.cpp
+@@ -70,7 +70,8 @@
+    double vbz=Rbn[2]*arn+Rbn[5]*are+Rbn[8]*ard;
+    double Va=norm3(vbx,vby,vbz), alpha=0.0,beta=0.0;
+    if(Va>1e-6){alpha=std::atan2(vbz,vbx);beta=std::atan2(vby,std::hypot(vbx,vbz));}
+-   double lam=smoothWing(Va), qdyn=.5*rho*Va*Va;
++   // Wing-borne authority follows forward chord flow, not broadside VTOL translation.
++   double lam=smoothWing(std::max(0.0,vbx)), qdyn=.5*rho*Va*Va;
+    double ds=.5*(dL+dR),dd=.5*(dR-dL);
+    double hp=0,hq=0,hr=0; if(Va>0.25){hp=pRate*phoenix_v3::wing_span_m/(2*Va);hq=qRate*phoenix_v3::mean_chord_m/(2*Va);hr=rRate*phoenix_v3::wing_span_m/(2*Va);}
+    double CL=clamp(phoenix_v3::CL0+phoenix_v3::CL_alpha*alpha+phoenix_v3::CL_q*hq+phoenix_v3::CL_delta*ds,phoenix_v3::cl_min,phoenix_v3::cl_max);

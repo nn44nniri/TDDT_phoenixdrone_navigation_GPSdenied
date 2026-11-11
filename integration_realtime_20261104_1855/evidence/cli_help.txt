@@ -1,0 +1,81 @@
+usage: tddt-tdoc train-online [-h] [--debug-log [PATH]]
+                              [--online-cycles ONLINE_CYCLES]
+                              [--online-episodes ONLINE_EPISODES]
+                              [--online-max-cycles-per-episode ONLINE_MAX_CYCLES_PER_EPISODE]
+                              [--online-max-cycles-per-episode-auto]
+                              [--online-local-hover-seconds ONLINE_LOCAL_HOVER_SECONDS]
+                              [--online-local-hover-height-m ONLINE_LOCAL_HOVER_HEIGHT_M]
+                              [--online-realtime-vtol]
+                              [--online-realtime-goal-offset-m ONLINE_REALTIME_GOAL_OFFSET_M]
+                              [--online-realtime-output ONLINE_REALTIME_OUTPUT]
+                              [--online-origin-tolerance-m ONLINE_ORIGIN_TOLERANCE_M]
+                              [--online-goal-tolerance-m ONLINE_GOAL_TOLERANCE_M]
+                              [--online-touchdown-altitude-m ONLINE_TOUCHDOWN_ALTITUDE_M]
+                              [--reuse-existing-offline-knowledge]
+                              [--run-offline-first]
+                              [--offline-knowledge-manifest OFFLINE_KNOWLEDGE_MANIFEST]
+                              [--online-validation-fixture ONLINE_VALIDATION_FIXTURE]
+                              [--online-observation-only]
+                              [--no-online-auto-commission]
+                              [--terrain-grid-n TERRAIN_GRID_N]
+
+options:
+  -h, --help            show this help message and exit
+  --debug-log [PATH]    Record Online output, readiness events and tracebacks;
+                        omitted PATH creates runtime/logs/nav-
+                        online_<timestamp>.log
+  --online-cycles ONLINE_CYCLES
+                        Maximum consecutive ONLINE_JSBSIM iterations for one
+                        continuous invocation; not a mission count
+  --online-episodes, --online-missions ONLINE_EPISODES
+                        Number of complete online origin-to-destination
+                        episodes/missions; 0 keeps continuous --online-cycles
+                        mode
+  --online-max-cycles-per-episode ONLINE_MAX_CYCLES_PER_EPISODE
+                        Safety cap for each online episode/mission
+  --online-max-cycles-per-episode-auto
+                        Automatically resolve the per-mission safety cap from
+                        the offline baseline or route geometry
+  --online-local-hover-seconds ONLINE_LOCAL_HOVER_SECONDS
+                        Explicit local takeoff/hover/landing test, 1..60
+                        seconds; keeps normal safety gates
+  --online-local-hover-height-m ONLINE_LOCAL_HOVER_HEIGHT_M
+                        Local hover objective height, 1..10 metres
+  --online-realtime-vtol
+                        Sensor-restricted 10 Hz TDDT VTOL prototype with
+                        bounded continuous command leases
+  --online-realtime-goal-offset-m ONLINE_REALTIME_GOAL_OFFSET_M
+                        Explicit short-route commissioning distance along the
+                        configured mission bearing
+  --online-realtime-output ONLINE_REALTIME_OUTPUT
+                        Directory for Native wire evidence, all seven stages
+                        and mission outcome
+  --online-origin-tolerance-m ONLINE_ORIGIN_TOLERANCE_M
+                        Maximum allowed horizontal offset from the mission
+                        origin at the first live cycle of each episode
+  --online-goal-tolerance-m ONLINE_GOAL_TOLERANCE_M
+                        Horizontal destination tolerance used to terminate an
+                        online episode
+  --online-touchdown-altitude-m ONLINE_TOUCHDOWN_ALTITUDE_M
+                        Maximum relative/AGL altitude for automatic touchdown
+                        completion when altitude evidence is available
+  --reuse-existing-offline-knowledge
+                        Force reuse of an existing verified TDOC offline
+                        handoff/SETD; fail closed if unavailable
+  --run-offline-first   Force a fresh OFFLINE_SE episode before online
+                        training instead of auto-reusing an existing handoff
+  --offline-knowledge-manifest OFFLINE_KNOWLEDGE_MANIFEST
+                        Optional runtime/knowledge/handoff/*.json.gz manifest
+                        to bind
+  --online-validation-fixture ONLINE_VALIDATION_FIXTURE
+                        Optional validation-only Layer6 observation fixture;
+                        does not authorize actuation
+  --online-observation-only
+                        Explicitly allow ONLINE_JSBSIM telemetry/Layer7
+                        validation when the Phoenix actuation bridge is not
+                        control-ready; no mission-progress/actuation claim is
+                        made
+  --no-online-auto-commission
+                        Disable automatic control-readiness preparation when
+                        nominal Phoenix control readiness is missing
+  --terrain-grid-n TERRAIN_GRID_N

@@ -1,0 +1,74 @@
+..............................................F...........               [100%]
+=================================== FAILURES ===================================
+____ test_actual_runtime_publishes_readback_and_explicit_unsupported_fields ____
+
+bound = (PosixPath('/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/_tmp/pytest-of-shabgard/pytest-118/r4...87a874022ac4a4fcc0a40cce8e505672abe24b39edf09a517bde613f3edd1', 'binding_id': '73fc41e09b4f449185d3cdcd3dbdaaa9', ...})
+tmp_path = PosixPath('/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/_tmp/pytest-of-shabgard/pytest-118/test_actual_runtime_publishes_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fda7e3dadd0>
+capsys = <_pytest.capture.CaptureFixture object at 0x7fda7870f0e0>
+
+    def test_actual_runtime_publishes_readback_and_explicit_unsupported_fields(bound,tmp_path,monkeypatch,capsys):
+        path,b=bound;link=Link();link.queue=[];link.closed=False
+        home=b['mission_origin']
+        def clock():return SimpleNamespace(time_boot_ms=10000,get_type=lambda:'GLOBAL_POSITION_INT',get_srcSystem=lambda:1,get_srcComponent=lambda:1,
+            lat=round(home['latitude_deg']*1e7),lon=round(home['longitude_deg']*1e7),alt=round(home['altitude_msl_m']*1000))
+        original=link.recv_match
+        link.recv_match=lambda **kw:clock() if isinstance(kw.get('type'),list) else original(**kw)
+        link.wait_heartbeat=lambda **kw:clock();link.close=lambda:setattr(link,'closed',True)
+        monkeypatch.setitem(sys.modules,'pymavlink',SimpleNamespace(mavutil=SimpleNamespace(mavlink_connection=lambda endpoint:link)))
+        target=tmp_path/'state.json'
+>       state=run_bound_runtime(path,target,mavlink='mock-protocol',max_updates=1)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TDOC_v20260911_2052/tests/test_r4_03_native_forcing.py:115: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+binding_path = PosixPath('/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/_tmp/pytest-of-shabgard/pytest-118/r4020/binding.json')
+state_file = PosixPath('/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/_tmp/pytest-of-shabgard/pytest-118/test_actual_runtime_publishes_0/state.json')
+mavlink = 'mock-protocol', update_hz = 1.0, dry_run = False, plant_time_s = None
+max_updates = 1, param_retries = 3, param_timeout = 1.0
+
+    def run_bound_runtime(binding_path,state_file,*,mavlink,update_hz=1.,dry_run=False,plant_time_s=None,max_updates=None,param_retries=3,param_timeout=1.):
+        provider=BoundEnvironment(binding_path)
+        if not math.isfinite(update_hz) or update_hz<=0:raise ValueError('positive Environment Adapter cadence required')
+        if dry_run:
+            if plant_time_s is None:raise ValueError('dry-run requires explicit --plant-time-s; no fabricated clock')
+            state=provider.sample(plant_time_s);provider.publish(state_file,state);print(json.dumps(state));return state
+        if plant_time_s is not None:raise ValueError('live bound runtime takes plant time only from MAVLink')
+        if max_updates is not None and max_updates<1:raise ValueError('max-updates must be positive')
+        # Clear a prior success even if dependency import or connection creation fails.
+        provider.publish(state_file,{**provider.api.consumption_identity(provider.binding),
+            'binding_consumed':True,'ok':False,'readback_verified':False,'application_pending':True,
+            'reason':'native_forcing_connecting','updated_monotonic':time.monotonic(),
+            'actuation_authority':False,'navigation_truth_injection':False})
+        master=None;state=None
+        try:
+            from pymavlink import mavutil
+            from .native_forcing import apply_wind
+            from layer6.timebase import NativeClock,validate_clock_mapping
+            master=mavutil.mavlink_connection(mavlink)
+            heartbeat=master.wait_heartbeat(timeout=20)
+            if heartbeat is None:raise RuntimeError('native environment heartbeat unavailable')
+            target=(heartbeat.get_srcSystem(),heartbeat.get_srcComponent())
+            master.target_system,master.target_component=target
+            clock=NativeClock(provider.binding,*target)
+            position={};position_time=None;last_send=None;count=0;last_clock_received=time.monotonic();newest_observation=None
+            position_received=None;position_wait_started=time.monotonic()
+            while True:
+                if time.monotonic()-last_clock_received>2.:
+>                   raise RuntimeError('native source clock stalled; no wall-time substitution')
+E                   RuntimeError: native source clock stalled; no wall-time substitution
+
+layer6_v20261007_1032/FlightStack/phoenix_environment_adapter_v2/phoenix_env_adapter/bound.py:138: RuntimeError
+=============================== warnings summary ===============================
+tests/test_r4_03_native_forcing.py::test_actual_runtime_publishes_readback_and_explicit_unsupported_fields
+tests/test_r4_03_native_forcing.py::test_actual_runtime_publishes_readback_and_explicit_unsupported_fields
+tests/test_r4_03_native_forcing.py::test_actual_runtime_publishes_readback_and_explicit_unsupported_fields
+tests/test_r4_03_native_forcing.py::test_actual_runtime_publishes_readback_and_explicit_unsupported_fields
+  /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/terrain.py:29: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication
+    col_corner, row_corner = (~dataset.transform) * (east, north)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED TDOC_v20260911_2052/tests/test_r4_03_native_forcing.py::test_actual_runtime_publishes_readback_and_explicit_unsupported_fields
+1 failed, 57 passed, 4 warnings in 3.95s

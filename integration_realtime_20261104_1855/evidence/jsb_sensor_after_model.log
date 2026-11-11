@@ -1,0 +1,268 @@
+
+
+     JSBSim Flight Dynamics Model v1.3.2.dev1 Oct  7 2026 10:51:52
+            [JSBSim-ML v2.0]
+
+JSBSim startup beginning ...
+
+[4mReading Aircraft Configuration File[24m: [1mPhoenix native VTOL/WingMPET blend RT-v1[22m
+                            Version: [1m2.0[22m
+
+
+[1mThis aircraft model is a [31mBETA[0m[1m release!!!
+
+[0mThis aircraft model probably will not fly as expected.
+
+[34m[1mUse this model for development purposes ONLY!!![22m[0m
+
+  Description:   Source-informed simplified Phoenix dual-rotor tailsitter model. Source-identified
+  Model Author:  Generated for ArduPilot SITL + JSBSim integration from phoenix_drone_v3.yaml
+  Creation Date: 2026-09-30
+  Version:       1.0
+
+  Aircraft Metrics:
+    WingArea: 1.291669
+    WingSpan: 2.099738
+    Incidence: 0.000000
+    Chord: 0.623360
+    H. Tail Area: 0.001076
+    H. Tail Arm: 0.623360
+    V. Tail Area: 0.001076
+    V. Tail Arm: 0.623360
+    Eyepoint (x, y, z): 0.000000 , 0.000000 , 0.000000
+    Ref Pt (x, y, z): 0.000000 , 0.000000 , 0.000000
+    Visual Ref Pt (x, y, z): 0.000000 , 0.000000 , 0.000000
+
+  Mass and Balance:
+    baseIxx: 0.010883 slug-ft2
+    baseIyy: 0.004712 slug-ft2
+    baseIzz: 0.013054 slug-ft2
+    baseIxy: -0.000000 slug-ft2
+    baseIxz: 0.000000 slug-ft2
+    baseIyz: -0.000000 slug-ft2
+    Empty Mass: 1.433005 lbm
+    CG (x, y, z): 0.000000 , 0.000000 , 0.000000
+
+  Ground Reactions: 
+    STRUCTURE TAIL_FOOT_L1
+      Location: 5.511811 , -11.023622 , 2.362205
+      Spring Constant:  12.000000
+      Damping Constant: 2.000000 (linear)
+      Rebound Damping Constant: 2.000000 (linear)
+      Dynamic Friction: 0.500000
+      Static Friction:  0.800000
+    STRUCTURE TAIL_FOOT_L2
+      Location: 5.511811 , -11.023622 , -2.362205
+      Spring Constant:  12.000000
+      Damping Constant: 2.000000 (linear)
+      Rebound Damping Constant: 2.000000 (linear)
+      Dynamic Friction: 0.500000
+      Static Friction:  0.800000
+    STRUCTURE TAIL_FOOT_R1
+      Location: 5.511811 , 11.023622 , 2.362205
+      Spring Constant:  12.000000
+      Damping Constant: 2.000000 (linear)
+      Rebound Damping Constant: 2.000000 (linear)
+      Dynamic Friction: 0.500000
+      Static Friction:  0.800000
+    STRUCTURE TAIL_FOOT_R2
+      Location: 5.511811 , 11.023622 , -2.362205
+      Spring Constant:  12.000000
+      Damping Constant: 2.000000 (linear)
+      Rebound Damping Constant: 2.000000 (linear)
+      Dynamic Friction: 0.500000
+      Static Friction:  0.800000
+
+    Declared properties
+
+      fcs/left-motor-cmd-norm (initial value: 0)
+
+      fcs/right-motor-cmd-norm (initial value: 0)
+
+
+  External Reactions: 
+    
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+    
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+    
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+    
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+    
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+    
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+    
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+    
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+    
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+    
+    Frame: BODY
+    Location: (0.000000, 0.000000, 0.000000)
+
+  Propulsion:
+
+    Declared properties
+
+      fcs/left-elevon-cmd-norm (initial value: 0)
+
+      fcs/right-elevon-cmd-norm (initial value: 0)
+
+
+  FCS: Phoenix command adaptation
+
+[1m[34m    Channel [22mElevons[0m
+
+    Loading Component "fcs/left-elevon-pos-rad" of type: PURE_GAIN
+      Minimum limit: constant value -0.530000
+      Maximum limit: constant value 0.530000
+      INPUT: left-elevon-cmd-norm
+      GAIN: constant value 0.530000
+      OUTPUT: left-elevon-pos-rad
+
+    Loading Component "fcs/right-elevon-pos-rad" of type: PURE_GAIN
+      Minimum limit: constant value -0.530000
+      Maximum limit: constant value 0.530000
+      INPUT: right-elevon-cmd-norm
+      GAIN: constant value 0.530000
+      OUTPUT: right-elevon-pos-rad
+
+[1m[34m    Channel [22mTwin motors[0m
+
+    Loading Component "fcs/left-motor-pos-norm" of type: LAG_FILTER
+      Minimum limit: constant value 0.000000
+      Maximum limit: constant value 1.000000
+      INPUT: left-motor-cmd-norm
+      C[1]: constant value 55.555556
+      OUTPUT: left-motor-pos-norm
+
+    Loading Component "fcs/right-motor-pos-norm" of type: LAG_FILTER
+      Minimum limit: constant value 0.000000
+      Maximum limit: constant value 1.000000
+      INPUT: right-motor-cmd-norm
+      C[1]: constant value 55.555556
+      OUTPUT: right-motor-pos-norm
+    1 dimensional table with 9 rows.
+	0	0	
+	29.86	0	
+	31.17	0.05183	
+	32.81	0.2292	
+	34.45	0.4741	
+	36.09	0.7253	
+	37.73	0.9211	
+	39.37	1	
+	98.43	1	
+    Function: aero/tddt-wing-blend
+
+  Aerodynamics (Lift|Side|Drag axes):
+
+    Function: aero/force/lift
+    Function: aero/force/drag
+    Function: aero/force/side
+    Function: aero/moment/roll
+    Function: aero/moment/pitch
+    Function: aero/moment/yaw
+
+  Output data set: 0  
+
+  Output data set: 1  
+
+Script: "sensor_consistency_read_only"
+  begins at 0 seconds and runs to 15.0008 seconds with dt = 0.000833333 (1201 Hz)
+
+Local property: psiw-rad = 0
+Local property: wind-mag-fps = 14
+Local property: notify-time-trigger = 0
+    Properties logged:
+      - left-motor-cmd-norm
+      - right-motor-cmd-norm
+      - left-motor-pos-norm
+      - right-motor-pos-norm
+      - left-elevon-cmd-norm
+      - right-elevon-cmd-norm
+      - left-elevon-pos-rad
+      - right-elevon-pos-rad
+      - v-north-fps
+      - v-east-fps
+      - v-down-fps
+    Properties logged:
+      - phi-rad
+      - theta-rad
+      - psi-rad
+      - p-rad_sec
+      - q-rad_sec
+      - r-rad_sec
+      - v-north-fps
+      - v-east-fps
+      - v-down-fps
+      - a-pilot-x-ft_sec2
+      - a-pilot-y-ft_sec2
+      - a-pilot-z-ft_sec2
+      - udot-ft_sec2
+      - vdot-ft_sec2
+      - wdot-ft_sec2
+      - fbx-total-lbs
+      - fby-total-lbs
+      - fbz-total-lbs
+      - fbx-gear-lbs
+      - fby-gear-lbs
+      - fbz-gear-lbs
+      - h-agl-ft
+
+[34m[1m  Mass Properties Report (English units: lb, in, slug-ft^2)[0m
+                                  [4m      Mass    CG-X    CG-Y    CG-Z         Ixx         Iyy         Izz         Ixy         Ixz         Iyz[24m
+    Base Vehicle                           1.4     0.0     0.0     0.0         0.0         0.0         0.0        -0.0         0.0        -0.0
+    [4m                                                                                                                                        [24m
+[1m    Total:                                 1.4     0.0     0.0     0.0         0.0         0.0         0.0         0.0         0.0         0.0[22m
+
+[34m[1mEnd of vehicle configuration loading.
+-------------------------------------------------------------------------------[0m
+
+Simulation Configuration
+------------------------
+Mass Properties Model: 
+Ground Reactions Model: 
+Aerodynamics Model: 
+Propulsion Model: 
+
+[34m------------------------------------------------------------------[0m
+[1mState Report at sim time: 0.000000 seconds[0m
+  [4mPosition[24m
+    ECI:   -4235122.556214527, -15481000.73202147, 13382008.4510824 (x,y,z, in ft)
+    ECEF:  -4235122.556215 , -15481000.732021 , 13382008.451082 (x,y,z, in ft)
+    Local: 40.010000, -105.300000, 0.462686 (geodetic lat, lon, alt ASL in deg and ft)
+
+  [4mOrientation[24m
+    ECI:   -53.68053812091712, -40.6070817719373, 255.7519618576222 (phi, theta, psi in deg)
+    Local: 9.112080597289399e-13, 89.00000000000119, 53.00000000000077 (phi, theta, psi in deg)
+
+  [4mVelocity[24m
+    ECI:   1128.892376529847, -308.8300071901029, 0 (x,y,z in ft/s)
+    ECEF:  0, 0, 0 (x,y,z in ft/s)
+    Local: 0.000000 , 0.000000 , 0.000000 (n,e,d in ft/sec)
+    Body:  0.000000 , 0.000000 , 0.000000 (u,v,w in ft/sec)
+
+  [4mBody Rates (relative to given frame, expressed in body frame)[24m
+    ECI:   0.002719374998337415, -0.002555730822163197, 0.001878707810586528 (p,q,r in deg/s)
+    ECEF:  0, 0, 0 (p,q,r in deg/s)
+
+[32m[1m---- JSBSim Execution beginning ... --------------------------------------------[0m
+
+Start: Wednesday November 04 2026 19:40:13 (HH:MM:SS)
+GEAR_CONTACT: 0.001667 seconds: TAIL_FOOT_L2 1
+GEAR_CONTACT: 0.001667 seconds: TAIL_FOOT_R2 1
+GEAR_CONTACT: 0.027500 seconds: TAIL_FOOT_L1 1
+GEAR_CONTACT: 0.027500 seconds: TAIL_FOOT_R1 1
+End: Wednesday November 04 2026 19:40:13 (HH:MM:SS)

@@ -1,0 +1,880 @@
+[nav-online] offline knowledge mode=FORCE_REUSE manifest=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/knowledge/handoff/offline_latest.json.gz
+[L6CLIENT] Layer-6 stack/GUI not detected; starting it ...
+Opening Terminal 1: ArduPilot SITL
+Opening Terminal 2: Environment Adapter
+Opening Terminal 3: Phoenix GUI control gateway
+Opening Terminal 4: JSBSim - Native backend observer
+[L6CLIENT] Layer-6 GUI is responding.
+[DEMO][GUI] mavlink=False sys=0 mode=None armed=None thr=0.0 landed=None gs=None rel_alt=None vz=None ack=None statustext=None endpoint=tcp:127.0.0.1:14552
+[DEMO][MAV] GUI is not connected; requesting MAVLink Connect ...
+[DEMO][MAV] connected: mavlink=True sys=1 mode=QHOVER armed=False thr=0.0 landed=ON_GROUND gs=0.0004830826655961573 rel_alt=-0.027 vz=-0.0033856257796287537 ack={'command': 511, 'result': 0} statustext=None endpoint=tcp:127.0.0.1:14552
+[DEMO][FCU] waiting for ArduPilot readiness: mavlink=False sys=None mode=None armed=None thr=None landed=None gs=None rel_alt=None vz=None ack=None statustext=None endpoint=None
+[DEMO][FCU] ready: mavlink=True sys=1 mode=QHOVER armed=False thr=0.0 landed=ON_GROUND gs=0.0002278029132867232 rel_alt=-0.008 vz=0.0017020266968756914 ack={'command': 511, 'result': 0} statustext=None endpoint=tcp:127.0.0.1:14552
+{
+  "schema": "Layer6-native-session-v1",
+  "session_id": "d3893ea0bac44f888c15768c497d644f",
+  "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f",
+  "created": false,
+  "processes": [
+    {
+      "pid": 348027,
+      "start_ticks": 4971204,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "terminal1",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f --terminal terminal1 "
+    },
+    {
+      "pid": 348043,
+      "start_ticks": 4971248,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "arduplane",
+      "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane --model jsbsim:phoenix_v3 --home 40.01,-105.3,1798.5157833529418,45.59257145243172 --speedup 1 --base-port 5760 -I 0 --autotest-dir /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/autotest --defaults /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/Tools/autotest/default_params/phoenix_v3.parm "
+    },
+    {
+      "pid": 348045,
+      "start_ticks": 4971249,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --out=tcpin:127.0.0.1:14553 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 348067,
+      "start_ticks": 4971283,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "JSBSim",
+      "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/jsbsim/build/src/JSBSim",
+      "cmdline": "JSBSim --suspend --simulation-rate=1200.000000 --nice=0.00000001 --logdirectivefile=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/autotest/jsbsim_fgout_0.xml --script=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/autotest/jsbsim_start_0.xml "
+    },
+    {
+      "pid": 348069,
+      "start_ticks": 4971288,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --out=tcpin:127.0.0.1:14553 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 348082,
+      "start_ticks": 4971292,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --out=tcpin:127.0.0.1:14553 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 348114,
+      "start_ticks": 4971414,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "terminal2",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f --terminal terminal2 "
+    },
+    {
+      "pid": 348155,
+      "start_ticks": 4971609,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "environment",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m phoenix_env_adapter.cli runtime --binding /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/binding.json --state-file /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/environment_state.json --mavlink udpin:127.0.0.1:14551 --update-hz 1 "
+    },
+    {
+      "pid": 348173,
+      "start_ticks": 4971626,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "terminal3",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f --terminal terminal3 "
+    },
+    {
+      "pid": 348185,
+      "start_ticks": 4971674,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "intake",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B -m layer6.service --listen 127.0.0.1:14661 --gui 127.0.0.1:14660 --rate-hz 30 "
+    },
+    {
+      "pid": 348187,
+      "start_ticks": 4971674,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "gui",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/src/gui/phoenix_f310_gui.py --connect tcp:127.0.0.1:14552 --no-gamepad "
+    },
+    {
+      "pid": 348228,
+      "start_ticks": 4971834,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "terminal4",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f --terminal terminal4 "
+    }
+  ],
+  "roles": {
+    "arduplane": true,
+    "JSBSim": true,
+    "mavproxy": true,
+    "environment": true,
+    "intake": true,
+    "gui": true
+  },
+  "process_ready": true,
+  "alive": true,
+  "flight_ready": false,
+  "panels": {
+    "ready": true,
+    "reason": "live_native_panels",
+    "reasons": [],
+    "evidence": {
+      "schema": "Layer6-native-panels-v1",
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "producer_pid": 348045,
+      "master": "tcp:127.0.0.1:5760",
+      "recorded_monotonic_s": 48918.303248582,
+      "heartbeat": {
+        "received_monotonic_s": 48917.458630959,
+        "target_system": 1,
+        "target_component": 1,
+        "mode": "QHOVER",
+        "armed": false
+      },
+      "position": {
+        "received_monotonic_s": 48918.274490517,
+        "target_system": 1,
+        "target_component": 1,
+        "time_boot_ms": 14845,
+        "latitude_deg": 0.0,
+        "longitude_deg": 0.0,
+        "heading_deg": 172.55
+      },
+      "position_updates": 160,
+      "physical_map": {
+        "position": {
+          "latitude_deg": 40.009999799999996,
+          "longitude_deg": -105.3,
+          "heading_deg": 45.592571939723825,
+          "altitude_msl_m": 1798.6400146484375,
+          "received_monotonic_s": 48918.27323453,
+          "target_system": 1,
+          "source": "SIM_STATE; visualization only",
+          "navigation_input": false
+        },
+        "position_updates": 118,
+        "ready": true,
+        "navigation_input": false
+      },
+      "map": {
+        "alive": true,
+        "wx_ready": true,
+        "child_pid": 348082,
+        "position_matches": true,
+        "position": [
+          0.0,
+          0.0,
+          172.55
+        ]
+      },
+      "console": {
+        "alive": true,
+        "child_pid": 348069
+      },
+      "navigation_input": false,
+      "control_command_sent": false,
+      "visual_acceptance_verified": false
+    },
+    "visual_acceptance_verified": false
+  },
+  "panels_ready": true,
+  "jsbsim_window": {
+    "ready": true,
+    "reason": "live_owned_jsbsim_observer",
+    "evidence": {
+      "schema": "Layer6-JSBSim-window-v1",
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "producer_pid": 348228,
+      "producer_start_ticks": 4971834,
+      "recorded_monotonic_s": 48918.207892632,
+      "jsbsim_pid": 348067,
+      "jsbsim_start_ticks": 4971283,
+      "source_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/arduplane.log",
+      "telemetry_master": "tcp:127.0.0.1:5760",
+      "plant_time_s": 14.645,
+      "mode": "QHOVER",
+      "armed": false,
+      "telemetry_ready": true,
+      "simulator_spawned": false,
+      "visual_acceptance_verified": false
+    },
+    "visual_acceptance_verified": false
+  },
+  "session_ready": true,
+  "visual_acceptance_verified": false,
+  "stop_requested": false,
+  "binding_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/binding.json",
+  "environment_state_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/environment_state.json",
+  "state": {
+    "schema": "Layer6-native-session-v1",
+    "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f",
+    "session_id": "d3893ea0bac44f888c15768c497d644f",
+    "flightstack_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack",
+    "terminal": null,
+    "delay": 2.0,
+    "started_at": 1793847115.0883718,
+    "last_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/logs/run_flightstack_20261104_215154.log"
+  },
+  "display": ":0",
+  "wayland_display": null,
+  "dbus_session_bus": true
+}
+{
+  "schema": "Layer6-native-session-v1",
+  "session_id": "d3893ea0bac44f888c15768c497d644f",
+  "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f",
+  "created": false,
+  "processes": [
+    {
+      "pid": 348027,
+      "start_ticks": 4971204,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "terminal1",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f --terminal terminal1 "
+    },
+    {
+      "pid": 348043,
+      "start_ticks": 4971248,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "arduplane",
+      "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane --model jsbsim:phoenix_v3 --home 40.01,-105.3,1798.5157833529418,45.59257145243172 --speedup 1 --base-port 5760 -I 0 --autotest-dir /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/autotest --defaults /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/Tools/autotest/default_params/phoenix_v3.parm "
+    },
+    {
+      "pid": 348045,
+      "start_ticks": 4971249,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --out=tcpin:127.0.0.1:14553 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 348067,
+      "start_ticks": 4971283,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "JSBSim",
+      "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/jsbsim/build/src/JSBSim",
+      "cmdline": "JSBSim --suspend --simulation-rate=1200.000000 --nice=0.00000001 --logdirectivefile=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/autotest/jsbsim_fgout_0.xml --script=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/autotest/jsbsim_start_0.xml "
+    },
+    {
+      "pid": 348069,
+      "start_ticks": 4971288,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --out=tcpin:127.0.0.1:14553 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 348082,
+      "start_ticks": 4971292,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --out=tcpin:127.0.0.1:14553 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 348114,
+      "start_ticks": 4971414,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "terminal2",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f --terminal terminal2 "
+    },
+    {
+      "pid": 348155,
+      "start_ticks": 4971609,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "environment",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m phoenix_env_adapter.cli runtime --binding /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/binding.json --state-file /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/environment_state.json --mavlink udpin:127.0.0.1:14551 --update-hz 1 "
+    },
+    {
+      "pid": 348173,
+      "start_ticks": 4971626,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "terminal3",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f --terminal terminal3 "
+    },
+    {
+      "pid": 348185,
+      "start_ticks": 4971674,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "intake",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B -m layer6.service --listen 127.0.0.1:14661 --gui 127.0.0.1:14660 --rate-hz 30 "
+    },
+    {
+      "pid": 348187,
+      "start_ticks": 4971674,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "gui",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/src/gui/phoenix_f310_gui.py --connect tcp:127.0.0.1:14552 --no-gamepad "
+    },
+    {
+      "pid": 348228,
+      "start_ticks": 4971834,
+      "uid": 1000,
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "role": "terminal4",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f --terminal terminal4 "
+    }
+  ],
+  "roles": {
+    "arduplane": true,
+    "JSBSim": true,
+    "mavproxy": true,
+    "environment": true,
+    "intake": true,
+    "gui": true
+  },
+  "process_ready": true,
+  "alive": true,
+  "flight_ready": false,
+  "panels": {
+    "ready": true,
+    "reason": "live_native_panels",
+    "reasons": [],
+    "evidence": {
+      "schema": "Layer6-native-panels-v1",
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "producer_pid": 348045,
+      "master": "tcp:127.0.0.1:5760",
+      "recorded_monotonic_s": 48924.007845279,
+      "heartbeat": {
+        "received_monotonic_s": 48923.468801685,
+        "target_system": 1,
+        "target_component": 1,
+        "mode": "QHOVER",
+        "armed": false
+      },
+      "position": {
+        "received_monotonic_s": 48923.983269692,
+        "target_system": 1,
+        "target_component": 1,
+        "time_boot_ms": 20544,
+        "latitude_deg": 0.0,
+        "longitude_deg": 0.0,
+        "heading_deg": 130.16
+      },
+      "position_updates": 274,
+      "physical_map": {
+        "position": {
+          "latitude_deg": 40.009999799999996,
+          "longitude_deg": -105.3,
+          "heading_deg": 45.592571939723825,
+          "altitude_msl_m": 1798.6400146484375,
+          "received_monotonic_s": 48923.989584338,
+          "target_system": 1,
+          "source": "SIM_STATE; visualization only",
+          "navigation_input": false
+        },
+        "position_updates": 175,
+        "ready": true,
+        "navigation_input": false
+      },
+      "map": {
+        "alive": true,
+        "wx_ready": true,
+        "child_pid": 348082,
+        "position_matches": true,
+        "position": [
+          0.0,
+          0.0,
+          130.16
+        ]
+      },
+      "console": {
+        "alive": true,
+        "child_pid": 348069
+      },
+      "navigation_input": false,
+      "control_command_sent": false,
+      "visual_acceptance_verified": false
+    },
+    "visual_acceptance_verified": false
+  },
+  "panels_ready": true,
+  "jsbsim_window": {
+    "ready": true,
+    "reason": "live_owned_jsbsim_observer",
+    "evidence": {
+      "schema": "Layer6-JSBSim-window-v1",
+      "session_id": "d3893ea0bac44f888c15768c497d644f",
+      "producer_pid": 348228,
+      "producer_start_ticks": 4971834,
+      "recorded_monotonic_s": 48923.965483055,
+      "jsbsim_pid": 348067,
+      "jsbsim_start_ticks": 4971283,
+      "source_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/arduplane.log",
+      "telemetry_master": "tcp:127.0.0.1:5760",
+      "plant_time_s": 20.344,
+      "mode": "QHOVER",
+      "armed": false,
+      "telemetry_ready": true,
+      "simulator_spawned": false,
+      "visual_acceptance_verified": false
+    },
+    "visual_acceptance_verified": false
+  },
+  "session_ready": true,
+  "visual_acceptance_verified": false,
+  "stop_requested": false,
+  "binding_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/binding.json",
+  "environment_state_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f/environment_state.json",
+  "state": {
+    "schema": "Layer6-native-session-v1",
+    "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/d3893ea0bac44f888c15768c497d644f",
+    "session_id": "d3893ea0bac44f888c15768c497d644f",
+    "flightstack_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack",
+    "terminal": null,
+    "delay": 2.0,
+    "started_at": 1793847115.0883718,
+    "last_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/logs/run_flightstack_20261104_215154.log"
+  },
+  "display": ":0",
+  "wayland_display": null,
+  "dbus_session_bus": true
+}
+[RT 00001] vertical_takeoff t=84.08 h=0.08 NE=0.00/0.00 v=0.00 L7=0/0 u=[0.0, -0.0, 0.756, -0.0] cycle=0.081s
+[RT 00012] vertical_takeoff t=85.17 h=0.13 NE=0.00/0.00 v=0.03 L7=4/4 u=[0.0, -0.0, 0.756, -0.0] cycle=0.101s
+[RT 00023] vertical_takeoff t=86.27 h=1.02 NE=-0.00/0.00 v=2.24 L7=9/9 u=[-0.06, -0.0, 0.756, -0.0] cycle=0.090s
+[RT 00034] vertical_takeoff t=87.36 h=2.98 NE=-0.01/0.01 v=0.82 L7=15/15 u=[-0.06, -0.0, 0.756, 0.0] cycle=0.081s
+[RT 00045] vertical_takeoff t=88.46 h=3.98 NE=-0.01/0.01 v=1.41 L7=20/20 u=[-0.06, -0.0, 0.756, 0.0] cycle=0.067s
+[RT 00056] vertical_takeoff t=89.56 h=5.43 NE=-0.01/0.01 v=1.04 L7=25/25 u=[-0.06, -0.06, 0.756, 0.0] cycle=0.087s
+[RT 00067] vertical_takeoff t=90.66 h=6.61 NE=-0.01/0.01 v=1.23 L7=32/32 u=[-0.06, -0.06, 0.756, 0.0] cycle=0.072s
+[RT 00078] vertical_takeoff t=91.76 h=7.90 NE=-0.00/0.01 v=1.12 L7=39/39 u=[0.0, -0.06, 0.707, 0.0] cycle=0.062s
+[RT 00089] vertical_takeoff t=92.85 h=8.89 NE=0.00/0.01 v=0.70 L7=45/44 u=[0.06, -0.06, 0.624, 0.0] cycle=0.081s
+[RT 00100] vertical_takeoff t=93.95 h=9.47 NE=0.01/0.01 v=0.33 L7=53/53 u=[0.06, -0.061, 0.575, 0.0] cycle=0.071s
+[RT 00111] cruise_vtol t=95.06 h=9.72 NE=0.05/0.04 v=0.31 L7=59/58 u=[0.061, 0.311, 0.553, -0.0] cycle=0.089s
+[RT 00122] cruise_vtol t=96.15 h=9.88 NE=0.94/0.93 v=2.27 L7=66/65 u=[0.06, 0.253, 0.54, -0.0] cycle=0.076s
+[RT 00133] cruise_vtol t=97.25 h=9.98 NE=3.44/3.48 v=3.89 L7=72/72 u=[0.06, 0.18, 0.5, -0.001] cycle=0.065s
+[RT 00144] cruise_vtol t=98.35 h=9.88 NE=6.46/6.56 v=3.84 L7=80/79 u=[-0.06, 0.189, 0.54, -0.002] cycle=0.084s
+[RT 00155] cruise_vtol t=99.45 h=9.83 NE=9.53/9.69 v=4.34 L7=85/85 u=[-0.061, 0.164, 0.545, -0.004] cycle=0.078s
+[RT 00166] cruise_vtol t=100.55 h=9.82 NE=13.33/13.59 v=5.53 L7=88/88 u=[0.0, -0.064, 0.545, -0.006] cycle=0.062s
+[RT 00177] cruise_vtol t=101.64 h=9.78 NE=17.68/18.05 v=5.66 L7=96/95 u=[-0.061, 0.104, 0.548, -0.008] cycle=0.079s
+[RT 00188] cruise_vtol t=102.74 h=9.82 NE=21.89/22.37 v=5.46 L7=99/99 u=[-0.061, 0.113, 0.545, -0.01] cycle=0.069s
+[RT 00199] cruise_vtol t=103.84 h=9.90 NE=26.35/26.94 v=6.24 L7=105/105 u=[0.06, -0.1, 0.539, -0.01] cycle=0.087s
+[RT 00210] cruise_vtol t=104.94 h=9.93 NE=31.32/32.06 v=6.55 L7=107/107 u=[0.061, -0.114, 0.536, -0.011] cycle=0.082s
+[RT 00221] cruise_vtol t=106.04 h=9.97 NE=36.20/37.06 v=6.14 L7=111/110 u=[0.06, -0.068, 0.5, -0.011] cycle=0.097s
+[RT 00232] cruise_vtol t=107.14 h=10.09 NE=40.95/41.93 v=6.40 L7=114/113 u=[0.061, -0.107, 0.462, -0.01] cycle=0.084s
+[RT 00243] cruise_vtol t=108.23 h=10.13 NE=46.03/47.16 v=6.90 L7=115/115 u=[0.061, -0.131, 0.459, -0.011] cycle=0.074s
+[RT 00254] cruise_vtol t=109.33 h=10.22 NE=51.27/52.55 v=6.66 L7=116/115 u=[0.061, -0.12, 0.452, -0.01] cycle=0.093s
+[RT 00265] cruise_vtol t=110.44 h=10.22 NE=56.26/57.69 v=6.44 L7=117/117 u=[0.061, -0.11, 0.451, -0.011] cycle=0.085s
+[RT 00276] cruise_vtol t=111.54 h=10.22 NE=61.29/62.87 v=6.75 L7=120/120 u=[0.061, -0.125, 0.451, -0.012] cycle=0.073s
+[RT 00287] cruise_vtol t=112.64 h=10.20 NE=66.54/68.29 v=6.87 L7=122/122 u=[0.061, -0.131, 0.453, -0.013] cycle=0.088s
+[RT 00298] cruise_vtol t=113.73 h=10.21 NE=71.66/73.57 v=6.60 L7=123/122 u=[0.061, -0.119, 0.452, -0.014] cycle=0.078s
+[RT 00309] cruise_vtol t=114.83 h=10.16 NE=76.64/78.71 v=6.50 L7=126/125 u=[0.061, -0.114, 0.457, -0.015] cycle=0.098s
+[RT 00320] cruise_vtol t=115.93 h=10.09 NE=81.70/83.93 v=6.73 L7=131/131 u=[0.061, -0.126, 0.462, -0.017] cycle=0.086s
+[RT 00331] cruise_vtol t=117.03 h=10.11 NE=86.87/89.27 v=6.74 L7=134/133 u=[0.061, -0.126, 0.46, -0.017] cycle=0.075s
+[RT 00342] cruise_vtol t=118.13 h=10.08 NE=91.94/94.49 v=6.48 L7=140/139 u=[0.062, -0.112, 0.463, -0.017] cycle=0.064s
+[RT 00353] cruise_vtol t=119.22 h=10.06 NE=96.87/99.54 v=6.42 L7=147/146 u=[0.062, -0.11, 0.5, -0.017] cycle=0.083s
+[RT 00364] cruise_vtol t=120.32 h=10.02 NE=101.87/104.64 v=6.58 L7=154/153 u=[0.063, -0.118, 0.5, -0.017] cycle=0.068s
+[RT 00375] cruise_vtol t=121.41 h=10.00 NE=106.90/109.76 v=6.54 L7=160/160 u=[0.064, -0.116, 0.5, -0.015] cycle=0.093s
+[RT 00386] cruise_vtol t=122.52 h=9.97 NE=111.91/114.81 v=6.29 L7=165/165 u=[0.065, -0.103, 0.5, -0.015] cycle=0.078s
+[RT 00397] cruise_vtol t=123.61 h=9.96 NE=116.71/119.60 v=6.20 L7=171/171 u=[0.066, -0.099, 0.5, -0.015] cycle=0.101s
+[RT 00408] cruise_vtol t=124.71 h=9.96 NE=121.61/124.45 v=6.34 L7=177/177 u=[0.068, -0.106, 0.5, -0.012] cycle=0.086s
+[RT 00419] cruise_vtol t=125.81 h=9.96 NE=126.62/129.35 v=6.35 L7=182/181 u=[0.07, -0.106, 0.5, -0.009] cycle=0.153s
+[RT 00430] cruise_vtol t=126.91 h=9.99 NE=131.56/134.10 v=6.13 L7=185/185 u=[0.097, -0.068, 0.5, -0.009] cycle=0.062s
+[RT 00441] cruise_vtol t=128.01 h=9.97 NE=136.40/138.77 v=6.15 L7=192/191 u=[0.068, -0.096, 0.5, -0.009] cycle=0.080s
+[RT 00452] cruise_vtol t=129.11 h=9.94 NE=141.32/143.57 v=6.32 L7=198/198 u=[0.073, -0.105, 0.5, -0.006] cycle=0.072s
+[RT 00463] cruise_vtol t=130.20 h=9.97 NE=146.29/148.24 v=6.13 L7=202/202 u=[0.101, -0.068, 0.5, -0.006] cycle=0.088s
+[RT 00474] cruise_vtol t=131.30 h=9.93 NE=151.09/152.86 v=6.04 L7=210/209 u=[0.081, -0.077, 0.536, -0.002] cycle=0.111s
+[RT 00485] cruise_vtol t=132.40 h=9.91 NE=155.89/157.59 v=6.23 L7=217/216 u=[0.084, -0.087, 0.538, -0.003] cycle=0.101s
+[RT 00496] cruise_vtol t=133.50 h=9.91 NE=160.88/162.36 v=6.25 L7=221/220 u=[0.088, -0.087, 0.537, -0.007] cycle=0.153s
+[RT 00508] cruise_vtol t=134.70 h=9.91 NE=166.22/167.44 v=6.03 L7=228/227 u=[0.098, -0.062, 0.537, -0.004] cycle=0.071s
+[RT 00519] cruise_vtol t=135.80 h=9.94 NE=170.96/172.03 v=6.04 L7=236/235 u=[0.096, -0.063, 0.5, -0.001] cycle=0.090s
+[RT 00530] cruise_vtol t=136.90 h=9.93 NE=175.77/176.73 v=6.19 L7=242/242 u=[0.084, -0.084, 0.536, -0.005] cycle=0.078s
+[RT 00541] cruise_vtol t=137.99 h=9.94 NE=180.64/181.42 v=6.18 L7=246/245 u=[0.1, -0.069, 0.5, -0.009] cycle=0.070s
+[RT 00552] cruise_vtol t=139.09 h=9.96 NE=185.49/186.05 v=6.02 L7=250/250 u=[0.098, -0.061, 0.5, -0.007] cycle=0.057s
+[RT 00563] cruise_vtol t=140.19 h=9.93 NE=190.22/190.67 v=6.02 L7=253/253 u=[0.094, -0.061, 0.5, -0.005] cycle=0.075s
+[RT 00574] cruise_vtol t=141.29 h=9.94 NE=194.98/195.39 v=6.16 L7=258/258 u=[0.082, -0.082, 0.5, -0.01] cycle=0.061s
+[RT 00585] cruise_vtol t=142.39 h=9.95 NE=199.86/200.15 v=6.21 L7=260/260 u=[0.085, -0.083, 0.5, -0.015] cycle=0.084s
+[RT 00596] cruise_vtol t=143.49 h=9.95 NE=204.70/204.84 v=6.12 L7=261/261 u=[0.085, -0.079, 0.5, -0.014] cycle=0.070s
+[RT 00607] cruise_vtol t=144.59 h=9.93 NE=209.51/209.50 v=6.08 L7=264/264 u=[0.097, -0.064, 0.536, -0.011] cycle=0.065s
+[RT 00618] cruise_vtol t=145.69 h=9.92 NE=214.30/214.22 v=6.17 L7=267/266 u=[0.068, -0.095, 0.537, -0.011] cycle=0.080s
+[RT 00629] cruise_vtol t=146.79 h=9.93 NE=219.18/219.03 v=6.25 L7=270/269 u=[0.085, -0.085, 0.536, -0.016] cycle=0.067s
+[RT 00640] cruise_vtol t=147.88 h=9.88 NE=224.05/223.71 v=6.14 L7=270/270 u=[0.086, -0.08, 0.541, -0.019] cycle=0.089s
+[RT 00651] cruise_vtol t=148.99 h=9.94 NE=228.89/228.46 v=6.11 L7=271/271 u=[0.081, -0.08, 0.5, -0.01] cycle=0.104s
+[RT 00662] cruise_vtol t=150.08 h=9.92 NE=233.68/233.20 v=6.26 L7=275/274 u=[0.07, -0.1, 0.537, -0.013] cycle=0.094s
+[RT 00673] cruise_vtol t=151.18 h=9.92 NE=238.62/238.06 v=6.29 L7=277/277 u=[0.072, -0.102, 0.536, -0.021] cycle=0.083s
+[RT 00684] cruise_vtol t=152.27 h=9.90 NE=243.51/242.81 v=6.13 L7=281/280 u=[0.097, -0.066, 0.539, -0.019] cycle=0.100s
+[RT 00695] cruise_vtol t=153.37 h=9.86 NE=248.31/247.55 v=6.19 L7=286/286 u=[0.065, -0.098, 0.541, -0.011] cycle=0.094s
+[RT 00706] cruise_vtol t=154.47 h=9.90 NE=253.18/252.47 v=6.35 L7=292/291 u=[0.069, -0.105, 0.539, -0.016] cycle=0.108s
+[RT 00717] cruise_vtol t=155.57 h=9.90 NE=258.13/257.33 v=6.22 L7=296/296 u=[0.084, -0.084, 0.538, -0.022] cycle=0.097s
+[RT 00728] cruise_vtol t=156.67 h=9.93 NE=262.95/262.05 v=6.10 L7=302/301 u=[0.081, -0.079, 0.536, -0.015] cycle=0.088s
+[RT 00739] cruise_vtol t=157.76 h=9.95 NE=267.72/266.83 v=6.32 L7=308/307 u=[0.067, -0.105, 0.5, -0.012] cycle=0.072s
+[RT 00750] cruise_vtol t=158.86 h=9.91 NE=272.72/271.73 v=6.34 L7=312/312 u=[0.085, -0.091, 0.538, -0.018] cycle=0.095s
+[RT 00761] cruise_vtol t=159.96 h=9.93 NE=277.65/276.48 v=6.11 L7=317/316 u=[0.097, -0.066, 0.536, -0.017] cycle=0.083s
+[RT 00772] cruise_vtol t=161.06 h=9.90 NE=282.45/281.22 v=6.26 L7=325/324 u=[0.066, -0.102, 0.538, -0.012] cycle=0.071s
+[RT 00783] cruise_vtol t=162.16 h=9.89 NE=287.42/286.15 v=6.41 L7=330/329 u=[0.07, -0.109, 0.539, -0.016] cycle=0.094s
+[RT 00794] cruise_vtol t=163.26 h=9.92 NE=292.39/290.98 v=6.15 L7=335/334 u=[0.098, -0.068, 0.537, -0.017] cycle=0.076s
+[RT 00805] cruise_vtol t=164.35 h=9.93 NE=297.16/295.62 v=6.14 L7=343/343 u=[0.068, -0.096, 0.536, -0.012] cycle=0.066s
+[RT 00816] cruise_vtol t=165.45 h=9.97 NE=302.09/300.49 v=6.44 L7=349/348 u=[0.072, -0.11, 0.5, -0.012] cycle=0.085s
+[RT 00827] cruise_vtol t=166.55 h=9.95 NE=307.17/305.36 v=6.28 L7=354/354 u=[0.1, -0.074, 0.5, -0.016] cycle=0.077s
+[RT 00838] cruise_vtol t=167.65 h=9.97 NE=312.05/310.03 v=6.09 L7=358/357 u=[0.083, -0.079, 0.5, -0.012] cycle=0.067s
+[RT 00849] cruise_vtol t=168.74 h=9.96 NE=316.89/314.78 v=6.38 L7=362/362 u=[0.071, -0.107, 0.5, -0.011] cycle=0.079s
+[RT 00860] cruise_vtol t=169.84 h=9.95 NE=321.99/319.67 v=6.38 L7=367/366 u=[0.103, -0.079, 0.5, -0.015] cycle=0.071s
+[RT 00871] cruise_vtol t=170.94 h=9.94 NE=327.00/324.36 v=6.12 L7=368/367 u=[0.1, -0.067, 0.5, -0.013] cycle=0.089s
+[RT 00882] cruise_vtol t=172.04 h=9.96 NE=331.87/329.11 v=6.32 L7=370/369 u=[0.07, -0.103, 0.5, -0.009] cycle=0.078s
+[RT 00893] cruise_vtol t=173.14 h=9.96 NE=336.96/333.99 v=6.43 L7=372/371 u=[0.091, -0.094, 0.5, -0.014] cycle=0.070s
+[RT 00904] cruise_vtol t=174.24 h=9.98 NE=342.04/338.71 v=6.18 L7=373/373 u=[0.102, -0.069, 0.5, -0.015] cycle=0.086s
+[RT 00915] cruise_vtol t=175.34 h=9.98 NE=346.94/343.45 v=6.29 L7=375/375 u=[0.071, -0.102, 0.5, -0.007] cycle=0.105s
+[RT 00926] cruise_vtol t=176.43 h=9.93 NE=351.98/348.26 v=6.44 L7=379/378 u=[0.079, -0.109, 0.536, -0.014] cycle=0.096s
+[RT 00937] cruise_vtol t=177.54 h=9.95 NE=357.09/353.03 v=6.21 L7=381/380 u=[0.104, -0.071, 0.5, -0.015] cycle=0.116s
+[RT 00948] cruise_vtol t=178.63 h=9.90 NE=361.99/357.65 v=6.21 L7=383/382 u=[0.074, -0.098, 0.538, -0.009] cycle=0.134s
+[RT 00959] cruise_vtol t=179.74 h=9.98 NE=367.07/362.54 v=6.47 L7=385/385 u=[0.077, -0.111, 0.5, -0.01] cycle=0.089s
+[RT 00970] cruise_vtol t=180.83 h=9.95 NE=372.20/367.30 v=6.30 L7=386/385 u=[0.106, -0.075, 0.5, -0.016] cycle=0.078s
+[RT 00981] cruise_vtol t=181.93 h=9.94 NE=377.16/371.97 v=6.17 L7=389/388 u=[0.072, -0.097, 0.5, -0.01] cycle=0.098s
+[RT 00992] cruise_vtol t=183.03 h=9.95 NE=382.12/376.82 v=6.43 L7=393/392 u=[0.074, -0.11, 0.5, -0.01] cycle=0.087s
+[RT 01003] cruise_vtol t=184.13 h=9.92 NE=387.27/381.67 v=6.35 L7=395/395 u=[0.105, -0.078, 0.537, -0.016] cycle=0.075s
+[RT 01014] cruise_vtol t=185.22 h=9.92 NE=392.28/386.32 v=6.16 L7=402/401 u=[0.088, -0.082, 0.536, -0.012] cycle=0.093s
+[RT 01025] cruise_vtol t=186.31 h=9.93 NE=397.19/391.06 v=6.40 L7=406/406 u=[0.075, -0.108, 0.536, -0.008] cycle=0.081s
+[RT 01036] cruise_vtol t=187.42 h=9.91 NE=402.42/395.97 v=6.43 L7=410/410 u=[0.092, -0.095, 0.538, -0.015] cycle=0.068s
+[RT 01047] cruise_vtol t=188.51 h=9.95 NE=407.42/400.64 v=6.15 L7=416/415 u=[0.102, -0.067, 0.5, -0.014] cycle=0.091s
+[RT 01058] cruise_vtol t=189.61 h=9.94 NE=412.34/405.37 v=6.33 L7=420/420 u=[0.072, -0.104, 0.5, -0.009] cycle=0.081s
+[RT 01069] cruise_vtol t=190.71 h=9.98 NE=417.46/410.29 v=6.49 L7=423/423 u=[0.092, -0.098, 0.5, -0.013] cycle=0.099s
+[RT 01080] cruise_vtol t=191.81 h=9.95 NE=422.58/415.06 v=6.21 L7=430/429 u=[0.103, -0.069, 0.5, -0.015] cycle=0.115s
+[RT 01091] cruise_vtol t=192.91 h=9.98 NE=427.49/419.78 v=6.27 L7=437/436 u=[0.071, -0.102, 0.5, -0.009] cycle=0.073s
+[RT 01102] cruise_vtol t=194.00 h=9.93 NE=432.52/424.64 v=6.50 L7=446/445 u=[0.078, -0.113, 0.536, -0.012] cycle=0.096s
+[RT 01113] cruise_vtol t=195.11 h=9.98 NE=437.71/429.50 v=6.26 L7=453/452 u=[0.104, -0.072, 0.5, -0.016] cycle=0.081s
+[RT 01124] cruise_vtol t=196.20 h=9.97 NE=442.57/434.16 v=6.19 L7=455/455 u=[0.071, -0.097, 0.5, -0.01] cycle=0.069s
+[RT 01135] cruise_vtol t=197.30 h=9.98 NE=447.56/439.05 v=6.49 L7=461/460 u=[0.076, -0.112, 0.5, -0.011] cycle=0.062s
+[RT 01146] cruise_vtol t=198.40 h=9.96 NE=452.74/443.92 v=6.35 L7=468/467 u=[0.105, -0.076, 0.5, -0.016] cycle=0.076s
+[RT 01157] cruise_vtol t=199.50 h=9.93 NE=457.69/448.64 v=6.18 L7=473/472 u=[0.071, -0.095, 0.536, -0.011] cycle=0.068s
+[RT 01168] cruise_vtol t=200.60 h=9.94 NE=462.62/453.51 v=6.43 L7=481/481 u=[0.074, -0.11, 0.5, -0.01] cycle=0.088s
+[RT 01179] cruise_vtol t=201.70 h=9.93 NE=467.76/458.41 v=6.39 L7=490/489 u=[0.104, -0.079, 0.536, -0.016] cycle=0.078s
+[RT 01190] cruise_vtol t=202.80 h=9.95 NE=472.75/463.12 v=6.15 L7=494/494 u=[0.087, -0.081, 0.5, -0.013] cycle=0.091s
+[RT 01201] cruise_vtol t=203.89 h=9.96 NE=477.59/467.89 v=6.37 L7=500/500 u=[0.069, -0.107, 0.5, -0.008] cycle=0.113s
+[RT 01212] cruise_vtol t=204.99 h=9.96 NE=482.66/472.84 v=6.43 L7=505/505 u=[0.088, -0.095, 0.5, -0.014] cycle=0.100s
+[RT 01223] cruise_vtol t=206.09 h=9.96 NE=487.68/477.60 v=6.15 L7=510/509 u=[0.101, -0.068, 0.5, -0.015] cycle=0.092s
+[RT 01234] cruise_vtol t=207.19 h=9.99 NE=492.53/482.35 v=6.28 L7=513/513 u=[0.069, -0.102, 0.5, -0.009] cycle=0.109s
+[RT 01245] cruise_vtol t=208.28 h=9.95 NE=497.51/487.26 v=6.47 L7=514/514 u=[0.076, -0.111, 0.5, -0.012] cycle=0.068s
+[RT 01256] cruise_vtol t=209.38 h=9.91 NE=502.61/492.05 v=6.23 L7=515/515 u=[0.104, -0.072, 0.537, -0.016] cycle=0.086s
+[RT 01267] cruise_vtol t=210.49 h=9.88 NE=507.51/496.81 v=6.25 L7=517/517 u=[0.069, -0.101, 0.54, -0.008] cycle=0.074s
+[RT 01278] cruise_vtol t=211.59 h=9.93 NE=512.50/501.73 v=6.44 L7=517/517 u=[0.075, -0.109, 0.5, -0.013] cycle=0.093s
+[RT 01289] cruise_vtol t=212.69 h=9.97 NE=517.59/506.57 v=6.26 L7=517/517 u=[0.102, -0.074, 0.5, -0.016] cycle=0.083s
+[RT 01300] cruise_vtol t=213.78 h=9.96 NE=522.44/511.24 v=6.18 L7=517/517 u=[0.071, -0.098, 0.5, -0.009] cycle=0.077s
+[RT 01311] cruise_vtol t=214.89 h=9.98 NE=527.43/516.16 v=6.43 L7=518/518 u=[0.073, -0.109, 0.5, -0.01] cycle=0.090s
+[RT 01322] cruise_vtol t=215.98 h=9.98 NE=532.48/520.99 v=6.33 L7=519/518 u=[0.103, -0.077, 0.5, -0.016] cycle=0.081s
+[RT 01333] cruise_vtol t=217.08 h=9.96 NE=537.43/525.70 v=6.15 L7=523/522 u=[0.086, -0.082, 0.5, -0.011] cycle=0.064s
+[RT 01344] cruise_vtol t=218.18 h=9.94 NE=542.33/530.53 v=6.40 L7=528/527 u=[0.072, -0.108, 0.5, -0.009] cycle=0.087s
+[RT 01355] cruise_vtol t=219.27 h=9.98 NE=547.43/535.45 v=6.42 L7=534/533 u=[0.091, -0.094, 0.5, -0.014] cycle=0.081s
+[RT 01366] cruise_vtol t=220.37 h=9.95 NE=552.45/540.20 v=6.16 L7=540/539 u=[0.1, -0.068, 0.5, -0.014] cycle=0.093s
+[RT 01377] cruise_vtol t=221.46 h=9.97 NE=557.28/544.94 v=6.34 L7=545/545 u=[0.071, -0.105, 0.5, -0.008] cycle=0.082s
+[RT 01388] cruise_vtol t=222.56 h=9.90 NE=562.37/549.86 v=6.45 L7=552/551 u=[0.091, -0.096, 0.538, -0.014] cycle=0.068s
+[RT 01399] cruise_vtol t=223.66 h=9.91 NE=567.44/554.63 v=6.19 L7=558/558 u=[0.102, -0.069, 0.538, -0.014] cycle=0.089s
+[RT 01410] cruise_vtol t=224.76 h=9.96 NE=572.30/559.40 v=6.28 L7=564/564 u=[0.07, -0.102, 0.5, -0.008] cycle=0.082s
+[RT 01421] cruise_vtol t=225.86 h=9.97 NE=577.34/564.33 v=6.47 L7=574/573 u=[0.079, -0.111, 0.5, -0.013] cycle=0.100s
+[RT 01432] cruise_vtol t=226.96 h=9.98 NE=582.45/569.13 v=6.25 L7=580/580 u=[0.104, -0.071, 0.5, -0.016] cycle=0.087s
+[RT 01443] cruise_vtol t=228.05 h=9.96 NE=587.30/573.84 v=6.25 L7=585/585 u=[0.071, -0.1, 0.5, -0.009] cycle=0.109s
+[RT 01454] cruise_vtol t=229.15 h=9.98 NE=592.31/578.76 v=6.48 L7=590/589 u=[0.077, -0.111, 0.5, -0.013] cycle=0.095s
+[RT 01465] cruise_vtol t=230.25 h=9.98 NE=597.43/583.64 v=6.31 L7=598/598 u=[0.104, -0.074, 0.5, -0.015] cycle=0.084s
+[RT 01476] cruise_vtol t=231.35 h=9.97 NE=602.37/588.35 v=6.18 L7=605/604 u=[0.074, -0.096, 0.5, -0.01] cycle=0.102s
+[RT 01487] cruise_vtol t=232.45 h=9.95 NE=607.32/593.23 v=6.47 L7=612/611 u=[0.073, -0.112, 0.5, -0.01] cycle=0.088s
+[RT 01498] cruise_vtol t=233.55 h=9.90 NE=612.45/598.20 v=6.42 L7=617/616 u=[0.103, -0.081, 0.539, -0.015] cycle=0.111s
+[RT 01509] cruise_vtol t=234.65 h=9.96 NE=617.45/602.93 v=6.15 L7=625/624 u=[0.101, -0.067, 0.5, -0.013] cycle=0.099s
+[RT 01520] cruise_vtol t=235.75 h=9.93 NE=622.33/607.73 v=6.39 L7=632/631 u=[0.072, -0.108, 0.5, -0.009] cycle=0.084s
+[RT 01531] cruise_vtol t=236.84 h=9.95 NE=627.42/612.64 v=6.49 L7=637/636 u=[0.093, -0.099, 0.5, -0.015] cycle=0.074s
+[RT 01542] cruise_vtol t=237.94 h=9.97 NE=632.50/617.42 v=6.18 L7=640/640 u=[0.103, -0.07, 0.5, -0.014] cycle=0.067s
+[RT 01553] cruise_vtol t=239.04 h=10.02 NE=637.36/622.18 v=6.29 L7=646/645 u=[0.071, -0.103, 0.5, -0.008] cycle=0.081s
+[RT 01564] cruise_vtol t=240.14 h=9.94 NE=642.42/627.13 v=6.51 L7=652/651 u=[0.079, -0.113, 0.5, -0.014] cycle=0.073s
+[RT 01575] cruise_vtol t=241.24 h=10.00 NE=647.55/631.95 v=6.24 L7=653/653 u=[0.105, -0.074, 0.5, -0.016] cycle=0.087s
+[RT 01586] cruise_vtol t=242.33 h=9.99 NE=652.40/636.63 v=6.23 L7=655/655 u=[0.072, -0.101, 0.5, -0.009] cycle=0.078s
+[RT 01597] cruise_vtol t=243.44 h=9.98 NE=657.40/641.58 v=6.50 L7=657/657 u=[0.076, -0.113, 0.5, -0.011] cycle=0.069s
+[RT 01608] cruise_vtol t=244.54 h=9.97 NE=662.53/646.46 v=6.31 L7=659/658 u=[0.105, -0.077, 0.5, -0.016] cycle=0.087s
+[RT 01619] cruise_vtol t=245.64 h=9.98 NE=667.44/651.19 v=6.19 L7=660/660 u=[0.072, -0.098, 0.5, -0.01] cycle=0.074s
+[RT 01630] cruise_vtol t=246.74 h=9.96 NE=672.36/656.11 v=6.45 L7=663/662 u=[0.073, -0.111, 0.5, -0.009] cycle=0.061s
+[RT 01641] cruise_vtol t=247.84 h=9.98 NE=677.45/661.04 v=6.36 L7=666/665 u=[0.104, -0.078, 0.5, -0.016] cycle=0.082s
+[RT 01652] cruise_vtol t=248.93 h=9.99 NE=682.35/665.75 v=6.17 L7=666/666 u=[0.087, -0.083, 0.5, -0.012] cycle=0.076s
+[RT 01663] cruise_vtol t=250.03 h=9.95 NE=687.25/670.61 v=6.42 L7=666/666 u=[0.075, -0.108, 0.5, -0.009] cycle=0.091s
+[RT 01674] cruise_vtol t=251.13 h=9.94 NE=692.38/675.53 v=6.42 L7=671/670 u=[0.094, -0.094, 0.5, -0.016] cycle=0.080s
+[RT 01685] cruise_vtol t=252.22 h=9.97 NE=697.39/680.30 v=6.18 L7=674/674 u=[0.088, -0.082, 0.5, -0.013] cycle=0.063s
+[RT 01696] cruise_vtol t=253.32 h=9.96 NE=702.24/685.16 v=6.36 L7=678/678 u=[0.07, -0.106, 0.5, -0.009] cycle=0.151s
+[RT 01708] cruise_vtol t=254.52 h=10.00 NE=707.76/690.58 v=6.45 L7=684/684 u=[0.092, -0.096, 0.5, -0.017] cycle=0.067s
+[RT 01719] cruise_vtol t=255.62 h=10.00 NE=712.79/695.39 v=6.20 L7=691/690 u=[0.101, -0.069, 0.5, -0.013] cycle=0.091s
+[RT 01730] cruise_vtol t=256.72 h=9.98 NE=717.63/700.23 v=6.33 L7=696/695 u=[0.07, -0.104, 0.5, -0.007] cycle=0.079s
+[RT 01741] cruise_vtol t=257.79 h=9.99 NE=722.54/705.04 v=6.47 L7=699/698 u=[0.079, -0.11, 0.5, -0.016] cycle=0.064s
+[RT 01752] cruise_vtol t=258.91 h=9.90 NE=727.72/709.95 v=6.24 L7=705/704 u=[0.104, -0.071, 0.538, -0.016] cycle=0.061s
+[RT 01763] cruise_vtol t=260.01 h=9.94 NE=732.61/714.74 v=6.29 L7=711/710 u=[0.07, -0.103, 0.5, -0.008] cycle=0.076s
+[RT 01774] cruise_vtol t=261.11 h=9.97 NE=737.61/719.71 v=6.49 L7=720/719 u=[0.078, -0.112, 0.5, -0.012] cycle=0.095s
+[RT 01785] cruise_vtol t=262.21 h=9.96 NE=742.70/724.59 v=6.28 L7=724/723 u=[0.103, -0.074, 0.5, -0.017] cycle=0.081s
+[RT 01796] cruise_vtol t=263.30 h=9.95 NE=747.51/729.32 v=6.18 L7=730/729 u=[0.07, -0.097, 0.5, -0.009] cycle=0.070s
+[RT 01807] cruise_vtol t=264.41 h=9.97 NE=752.46/734.30 v=6.45 L7=733/733 u=[0.074, -0.111, 0.5, -0.01] cycle=0.061s
+[RT 01818] cruise_vtol t=265.50 h=10.01 NE=757.52/739.18 v=6.36 L7=735/734 u=[0.105, -0.079, 0.5, -0.017] cycle=0.077s
+[RT 01829] cruise_vtol t=266.60 h=9.95 NE=762.45/743.94 v=6.17 L7=740/739 u=[0.086, -0.083, 0.5, -0.011] cycle=0.098s
+[RT 01840] cruise_vtol t=267.70 h=9.98 NE=767.35/748.81 v=6.42 L7=744/743 u=[0.074, -0.11, 0.5, -0.009] cycle=0.085s
+[RT 01851] cruise_vtol t=268.80 h=9.99 NE=772.47/753.75 v=6.43 L7=751/750 u=[0.093, -0.095, 0.5, -0.017] cycle=0.073s
+[RT 01862] cruise_vtol t=269.90 h=10.00 NE=777.46/758.54 v=6.18 L7=758/757 u=[0.087, -0.082, 0.5, -0.013] cycle=0.062s
+[RT 01873] cruise_vtol t=271.00 h=9.99 NE=782.30/763.41 v=6.37 L7=765/765 u=[0.072, -0.107, 0.5, -0.009] cycle=0.080s
+[RT 01884] cruise_vtol t=272.10 h=9.98 NE=787.39/768.37 v=6.47 L7=772/771 u=[0.093, -0.097, 0.5, -0.017] cycle=0.071s
+[RT 01895] cruise_vtol t=273.19 h=9.96 NE=792.39/773.15 v=6.21 L7=780/779 u=[0.102, -0.07, 0.5, -0.014] cycle=0.089s
+[RT 01906] cruise_vtol t=274.29 h=9.95 NE=797.24/777.97 v=6.32 L7=785/785 u=[0.071, -0.103, 0.5, -0.007] cycle=0.078s
+[RT 01917] cruise_vtol t=275.39 h=9.94 NE=802.28/782.96 v=6.51 L7=789/789 u=[0.078, -0.112, 0.5, -0.014] cycle=0.066s
+[RT 01928] cruise_vtol t=276.49 h=9.93 NE=807.38/787.83 v=6.27 L7=793/793 u=[0.104, -0.073, 0.5, -0.017] cycle=0.083s
+[RT 01939] cruise_vtol t=277.59 h=9.98 NE=812.22/792.59 v=6.26 L7=793/793 u=[0.072, -0.1, 0.5, -0.009] cycle=0.075s
+[RT 01950] cruise_vtol t=278.69 h=10.00 NE=817.22/797.55 v=6.50 L7=796/795 u=[0.078, -0.111, 0.5, -0.012] cycle=0.093s
+[RT 01961] cruise_vtol t=279.79 h=9.97 NE=822.35/802.47 v=6.34 L7=799/798 u=[0.106, -0.076, 0.5, -0.016] cycle=0.086s
+[RT 01972] cruise_vtol t=280.89 h=9.95 NE=827.27/807.23 v=6.21 L7=799/799 u=[0.074, -0.097, 0.5, -0.011] cycle=0.070s
+[RT 01983] cruise_vtol t=281.98 h=9.97 NE=832.14/812.14 v=6.48 L7=802/801 u=[0.073, -0.11, 0.5, -0.009] cycle=0.121s
+[RT 01994] cruise_vtol t=283.08 h=9.98 NE=837.24/817.13 v=6.42 L7=803/803 u=[0.106, -0.08, 0.5, -0.016] cycle=0.079s
+[RT 02005] cruise_vtol t=284.18 h=9.92 NE=842.22/821.92 v=6.21 L7=804/804 u=[0.075, -0.098, 0.537, -0.013] cycle=0.097s
+[RT 02016] cruise_vtol t=285.28 h=9.96 NE=847.14/826.88 v=6.42 L7=807/806 u=[0.073, -0.109, 0.5, -0.009] cycle=0.087s
+[RT 02027] cruise_vtol t=286.37 h=9.94 NE=852.18/831.82 v=6.45 L7=810/809 u=[0.093, -0.096, 0.5, -0.016] cycle=0.104s
+[RT 02038] cruise_vtol t=287.47 h=9.96 NE=857.19/836.63 v=6.20 L7=812/811 u=[0.102, -0.071, 0.5, -0.014] cycle=0.101s
+[RT 02049] cruise_vtol t=288.57 h=9.99 NE=862.05/841.50 v=6.37 L7=819/818 u=[0.072, -0.108, 0.5, -0.008] cycle=0.112s
+[RT 02060] cruise_vtol t=289.67 h=9.98 NE=867.10/846.50 v=6.48 L7=823/823 u=[0.079, -0.112, 0.5, -0.015] cycle=0.102s
+[RT 02071] cruise_vtol t=290.76 h=9.95 NE=872.08/851.31 v=6.21 L7=829/828 u=[0.104, -0.071, 0.5, -0.016] cycle=0.126s
+[RT 02082] cruise_vtol t=291.86 h=9.96 NE=876.92/856.11 v=6.29 L7=833/833 u=[0.072, -0.103, 0.5, -0.009] cycle=0.107s
+[RT 02093] cruise_vtol t=292.96 h=9.96 NE=881.92/861.11 v=6.51 L7=834/834 u=[0.078, -0.113, 0.5, -0.012] cycle=0.103s
+[RT 02104] cruise_vtol t=294.06 h=9.97 NE=886.98/866.02 v=6.27 L7=842/841 u=[0.103, -0.072, 0.5, -0.016] cycle=0.088s
+[RT 02115] cruise_vtol t=295.16 h=9.98 NE=891.81/870.82 v=6.21 L7=847/847 u=[0.071, -0.097, 0.5, -0.01] cycle=0.106s
+[RT 02126] cruise_vtol t=296.26 h=9.99 NE=896.72/875.80 v=6.50 L7=852/851 u=[0.076, -0.112, 0.5, -0.011] cycle=0.095s
+[RT 02137] cruise_vtol t=297.35 h=9.98 NE=901.80/880.72 v=6.38 L7=859/859 u=[0.107, -0.077, 0.5, -0.016] cycle=0.113s
+[RT 02148] cruise_vtol t=298.45 h=9.92 NE=906.75/885.50 v=6.21 L7=865/864 u=[0.075, -0.097, 0.536, -0.012] cycle=0.103s
+[RT 02159] cruise_vtol t=299.55 h=9.94 NE=911.65/890.46 v=6.49 L7=871/871 u=[0.072, -0.112, 0.5, -0.009] cycle=0.089s
+[RT 02170] cruise_vtol t=300.65 h=9.97 NE=916.72/895.51 v=6.44 L7=874/874 u=[0.09, -0.096, 0.5, -0.016] cycle=0.079s
+[RT 02181] cruise_vtol t=301.75 h=10.00 NE=921.64/900.35 v=6.16 L7=879/878 u=[0.087, -0.082, 0.5, -0.014] cycle=0.101s
+[RT 02192] cruise_vtol t=302.85 h=9.95 NE=926.46/905.25 v=6.40 L7=883/883 u=[0.073, -0.108, 0.5, -0.01] cycle=0.084s
+[RT 02203] cruise_vtol t=303.94 h=10.02 NE=931.49/910.23 v=6.50 L7=889/889 u=[0.08, -0.112, 0.5, -0.015] cycle=0.108s
+[RT 02214] cruise_vtol t=305.05 h=9.99 NE=936.54/915.14 v=6.18 L7=893/893 u=[0.102, -0.07, 0.5, -0.014] cycle=0.092s
+[RT 02225] cruise_vtol t=306.15 h=9.97 NE=941.33/919.98 v=6.30 L7=897/897 u=[0.07, -0.103, 0.5, -0.009] cycle=0.084s
+[RT 02236] cruise_vtol t=307.24 h=9.98 NE=946.26/924.99 v=6.52 L7=901/901 u=[0.077, -0.114, 0.5, -0.013] cycle=0.102s
+[RT 02247] cruise_vtol t=308.34 h=9.94 NE=951.31/929.92 v=6.26 L7=906/906 u=[0.105, -0.073, 0.5, -0.016] cycle=0.123s
+[RT 02258] cruise_vtol t=309.44 h=9.97 NE=956.14/934.73 v=6.23 L7=906/906 u=[0.071, -0.099, 0.5, -0.01] cycle=0.078s
+[RT 02269] cruise_vtol t=310.54 h=9.99 NE=961.03/939.72 v=6.51 L7=908/908 u=[0.077, -0.112, 0.5, -0.011] cycle=0.095s
+[RT 02280] cruise_vtol t=311.64 h=9.99 NE=966.12/944.69 v=6.35 L7=909/909 u=[0.105, -0.077, 0.5, -0.017] cycle=0.088s
+[RT 02291] cruise_vtol t=312.74 h=9.96 NE=970.98/949.52 v=6.18 L7=910/910 u=[0.073, -0.097, 0.5, -0.011] cycle=0.104s
+[RT 02302] cruise_vtol t=313.84 h=9.94 NE=975.84/954.49 v=6.47 L7=910/910 u=[0.074, -0.11, 0.5, -0.009] cycle=0.091s
+[RT 02313] cruise_vtol t=314.94 h=9.96 NE=980.93/959.51 v=6.44 L7=912/912 u=[0.093, -0.095, 0.5, -0.017] cycle=0.114s
+[RT 02324] cruise_vtol t=316.03 h=9.98 NE=985.82/964.31 v=6.18 L7=914/913 u=[0.101, -0.07, 0.5, -0.013] cycle=0.100s
+[RT 02335] cruise_vtol t=317.14 h=9.97 NE=990.68/969.27 v=6.39 L7=916/915 u=[0.072, -0.107, 0.5, -0.009] cycle=0.094s
+[RT 02346] cruise_vtol t=318.23 h=10.02 NE=995.66/974.29 v=6.50 L7=919/918 u=[0.078, -0.112, 0.5, -0.015] cycle=0.107s
+[RT 02357] cruise_vtol t=319.32 h=10.04 NE=1000.63/979.20 v=6.20 L7=920/920 u=[0.103, -0.071, 0.5, -0.015] cycle=0.100s
+[RT 02368] cruise_vtol t=320.42 h=10.01 NE=1005.42/984.04 v=6.29 L7=923/922 u=[0.072, -0.103, 0.5, -0.01] cycle=0.086s
+[RT 02379] cruise_vtol t=321.52 h=9.96 NE=1010.38/989.11 v=6.53 L7=927/927 u=[0.077, -0.115, 0.5, -0.012] cycle=0.073s
+[RT 02390] cruise_vtol t=322.62 h=9.97 NE=1015.41/994.09 v=6.27 L7=933/932 u=[0.103, -0.073, 0.5, -0.015] cycle=0.094s
+[RT 02401] cruise_vtol t=323.72 h=9.95 NE=1020.20/998.91 v=6.19 L7=940/939 u=[0.072, -0.097, 0.5, -0.01] cycle=0.082s
+[RT 02412] cruise_vtol t=324.82 h=9.92 NE=1025.07/1003.92 v=6.51 L7=942/941 u=[0.075, -0.113, 0.537, -0.011] cycle=0.071s
+[RT 02423] cruise_vtol t=325.91 h=9.97 NE=1030.10/1008.91 v=6.38 L7=945/945 u=[0.105, -0.079, 0.5, -0.016] cycle=0.090s
+[RT 02434] cruise_vtol t=327.01 h=9.97 NE=1034.97/1013.72 v=6.16 L7=951/951 u=[0.087, -0.082, 0.5, -0.012] cycle=0.077s
+[RT 02445] cruise_vtol t=328.11 h=9.97 NE=1039.78/1018.69 v=6.45 L7=955/954 u=[0.073, -0.11, 0.5, -0.01] cycle=0.064s
+[RT 02456] cruise_vtol t=329.21 h=9.99 NE=1044.85/1023.76 v=6.48 L7=961/960 u=[0.093, -0.097, 0.5, -0.017] cycle=0.086s
+[RT 02467] cruise_vtol t=330.31 h=10.00 NE=1049.80/1028.63 v=6.17 L7=966/966 u=[0.102, -0.068, 0.5, -0.014] cycle=0.075s
+[RT 02478] cruise_vtol t=331.41 h=9.95 NE=1054.57/1033.54 v=6.36 L7=971/971 u=[0.071, -0.106, 0.5, -0.009] cycle=0.094s
+[RT 02489] cruise_vtol t=332.51 h=9.90 NE=1059.57/1038.63 v=6.52 L7=978/977 u=[0.079, -0.113, 0.538, -0.015] cycle=0.080s
+[RT 02500] cruise_vtol t=333.60 h=9.98 NE=1064.53/1043.52 v=6.22 L7=981/980 u=[0.103, -0.071, 0.5, -0.015] cycle=0.071s
+[RT 02511] cruise_vtol t=334.70 h=9.96 NE=1069.29/1048.39 v=6.27 L7=985/985 u=[0.07, -0.102, 0.5, -0.008] cycle=0.089s
+[RT 02522] cruise_vtol t=335.80 h=9.97 NE=1074.21/1053.47 v=6.53 L7=988/988 u=[0.077, -0.114, 0.5, -0.012] cycle=0.078s
+[RT 02533] cruise_vtol t=336.90 h=10.02 NE=1079.24/1058.47 v=6.30 L7=993/992 u=[0.104, -0.075, 0.5, -0.017] cycle=0.067s
+[RT 02544] cruise_vtol t=338.00 h=10.00 NE=1084.04/1063.31 v=6.20 L7=1000/1000 u=[0.071, -0.098, 0.5, -0.011] cycle=0.083s
+[RT 02555] cruise_vtol t=339.10 h=10.00 NE=1088.90/1068.34 v=6.50 L7=1008/1007 u=[0.076, -0.114, 0.5, -0.01] cycle=0.106s
+[RT 02566] cruise_vtol t=340.19 h=9.97 NE=1093.92/1073.32 v=6.39 L7=1014/1013 u=[0.108, -0.08, 0.5, -0.017] cycle=0.096s
+[RT 02577] cruise_vtol t=341.30 h=9.99 NE=1098.84/1078.20 v=6.17 L7=1020/1020 u=[0.073, -0.096, 0.5, -0.012] cycle=0.080s
+[RT 02588] cruise_vtol t=342.39 h=9.97 NE=1103.57/1083.15 v=6.43 L7=1023/1023 u=[0.073, -0.11, 0.5, -0.008] cycle=0.077s
+[RT 02599] cruise_vtol t=343.50 h=9.95 NE=1108.62/1088.21 v=6.43 L7=1029/1029 u=[0.093, -0.095, 0.5, -0.017] cycle=0.088s
+[RT 02610] cruise_vtol t=344.59 h=9.94 NE=1113.48/1093.04 v=6.18 L7=1030/1030 u=[0.088, -0.084, 0.5, -0.013] cycle=0.110s
+[RT 02621] cruise_vtol t=345.70 h=9.93 NE=1118.28/1098.03 v=6.37 L7=1030/1030 u=[0.073, -0.106, 0.536, -0.008] cycle=0.100s
+[RT 02632] cruise_vtol t=346.79 h=10.00 NE=1123.22/1103.05 v=6.48 L7=1032/1031 u=[0.079, -0.11, 0.5, -0.016] cycle=0.087s
+[RT 02643] cruise_vtol t=347.89 h=9.99 NE=1128.19/1107.97 v=6.21 L7=1034/1034 u=[0.104, -0.071, 0.5, -0.016] cycle=0.079s
+[RT 02654] cruise_vtol t=348.99 h=10.01 NE=1132.96/1112.85 v=6.30 L7=1035/1035 u=[0.071, -0.102, 0.5, -0.009] cycle=0.092s
+[RT 02665] cruise_vtol t=350.09 h=9.92 NE=1137.88/1117.94 v=6.51 L7=1036/1036 u=[0.078, -0.112, 0.537, -0.012] cycle=0.082s
+[RT 02676] cruise_vtol t=351.18 h=9.96 NE=1142.85/1122.89 v=6.29 L7=1037/1036 u=[0.104, -0.074, 0.5, -0.017] cycle=0.072s
+[RT 02687] cruise_vtol t=352.28 h=9.97 NE=1147.67/1127.82 v=6.25 L7=1040/1039 u=[0.072, -0.099, 0.5, -0.01] cycle=0.090s
+[RT 02698] cruise_vtol t=353.38 h=9.98 NE=1152.55/1132.89 v=6.51 L7=1042/1042 u=[0.077, -0.112, 0.5, -0.011] cycle=0.081s
+[RT 02709] cruise_vtol t=354.47 h=9.93 NE=1157.53/1137.88 v=6.36 L7=1042/1042 u=[0.106, -0.078, 0.536, -0.016] cycle=0.098s
+[RT 02720] cruise_vtol t=355.57 h=9.97 NE=1162.37/1142.75 v=6.20 L7=1046/1046 u=[0.073, -0.098, 0.5, -0.012] cycle=0.086s
+[RT 02731] cruise_vtol t=356.67 h=9.96 NE=1167.17/1147.78 v=6.45 L7=1053/1052 u=[0.075, -0.111, 0.5, -0.01] cycle=0.075s
+[RT 02742] cruise_vtol t=357.77 h=10.00 NE=1172.18/1152.84 v=6.41 L7=1058/1057 u=[0.106, -0.081, 0.5, -0.017] cycle=0.094s
+[RT 02753] cruise_vtol t=358.87 h=9.96 NE=1177.04/1157.73 v=6.18 L7=1063/1063 u=[0.088, -0.083, 0.5, -0.013] cycle=0.085s
+[RT 02764] cruise_vtol t=359.97 h=9.97 NE=1181.79/1162.72 v=6.40 L7=1068/1067 u=[0.071, -0.108, 0.5, -0.008] cycle=0.069s
+[RT 02775] cruise_vtol t=361.06 h=9.98 NE=1186.70/1167.78 v=6.47 L7=1073/1073 u=[0.093, -0.097, 0.5, -0.015] cycle=0.062s
+[RT 02786] cruise_vtol t=362.16 h=9.97 NE=1191.62/1172.71 v=6.20 L7=1078/1077 u=[0.103, -0.071, 0.5, -0.015] cycle=0.077s
+[RT 02797] cruise_vtol t=363.26 h=10.00 NE=1196.37/1177.66 v=6.36 L7=1081/1081 u=[0.071, -0.106, 0.5, -0.008] cycle=0.064s
+[RT 02808] cruise_vtol t=364.36 h=10.00 NE=1201.31/1182.78 v=6.50 L7=1083/1083 u=[0.079, -0.112, 0.5, -0.014] cycle=0.085s
+[RT 02819] cruise_vtol t=365.46 h=10.00 NE=1206.26/1187.76 v=6.23 L7=1089/1088 u=[0.104, -0.071, 0.5, -0.016] cycle=0.072s
+[RT 02830] cruise_vtol t=366.55 h=10.02 NE=1210.95/1192.64 v=6.29 L7=1096/1096 u=[0.07, -0.103, 0.5, -0.009] cycle=0.066s
+[RT 02841] cruise_vtol t=367.66 h=9.96 NE=1215.88/1197.79 v=6.51 L7=1102/1102 u=[0.078, -0.114, 0.5, -0.013] cycle=0.079s
+[RT 02852] cruise_vtol t=368.75 h=9.98 NE=1220.80/1202.78 v=6.29 L7=1108/1107 u=[0.103, -0.075, 0.5, -0.017] cycle=0.103s
+[RT 02863] cruise_vtol t=369.85 h=9.97 NE=1225.55/1207.66 v=6.18 L7=1114/1114 u=[0.074, -0.097, 0.5, -0.011] cycle=0.094s
+[RT 02874] cruise_vtol t=370.95 h=9.98 NE=1230.35/1212.73 v=6.50 L7=1122/1121 u=[0.074, -0.115, 0.5, -0.01] cycle=0.076s
+[RT 02885] cruise_vtol t=372.05 h=9.97 NE=1235.34/1217.85 v=6.40 L7=1131/1130 u=[0.105, -0.08, 0.5, -0.015] cycle=0.072s
+[RT 02896] cruise_vtol t=373.15 h=9.95 NE=1240.13/1222.75 v=6.14 L7=1136/1135 u=[0.086, -0.081, 0.5, -0.013] cycle=0.084s
+[RT 02907] cruise_vtol t=374.24 h=9.97 NE=1244.77/1227.74 v=6.41 L7=1142/1141 u=[0.071, -0.11, 0.5, -0.01] cycle=0.076s
+[RT 02918] cruise_vtol t=375.34 h=9.97 NE=1249.71/1232.89 v=6.46 L7=1145/1145 u=[0.091, -0.098, 0.5, -0.016] cycle=0.061s
+[RT 02929] cruise_vtol t=376.44 h=10.01 NE=1254.54/1237.85 v=6.15 L7=1148/1148 u=[0.101, -0.069, 0.5, -0.014] cycle=0.080s
+[RT 02940] cruise_vtol t=377.55 h=9.95 NE=1259.23/1242.82 v=6.33 L7=1151/1151 u=[0.071, -0.106, 0.5, -0.009] cycle=0.072s
+[RT 02951] cruise_vtol t=378.65 h=9.96 NE=1264.12/1247.98 v=6.51 L7=1152/1152 u=[0.078, -0.114, 0.5, -0.014] cycle=0.087s
+[RT 02962] cruise_vtol t=379.74 h=9.96 NE=1268.98/1252.95 v=6.21 L7=1152/1152 u=[0.104, -0.073, 0.5, -0.015] cycle=0.078s
+[RT 02973] cruise_vtol t=380.85 h=9.96 NE=1273.70/1257.90 v=6.23 L7=1153/1153 u=[0.072, -0.101, 0.5, -0.01] cycle=0.065s
+[RT 02984] cruise_vtol t=381.94 h=9.96 NE=1278.45/1262.99 v=6.51 L7=1155/1154 u=[0.076, -0.114, 0.5, -0.012] cycle=0.087s
+[RT 02995] cruise_vtol t=383.04 h=10.00 NE=1283.38/1268.08 v=6.29 L7=1155/1155 u=[0.105, -0.077, 0.5, -0.016] cycle=0.078s
+[RT 03006] cruise_vtol t=384.14 h=9.95 NE=1288.09/1272.97 v=6.16 L7=1156/1155 u=[0.074, -0.098, 0.5, -0.012] cycle=0.097s
+[RT 03017] cruise_vtol t=385.23 h=10.00 NE=1292.82/1278.06 v=6.47 L7=1157/1157 u=[0.073, -0.113, 0.5, -0.01] cycle=0.082s
+[RT 03028] cruise_vtol t=386.33 h=10.03 NE=1297.74/1283.20 v=6.37 L7=1159/1159 u=[0.104, -0.08, 0.5, -0.016] cycle=0.070s
+[RT 03039] cruise_vtol t=387.43 h=9.98 NE=1302.47/1288.13 v=6.13 L7=1161/1160 u=[0.086, -0.083, 0.5, -0.012] cycle=0.064s
+[RT 03050] cruise_vtol t=388.52 h=9.98 NE=1307.09/1293.15 v=6.41 L7=1164/1163 u=[0.072, -0.11, 0.5, -0.01] cycle=0.079s
+[RT 03061] cruise_vtol t=389.62 h=10.00 NE=1312.00/1298.30 v=6.44 L7=1166/1165 u=[0.093, -0.098, 0.5, -0.016] cycle=0.099s
+[RT 03072] cruise_vtol t=390.72 h=9.93 NE=1316.82/1303.25 v=6.16 L7=1170/1170 u=[0.103, -0.07, 0.5, -0.014] cycle=0.086s
+[RT 03083] cruise_vtol t=391.82 h=9.98 NE=1321.49/1308.24 v=6.35 L7=1174/1173 u=[0.071, -0.106, 0.5, -0.008] cycle=0.073s
+[RT 03094] cruise_vtol t=392.92 h=9.98 NE=1326.36/1313.41 v=6.48 L7=1178/1178 u=[0.08, -0.113, 0.5, -0.015] cycle=0.060s
+[RT 03105] cruise_vtol t=394.02 h=9.97 NE=1331.22/1318.41 v=6.19 L7=1182/1182 u=[0.104, -0.07, 0.5, -0.016] cycle=0.112s
+[RT 03116] cruise_vtol t=395.12 h=9.97 NE=1335.87/1323.38 v=6.28 L7=1186/1186 u=[0.071, -0.103, 0.5, -0.009] cycle=0.099s
+[RT 03127] cruise_vtol t=396.21 h=9.94 NE=1340.64/1328.51 v=6.51 L7=1190/1190 u=[0.077, -0.114, 0.5, -0.013] cycle=0.091s
+[RT 03138] cruise_vtol t=397.31 h=9.98 NE=1345.52/1333.60 v=6.25 L7=1194/1194 u=[0.104, -0.073, 0.5, -0.016] cycle=0.109s
+[RT 03149] cruise_vtol t=398.41 h=9.97 NE=1350.17/1338.55 v=6.19 L7=1195/1195 u=[0.072, -0.098, 0.5, -0.01] cycle=0.134s
+[RT 03160] cruise_vtol t=399.51 h=9.96 NE=1354.89/1343.71 v=6.51 L7=1200/1200 u=[0.076, -0.114, 0.5, -0.012] cycle=0.090s
+[RT 03171] cruise_vtol t=400.61 h=9.96 NE=1359.80/1348.88 v=6.36 L7=1206/1206 u=[0.105, -0.078, 0.5, -0.016] cycle=0.076s
+[RT 03182] cruise_vtol t=401.71 h=10.00 NE=1364.48/1353.85 v=6.16 L7=1213/1213 u=[0.086, -0.082, 0.5, -0.011] cycle=0.098s
+[RT 03193] cruise_vtol t=402.81 h=10.00 NE=1369.15/1358.96 v=6.45 L7=1219/1219 u=[0.074, -0.112, 0.5, -0.01] cycle=0.114s
+[RT 03204] cruise_vtol t=403.90 h=9.97 NE=1374.01/1364.11 v=6.44 L7=1224/1223 u=[0.093, -0.097, 0.5, -0.017] cycle=0.106s
+[RT 03215] cruise_vtol t=405.00 h=9.98 NE=1378.76/1369.11 v=6.14 L7=1232/1231 u=[0.099, -0.067, 0.5, -0.013] cycle=0.069s
+[RT 03226] cruise_vtol t=406.10 h=9.97 NE=1383.35/1374.18 v=6.36 L7=1238/1237 u=[0.071, -0.107, 0.5, -0.009] cycle=0.080s
+[RT 03237] cruise_vtol t=407.20 h=9.94 NE=1388.19/1379.41 v=6.49 L7=1239/1238 u=[0.078, -0.113, 0.5, -0.016] cycle=0.072s
+[RT 03248] cruise_vtol t=408.30 h=9.98 NE=1392.99/1384.48 v=6.19 L7=1248/1248 u=[0.103, -0.068, 0.5, -0.015] cycle=0.088s
+[RT 03259] cruise_vtol t=409.40 h=9.96 NE=1397.59/1389.49 v=6.29 L7=1254/1253 u=[0.07, -0.102, 0.5, -0.009] cycle=0.077s
+[RT 03270] cruise_vtol t=410.50 h=9.97 NE=1402.33/1394.70 v=6.53 L7=1258/1258 u=[0.077, -0.115, 0.5, -0.013] cycle=0.071s
+[RT 03281] cruise_vtol t=411.60 h=9.97 NE=1407.19/1399.84 v=6.27 L7=1261/1261 u=[0.105, -0.075, 0.5, -0.017] cycle=0.058s
+[RT 03291] cruise_vtol t=412.59 h=9.97 NE=1411.34/1404.32 v=6.16 L7=1262/1262 u=[0.073, -0.097, 0.5, -0.011] cycle=0.087s
+[RT 03302] cruise_vtol t=413.70 h=9.96 NE=1416.05/1409.53 v=6.49 L7=1262/1262 u=[0.075, -0.112, 0.5, -0.011] cycle=0.038s
+[RT 03312] cruise_vtol t=414.70 h=9.99 NE=1420.49/1414.28 v=6.44 L7=1264/1264 u=[0.092, -0.095, 0.5, -0.017] cycle=0.060s
+[RT 03322] cruise_vtol t=415.69 h=9.99 NE=1424.75/1418.82 v=6.16 L7=1265/1265 u=[0.103, -0.069, 0.5, -0.014] cycle=0.082s
+[RT 03333] cruise_vtol t=416.79 h=10.00 NE=1429.35/1423.87 v=6.35 L7=1265/1265 u=[0.073, -0.105, 0.5, -0.009] cycle=0.038s
+[RT 03344] cruise_vtol t=417.89 h=9.97 NE=1434.17/1429.14 v=6.54 L7=1266/1266 u=[0.078, -0.113, 0.5, -0.014] cycle=0.027s
+[RT 03355] cruise_vtol t=418.98 h=9.96 NE=1438.98/1434.27 v=6.23 L7=1268/1268 u=[0.105, -0.072, 0.5, -0.015] cycle=0.045s
+[RT 03366] cruise_vtol t=420.08 h=9.94 NE=1443.58/1439.28 v=6.26 L7=1268/1268 u=[0.073, -0.1, 0.5, -0.01] cycle=0.034s
+[RT 03377] cruise_vtol t=421.18 h=9.98 NE=1448.30/1444.53 v=6.54 L7=1269/1269 u=[0.077, -0.113, 0.5, -0.012] cycle=0.025s
+[RT 03387] cruise_vtol t=422.17 h=10.00 NE=1452.68/1449.23 v=6.36 L7=1270/1270 u=[0.106, -0.078, 0.5, -0.017] cycle=0.045s
+[RT 03398] cruise_vtol t=423.27 h=10.01 NE=1457.32/1454.26 v=6.19 L7=1271/1271 u=[0.075, -0.097, 0.5, -0.012] cycle=0.034s
+[RT 03409] cruise_vtol t=424.37 h=10.00 NE=1461.94/1459.48 v=6.49 L7=1273/1273 u=[0.074, -0.112, 0.5, -0.01] cycle=0.024s
+[RT 03419] cruise_vtol t=425.37 h=9.99 NE=1466.34/1464.29 v=6.47 L7=1278/1277 u=[0.093, -0.097, 0.5, -0.016] cycle=0.045s
+[RT 03430] cruise_vtol t=426.47 h=9.96 NE=1471.06/1469.37 v=6.18 L7=1278/1278 u=[0.103, -0.07, 0.5, -0.014] cycle=0.036s
+[RT 03441] cruise_vtol t=427.56 h=9.97 NE=1475.58/1474.46 v=6.39 L7=1285/1284 u=[0.072, -0.109, 0.5, -0.008] cycle=0.025s
+[RT 03451] cruise_vtol t=428.57 h=9.98 NE=1479.96/1479.33 v=6.52 L7=1288/1288 u=[0.08, -0.115, 0.5, -0.014] cycle=0.046s
+[RT 03462] cruise_vtol t=429.66 h=9.95 NE=1484.68/1484.44 v=6.22 L7=1292/1291 u=[0.105, -0.073, 0.5, -0.016] cycle=0.037s
+[RT 03473] cruise_vtol t=430.76 h=9.97 NE=1489.21/1489.52 v=6.26 L7=1298/1297 u=[0.071, -0.103, 0.5, -0.01] cycle=0.023s
+[RT 03483] cruise_vtol t=431.76 h=9.96 NE=1493.43/1494.35 v=6.51 L7=1305/1304 u=[0.077, -0.116, 0.5, -0.012] cycle=0.046s
+[RT 03494] cruise_vtol t=432.86 h=9.95 NE=1498.20/1499.60 v=6.31 L7=1309/1309 u=[0.106, -0.078, 0.5, -0.017] cycle=0.033s
+[RT 03505] cruise_vtol t=433.96 h=9.98 NE=1502.74/1504.68 v=6.15 L7=1318/1317 u=[0.072, -0.097, 0.5, -0.011] cycle=0.024s
+[RT 03515] cruise_vtol t=434.95 h=9.94 NE=1506.80/1509.39 v=6.43 L7=1323/1322 u=[0.073, -0.112, 0.5, -0.01] cycle=0.046s
+[RT 03526] cruise_vtol t=436.05 h=9.96 NE=1511.53/1514.71 v=6.42 L7=1329/1328 u=[0.092, -0.096, 0.5, -0.017] cycle=0.032s
+[RT 03537] cruise_vtol t=437.15 h=9.96 NE=1516.12/1519.82 v=6.13 L7=1334/1334 u=[0.1, -0.067, 0.5, -0.014] cycle=0.024s
+[RT 03547] cruise_vtol t=438.15 h=9.97 NE=1520.15/1524.53 v=6.32 L7=1336/1336 u=[0.07, -0.104, 0.5, -0.009] cycle=0.045s
+[RT 03558] cruise_vtol t=439.25 h=9.94 NE=1524.80/1529.88 v=6.49 L7=1341/1341 u=[0.079, -0.112, 0.5, -0.015] cycle=0.032s
+[RT 03569] cruise_vtol t=440.35 h=9.98 NE=1529.48/1535.09 v=6.21 L7=1346/1345 u=[0.105, -0.071, 0.5, -0.016] cycle=0.026s
+[RT 03579] cruise_vtol t=441.35 h=9.99 NE=1533.55/1539.74 v=6.23 L7=1351/1351 u=[0.073, -0.1, 0.5, -0.01] cycle=0.044s
+[RT 03589] cruise_vtol t=442.35 h=9.99 NE=1537.69/1544.59 v=6.50 L7=1356/1355 u=[0.076, -0.114, 0.5, -0.01] cycle=0.074s
+[RT 03600] cruise_vtol t=443.45 h=10.01 NE=1542.38/1549.88 v=6.35 L7=1360/1360 u=[0.106, -0.079, 0.5, -0.017] cycle=0.087s
+[RT 03611] cruise_vtol t=444.55 h=9.99 NE=1546.89/1555.01 v=6.15 L7=1362/1362 u=[0.087, -0.083, 0.5, -0.013] cycle=0.078s
+[RT 03622] cruise_vtol t=445.65 h=9.97 NE=1551.35/1560.29 v=6.44 L7=1367/1366 u=[0.075, -0.112, 0.5, -0.011] cycle=0.096s
+[RT 03633] cruise_vtol t=446.75 h=9.97 NE=1556.04/1565.66 v=6.42 L7=1368/1368 u=[0.106, -0.084, 0.5, -0.017] cycle=0.084s
+[RT 03644] cruise_vtol t=447.85 h=9.99 NE=1560.57/1570.82 v=6.12 L7=1370/1369 u=[0.102, -0.07, 0.5, -0.013] cycle=0.078s
+[RT 03655] cruise_vtol t=448.94 h=10.00 NE=1564.91/1576.01 v=6.36 L7=1372/1372 u=[0.072, -0.108, 0.5, -0.009] cycle=0.061s
+[RT 03666] cruise_vtol t=450.04 h=9.95 NE=1569.50/1581.43 v=6.47 L7=1374/1374 u=[0.079, -0.114, 0.5, -0.015] cycle=0.082s
+[RT 03677] cruise_vtol t=451.14 h=9.97 NE=1574.04/1586.68 v=6.15 L7=1378/1377 u=[0.104, -0.07, 0.5, -0.016] cycle=0.100s
+[RT 03688] cruise_vtol t=452.23 h=9.96 NE=1578.36/1591.88 v=6.26 L7=1379/1379 u=[0.072, -0.102, 0.5, -0.01] cycle=0.123s
+[RT 03699] cruise_vtol t=453.33 h=10.00 NE=1582.86/1597.33 v=6.50 L7=1382/1382 u=[0.077, -0.114, 0.5, -0.014] cycle=0.077s
+[RT 03710] cruise_vtol t=454.43 h=9.97 NE=1587.41/1602.71 v=6.24 L7=1385/1384 u=[0.104, -0.074, 0.5, -0.016] cycle=0.098s
+[RT 03721] cruise_vtol t=455.52 h=9.99 NE=1591.69/1607.87 v=6.17 L7=1386/1385 u=[0.073, -0.097, 0.5, -0.011] cycle=0.085s
+[RT 03732] cruise_vtol t=456.63 h=9.94 NE=1596.11/1613.34 v=6.49 L7=1387/1387 u=[0.076, -0.113, 0.5, -0.012] cycle=0.074s
+[RT 03743] cruise_vtol t=457.72 h=9.96 NE=1600.65/1618.74 v=6.36 L7=1387/1387 u=[0.107, -0.08, 0.5, -0.017] cycle=0.062s
+[RT 03754] cruise_vtol t=458.82 h=9.98 NE=1605.02/1623.99 v=6.15 L7=1390/1390 u=[0.089, -0.083, 0.5, -0.012] cycle=0.083s
+[RT 03765] cruise_vtol t=459.92 h=9.96 NE=1609.33/1629.38 v=6.43 L7=1392/1392 u=[0.075, -0.111, 0.5, -0.011] cycle=0.102s
+[RT 03776] cruise_vtol t=461.02 h=9.95 NE=1613.84/1634.90 v=6.44 L7=1396/1396 u=[0.094, -0.097, 0.5, -0.017] cycle=0.093s
+[RT 03787] cruise_vtol t=462.12 h=9.99 NE=1618.22/1640.24 v=6.16 L7=1403/1403 u=[0.103, -0.069, 0.5, -0.014] cycle=0.108s
+[RT 03798] cruise_vtol t=463.22 h=10.01 NE=1622.43/1645.64 v=6.38 L7=1411/1410 u=[0.074, -0.109, 0.5, -0.009] cycle=0.099s
+[RT 03809] cruise_vtol t=464.32 h=9.98 NE=1626.88/1651.21 v=6.48 L7=1414/1414 u=[0.096, -0.101, 0.5, -0.016] cycle=0.084s
+[RT 03820] cruise_vtol t=465.41 h=9.98 NE=1631.25/1656.57 v=6.20 L7=1419/1418 u=[0.108, -0.073, 0.5, -0.016] cycle=0.071s
+[RT 03831] cruise_vtol t=466.51 h=9.96 NE=1635.41/1662.01 v=6.33 L7=1424/1423 u=[0.076, -0.107, 0.5, -0.008] cycle=0.095s
+[RT 03842] cruise_vtol t=467.61 h=9.90 NE=1639.76/1667.58 v=6.47 L7=1429/1428 u=[0.102, -0.101, 0.538, -0.016] cycle=0.080s
+[RT 03853] cruise_vtol t=468.71 h=9.96 NE=1644.10/1673.08 v=6.26 L7=1436/1435 u=[0.097, -0.089, 0.5, -0.017] cycle=0.071s
+[RT 03864] cruise_vtol t=469.81 h=9.97 NE=1648.15/1678.59 v=6.22 L7=1443/1442 u=[0.095, -0.089, 0.5, -0.009] cycle=0.090s
+[RT 03875] cruise_vtol t=470.91 h=9.95 NE=1652.25/1684.22 v=6.45 L7=1449/1449 u=[0.087, -0.116, 0.5, -0.013] cycle=0.076s
+[RT 03886] cruise_vtol t=472.00 h=9.99 NE=1656.36/1689.95 v=6.39 L7=1452/1451 u=[0.119, -0.087, 0.5, -0.016] cycle=0.099s
+[RT 03897] cruise_vtol t=473.10 h=10.01 NE=1660.25/1695.62 v=6.19 L7=1457/1456 u=[0.108, -0.102, 0.5, -0.016] cycle=0.085s
+[RT 03908] cruise_vtol t=474.20 h=9.98 NE=1663.94/1701.47 v=6.37 L7=1463/1462 u=[0.062, -0.265, 0.5, -0.011] cycle=0.077s
+[RT 03919] cruise_vtol t=475.30 h=9.93 NE=1667.51/1707.10 v=5.46 L7=1468/1468 u=[-0.073, -0.31, 0.536, -0.017] cycle=0.061s
+[RT 03930] cruise_vtol t=476.40 h=9.98 NE=1669.94/1711.38 v=3.51 L7=1476/1476 u=[-0.106, -0.307, 0.5, -0.015] cycle=0.080s
+[RT 03941] cruise_vtol t=477.51 h=9.98 NE=1671.18/1714.23 v=2.28 L7=1480/1479 u=[-0.101, -0.307, 0.5, -0.014] cycle=0.072s
+[RT 03952] cruise_vtol t=478.60 h=9.98 NE=1671.90/1716.11 v=1.37 L7=1488/1487 u=[-0.111, -0.306, 0.5, -0.015] cycle=0.088s
+[RT 03963] cruise_vtol t=479.70 h=9.94 NE=1671.90/1716.92 v=0.48 L7=1493/1493 u=[-0.121, -0.303, 0.5, -0.011] cycle=0.081s
+[RT 03974] cruise_vtol t=480.80 h=9.80 NE=1670.93/1716.22 v=1.83 L7=1495/1494 u=[-0.108, -0.211, 0.547, -0.009] cycle=0.096s
+[RT 03985] cruise_vtol t=481.90 h=9.68 NE=1669.28/1714.20 v=2.78 L7=1497/1496 u=[-0.12, -0.089, 0.557, -0.005] cycle=0.085s
+[RT 03996] cruise_vtol t=483.00 h=9.59 NE=1667.42/1711.60 v=2.92 L7=1498/1497 u=[-0.069, 0.127, 0.565, 0.004] cycle=0.076s
+[RT 04007] cruise_vtol t=484.09 h=9.62 NE=1665.94/1708.88 v=2.76 L7=1499/1499 u=[0.08, 0.178, 0.562, 0.011] cycle=0.063s
+[RT 04018] cruise_vtol t=485.18 h=9.70 NE=1664.70/1706.17 v=2.68 L7=1500/1500 u=[0.114, 0.227, 0.555, 0.023] cycle=0.082s
+[RT 04029] cruise_vtol t=486.28 h=9.86 NE=1663.76/1703.49 v=2.42 L7=1503/1503 u=[0.148, 0.264, 0.542, 0.028] cycle=0.072s
+[RT 04040] cruise_vtol t=487.38 h=10.12 NE=1663.19/1701.25 v=1.77 L7=1506/1505 u=[0.172, 0.27, 0.46, 0.037] cycle=0.092s
+[RT 04051] cruise_vtol t=488.48 h=10.38 NE=1663.15/1699.69 v=1.15 L7=1508/1507 u=[0.191, 0.257, 0.438, 0.042] cycle=0.109s
+[RT 04062] cruise_vtol t=489.58 h=10.60 NE=1663.44/1698.75 v=0.70 L7=1509/1509 u=[0.199, 0.245, 0.42, 0.047] cycle=0.096s
+[RT 04073] cruise_vtol t=490.68 h=10.65 NE=1663.82/1698.30 v=0.41 L7=1512/1511 u=[0.199, 0.232, 0.415, 0.048] cycle=0.087s
+[RT 04084] cruise_vtol t=491.77 h=10.64 NE=1664.26/1698.35 v=0.56 L7=1514/1514 u=[0.191, 0.207, 0.416, 0.047] cycle=0.103s
+[RT 04095] cruise_vtol t=492.87 h=10.53 NE=1664.90/1698.93 v=1.01 L7=1517/1516 u=[0.204, 0.142, 0.425, 0.046] cycle=0.096s
+[RT 04106] cruise_vtol t=493.97 h=10.32 NE=1665.53/1699.92 v=1.10 L7=1519/1519 u=[0.181, 0.12, 0.443, 0.048] cycle=0.080s
+[RT 04117] cruise_vtol t=495.07 h=10.12 NE=1665.80/1701.03 v=1.02 L7=1522/1522 u=[0.147, 0.126, 0.46, 0.046] cycle=0.068s
+[RT 04128] cruise_vtol t=496.17 h=9.95 NE=1665.99/1702.18 v=1.19 L7=1527/1527 u=[0.143, 0.083, 0.5, 0.039] cycle=0.090s
+[RT 04139] cruise_vtol t=497.27 h=9.82 NE=1666.36/1703.57 v=1.37 L7=1533/1532 u=[0.124, -0.071, 0.546, 0.038] cycle=0.082s
+[RT 04150] cruise_vtol t=498.36 h=9.77 NE=1666.73/1704.93 v=1.19 L7=1542/1541 u=[0.112, -0.088, 0.55, 0.034] cycle=0.098s
+[RT 04161] cruise_vtol t=499.46 h=9.75 NE=1667.07/1706.14 v=1.12 L7=1548/1548 u=[0.077, -0.137, 0.551, 0.031] cycle=0.057s
+[RT 04172] cruise_vtol t=500.56 h=9.77 NE=1667.63/1707.16 v=0.98 L7=1553/1552 u=[0.085, -0.159, 0.549, 0.026] cycle=0.071s
+[RT 04183] vertical_landing t=501.66 h=9.79 NE=1668.24/1707.87 v=0.68 L7=1558/1558 u=[0.089, -0.166, 0.32, 0.023] cycle=0.095s
+[RT 04194] vertical_landing t=502.76 h=9.30 NE=1668.65/1708.25 v=0.86 L7=1564/1564 u=[0.092, -0.165, 0.32, 0.025] cycle=0.080s
+[RT 04205] vertical_landing t=503.86 h=8.60 NE=1668.97/1708.39 v=0.53 L7=1570/1570 u=[0.099, -0.168, 0.32, 0.023] cycle=0.068s
+[RT 04216] vertical_landing t=504.96 h=8.02 NE=1669.28/1708.48 v=0.72 L7=1580/1579 u=[0.102, -0.176, 0.32, 0.02] cycle=0.061s
+[RT 04227] vertical_landing t=506.05 h=7.35 NE=1669.53/1708.52 v=0.59 L7=1585/1584 u=[0.104, -0.171, 0.32, 0.018] cycle=0.076s
+[RT 04238] vertical_landing t=507.15 h=6.66 NE=1669.52/1708.36 v=0.69 L7=1587/1587 u=[0.105, -0.153, 0.32, 0.018] cycle=0.064s
+[RT 04249] vertical_landing t=508.25 h=6.00 NE=1669.29/1708.05 v=0.70 L7=1592/1591 u=[0.104, -0.14, 0.32, 0.019] cycle=0.084s
+[RT 04260] vertical_landing t=509.35 h=5.32 NE=1669.05/1707.78 v=0.69 L7=1597/1597 u=[0.104, -0.14, 0.32, 0.017] cycle=0.072s
+[RT 04271] vertical_landing t=510.46 h=4.60 NE=1668.89/1707.61 v=0.66 L7=1606/1605 u=[0.103, -0.137, 0.32, 0.017] cycle=0.067s
+[RT 04282] vertical_landing t=511.55 h=3.89 NE=1668.64/1707.41 v=0.72 L7=1612/1612 u=[0.127, -0.095, 0.32, 0.018] cycle=0.081s
+[RT 04293] vertical_landing t=512.65 h=3.23 NE=1668.22/1707.24 v=0.75 L7=1614/1614 u=[0.087, -0.115, 0.32, 0.021] cycle=0.070s
+[RT 04304] vertical_landing t=513.75 h=2.52 NE=1667.91/1707.29 v=0.62 L7=1615/1615 u=[0.102, -0.109, 0.32, 0.021] cycle=0.091s
+[RT 04315] vertical_landing t=514.85 h=1.87 NE=1667.78/1707.23 v=0.65 L7=1617/1616 u=[0.117, -0.087, 0.32, 0.016] cycle=0.111s
+[RT 04326] landing_flare t=515.95 h=1.21 NE=1667.49/1707.18 v=0.62 L7=1620/1620 u=[0.0, 0.0, 0.423, 0.0] cycle=0.096s
+[RT 04337] landing_flare t=517.04 h=0.95 NE=1667.36/1707.18 v=0.13 L7=1622/1621 u=[0.0, 0.0, 0.423, 0.0] cycle=0.085s
+[RT 04348] landing_flare t=518.14 h=0.76 NE=1667.65/1707.17 v=0.46 L7=1623/1622 u=[0.0, 0.0, 0.423, 0.0] cycle=0.074s
+[RT 04359] landing_flare t=519.25 h=0.54 NE=1668.17/1707.11 v=0.58 L7=1623/1623 u=[0.0, 0.0, 0.423, 0.0] cycle=0.094s
+[RT 04370] landing_flare t=520.33 h=0.34 NE=1668.84/1706.89 v=0.79 L7=1623/1623 u=[0.0, 0.0, 0.423, 0.0] cycle=0.081s
+[RT 04381] landing_flare t=521.43 h=0.20 NE=1669.72/1706.57 v=0.79 L7=1624/1623 u=[0.0, 0.0, 0.423, 0.0] cycle=0.074s
+[RT 04392] contact_settle t=522.53 h=0.17 NE=1670.12/1706.36 v=0.15 L7=1625/1624 u=[0.0, 0.0, 0.0, 0.0] cycle=0.087s
+[RT 04403] contact_settle t=523.63 h=0.18 NE=1670.16/1706.20 v=0.15 L7=1628/1627 u=[0.0, 0.0, 0.0, 0.0] cycle=0.079s
+[RT 04414] contact_settle t=524.73 h=0.18 NE=1670.20/1706.04 v=0.15 L7=1633/1632 u=[0.0, 0.0, 0.0, 0.0] cycle=0.064s
+[RT 04425] contact_settle t=525.82 h=0.17 NE=1670.23/1705.88 v=0.15 L7=1639/1639 u=[0.0, 0.0, 0.0, 0.0] cycle=0.085s
+[RT 04436] contact_settle t=526.92 h=0.16 NE=1670.27/1705.71 v=0.15 L7=1644/1643 u=[0.0, 0.0, 0.0, 0.0] cycle=0.074s
+REALTIME_RESULT ../integration_realtime_20261104_1855/attempt20_full_route/MISSION_RESULT.json PASS 

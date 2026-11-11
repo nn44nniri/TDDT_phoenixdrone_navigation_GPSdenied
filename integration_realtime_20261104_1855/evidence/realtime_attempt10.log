@@ -1,0 +1,12 @@
+[nav-online] offline knowledge mode=FORCE_REUSE manifest=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/knowledge/handoff/offline_latest.json.gz
+[L6CLIENT] Layer-6 stack/GUI not detected; starting it ...
+Opening Terminal 1: ArduPilot SITL
+Opening Terminal 2: Environment Adapter
+Opening Terminal 3: Phoenix GUI control gateway
+Opening Terminal 4: JSBSim - Native backend observer
+Traceback (most recent call last):
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/realtime.py", line 69, in run_realtime_mission
+    if not ready.get('ok'):raise RuntimeError('Native startup: '+str({k:ready.get(k) for k in ('stage','error')}))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Native startup: {'stage': 'stack_start', 'error': 'RuntimeError(\'native terminal failed: [{\\\'error\\\': \\\'RuntimeError("native component exited: [(\\\\\\\'environment\\\\\\\', 1)]")\\\', \\\'monotonic\\\': 44042.601475466}]\')'}
+REALTIME_RESULT ../integration_realtime_20261104_1855/attempt10_sensor_ekf_hover/MISSION_RESULT.json FAIL RuntimeError('Native startup: {\'stage\': \'stack_start\', \'error\': \'RuntimeError(\\\'native terminal failed: [{\\\\\\\'error\\\\\\\': \\\\\\\'RuntimeError("native component exited: [(\\\\\\\\\\\\\\\'environment\\\\\\\\\\\\\\\', 1)]")\\\\\\\', \\\\\\\'monotonic\\\\\\\': 44042.601475466}]\\\')\'}')
