@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="http://jsbsim.sf.net/JSBSimScript.xsl"?>
+<runscript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://jsbsim.sf.net/JSBSimScript.xsd"
+    name="Testing phoenix_v3">
+
+  <description>
+    Phoenix dual-rotor tailsitter under ArduPilot control
+  </description>
+
+  <use aircraft="phoenix_v3" initialize="reset"/>
+
+  <input port="5935"/>
+
+  <run start="0" end="10000000" dt="0.000833">
+    <property value="0"> simulation/notify-time-trigger </property>
+  </run>
+
+</runscript>
