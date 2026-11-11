@@ -1,0 +1,12 @@
+{
+  "schema": "layer4-topology-dfa-v1",
+  "policy": "reachable bounded enumeration",
+  "events": [
+    "nominal",
+    "drop_nonmandatory_edge"
+  ],
+  "commit": false,
+  "note": "Runtime modes are instantiated from the current Layer-3 topology; this file documents the allowed transition class.",
+  "nominal_probability": 0.7,
+  "transition_policy": "G_nominal --drop_nonmandatory_edge--> G_drop_edge; mandatory edges are unreachable by drop event"
+}

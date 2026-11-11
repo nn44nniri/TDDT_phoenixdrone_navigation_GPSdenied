@@ -1,0 +1,126 @@
+{
+  "schema": "TDDT-Phoenix-ground-alignment-v1",
+  "revision": "phoenix-fourfoot-r3.02-v1",
+  "parent_reference_revision": "phoenix-fourfoot-r3.01-v1",
+  "geometry": {
+    "schema": "TDDT-Phoenix-ground-geometry-v1",
+    "revision": "phoenix-fourfoot-r3.02-v1",
+    "reference_aircraft_sha256": "9118bfac6cb1bbaa05142f1c0f419fe570414be8b1dbdeffb591e7b898f64da9",
+    "unit": "m",
+    "body_frame": "BODY_FRD_CG",
+    "structural_frame": "JSBSIM_AFT_RIGHT_UP",
+    "cg_structural_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "position_origin": "CG",
+    "cg_height_agl_at_reset_m": 0.1410258217081318,
+    "reset_pitch_deg": 89.0,
+    "terrain_vertical_datum_verified": false,
+    "ground_load_bearing_verified": false,
+    "contacts": [
+      {
+        "name": "TAIL_FOOT_L1",
+        "type": "STRUCTURE",
+        "structural_m": [
+          0.14,
+          -0.28,
+          0.06
+        ],
+        "body_frd_m": [
+          -0.14,
+          -0.28,
+          -0.06
+        ],
+        "spring_coeff_lbs_per_ft": 12.0,
+        "damping_coeff_lbs_per_ft_per_s": 2.0
+      },
+      {
+        "name": "TAIL_FOOT_L2",
+        "type": "STRUCTURE",
+        "structural_m": [
+          0.14,
+          -0.28,
+          -0.06
+        ],
+        "body_frd_m": [
+          -0.14,
+          -0.28,
+          0.06
+        ],
+        "spring_coeff_lbs_per_ft": 12.0,
+        "damping_coeff_lbs_per_ft_per_s": 2.0
+      },
+      {
+        "name": "TAIL_FOOT_R1",
+        "type": "STRUCTURE",
+        "structural_m": [
+          0.14,
+          0.28,
+          0.06
+        ],
+        "body_frd_m": [
+          -0.14,
+          0.28,
+          -0.06
+        ],
+        "spring_coeff_lbs_per_ft": 12.0,
+        "damping_coeff_lbs_per_ft_per_s": 2.0
+      },
+      {
+        "name": "TAIL_FOOT_R2",
+        "type": "STRUCTURE",
+        "structural_m": [
+          0.14,
+          0.28,
+          -0.06
+        ],
+        "body_frd_m": [
+          -0.14,
+          0.28,
+          0.06
+        ],
+        "spring_coeff_lbs_per_ft": 12.0,
+        "damping_coeff_lbs_per_ft_per_s": 2.0
+      }
+    ]
+  },
+  "files": {
+    "phoenix_v3.xml": {
+      "sha256": "9118bfac6cb1bbaa05142f1c0f419fe570414be8b1dbdeffb591e7b898f64da9",
+      "bytes": 12259
+    },
+    "reset.xml": {
+      "sha256": "a91704c6e5a27f075fab4e5b3b919e95ad794f1bb34da595e933c65031bdfd02",
+      "bytes": 464
+    },
+    "native_reset_alignment.patch": {
+      "sha256": "af179e9fa10441f039cf0e4a1deae675fb4dd49ba8fb1f1dc449173a9bdb8e3c",
+      "bytes": 628
+    },
+    "environment_geometry_alignment.patch": {
+      "sha256": "7be6ad0b5130943f1219434081540dcd8c43732984ab36aaa6f0fdd43e8a7e82",
+      "bytes": 3286
+    }
+  },
+  "native_bridge_before_sha256": "cb4f3d8d10f6f3d19fd884d101c959f0518dc080ca5dc3f7c2ee528ca0ea59bf",
+  "source_CG_AGL_m": 0.08,
+  "aligned_CG_AGL_m": 0.1410258217081318,
+  "legacy_TDOC_CG_AGL_m": 0.24,
+  "deployment_step": "R3.03",
+  "ground_load_test_step": "R3.04",
+  "flight_ready": false,
+  "actuation_authority": false,
+  "native_bridge_after_sha256": "ba81eaa1cb0bc8b4a3b4bdf82fb26ca8c03e4e2d24a1615a20b56c19dc28d788",
+  "environment_adapter_sources": {
+    "phoenix_env_adapter/vehicle.py": {
+      "before_sha256": "74275618ff912190dead1ad6f8b813bc65c692e2785bb487b2c902c7f82e784a",
+      "after_sha256": "f69a009a74e1a0d293737fcc42739ebc1aa0ef5bab12f14bc68b4dbf9cd8cafb"
+    },
+    "phoenix_env_adapter/prepare.py": {
+      "before_sha256": "e1469f167004e92ea5449e9b1a77d937bef006cf7f4a2e03e614fe1ac1f449de",
+      "after_sha256": "e2e6e433dfb66208a550a11a456cc616aaed2341674663489d705324780eb172"
+    }
+  }
+}

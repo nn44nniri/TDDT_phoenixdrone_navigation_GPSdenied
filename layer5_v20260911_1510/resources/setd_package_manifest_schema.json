@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tddt-layer5-setd-package-manifest-v2",
+  "title": "Multi-file SETD-KStore package manifest",
+  "type": "object",
+  "required": ["schema", "package_id", "state", "logical_content_sha256", "components", "layout", "loadable"],
+  "properties": {
+    "schema": {"const": "SETD-package-manifest-v2"},
+    "package_id": {"type": "string"},
+    "state": {"const": "COMMITTED"},
+    "logical_content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "components": {"type": "array", "items": {"type": "object", "required": ["key", "kind", "logical_sha256", "files"]}},
+    "layout": {"const": "multi-file-sharded"},
+    "raw_training_trajectory_in_setd": {"const": false},
+    "loadable": {"const": true}
+  }
+}

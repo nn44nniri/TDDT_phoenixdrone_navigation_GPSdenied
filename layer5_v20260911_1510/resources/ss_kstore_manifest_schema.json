@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tddt-layer5-ss-kstore-manifest-v2",
+  "title": "Segmented SS-KStore manifest",
+  "type": "object",
+  "required": ["schema", "episode_id", "last_sequence", "last_hash", "segments", "committed"],
+  "properties": {
+    "schema": {"const": "SS-KStore-manifest-v2"},
+    "episode_id": {"type": ["string", "null"]},
+    "last_sequence": {"type": "integer", "minimum": 0},
+    "last_hash": {"type": ["string", "null"]},
+    "segments": {"type": "array", "items": {"type": "object", "required": ["file", "records", "bytes", "sha256"]}},
+    "checkpoint": {"type": ["object", "null"]},
+    "committed": {"const": true}
+  }
+}

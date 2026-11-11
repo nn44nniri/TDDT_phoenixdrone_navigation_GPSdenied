@@ -1,0 +1,14 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"tddt-layer4-result-min-v1",
+  "type":"object",
+  "required":["snapshot_version","snapshot_hash","candidates","verified_candidates","actuator_command","network_commit"],
+  "properties":{
+    "actuator_command":{"const":false},
+    "network_commit":{"const":false},
+    "snapshot_version":{"type":"string","minLength":1},
+    "snapshot_hash":{"type":"string","minLength":1},
+    "candidates":{"type":"array"},
+    "verified_candidates":{"type":"array"}
+  }
+}

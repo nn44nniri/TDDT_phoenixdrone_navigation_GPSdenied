@@ -1,0 +1,49 @@
+{
+  "actuator_command": false,
+  "network_commit": false,
+  "snapshot_version": "TEST-L3-1",
+  "snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "provenance": {"test_fixture": true, "purpose": "unit/integration testing only; not flight evidence"},
+  "verified_candidates": [
+    {"candidate_id": "TEST-C1"},
+    {"candidate_id": "TEST-C2"}
+  ],
+  "candidates": [
+    {
+      "candidate_id": "TEST-C1",
+      "scenario_id": "S1",
+      "snapshot_version": "TEST-L3-1",
+      "snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "actions": [[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0]],
+      "logical_actions": [[0.10,-0.05,0.55,0.0],[0.10,-0.05,0.55,0.0]],
+      "objective_vector": {"mission": 1.0,"time": 1.0,"energy": 0.5,"risk": 0.01,"uncertainty": 0.1,"consistency": 0.02,"margin": 0.0},
+      "normalized_objectives": {"mission": 0.1,"time": 0.1,"energy": 0.05,"risk": 0.01,"uncertainty": 0.01,"consistency": 0.01,"margin": 0.0},
+      "network_trajectory": [{"J_C": 0.02,"mu": 0.95,"W":{"MESA_NAV":0.4,"WingMPET":0.4,"MicroMetTwin":0.2},"K":{},"G":{"mode":"nominal"}},{"J_C":0.03,"mu":0.93,"W":{},"K":{},"G":{}}],
+      "uncertainty": [[[0.1,0.0],[0.0,0.1]],[[0.1,0.0],[0.0,0.1]]],
+      "feasible": true,
+      "violation_probability": 0.01,
+      "verified": true,
+      "candidate_verified": true,
+      "verification": {"executed": true,"verified": true,"candidate_verified": true,"F_full": true,"chance_safe": true,"objective_safe": true,"adapter": "TEST_FIXTURE"},
+      "provenance": {"test_fixture": true,"phoenix_logical_actions_source": "explicit test vector"}
+    },
+    {
+      "candidate_id": "TEST-C2",
+      "scenario_id": "S2",
+      "snapshot_version": "TEST-L3-1",
+      "snapshot_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "actions": [[0.0,0.0,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0]],
+      "logical_actions": [[0.05,-0.02,0.50,0.0],[0.05,-0.02,0.50,0.0]],
+      "objective_vector": {"mission": 2.0,"time": 2.0,"energy": 0.7,"risk": 0.04,"uncertainty": 0.2,"consistency": 0.03,"margin": 0.0},
+      "normalized_objectives": {"mission": 0.5,"time": 0.5,"energy": 0.2,"risk": 0.4,"uncertainty": 0.2,"consistency": 0.2,"margin": 0.1},
+      "network_trajectory": [{"J_C": 0.03,"mu": 0.90,"W":{},"K":{},"G":{}},{"J_C":0.04,"mu":0.88,"W":{},"K":{},"G":{}}],
+      "uncertainty": [[[0.2,0.0],[0.0,0.2]],[[0.2,0.0],[0.0,0.2]]],
+      "feasible": true,
+      "violation_probability": 0.04,
+      "verified": true,
+      "candidate_verified": true,
+      "verification": {"executed": true,"verified": true,"candidate_verified": true,"F_full": true,"chance_safe": true,"objective_safe": true,"adapter": "TEST_FIXTURE"},
+      "provenance": {"test_fixture": true}
+    }
+  ]
+}

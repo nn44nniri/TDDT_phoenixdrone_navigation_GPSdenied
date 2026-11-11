@@ -1,0 +1,38 @@
+{
+  "test": "TDDT_STAGE4_LAYER4_NATIVE_CONTROLLER_GUARD",
+  "schema": "TDDT-Stage4-repair-results-v1",
+  "scope": "LOCAL_SOURCE_AND_FAIL_CLOSED_ONLY",
+  "source_package": "TDDT_integrated_fix_v5.tar.gz, internal root TDDT_integrated_fix_v4",
+  "positive_local_tests": 9,
+  "positive_local_status": "PASS",
+  "broad_suite_collected": 133,
+  "broad_suite_passed": 131,
+  "broad_suite_failed": 2,
+  "broad_suite_failed_reason": "unavailable external Boulder operational DEM at packaging environment; no synthetic map substituted",
+  "broad_suite_failed_tests": [
+    "test_authoritative_agl_remains_usable",
+    "test_operational_terrain_reuses_exact_dem_content_cache"
+  ],
+  "broad_suite_site_status": "PENDING",
+  "native_controller_replay_implemented": false,
+  "native_controller_certified": false,
+  "flight_authorized": false,
+  "source_changes": [
+    "native_controller_contract.py",
+    "verification.py",
+    "multifidelity.py",
+    "engine.py",
+    "tests/test_stage4_native_controller_boundary.py",
+    "scripts/check_stage4_native_readiness.py",
+    "scripts/test_stage4_local.sh"
+  ],
+  "unchanged_external_assets": [
+    "FMUs",
+    "SARG",
+    "CRP",
+    "Climate forcing",
+    "FlightStack",
+    "TDOC runtime"
+  ],
+  "native_execution_certification_blocker": "native_pilot_controller_prediction_unavailable"
+}

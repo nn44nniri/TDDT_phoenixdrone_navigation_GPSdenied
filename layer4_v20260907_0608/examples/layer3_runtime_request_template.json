@@ -1,0 +1,212 @@
+{
+  "reference_time_s": 0.001,
+  "regime_id": 3,
+  "stage": "cruise",
+  "mesa_operation": 5,
+  "mesa_inputs": {
+    "dt": {
+      "value": 0.01,
+      "unit": "s",
+      "frame": "SCALAR",
+      "semantic": "dt",
+      "uncertainty": null,
+      "source": "examples/runtime_request.json",
+      "provenance": {
+        "origin": "Layer3 example",
+        "contract": "explicit TDOC envelope"
+      }
+    }
+  },
+  "wing_operation": 4,
+  "wing_inputs": {
+    "state_x": {
+      "value": 0.0,
+      "unit": "m",
+      "frame": "ENU",
+      "semantic": "state_x",
+      "uncertainty": null,
+      "source": "examples/runtime_request.json",
+      "provenance": {
+        "origin": "Layer3 example",
+        "contract": "explicit TDOC envelope"
+      }
+    },
+    "state_y": {
+      "value": 0.0,
+      "unit": "m",
+      "frame": "ENU",
+      "semantic": "state_y",
+      "uncertainty": null,
+      "source": "examples/runtime_request.json",
+      "provenance": {
+        "origin": "Layer3 example",
+        "contract": "explicit TDOC envelope"
+      }
+    },
+    "state_h": {
+      "value": 1800.0,
+      "unit": "m",
+      "frame": "ENU",
+      "semantic": "state_h",
+      "uncertainty": null,
+      "source": "examples/runtime_request.json",
+      "provenance": {
+        "origin": "Layer3 example",
+        "contract": "explicit TDOC envelope"
+      }
+    },
+    "air_velocity_x": {
+      "value": 13.0,
+      "unit": "m/s",
+      "frame": "ENU",
+      "semantic": "air_velocity_x",
+      "uncertainty": null,
+      "source": "examples/runtime_request.json",
+      "provenance": {
+        "origin": "Layer3 example",
+        "contract": "explicit TDOC envelope"
+      }
+    },
+    "air_velocity_y": {
+      "value": 0.5,
+      "unit": "m/s",
+      "frame": "ENU",
+      "semantic": "air_velocity_y",
+      "uncertainty": null,
+      "source": "examples/runtime_request.json",
+      "provenance": {
+        "origin": "Layer3 example",
+        "contract": "explicit TDOC envelope"
+      }
+    },
+    "air_velocity_h": {
+      "value": 0.0,
+      "unit": "m/s",
+      "frame": "ENU",
+      "semantic": "air_velocity_h",
+      "uncertainty": null,
+      "source": "examples/runtime_request.json",
+      "provenance": {
+        "origin": "Layer3 example",
+        "contract": "explicit TDOC envelope"
+      }
+    }
+  },
+  "climate": {
+    "time": {
+      "value": "2026-08-24T11:00:00+00:00",
+      "unit": "ISO8601",
+      "frame": "SCALAR",
+      "semantic": "time",
+      "uncertainty": null,
+      "source": "examples/runtime_request.json",
+      "provenance": {
+        "origin": "Layer3 example",
+        "contract": "explicit TDOC envelope"
+      },
+      "time_reference": "UTC"
+    },
+    "latitude": {
+      "value": 40.017498782173554,
+      "unit": "deg",
+      "frame": "WGS84",
+      "semantic": "latitude",
+      "uncertainty": null,
+      "source": "examples/runtime_request.json",
+      "provenance": {
+        "origin": "Layer3 example",
+        "contract": "explicit TDOC envelope"
+      }
+    },
+    "longitude": {
+      "value": -105.28999780562658,
+      "unit": "deg",
+      "frame": "WGS84",
+      "semantic": "longitude",
+      "uncertainty": null,
+      "source": "examples/runtime_request.json",
+      "provenance": {
+        "origin": "Layer3 example",
+        "contract": "explicit TDOC envelope"
+      }
+    },
+    "elevation_ground_level": {
+      "value": 100.0,
+      "unit": "m",
+      "frame": "AGL",
+      "semantic": "elevation_ground_level",
+      "uncertainty": null,
+      "source": "examples/runtime_request.json",
+      "provenance": {
+        "origin": "Layer3 example",
+        "contract": "explicit TDOC envelope"
+      }
+    }
+  },
+  "context": {
+    "context_id": "boulder-demo",
+    "target_enu_m": {
+      "value": [
+        100.0,
+        0.0,
+        1800.0
+      ],
+      "unit": "m",
+      "frame": "ENU",
+      "semantic": "target_position",
+      "uncertainty": null,
+      "source": "examples/runtime_request.json",
+      "provenance": {
+        "origin": "Layer3 example",
+        "contract": "explicit TDOC envelope"
+      }
+    },
+    "local_relief_m": 20.0,
+    "building_height_m": 0.0,
+    "magnetic_anomaly_nt": 0.0,
+    "magnetic_gradient_nt_per_m": 0.0
+  },
+  "mesa_anchor": {
+    "wind": {
+      "terrain_flow_anchor_residual": {
+        "value": 0.0,
+        "unit": "1",
+        "frame": "MAP",
+        "semantic": "terrain_flow_anchor_residual",
+        "uncertainty": null,
+        "source": "examples/runtime_request.json",
+        "provenance": {
+          "origin": "Layer3 example",
+          "contract": "explicit TDOC envelope"
+        }
+      },
+      "jacobian_n": {
+        "value": 0.1,
+        "unit": "1",
+        "frame": "NED",
+        "semantic": "jacobian_n",
+        "uncertainty": null,
+        "source": "examples/runtime_request.json",
+        "provenance": {
+          "origin": "Layer3 example",
+          "contract": "explicit TDOC envelope"
+        }
+      },
+      "jacobian_e": {
+        "value": 0.1,
+        "unit": "1",
+        "frame": "NED",
+        "semantic": "jacobian_e",
+        "uncertainty": null,
+        "source": "examples/runtime_request.json",
+        "provenance": {
+          "origin": "Layer3 example",
+          "contract": "explicit TDOC envelope"
+        }
+      }
+    },
+    "pressure": {
+      "enabled": true
+    }
+  }
+}

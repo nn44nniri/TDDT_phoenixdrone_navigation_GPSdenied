@@ -1,0 +1,213 @@
+# TDDT Dynamic N-Twin Layer 3 - Boulder runtime configuration
+# Dependency paths are external by design and may be edited for deployment.
+time:
+  fast_dt_s: 1.0
+  meso_fast_steps: 3
+  slow_meso_windows: 2
+  mission_epoch_utc: "2026-08-24T11:00:00+00:00"
+  max_future_skew_s: 0.05
+  freshness_lambda_per_s:
+    MESA_NAV: 0.02
+    WingMPET: 0.02
+    MicroMetTwin: 0.0005555555555555556
+
+alignment:
+  min_quality: {default: 0.20}
+  min_validity: {default: 0.20}
+  min_freshness: {default: 0.05}
+  uncertainty_epsilon: 1.0e-9
+  strict_semantics: true
+  strict_units: true
+  strict_frames: true
+  preserve_unmapped_signals: true
+
+planner:
+  enabled: true
+  planner_name: "A*_DEM_Wind_Wing_MESA"
+  min_terrain_clearance_m: 90.0
+  min_obstacle_clearance_m: 20.0
+  base_obstacle_buffer_m: 15.0
+  uncertainty_buffer_gain_m: 40.0
+  wind_headwind_weight: 0.8
+  wind_crosswind_weight: 0.25
+  slope_weight: 0.015
+  elevation_gain_weight: 0.02
+  risk_weight: 1.25
+  lookahead_m: 120.0
+  cruise_airspeed_m_s: 13.0
+  arrival_tolerance_m: 25.0
+  max_cross_track_m: 45.0
+  replan_cross_track_m: 35.0
+  replan_on_meso: true
+  max_steps: 36
+  natural_obstacle_block_class: 7
+  energy_budget_j: 12000.0
+  time_budget_s: 320.0
+
+objectives:
+  fast:
+    - {id: distance_to_goal, metric: distance_to_goal_m, relation: le, target: 25.0, unit: m, weight: 1.2, achievement_mode: progress_to_target}
+    - {id: cross_track, metric: cross_track_error_m, relation: le, target: 45.0, unit: m, weight: 1.0}
+    - {id: terrain_clearance, metric: terrain_clearance_m, relation: ge, target: 90.0, unit: m, weight: 1.3}
+    - {id: obstacle_clearance, metric: obstacle_clearance_m, relation: ge, target: 20.0, unit: m, weight: 1.3}
+    - {id: wing_feasibility, metric: wing_feasible, relation: bool, target: 1.0, unit: "1", weight: 1.5}
+    - {id: risk, metric: risk, relation: le, target: 0.8, unit: "1", weight: 1.0}
+  meso:
+    - {id: mean_cross_track, metric: mean_cross_track_error_m, relation: le, target: 45.0, unit: m, weight: 1.0}
+    - {id: minimum_clearance, metric: min_terrain_clearance_m, relation: ge, target: 90.0, unit: m, weight: 1.3}
+    - {id: feasible_fraction, metric: feasible_fraction, relation: ge, target: 1.0, unit: "1", weight: 1.5}
+    - {id: mean_risk, metric: mean_risk, relation: le, target: 0.8, unit: "1", weight: 1.0}
+    - {id: mean_fast_attainment, metric: mean_fast_achievement_pct, relation: ge, target: 90.0, unit: "%", weight: 1.0}
+  slow:
+    - {id: arrival, metric: distance_to_goal_m, relation: le, target: 25.0, unit: m, weight: 2.0, achievement_mode: progress_to_target}
+    - {id: safety_fraction, metric: safety_fraction, relation: ge, target: 0.99, unit: "1", weight: 2.0}
+    - {id: energy_budget, metric: cumulative_energy_j, relation: le, target: 12000.0, unit: J, weight: 1.0}
+    - {id: time_budget, metric: mission_time_s, relation: le, target: 320.0, unit: s, weight: 1.0}
+    - {id: mean_fast_attainment, metric: mean_fast_achievement_pct, relation: ge, target: 90.0, unit: "%", weight: 1.0}
+
+network:
+  uncertainty_epsilon: 1.0e-6
+  consistency_regularizer: 1.0e-6
+  crp_quality_penalty: 1.0
+  crp_regularizer: 1.0e-6
+  # CRP acceptance gate: nearest-cluster selection remains canonical, but
+  # statistically unsupported contexts are explicitly marked OOD.
+  crp_acceptance_probability: 0.999
+  crp_min_features: 6
+  crp_min_quality: 0.0
+  crp_require_spatial_prior_agreement: false
+  topology_persistence_threshold: 0.5
+  stability_decay: 0.65
+  cycle_lci_threshold: 0.5
+  top_b_per_node: 3
+  chatter_max_changes_per_window: 2
+  health_min: 0.35
+  hidden_loop_max_cycle_length: 8
+
+  # Registry-driven Center of Consistency observation maps. `dimensions` is a
+  # selection P_i; deployments may instead use shared_dimensions + explicit P.
+  coc_observations:
+    MESA_NAV:
+      - {key: ground_velocity_ned_m_s, dimensions: [Vg_N, Vg_E, Vg_D]}
+    WingMPET:
+      - {key: air_velocity_ned_m_s, dimensions: [Va_N, Va_E, Va_D]}
+    MicroMetTwin:
+      - {key: wind_ned_m_s, dimensions: [W_N, W_E, W_D]}
+  coc_constraints:
+    - name: velocity_triangle_ned
+      type: builtin
+      lambda: 1.0
+      hard: true
+      edges: [MicroMetTwin->WingMPET, MicroMetTwin->MESA_NAV, MESA_NAV->WingMPET]
+
+  # Only MESA_NAV->WingMPET state propagation is structurally mandatory in the
+  # default profile. All other edges remain dynamic and eligible for Top-B.
+  edges:
+    - source: MicroMetTwin
+      target: WingMPET
+      coupling_types: [Data, Model]
+      base_strength: 0.85
+      tolerance: 5.0
+      mandatory: false
+      active: true
+      criticality: 0.9
+      coupling_type_scales: {Data: 0.85, Model: 1.0}
+      phi: {Data: Phi_climate_data_to_wing, Model: Phi_climate_model_to_wing}
+    - source: MicroMetTwin
+      target: MESA_NAV
+      coupling_types: [Data, Model]
+      base_strength: 0.55
+      tolerance: 5.0
+      mandatory: false
+      active: true
+      criticality: 0.8
+      coupling_type_scales: {Data: 0.75, Model: 0.60}
+      phi: {Data: Phi_environmental_anchor_data, Model: Phi_environmental_anchor_model}
+    - source: MESA_NAV
+      target: WingMPET
+      coupling_types: [State]
+      base_strength: 0.90
+      tolerance: 4.0
+      mandatory: true
+      active: true
+      criticality: 1.0
+      coupling_type_scales: {State: 1.0}
+      phi: {State: Phi_navigation_state_to_flight}
+    - source: WingMPET
+      target: MESA_NAV
+      coupling_types: [Model, Error]
+      base_strength: 0.70
+      tolerance: 1.0
+      mandatory: false
+      active: true
+      criticality: 0.9
+      coupling_type_scales: {Model: 0.80, Error: 1.0}
+      phi: {Model: Phi_dynamic_feasibility, Error: Phi_flight_model_error}
+    - source: MESA_NAV
+      target: MicroMetTwin
+      coupling_types: [Data]
+      base_strength: 0.65
+      tolerance: 2.0
+      mandatory: false
+      active: true
+      criticality: 0.7
+      coupling_type_scales: {Data: 1.0}
+      phi: {Data: Phi_position_time_altitude_query}
+
+# External dependency locations.
+# Recommended deployment workflow:
+#   source configs/environment.sh
+# Each entry below first uses the exported environment variable and otherwise
+# falls back to the relative example path after `:-`.
+# Example for the real twins directory supplied for this deployment:
+#   export TDDT_TWINS_ROOT="/media/p1/DigitalTwin/TDDT_navigation/layer2/navigation_simulator/code/TDDT_Dynamic_NTwin/twins_layer2_v20260820_1233"
+# The YAML line itself remains portable:
+#   twins_root: "${TDDT_TWINS_ROOT:-../dependencies/twins_layer2_v20260820_1233}"
+paths:
+  # environment.sh actual path:
+  # /media/p1/DigitalTwin/TDDT_navigation/layer2/navigation_simulator/code/TDDT_Dynamic_NTwin/twins_layer2_v20260820_1233
+  twins_root: "${TDDT_TWINS_ROOT:-../dependencies/twins_layer2_v20260820_1233}"
+
+  # environment.sh actual path:
+  # /media/p1/DigitalTwin/TDDT_navigation/layer2/climate/code/TDDT_Dynamic_NTwin/climate_twin_v20260911_0922
+  climate_root: "${TDDT_CLIMATE_ROOT:-../dependencies/climate_twin_v20260911_0922}"
+
+  # environment.sh actual path:
+  # /media/p1/DigitalTwin/TDDT_navigation/adapter/code/TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914
+  tdoc_root: "${TDDT_UNIT_ADAPTER_ROOT:-../dependencies/TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914}"
+
+  # environment.sh actual package path:
+  # /media/p1/DigitalTwin/TDDT_navigation/datasets/SARG/code/SARG_v20260821_0945
+  sarg_package_root: "${TDDT_SARG_PACKAGE_ROOT:-../dependencies/SARG_v20260821_0945}"
+  # Derived by environment.sh as ${TDDT_SARG_PACKAGE_ROOT}/generated/SARG.
+  sarg_root: "${TDDT_SARG_ROOT:-../dependencies/SARG_v20260821_0945/generated/SARG}"
+
+  # environment.sh actual package path:
+  # /media/p1/DigitalTwin/TDDT_navigation/datasets/CRP_map/code/boulder_multilayer_map_builder_v20260814_1215
+  boulder_root: "${TDDT_BOULDER_ROOT:-../dependencies/boulder_multilayer_map_builder_v20260814_1215}"
+  # Derived by environment.sh from TDDT_BOULDER_ROOT.
+  map_root: "${TDDT_MAP_ROOT:-../dependencies/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map}"
+  crp_root: "${TDDT_CRP_ROOT:-../dependencies/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/CRP}"
+  ss_kstore: runtime/ss_kstore.jsonl
+  setd_kstore: runtime/setd_kstore.jsonl
+  provenance_log: runtime/provenance.jsonl
+  tdoc_health: runtime/tdoc_health.json
+  snapshots_dir: runtime/snapshots
+  versions_dir: runtime/versions
+
+runtime:
+  strict_python_dependency_validation: true
+  persist_every_snapshot: true
+  strict_dependency_validation: true
+  require_contract_normalization: true
+  require_structural_authorization: true
+  hold_last_safe_on_validation_failure: true
+  failure_containment: true
+  use_boulder_runtime_sampling: true
+  enable_runtime_couplings: true
+  enable_counterfactual_ablation: true
+  allow_dynamic_twin_registration: true
+
+policy:
+  version: L3-policy-v1
+  risk_threshold: 0.8

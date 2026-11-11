@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ -z "${PYTHON:-}" || ! -x "$PYTHON" ]]; then
+    echo "ERROR: TDOC PYTHON is unset or not executable; source configs/environment.sh first." >&2
+    exit 127
+fi
+
+exec "$PYTHON" "$@"

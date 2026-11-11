@@ -1,0 +1,33 @@
+F.....................                                                   [100%]
+=================================== FAILURES ===================================
+_____ test_bank_scan_reads_model_twice_and_rejects_mid_scan_change[False] ______
+
+changed = False
+
+    @pytest.mark.parametrize('changed',[False,True])
+    def test_bank_scan_reads_model_twice_and_rejects_mid_scan_change(changed):
+        adapter,mf=manager()
+        try:
+            current={'model_id':'M','artifacts':{'fmu':'sha'}};calls=[]
+            def provider():
+                calls.append(1)
+                return {'model_id':'changed'} if changed and len(calls)>1 else copy.deepcopy(current)
+            mf.model_dependencies_provider=provider
+            mf._cache=[certificate(current) for _ in range(500)]
+>           assert mf.capability({'cruise':[3.]})==([] if changed else ['cruise'])
+E           AssertionError: assert [] == ['cruise']
+E             
+E             Right contains one more item: 'cruise'
+E             Use -v to get more diff
+
+tests/test_roadmap_lightweight.py:37: AssertionError
+=============================== warnings summary ===============================
+tests/test_native_imu_replay_cost.py::test_known_native_launch_pitch_matches_sim_jsbsim
+tests/test_native_imu_replay_cost.py::test_known_native_launch_pitch_matches_sim_jsbsim
+  /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/terrain.py:29: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication
+    col_corner, row_corner = (~dataset.transform) * (east, north)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_roadmap_lightweight.py::test_bank_scan_reads_model_twice_and_rejects_mid_scan_change[False]
+1 failed, 21 passed, 2 warnings in 2.06s

@@ -1,0 +1,28 @@
+schema: TDOC-online-guidance-sequence-v2
+owner: TDOC/RuntimeScheduler
+scope: ONLINE_JSBSIM
+reference:
+  package: layer6_v20261007_1032
+  facade: Layer6Client
+safety:
+  fail_closed: true
+  direct_pwm: false
+  direct_jsbsim_actuator_injection: false
+  mixer_owner: ArduPilot SITL
+  startup_actuation: false
+sequence:
+- ensure_stack_started
+- ensure_mavlink
+- wait_fcu_ready
+- control_loop
+- close
+operations:
+  control_loop:
+    command_api: Layer6Client.submit
+    command_source: Layer5_FINAL_pilot_domain_only
+    state_api: Layer6Client.gui_status
+    feedback_api: Layer6Client.build_layer7_input
+    mode_and_arm_source: Layer5 execution_intent only
+    gps_role: FlightStack validation reference only
+    navigation_source: MESA_STD_from_measured_BODY_FRD_IMU
+    intermediary: tddt_tdoc.layer6_bridge.Layer6Bridge

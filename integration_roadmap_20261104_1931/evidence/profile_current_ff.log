@@ -1,0 +1,57 @@
+{'ok': True, 'accepted': True, 'certificate_kind': 'OFFLINE_MODEL', 'nominal_tracker_authorized': True, 'mixer_validated': True, 'correction_path_ready': False, 'online_ready': False, 'offline_model_ready': True, 'scope': 'OFFLINE_SE'}
+{'ok': True, 'schema': 'Layer5-Phoenix-offline-model-certificate-v4', 'scope': 'L4_WINGMPET_FULL_FIDELITY_ONLY', 'simulation_only': True, 'online_ready': False, 'direct_pwm': False}
+Traceback (most recent call last):
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/integration_roadmap_20261104_1931/profile_l4.py", line 51, in <module>
+    result=profile.runcall(l4.invoke,{'snapshot':archived['layer3_result']['snapshot'],'request':request,'transaction_id':'READONLY_PROFILE'})
+  File "/usr/lib/python3.13/cProfile.py", line 113, in runcall
+    return func(*args, **kw)
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer4.py", line 1167, in invoke
+    result=self.engine.run(payload["snapshot"]); d=result.to_dict(); d=self._tdoc_full_fidelity(d,payload["snapshot"],request)
+                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer4.py", line 852, in _tdoc_full_fidelity
+    rows=self.layer3_adapter.full_fidelity_replay(cdict,snapshot_dict,horizon_request,self.engine.codec,self.engine.config.dt,
+        scenario=scenario,physical_actions=horizon_bridge.get("physical_actions"),bridge_record=horizon_bridge,
+        physical_step_s=float(self.engine.config.dt),
+        physical_action_provider=horizon_action_provider)
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer3.py", line 967, in full_fidelity_replay
+    res=rt.step(RuntimeRequest.from_mapping(rm)); sd=res.snapshot.to_dict() if hasattr(res.snapshot,"to_dict") else dict(res.snapshot)
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer3_v20260911_1131/src/layer3/runtime.py", line 567, in step
+    return self.engine.step(packets, reference_time_s=request.reference_time_s, context=runtime_context, regime_id=request.regime_id,
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        stage=request.stage, prediction=request.prediction, action=request.action, safety_gates=request.safety_gates,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        constraints=request.constraints, risks=request.risks, objectives=request.objectives, anchor_results=anchors,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        runtime_couplings=couplings, network_plan=plan)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer3_v20260911_1131/src/layer3/engine.py", line 147, in step
+    if health['mode']=='NORMAL':self.health_manager.last_safe_snapshot=snapshot.to_dict()
+                                                                       ~~~~~~~~~~~~~~~~^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer3_v20260911_1131/src/layer3/models.py", line 132, in to_dict
+    def to_dict(self) -> dict[str, Any]: return asdict(self)
+                                                ~~~~~~^^^^^^
+  File "/usr/lib/python3.13/dataclasses.py", line 1359, in asdict
+    return _asdict_inner(obj, dict_factory)
+  File "/usr/lib/python3.13/dataclasses.py", line 1370, in _asdict_inner
+    f.name: _asdict_inner(getattr(obj, f.name), dict)
+            ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/dataclasses.py", line 1383, in _asdict_inner
+    _asdict_inner(k, dict_factory): _asdict_inner(v, dict_factory)
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/dataclasses.py", line 1383, in _asdict_inner
+    _asdict_inner(k, dict_factory): _asdict_inner(v, dict_factory)
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/dataclasses.py", line 1383, in _asdict_inner
+    _asdict_inner(k, dict_factory): _asdict_inner(v, dict_factory)
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  [Previous line repeated 1 more time]
+  File "/usr/lib/python3.13/dataclasses.py", line 1380, in _asdict_inner
+    return [_asdict_inner(v, dict_factory) for v in obj]
+            ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/dataclasses.py", line 1383, in _asdict_inner
+    _asdict_inner(k, dict_factory): _asdict_inner(v, dict_factory)
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/dataclasses.py", line 1362, in _asdict_inner
+    def _asdict_inner(obj, dict_factory):
+    
+KeyboardInterrupt

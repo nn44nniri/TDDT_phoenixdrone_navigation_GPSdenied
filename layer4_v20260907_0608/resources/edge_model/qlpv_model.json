@@ -1,0 +1,53 @@
+{
+  "schema": "layer4-qlpv-edge-model-v1",
+  "vertices": [
+    "nominal",
+    "degraded"
+  ],
+  "state_names": [
+    "mesa_position_ned_m_0",
+    "mesa_position_ned_m_1",
+    "mesa_position_ned_m_2",
+    "Vg_0",
+    "Vg_1",
+    "Vg_2",
+    "Va_0",
+    "Va_1",
+    "Va_2",
+    "airspeed_m_s",
+    "flightpath_angle_rad",
+    "air_heading_rad",
+    "W_0",
+    "W_1",
+    "W_2",
+    "temperature_c",
+    "relative_humidity_percent",
+    "pressure_pa",
+    "air_density_kg_m3"
+  ],
+  "action_order": [
+    "delta_thrust_norm",
+    "delta_lift_norm",
+    "delta_pitch_rad",
+    "delta_yaw_rate_rad_s",
+    "delta_airspeed_m_s"
+  ],
+  "disturbance_order": [
+    "dVg_N",
+    "dVg_E",
+    "dVg_D",
+    "dW_N",
+    "dW_E",
+    "dW_D"
+  ],
+  "calibration_status": "reference implementation with physical airspeed-domain guard; replace/fit offline for aircraft-specific deployment",
+  "source": "formalism E4-29..E4-34 + canonical Layer-3 state contract",
+  "not_actuator_command": true,
+  "physical_state_invariants": {
+    "airspeed_m_s": {
+      "domain": "[0,+inf)",
+      "enforcement": "predictor state projection",
+      "meaning": "scalar physical airspeed, not signed velocity component"
+    }
+  }
+}

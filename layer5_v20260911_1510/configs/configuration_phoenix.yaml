@@ -1,0 +1,308 @@
+package:
+  version: 2026.9.11.1510
+  architecture: Layer 5 / ERA-qLPV-MPC / PhoenixDrone specialization
+  formalism: Formalism_layer5_v4
+paths:
+  TDDT_LAYER4_ROOT: ''
+  TDDT_UNIT_ADAPTER_ROOT: ''
+  TDDT_LAYER3_ROOT: ''
+  TDDT_TWINS_ROOT: ''
+  TDDT_CLIMATE_ROOT: ''
+  TDDT_SARG_ROOT: ''
+  TDDT_CRP_ROOT: ''
+  TDDT_PTLIB_ROOT: ''
+  EXT_FMU_SIM_ROOT: ''
+  TDDT_KSTORE_ROOT: ''
+contract:
+  require_layer4_no_actuator_command: true
+  require_layer4_no_network_commit: true
+  require_verified_candidate: true
+  max_decision_age_s: 5.0
+  allow_missing_absolute_snapshot_time: true
+admissibility:
+  j_c_max: 25.0
+  mu_min: 0.0
+  alpha_risk: 0.1
+  uncertainty_trace_mean_max: 1000000.0
+  require_feasible: true
+  require_full_fidelity_verified: true
+  cvar_enabled: false
+  cvar_max: 1.0
+objectives:
+  order:
+  - risk
+  - consistency
+  - margin
+  - uncertainty
+  - mission
+  - time
+  - energy
+  epsilon: 1.0e-06
+  sensitivity_perturbation: 0.05
+  tie_break_weights:
+    margin: 1.0
+    full_fidelity: 1.0
+    risk: 1.0
+    uncertainty: 0.5
+    control_effort: 0.25
+    sensitivity: 0.5
+  guidance_weights:
+    mission: 1.0
+    time: 1.0
+    energy: 1.0
+    risk: 1.0
+    uncertainty: 1.0
+    consistency: 1.0
+    margin: 1.0
+    control_effort: 1.0
+    sensitivity: 1.0
+  normalization_epsilon: 1.0e-09
+  margin_target: 0.05
+  sensitivity_keys:
+  - mission
+  - time
+  - energy
+  - risk
+  - uncertainty
+  - consistency
+  - margin
+  - control_effort
+  lexicographic_levels:
+  - - risk
+    - consistency
+    - margin
+  - - mission
+  - - time
+    - energy
+  - - control_effort
+    - sensitivity
+  lexicographic_epsilon:
+    '1': 1.0e-06
+    '2': 1.0e-06
+    '3': 1.0e-06
+    '4': 1.0e-06
+confidence:
+  weights:
+    separation: 0.2
+    margin: 0.2
+    full_fidelity: 0.2
+    freshness: 0.15
+    risk: 0.1
+    uncertainty: 0.1
+    sensitivity: 0.05
+  auto_threshold: 0.8
+  supervised_threshold: 0.55
+  auto_risk_max: 0.05
+  hold_threshold: 0.15
+operational:
+  requested_mode: AUTO
+  authority_profile: AUTONOMOUS_ONLY
+  autonomous_authorized: true
+  offline_simulation_authorized: true
+  # ONLINE_JSBSIM is simulation evidence, not field evidence.  The autonomous-only
+  # ceiling is bounded by the existing admissibility chance-risk ceiling and leaves
+  # full-fidelity, PSF, RTA, Governance and FINAL fail-closed gates unchanged.
+  online_simulation_auto_risk_max: 0.10
+  human_approval: false
+  advisory_never_actuates: true
+  human_required_below: 0.8
+  human_required_risk: 0.05
+edge:
+  profile: EDGE-ROBUST
+  horizon_max: 12
+  candidates_max: 12
+  solve_max: 12
+  cvar_samples_max: 16
+  sensitivity_top_k: 3
+  deadline_ms: 1000.0
+  knowledge_ram_records: 128
+  degrade_at_fraction: 0.6
+  degraded_solve_max: 3
+  light:
+    solve_max: 6
+  safety:
+    solve_max: 12
+    sensitivity_top_k: 12
+phoenix:
+  profile_file: resources/phoenix_drone_v3.yaml
+  environment_mode: FORWARD_SITL
+  direct_pwm_allowed: false
+  aerodynamics:
+    full_envelope_validated: false
+  esc_mapping:
+    identified: false
+  mapping:
+    validated: false
+    version: UNVALIDATED
+    matrix: []
+    bias: []
+  mixer:
+    validated: false
+    version: ARDUPLANE_EXTERNAL
+    elevon_matrix:
+    - - 1.0
+      - 1.0
+    - - -1.0
+      - 1.0
+    trim_rad:
+    - 0.0
+    - 0.0
+  differential_thrust:
+    validated: false
+    gain: 0.0
+  servo_dynamics:
+    identified: false
+    tau_s: []
+    rate_limit_rad_s: []
+  transition:
+    v_hover_max: 3.0
+    v_forward_min: 9.0
+  pwm:
+    validated: false
+  nominal_tracking:
+    enabled_after_commissioning: true
+    heading_gain_per_rad: 1.2
+    flightpath_gain_per_rad: 1.0
+    airspeed_gain_per_m_s: 0.035
+    reference_airspeed_m_s: 13.0
+    max_aileron_norm: 0.45
+    max_elevator_norm: 0.65
+    throttle_min_norm: 0.05
+    throttle_max_norm: 0.75
+    elevator_trim_norm: 0.0
+    throttle_trim_norm: 0.30
+    # Solution 4: hover operating point is derived in thrust space from the
+    # source Phoenix motor law and mission mass.  Feedback corrections are
+    # bounded and can only increase collective above the force-balance base.
+    hover_thrust_margin_fraction: 0.064
+    hover_altitude_error_gain_per_m: 0.004
+    hover_down_velocity_gain_per_m_s: 0.010
+    hover_max_feedback_correction_norm: 0.04
+    # Solution 5: same-cycle hover operating-point validity envelope. Density and
+    # SOC gate use of the source motor-law seed; they do not invent a k_T derating.
+    hover_air_density_min_kg_m3: 0.80
+    hover_air_density_max_kg_m3: 1.35
+    hover_min_battery_soc: 0.20
+    # Solution 3: vertical takeoff operating point is derived in thrust space
+    # from the source motor law and mission mass; this replaces arbitrary
+    # throttle-neighborhood centering for the takeoff FF bridge only.
+    vertical_takeoff_thrust_margin_fraction: 0.064
+    vertical_takeoff_reference_climb_rate_m_s: 2.0
+    vertical_takeoff_trim_limit_rad: 0.12
+    # Solution 6: regime-aware nominal control gains. These remain bounded
+    # reference-tracker terms inside the existing Phoenix specialization.
+    vertical_takeoff_climb_rate_gain_per_m_s: 0.012
+    vertical_takeoff_max_feedback_correction_norm: 0.04
+    # Same-cycle tailsitter pitch/rate stabilization for the Layer4 prediction
+    # horizon. Gains are expressed in physical symmetric-elevon radians and are
+    # mapped back to the commissioned pilot domain; ArduPilot remains the mixer.
+    vertical_pitch_attitude_gain_rad_per_rad: 0.02
+    vertical_pitch_rate_gain_rad_per_rad_s: 0.40
+    vertical_pitch_low_speed_rate_gain_rad_per_rad_s: 0.02
+    vertical_pitch_high_authority_airspeed_m_s: 3.0
+    vertical_pitch_surface_limit_rad: 0.08
+    vertical_pitch_prediction_step_s: 1.0
+    vertical_landing_reference_descent_rate_m_s: 1.0
+    vertical_landing_descent_feedforward_gain_per_m_s: 0.012
+    vertical_landing_descent_error_gain_per_m_s: 0.020
+    vertical_landing_max_collective_reduction_norm: 0.08
+    vertical_landing_max_braking_boost_norm: 0.06
+    vertical_collective_min_norm: 0.0
+    vertical_collective_max_norm: 0.95
+    semantics: "Layer4 nominal trajectory -> bounded Layer5 pilot-domain reference tracker; VTOL regimes use phase/regime-aware force/vertical-rate or blended transition references pending FF; Layer4 5D actions are not actuator commands"
+qlpv:
+  model_file: ''
+  require_calibrated_model_for_correction: true
+  allow_runtime_sitl_actuator_model: true
+  runtime_model_scope: layer5_local_actuator_correction_only
+  max_iterations: 20
+  step_size: 0.08
+  correction_bound: 0.1
+  state_error_tube_norm_max: 1000000.0
+  require_airframe_binding_match: true
+  dt_s: 0.1
+safety:
+  fallback:
+    strategy: hold
+    pilot_domain:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    conservative_pilot_domain:
+    - 0.0
+    - 0.0
+    - 0.2
+    - 0.0
+    emergency_pilot_domain:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  first_move_only: true
+  max_command_norm: 2.0
+governance:
+  policy_version: L5-policy-v1
+  model_set_id: PHX-forward-unvalidated-qLPV
+  evidence_type: simulation
+  identity_valid: true
+  policy_valid: true
+  authority_valid: true
+knowledge:
+  backend: FILE
+  directory: runtime/kstore
+  require_hashed_references: true
+  online_persistent_writes: false
+  reference_cache_max: 32
+  persist_queue_max: 64
+  tep_coverage_min: 0.0
+  segment_records: 256
+  file_segment_records: 256
+  require_tep_layer2_provenance: true
+  min_experience_records: 1
+  file_segment_max_bytes: 1048576
+  file_record_max_bytes: 262144
+  setd_component_items: 128
+  setd_component_max_bytes: 1048576
+  setd_keep_versions: 3
+  layout: segmented-ss+multi-file-setd-v2
+  monolithic_ss_stream: false
+lifecycle:
+  learning_mode: OFFLINE_SE
+  offline_episode_limit: 1
+  online_retraining_episodes: 0
+  setd_required_online: true
+testing:
+  allow_fixture_verification: false
+policy:
+  decision_weight_min: 0.0
+  decision_weight_max: 10.0
+  meso_gain: 1.0
+  slow_gain: 1.0
+  default_constraints: {}
+  parameters: {}
+  allowed_runtime_keys:
+  - risk_bias
+  - energy_bias
+  - uncertainty_bias
+  allowed_online_update_keys:
+  - risk_bias
+  - energy_bias
+  - uncertainty_bias
+  online_delta_max: 0.1
+  safe_parameter_bounds:
+    risk_bias:
+    - -0.1
+    - 0.1
+    energy_bias:
+    - -0.1
+    - 0.1
+    uncertainty_bias:
+    - -0.1
+    - 0.1
+experience:
+  fast_per_meso: 3
+  meso_per_slow: 2
+  meso_history_max: 64
+  slow_history_max: 32
+  mrg_history_max: 64

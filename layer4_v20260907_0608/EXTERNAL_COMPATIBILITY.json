@@ -1,0 +1,70 @@
+{
+  "schema": "layer4-external-compatibility-v2",
+  "package": "layer4_v20260907_0608",
+  "external_only": true,
+  "dependencies": {
+    "twins_layer2": {
+      "target_version": "twins_layer2_v20260820_1233",
+      "required": [
+        "fmus/MESA_NAV.fmu",
+        "fmus/WingMPET.fmu",
+        "python/twins_fmi",
+        "config/phoenix_drone_v3.yaml",
+        "resources/tddt_layer2/MESA_NAV/tep/tep.csv",
+        "resources/tddt_layer2/MESA_NAV/tep/manifest.json",
+        "resources/tddt_layer2/WingMPET/tep/tep.csv",
+        "resources/tddt_layer2/WingMPET/tep/manifest.json"
+      ],
+      "role": "Layer3 full-fidelity MESA-NAV/WingMPET execution and inherited TEP contract/provenance"
+    },
+    "climate": {
+      "target_version": "climate_twin_v20260824_0945",
+      "required": [
+        "python",
+        "resources/tddt_layer2/tep"
+      ],
+      "role": "Layer3 full-fidelity MicroMetTwin execution and inherited climate TEP contract/provenance"
+    },
+    "tdoc": {
+      "target_version": "TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914",
+      "required": [
+        "docs"
+      ],
+      "role": "strict harmonization dependency of Layer 3; not duplicated in Layer 4"
+    },
+    "layer3": {
+      "target_version": "layer3_v20260907_0608",
+      "required": [
+        "src/layer3",
+        "HOW_USAGE.md"
+      ],
+      "input_contract": "NetworkSnapshot / StepResult",
+      "role": "atomic Layer-4 input and optional full-fidelity orchestration"
+    },
+    "sarg": {
+      "target_version": "SARG_v20260821_0945",
+      "required": [
+        "generated/SARG/sarg_records.csv",
+        "generated/SARG/sarg_lookup_index.csv",
+        "generated/SARG/metadata.json"
+      ],
+      "role": "contract/provenance validation; Layer-3 guidance is authoritative online"
+    },
+    "crp": {
+      "target_version": "boulder_multilayer_map_builder_v20260814_1215",
+      "required": [
+        "outputs/region_v1_map/CRP/crp_cluster_catalog.csv",
+        "outputs/region_v1_map/CRP/crp_runtime_statistics.json",
+        "outputs/region_v1_map/terrain_obstacles.tif"
+      ],
+      "role": "contract/provenance validation; processed context is inherited from Layer3 snapshot"
+    }
+  },
+  "runtime_policy": "Layer2/Climate/TDOC are reached through Layer3 full-fidelity runtime; TEP is inherited through Layer2/Layer3 evidence; SARG/CRP are consumed primarily through Layer3 snapshot/guidance and read directly only for contract/provenance validation.",
+  "build_environment": {
+    "deployment_roots_mounted": false,
+    "strict_external_revalidated": false,
+    "non_strict_core_preflight": true,
+    "note": "The /media/p1 deployment roots are not mounted in this execution environment. Missing roots are reported rather than vendored or simulated."
+  }
+}

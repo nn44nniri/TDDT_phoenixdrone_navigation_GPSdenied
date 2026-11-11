@@ -1,0 +1,23 @@
+......F.................................                                 [100%]
+=================================== FAILURES ===================================
+___ test_ground_imu_alignment_reduces_real_fmu_gravity_error_and_is_one_time ___
+
+    def test_ground_imu_alignment_reduces_real_fmu_gravity_error_and_is_one_time():
+        import math
+        from tddt_tdoc.online_imu import CHANNELS
+        adapter=Layer2Adapter(TDOCConfig.from_yaml('configs/tdoc.yaml'));adapter._ensure()
+        known={'pn':100.,'pe':200.,'pd':-1800.,'vn':0.,'ve':0.,'vd':0.,
+            'qw':math.cos(math.radians(89)/2),'qx':0.,'qy':math.sin(math.radians(89)/2),'qz':0.}
+        ingress=ground_ingress();unchanged=copy.deepcopy(ingress)
+        payload={'learning_mode':'ONLINE_JSBSIM','context':{'online_episode_id':'E',
+            'rtmo_data_authority':{'navigation':'MESA_STD'},'rtmo_navigation_initial_state':known,
+            'rtmo_allow_initial_navigation_alignment':True,'online_state_ingress':{'ptlib_ingress':ingress}}}
+        try:
+            aligned=adapter._align_mesa_simulation_state(adapter.mesa,payload,{},source='test')
+>           assert aligned['applied'] and aligned['initial_attitude']['gnss_used'] is False
+E           assert (False)
+
+tests/test_roadmap_lightweight.py:99: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_roadmap_lightweight.py::test_ground_imu_alignment_reduces_real_fmu_gravity_error_and_is_one_time
+1 failed, 39 passed in 2.32s

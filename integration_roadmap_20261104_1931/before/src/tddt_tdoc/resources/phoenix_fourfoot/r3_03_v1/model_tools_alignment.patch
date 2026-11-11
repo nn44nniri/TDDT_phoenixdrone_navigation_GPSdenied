@@ -1,0 +1,83 @@
+--- a/scripts/validate_model.py
++++ b/scripts/validate_model.py
+@@ -1,5 +1,6 @@
+ #!/usr/bin/env python3
+ from pathlib import Path
++import hashlib
+ import argparse
+ import subprocess
+ import sys
+@@ -16,7 +17,8 @@
+ REQUIRED_MODEL = [
+     'fcs/left-elevon-cmd-norm', 'fcs/right-elevon-cmd-norm',
+     'fcs/left-motor-cmd-norm', 'fcs/right-motor-cmd-norm',
+-    'left_motor_thrust', 'right_motor_thrust', 'BELLY_GUARD'
++    'left_motor_thrust', 'right_motor_thrust',
++    'TAIL_FOOT_L1', 'TAIL_FOOT_L2', 'TAIL_FOOT_R1', 'TAIL_FOOT_R2'
+ ]
+ REQUIRED_PARAMS = [
+     'Q_ENABLE 1', 'Q_TAILSIT_ENABLE 1', 'Q_FRAME_CLASS 10', 'Q_TAILSIT_MOTMX 0',
+@@ -44,18 +46,20 @@
+ def check_xml():
+     ET.parse(MODEL)
+     root = ET.parse(RESET).getroot()
+-    alt = float(text_value(root, 'altitude'))
++    alt = float(text_value(root, 'altitudeAGL'))
+     theta = float(text_value(root, 'theta'))
+-    if abs(alt - 0.08) > 1e-6: fail(f'reset altitude must be 0.08 m, got {alt}')
++    if not abs(alt - 0.141025821708132) < 1e-12: fail(f'reset CG AGL mismatch: {alt}')
+     if abs(theta - 89.0) > 1e-6: fail(f'reset theta must be 89 deg, got {theta}')
+     if root.find('gamma') is not None:
+         fail('Phoenix reset must not contain gamma; gamma can override/recompute theta in JSBSim IC processing')
+     for tag in ('ubody','vbody','wbody'):
+         v = text_value(root, tag)
+         if v is None or abs(float(v)) > 1e-9: fail(f'Phoenix reset requires {tag}=0, got {v}')
+-    print('PASS: XML parses; reset is zero-body-speed Phoenix ground-VTOL (0.08 m, 89 deg, no gamma).')
++    print('PASS: four-foot Reset uses explicit CG AGL, 89 deg and zero body speed.')
+ 
+ def check_contracts():
++    if hashlib.sha256(MODEL.read_bytes()).hexdigest() != '9118bfac6cb1bbaa05142f1c0f419fe570414be8b1dbdeffb591e7b898f64da9':
++        fail('four-foot aircraft reference hash mismatch')
+     text = MODEL.read_text()
+     missing = [s for s in REQUIRED_MODEL if s not in text]
+     params = PARM.read_text()
+@@ -70,6 +74,8 @@
+         fail(f'{path.name} header is not a valid -p1 unified diff')
+ 
+ def check_patched_source(path):
++    if hashlib.sha256(path.read_bytes()).hexdigest() != 'ba81eaa1cb0bc8b4a3b4bdf82fb26ca8c03e4e2d24a1615a20b56c19dc28d788':
++        fail('R3.03 generated Reset source hash mismatch')
+     text = path.read_text()
+     missing = [s for s in REQUIRED_PATCHED_SOURCE if s not in text]
+     if missing: fail(f'{path} missing Phoenix v3 integration markers: ' + ', '.join(missing))
+@@ -101,8 +107,8 @@
+     if 'simulation/do_simple_trim' in st: fail('runtime runscript contains stock simple-trim event')
+     rr = ET.parse(reset).getroot()
+     if rr.find('gamma') is not None: fail('runtime Phoenix reset still contains gamma')
+-    theta=float(text_value(rr,'theta')); alt=float(text_value(rr,'altitude'))
+-    if abs(theta-89.0)>0.01 or abs(alt-0.08)>0.01: fail(f'runtime reset wrong: altitude={alt}, theta={theta}')
++    theta=float(text_value(rr,'theta')); alt=float(text_value(rr,'altitudeAGL'))
++    if abs(theta-89.0)>0.01 or not abs(alt-0.141025821708132)<1e-12: fail(f'runtime reset wrong: altitude={alt}, theta={theta}')
+     for tag in ('ubody','vbody','wbody'):
+         v=text_value(rr,tag)
+         if v is None or abs(float(v))>1e-9: fail(f'runtime reset requires {tag}=0, got {v}')
+--- a/scripts/apply_patch.sh
++++ b/scripts/apply_patch.sh
+@@ -28,7 +28,7 @@
+   grep -q '<ubody unit=\\"FT/SEC\\"> 0.0 </ubody>' "$TARGET"
+ }
+ 
+-if same_file "$TARGET" "$V3" || has_v3_markers; then
++if same_file "$TARGET" "$V3"; then
+   echo "Phoenix v3 SIM_JSBSim integration already present; nothing to do."
+   exit 0
+ fi
+@@ -40,7 +40,7 @@
+ if same_file "$TARGET" "$STOCK"; then
+   echo "Detected stock SIM_JSBSim.cpp; installing tested Phoenix v3 source."
+   install -m 0644 "$V3" "$TARGET"
+-elif same_file "$TARGET" "$V2"; then
++elif same_file "$TARGET" "$V2" || [[ "$(sha256sum "$TARGET" | cut -d' ' -f1)" == "cb4f3d8d10f6f3d19fd884d101c959f0518dc080ca5dc3f7c2ee528ca0ea59bf" ]]; then
+   echo "Detected Phoenix v2 SIM_JSBSim.cpp; upgrading to v3."
+   install -m 0644 "$V3" "$TARGET"
+ else

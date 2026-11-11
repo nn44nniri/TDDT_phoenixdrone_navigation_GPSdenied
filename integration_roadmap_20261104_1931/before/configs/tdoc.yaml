@@ -1,0 +1,247 @@
+package:
+  version: 2026.9.11.2052
+  orchestration_version: TDOC-runtime-v1
+  formalism: TDDT_Dynamic_NTwin_TDOC_details_FA_v4.md
+  invocation_contract: section 41.1 / Ready -> TDOC Trigger -> Invoke -> VersionedRoute
+# External package/module addresses are intentionally absent here.
+# Source configs/environment.sh before any TDOC command; it is the single address authority.
+addressing:
+  authority: configs/environment.sh
+  external_path_fallbacks: false
+unit_adapter:
+  expected_package: TDOC_ISO_Universal_Unit_Conversion_Standard20260824_0914
+  minimum_api_version: 2.2.0
+  binding_owner: TDOC/RuntimeScheduler
+  conversion_owner: Layer3.1/TDOCAdapter
+  double_normalization: prohibited
+  authoritative_env: TDDT_UNIT_ADAPTER_ROOT
+  layer3_binding_field: Layer3Config.paths.tdoc_root
+  tdoc_package_root: current package directory (automatic)
+layers:
+  layer1:
+    enabled: true
+    implementation: physical_event_ingress
+  layer2:
+    enabled: true
+    implementation: external_direct_api
+    require_twins: [MESA_NAV, WingMPET, MicroMetTwin]
+  layer3:
+    enabled: true
+    implementation: external_layer3_engine
+    config: configs/configuration_boulder.yaml
+    forbid_fmu_runtime_owner: true
+  layer4:
+    enabled: true
+    implementation: external_layer4_engine
+    config: configs/configuration_boulder.yaml
+  layer5:
+    enabled: true
+    implementation: external_layer5_engine
+    config: configs/configuration_phoenix.yaml
+    expected_package: layer5_v20260911_1510
+    expected_version: 2026.9.11.1510
+    default_learning_mode: OFFLINE_SE
+  layer6:
+    enabled: true
+    implementation: external_layer6_client_gateway
+    modes: [ONLINE_JSBSIM]
+    online_only: true
+    online:
+      transport: Layer6Client_GUI_MAVLink
+      execution_profile: closed_loop_sitl
+      authoritative_env: TDDT_LAYER6_ROOT
+      expected_package: layer6_v20261007_1032
+      expected_version: 2026.10.7.0937
+      pipeline: Layer6Client -> GUI -> MAVLink -> ArduPilot SITL -> JSBSim
+      feedback_destination: Layer7
+      require_layer6_package: true
+      direct_pwm: false
+      guidance_sequence_config: configs/online_guidance_sequence.yaml
+      guidance_sequence_owner: TDOC/RuntimeScheduler
+      endpoint: 127.0.0.1:14661
+      gui_endpoint: 127.0.0.1:14660
+      start_if_needed: true
+      startup_timeout_s: 30.0
+      execution_confirmation_timeout_s: 5.0
+      telemetry_max_age_s: 0.2
+      imu_max_age_s: 0.15
+      # Wait across the 1 Hz wind producer's pending/readback interval, then
+      # acquire new observations. This does not extend any sample's freshness.
+      telemetry_resample_timeout_s: 2.0
+      require_bound_environment: true
+      require_live_channels: true
+      require_fcu_estimator_ready: true
+      require_body_attitude_quaternion: true
+      ground_contact_policy: phoenix-fourfoot-no-fixture-r3.05-v1
+      ground_arm_bootstrap: true
+      origin_tolerance_m: 50.0
+      gps_role: validation_reference_only
+      navigation_sensor_source: MAVLink/SCALED_IMU/BODY_FRD
+      execution_rate_hz: 30.0
+      stop_owned_stack_on_close: true
+  offline_training:
+    route: Layer5 -> TDOC -> Layer2
+    layer6_in_path: false
+    feedback_field: layer5_training_feedback
+    close_training_loop: true
+  online_training:
+    mode: ONLINE_JSBSIM
+    require_finalized_offline_setd: true
+    setd_owner: external Layer5 KStore
+    handoff_owner: TDOC/RuntimeScheduler
+    execution_transport: Layer6Client_GUI_MAVLink
+    feedback_layer: Layer7
+    layer5_online_persistent_write: false
+    layer7_persistent_learning_authority: true
+    continuous_cycle_semantics: "--online-cycles is a maximum iteration count, not a mission count"
+    episode_semantics: "--online-episodes/--online-missions repeats origin-to-destination missions with a per-episode cycle safety cap"
+    default_max_cycles_per_episode: 320
+    no_actuation_stall_abort_cycles: 5
+    auto_commission_if_not_ready: false
+    demo_aligned_preparation: true
+    cycle_timing_excludes_episode_startup: true
+    commissioning_semantics: "bounded SITL-only held-physics pilot-domain/mixer/trim validation; no direct PWM and no nonzero qLPV correction authorization"
+    auto_cycle_budget:
+      enabled: true
+      offline_budget_preferred: true
+      margin_factor: 1.20
+      reserve_cycles: 20
+      minimum_cycles: 60
+      maximum_cycles: 3600
+      fallback_nominal_ground_speed_m_s: 15.0
+  layer7:
+    enabled: true
+    implementation: external_layer7_side_module
+    config: configs/default.json
+    expected_package: layer7_v20260901_0921
+    expected_version: 0.3.0
+    expected_contract: tdoc-layer7-v2
+    trigger_owner: TDOC
+    direct_actuation: false
+    feedback_routes: [Layer2, Layer3.1, Layer3.2, Layer3.3]
+    safe_commit_owner: TDOC
+    structural_validation: fail_closed
+scheduler:
+  fast_dt_s: 1.0
+  meso_fast_steps: 3
+  slow_meso_windows: 2
+  trigger_owner: TDOC/RuntimeScheduler
+runtime:
+  root: runtime
+  strict: true
+  provenance: events/invocations.jsonl
+  on_not_ready: hold
+  require_atomic_snapshot: true
+  require_traceable_invocation: true
+  prohibit_direct_layer_ownership: true
+  storage:
+    knowledge_compression: gzip
+    chunk_records: 64
+    chunk_uncompressed_bytes: 1048576
+    per_layer_runtime_archive: true
+  immutable_external_packages: true
+deadlines:
+  enforcement: fail_closed
+  clock: monotonic
+  layer2_s: 5.0
+  layer3_s: 5.0
+  layer4_s: 2.0
+  # Full-horizon L2/L3/WingMPET replay is a non-actuating terminal-schedule
+  # transaction. The <2 s control-segment deadline above remains unchanged.
+  # PRE_RELEASE is outside the control hot path and may include full-horizon
+  # WingMPET replay plus audit flush on constrained edge CPUs. Its deadline must
+  # bound that verification transaction rather than spuriously reject valid FF
+  # evidence at the 12 s process-time boundary.
+  # Isolated cold-start FMU verification sends no flight command. Its measured
+  # Native startup cost exceeds 30 s; live command deadlines remain separate.
+  layer4_pre_release_s: 120.0
+  layer5_s: 5.0
+  layer6_s: 15.0
+  layer7_s: 5.0
+  offline_loop_s: 50.0
+reporting:
+  output_dir: reports/visualization
+  terrain_grid_n: 90
+  source: TDOC runtime artifacts only
+  generate_2d: true
+  generate_3d: true
+  layer4_forecast_semantics: forecast, not executed path
+
+# Layer6 service owns command latching/cadence. Execution rate is configured at
+# layers.layer6.online.execution_rate_hz; Layer5's deadline is never extended.
+
+# TDOC-RTMO complementary mission orchestration (TDOC_RTMO_Complement_FA_v2).
+# This policy changes orchestration only; Layer2..Layer7 internals remain authoritative.
+tdoc:
+  knowledge_policy:
+    # Versioned OFFLINE evidence prior. It never grants FINAL or execution authority.
+    artifact: knowledge/policy/online_policy.json.gz
+    offline_timeline: reports/offline/mission/MISSION_TIMELINE.csv
+  rtmo:
+    enabled: true
+    mission:
+      phase_order: [on_ground, vertical_takeoff, hover, transition_forward, climb, cruise, turn, approach, transition_back, vertical_landing, touchdown]
+      require_all_phase_capabilities: false
+      admission_policy: PHASE_LOCAL_RUNTIME_RELEASE
+      far_phase_missing_is_warning: true
+      start_phase: on_ground
+      completion_phase: touchdown
+    realtime:
+      min_control_hz: 10.0
+      max_control_period_s: 0.1
+      max_sim_time_jump_s: 0.15
+      plant_clock_authority: layer6_mavlink_ardupilot
+      use_monotonic_deadlines: true
+      latency_window_samples: 20000
+      min_executed_samples_for_p99_claim: 1000
+    authority:
+      navigation: mesa_std
+      simulator_truth: diagnostic_only
+      terminal_state: mesa_std
+    capability:
+      require_live_registry: true
+      registry_path: runtime/rtmo/capability_registry.json.gz
+      reports_are_audit_only: true
+    l4_artifacts:
+      reuse_only_if_verified: true
+      require_phase_match: true
+      require_envelope_match: true
+      require_version_match: true
+      require_freshness: true
+      require_live_certificate_guard: true
+      synthetic_final_forbidden: true
+      fast_path_reuse: true
+      refresh_lane: meso_async
+      # The committable first move is exactly one executor/plant transaction.
+      # The slower forecast horizon is retained and every row remains FF-gated.
+      commit_segment_s: 0.1
+      # Refresh is meso/background work. Starting it every two executor ticks makes
+      # the CPU-bound WingMPET replay contend with the fast lane. Fifteen seconds
+      # also prevents overlap with the one-time post-bootstrap plant-clock rebase,
+      # while leaving fifteen seconds before max_age_s. Phase/envelope/version gates
+      # still force an immediate fail-closed bootstrap whenever reuse is inadmissible.
+      refresh_after_s: 15.0
+      refresh_envelope_fraction: 0.75
+      max_age_s: 30.0
+      position_tolerance_m: 20.0
+      velocity_tolerance_m_s: 4.0
+      no_full_fidelity_compute_in_fast_path: true
+    execution:
+      mixer_authority: ArduPilot SITL
+      l6_failure_policy: fail_stop
+      direct_pwm: false
+      direct_motor_injection: false
+      direct_elevon_injection: false
+      direct_jsbsim_actuator_injection: false
+    command_lease:
+      hold_ticks: 3
+      derive_from_fast_tick: true
+      release_on_stale: true
+    persistence:
+      hot_path_sync_heavy_writes: false
+      bounded_queue: true
+      max_queue_records: 256
+      flush_timeout_s: 30.0
+    run_coherence:
+      immutable_run_context: true
+      reject_cross_run_merge: true

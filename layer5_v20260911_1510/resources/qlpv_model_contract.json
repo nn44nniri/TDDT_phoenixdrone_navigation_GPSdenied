@@ -1,0 +1,43 @@
+{
+  "schema": "layer5-phoenix-logical-qlpv-v1",
+  "required_npz_arrays": {
+    "A": "(nx,nx) or (nvertex,nx,nx)",
+    "B": "(nx,4) or (nvertex,nx,4)",
+    "calibrated": "scalar/length-1 integer equal to 1",
+    "phoenix_profile_sha256": "scalar/length-1 string equal to the loaded phoenix_drone_v3.yaml SHA-256",
+    "airframe_binding_sha256": "scalar/length-1 string equal to PhoenixSpecialization.airframe_binding_hash()"
+  },
+  "optional_npz_arrays": {
+    "E": "disturbance matrix/matrices",
+    "schedule_vertices": "qLPV transition scheduling vertices when nvertex>1"
+  },
+  "input_order": [
+    "aileron_domain",
+    "elevator_domain",
+    "throttle_domain",
+    "rudder_domain"
+  ],
+  "deployment_requirement": "Non-zero correction requires calibrated=1, exact Phoenix profile + airframe/propwash binding hashes, validated mixer, identified servo dynamics and ESC mapping, plus an explicit verified chance certificate. Any missing evidence is fail-closed.",
+  "runtime_sitl_identification_alternative": {
+    "schema": "PTLIB-Phoenix-control-commission-v2",
+    "scope": "layer5_local_actuator_correction_only",
+    "state_order": [
+      "delta_L_error_rad",
+      "delta_R_error_rad",
+      "motor_L_error_norm",
+      "motor_R_error_norm"
+    ],
+    "requirements": [
+      "effective_sitl_command_path servo dynamics identified/measured",
+      "effective_sitl_command_path ESC mapping identified/measured",
+      "accepted ArduPilot mixer",
+      "exact Phoenix profile + airframe binding"
+    ],
+    "limitations": [
+      "simulation_only",
+      "not real-aircraft identification",
+      "does not bypass per-candidate chance/PSF/RTA/Governance gates",
+      "direct PWM forbidden"
+    ]
+  }
+}

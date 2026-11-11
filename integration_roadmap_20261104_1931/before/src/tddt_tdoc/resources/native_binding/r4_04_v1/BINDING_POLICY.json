@@ -1,0 +1,19 @@
+{
+  "schema": "TDOC-native-binding-policy-v1",
+  "revision": "native-unified-binding-r4.04-v1",
+  "binding_schema": "TDOC-native-environment-binding-v2",
+  "owner": "TDOC",
+  "hash_algorithm": "SHA-256; canonical UTF-8 JSON with sorted keys and no nonfinite numbers",
+  "knowledge_role": "offline-prior-only",
+  "forcing_selection": "accepted-handoff-only; no download, fallback or online rebase",
+  "naive_time_policy": "preserve accepted dataset clock; timezone=auto is not UTC authority",
+  "aware_time_policy": "preserve source explicit offset and exact handoff epoch; no implicit UTC normalization",
+  "plant_anchor_role": "declared before execution; runtime attachment cannot rebase it",
+  "runtime_clock_scope": "observed FCU source-to-dataset projection and host-boot-identified monotonic receipt",
+  "clock_rates": "measure diagnostic deltas; never assume plant time equals host elapsed time",
+  "absolute_clock_synchronization": "not asserted; no host UTC to dataset mapping for unspecified timestamps",
+  "forcing_application_scope": "R4.03 horizontal wind parameter readback; unsupported fields explicitly unavailable",
+  "freshness_and_prearm_acceptance": "R4.05",
+  "grants_actuation_authority": false,
+  "published_binding_identity": "one TDOC publication; no replacement at FCU connection"
+}

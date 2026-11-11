@@ -1,0 +1,233 @@
+{
+  "schema": "layer4-factorized-scenarios-v1",
+  "action_order": [
+    "delta_thrust_norm",
+    "delta_lift_norm",
+    "delta_pitch_rad",
+    "delta_yaw_rate_rad_s",
+    "delta_airspeed_m_s"
+  ],
+  "disturbance_order": [
+    "dVg_N",
+    "dVg_E",
+    "dVg_D",
+    "dW_N",
+    "dW_E",
+    "dW_D"
+  ],
+  "actions": [
+    {
+      "name": "hold",
+      "vector": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "probability": 0.35
+    },
+    {
+      "name": "energy_saver",
+      "vector": [
+        -0.08,
+        0,
+        0,
+        0,
+        -0.8
+      ],
+      "probability": 0.18
+    },
+    {
+      "name": "airspeed_up",
+      "vector": [
+        0.1,
+        0,
+        0,
+        0,
+        1.5
+      ],
+      "probability": 0.18
+    },
+    {
+      "name": "climb_bias",
+      "vector": [
+        0.06,
+        0.1,
+        -0.03,
+        0,
+        0.4
+      ],
+      "probability": 0.15
+    },
+    {
+      "name": "heading_correction",
+      "vector": [
+        0.04,
+        0,
+        0,
+        0.08,
+        0.2
+      ],
+      "probability": 0.14
+    }
+  ],
+  "disturbances": [
+    {
+      "name": "nominal",
+      "vector": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "probability": 0.55
+    },
+    {
+      "name": "wind_plus",
+      "vector": [
+        0,
+        0,
+        0,
+        1.0,
+        0.5,
+        0
+      ],
+      "probability": 0.18
+    },
+    {
+      "name": "crosswind",
+      "vector": [
+        0,
+        0,
+        0,
+        0,
+        1.5,
+        0
+      ],
+      "probability": 0.15,
+      "conservative": true
+    },
+    {
+      "name": "gust_vertical",
+      "vector": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0.8
+      ],
+      "probability": 0.12,
+      "conservative": true
+    }
+  ],
+  "degradations": [
+    {
+      "name": "none",
+      "twins": {},
+      "severity": 0.0,
+      "probability": 0.72
+    },
+    {
+      "name": "nav_quality_drop",
+      "twins": {
+        "MESA_NAV": 0.25
+      },
+      "severity": 0.25,
+      "probability": 0.1
+    },
+    {
+      "name": "climate_quality_drop",
+      "twins": {
+        "MicroMetTwin": 0.35
+      },
+      "severity": 0.35,
+      "probability": 0.09
+    },
+    {
+      "name": "wing_quality_drop",
+      "twins": {
+        "WingMPET": 0.3
+      },
+      "severity": 0.3,
+      "probability": 0.09
+    }
+  ],
+  "coupling_variations": [
+    {
+      "name": "nominal_coupling",
+      "delta": {},
+      "probability": 0.72
+    },
+    {
+      "name": "climate_to_wing_plus",
+      "delta": {
+        "MicroMetTwin->WingMPET": 0.03
+      },
+      "probability": 0.12
+    },
+    {
+      "name": "nav_to_wing_minus",
+      "delta": {
+        "MESA_NAV->WingMPET": -0.02
+      },
+      "probability": 0.08
+    },
+    {
+      "name": "wing_to_nav_plus",
+      "delta": {
+        "WingMPET->MESA_NAV": 0.02
+      },
+      "probability": 0.08
+    }
+  ],
+  "objective_profiles": [
+    {
+      "name": "balanced",
+      "weights": {},
+      "probability": 0.34
+    },
+    {
+      "name": "mission_time",
+      "weights": {
+        "mission": 0.58,
+        "time": 0.22,
+        "energy": 0.05,
+        "risk": 0.05,
+        "uncertainty": 0.03,
+        "consistency": 0.04,
+        "margin": 0.03
+      },
+      "probability": 0.22
+    },
+    {
+      "name": "energy_risk",
+      "weights": {
+        "mission": 0.08,
+        "time": 0.05,
+        "energy": 0.42,
+        "risk": 0.28,
+        "uncertainty": 0.06,
+        "consistency": 0.06,
+        "margin": 0.05
+      },
+      "probability": 0.22
+    },
+    {
+      "name": "network_confidence",
+      "weights": {
+        "mission": 0.08,
+        "time": 0.04,
+        "energy": 0.05,
+        "risk": 0.14,
+        "uncertainty": 0.22,
+        "consistency": 0.28,
+        "margin": 0.19
+      },
+      "probability": 0.22
+    }
+  ]
+}

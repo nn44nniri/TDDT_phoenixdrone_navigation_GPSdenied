@@ -1,0 +1,51 @@
+
+=== OFFLINE_SE REALIZED MISSION: SARG prior S03_C024.csv, reference_cycles=200, safety_cycle_budget<=320 ===
+[0001] phase=on_ground            substate=-                    goal= 2370.08m AGL=  0.00m energy= 20.50Wh  budget<=0320
+[0002] phase=vertical_takeoff     substate=-                    goal= 2370.08m AGL=  0.00m energy= 20.50Wh  budget<=0320
+[0003] phase=vertical_takeoff     substate=-                    goal= 2370.08m AGL=  2.00m energy= 20.48Wh  budget<=0320
+[0004] phase=vertical_takeoff     substate=-                    goal= 2370.07m AGL=  4.22m energy= 20.45Wh  budget<=0320
+[0005] phase=vertical_takeoff     substate=-                    goal= 2370.07m AGL=  7.09m energy= 20.43Wh  budget<=0320
+[0006] phase=vertical_takeoff     substate=-                    goal= 2370.06m AGL= 10.34m energy= 20.40Wh  budget<=0320
+Traceback (most recent call last):
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/scripts/run_training_workflows.py", line 3674, in <module>
+    if __name__=='__main__': raise SystemExit(main())
+                                              ~~~~^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/scripts/run_training_workflows.py", line 3417, in main
+    if args.offline_driver=='mission':overall['modes']['OFFLINE_SE']=run_offline_mission(orch,cfg,req0,args,report_root)
+                                                                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/scripts/run_training_workflows.py", line 1889, in run_offline_mission
+    try:r=orch.run_cycle(req).to_dict()
+          ~~~~~~~~~~~~~~^^^^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/orchestrator.py", line 1009, in run_cycle
+    write_json_gz(outdir/f"{tx}.json.gz",result.to_dict(),indent=2)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/storage.py", line 50, in write_json_gz
+    json.dump(_json_clean(obj), f, ensure_ascii=False, sort_keys=(indent is None), indent=indent, allow_nan=False)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+                 ^^^^^^^^
+  File "/usr/lib/python3.13/json/encoder.py", line 433, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/lib/python3.13/json/encoder.py", line 407, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.13/json/encoder.py", line 407, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.13/json/encoder.py", line 407, in _iterencode_dict
+    yield from chunks
+  [Previous line repeated 1 more time]
+  File "/usr/lib/python3.13/json/encoder.py", line 326, in _iterencode_list
+    yield from chunks
+  File "/usr/lib/python3.13/json/encoder.py", line 407, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.13/json/encoder.py", line 407, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.13/json/encoder.py", line 407, in _iterencode_dict
+    yield from chunks
+  [Previous line repeated 7 more times]
+  File "/usr/lib/python3.13/json/encoder.py", line 278, in _iterencode_list
+    def _iterencode_list(lst, _current_indent_level):
+    
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/scripts/run_training_workflows.py", line 3346, in on_signal
+    raise KeyboardInterrupt if signum==signal.SIGINT else SystemExit(128+int(signum))
+KeyboardInterrupt

@@ -1,0 +1,90 @@
+{
+  "schema": "layer4-explicit-mo-mpc-regions-v2",
+  "theta_order": [
+    "risk_signal",
+    "wind_speed_ms",
+    "mean_trust",
+    "mean_coupling",
+    "stage_code"
+  ],
+  "regions": [
+    {
+      "id": "R_ref_balanced_cruise_boulder",
+      "lower": [
+        0.95,
+        1.8,
+        0.3,
+        0.08,
+        0.74
+      ],
+      "upper": [
+        1.05,
+        2.4,
+        0.37,
+        0.11,
+        0.76
+      ],
+      "F": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "g": [
+        -0.14992235884722416,
+        -0.08608271594149783,
+        0.09389035770442536,
+        -0.0846485691218321,
+        -1.122874682083619
+      ],
+      "probability": 0.05,
+      "validation": {
+        "scope": "packaged reference qLPV + example Layer-3 snapshot, balanced objective profile",
+        "theta_center": [
+          1.0,
+          2.101938009262085,
+          0.3333333333333334,
+          0.09371199339934733,
+          0.75
+        ],
+        "source": "complete in-loop seven-objective robust optimizer",
+        "max_action_error_at_center": 0.0,
+        "deployment_certificate": false
+      }
+    }
+  ],
+  "status": "validated reference PWA warm-start region shipped; complete bounded online Pareto optimizer remains normative outside validated regions",
+  "validated": true,
+  "scope": "reference/demo model only; deployment regions must be refit from the aircraft-calibrated optimizer/model"
+}

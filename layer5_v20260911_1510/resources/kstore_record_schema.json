@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tddt-layer5-kstore-record-v1",
+  "title": "Layer 5 persistent knowledge record",
+  "type": "object",
+  "required": [
+    "seq",
+    "id_E",
+    "k",
+    "t",
+    "kind",
+    "payload",
+    "schema_version",
+    "model_version",
+    "h_payload",
+    "h_prev",
+    "provenance",
+    "record_hash",
+    "state_commit"
+  ],
+  "properties": {
+    "seq": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "id_E": {
+      "type": "string",
+      "minLength": 1
+    },
+    "k": {
+      "type": "integer"
+    },
+    "t": {
+      "type": "number"
+    },
+    "kind": {
+      "type": "string",
+      "minLength": 1,
+      "examples": [
+        "FAST_EXPERIENCE",
+        "MESO_AGGREGATE",
+        "SLOW_AGGREGATE",
+        "EPISODE_SUMMARY",
+        "DATASET_REF",
+        "SETD_SNAPSHOT",
+        "DECISION_PROVENANCE"
+      ]
+    },
+    "payload": {},
+    "schema_version": {
+      "const": "KStore-record-v1"
+    },
+    "model_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "data_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "h_payload": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "h_prev": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "provenance": {
+      "type": "object"
+    },
+    "record_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "state_commit": {
+      "const": "COMMITTED"
+    }
+  },
+  "additionalProperties": true
+}

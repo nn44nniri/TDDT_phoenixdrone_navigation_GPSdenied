@@ -1,0 +1,110 @@
+# Phoenix dual-rotor tailsitter - ArduPlane SITL parameters
+Q_ENABLE 1
+Q_TAILSIT_ENABLE 1
+Q_FRAME_CLASS 10
+Q_TAILSIT_MOTMX 0
+
+SERVO1_FUNCTION 77
+SERVO2_FUNCTION 78
+SERVO3_FUNCTION 73
+SERVO4_FUNCTION 74
+
+SERVO1_MIN 1000
+SERVO1_TRIM 1500
+SERVO1_MAX 2000
+SERVO2_MIN 1000
+SERVO2_TRIM 1500
+SERVO2_MAX 2000
+SERVO3_MIN 1000
+SERVO3_TRIM 1000
+SERVO3_MAX 2000
+SERVO4_MIN 1000
+SERVO4_TRIM 1000
+SERVO4_MAX 2000
+
+RUDD_DT_GAIN 0
+AHRS_EKF_TYPE 3
+ARSPD_TYPE 100
+BATT_MONITOR 4
+BATT_CAPACITY 2200
+TERRAIN_ENABLE 0
+TERRAIN_FOLLOW 0
+ARSPD_USE 1
+ARSPD_SKIP_CAL 1
+ARSPD_AUTOCAL 0
+INS_GYR_CAL 0
+
+INS_ACCOFFS_X 0.00001
+INS_ACCOFFS_Y 0.00001
+INS_ACCOFFS_Z 0.00001
+INS_ACCSCAL_X 1.0
+INS_ACCSCAL_Y 1.0
+INS_ACCSCAL_Z 1.0
+
+INS_ACC2OFFS_X 0.00001
+INS_ACC2OFFS_Y 0.00001
+INS_ACC2OFFS_Z 0.00001
+INS_ACC2SCAL_X 1.0
+INS_ACC2SCAL_Y 1.0
+INS_ACC2SCAL_Z 1.0
+
+# GNSS-denied SITL. AHRS_EKF_TYPE=3 uses the sensor EKF inner-loop attitude
+# backend; TDDT navigation uses only its approved IMU/mag/baro/pitot sensors.
+SIM_GPS1_ENABLE 0
+SIM_GPS2_ENABLE 0
+SIM_GPS3_ENABLE 0
+SIM_GPS4_ENABLE 0
+
+
+# No GNSS receivers are installed in this simulation navigation profile.
+GPS1_TYPE 0
+GPS2_TYPE 0
+# Prototype commissioning baseline: no artificial triangular gyro-bias ramp.
+# Stock sensor noise and measured gyro/accelerometer bias handling remain active.
+SIM_DRIFT_SPEED 0
+
+# Elevon signs: positive AP pitch demand requires negative physical deflection.
+SERVO1_REVERSED 1
+SERVO2_REVERSED 1
+
+# Native .65kg dual-rotor commissioning: bounded inner-loop bandwidth, no
+# unqualified fixed-wing default feedforward on VTOL propwash surfaces.
+Q_A_ANG_RLL_P 1.8
+Q_A_ANG_PIT_P 1.8
+Q_A_ANG_YAW_P 1.5
+Q_A_RAT_RLL_P 0.04
+Q_A_RAT_RLL_I 0.02
+Q_A_RAT_RLL_D 0.001
+Q_A_RAT_RLL_FF 0
+Q_A_RAT_RLL_IMAX 0.12
+Q_A_RAT_PIT_P 0.16
+Q_A_RAT_PIT_I 0.06
+Q_A_RAT_PIT_D 0.001
+Q_A_RAT_PIT_FF 0
+Q_A_RAT_PIT_IMAX 0.12
+Q_A_RAT_YAW_P 0.12
+Q_A_RAT_YAW_I 0.03
+Q_A_RAT_YAW_D 0.001
+Q_A_RAT_YAW_FF 0
+Q_A_RAT_YAW_IMAX 0.12
+
+# No GNSS, external navigation, optical flow or odometry aiding for EKF3.
+EK3_ENABLE 1
+EK2_ENABLE 0
+EK3_SRC1_POSXY 0
+EK3_SRC1_VELXY 0
+EK3_SRC1_POSZ 1
+EK3_SRC1_VELZ 0
+EK3_SRC1_YAW 1
+
+# Start disarmed in VTOL: fixed-wing EKF bootstrap explicitly requires GPS lock.
+# QHOVER clears the fly-forward assumption; normal EKF/arming checks remain on.
+INITIAL_MODE 18
+
+# Mode ownership belongs to the Digital Pilot. An idle RC mode switch must not
+# overwrite INITIAL_MODE with a fixed-wing MANUAL slot during EKF bootstrap.
+FLTMODE_CH 0
+
+# Keep a healthy, initialized attitude/vertical EKF in VTOL without XY aiding.
+# ArduPlane's DCM fallback otherwise insists on horizontal navigation validity.
+AHRS_OPTIONS 2

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tddt-dynamic-ntwin-layer4"
+version = "2026.9.7.0608"
+description = "Lightweight Edge Layer 4 prediction, what-if simulation and optimization for Dynamic N-Twin TDDT"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "PyYAML>=6.0"]
+
+[project.scripts]
+tddt-layer4 = "layer4.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

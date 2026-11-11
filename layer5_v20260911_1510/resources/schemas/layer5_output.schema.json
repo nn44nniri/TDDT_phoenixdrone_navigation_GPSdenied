@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"tddt-layer5-output-v1",
+  "type":"object",
+  "required":["ok","learning_mode","operational_mode","recommendation","decision","gates","fallback","network_commit","model_retraining","direct_pwm"],
+  "properties":{
+    "ok":{"type":"boolean"},
+    "learning_mode":{"enum":["OFFLINE_SE","ONLINE_JSBSIM"]},
+    "operational_mode":{"enum":["AUTO","SUPERVISED","ADVISORY","HOLD"]},
+    "network_commit":{"const":false},
+    "model_retraining":{"const":false},
+    "direct_pwm":{"const":false},
+    "layer6_package":{"type":["object","null"]},
+    "control_action":{"type":["object","null"]},
+    "gates":{"type":"object"},
+    "fallback":{"type":"object"}
+  }
+}

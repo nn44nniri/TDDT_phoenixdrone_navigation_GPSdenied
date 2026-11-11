@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Layer-3 semantic/unit corrections for documented upstream metadata that cannot represent the physical TDOC quantity correctly without changing external dependency packages.",
+  "overrides": {
+    "op10__in__log_pressure_prior": {
+      "unit": "1",
+      "frame": "SCALAR",
+      "semantic": "log_pressure_prior",
+      "reason": "MESA formalism uses ln(P[Pa]); TEP/test values are logarithmic."
+    },
+    "op10__in__log_scale_height": {
+      "unit": "1",
+      "frame": "SCALAR",
+      "semantic": "log_scale_height",
+      "reason": "MESA test/default values are ln(scale_height_m)."
+    },
+    "op10__in__pressure_time_scale": {
+      "unit": "s",
+      "frame": "SCALAR",
+      "semantic": "pressure_time_scale",
+      "reason": "phoenix_drone_v3.yaml navigation.pressure_time_scale_s defines seconds."
+    },
+    "op06__in__wind_time_derivative_x": {
+      "unit": "m/s2",
+      "frame": "ENU",
+      "semantic": "wind_time_derivative_x",
+      "reason": "partial time derivative of wind velocity"
+    },
+    "op06__in__wind_time_derivative_y": {
+      "unit": "m/s2",
+      "frame": "ENU",
+      "semantic": "wind_time_derivative_y",
+      "reason": "partial time derivative of wind velocity"
+    },
+    "op06__in__wind_time_derivative_h": {
+      "unit": "m/s2",
+      "frame": "ENU",
+      "semantic": "wind_time_derivative_h",
+      "reason": "partial time derivative of wind velocity"
+    },
+    "op06__in__wind_jacobian_11": {
+      "unit": "1/s",
+      "frame": "SCALAR",
+      "semantic": "wind_jacobian_11",
+      "reason": "spatial wind-velocity gradient dV/dx"
+    },
+    "op06__in__wind_jacobian_12": {
+      "unit": "1/s",
+      "frame": "SCALAR",
+      "semantic": "wind_jacobian_12",
+      "reason": "spatial wind-velocity gradient dV/dx"
+    },
+    "op06__in__wind_jacobian_13": {
+      "unit": "1/s",
+      "frame": "SCALAR",
+      "semantic": "wind_jacobian_13",
+      "reason": "spatial wind-velocity gradient dV/dx"
+    },
+    "op06__in__wind_jacobian_21": {
+      "unit": "1/s",
+      "frame": "SCALAR",
+      "semantic": "wind_jacobian_21",
+      "reason": "spatial wind-velocity gradient dV/dx"
+    },
+    "op06__in__wind_jacobian_22": {
+      "unit": "1/s",
+      "frame": "SCALAR",
+      "semantic": "wind_jacobian_22",
+      "reason": "spatial wind-velocity gradient dV/dx"
+    },
+    "op06__in__wind_jacobian_23": {
+      "unit": "1/s",
+      "frame": "SCALAR",
+      "semantic": "wind_jacobian_23",
+      "reason": "spatial wind-velocity gradient dV/dx"
+    },
+    "op06__in__wind_jacobian_31": {
+      "unit": "1/s",
+      "frame": "SCALAR",
+      "semantic": "wind_jacobian_31",
+      "reason": "spatial wind-velocity gradient dV/dx"
+    },
+    "op06__in__wind_jacobian_32": {
+      "unit": "1/s",
+      "frame": "SCALAR",
+      "semantic": "wind_jacobian_32",
+      "reason": "spatial wind-velocity gradient dV/dx"
+    },
+    "op06__in__wind_jacobian_33": {
+      "unit": "1/s",
+      "frame": "SCALAR",
+      "semantic": "wind_jacobian_33",
+      "reason": "spatial wind-velocity gradient dV/dx"
+    },
+    "op06__out__wind_partial_t_x": {
+      "unit": "m/s2",
+      "frame": "ENU",
+      "semantic": "wind_partial_t_x",
+      "reason": "partial time derivative of wind velocity"
+    },
+    "op06__out__wind_partial_t_y": {
+      "unit": "m/s2",
+      "frame": "ENU",
+      "semantic": "wind_partial_t_y",
+      "reason": "partial time derivative of wind velocity"
+    },
+    "op06__out__wind_partial_t_h": {
+      "unit": "m/s2",
+      "frame": "ENU",
+      "semantic": "wind_partial_t_h",
+      "reason": "partial time derivative of wind velocity"
+    },
+    "op14__out__segment_length": {
+      "unit": "m",
+      "frame": "SCALAR",
+      "semantic": "segment_length",
+      "reason": "WingMPET op14 formula is groundspeed*dt, therefore metres."
+    },
+    "op14__out__time_total": {
+      "unit": "s",
+      "frame": "SCALAR",
+      "semantic": "time_total",
+      "reason": "WingMPET op14 accumulates mission time in seconds."
+    },
+    "op15__in__goal_x": {
+      "unit": "m",
+      "frame": "ENU",
+      "semantic": "goal_x",
+      "reason": "Goal coordinate is an ENU position component in metres."
+    },
+    "op15__in__goal_y": {
+      "unit": "m",
+      "frame": "ENU",
+      "semantic": "goal_y",
+      "reason": "Goal coordinate is an ENU position component in metres."
+    },
+    "op15__in__goal_h": {
+      "unit": "m",
+      "frame": "ENU",
+      "semantic": "goal_h",
+      "reason": "Goal coordinate is an ENU position component in metres."
+    },
+    "op15__in__goal_tolerance": {
+      "unit": "m",
+      "frame": "SCALAR",
+      "semantic": "goal_tolerance",
+      "reason": "Goal tolerance is a geometric distance in metres."
+    },
+    "op15__out__goal_bearing": {
+      "unit": "rad",
+      "frame": "SCALAR",
+      "semantic": "goal_bearing",
+      "reason": "Goal bearing is an angular output."
+    },
+    "op16__in__length_reference": {
+      "unit": "m",
+      "frame": "SCALAR",
+      "semantic": "length_reference",
+      "reason": "Length reference is a path-length normalization scale."
+    },
+    "op16__in__time_reference": {
+      "unit": "s",
+      "frame": "SCALAR",
+      "semantic": "time_reference",
+      "reason": "Time reference is a mission-time normalization scale."
+    },
+    "op16__out__normalized_energy_cost": {
+      "unit": "1",
+      "frame": "SCALAR",
+      "semantic": "normalized_energy_cost",
+      "reason": "Normalized energy cost is dimensionless after division by energy_reference."
+    }
+  }
+}
