@@ -1,0 +1,331 @@
+<?xml version="1.0"?>
+<fdm_config name="Phoenix" version="2.0" release="BETA"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
+
+  <fileheader>
+    <author>Generated for ArduPilot SITL + JSBSim integration from phoenix_drone_v3.yaml</author>
+    <filecreationdate>2026-09-30</filecreationdate>
+    <version>1.0</version>
+    <description>
+      Source-informed simplified Phoenix dual-rotor tailsitter model. Source-identified
+      mass, inertia, geometry, motor thrust and selected propwash data are retained.
+      Conventional forward-flight derivatives and the JSBSim frame reduction remain
+      engineering estimates. This model is for SITL integration testing, not validated
+      aircraft performance claims.
+    </description>
+  </fileheader>
+
+  <metrics>
+    <wingarea unit="M2">0.12</wingarea>
+    <wingspan unit="M">0.64</wingspan>
+    <chord unit="M">0.19</chord>
+    <htailarea unit="M2">0.0001</htailarea>
+    <htailarm unit="M">0.19</htailarm>
+    <vtailarea unit="M2">0.0001</vtailarea>
+    <vtailarm unit="M">0.19</vtailarm>
+    <location name="AERORP" unit="M">
+      <x>0.0</x><y>0.0</y><z>0.0</z>
+    </location>
+    <location name="EYEPOINT" unit="M">
+      <x>0.0</x><y>0.0</y><z>0.0</z>
+    </location>
+    <location name="VRP" unit="M">
+      <x>0.0</x><y>0.0</y><z>0.0</z>
+    </location>
+  </metrics>
+
+  <mass_balance>
+    <ixx unit="KG*M2">0.0147563</ixx>
+    <iyy unit="KG*M2">0.00638929</iyy>
+    <izz unit="KG*M2">0.0177</izz>
+    <ixy unit="KG*M2">0.0</ixy>
+    <ixz unit="KG*M2">0.0</ixz>
+    <iyz unit="KG*M2">0.0</iyz>
+    <emptywt unit="KG">0.65</emptywt>
+    <location name="CG" unit="M">
+      <x>0.0</x><y>0.0</y><z>0.0</z>
+    </location>
+  </mass_balance>
+
+  <!--
+    S02.04 candidate four-foot tailsitter contact geometry (Phoenix D archive).
+    Source: archive/s02-02-phoenix-d-for-s02-04-v1 (NOT a measured-gear certificate).
+    Each independent STRUCTURE contact requires Native T2 verification of load
+    bearing and terrain compatibility. Do not infer G02 PASS from this geometry.
+  -->
+  <ground_reactions>
+    <contact type="STRUCTURE" name="TAIL_FOOT_L1">
+      <location unit="M">
+        <x>0.140</x><y>-0.280</y><z>0.060</z>
+      </location>
+      <static_friction>0.80</static_friction>
+      <dynamic_friction>0.50</dynamic_friction>
+      <rolling_friction>0.02</rolling_friction>
+      <spring_coeff unit="LBS/FT">12.0</spring_coeff>
+      <damping_coeff unit="LBS/FT/SEC">2.0</damping_coeff>
+    </contact>
+    <contact type="STRUCTURE" name="TAIL_FOOT_L2">
+      <location unit="M">
+        <x>0.140</x><y>-0.280</y><z>-0.060</z>
+      </location>
+      <static_friction>0.80</static_friction>
+      <dynamic_friction>0.50</dynamic_friction>
+      <rolling_friction>0.02</rolling_friction>
+      <spring_coeff unit="LBS/FT">12.0</spring_coeff>
+      <damping_coeff unit="LBS/FT/SEC">2.0</damping_coeff>
+    </contact>
+    <contact type="STRUCTURE" name="TAIL_FOOT_R1">
+      <location unit="M">
+        <x>0.140</x><y>0.280</y><z>0.060</z>
+      </location>
+      <static_friction>0.80</static_friction>
+      <dynamic_friction>0.50</dynamic_friction>
+      <rolling_friction>0.02</rolling_friction>
+      <spring_coeff unit="LBS/FT">12.0</spring_coeff>
+      <damping_coeff unit="LBS/FT/SEC">2.0</damping_coeff>
+    </contact>
+    <contact type="STRUCTURE" name="TAIL_FOOT_R2">
+      <location unit="M">
+        <x>0.140</x><y>0.280</y><z>-0.060</z>
+      </location>
+      <static_friction>0.80</static_friction>
+      <dynamic_friction>0.50</dynamic_friction>
+      <rolling_friction>0.02</rolling_friction>
+      <spring_coeff unit="LBS/FT">12.0</spring_coeff>
+      <damping_coeff unit="LBS/FT/SEC">2.0</damping_coeff>
+    </contact>
+  </ground_reactions>
+
+  <!--
+    Propulsion is represented by two body-axis external forces rather than by a
+    fuel-engine model. The ArduPilot Phoenix connector patch writes independent
+    commands to fcs/left-motor-cmd-norm and fcs/right-motor-cmd-norm.
+
+    JSBSim body X is treated as the Phoenix forward/thrust axis. When the tailsitter
+    is near 90 deg pitch this axis is approximately vertical in the local frame.
+    Lateral motor positions are a simplified reduction of the source CP data; exact
+    frame transformation remains an engineering-estimate item from the source YAML.
+  -->
+  <external_reactions>
+    <property>fcs/left-motor-cmd-norm</property>
+    <property>fcs/right-motor-cmd-norm</property>
+
+    <force name="left_motor_thrust" frame="BODY">
+      <function>
+        <product>
+          <value>1.131313</value>
+          <property>fcs/left-motor-pos-norm</property>
+          <property>fcs/left-motor-pos-norm</property>
+        </product>
+      </function>
+      <location unit="M">
+        <x>0.0</x><y>-0.195</y><z>0.0</z>
+      </location>
+      <direction><x>1.0</x><y>0.0</y><z>0.0</z></direction>
+    </force>
+
+    <force name="right_motor_thrust" frame="BODY">
+      <function>
+        <product>
+          <value>1.131313</value>
+          <property>fcs/right-motor-pos-norm</property>
+          <property>fcs/right-motor-pos-norm</property>
+        </product>
+      </function>
+      <location unit="M">
+        <x>0.0</x><y>0.195</y><z>0.0</z>
+      </location>
+      <direction><x>1.0</x><y>0.0</y><z>0.0</z></direction>
+    </force>
+
+    <!-- Reaction torques derived from source moment_constant_m * max_thrust. -->
+    <moment name="left_prop_reaction" frame="BODY">
+      <function>
+        <product>
+          <value>0.08538</value>
+          <property>fcs/left-motor-pos-norm</property>
+          <property>fcs/left-motor-pos-norm</property>
+        </product>
+      </function>
+      <direction><x>-1.0</x><y>0.0</y><z>0.0</z></direction>
+    </moment>
+
+    <moment name="right_prop_reaction" frame="BODY">
+      <function>
+        <product>
+          <value>0.08538</value>
+          <property>fcs/right-motor-pos-norm</property>
+          <property>fcs/right-motor-pos-norm</property>
+        </product>
+      </function>
+      <direction><x>1.0</x><y>0.0</y><z>0.0</z></direction>
+    </moment>
+  </external_reactions>
+
+  <propulsion/>
+
+  <flight_control name="Phoenix command adaptation">
+    <property>fcs/left-elevon-cmd-norm</property>
+    <property>fcs/right-elevon-cmd-norm</property>
+
+    <channel name="Elevons">
+      <pure_gain name="fcs/left-elevon-pos-rad">
+        <input>fcs/left-elevon-cmd-norm</input>
+        <gain>0.53</gain>
+        <clipto><min>-0.53</min><max>0.53</max></clipto>
+      </pure_gain>
+      <pure_gain name="fcs/right-elevon-pos-rad">
+        <input>fcs/right-elevon-cmd-norm</input>
+        <gain>0.53</gain>
+        <clipto><min>-0.53</min><max>0.53</max></clipto>
+      </pure_gain>
+    </channel>
+
+    <channel name="Twin motors">
+      <!-- One symmetric first-order approximation of 0.016/0.020 s source motor lags. -->
+      <lag_filter name="fcs/left-motor-pos-norm">
+        <input>fcs/left-motor-cmd-norm</input>
+        <c1>55.555556</c1>
+        <clipto><min>0.0</min><max>1.0</max></clipto>
+      </lag_filter>
+      <lag_filter name="fcs/right-motor-pos-norm">
+        <input>fcs/right-motor-cmd-norm</input>
+        <c1>55.555556</c1>
+        <clipto><min>0.0</min><max>1.0</max></clipto>
+      </lag_filter>
+    </channel>
+  </flight_control>
+
+  <!--
+    Forward-flight derivatives below come directly from the engineering-estimate
+    section of phoenix_drone_v3.yaml. They are intentionally marked BETA and must
+    not be interpreted as identified Phoenix aerodynamics.
+  -->
+  <aerodynamics>
+    <axis name="LIFT">
+      <function name="aero/force/lift">
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <sum>
+            <value>0.10</value>
+            <product><value>3.40</value><property>aero/alpha-rad</property></product>
+            <product>
+              <value>2.50</value>
+              <property>aero/ci2vel</property>
+              <property>velocities/q-aero-rad_sec</property>
+            </product>
+            <product>
+              <value>0.225</value>
+              <sum>
+                <property>fcs/left-elevon-pos-rad</property>
+                <property>fcs/right-elevon-pos-rad</property>
+              </sum>
+            </product>
+          </sum>
+        </product>
+      </function>
+    </axis>
+
+    <axis name="DRAG">
+      <function name="aero/force/drag">
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <sum>
+            <value>0.045</value>
+            <!-- k * (CL0 + CLalpha*alpha)^2, control/rate contribution omitted. -->
+            <product>
+              <value>0.134</value>
+              <sum><value>0.10</value><product><value>3.40</value><property>aero/alpha-rad</property></product></sum>
+              <sum><value>0.10</value><product><value>3.40</value><property>aero/alpha-rad</property></product></sum>
+            </product>
+          </sum>
+        </product>
+      </function>
+    </axis>
+
+    <axis name="SIDE">
+      <function name="aero/force/side">
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <value>-0.35</value>
+          <property>aero/beta-rad</property>
+        </product>
+      </function>
+    </axis>
+
+    <axis name="ROLL">
+      <function name="aero/moment/roll">
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/bw-ft</property>
+          <sum>
+            <product><value>-0.08</value><property>aero/beta-rad</property></product>
+            <product><value>-0.45</value><property>aero/bi2vel</property><property>velocities/p-aero-rad_sec</property></product>
+            <product>
+              <value>0.09</value>
+              <sum>
+                <property>fcs/right-elevon-pos-rad</property>
+                <product><value>-1.0</value><property>fcs/left-elevon-pos-rad</property></product>
+              </sum>
+            </product>
+          </sum>
+        </product>
+      </function>
+    </axis>
+
+    <axis name="PITCH">
+      <function name="aero/moment/pitch">
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/cbarw-ft</property>
+          <sum>
+            <value>0.02</value>
+            <product><value>-0.55</value><property>aero/alpha-rad</property></product>
+            <product><value>-5.0</value><property>aero/ci2vel</property><property>velocities/q-aero-rad_sec</property></product>
+            <product>
+              <value>-0.40</value>
+              <sum>
+                <property>fcs/left-elevon-pos-rad</property>
+                <property>fcs/right-elevon-pos-rad</property>
+              </sum>
+            </product>
+          </sum>
+        </product>
+      </function>
+    </axis>
+
+    <axis name="YAW">
+      <function name="aero/moment/yaw">
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/bw-ft</property>
+          <sum>
+            <product><value>0.08</value><property>aero/beta-rad</property></product>
+            <product><value>-0.18</value><property>aero/bi2vel</property><property>velocities/r-aero-rad_sec</property></product>
+          </sum>
+        </product>
+      </function>
+    </axis>
+  </aerodynamics>
+  <!-- TDDT_STAGE2_NATIVE_NORMALIZED_LOGGER_V1: instrumentation only; NO RPM property exists in this model -->
+  <output name="tddt_stage2_native_normalized.csv" type="CSV" rate="200">
+    <property>fcs/left-motor-cmd-norm</property>
+    <property>fcs/right-motor-cmd-norm</property>
+    <property>fcs/left-motor-pos-norm</property>
+    <property>fcs/right-motor-pos-norm</property>
+    <property>fcs/left-elevon-cmd-norm</property>
+    <property>fcs/right-elevon-cmd-norm</property>
+    <property>fcs/left-elevon-pos-rad</property>
+    <property>fcs/right-elevon-pos-rad</property>
+    <property>velocities/v-north-fps</property>
+    <property>velocities/v-east-fps</property>
+    <property>velocities/v-down-fps</property>
+  </output>
+</fdm_config>

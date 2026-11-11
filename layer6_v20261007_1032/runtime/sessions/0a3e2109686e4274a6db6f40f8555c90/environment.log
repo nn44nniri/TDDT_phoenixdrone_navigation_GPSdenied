@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/phoenix_environment_adapter_v2/phoenix_env_adapter/cli.py", line 39, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/phoenix_environment_adapter_v2/phoenix_env_adapter/cli.py", line 29, in main
+    run_bound_runtime(a.binding,a.state_file,mavlink=a.mavlink,update_hz=a.update_hz,
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        dry_run=a.dry_run,plant_time_s=a.plant_time_s,max_updates=a.max_updates,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        param_retries=a.param_retries,param_timeout=a.param_timeout)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/phoenix_environment_adapter_v2/phoenix_env_adapter/bound.py", line 167, in run_bound_runtime
+    state=provider.sample(plant,source='MAVLink/'+observation['event']['message_type']+'.time_boot_ms',**position)
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/phoenix_environment_adapter_v2/phoenix_env_adapter/bound.py", line 70, in sample
+    if estimate.get('ok') is False:raise ValueError('bound MicroMet query rejected: '+str(estimate.get('error')))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: bound MicroMet query rejected: terrain_point_outside_coverage
