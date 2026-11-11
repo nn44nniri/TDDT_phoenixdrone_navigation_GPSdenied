@@ -1,0 +1,8 @@
+#!/bin/sh
+'''exec' /media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python "$0" "$@"
+' '''
+import sys
+from serial.tools.miniterm import main
+if __name__ == '__main__':
+    sys.argv[0] = sys.argv[0].removesuffix('.exe')
+    sys.exit(main())
