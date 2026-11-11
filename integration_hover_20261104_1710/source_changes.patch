@@ -1,0 +1,1346 @@
+diff --git a/SETUP.md b/SETUP.md
+--- a/SETUP.md
++++ b/SETUP.md
+@@ -174,3 +174,42 @@
+   --jsbsim-dir layer6_v20261007_1032/FlightStack/jsbsim \
+   --apply
+ 
++## Local Native hover commissioning (2026-11-04)
++
++The optional local profile uses the normal L2/L3/L4/L5 execution gates and the
++same six Native panels. From `TDOC_v20260911_2052`, after sourcing the environment
++and accepting an Offline handoff for the **current** source/configuration:
++
++```bash
++$PYTHON -m tddt_tdoc.cli --config configs/tdoc.yaml nav-online \
++  --reuse-existing-offline-knowledge --online-episodes 1 \
++  --online-max-cycles-per-episode 12 \
++  --online-local-hover-seconds 1 --online-local-hover-height-m 3
++```
++
++This selects `on_ground -> vertical_takeoff -> hover -> vertical_landing ->
++touchdown` around the surveyed origin. Normal route missions keep their eleven
++phases. Valid durations are 1..60 seconds and heights 1..10 metres. The duration
++counts measured, contiguous, executed control with accepted Layer7 feedback,
++within 5 metres horizontally and 1 metre vertically; ground time, missing
++feedback and gaps in execution coverage never count. Only increase the duration
++to 5/10/30/60 after the preceding level passes and touchdown is recorded.
++
++With `tdoc.rtmo.initial_navigation.ground_calibration_seconds: 5.0`, startup
++collects a sealed, same-session stationary/disarmed/zero-throttle IMU interval.
++It initializes the existing MESA gyro/accelerometer bias inputs once. Raw samples
++remain unchanged; FCU position/attitude do not re-anchor MESA. A missing, moving,
++expired or foreign-session calibration is rejected. This is initialization, not
++evidence of dynamic estimator or hover accuracy.
++
++Any Python/configuration change covered by the model identity requires a fresh
++compatible Offline handoff before Online reuse. Do not edit certificate hashes,
++reset, refresh forcing or clear KStore after accepting that handoff. Short
++diagnostic Offline runs used during integration do not demonstrate a completed
++Offline flight mission.
++
++This profile is an integration test, not an accepted hover result. The measured
++Native outcome, remaining gates, source patch, hashes and screenshots are in
++`integration_hover_20261104_1710/FINAL_NATIVE_REPORT_FA.html`. Opening panels or
++reaching ARM alone does not pass the closed-loop flight test.
++
+diff --git a/TDOC_v20260911_2052/configs/tdoc.yaml b/TDOC_v20260911_2052/configs/tdoc.yaml
+--- a/TDOC_v20260911_2052/configs/tdoc.yaml
++++ b/TDOC_v20260911_2052/configs/tdoc.yaml
+@@ -202,6 +202,7 @@
+       # Once at the disarmed ground boundary: measured support force supplies
+       # roll/pitch; mission-known origin/yaw remain unchanged. No truth injection.
+       attitude_source: native_ground_imu
++      ground_calibration_seconds: 5.0
+     capability:
+       require_live_registry: true
+       registry_path: runtime/rtmo/capability_registry.json.gz
+diff --git a/TDOC_v20260911_2052/scripts/run_training_workflows.py b/TDOC_v20260911_2052/scripts/run_training_workflows.py
+--- a/TDOC_v20260911_2052/scripts/run_training_workflows.py
++++ b/TDOC_v20260911_2052/scripts/run_training_workflows.py
+@@ -2635,6 +2635,7 @@
+     region_file=ROOT/'region'/'region_v1.geojson'
+     if not region_file.is_file():raise FileNotFoundError(f'online episode termination requires {region_file}')
+     _,origin,destination=load_region(region_file)
++    local_seconds=getattr(args,'online_local_hover_seconds',None)
+     resolved_cap,budget_meta=_resolve_online_episode_cycle_cap(cfg,args,report_root,origin,destination)
+     args.online_max_cycles_per_episode=int(resolved_cap); args.online_cycle_budget_meta=budget_meta
+     total_requested=int(args.online_episodes)*int(resolved_cap)
+@@ -2658,6 +2659,15 @@
+         run_ctx=RunContext.create(eid,config_version=str(cfg.get('package.version','unknown'))) if rtmo_enabled else None
+         mission_prior=load_mission_prior(cfg,report_root,origin,destination) if rtmo_enabled else None
+         initial_nav=dict(mission_prior['initial_state']) if mission_prior else None
++        local_acceptance=None
++        if local_seconds is not None:
++            from tddt_tdoc.online_mission import LocalHoverAcceptance
++            if not initial_nav:raise ValueError('local hover requires surveyed mission initialization')
++            phase_mgr=MissionPhaseManager.local_hover()
++            destination=list(origin)
++            goal_sup=GoalSupervisor(float(origin[1]),float(origin[0]),goal_tolerance_m=5.)
++            local_acceptance=LocalHoverAcceptance(origin,initial_nav,duration_s=local_seconds,
++                height_m=args.online_local_hover_height_m,max_gap_s=float(cfg.get('tdoc.rtmo.realtime.max_control_period_s',.1)))
+         last_navigation=dict(initial_nav or {})
+         rtmo_phase_history=[]
+         # P0-4: retain only non-actuating phase-entry bootstrap evidence in-memory
+@@ -2720,6 +2730,9 @@
+                     req['context']=ctx
+                     if mission_prior is not None:
+                         apply_mission_prior(req,mission_prior,last_navigation)
++                    if local_acceptance is not None:
++                        from tddt_tdoc.online_mission import bind_local_hover_reference
++                        bind_local_hover_reference(req,initial_nav,duration_s=local_seconds,height_m=args.online_local_hover_height_m)
+                     if args.offline_knowledge_manifest:req['offline_knowledge_manifest']=args.offline_knowledge_manifest
+                     if args.online_validation_fixture:req['layer6_validation_observation_fixture']=json.loads(Path(args.online_validation_fixture).read_text())
+                     req['reference_time_s']=(rtclock.reference_time(float(req0.get('reference_time_s',0.0))+(ci-1)*dt) if rtmo_enabled else float(req0.get('reference_time_s',0.0))+(ci-1)*dt)
+@@ -2943,6 +2956,9 @@
+                         diagnostic_event("workflow.exception",error=repr(exc),traceback=True)
+                         rec={'status':'FAILED','error':repr(exc),'episode_index':ep,'cycle_in_episode':ci,'wall_cycle_s':time.perf_counter()-wall0}; ep_records.append(rec); all_records.append(rec); break
+                     terminal=_online_terminal(r,destination,args.online_goal_tolerance_m,args.online_touchdown_altitude_m); rec['terminal']=terminal
++                    if local_acceptance is not None and not local_acceptance.completed:
++                        terminal['reached']=False
++                        terminal['reason']='local_hover_measured_duration_not_complete'
+                     if rtmo_enabled and phase not in ('on_ground','touchdown'):
+                         # Promote only *realized* Online evidence to durable capability.
+                         # PRE_RELEASE_VERIFY itself never enters joint_control_proof_cycles.
+@@ -3126,6 +3142,8 @@
+                             terminal={'reached':False,'reason':'rtmo_clock_desynchronization_fail_stop','position':terminal.get('position'),'goal_distance_m':terminal.get('goal_distance_m')}
+                             rec['terminal']=terminal; break
+                         if not phase_mgr.complete:
++                            local_guard=local_acceptance.update(phase_mgr.phase,r) if local_acceptance is not None else None
++                            if local_guard is not None:rec['local_hover_acceptance']=local_guard
+                             nxt=phase_mgr.phase_order[phase_mgr.current_index+1]
+                             # Refresh only at the transition boundary so newly-issued L4 certificates /
+                             # same-cycle proof can release an imminent phase without requiring distant
+@@ -3191,6 +3209,7 @@
+                                 sim_now is not None and phase_mgr.entry_sim_time_s is not None
+                                 and float(sim_now)-float(phase_mgr.entry_sim_time_s) >= _phase_dwell_s
+                             )
++                            if local_guard is not None:_phase_dwell_ready=_phase_dwell_ready and local_guard['phase_ready']
+                             if (nxt not in ('on_ground','touchdown') and _phase_dwell_ready
+                                 and _next_phase_bootstrap_allowed(phase_mgr.phase,_l6_output_from_cycle(r),rec.get('layer7_status')) and (
+                                 not orch.rtmo_l4_artifacts.phase_seeded(nxt)
+@@ -3262,6 +3281,8 @@
+                                 runtime_release=_runtime_release,l6_executed=_l6_executed,
+                                 actuation_ack=_actuation_ack,realized_state_evidence=_realized_state)
+                             rec['rtmo_runtime_release']=rel
++                            if local_guard is not None and not local_guard['phase_ready']:
++                                can=False;reasons.append('local_hover_measured_hold_not_complete')
+                             rec['rtmo_phase_advance_evidence']={
+                                 'simulation_time_s':sim_now,'current_state_fresh':_state_fresh,
+                                 'reference_time_s':float(req['reference_time_s']),
+@@ -3392,6 +3413,8 @@
+     ap.add_argument('--online-episodes','--online-missions',dest='online_episodes',type=int,default=0,help='Number of complete origin-to-destination ONLINE_JSBSIM episodes/missions. 0 uses continuous --online-cycles mode.')
+     ap.add_argument('--online-max-cycles-per-episode',type=int,default=320,help='Hard safety cycle cap for each online episode/mission.')
+     ap.add_argument('--online-max-cycles-per-episode-auto',action='store_true',help='Resolve the per-mission cycle safety cap automatically from the latest offline mission baseline; falls back to route distance, nominal speed and fast_dt.')
++    ap.add_argument('--online-local-hover-seconds',type=float)
++    ap.add_argument('--online-local-hover-height-m',type=float,default=3.)
+     ap.add_argument('--online-origin-tolerance-m',type=float,default=50.0,help='Maximum horizontal offset from the configured origin at the first live cycle of each online episode.')
+     ap.add_argument('--online-goal-tolerance-m',type=float,default=25.0,help='Horizontal destination tolerance for online episode completion.')
+     ap.add_argument('--online-touchdown-altitude-m',type=float,default=2.5,help='Relative/AGL altitude threshold used with destination tolerance for online touchdown completion.')
+@@ -3411,6 +3434,8 @@
+     if args.online_cycles<=0:ap.error('--online-cycles must be > 0')
+     if args.online_episodes<0 or args.online_max_cycles_per_episode<=0:ap.error('--online-episodes must be >= 0 and --online-max-cycles-per-episode must be > 0')
+     if args.online_max_cycles_per_episode_auto and not args.online_episodes:ap.error('--online-max-cycles-per-episode-auto requires --online-episodes/--online-missions')
++    if args.online_local_hover_seconds is not None and (not args.online_episodes or not 1<=args.online_local_hover_seconds<=60 or not 1<=args.online_local_hover_height_m<=10):
++        ap.error('local hover requires an Online episode, 1..60 seconds and 1..10 metres')
+     if args.online_origin_tolerance_m<=0 or args.online_goal_tolerance_m<=0 or args.online_touchdown_altitude_m<0:ap.error('online origin/goal/touchdown tolerances are invalid')
+     cfg=TDOCConfig.from_yaml(args.config); req0=json.loads(Path(args.request).read_text()); report_root=ROOT/'reports'; report_root.mkdir(exist_ok=True)
+     run_provenance=_pin_run_provenance(report_root,cfg.runtime_root)
+diff --git a/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer2.py b/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer2.py
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer2.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer2.py
+@@ -126,7 +126,9 @@
+         rr=self.config.runtime_root/"layer2"; rr.mkdir(parents=True,exist_ok=True); l3cfg.paths.tdoc_health=str(rr/"tdoc_ingress_health.json")
+         self.layer3_cfg=l3cfg; self.contracts=SignalContractRegistry(l3cfg,TDOCAdapter(l3cfg))
+     @staticmethod
+-    def _packet(x): return x.to_dict() if hasattr(x,"to_dict") else dict(x)
++    def _packet(x):
++        from ..utils import jsonable
++        return jsonable(x.to_dict() if hasattr(x,"to_dict") else dict(x))
+ 
+     @staticmethod
+     def _rebind_cached_online_mesa_packet(packet:Mapping[str,Any], *, context:Mapping[str,Any],
+@@ -342,6 +344,8 @@
+             else:
+                 return {"applied":False,"reason":"offline_simulation_state_missing","simulation_only":True,"not_field_evidence":True}
+             fmu_values={"rN":vals["pn"],"rE":vals["pe"],"rD":vals["pd"],"vN":vals["vn"],"vE":vals["ve"],"vD":vals["vd"],"qw":vals["qw"],"qx":vals["qx"],"qy":vals["qy"],"qz":vals["qz"]}
++            if initial_attitude and initial_attitude.get('ground_calibration'):
++                fmu_values.update(complete['native_imu_bias_initialization'])
+             if not all(math.isfinite(float(v)) for v in fmu_values.values()): raise ValueError("non_finite_mesa_alignment")
+             mesa.fmu.set(**fmu_values)
+             if mode=="ONLINE_JSBSIM" and state_source=="rtmo_mission_initial_condition":
+@@ -735,7 +739,7 @@
+         est,filtered_terrain_warnings=self._estimate_climate_with_warning_filter(self._estimate,args)
+         climate=dict(self.climate_twin.packet_from_estimate(est,context_id=cid,stage_id=stage,operation_code=args.operation_code,data_age_s=float(payload.get("climate_data_age_s",0.0))))
+         from ..native_time import stamp_climate_time
+-        climate=stamp_climate_time(climate,ctx)
++        climate=self._packet(stamp_climate_time(climate,ctx))
+         if filtered_terrain_warnings:
+             provenance=dict(climate.get("provenance") or {})
+             provenance["tdoc_external_warning_filter"]={
+diff --git a/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer3.py b/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer3.py
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer3.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer3.py
+@@ -259,6 +259,22 @@
+ 
+     def invoke(self,payload:dict[str,Any])->dict[str,Any]:
+         self._ensure()
++        req=payload.get('request') or {}
++        if str(req.get('learning_mode') or '').upper()=='ONLINE_JSBSIM':
++            from ..online_imu import compact_replay_context
++            # Raw measured intervals have already been consumed and remain in
++            # TDOC's authoritative L2 cycle packets. Do not replicate them into
++            # every representation, coupling and forecast of the atomic network.
++            from ..utils import sha256_obj
++            packets={}
++            for name,packet in payload['packets'].items():
++                projected=dict(packet)
++                projected['context']=compact_replay_context(packet.get('context') or {})
++                projected['provenance']={**dict(packet.get('provenance') or {}),
++                    'original_layer2_packet_sha256':sha256_obj(packet),'transport_buffer_projection':True,
++                    'original_evidence_location':'TDOC CycleResult.layer2_packets'}
++                packets[name]=projected
++            payload={**payload,'packets':packets,'request':{**req,'context':compact_replay_context(req.get('context') or {})}}
+         out=self._invoke_materialized(payload)
+         out.setdefault("storage",{})["native_gzip_sync"]=self.native_workspace.sync()
+         return out
+diff --git a/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer4.py b/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer4.py
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer4.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer4.py
+@@ -9,6 +9,11 @@
+ from pathlib import Path
+ from typing import Any
+ from ..storage import CompressedPersistentWorkspace
++
++class CurrentCommandPredictionRejected(ValueError):
++    def __init__(self, evidence):
++        self.evidence=evidence
++        super().__init__('current first move physically rejected: '+str(evidence['feasibility'].get('reasons')))
+ 
+ class Layer4Adapter:
+     layer_id=4
+@@ -396,7 +401,7 @@
+                     "horizontal_velocity_target_ned_m_s":[0.0,0.0],
+                     "controller_objective":"phase_reference_position_and_zero_horizontal_velocity",
+                     "navigation_authority":"MESA_STD",
+-                    "mission_reference_source":"Offline_reference/OnlineMissionPrior",
++                    "mission_reference_source":(ctx.get('local_hover_test') or {}).get('source') or "Offline_reference/OnlineMissionPrior",
+                     "truth_injection_to_mesa":False,
+                     "actuation_authority":False,
+                 }
+@@ -490,6 +495,53 @@
+         return sha256_obj({'base_model':base,'ground_contact_policy':policy['revision'],
+                            'ground_contact_policy_sha256':POLICY_SHA256,
+                            'model_dependencies':self._verification_model_dependencies})
++
++    def verify_committed_first_move(self,result_dict,snapshot_dict,layer5_result,request):
++        """TDOC-owned current-state physical prediction for the actual MPC command.
++
++        The admitted horizon remains a separately identified feasibility prior.
++        This short replay grants no actuation or replacement horizon authority.
++        """
++        import copy,time
++        from dataclasses import fields
++        from layer4.models import Candidate
++        self._ensure();started=time.perf_counter()
++        l5=layer5_result.get('result') or layer5_result
++        if (l5.get('gates') or {}).get('FINAL') is not True:raise ValueError('current MPC FINAL required')
++        cid=(l5.get('decision') or {}).get('candidate_id');command=(l5.get('layer6_package') or {}).get('u_cmd')
++        selected=next((c for c in result_dict.get('candidates',[]) if c.get('candidate_id')==cid),None)
++        if selected is None or not isinstance(command,list) or len(command)!=4:raise ValueError('selected current MPC command unavailable')
++        candidate=copy.deepcopy(selected);snap=self.engine.adapter.adapt(snapshot_dict)
++        x0=self.engine.codec.encode(snap).tolist();candidate['trajectory']=[x0,x0]
++        candidate['actions']=candidate['actions'][:1]
++        oc=self._phoenix_hover_operating_context(snapshot_dict);oc['tdoc_learning_mode']='ONLINE_JSBSIM'
++        phase=str(request.get('stage') or '');segment=float(self.config.get('tdoc.rtmo.l4_artifacts.commit_segment_s',.1))
++        oc['execution_segment_s']=segment
++        with self.layer5_adapter.isolated_verification_model_scope():
++            mix=self.layer5_adapter._wingmpet_verification_mix(command,phase=phase,operating_context=oc,state_context={'airspeed_m_s':oc.get('airspeed_m_s',0.)})
++            if mix.get('ok') is not True:raise ValueError('current command physical mapping rejected: '+str(mix.get('reason')))
++            dl,dr,ml,mr=[float(v) for v in mix['physical']]
++            action={'left_elevon_rad':dl,'right_elevon_rad':dr,'left_motor_cmd':ml,'right_motor_cmd':mr}
++            bridge={'ok':True,'logical_actions':[command],'physical_actions':[action],'owner':'TDOC/RuntimeScheduler'}
++            q=self._merge_verification_request(self._verification_template(),request)
++            q['stage']=phase;q['transaction_id']=str(request.get('transaction_id'))+'-current-first-move'
++            rows=self.layer3_adapter.full_fidelity_replay(candidate,snapshot_dict,q,self.engine.codec,self.engine.config.dt,
++                physical_actions=[action],bridge_record=bridge,physical_step_s=segment)
++            cand=Candidate(**{f.name:candidate[f.name] for f in fields(Candidate) if f.name in candidate})
++            feasible=self.engine.verifier._full_feasibility(rows,cand,snap,None,progress_step_count=len(selected['actions']))
++            verdict=self._wingmpet_physical_verdict(rows)
++            if not feasible['safe'] or not verdict['all_rows_vtol_feasible']:
++                raise CurrentCommandPredictionRejected({'candidate_id':cid,'u_cmd':list(command),
++                    'source_snapshot_hash':snap.hash,'feasibility':feasible,'physical_verdict':verdict,
++                    'first_row':copy.deepcopy(rows[0]) if rows else None,
++                    'elapsed_s':time.perf_counter()-started,'actuation_authority':False})
++        replay=rows[0]['physical_replay']
++        return {'candidate_id':cid,'transaction_id':request.get('transaction_id'),'u_cmd':list(command),
++            'source_snapshot_hash':snap.hash,'outputs':copy.deepcopy(replay['outputs']),
++            'source_reference_time_s':snap.reference_time_s,
++            'source_plant_time_s':(((snapshot_dict.get('context') or {}).get('online_state_ingress') or {}).get('ptlib_ingress') or {}).get('simulation_time_s'),
++            'timing_contract':self._ff_timing_contract(request,1),'elapsed_s':time.perf_counter()-started,
++            'source':'current Layer2/WingMPET/Layer3 first-move replay','actuation_authority':False}
+ 
+     def _tdoc_full_fidelity(self,result_dict:dict[str,Any],snapshot_dict:dict[str,Any],request:dict[str,Any])->dict[str,Any]:
+         """Run strict TDOC-owned full-fidelity verification for the selected candidates.
+diff --git a/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer5.py b/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer5.py
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer5.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer5.py
+@@ -778,6 +778,35 @@
+         layer4_result=payload.get("layer4_result")
+         if layer4_result is None: raise ValueError("Layer5 requires layer4_result")
+         mode=str(payload.get("learning_mode") or (payload.get("request") or {}).get("learning_mode") or self.config.get("layers.layer5.default_learning_mode","OFFLINE_SE")).upper()
++        if mode=='ONLINE_JSBSIM' and not operational_native and payload.get('network_snapshot'):
++            # Reusable feasibility is not a reusable current navigation state.
++            # Rebind the existing MPC context from this transaction's atomic STD.
++            from .layer4 import Layer4Adapter
++            from layer4.snapshot import Layer3SnapshotAdapter
++            import copy
++            from ..native_mission import execution_projection_digest,validate_execution_projection
++            snapshot=payload['network_snapshot']
++            current_hash=Layer3SnapshotAdapter(None).canonical_hash(snapshot)
++            source_projection=None
++            if (layer4_result.get('provenance') or {}).get('rtmo_execution_projection') is not None:
++                source_projection=validate_execution_projection(layer4_result)
++            layer4_result=copy.deepcopy(layer4_result)
++            context=Layer4Adapter._phoenix_hover_operating_context(snapshot)
++            context['tdoc_learning_mode']=mode
++            context['execution_segment_s']=float(self.config.get('tdoc.rtmo.l4_artifacts.commit_segment_s',.1))
++            for key in ('candidates','verified_candidates','pareto_front'):
++                for candidate in layer4_result.get(key) or []:
++                    if isinstance(candidate,dict) and set(candidate)!={'candidate_id'}:
++                        previous=candidate.get('phoenix_operating_context') or {}
++                        candidate['phoenix_operating_context']={**{k:previous[k] for k in ('forecast_step_s','horizon_steps') if k in previous},**copy.deepcopy(context)}
++            layer4_result.setdefault('provenance',{})['current_decision_snapshot_hash']=current_hash
++            if source_projection is not None:
++                provenance=layer4_result['provenance']
++                provenance['source_execution_projection_sha256']=source_projection
++                provenance['current_decision_context_owner']='TDOC/Layer5Adapter'
++                # This hashes a derived transient MPC input. The immutable source
++                # forecast, its snapshot/time and all certificates are untouched.
++                provenance['rtmo_execution_projection']['sha256']=execution_projection_digest(layer4_result)
+         kwargs={"learning_mode":mode}
+         req=payload.get("request") or {}
+         for k in ("human_approval","human_approver","knowledge_refs","now_s"):
+@@ -796,6 +825,8 @@
+             "deferred_to_terminal_close":True,"online_prior_read_only":True,
+         })
+         d=jsonable(result)
++        if mode=='ONLINE_JSBSIM' and payload.get('network_snapshot') and isinstance(d,dict):
++            d.setdefault('provenance',{})['current_decision_snapshot_hash']=current_hash if not operational_native else None
+         if not isinstance(d,dict): d={"value":d}
+         if mode=='ONLINE_JSBSIM' and getattr(self,'native_mission_binding',None) is not None and (d.get('gates') or {}).get('FINAL') is True:
+             d=self.native_mission_binding.bind_result(d,layer4_result=layer4_result,request=req)
+@@ -803,6 +834,7 @@
+             if checked.get('ok') is not True:
+                 raise ValueError('Native mission execution contract rejected: '+str(checked.get('reason')))
+             return {'ok':True,'status':'OK','learning_mode':mode,'result':d,'decision_ok':True,
++                'decision_layer4_input':layer4_result,
+                 'provenance':{'invocation_owner':'TDOC/RuntimeScheduler',
+                     'native_pre_execution_verification':checked,'kstore_sync':sync}}
+         if mode=="ONLINE_JSBSIM" and self.config.get("layers.layer6.online.transport")=="Layer6Client_GUI_MAVLink" and (d.get("gates") or {}).get("FINAL") is True:
+diff --git a/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer6.py b/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer6.py
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer6.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer6.py
+@@ -198,6 +198,29 @@
+         self._session_generation = 0
+         self._origin = None
+         self._active_tx = None
++        self._environment_local = threading.local()
++
++    @property
++    def _environment_status_witness(self):
++        return getattr(getattr(self,'_environment_local',None),'witness',None)
++
++    @_environment_status_witness.setter
++    def _environment_status_witness(self,value):
++        if not hasattr(self,'_environment_local'):self._environment_local=threading.local()
++        self._environment_local.witness=value
++
++    def _reject_environment(self,code,**details):
++        self._environment_rejection={'code':code,'checked_monotonic':time.monotonic(),**details}
++        return False
++
++    @property
++    def _environment_rejection(self):
++        return getattr(getattr(self,'_environment_local',None),'rejection',None)
++
++    @_environment_rejection.setter
++    def _environment_rejection(self,value):
++        if not hasattr(self,'_environment_local'):self._environment_local=threading.local()
++        self._environment_local.rejection=value
+ 
+     def _option(self, name, default=None):
+         return self.config.get("layers.layer6.online." + name, default)
+@@ -437,6 +460,9 @@
+                 raise RuntimeError('native process/session readiness mismatch')
+             self._session_open = True
+             self._start_native_history_reader(status)
++            if float(self.config.get('tdoc.rtmo.initial_navigation.ground_calibration_seconds',0.) or 0.)>0:
++                status=self._prepare_ground_calibration(status)
++                native_status=client.native_session_status()
+             # Observed origin is diagnostic; configured origin validation remains TDOC's responsibility.
+             self._origin = {k: status.get(k) for k in ("latitude_deg", "longitude_deg", "altitude_msl_m")}
+             self._origin.update(heading_deg=status.get("heading_deg"), initial_airspeed_m_s=status.get("airspeed_m_s"))
+@@ -534,6 +560,7 @@
+         self._session_open = False
+         self._owns_stack = False
+         self._origin = None
++        self._ground_calibration = None
+         self._episode_id = episode_id
+         self._session_generation += 1
+         return {"ok": not errors, "reason": reason, "episode_id": episode_id,
+@@ -606,28 +633,52 @@
+         if not self._option("require_bound_environment",False): return True
+         env=(status or {}).get("environment_contract") or {}
+         expected=(checked or {}).get('expected') or {}
+-        if expected!=getattr(self,'_environment_binding',{}):return False
++        if expected!=getattr(self,'_environment_binding',{}):
++            return self._reject_environment('BINDING_IDENTITY_CHANGED')
+         if expected.get('schema')=='TDOC-native-environment-binding-v2':
+             try:
+                 from layer6.binding import validate_wind_application,consumption_identity,forcing_time
+                 from layer6.timebase import validate_clock_mapping
+                 from ..native_binding import read_binding,_stat
+-                if (read_binding(checked['path'])!=expected
+-                    or sha256_obj(self.config.data)!=checked['configuration']
+-                    or any(_stat(p)!=value for p,value in checked['stats'].items())):return False
+-                if any(env.get(k)!=v for k,v in consumption_identity(expected).items()):return False
++                if read_binding(checked['path'])!=expected:
++                    return self._reject_environment('BINDING_PUBLICATION_CHANGED')
++                if sha256_obj(self.config.data)!=checked['configuration']:
++                    return self._reject_environment('CONFIGURATION_CHANGED')
++                changed=[str(p) for p,value in checked['stats'].items() if _stat(p)!=value]
++                if changed:return self._reject_environment('BOUND_INPUT_CHANGED',paths=changed)
++                differing=[k for k,v in consumption_identity(expected).items() if env.get(k)!=v]
++                if differing:return self._reject_environment('CONSUMPTION_IDENTITY_MISMATCH',fields=differing)
+                 if env.get('ok') is not True:
+-                    self._environment_rejection='native_environment_application_pending_or_unavailable'
+-                    return False
+-                validate_clock_mapping(expected,env)
+-                validate_wind_application(env)
+-                if forcing_time(expected,env['plant_time_s'])[0]!=env['simulation_time_dataset']:return False
++                    return self._reject_environment('ENVIRONMENT_APPLICATION_PENDING',reason=env.get('reason'))
++                try:validate_clock_mapping(expected,env)
++                except Exception as exc:
++                    # Diagnose expiry without accepting or retiming the old
++                    # mapping. Historical validation only distinguishes a sound
++                    # publication that expired in transport from a corrupt one.
++                    try:
++                        validate_clock_mapping(expected,env,now=env['updated_monotonic'])
++                        age=time.monotonic()-env['clock_mapping']['observation']['received_monotonic_s']
++                        if age>1.:
++                            return self._reject_environment('CLOCK_OBSERVATION_STALE',age_s=age,limit_s=1.)
++                    except Exception:pass
++                    return self._reject_environment('CLOCK_MAPPING_REJECTED',error=repr(exc))
++                try:validate_wind_application(env)
++                except Exception as exc:return self._reject_environment('WIND_READBACK_REJECTED',error=repr(exc),
++                    updated_age_s=time.monotonic()-float(env.get('updated_monotonic',0)),
++                    sampled_age_s=time.monotonic()-float(env.get('sampled_monotonic',0)))
++                if forcing_time(expected,env['plant_time_s'])[0]!=env['simulation_time_dataset']:
++                    return self._reject_environment('FORCING_TIME_MISMATCH')
+             except Exception as exc:
+-                self._environment_rejection=repr(exc);return False
++                return self._reject_environment('ENVIRONMENT_VALIDATION_EXCEPTION',error=repr(exc))
+         age=time.monotonic()-float(env.get("updated_monotonic",0))
+-        return bool(env.get("ok") is True and 0<=age<=1.0 and
+-            expected.get("binding_id") and env.get("binding_id")==expected.get("binding_id") and
+-            env.get("forcing_file_sha256")==expected.get("forcing_file_sha256"))
++        if env.get('ok') is not True:return self._reject_environment('ENVIRONMENT_NOT_READY',reason=env.get('reason'))
++        if not 0<=age<=1.:return self._reject_environment('ENVIRONMENT_STALE',age_s=age,limit_s=1.)
++        if not expected.get('binding_id') or env.get('binding_id')!=expected['binding_id']:
++            return self._reject_environment('BINDING_ID_MISMATCH')
++        if env.get('forcing_file_sha256')!=expected.get('forcing_file_sha256'):
++            return self._reject_environment('FORCING_HASH_MISMATCH')
++        self._environment_rejection=None
++        return True
+ 
+     def _acquire_environment_status(self,*,include_imu_samples=False,timeout=.1):
+         self._environment_status_witness=None
+@@ -647,10 +698,20 @@
+         readback/publication checks are always evaluated again.
+         """
+         witness=getattr(self,'_environment_status_witness',None)
+-        if (witness is not None and status is witness['status']
+-            and sha256_obj(status)==witness['digest']
+-            and 0<=time.monotonic()-witness['acquired_monotonic']<=.15):
+-            return self._environment_state_ready(status,witness['checked']) and self._fresh(status)
++        if witness is not None and status is witness['status']:
++            if sha256_obj(status)!=witness['digest']:
++                return self._reject_environment('ACQUIRED_STATUS_MUTATED')
++            age=time.monotonic()-witness['acquired_monotonic']
++            if not 0<=age<=.15:
++                # Rehashing the complete deployment here would only make the
++                # same aged observation older. Caller must acquire a new sample.
++                return self._reject_environment('ACQUISITION_WITNESS_EXPIRED',age_s=age,limit_s=.15)
++            if not self._environment_state_ready(status,witness['checked']):return False
++            if not self._fresh(status):
++                from layer6.status import validate_observation_status
++                check=validate_observation_status(status)
++                return self._reject_environment('OBSERVATIONS_REJECTED_AT_CONSUMPTION',reason=check.get('reason'))
++            return True
+         return self._environment_ready(status) and self._fresh(status)
+ 
+     def _bridge(self):
+@@ -685,7 +746,12 @@
+         end=time.monotonic()+float(self._option("telemetry_resample_timeout_s",0.4))
+         status=None
+         while True:
+-            status,ready=self._acquire_environment_status(timeout=.1,include_imu_samples=include_imu_samples)
++            # One request must be allowed to finish the GUI's integrity prework.
++            # Abandoning every RPC at 100 ms created a queue of stale request IDs.
++            # This is a transport wait within the same existing acquisition budget,
++            # never a telemetry-age or command-deadline extension.
++            remaining=max(.01,end-time.monotonic())
++            status,ready=self._acquire_environment_status(timeout=min(.5,remaining),include_imu_samples=include_imu_samples)
+             if ready:return status
+             if time.monotonic()>=end:
+                 env=(status or {}).get("environment_contract") or {}
+@@ -748,7 +814,8 @@
+         if not self.validated_environment_status(status) or not self._fresh(status):
+             env=(status or {}).get("environment_contract") or {}
+             raise RuntimeError("native telemetry/forcing not ready: ages="+str((status or {}).get("telemetry_age_s"))
+-                               +" forcing_ok="+str(env.get("ok"))+" reason="+str(env.get("reason")))
++                               +" forcing_ok="+str(env.get("ok"))+" reason="+str(env.get("reason"))
++                               +" validation_rejection="+str(getattr(self,'_environment_rejection',None)))
+         ages=status.get("telemetry_age_s") or {}
+         for name,limit in (("SERVO_OUTPUT_RAW",float(self._option("telemetry_max_age_s",2.0))),
+                            ("SYS_STATUS",0.5)):
+@@ -802,6 +869,27 @@
+         reader=getattr(self,'_native_history_reader',None)
+         if reader is not None:
+             reader.stop();self._native_history_reader=None
++
++    def _prepare_ground_calibration(self,status):
++        from ..online_imu import prepare_native_imu_history,prepare_ground_calibration
++        from ..native_control_binding import ground_contact
++        duration=float(self.config.get('tdoc.rtmo.initial_navigation.ground_calibration_seconds',5.))
++        if not .5<=duration<=15.:raise ValueError('ground calibration duration outside bounded commissioning window')
++        statuses=[status];start=float(status['plant_time_s']);reader=self._native_history_reader
++        deadline=time.monotonic()+duration+10.
++        while status['plant_time_s']-start<duration+.15:
++            if time.monotonic()>=deadline:raise RuntimeError('ground calibration source-time timeout')
++            status=self._status()
++            if status.get('armed') is not False or status.get('throttle')!=0. or not ground_contact(status):
++                raise ValueError('ground calibration interrupted by vehicle lifecycle change')
++            statuses.append(status);time.sleep(.03)
++        after=statuses[0]['telemetry_metadata']['SCALED_IMU']['history_sequence']
++        through=status['telemetry_metadata']['SCALED_IMU']['history_sequence']
++        pages=reader.window(after,through)
++        history=prepare_native_imu_history(pages,expected_session_id=reader.session,
++            expected_monotonic_domain_id=reader.domain,target_system=reader.target[0],target_component=reader.target[1],after_seq=after)
++        self._ground_calibration=prepare_ground_calibration(history,statuses,duration_s=duration)
++        return self._status()
+ 
+     def online_history_ingress(self,*,history_after_seq=None,history_session_id=None):
+         """Layer2-only acquisition, including the first interval since validated startup."""
+@@ -890,21 +978,34 @@
+                 final_status_returned=time.monotonic()
+                 if identity(status)!=expected_identity:
+                     raise ValueError('Native identity changed after component-health verification')
+-                if prepared is None:break
+-                if (status.get('session_id')!=reader.session or status.get('monotonic_domain_id')!=reader.domain
++                if prepared is not None and (status.get('session_id')!=reader.session or status.get('monotonic_domain_id')!=reader.domain
+                     or (status.get('status_quality') or {}).get('native_session_id')!=reader.native_session):
+                     raise ValueError('Native session changed after retained-history preparation')
+-                if self._history_tail_covers(prepared,status):break
+-                if attempt==7:raise RuntimeError('Native history catch-up exceeded bounded final-observation attempts')
+-                # The large prefix is already decoded and sealed. Catch up only
+-                # the newly arrived real records before requesting current state again.
+-                from ..online_imu import extend_native_imu_history
+-                mark=time.monotonic();next_pages=reader.window(prepared.through_seq,status['telemetry_metadata']['SCALED_IMU']['history_sequence'])
+-                prepared=extend_native_imu_history(prepared,next_pages)
+-                acquisition_stages['history_catchup']=acquisition_stages.get('history_catchup',0.)+time.monotonic()-mark
+-                pages.extend(next_pages)
+-                probe=status
+-            ingress=self._ingress_from_status(status)
++                if prepared is not None and not self._history_tail_covers(prepared,status):
++                    if attempt==7:raise RuntimeError('Native history catch-up exceeded bounded final-observation attempts')
++                    # Retain the verified prefix and add only actual source records.
++                    from ..online_imu import extend_native_imu_history
++                    mark=time.monotonic();next_pages=reader.window(prepared.through_seq,status['telemetry_metadata']['SCALED_IMU']['history_sequence'])
++                    prepared=extend_native_imu_history(prepared,next_pages)
++                    acquisition_stages['history_catchup']=acquisition_stages.get('history_catchup',0.)+time.monotonic()-mark
++                    pages.extend(next_pages);probe=status
++                    continue
++                try:
++                    ingress=self._ingress_from_status(status)
++                except RuntimeError:
++                    rejection=getattr(self,'_environment_rejection',None) or {}
++                    code=rejection.get('code') if isinstance(rejection,dict) else None
++                    transient=(code in ('ACQUISITION_WITNESS_EXPIRED','ENVIRONMENT_STALE','ENVIRONMENT_APPLICATION_PENDING','CLOCK_OBSERVATION_STALE')
++                        or code=='OBSERVATIONS_REJECTED_AT_CONSUMPTION' and 'stale' in rejection.get('reason','')
++                        or code=='WIND_READBACK_REJECTED' and 'stale' in rejection.get('error',''))
++                    if not transient or attempt==7:raise
++                    acquisition_stages['expired_observations_discarded']=acquisition_stages.get('expired_observations_discarded',0)+1
++                    probe=status
++                    continue
++                break
++            else:raise RuntimeError('Native observation acquisition exhausted its bounded budget')
++            if getattr(self,'_ground_calibration',None) is not None:
++                ingress['native_ground_calibration']=self._ground_calibration
+             if prepared is not None:
+                 ingress['native_imu_history']=prepared;ingress['imu_history_pages']=pages
+             self._last_native_ingress_timing=timing()
+diff --git a/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer7.py b/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer7.py
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer7.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer7.py
+@@ -279,6 +279,13 @@
+         steps=(verification.get("commit_segment_steps") or verification.get("steps") or [])
+         replay=(candidate.get('first_move_prediction') or verification.get("first_move_prediction") or
+                 ((steps[0].get("physical_replay") or {}) if steps and isinstance(steps[0],Mapping) else {}))
++        committed=layer4.get('committed_first_move')
++        if committed is not None:
++            package=(l5 or {}).get('layer6_package') or {}
++            if (committed.get('candidate_id')!=selected or committed.get('u_cmd')!=package.get('u_cmd')
++                or committed.get('transaction_id')!=package.get('transaction_id')):
++                return {},None,{'reason':'current_first_move_command_identity_mismatch'}
++            replay=committed
+         out=dict(replay.get("outputs") or {})
+         try:
+             roll,pitch,yaw=cls._euler_from_quaternion(*[float(out[k]) for k in
+@@ -296,6 +303,8 @@
+             return {},None,{"reason":"selected_candidate_first_move_state_incomplete","candidate_id":selected}
+         timing=dict(replay.get("timing_contract") or (candidate.get("verification") or {}).get("timing_contract") or {})
+         return state,selected,{"timing_contract":timing,
++            "source_snapshot_hash":replay.get('source_snapshot_hash'),
++            "model_source_plant_time_s":replay.get('source_plant_time_s'),
+             "predicted_airspeed_m_s":cls._finite(out.get("airspeed")),
+             "prediction_source":"selected Layer4 candidate WingMPET first physical replay row"}
+ 
+@@ -451,6 +460,10 @@
+         uncertainty = max([abs(v) for v in unc_values.values()] or [0.0])
+         predicted_state,matched_candidate,predicted_state_provenance=cls._matched_prediction_state(
+             layer4_result,layer5_result)
++        if (layer4_result or {}).get('committed_first_move') is not None:
++            if predicted_state_provenance.get('source_snapshot_hash')!=snapshot_hash:
++                raise ValueError('current first-move prediction snapshot mismatch')
++            prediction_snapshot_hash=snapshot_hash
+         realized_state,plant_ts,realized_state_provenance=cls._realized_execution_state(ex)
+         rate_sync=(wr.get("rate_sync") or ex.get("rate_sync") or {}) if isinstance(wr,Mapping) else {}
+         execution_tx=str(rate_sync.get("transaction_id") or (ex.get('provenance') or {}).get('transaction_id') or "") if isinstance(rate_sync,Mapping) else ""
+@@ -472,6 +485,13 @@
+                                        and 0<lower<=upper<=segment+1e-9 and 0<=first<=last)
+                     if state_pair_ok:
+                         target={'lower_s':first+segment,'upper_s':last+segment}
++                        committed=(layer4_result or {}).get('committed_first_move')
++                        if committed is not None:
++                            model_time=cls._finite(committed.get('source_plant_time_s'))
++                            if model_time is None:raise ValueError('current prediction lacks source plant clock')
++                            # The model was initialized at its source observation,
++                            # not at the later command transmission. Never retime it.
++                            target={'lower_s':model_time+segment,'upper_s':model_time+segment}
+                         distance=max(target['lower_s']-plant_ts,plant_ts-target['upper_s'],0.)
+                         state_pair_ok=distance<=.05
+                         temporal={'execution_duration_bounds_s':dict(bounds),
+@@ -509,6 +529,7 @@
+             native_meta={'native_pilot_execution_requested':True,'command_domain':'layer6_pilot',
+                 'transaction_id':str(transaction_id),'candidate_id':matched_candidate,
+                 'snapshot_hash':snapshot_hash,'prediction_source_snapshot_hash':prediction_snapshot_hash,
++                'feasibility_source_snapshot_hash':(layer4_result or {}).get('snapshot_hash') or snapshot_hash,
+                 'command_id':cmd_id,'flight_mode':(ex.get('current_state') or {}).get('mode') or (segment_proof.get('snapshot') or {}).get('mode'),
+                 'session_id':segment_proof.get('session_id') or (ex.get('provenance') or {}).get('session_id'),
+                 'native_session_id':(ex.get('provenance') or {}).get('native_session_id'),
+@@ -633,6 +654,10 @@
+             segment=float(pred_meta['timing_contract']['execution_segment_s'])
+             start=proof['first_event']['plant_time_bounds']
+             target={k:float(start[k])+segment for k in ('lower_s','upper_s')}
++            committed=(layer4_result or {}).get('committed_first_move')
++            if committed is not None:
++                model_time=float(committed['source_plant_time_s'])
++                target={k:model_time+segment for k in ('lower_s','upper_s')}
+             if (state!=actual or ep['x_obs']!=actual or stamp!=actual_ts or ep['timestamp']!=actual_ts
+                 or ep['u_cmd']!=expected_cmd or ep['u_applied']!=status['applied_pilot_command']
+                 or ep['command_id']!=ctx['command_id'] or meta['session_id']!=proof['session_id']
+@@ -642,11 +667,11 @@
+                 or meta['segment_proof_sha256']!=sha256_obj(proof)
+                 or meta['native_session_id']!=boot or meta['flight_mode']!=status['mode']
+                 or meta['candidate_id']!=provenance['candidate_id']
+-                or meta['prediction_source_snapshot_hash']!=provenance['snapshot_hash']
++                or meta['feasibility_source_snapshot_hash']!=provenance['snapshot_hash']
+                 or meta['snapshot_hash']!=payload['NetworkSnapshot']['content_hash']
+                 or meta['snapshot_hash']!=self._network_snapshot_hash(network_snapshot,layer4_result,
+                     self.config.path_value('TDDT_LAYER4_ROOT'),prediction_snapshot)
+-                or meta['prediction_source_snapshot_hash']!=((layer4_result or {}).get('snapshot_hash') or meta['snapshot_hash'])
++                or meta['prediction_source_snapshot_hash']!=((layer4_result.get('committed_first_move') or {}).get('source_snapshot_hash') or (layer4_result or {}).get('snapshot_hash') or meta['snapshot_hash'])
+                 or pp['provenance']['prediction_source_snapshot_hash']!=meta['prediction_source_snapshot_hash']
+                 or candidate!=meta['candidate_id'] or pp['x_hat_td']!=predicted
+                 or meta['prediction_target_plant_time_bounds_s']!=target
+diff --git a/TDOC_v20260911_2052/src/tddt_tdoc/cli.py b/TDOC_v20260911_2052/src/tddt_tdoc/cli.py
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/cli.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/cli.py
+@@ -38,6 +38,8 @@
+     q.add_argument("--online-episodes","--online-missions",dest="online_episodes",type=int,default=0,help="Number of complete online origin-to-destination episodes/missions; 0 keeps continuous --online-cycles mode")
+     q.add_argument("--online-max-cycles-per-episode",type=int,default=320,help="Safety cap for each online episode/mission")
+     q.add_argument("--online-max-cycles-per-episode-auto",action="store_true",help="Automatically resolve the per-mission safety cap from the offline baseline or route geometry")
++    q.add_argument('--online-local-hover-seconds',type=float,help='Explicit local takeoff/hover/landing test, 1..60 seconds; keeps normal safety gates')
++    q.add_argument('--online-local-hover-height-m',type=float,default=3.,help='Local hover objective height, 1..10 metres')
+     q.add_argument("--online-origin-tolerance-m",type=float,default=50.0,help="Maximum allowed horizontal offset from the mission origin at the first live cycle of each episode")
+     q.add_argument("--online-goal-tolerance-m",type=float,default=25.0,help="Horizontal destination tolerance used to terminate an online episode")
+     q.add_argument("--online-touchdown-altitude-m",type=float,default=2.5,help="Maximum relative/AGL altitude for automatic touchdown completion when altitude evidence is available")
+@@ -81,6 +83,10 @@
+         _write(d,args.output)
+         return 0 if d["status"]=="CROSS_LAYER_REFERENCE_BINDING_PASS_UNCERTIFIED" else 2
+     if args.cmd in {"train-online","nav-online"}:
++        if args.online_local_hover_seconds is not None and (
++                not args.online_episodes or not 1<=args.online_local_hover_seconds<=60
++                or not 1<=args.online_local_hover_height_m<=10):
++            print(json.dumps({"ok":False,"status":"REFUSED","reason":"local hover requires --online-episodes, 1..60 seconds and 1..10 metre height"},indent=2)); return 2
+         if (args.reuse_existing_offline_knowledge or args.cmd=="nav-online") and args.run_offline_first:
+             print(json.dumps({"ok":False,"status":"REFUSED","reason":"--reuse-existing-offline-knowledge and --run-offline-first are mutually exclusive"},indent=2)); return 2
+         script=cfg.package_root/"scripts"/"run_training_workflows.py"
+@@ -99,6 +105,9 @@
+             cmd += ["--online-episodes",str(args.online_episodes),"--online-max-cycles-per-episode",str(args.online_max_cycles_per_episode),
+                     "--online-origin-tolerance-m",str(args.online_origin_tolerance_m),"--online-goal-tolerance-m",str(args.online_goal_tolerance_m),"--online-touchdown-altitude-m",str(args.online_touchdown_altitude_m)]
+             if args.online_max_cycles_per_episode_auto: cmd.append("--online-max-cycles-per-episode-auto")
++            if args.online_local_hover_seconds is not None:
++                cmd+=['--online-local-hover-seconds',str(args.online_local_hover_seconds),
++                      '--online-local-hover-height-m',str(args.online_local_hover_height_m)]
+         manifest=Path(args.offline_knowledge_manifest).expanduser() if args.offline_knowledge_manifest else (cfg.runtime_root/"knowledge"/"handoff"/"offline_latest.json.gz")
+         force_reuse=bool(args.cmd=="nav-online" or args.reuse_existing_offline_knowledge or args.offline_knowledge_manifest)
+         auto_reuse=bool(not args.run_offline_first and manifest.is_file())
+diff --git a/TDOC_v20260911_2052/src/tddt_tdoc/layer6_bridge.py b/TDOC_v20260911_2052/src/tddt_tdoc/layer6_bridge.py
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/layer6_bridge.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/layer6_bridge.py
+@@ -126,16 +126,22 @@
+             if not ack.ok or ack.transaction_id!=tx or not instance or raw.get('execution_segment')!=policy:
+                 raise Layer6BridgeError('segment admission/instance mismatch')
+             end=started+budget
++            last_segment=None;responses=0;timeouts=0
+             while time.monotonic()<end:
++                # Allow a GUI tick and its telemetry drain to answer this exact
++                # request. The original overall/packet deadlines still bound it.
+                 response=self.client.segment_status(transaction_id=tx,command_instance_id=instance,
+-                    timeout=min(.03,max(.001,end-time.monotonic())))
+-                if not response:continue
++                    timeout=min(.15,max(.001,end-time.monotonic())))
++                if not response:
++                    timeouts+=1;continue
++                responses+=1
+                 if not response.get('available'):
+                     if response.get('reason')=='segment_response_too_large':
+                         raise Layer6BridgeError('segment transport budget exceeded: '+str({k:response.get(k)
+                             for k in ('encoded_bytes','max_bytes','segment_state','segment_failure')}))
+                     continue
+                 row=response.get('segment') or {}
++                last_segment={k:row.get(k) for k in ('state','failure','stop_reason','qualified','duration_bounds_s')}
+                 if row.get('state')=='FAILED':raise Layer6BridgeError('segment failed: '+str(row.get('failure')))
+                 if row.get('state')!='CLOSED':continue
+                 if not validate_result(row,tx,instance,policy,before_session=before.get('session_id')):
+@@ -160,7 +166,7 @@
+                     intake_ack_is_execution_evidence=False,remaining_horizon_executed=False,
+                     physical_stabilization_verified=False)
+                 return {'ack':ack,'status':status,'layer7_input':result}
+-            raise Layer6BridgeError('segment closure proof not received before confirmation deadline')
++            raise Layer6BridgeError('segment closure proof not received before confirmation deadline: '+str({'responses':responses,'rpc_timeouts':timeouts,'last_segment':last_segment,'budget_s':budget}))
+         except Exception:
+             try:self.cancel(transaction_id=tx,reason='segment_execution_not_confirmed')
+             except Exception:pass
+diff --git a/TDOC_v20260911_2052/src/tddt_tdoc/model_compatibility.py b/TDOC_v20260911_2052/src/tddt_tdoc/model_compatibility.py
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/model_compatibility.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/model_compatibility.py
+@@ -8,6 +8,11 @@
+ import json
+ from pathlib import Path
+ from zipfile import ZipFile
++from collections import OrderedDict
++import threading
++
++_YAML_SEMANTICS=OrderedDict()
++_YAML_SEMANTICS_LOCK=threading.RLock()
+ 
+ REVISION = 'phoenix-fourfoot-certificates-r3.06-v1'
+ SCHEMA = 'TDOC-model-dependencies-v1'
+@@ -37,14 +42,20 @@
+ 
+ 
+ def read_safe_yaml(path):
+-    """Parse current bytes using the safe C loader when available; never cache.
++    """Read/hash current bytes every time; reuse only parsed identical semantics.
+ 
+-    Repeated pure-Python parsing of the large aircraft profiles delayed current
+-    IMU consumption. Hashes/stat checks still run on every binding consumption.
++    This does not cache a file hash, model identity or a successful integrity gate.
++    Returning a deep copy prevents a caller from changing the approved parse.
+     """
+     import yaml
+-    return yaml.load(Path(path).read_text(encoding='utf-8'),
+-                     Loader=getattr(yaml, 'CSafeLoader', yaml.SafeLoader))
++    raw=Path(path).read_bytes();key=(str(Path(path).resolve()),hashlib.sha256(raw).hexdigest())
++    with _YAML_SEMANTICS_LOCK:
++        if key not in _YAML_SEMANTICS:
++            _YAML_SEMANTICS[key]=yaml.load(raw,Loader=getattr(yaml,'CSafeLoader',yaml.SafeLoader))
++        _YAML_SEMANTICS.move_to_end(key)
++        result=deepcopy(_YAML_SEMANTICS[key])
++        while len(_YAML_SEMANTICS)>16:_YAML_SEMANTICS.popitem(last=False)
++        return result
+ 
+ 
+ def capture_model_dependencies(config):
+diff --git a/TDOC_v20260911_2052/src/tddt_tdoc/native_mission.py b/TDOC_v20260911_2052/src/tddt_tdoc/native_mission.py
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/native_mission.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/native_mission.py
+@@ -36,6 +36,20 @@
+ 
+ def _number(value):
+     return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
++
++
++def execution_projection_digest(layer4):
++    projected=deepcopy(layer4);provenance=projected.setdefault('provenance',{})
++    provenance.pop('rtmo_execution_projection',None);provenance.pop('rtmo_l4_artifact_reuse',None)
++    encoded=json.dumps(projected,sort_keys=True,separators=(',',':'),default=str,allow_nan=False).encode('utf-8')
++    return hashlib.sha256(encoded).hexdigest()
++
++
++def validate_execution_projection(layer4):
++    proof=(layer4.get('provenance') or {}).get('rtmo_execution_projection')
++    _require(isinstance(proof,dict) and proof.get('schema')=='TDOC-RTMO-L4-execution-projection-v1'
++             and proof.get('sha256')==execution_projection_digest(layer4),'Layer4 execution projection integrity mismatch')
++    return proof['sha256']
+ 
+ 
+ def _validate_status(status):
+diff --git a/TDOC_v20260911_2052/src/tddt_tdoc/online_imu.py b/TDOC_v20260911_2052/src/tddt_tdoc/online_imu.py
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/online_imu.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/online_imu.py
+@@ -14,6 +14,50 @@
+ CHANNELS={'imu_gx':'gyro_x_rad_s','imu_gy':'gyro_y_rad_s','imu_gz':'gyro_z_rad_s',
+           'imu_ax':'accel_x_m_s2','imu_ay':'accel_y_m_s2','imu_az':'accel_z_m_s2'}
+ _HISTORY_SEAL=object()
++_GROUND_SEAL=object()
++
++
++class NativeGroundCalibration:
++    """Immutable local receipt; its JSON projection cannot install a calibration."""
++    __slots__=('session','domain','means','start','end','count','samples_hash','_seal')
++    def __init__(self,history,samples,means,seal):
++        if seal is not _GROUND_SEAL:raise ValueError('local ground calibration required')
++        from .utils import sha256_obj
++        object.__setattr__(self,'session',history.session_id);object.__setattr__(self,'domain',history.monotonic_domain_id)
++        object.__setattr__(self,'means',tuple(means));object.__setattr__(self,'start',samples[0]['plant_time_s'])
++        object.__setattr__(self,'end',samples[-1]['plant_time_s']);object.__setattr__(self,'count',len(samples))
++        object.__setattr__(self,'samples_hash',sha256_obj(samples));object.__setattr__(self,'_seal',seal)
++    def __setattr__(self,name,value):raise AttributeError('immutable ground calibration')
++    def __deepcopy__(self,memo):return self
++    def to_dict(self):
++        return {'schema':'TDOC-native-ground-IMU-calibration-v1','session_id':self.session,
++            'monotonic_domain_id':self.domain,'means_si':dict(zip(CHANNELS.values(),self.means)),
++            'start_plant_time_s':self.start,'end_plant_time_s':self.end,'sample_count':self.count,
++            'samples_sha256':self.samples_hash,'raw_samples_changed':False,'FCU_pose_used':False,
++            'initialization_only':True,'continuous_reanchoring':False,'actuation_authority':False}
++
++
++def prepare_ground_calibration(history,statuses,*,duration_s=5.):
++    """Estimate existing MESA bias inputs once from verified, grounded raw IMU."""
++    import statistics
++    from layer6.status import validate_observation_status
++    from .native_control_binding import ground_contact
++    samples=native_imu_history_samples(history)
++    if not statuses or len(statuses)<2 or len(samples)<100 or samples[-1]['plant_time_s']-samples[0]['plant_time_s']<duration_s:
++        raise ValueError('complete stationary ground calibration interval required')
++    for status in statuses:
++        if (status.get('session_id')!=history.session_id or status.get('monotonic_domain_id')!=history.monotonic_domain_id
++            or status.get('armed') is not False or status.get('throttle')!=0. or not ground_contact(status)
++            or not validate_observation_status(status,now=status['timestamp_monotonic'])['ok']):
++            raise ValueError('ground calibration requires same-session disarmed measured ground observations')
++    if statuses[0]['plant_time_s']>samples[0]['plant_time_s']+.15 or statuses[-1]['plant_time_s']<samples[-1]['plant_time_s']:
++        raise ValueError('ground lifecycle observations do not cover calibration')
++    fields=list(CHANNELS.values());means=[statistics.mean(s[k] for s in samples) for k in fields]
++    if any(statistics.pstdev(s[k] for s in samples)>(.002 if i<3 else .1) for i,k in enumerate(fields)):
++        raise ValueError('IMU ground calibration not stationary')
++    if math.sqrt(sum(x*x for x in means[:3]))>.02 or abs(math.sqrt(sum(x*x for x in means[3:]))-9.80665)>.05*9.80665:
++        raise ValueError('IMU ground calibration support force/rate invalid')
++    return NativeGroundCalibration(history,samples,means,_GROUND_SEAL)
+ 
+ 
+ @dataclass(frozen=True)
+@@ -306,7 +350,14 @@
+     if (ingress.get('source')!='Layer6/GUI/MAVLink' or not packet['measured_simulated_imu']
+         or gui.get('armed') is not False or gui.get('throttle')!=0. or not ground_contact(gui)):
+         raise ValueError('initial gravity alignment requires disarmed zero-throttle measured ground state')
+-    values=packet['values'];ax,ay,az=(values[k] for k in ('imu_ax','imu_ay','imu_az'))
++    values=packet['values'];calibration=ingress.get('native_ground_calibration')
++    if calibration is not None:
++        if (not isinstance(calibration,NativeGroundCalibration) or calibration._seal is not _GROUND_SEAL
++            or calibration.session!=gui.get('session_id') or calibration.domain!=gui.get('monotonic_domain_id')
++            or not 0<=packet['plant_time_s']-calibration.end<=30.):
++            raise ValueError('invalid, foreign or expired local ground calibration')
++        values=dict(zip(CHANNELS,calibration.means))
++    ax,ay,az=(values[k] for k in ('imu_ax','imu_ay','imu_az'))
+     g=math.sqrt(ax*ax+ay*ay+az*az)
+     rate=math.sqrt(sum(values[k]**2 for k in ('imu_gx','imu_gy','imu_gz')))
+     if abs(g-9.80665)>.05*9.80665 or rate>.02:
+@@ -329,6 +380,11 @@
+         'original_quaternion_wxyz':[known_initialization[k] for k in ('qw','qx','qy','qz')],
+         'aligned_quaternion_wxyz':list(quaternion),'gnss_used':False,'FCU_attitude_used':False,
+         'raw_samples_changed':False,'continuous_reanchoring':False}
++    if calibration is not None:
++        biases={k:v for k,v in zip(('bgx','bgy','bgz'),calibration.means[:3])}
++        biases.update({k:v*(1.-9.80665/g) for k,v in zip(('bfx','bfy','bfz'),calibration.means[3:])})
++        initial['native_imu_bias_initialization']=biases
++        evidence['ground_calibration']=calibration.to_dict();evidence['MESA_existing_bias_inputs']=biases
+     return initial,evidence
+ 
+ 
+diff --git a/TDOC_v20260911_2052/src/tddt_tdoc/online_mission.py b/TDOC_v20260911_2052/src/tddt_tdoc/online_mission.py
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/online_mission.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/online_mission.py
+@@ -9,6 +9,59 @@
+ import math
+ from pathlib import Path
+ from typing import Any, Mapping
++
++
++def bind_local_hover_reference(request,initial_state,*,duration_s,height_m):
++    """A local mission objective, never a fabricated Offline reference or state."""
++    if not 1<=duration_s<=60 or not 1<=height_m<=10:
++        raise ValueError('local hover requires 1..60 seconds and 1..10 metre height')
++    n,e,d=[float(initial_state[k]) for k in ('pn','pe','pd')]
++    ctx=request.setdefault('context',{})
++    ctx['local_hover_test']={'duration_s':duration_s,'height_m':height_m,
++        'horizontal_tolerance_m':5.,'vertical_tolerance_m':1.,'scope':'LOCAL_NATIVE_PROTOTYPE_ONLY',
++        'source':'TDOC explicit mission objective','offline_prior_only':False,'actuation_authority':False}
++    ctx['online_phase_reference_targets']={p:[e,n,-d+(height_m if p in ('vertical_takeoff','hover') else 0.)]
++        for p in ('on_ground','vertical_takeoff','hover','vertical_landing','touchdown')}
++    ctx['online_phase_reference_target_agl_m']={'hover':height_m,'vertical_takeoff':height_m,
++        'vertical_landing':0.,'touchdown':0.}
++    ctx['mission_destination_projected_enu_m']=[e,n,-d]
++    bind_phase_reference(request,str(request.get('stage') or 'on_ground'))
++
++
++class LocalHoverAcceptance:
++    """Measured hold duration; elapsed ground time and uncovered intervals do not count."""
++    def __init__(self,origin,initial_state,*,duration_s,height_m,max_gap_s):
++        self.origin=origin;self.initial=initial_state;self.duration=float(duration_s);self.height=float(height_m)
++        self.max_gap=float(max_gap_s);self.start=None;self.last=None
++        self.last_phase=None;self.completed=False
++    def update(self,phase,cycle):
++        if phase!=self.last_phase:self.start=None;self.last=None;self.last_phase=phase
++        from .rtmo.goal_supervisor import haversine_m
++        ds=cycle.get('future_layers') or cycle.get('downstream_layers') or {}
++        ex=((ds.get('6') or {}).get('output') or {})
++        proof=(ex.get('execution_evidence') or {}).get('segment_closure_proof') or {}
++        s=proof.get('snapshot') or {};now=s.get('plant_time_s')
++        out={'phase_ready':False,'consecutive_hold_s':0.,'physical_validation_only':True,
++             'navigation_state_replaced':False,'reason':'missing_current_executed_feedback'}
++        try:
++            valid=bool(ex.get('status')=='EXECUTED' and ex.get('actuation_executed') is True
++                and (ds.get('7') or {}).get('status')=='OK' and proof.get('qualified') is True)
++            distance=haversine_m(float(s['latitude_deg']),float(s['longitude_deg']),float(self.origin[1]),float(self.origin[0]))
++            height=float(s['altitude_msl_m'])+float(self.initial['pd'])
++            valid=valid and s.get('armed') is True and distance<=5. and abs(height-self.height)<=1.
++            if not valid or self.last is not None and not 0<float(now)-self.last<=self.max_gap+1e-6:self.start=None
++            if valid:
++                if self.start is None:self.start=float(now)
++                self.last=float(now)
++            else:self.last=None
++            held=float(now)-self.start if self.start is not None else 0.
++            out.update(horizontal_error_m=distance,height_m=height,consecutive_hold_s=held,
++                phase_ready=bool(valid and (phase=='vertical_takeoff' or held>=self.duration)),
++                reason='hold_window_qualified' if valid else 'outside_measured_hover_window')
++            if phase=='hover' and valid and held>=self.duration:self.completed=True
++        except (ValueError,TypeError,KeyError):self.start=None;self.last=None
++        if phase not in ('vertical_takeoff','hover'):out['phase_ready']=True
++        return out
+ 
+ 
+ def validate_native_origin(status, native_session, origin, tolerance_m):
+diff --git a/TDOC_v20260911_2052/src/tddt_tdoc/orchestrator.py b/TDOC_v20260911_2052/src/tddt_tdoc/orchestrator.py
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/orchestrator.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/orchestrator.py
+@@ -12,7 +12,7 @@
+ from .provenance import ProvenanceLog
+ from .registry import LayerRegistry
+ from .scheduler import TDOCScheduler
+-from .utils import sha256_obj,utc_now
++from .utils import sha256_obj,utc_now,jsonable
+ from .versioning import VersionManager
+ from .unit_adapter import UnitAdapterBinding
+ from .knowledge import KnowledgeLedger
+@@ -603,6 +603,9 @@
+         ref=float(request.get("reference_time_s",0.0)); b=self.scheduler.boundary(ref); boundary=b.label(); ver=self.versions.active; statuses={}; self._event(tx,"DeviceInterface","TDOC","Data",ver,boundary,"qualified_ingress","OK")
+         r2=self.gate.evaluate(2,valid=True,version_ok=True,boundary_ok=True,health_ok=self.adapters[2].preflight().get("ok",False),policy_route=self.config.layer_enabled(2)); statuses["2"]=r2.to_dict()
+         o2=self._invoke(2,tx,"TDOC",request,ver,boundary,r2); packets=o2.get("packets") or {}
++        # L2's registered provider consumes local typed sensor receipts. Other
++        # layers receive their JSON evidence, never an installable local receipt.
++        request['context']=jsonable(request.get('context') or {})
+         statuses['2']['invocation']={k:o2[k] for k in ('ok','status','error','late_output_discarded','orchestration_timing') if k in o2}
+         if getattr(self.adapters[2],'native_observation_source',None) is not None:
+             observed_ref=float(request.get('reference_time_s',ref))
+@@ -818,6 +821,8 @@
+         r5=self.gate.evaluate(5,valid=layer5_valid,version_ok=True,boundary_ok=True,health_ok=bool(pf5.get("ok",False)),policy_route=self.config.layer_enabled(5),evidence={"adapter":pf5,"learning_mode":mode,"online_training":online_training,"offline_knowledge_handoff":handoff}); statuses["5"]=r5.to_dict()
+         o5=self._invoke(5,tx,"Layer4-output",{"layer4_result":o4.get("result"),"network_snapshot":snap,"request":request,"version":snap_ver,"learning_mode":mode},snap_ver,boundary,r5)
+         downstream["5"]={"status":o5.get("status","OK" if o5.get("ok") else "FAILED"),"enabled":self.config.layer_enabled(5),"output":o5}; outputs["5"]=o5
++        if isinstance(o5.get('decision_layer4_input'),dict):o4['result']=o5.pop('decision_layer4_input')
++        current_prediction=None
+         offline_closed=False; offline_timing_contract=None; execution_evidence=None; o6=None; o7=None; l7_routes={}
+         if mode=="OFFLINE_SE":
+             self._event(tx,"TDOC","Layer6","Skip",snap_ver,boundary,"layer6_not_in_offline_training_path","SKIPPED",{"route":"Layer5->TDOC->Layer2"}); statuses["6"]={"layer_id":6,"ready":False,"policy_route":False,"reasons":["NOT_IN_OFFLINE_PATH"],"evidence":{"learning_mode":mode}}; downstream["6"]={"status":"NOT_IN_OFFLINE_PATH","enabled":False}
+@@ -852,8 +857,23 @@
+             self._event(tx,"TDOC","Layer6","Skip",snap_ver,boundary,"pre_release_verify_non_actuating","SKIPPED",{"phase":request.get("stage")})
+             self._event(tx,"TDOC","Layer7","Skip",snap_ver,boundary,"pre_release_verify_non_actuating","SKIPPED",{"phase":request.get("stage")})
+         elif mode=="ONLINE_JSBSIM":
+-            pf6=self.adapters[6].preflight(); r6=self.gate.evaluate(6,valid=bool(o5.get("ok")),version_ok=True,boundary_ok=True,health_ok=bool(pf6.get("online_ready",False)),policy_route=self.config.layer_enabled(6),evidence={"adapter":pf6,"selected_mode":mode}); statuses["6"]=r6.to_dict()
++            current_prediction_gate={'ok':True,'status':'NOT_REQUIRED'}
++            if (o5.get('ok') and not passive_contact_boundary
++                and (o4.get('result') or {}).get('schema')!='Layer4-native-execution-result-v1'
++                and (o5.get('result',{}).get('gates') or {}).get('FINAL') is True):
++                try:
++                    current_prediction=self.adapters[4].verify_committed_first_move(o4['result'],snap,o5,request)
++                    o5['current_first_move_prediction']=current_prediction
++                    current_prediction_gate={'ok':True,'status':'VERIFIED'}
++                except Exception as exc:
++                    current_prediction_gate={'ok':False,'status':'REJECTED','reason':'current_first_move_prediction_rejected','error':repr(exc)}
++                    if isinstance(getattr(exc,'evidence',None),dict):
++                        current_prediction_gate['evidence']=exc.evidence
++                    self._event(tx,'TDOC','Layer6','Reject',snap_ver,boundary,'current_first_move_prediction_rejected','FAILED',{'error':repr(exc)})
++            pf6=self.adapters[6].preflight(); r6=self.gate.evaluate(6,valid=bool(o5.get("ok") and current_prediction_gate['ok']),version_ok=True,boundary_ok=True,health_ok=bool(pf6.get("online_ready",False)),policy_route=self.config.layer_enabled(6),evidence={"adapter":pf6,"selected_mode":mode,"current_command_prediction_gate":current_prediction_gate}); statuses["6"]=r6.to_dict()
+             o6=self._invoke(6,tx,"Layer5-output",{"layer5_output":o5,"layer4_result":o4.get("result"),"network_snapshot":snap,"request":request,"version":snap_ver,"learning_mode":mode,"transaction_id":tx},snap_ver,boundary,r6); execution_ack_monotonic_s=time.perf_counter(); downstream["6"]={"status":o6.get("status","FAILED"),"enabled":True,"output":o6}; outputs["6"]=o6; execution_evidence=o6.get("execution_evidence")
++            if not current_prediction_gate['ok']:
++                o6.update(reason=current_prediction_gate['reason'],prediction_gate=current_prediction_gate)
+             post_execution_observation=_post_execution_observation_contract(
+                 layer6_output=o6,transaction_id=tx,episode_id=request.get("online_episode_id"),
+                 cycle_in_episode=request.get("online_cycle_in_episode"),
+@@ -885,14 +905,16 @@
+             l7_trigger=_layer7_trigger_eligibility(layer6_output=o6,execution_evidence=execution_evidence,layer7_preflight=pf7,request=request)
+             r7=self.gate.evaluate(7,valid=bool(l7_trigger.get("upstream_eligible")),version_ok=True,boundary_ok=True,health_ok=bool(pf7.get("ok",False)),policy_route=self.config.layer_enabled(7),evidence={"adapter":pf7,"execution_evidence_present":bool(execution_evidence),"trigger_eligibility":l7_trigger}); statuses["7"]=r7.to_dict()
+             if l7_trigger.get("eligible") and r7.ready:
+-                self._layer7_context={"transaction_id":tx,"snapshot":snap,"snapshot_version":snap_ver,"layer4":o4.get("result"),"layer5":o5,"request":request}
++                feedback_layer4=dict(o4.get('result') or {})
++                if current_prediction is not None:feedback_layer4['committed_first_move']=current_prediction
++                self._layer7_context={"transaction_id":tx,"snapshot":snap,"snapshot_version":snap_ver,"layer4":feedback_layer4,"layer5":o5,"request":request}
+                 prepare_diagnostic=getattr(self.adapters[7],'prepare_native_diagnostic',None)
+                 diagnostic_preparation=None
+                 try:
+-                    payload=Layer7Adapter.build_input(transaction_id=tx,version=snap_ver,reference_time_s=ref,execution_evidence=execution_evidence,layer4_result=o4.get("result"),layer5_result=o5,network_snapshot=snap,request=request,layer4_root=self.config.path_value("TDDT_LAYER4_ROOT"),prediction_snapshot=l4_prediction_snapshot)
++                    payload=Layer7Adapter.build_input(transaction_id=tx,version=snap_ver,reference_time_s=ref,execution_evidence=execution_evidence,layer4_result=feedback_layer4,layer5_result=o5,network_snapshot=snap,request=request,layer4_root=self.config.path_value("TDDT_LAYER4_ROOT"),prediction_snapshot=l4_prediction_snapshot)
+                     if callable(prepare_diagnostic):
+                         diagnostic_preparation=prepare_diagnostic(payload,execution_evidence=execution_evidence,
+-                            layer4_result=o4.get('result'),layer5_result=o5,network_snapshot=snap,
++                            layer4_result=feedback_layer4,layer5_result=o5,network_snapshot=snap,
+                             prediction_snapshot=l4_prediction_snapshot)
+                 except Exception as exc:
+                     # A rejected downstream contract must retain the already executed
+diff --git a/TDOC_v20260911_2052/src/tddt_tdoc/rtmo/phase_manager.py b/TDOC_v20260911_2052/src/tddt_tdoc/rtmo/phase_manager.py
+--- a/TDOC_v20260911_2052/src/tddt_tdoc/rtmo/phase_manager.py
++++ b/TDOC_v20260911_2052/src/tddt_tdoc/rtmo/phase_manager.py
+@@ -39,6 +39,12 @@
+                 if vals: dwell[ph]=max(0.0,max(vals)-min(vals))
+         return cls(offline_min_dwell_s=dwell)
+ 
++    @classmethod
++    def local_hover(cls):
++        """Explicit local test profile; normal eleven-phase missions are unchanged."""
++        phases=('on_ground','vertical_takeoff','hover','vertical_landing','touchdown')
++        return cls(phase_order=phases,offline_min_dwell_s={p:0. for p in phases})
++
+     @property
+     def phase(self)->str: return self.phase_order[self.current_index]
+     @property
+@@ -48,7 +54,7 @@
+         # entry_sim_time is established only from authoritative plant time.
+         if self.entry_sim_time_s is None and sim_time_s is not None: self.entry_sim_time_s=float(sim_time_s)
+         return {
+-            "phase_id":self.current_index+1,"phase_name":self.phase,"phase_seq":self.current_index+1,
++            "phase_id":PHASE_ORDER.index(self.phase)+1,"phase_name":self.phase,"phase_seq":self.current_index+1,
+             "entry_time":self.entry_sim_time_s,"cycle":int(cycle),
+             "knowledge_version":knowledge_version,"mission_version":mission_version,
+         }
+diff --git a/TDOC_v20260911_2052/tests/test_committed_prediction_clock.py b/TDOC_v20260911_2052/tests/test_committed_prediction_clock.py
+--- /dev/null
++++ b/TDOC_v20260911_2052/tests/test_committed_prediction_clock.py
+@@ -0,0 +1,34 @@
++"""A command prediction keeps its source clock, even after delayed delivery."""
++from copy import deepcopy
++
++import pytest
++
++from test_native_layer7_current_feedback import case
++from tddt_tdoc.adapters.layer7 import Layer7Adapter
++
++
++@pytest.mark.parametrize('delivery_delay_s', [0., 1.])
++def test_committed_prediction_cannot_be_retimed_to_the_execution(delivery_delay_s, tmp_path):
++    adapter, _, args = case(tmp_path, canonical=True)
++    try:
++        l4 = args['layer4_result']
++        prediction = deepcopy(l4['verified_candidates'][0]['verification']['first_move_prediction'])
++        package = args['layer5_result']['result']['layer6_package']
++        source = args['execution_evidence']['plant_time_s'] - .1 - delivery_delay_s
++        prediction.update(candidate_id='C1', transaction_id='tx', u_cmd=package['u_cmd'],
++                          source_snapshot_hash=l4['snapshot_hash'], source_plant_time_s=source)
++        l4['committed_first_move'] = prediction
++        payload = Layer7Adapter.build_input(transaction_id='tx', version='v1', reference_time_s=1.,
++                                           request={}, **args)
++        meta = payload['PredictionEvidence']['provenance']
++        assert meta['prediction_target_plant_time_bounds_s'] == {
++            'lower_s': source + .1, 'upper_s': source + .1}
++        assert meta['state_transaction_match'] is (delivery_delay_s == 0.)
++        admitted = adapter.prepare_native_diagnostic(payload, **args)
++        assert admitted['ok'] is (delivery_delay_s == 0.)
++        if delivery_delay_s == 0.:
++            assert adapter.invoke(payload)['ok']
++        else:
++            assert payload['ExecutionEvidence']['x_obs'] == {}
++    finally:
++        adapter.close()
+diff --git a/TDOC_v20260911_2052/tests/test_current_bytes_yaml_cache.py b/TDOC_v20260911_2052/tests/test_current_bytes_yaml_cache.py
+--- /dev/null
++++ b/TDOC_v20260911_2052/tests/test_current_bytes_yaml_cache.py
+@@ -0,0 +1,10 @@
++import os
++from tddt_tdoc.model_compatibility import read_safe_yaml
++
++def test_semantic_reuse_never_memoizes_file_bytes_or_shares_mutable_state(tmp_path):
++    p=tmp_path/'profile.yaml';p.write_text('value: 1\nitems: [1, 2]\n');stat=p.stat()
++    first=read_safe_yaml(p);first['items'].append(3)
++    assert read_safe_yaml(p)['items']==[1,2]
++    p.write_text('value: 2\nitems: [1, 2]\n');os.utime(p,ns=(stat.st_atime_ns,stat.st_mtime_ns))
++    assert p.stat().st_size==stat.st_size
++    assert read_safe_yaml(p)['value']==2
+diff --git a/TDOC_v20260911_2052/tests/test_current_mpc_state_binding.py b/TDOC_v20260911_2052/tests/test_current_mpc_state_binding.py
+--- /dev/null
++++ b/TDOC_v20260911_2052/tests/test_current_mpc_state_binding.py
+@@ -0,0 +1,48 @@
++from copy import deepcopy
++from types import SimpleNamespace
++import pytest
++from tddt_tdoc.adapters.layer5 import Layer5Adapter
++from tddt_tdoc.adapters.layer7 import Layer7Adapter
++
++
++@pytest.mark.parametrize('projected',[False,True])
++def test_mpc_engine_receives_current_navigation_and_original_artifact_is_unchanged(projected):
++    original={'snapshot_hash':'verified-source','candidates':[{'candidate_id':'C1',
++        'phoenix_operating_context':{'forecast_step_s':1.,'mesa_local_guidance':{'position_ned_m':[-99.]*3}}}]}
++    original['verified_candidates']=[{'candidate_id':'C1'}]
++    if projected:
++        from tddt_tdoc.rtmo.artifact_gate import RTMOL4ArtifactGate
++        original=RTMOL4ArtifactGate._execution_projection(original)
++    before=deepcopy(original);seen=[]
++    class Captured(Exception):pass
++    def run(data,**kwargs):seen.append(data);raise Captured()
++    a=Layer5Adapter.__new__(Layer5Adapter);a._ensure=lambda:None
++    a.config=SimpleNamespace(get=lambda key,default=None:default)
++    a.engine=SimpleNamespace(run=run)
++    snapshot={'std':{'representations':{'MESA_NAV':{'canonical_state':{
++        'position_ned_m':[10.,20.,-30.],'ground_velocity_ned_m_s':[1.,2.,3.],
++        'attitude_quaternion_wxyz':[1.,0.,0.,0.]}}},'context':{'stage':'hover',
++            'online_phase_reference_targets':{'hover':[20.,10.,30.]}}}}
++    with pytest.raises(Captured):a.invoke({'layer4_result':original,'network_snapshot':snapshot,'learning_mode':'ONLINE_JSBSIM'})
++    ctx=seen[0]['candidates'][0]['phoenix_operating_context']
++    assert ctx['mesa_local_guidance']['position_ned_m']==[10.,20.,-30.]
++    assert ctx['forecast_step_s']==1.
++    assert original==before
++    assert seen[0]['snapshot_hash']=='verified-source'
++    assert seen[0]['verified_candidates']==[{'candidate_id':'C1'}]
++    assert seen[0]['provenance']['current_decision_snapshot_hash']!='verified-source'
++    if projected:
++        from tddt_tdoc.native_mission import validate_execution_projection
++        assert validate_execution_projection(original)==seen[0]['provenance']['source_execution_projection_sha256']
++        assert validate_execution_projection(seen[0])!=validate_execution_projection(original)
++        original['provenance']['rtmo_execution_projection']['sha256']='forged'
++        with pytest.raises(ValueError,match='projection integrity'):
++            a.invoke({'layer4_result':original,'network_snapshot':snapshot,'learning_mode':'ONLINE_JSBSIM'})
++
++
++def test_l7_does_not_use_current_prediction_for_another_command():
++    l4={'candidates':[{'candidate_id':'C1'}],'committed_first_move':{
++        'candidate_id':'C1','transaction_id':'tx','u_cmd':[0.,0.,.4,0.],'source_snapshot_hash':'current'}}
++    l5={'decision':{'candidate_id':'C1'},'layer6_package':{'transaction_id':'tx','u_cmd':[0.,0.,.8,0.]}}
++    state,candidate,meta=Layer7Adapter._matched_prediction_state(l4,l5)
++    assert state=={} and candidate is None and meta['reason']=='current_first_move_command_identity_mismatch'
+diff --git a/TDOC_v20260911_2052/tests/test_ground_imu_commissioning.py b/TDOC_v20260911_2052/tests/test_ground_imu_commissioning.py
+--- /dev/null
++++ b/TDOC_v20260911_2052/tests/test_ground_imu_commissioning.py
+@@ -0,0 +1,53 @@
++from copy import deepcopy
++import pytest
++from test_native_imu_retention import setup_reader,current_status,prepare
++from test_r5_01_telemetry_receivers import wire_message
++from tddt_tdoc.online_imu import prepare_ground_calibration,initial_ground_attitude
++
++
++def measured_calibration():
++    link,_,reader=setup_reader();before=current_status(link)
++    start=before['plant_time_s'];stamp=int(start*1000)
++    for batch in range(11):
++        link.master.queue=[wire_message('SCALED_IMU',changes={'time_boot_ms':stamp+20*(batch*25+i+1),
++            'xacc':0,'yacc':0,'zacc':-1000,'xgyro':0,'ygyro':-2,'zgyro':0}) for i in range(25)]
++        link.drain();reader.poll_once()
++    after=current_status(link)
++    for s in (before,after):s.update(armed=False,throttle=0.,landed_state='ON_GROUND',timestamp_monotonic=s['now'])
++    pages=reader.window(reader.anchor,reader.last_primary)
++    history=prepare(reader,pages,reader.anchor)
++    return history,[before,after]
++
++
++def test_static_wire_imu_initializes_existing_bias_inputs_without_altering_samples():
++    history,statuses=measured_calibration();original=deepcopy(history.samples)
++    cal=prepare_ground_calibration(history,statuses)
++    ingress={'ok':True,'released':True,'source':'Layer6/GUI/MAVLink','gui_state':statuses[-1],
++        'state':{'runtime_ready':1.,**{k:statuses[-1]['imu'][k] for k in statuses[-1]['imu']},
++                 'imu_source':'MAVLink/SCALED_IMU','imu_frame':'BODY_FRD','imu_time_s':statuses[-1]['plant_time_s']},
++        'native_ground_calibration':cal}
++    # canonical_imu consumes the explicit public SI state names.
++    init={'pn':1.,'pe':2.,'pd':-3.,'vn':0.,'ve':0.,'vd':0.,'qw':1.,'qx':0.,'qy':0.,'qz':0.}
++    aligned,evidence=initial_ground_attitude(ingress,init)
++    assert aligned['native_imu_bias_initialization']['bgy']==pytest.approx(-.002)
++    assert all(aligned[k]==init[k] for k in ('pn','pe','pd','vn','ve','vd'))
++    assert history.samples==original
++    assert not evidence['ground_calibration']['actuation_authority']
++    assert deepcopy(cal) is cal
++    import json
++    from tddt_tdoc.adapters.layer2 import Layer2Adapter
++    encoded=Layer2Adapter._packet({'context':{'calibration':cal}})
++    assert json.loads(json.dumps(encoded))['context']['calibration']['samples_sha256']==cal.samples_hash
++    with pytest.raises(AttributeError):cal.means=(0.,)*6
++    ingress['native_ground_calibration']=cal.to_dict()
++    with pytest.raises(ValueError,match='local ground calibration'):initial_ground_attitude(ingress,init)
++
++
++@pytest.mark.parametrize('fault',['armed','airborne','throttle','session','short'])
++def test_ground_calibration_rejects_invalid_lifecycle_or_interval(fault):
++    history,statuses=measured_calibration()
++    if fault=='armed':statuses[-1]['armed']=True
++    elif fault=='airborne':statuses[-1]['landed_state']='IN_AIR'
++    elif fault=='throttle':statuses[-1]['throttle']=.1
++    elif fault=='session':statuses[-1]['session_id']='c'*32
++    with pytest.raises(ValueError):prepare_ground_calibration(history,statuses,duration_s=10. if fault=='short' else 5.)
+diff --git a/TDOC_v20260911_2052/tests/test_local_hover_profile.py b/TDOC_v20260911_2052/tests/test_local_hover_profile.py
+--- /dev/null
++++ b/TDOC_v20260911_2052/tests/test_local_hover_profile.py
+@@ -0,0 +1,49 @@
++import pytest
++from tddt_tdoc.online_mission import LocalHoverAcceptance,bind_local_hover_reference
++from tddt_tdoc.rtmo.phase_manager import MissionPhaseManager,PHASE_ORDER
++
++INIT={'pn':100.,'pe':200.,'pd':-1800.}
++def cycle(t,height=3.,l7='OK'):
++    return {'future_layers':{'6':{'output':{'status':'EXECUTED','actuation_executed':True,
++        'execution_evidence':{'segment_closure_proof':{'qualified':True,'snapshot':{
++            'plant_time_s':t,'latitude_deg':40.,'longitude_deg':-105.,'altitude_msl_m':1800.+height,'armed':True}}}}},'7':{'status':l7}}}
++
++def test_explicit_local_profile_preserves_canonical_phase_ids_and_normal_missions():
++    m=MissionPhaseManager.local_hover()
++    assert m.phase_order==('on_ground','vertical_takeoff','hover','vertical_landing','touchdown')
++    for _ in range(3):m.advance(sim_time_s=1.)
++    assert m.token(cycle=1,sim_time_s=1.)['phase_id']==10
++    assert MissionPhaseManager().phase_order==PHASE_ORDER
++
++def test_ground_time_missing_feedback_and_uncovered_intervals_do_not_count_as_hover():
++    a=LocalHoverAcceptance([-105.,40.],INIT,duration_s=1.,height_m=3.,max_gap_s=.1)
++    assert not a.update('hover',cycle(1.,height=0.))['phase_ready']
++    assert not a.update('hover',cycle(2.,l7='FAILED'))['phase_ready']
++    assert not a.update('hover',cycle(3.))['phase_ready']
++    assert a.update('hover',cycle(4.))['consecutive_hold_s']==0.
++    for i in range(1,12):r=a.update('hover',cycle(4.+i*.1))
++    assert r['phase_ready'] and a.completed
++
++def test_mission_objective_never_replaces_navigation_state_or_fabricates_prior():
++    r={'stage':'hover','context':{}}
++    bind_local_hover_reference(r,INIT,duration_s=60.,height_m=3.)
++    c=r['context'];assert c['phase_target_agl_m']==3.
++    assert c['online_phase_reference_targets']['hover']==[200.,100.,1803.]
++    assert 'rtmo_navigation_initial_state' not in c
++    assert c['local_hover_test']['actuation_authority'] is False
++    with pytest.raises(ValueError):bind_local_hover_reference(r,INIT,duration_s=0.,height_m=3.)
++
++
++@pytest.mark.parametrize('flags', [
++    ['--online-local-hover-seconds','1'],
++    ['--online-episodes','1','--online-local-hover-seconds','0'],
++    ['--online-episodes','1','--online-local-hover-seconds','61'],
++    ['--online-episodes','1','--online-local-hover-seconds','1','--online-local-hover-height-m','nan'],
++])
++def test_invalid_local_hover_never_starts_a_native_workflow(flags, monkeypatch, capsys):
++    from pathlib import Path
++    from tddt_tdoc import cli
++    monkeypatch.setattr(cli.subprocess,'run',lambda *a,**kw:pytest.fail('invalid mission started'))
++    config=Path(__file__).parents[1]/'configs/tdoc.yaml'
++    assert cli.main(['--config',str(config),'nav-online',*flags])==2
++    assert 'REFUSED' in capsys.readouterr().out
+diff --git a/TDOC_v20260911_2052/tests/test_native_imu_retention.py b/TDOC_v20260911_2052/tests/test_native_imu_retention.py
+--- a/TDOC_v20260911_2052/tests/test_native_imu_retention.py
++++ b/TDOC_v20260911_2052/tests/test_native_imu_retention.py
+@@ -237,6 +237,23 @@
+     assert diagnostic['source_receipt_age_s']>=0 and diagnostic['source_receipt_retimed'] is False
+ 
+ 
++@pytest.mark.parametrize('code,retries',[('ACQUISITION_WITNESS_EXPIRED',2),('BOUND_INPUT_CHANGED',1)])
++def test_expired_ingress_reacquires_observation_but_integrity_change_fails_closed(code,retries):
++    link,_,_=setup_reader();a=Layer6OnlineAdapter.__new__(Layer6OnlineAdapter)
++    a._status=lambda **kwargs:current_status(link);a._native_health=lambda s:None;calls=[]
++    def consume(status):
++        calls.append(status)
++        if len(calls)==1:
++            a._environment_rejection={'code':code}
++            raise RuntimeError('boundary rejected')
++        return {'ok':True,'gui_state':status}
++    a._ingress_from_status=consume
++    result=a.online_runtime_ingress()
++    assert len(calls)==retries
++    assert result['ok']==(retries==2)
++    if retries==2:assert calls[0] is not calls[1]
++
++
+ @pytest.mark.parametrize('changed',['session_id','monotonic_domain_id','native_session_id','target_system','target_component'])
+ def test_identity_change_after_health_is_rejected_before_ingress(changed):
+     link,client,reader=setup_reader();adapter=Layer6OnlineAdapter.__new__(Layer6OnlineAdapter)
+diff --git a/TDOC_v20260911_2052/tests/test_native_layer6_status_acquisition.py b/TDOC_v20260911_2052/tests/test_native_layer6_status_acquisition.py
+--- a/TDOC_v20260911_2052/tests/test_native_layer6_status_acquisition.py
++++ b/TDOC_v20260911_2052/tests/test_native_layer6_status_acquisition.py
+@@ -114,7 +114,31 @@
+             meta['received_monotonic']-=.3
+             meta['freshness']['evaluated_monotonic']-=.3
+     assert adapter.validated_environment_status(status) is False
+-    assert calls.count('full_guard')==2  # changed object falls back to strict check
++    assert calls.count('full_guard')==1  # reject a modified local object immediately
++    assert adapter._environment_rejection['code']=='ACQUIRED_STATUS_MUTATED'
++
++
++def test_expired_local_witness_never_rehashes_an_aged_snapshot(tmp_path,monkeypatch):
++    adapter,calls,_,_=guarded_adapter(tmp_path,monkeypatch)
++    status=adapter._status()
++    adapter._environment_status_witness['acquired_monotonic']-=.2
++    assert not adapter.validated_environment_status(status)
++    assert adapter._environment_rejection['code']=='ACQUISITION_WITNESS_EXPIRED'
++    assert calls.count('full_guard')==1
++
++
++def test_concurrent_acquisitions_do_not_overwrite_another_threads_witness(tmp_path,monkeypatch):
++    import threading
++    adapter,_,_,_=guarded_adapter(tmp_path,monkeypatch)
++    gate=threading.Barrier(2);answers=[]
++    def acquire():
++        s=adapter._status();w=adapter._environment_status_witness
++        gate.wait(timeout=3.)
++        answers.append(adapter._environment_status_witness is w and w['status'] is s)
++    threads=[threading.Thread(target=acquire) for _ in range(2)]
++    for thread in threads:thread.start()
++    for thread in threads:thread.join(timeout=4.)
++    assert answers==[True,True]
+ 
+ 
+ def test_next_acquisition_does_not_memoize_unchanged_stat_or_model_bytes(tmp_path,monkeypatch):
+@@ -123,3 +147,20 @@
+     paths[1].write_bytes(b'changed model')
+     with pytest.raises(ValueError,match='input/model changed'):adapter._status()
+     assert calls.count('full_guard')==2 and calls.count('GUI_snapshot')==1
++
++
++def test_clock_expiry_is_distinguished_from_a_changed_clock_mapping(tmp_path,monkeypatch):
++    adapter,_,_,_=guarded_adapter(tmp_path,monkeypatch)
++    status=adapter._status();checked=adapter._check_environment_binding();env=status['environment_contract']
++    received=time.monotonic()-1.1;env['updated_monotonic']=received+.95
++    env['clock_mapping']['observation']={'received_monotonic_s':received}
++    import layer6.timebase as timebase
++    def clock(binding,state,*,now=None):
++        if state['clock_mapping']['binding_id']!=binding['binding_id']:raise ValueError('clock identity mismatch')
++        if (time.monotonic() if now is None else now)-received>1.:raise ValueError('clock projection/freshness mismatch')
++    monkeypatch.setattr(timebase,'validate_clock_mapping',clock)
++    assert not adapter._environment_state_ready(status,checked)
++    assert adapter._environment_rejection['code']=='CLOCK_OBSERVATION_STALE'
++    env['clock_mapping']['binding_id']='changed'
++    assert not adapter._environment_state_ready(status,checked)
++    assert adapter._environment_rejection['code']=='CLOCK_MAPPING_REJECTED'

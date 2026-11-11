@@ -1,0 +1,1113 @@
+[nav-online] offline knowledge mode=FORCE_REUSE manifest=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/knowledge/handoff/offline_latest.json.gz
+[L6CLIENT] Layer-6 stack/GUI not detected; starting it ...
+Opening Terminal 1: ArduPilot SITL
+Opening Terminal 2: Environment Adapter
+Opening Terminal 3: Phoenix GUI control gateway
+Opening Terminal 4: JSBSim - Native backend observer
+[L6CLIENT] Layer-6 GUI is responding.
+[DEMO][GUI] mavlink=False sys=0 mode=None armed=None thr=0.0 landed=None gs=None rel_alt=None vz=None ack=None statustext=None endpoint=tcp:127.0.0.1:14552
+[DEMO][MAV] GUI is not connected; requesting MAVLink Connect ...
+[DEMO][MAV] connected: mavlink=True sys=1 mode=MANUAL armed=False thr=0.0 landed=None gs=0.0045098671689629555 rel_alt=-0.20700000000000002 vz=-1.6200405298150145e-05 ack={'command': 511, 'result': 0} statustext=None endpoint=tcp:127.0.0.1:14552
+[DEMO][FCU] waiting for ArduPilot readiness: mavlink=True sys=1 mode=MANUAL armed=False thr=0.0 landed=None gs=0.004494928754866123 rel_alt=-0.20700000000000002 vz=-1.4941286281100474e-05 ack={'command': 511, 'result': 0} statustext=None endpoint=tcp:127.0.0.1:14552
+[DEMO][FCU] ready: mavlink=True sys=1 mode=MANUAL armed=False thr=0.0 landed=ON_GROUND gs=0.004456697963178158 rel_alt=-0.158 vz=-1.2639872693398502e-05 ack={'command': 410, 'result': 4} statustext=None endpoint=tcp:127.0.0.1:14552
+{
+  "schema": "Layer6-native-session-v1",
+  "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+  "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a",
+  "created": false,
+  "processes": [
+    {
+      "pid": 237370,
+      "start_ticks": 3439737,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal1",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal1 "
+    },
+    {
+      "pid": 237387,
+      "start_ticks": 3439781,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "arduplane",
+      "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane --model jsbsim:phoenix_v3 --home 40.01,-105.3,1798.5157833529418,45.59257145243172 --speedup 1 --base-port 5760 -I 0 --autotest-dir /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest --defaults /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/Tools/autotest/default_params/phoenix_v3.parm "
+    },
+    {
+      "pid": 237389,
+      "start_ticks": 3439781,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237402,
+      "start_ticks": 3439812,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "JSBSim",
+      "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/jsbsim/build/src/JSBSim",
+      "cmdline": "JSBSim --suspend --simulation-rate=1200.000000 --nice=0.00000001 --logdirectivefile=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest/jsbsim_fgout_0.xml --script=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest/jsbsim_start_0.xml "
+    },
+    {
+      "pid": 237404,
+      "start_ticks": 3439816,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237417,
+      "start_ticks": 3439820,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237462,
+      "start_ticks": 3439947,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal2",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal2 "
+    },
+    {
+      "pid": 237501,
+      "start_ticks": 3440044,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "environment",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m phoenix_env_adapter.cli runtime --binding /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/binding.json --state-file /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/environment_state.json --mavlink udpin:127.0.0.1:14551 --update-hz 1 "
+    },
+    {
+      "pid": 237519,
+      "start_ticks": 3440157,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal3",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal3 "
+    },
+    {
+      "pid": 237531,
+      "start_ticks": 3440199,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "intake",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B -m layer6.service --listen 127.0.0.1:14661 --gui 127.0.0.1:14660 --rate-hz 30 "
+    },
+    {
+      "pid": 237533,
+      "start_ticks": 3440199,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "gui",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/src/gui/phoenix_f310_gui.py --connect tcp:127.0.0.1:14552 --no-gamepad "
+    },
+    {
+      "pid": 237587,
+      "start_ticks": 3440368,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal4",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal4 "
+    }
+  ],
+  "roles": {
+    "arduplane": true,
+    "JSBSim": true,
+    "mavproxy": true,
+    "environment": true,
+    "intake": true,
+    "gui": true
+  },
+  "process_ready": true,
+  "alive": true,
+  "flight_ready": false,
+  "panels": {
+    "ready": true,
+    "reason": "live_native_panels",
+    "reasons": [],
+    "evidence": {
+      "schema": "Layer6-native-panels-v1",
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "producer_pid": 237389,
+      "master": "tcp:127.0.0.1:5760",
+      "recorded_monotonic_s": 33603.323219345,
+      "heartbeat": {
+        "received_monotonic_s": 33602.747261635,
+        "target_system": 1,
+        "target_component": 1,
+        "mode": "MANUAL",
+        "armed": false
+      },
+      "position": {
+        "received_monotonic_s": 33603.312615395,
+        "target_system": 1,
+        "target_component": 1,
+        "time_boot_ms": 14599,
+        "latitude_deg": 40.0099997,
+        "longitude_deg": -105.2999995,
+        "heading_deg": 48.45
+      },
+      "position_updates": 157,
+      "map": {
+        "alive": true,
+        "wx_ready": true,
+        "child_pid": 237417,
+        "position_matches": true,
+        "position": [
+          40.0099997,
+          -105.2999995,
+          48.45
+        ]
+      },
+      "console": {
+        "alive": true,
+        "child_pid": 237404
+      },
+      "navigation_input": false,
+      "control_command_sent": false,
+      "visual_acceptance_verified": false
+    },
+    "visual_acceptance_verified": false
+  },
+  "panels_ready": true,
+  "jsbsim_window": {
+    "ready": true,
+    "reason": "live_owned_jsbsim_observer",
+    "evidence": {
+      "schema": "Layer6-JSBSim-window-v1",
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "producer_pid": 237587,
+      "producer_start_ticks": 3440368,
+      "recorded_monotonic_s": 33603.301072949,
+      "jsbsim_pid": 237402,
+      "jsbsim_start_ticks": 3439812,
+      "source_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/arduplane.log",
+      "telemetry_master": "tcp:127.0.0.1:5760",
+      "plant_time_s": 14.599,
+      "mode": "MANUAL",
+      "armed": false,
+      "telemetry_ready": true,
+      "simulator_spawned": false,
+      "visual_acceptance_verified": false
+    },
+    "visual_acceptance_verified": false
+  },
+  "session_ready": true,
+  "visual_acceptance_verified": false,
+  "stop_requested": false,
+  "binding_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/binding.json",
+  "environment_state_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/environment_state.json",
+  "state": {
+    "schema": "Layer6-native-session-v1",
+    "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a",
+    "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+    "flightstack_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack",
+    "terminal": null,
+    "delay": 2.0,
+    "started_at": 1793831800.4266517,
+    "last_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/logs/run_flightstack_20261104_173640.log"
+  },
+  "display": ":0",
+  "wayland_display": null,
+  "dbus_session_bus": true
+}
+{
+  "schema": "Layer6-native-session-v1",
+  "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+  "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a",
+  "created": false,
+  "processes": [
+    {
+      "pid": 237370,
+      "start_ticks": 3439737,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal1",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal1 "
+    },
+    {
+      "pid": 237387,
+      "start_ticks": 3439781,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "arduplane",
+      "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane --model jsbsim:phoenix_v3 --home 40.01,-105.3,1798.5157833529418,45.59257145243172 --speedup 1 --base-port 5760 -I 0 --autotest-dir /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest --defaults /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/Tools/autotest/default_params/phoenix_v3.parm "
+    },
+    {
+      "pid": 237389,
+      "start_ticks": 3439781,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237402,
+      "start_ticks": 3439812,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "JSBSim",
+      "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/jsbsim/build/src/JSBSim",
+      "cmdline": "JSBSim --suspend --simulation-rate=1200.000000 --nice=0.00000001 --logdirectivefile=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest/jsbsim_fgout_0.xml --script=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest/jsbsim_start_0.xml "
+    },
+    {
+      "pid": 237404,
+      "start_ticks": 3439816,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237417,
+      "start_ticks": 3439820,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237462,
+      "start_ticks": 3439947,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal2",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal2 "
+    },
+    {
+      "pid": 237501,
+      "start_ticks": 3440044,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "environment",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m phoenix_env_adapter.cli runtime --binding /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/binding.json --state-file /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/environment_state.json --mavlink udpin:127.0.0.1:14551 --update-hz 1 "
+    },
+    {
+      "pid": 237519,
+      "start_ticks": 3440157,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal3",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal3 "
+    },
+    {
+      "pid": 237531,
+      "start_ticks": 3440199,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "intake",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B -m layer6.service --listen 127.0.0.1:14661 --gui 127.0.0.1:14660 --rate-hz 30 "
+    },
+    {
+      "pid": 237533,
+      "start_ticks": 3440199,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "gui",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/src/gui/phoenix_f310_gui.py --connect tcp:127.0.0.1:14552 --no-gamepad "
+    },
+    {
+      "pid": 237587,
+      "start_ticks": 3440368,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal4",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal4 "
+    }
+  ],
+  "roles": {
+    "arduplane": true,
+    "JSBSim": true,
+    "mavproxy": true,
+    "environment": true,
+    "intake": true,
+    "gui": true
+  },
+  "process_ready": true,
+  "alive": true,
+  "flight_ready": false,
+  "panels": {
+    "ready": true,
+    "reason": "live_native_panels",
+    "reasons": [],
+    "evidence": {
+      "schema": "Layer6-native-panels-v1",
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "producer_pid": 237389,
+      "master": "tcp:127.0.0.1:5760",
+      "recorded_monotonic_s": 33609.23946283,
+      "heartbeat": {
+        "received_monotonic_s": 33608.759470995,
+        "target_system": 1,
+        "target_component": 1,
+        "mode": "MANUAL",
+        "armed": false
+      },
+      "position": {
+        "received_monotonic_s": 33609.222143573,
+        "target_system": 1,
+        "target_component": 1,
+        "time_boot_ms": 20498,
+        "latitude_deg": 40.0099997,
+        "longitude_deg": -105.2999993,
+        "heading_deg": 48.44
+      },
+      "position_updates": 275,
+      "map": {
+        "alive": true,
+        "wx_ready": true,
+        "child_pid": 237417,
+        "position_matches": true,
+        "position": [
+          40.0099997,
+          -105.2999993,
+          48.44
+        ]
+      },
+      "console": {
+        "alive": true,
+        "child_pid": 237404
+      },
+      "navigation_input": false,
+      "control_command_sent": false,
+      "visual_acceptance_verified": false
+    },
+    "visual_acceptance_verified": false
+  },
+  "panels_ready": true,
+  "jsbsim_window": {
+    "ready": true,
+    "reason": "live_owned_jsbsim_observer",
+    "evidence": {
+      "schema": "Layer6-JSBSim-window-v1",
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "producer_pid": 237587,
+      "producer_start_ticks": 3440368,
+      "recorded_monotonic_s": 33609.075840942,
+      "jsbsim_pid": 237402,
+      "jsbsim_start_ticks": 3439812,
+      "source_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/arduplane.log",
+      "telemetry_master": "tcp:127.0.0.1:5760",
+      "plant_time_s": 20.298000000000002,
+      "mode": "MANUAL",
+      "armed": false,
+      "telemetry_ready": true,
+      "simulator_spawned": false,
+      "visual_acceptance_verified": false
+    },
+    "visual_acceptance_verified": false
+  },
+  "session_ready": true,
+  "visual_acceptance_verified": false,
+  "stop_requested": false,
+  "binding_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/binding.json",
+  "environment_state_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/environment_state.json",
+  "state": {
+    "schema": "Layer6-native-session-v1",
+    "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a",
+    "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+    "flightstack_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack",
+    "terminal": null,
+    "delay": 2.0,
+    "started_at": 1793831800.4266517,
+    "last_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/logs/run_flightstack_20261104_173640.log"
+  },
+  "display": ":0",
+  "wayland_display": null,
+  "dbus_session_bus": true
+}
+Layer6 native startup text: diagnostic-only; readiness authority = structured Layer6/GUI/MAVLink + Layer5 + RTMO gates
+
+=== RTMO MISSION NOT FULLY CERTIFIED (non-blocking) ===
+Distant phase gaps: vertical_takeoff,hover,transition_forward,climb,cruise,turn,approach,transition_back,vertical_landing,touchdown
+
+=== ONLINE_JSBSIM: 1 mission episode(s), max 12 cycles/episode (explicit_or_default:CLI) ===
+
+--- mission 1/1 | Layer6 session=0 | cycle_cap=12 | origin=(40.010000,-105.300000) destination=(40.010000,-105.300000) ---
+[DEMO][GUI] mavlink=True sys=1 mode=MANUAL armed=False thr=0.0 landed=ON_GROUND gs=0.004460612777620554 rel_alt=0.0 vz=-1.349636568193091e-05 ack={'command': 410, 'result': 4} statustext='EKF3 IMU0 is using GPS' endpoint=tcp:127.0.0.1:14552
+[DEMO][MAV] connected: mavlink=True sys=1 mode=MANUAL armed=False thr=0.0 landed=ON_GROUND gs=0.004460612777620554 rel_alt=0.0 vz=-1.349636568193091e-05 ack={'command': 410, 'result': 4} statustext='EKF3 IMU0 is using GPS' endpoint=tcp:127.0.0.1:14552
+[DEMO][FCU] waiting for ArduPilot readiness: mavlink=True sys=1 mode=MANUAL armed=False thr=0.0 landed=ON_GROUND gs=0.004460382740944624 rel_alt=0.0 vz=-1.3493559890775941e-05 ack={'command': 410, 'result': 4} statustext='EKF3 IMU0 is using GPS' endpoint=tcp:127.0.0.1:14552
+[DEMO][FCU] ready: mavlink=True sys=1 mode=MANUAL armed=False thr=0.0 landed=ON_GROUND gs=0.004462541081011295 rel_alt=0.0 vz=-1.361033628199948e-05 ack={'command': 410, 'result': 4} statustext='EKF3 IMU0 is using GPS' endpoint=tcp:127.0.0.1:14552
+{
+  "schema": "Layer6-native-session-v1",
+  "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+  "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a",
+  "created": false,
+  "processes": [
+    {
+      "pid": 237370,
+      "start_ticks": 3439737,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal1",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal1 "
+    },
+    {
+      "pid": 237387,
+      "start_ticks": 3439781,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "arduplane",
+      "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane --model jsbsim:phoenix_v3 --home 40.01,-105.3,1798.5157833529418,45.59257145243172 --speedup 1 --base-port 5760 -I 0 --autotest-dir /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest --defaults /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/Tools/autotest/default_params/phoenix_v3.parm "
+    },
+    {
+      "pid": 237389,
+      "start_ticks": 3439781,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237402,
+      "start_ticks": 3439812,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "JSBSim",
+      "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/jsbsim/build/src/JSBSim",
+      "cmdline": "JSBSim --suspend --simulation-rate=1200.000000 --nice=0.00000001 --logdirectivefile=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest/jsbsim_fgout_0.xml --script=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest/jsbsim_start_0.xml "
+    },
+    {
+      "pid": 237404,
+      "start_ticks": 3439816,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237417,
+      "start_ticks": 3439820,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237462,
+      "start_ticks": 3439947,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal2",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal2 "
+    },
+    {
+      "pid": 237501,
+      "start_ticks": 3440044,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "environment",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m phoenix_env_adapter.cli runtime --binding /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/binding.json --state-file /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/environment_state.json --mavlink udpin:127.0.0.1:14551 --update-hz 1 "
+    },
+    {
+      "pid": 237519,
+      "start_ticks": 3440157,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal3",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal3 "
+    },
+    {
+      "pid": 237531,
+      "start_ticks": 3440199,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "intake",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B -m layer6.service --listen 127.0.0.1:14661 --gui 127.0.0.1:14660 --rate-hz 30 "
+    },
+    {
+      "pid": 237533,
+      "start_ticks": 3440199,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "gui",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/src/gui/phoenix_f310_gui.py --connect tcp:127.0.0.1:14552 --no-gamepad "
+    },
+    {
+      "pid": 237587,
+      "start_ticks": 3440368,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal4",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal4 "
+    }
+  ],
+  "roles": {
+    "arduplane": true,
+    "JSBSim": true,
+    "mavproxy": true,
+    "environment": true,
+    "intake": true,
+    "gui": true
+  },
+  "process_ready": true,
+  "alive": true,
+  "flight_ready": false,
+  "panels": {
+    "ready": true,
+    "reason": "live_native_panels",
+    "reasons": [],
+    "evidence": {
+      "schema": "Layer6-native-panels-v1",
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "producer_pid": 237389,
+      "master": "tcp:127.0.0.1:5760",
+      "recorded_monotonic_s": 33612.685342483,
+      "heartbeat": {
+        "received_monotonic_s": 33611.76394869,
+        "target_system": 1,
+        "target_component": 1,
+        "mode": "MANUAL",
+        "armed": false
+      },
+      "position": {
+        "received_monotonic_s": 33612.679836598,
+        "target_system": 1,
+        "target_component": 1,
+        "time_boot_ms": 23948,
+        "latitude_deg": 40.0099997,
+        "longitude_deg": -105.2999993,
+        "heading_deg": 48.44
+      },
+      "position_updates": 344,
+      "map": {
+        "alive": true,
+        "wx_ready": true,
+        "child_pid": 237417,
+        "position_matches": true,
+        "position": [
+          40.0099997,
+          -105.2999993,
+          48.44
+        ]
+      },
+      "console": {
+        "alive": true,
+        "child_pid": 237404
+      },
+      "navigation_input": false,
+      "control_command_sent": false,
+      "visual_acceptance_verified": false
+    },
+    "visual_acceptance_verified": false
+  },
+  "panels_ready": true,
+  "jsbsim_window": {
+    "ready": true,
+    "reason": "live_owned_jsbsim_observer",
+    "evidence": {
+      "schema": "Layer6-JSBSim-window-v1",
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "producer_pid": 237587,
+      "producer_start_ticks": 3440368,
+      "recorded_monotonic_s": 33612.551906404,
+      "jsbsim_pid": 237402,
+      "jsbsim_start_ticks": 3439812,
+      "source_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/arduplane.log",
+      "telemetry_master": "tcp:127.0.0.1:5760",
+      "plant_time_s": 23.748,
+      "mode": "MANUAL",
+      "armed": false,
+      "telemetry_ready": true,
+      "simulator_spawned": false,
+      "visual_acceptance_verified": false
+    },
+    "visual_acceptance_verified": false
+  },
+  "session_ready": true,
+  "visual_acceptance_verified": false,
+  "stop_requested": false,
+  "binding_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/binding.json",
+  "environment_state_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/environment_state.json",
+  "state": {
+    "schema": "Layer6-native-session-v1",
+    "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a",
+    "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+    "flightstack_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack",
+    "terminal": null,
+    "delay": 2.0,
+    "started_at": 1793831800.4266517,
+    "last_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/logs/run_flightstack_20261104_173640.log"
+  },
+  "display": ":0",
+  "wayland_display": null,
+  "dbus_session_bus": true
+}
+{
+  "schema": "Layer6-native-session-v1",
+  "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+  "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a",
+  "created": false,
+  "processes": [
+    {
+      "pid": 237370,
+      "start_ticks": 3439737,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal1",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal1 "
+    },
+    {
+      "pid": 237387,
+      "start_ticks": 3439781,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "arduplane",
+      "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane --model jsbsim:phoenix_v3 --home 40.01,-105.3,1798.5157833529418,45.59257145243172 --speedup 1 --base-port 5760 -I 0 --autotest-dir /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest --defaults /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/Tools/autotest/default_params/phoenix_v3.parm "
+    },
+    {
+      "pid": 237389,
+      "start_ticks": 3439781,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237402,
+      "start_ticks": 3439812,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "JSBSim",
+      "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/jsbsim/build/src/JSBSim",
+      "cmdline": "JSBSim --suspend --simulation-rate=1200.000000 --nice=0.00000001 --logdirectivefile=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest/jsbsim_fgout_0.xml --script=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest/jsbsim_start_0.xml "
+    },
+    {
+      "pid": 237404,
+      "start_ticks": 3439816,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237417,
+      "start_ticks": 3439820,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237462,
+      "start_ticks": 3439947,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal2",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal2 "
+    },
+    {
+      "pid": 237501,
+      "start_ticks": 3440044,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "environment",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m phoenix_env_adapter.cli runtime --binding /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/binding.json --state-file /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/environment_state.json --mavlink udpin:127.0.0.1:14551 --update-hz 1 "
+    },
+    {
+      "pid": 237519,
+      "start_ticks": 3440157,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal3",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal3 "
+    },
+    {
+      "pid": 237531,
+      "start_ticks": 3440199,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "intake",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B -m layer6.service --listen 127.0.0.1:14661 --gui 127.0.0.1:14660 --rate-hz 30 "
+    },
+    {
+      "pid": 237533,
+      "start_ticks": 3440199,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "gui",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/src/gui/phoenix_f310_gui.py --connect tcp:127.0.0.1:14552 --no-gamepad "
+    },
+    {
+      "pid": 237587,
+      "start_ticks": 3440368,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal4",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal4 "
+    }
+  ],
+  "roles": {
+    "arduplane": true,
+    "JSBSim": true,
+    "mavproxy": true,
+    "environment": true,
+    "intake": true,
+    "gui": true
+  },
+  "process_ready": true,
+  "alive": true,
+  "flight_ready": false,
+  "panels": {
+    "ready": true,
+    "reason": "live_native_panels",
+    "reasons": [],
+    "evidence": {
+      "schema": "Layer6-native-panels-v1",
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "producer_pid": 237389,
+      "master": "tcp:127.0.0.1:5760",
+      "recorded_monotonic_s": 33618.414824711,
+      "heartbeat": {
+        "received_monotonic_s": 33617.767319901,
+        "target_system": 1,
+        "target_component": 1,
+        "mode": "MANUAL",
+        "armed": false
+      },
+      "position": {
+        "received_monotonic_s": 33618.383809085,
+        "target_system": 1,
+        "target_component": 1,
+        "time_boot_ms": 29647,
+        "latitude_deg": 40.0099996,
+        "longitude_deg": -105.299999,
+        "heading_deg": 48.43
+      },
+      "position_updates": 458,
+      "map": {
+        "alive": true,
+        "wx_ready": true,
+        "child_pid": 237417,
+        "position_matches": true,
+        "position": [
+          40.0099996,
+          -105.299999,
+          48.43
+        ]
+      },
+      "console": {
+        "alive": true,
+        "child_pid": 237404
+      },
+      "navigation_input": false,
+      "control_command_sent": false,
+      "visual_acceptance_verified": false
+    },
+    "visual_acceptance_verified": false
+  },
+  "panels_ready": true,
+  "jsbsim_window": {
+    "ready": true,
+    "reason": "live_owned_jsbsim_observer",
+    "evidence": {
+      "schema": "Layer6-JSBSim-window-v1",
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "producer_pid": 237587,
+      "producer_start_ticks": 3440368,
+      "recorded_monotonic_s": 33618.318960599,
+      "jsbsim_pid": 237402,
+      "jsbsim_start_ticks": 3439812,
+      "source_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/arduplane.log",
+      "telemetry_master": "tcp:127.0.0.1:5760",
+      "plant_time_s": 29.447,
+      "mode": "MANUAL",
+      "armed": false,
+      "telemetry_ready": true,
+      "simulator_spawned": false,
+      "visual_acceptance_verified": false
+    },
+    "visual_acceptance_verified": false
+  },
+  "session_ready": true,
+  "visual_acceptance_verified": false,
+  "stop_requested": false,
+  "binding_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/binding.json",
+  "environment_state_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/environment_state.json",
+  "state": {
+    "schema": "Layer6-native-session-v1",
+    "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a",
+    "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+    "flightstack_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack",
+    "terminal": null,
+    "delay": 2.0,
+    "started_at": 1793831800.4266517,
+    "last_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/logs/run_flightstack_20261104_173640.log"
+  },
+  "display": ":0",
+  "wayland_display": null,
+  "dbus_session_bus": true
+}
+{
+  "schema": "Layer6-native-session-v1",
+  "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+  "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a",
+  "created": false,
+  "processes": [
+    {
+      "pid": 237370,
+      "start_ticks": 3439737,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal1",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal1 "
+    },
+    {
+      "pid": 237387,
+      "start_ticks": 3439781,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "arduplane",
+      "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane --model jsbsim:phoenix_v3 --home 40.01,-105.3,1798.5157833529418,45.59257145243172 --speedup 1 --base-port 5760 -I 0 --autotest-dir /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest --defaults /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/Tools/autotest/default_params/phoenix_v3.parm "
+    },
+    {
+      "pid": 237389,
+      "start_ticks": 3439781,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237402,
+      "start_ticks": 3439812,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "JSBSim",
+      "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/jsbsim/build/src/JSBSim",
+      "cmdline": "JSBSim --suspend --simulation-rate=1200.000000 --nice=0.00000001 --logdirectivefile=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest/jsbsim_fgout_0.xml --script=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/autotest/jsbsim_start_0.xml "
+    },
+    {
+      "pid": 237404,
+      "start_ticks": 3439816,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237417,
+      "start_ticks": 3439820,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "mavproxy",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+    },
+    {
+      "pid": 237462,
+      "start_ticks": 3439947,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal2",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal2 "
+    },
+    {
+      "pid": 237501,
+      "start_ticks": 3440044,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "environment",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m phoenix_env_adapter.cli runtime --binding /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/binding.json --state-file /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/environment_state.json --mavlink udpin:127.0.0.1:14551 --update-hz 1 "
+    },
+    {
+      "pid": 237519,
+      "start_ticks": 3440157,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal3",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal3 "
+    },
+    {
+      "pid": 237531,
+      "start_ticks": 3440199,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "intake",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B -m layer6.service --listen 127.0.0.1:14661 --gui 127.0.0.1:14660 --rate-hz 30 "
+    },
+    {
+      "pid": 237533,
+      "start_ticks": 3440199,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "gui",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/src/gui/phoenix_f310_gui.py --connect tcp:127.0.0.1:14552 --no-gamepad "
+    },
+    {
+      "pid": 237587,
+      "start_ticks": 3440368,
+      "uid": 1000,
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "role": "terminal4",
+      "executable": "/usr/bin/python3.13",
+      "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a --terminal terminal4 "
+    }
+  ],
+  "roles": {
+    "arduplane": true,
+    "JSBSim": true,
+    "mavproxy": true,
+    "environment": true,
+    "intake": true,
+    "gui": true
+  },
+  "process_ready": true,
+  "alive": true,
+  "flight_ready": false,
+  "panels": {
+    "ready": true,
+    "reason": "live_native_panels",
+    "reasons": [],
+    "evidence": {
+      "schema": "Layer6-native-panels-v1",
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "producer_pid": 237389,
+      "master": "tcp:127.0.0.1:5760",
+      "recorded_monotonic_s": 33619.225149947,
+      "heartbeat": {
+        "received_monotonic_s": 33618.77326012,
+        "target_system": 1,
+        "target_component": 1,
+        "mode": "MANUAL",
+        "armed": false
+      },
+      "position": {
+        "received_monotonic_s": 33619.188169979,
+        "target_system": 1,
+        "target_component": 1,
+        "time_boot_ms": 30447,
+        "latitude_deg": 40.0099996,
+        "longitude_deg": -105.299999,
+        "heading_deg": 48.43
+      },
+      "position_updates": 474,
+      "map": {
+        "alive": true,
+        "wx_ready": true,
+        "child_pid": 237417,
+        "position_matches": true,
+        "position": [
+          40.0099996,
+          -105.299999,
+          48.43
+        ]
+      },
+      "console": {
+        "alive": true,
+        "child_pid": 237404
+      },
+      "navigation_input": false,
+      "control_command_sent": false,
+      "visual_acceptance_verified": false
+    },
+    "visual_acceptance_verified": false
+  },
+  "panels_ready": true,
+  "jsbsim_window": {
+    "ready": true,
+    "reason": "live_owned_jsbsim_observer",
+    "evidence": {
+      "schema": "Layer6-JSBSim-window-v1",
+      "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+      "producer_pid": 237587,
+      "producer_start_ticks": 3440368,
+      "recorded_monotonic_s": 33619.180969954,
+      "jsbsim_pid": 237402,
+      "jsbsim_start_ticks": 3439812,
+      "source_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/arduplane.log",
+      "telemetry_master": "tcp:127.0.0.1:5760",
+      "plant_time_s": 30.247,
+      "mode": "MANUAL",
+      "armed": false,
+      "telemetry_ready": true,
+      "simulator_spawned": false,
+      "visual_acceptance_verified": false
+    },
+    "visual_acceptance_verified": false
+  },
+  "session_ready": true,
+  "visual_acceptance_verified": false,
+  "stop_requested": false,
+  "binding_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/binding.json",
+  "environment_state_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a/environment_state.json",
+  "state": {
+    "schema": "Layer6-native-session-v1",
+    "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/6e71dd0b68db413eb42300c7c4405d3a",
+    "session_id": "6e71dd0b68db413eb42300c7c4405d3a",
+    "flightstack_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack",
+    "terminal": null,
+    "delay": 2.0,
+    "started_at": 1793831800.4266517,
+    "last_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/logs/run_flightstack_20261104_173640.log"
+  },
+  "display": ":0",
+  "wayland_display": null,
+  "dbus_session_bus": true
+}
+[E001 PREP] CONTROL / Layer6 DEMO-ALIGNED status=READY ok=True elapsed=8.814s
+[E001 C0001] HOLD | phase=on_ground | RTMO WAIT_L4_BOOTSTRAP | target=vertical_takeoff | reason=bootstrap_not_qualified | detail= | no actuation
+[E001 C0002] HOLD | phase=on_ground | RTMO WAIT_L4_BOOTSTRAP | target=vertical_takeoff | reason=bootstrap_not_qualified | detail= | no actuation
+[E001 C0003] HOLD | phase=on_ground | RTMO WAIT_L4_BOOTSTRAP | target=vertical_takeoff | reason=bootstrap_not_qualified | detail= | no actuation
+[E001 C0004] HOLD | phase=on_ground | RTMO WAIT_L4_BOOTSTRAP | target=vertical_takeoff | reason=bootstrap_not_qualified | detail= | no actuation
+[E001 C0005] HOLD | phase=on_ground | RTMO WAIT_L4_BOOTSTRAP | target=vertical_takeoff | reason=bootstrap_not_qualified | detail= | no actuation
+episode 1 did not reach touchdown/destination; stopping further episodes fail-closed
+
+Summary: /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/reports/TRAINING_WORKFLOW_SUMMARY.json

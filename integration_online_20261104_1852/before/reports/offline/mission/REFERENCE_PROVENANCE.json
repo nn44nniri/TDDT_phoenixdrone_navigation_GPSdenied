@@ -1,0 +1,84 @@
+{
+  "schema": "TDOC-explicit-SARG-reference-only-v1",
+  "reference_only": true,
+  "mission_complete": false,
+  "no_control_evidence": true,
+  "prior_scope": "PARTIAL_EPISODE_PRIOR",
+  "original_source": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/SARG_v20260821_0945/generated/SARG/routes/S03_C024.csv",
+  "original_source_sha256": "f442a857eedec703d482c1cef2f790c297482eb8a97d7f0f0419b33b64504e03",
+  "source_hash_basis": "current source explicitly pinned at export; independently selected by frozen official workflow",
+  "selection_evidence": {
+    "official_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/integration_transaction_20261104/offline.log",
+    "log_sha256": "5398a55f354f2ca21ade45bd522046ef895dad7bae32c5b0ee4d1a5fc0172752",
+    "line": "=== OFFLINE_SE REALIZED MISSION: SARG prior S03_C024.csv, reference_cycles=200, safety_cycle_budget<=575 ===",
+    "scenario_id": 3,
+    "crp_id": 24
+  },
+  "transformation": "run_training_workflows.build_vtol_reference; exact same function used by official Offline",
+  "transformation_source_sha256": "ff54ea4435778e4805d6728b3c9de9238047b427521ec746bf58070c404540bb",
+  "column_mapping": {
+    "x_m": "reference_x_m",
+    "y_m": "reference_y_m",
+    "z_msl_m": "reference_z_msl_m",
+    "tdoc_phase": "phase"
+  },
+  "rows": 202,
+  "reference_phases": [
+    "on_ground",
+    "vertical_takeoff",
+    "hover",
+    "transition_forward",
+    "climb",
+    "cruise",
+    "turn",
+    "approach",
+    "transition_back",
+    "vertical_landing",
+    "touchdown"
+  ],
+  "missing_reference_phases": [],
+  "PHASE_HISTORY_created": false,
+  "actual_trajectory": false,
+  "flight_validation_claim": false,
+  "generated_terminal_goals": {
+    "reference_only": true,
+    "generated_mission_goal": true,
+    "executed": false,
+    "learned_control_evidence": false,
+    "region_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/region/region_v1.geojson",
+    "region_sha256": "2a3c9342c84cf8d10ea58803714c4d4ca30cb5b1f76dc518aa9de0740592eec6",
+    "destination_lon_lat": [
+      -105.28,
+      40.025
+    ],
+    "terrain_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/terrain_obstacles.tif",
+    "terrain_sha256": "b9bcb07ff86b765ed43ba8ecbafa8fd995c7fdcf5425db303a998be710d3e86a",
+    "terrain_interpolation": "BILINEAR_PIXEL_CENTRE",
+    "map_crs": "EPSG:32613",
+    "destination_ground_msl_m": 1635.8839567809555,
+    "ground_geometry": {
+      "revision": "phoenix-fourfoot-r3.02-v1",
+      "reference_aircraft_sha256": "9118bfac6cb1bbaa05142f1c0f419fe570414be8b1dbdeffb591e7b898f64da9",
+      "cg_height_agl_m": 0.1410258217081318,
+      "foot_clearances_m": {
+        "TAIL_FOOT_L1": 0.002094288772474029,
+        "TAIL_FOOT_L2": 0.0,
+        "TAIL_FOOT_R1": 0.002094288772474029,
+        "TAIL_FOOT_R2": 0.0
+      },
+      "position_origin": "CG",
+      "body_frame": "BODY_FRD_CG",
+      "navigation_frame": "NED",
+      "vertical_equations": "CG_MSL=terrain_MSL+CG_AGL; pd=-CG_MSL",
+      "native_altitude_export": "terrain_home_MSL + JSBSim_AGL",
+      "terrain_vertical_datum_verified": false,
+      "actuation_authority": false,
+      "ground_load_bearing_verified": false
+    },
+    "reference_target_cg_msl_m": 1636.0249826026636,
+    "basis": "Existing mission destination + DEM + configured Phoenix tail contact geometry; standard terminal objective is ground contact, never a claimed realized state"
+  },
+  "note": "This compatibility filename supplies only planned mission geometry. It is not a completed Offline timeline, observation, control proof or phase capability.",
+  "reference_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/reports/offline/mission/MISSION_TIMELINE.csv",
+  "reference_file_sha256": "3e16f67896159b97b7ecccdc635480fab822de38588aa347d42a526fb4c47fb5"
+}

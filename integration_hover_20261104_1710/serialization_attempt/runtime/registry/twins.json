@@ -1,0 +1,226 @@
+{
+  "MESA_NAV": {
+    "id": "MESA_NAV",
+    "type": "MESA_NAV",
+    "layer": 2,
+    "input_schema": "external_contract",
+    "output_schema": [
+      "position_d",
+      "position_e",
+      "position_n",
+      "velocity_d",
+      "velocity_e",
+      "velocity_n"
+    ],
+    "uncertainty_schema": [
+      "adjustment_factor",
+      "by_output",
+      "claim",
+      "novelty_distance",
+      "representation",
+      "source",
+      "tep_cell_id",
+      "type",
+      "variance_by_output"
+    ],
+    "clock": {
+      "timestamp": 42.686
+    },
+    "version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+    "health": {
+      "quality": 1.0,
+      "validity": 1.0,
+      "reliability": 0.7804687988630761
+    },
+    "provenance": {
+      "source": "Layer6/GUI/MAVLink/SCALED_IMU/body_FRD",
+      "fmu": "MESA_NAV.fmu",
+      "fmu_sha256": "3cf10daa41be76b8ac19e663f76f6d417fb996478d8d0354826418c4264ecf37",
+      "model_version": "MESA_NAV_Multifield_Excited_Self_Anchoring_Navigation__FA_v20260820_1141",
+      "tep_version": "2026-08-20-sim-v3-vtol",
+      "tep_maturity": "TEP_sim",
+      "formula_catalog_version": "unknown",
+      "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+      "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency",
+      "online_imu_ingress": {
+        "schema": "TDOC-Online-MESA-IMU-v2",
+        "values": {
+          "imu_gx": 0.0,
+          "imu_gy": 0.003,
+          "imu_gz": 0.0,
+          "imu_ax": 9.81645665,
+          "imu_ay": -0.0588399,
+          "imu_az": 0.0
+        },
+        "plant_time_s": 42.686,
+        "source": "Layer6/GUI/MAVLink/SCALED_IMU/body_FRD",
+        "measured_simulated_imu": true,
+        "initialization_only": false,
+        "unit_acceleration": "m/s2",
+        "unit_gyro": "rad/s",
+        "frame": "BODY_FRD",
+        "navigation_authority": "MESA_STD",
+        "truth_position_used": false,
+        "truth_velocity_used": false,
+        "gnss_used": false,
+        "not_field_evidence": true,
+        "integrated_sample_count": 92,
+        "integrated_dt_s": 1.8399999999999963,
+        "same_plant_sample_reused": false,
+        "history_replay": {
+          "schema": "TDOC-Native-measured-IMU-history-v1",
+          "session_id": "e2db86e44a664ddaafceb3fb623971f2",
+          "after_seq": 5701,
+          "through_seq": 5948,
+          "final_sequence": 6052,
+          "sample_count": 92,
+          "retention_origin": "TDOC-process-local-primary-ring",
+          "retained_wrapper_sha256": [
+            "35cdca729356be31880194b22f225d32495d37aab714057a0a8be1a0c60e4a07",
+            "edab7526e19d9da5b66c0cfc8620ca6a9a42dd664a9d978776ed03c41bdbd1da"
+          ],
+          "measured_samples_sha256": "f654b56959d5e6075e88737ca7d2453c1859e94af58756231f94b13a3fcd43fc",
+          "original_gui_page_sha256": [
+            "1cd220962f685897e5016b63be49514ecbda9fbfea35a545a30f80f88214fd86",
+            "654d3b876f99523ec8a42a8f4b66234b3ec54a20c32cf2f0bf21baca35f4b346",
+            "a38fd153c0935b0c36d9dea52da2255d7a8d90b2b62ca8088d57300f4b6bbd79",
+            "0b7a9d22222f50dc1578a748e500fbddc5dd82d370b00ca200ef7be84dbf806c",
+            "eafd74ad356cbd0ebc81b7075b8896704f895e055682a3a0b3362d1c09bee216",
+            "effa0d4887ae152c364b3c5c75a65b7582dbe73d227b1f686df4a99f1944c22b",
+            "2a90f5a4381f284402f8ee01cc94ff8d6f676653b322c65ed7803ae7b93eae96",
+            "1c55a798d20b7c8679117a43541c4b816376109426c547ec8fa872515dd5a92c",
+            "3a57a93dd8979fb1f704b96abfbf31ff3ee6f43eadb823533e5760f75109fb7e",
+            "e0ac74325317b36ee125b9c707924ba4c9af74e9f68e4eac95049f4cccfeaf8d",
+            "0d85ef267ff51445fbc23d46430e60b016d9283231de51a2e2c4c7922c7a7243"
+          ],
+          "interpolation": false,
+          "resampling": false,
+          "clock_rebased": false,
+          "max_step_s": 0.15
+        }
+      }
+    },
+    "last_seen": 42.686,
+    "observed_at": "2026-11-04T22:37:23.974461+00:00",
+    "packet_hash": "5a9e6da9f2dda96b40ca414743c675c36f91eb96ef0c830ba2524efdc7c7c37c",
+    "accepted": true
+  },
+  "WingMPET": {
+    "id": "WingMPET",
+    "type": "WingMPET",
+    "layer": 2,
+    "input_schema": "external_contract",
+    "output_schema": [
+      "air_heading",
+      "airspeed_norm",
+      "flightpath_angle"
+    ],
+    "uncertainty_schema": [
+      "adjustment_factor",
+      "by_output",
+      "claim",
+      "novelty_distance",
+      "representation",
+      "source",
+      "tep_cell_id",
+      "type",
+      "variance_by_output"
+    ],
+    "clock": {
+      "timestamp": 42.686
+    },
+    "version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+    "health": {
+      "quality": 0.9998899630328779,
+      "validity": 1.0,
+      "reliability": 0.7027016487931045
+    },
+    "provenance": {
+      "source": "TDOC/Layer2Adapter/ISO-normalized",
+      "fmu": "WingMPET.fmu",
+      "fmu_sha256": "c838871e85f96987815795cea9a3c0ecd7d7c19c07c4e110bc436a2ac9986689",
+      "model_version": "WingMPET_Unified_fixed_wing_mechanical_path_time_energy_formalism_FA_v20260820_1141",
+      "tep_version": "2026-09-15-sim-v4-vtol-phase-aware",
+      "tep_maturity": "TEP_sim",
+      "formula_catalog_version": "unknown",
+      "reliability_claim": "operational only when a field-evidence posterior override is active; otherwise prior/simulation only",
+      "layer2_boundary": "no STD/topology/coupling/network weight/Center of Consistency",
+      "tdoc_wing_mission_time_alignment": {
+        "schema": "TDOC-WingMPET-MissionTimeAlignment-v1",
+        "simulation_only": true,
+        "not_field_evidence": true,
+        "time_authority": "TDOC.reference_time_s",
+        "local_fmi_timestamp_s": 19.913000000000327,
+        "mission_reference_time_s": 42.686
+      },
+      "tdoc_online_runic_input_alignment": {
+        "applied": true,
+        "schema": "TDOC-WingMPET-native-navigation-input-v1",
+        "operation_code": 4,
+        "source": "same-cycle MESA navigation + MicroMet wind",
+        "gnss_used": false,
+        "truth_velocity_used": false
+      }
+    },
+    "last_seen": 42.686,
+    "observed_at": "2026-11-04T22:37:23.979826+00:00",
+    "packet_hash": "c133faec4359ab195d7fe9d28018cfad6fb8e4a552e7165dd47686ee8499ed06",
+    "accepted": true
+  },
+  "MicroMetTwin": {
+    "id": "MicroMetTwin",
+    "type": "MicroMetTwin.fmu",
+    "layer": 2,
+    "input_schema": "external_contract",
+    "output_schema": [
+      "air_density",
+      "diagnostic_vertical_wind",
+      "longwave_radiation",
+      "precipitation_local",
+      "relative_humidity_local",
+      "shortwave_radiation",
+      "surface_pressure_pa",
+      "temperature_local",
+      "wind_direction_terrain_deg",
+      "wind_speed_3d",
+      "wind_speed_terrain",
+      "wind_u_3dw",
+      "wind_v_3dw"
+    ],
+    "uncertainty_schema": [
+      "availability",
+      "covariance",
+      "novelty_distance",
+      "runtime_gates",
+      "source",
+      "std",
+      "type",
+      "unquantified_outputs",
+      "variance"
+    ],
+    "clock": {
+      "timestamp": "2026-10-28T16:00:29.747000"
+    },
+    "version": "MicroMetTwin.fmu",
+    "health": {
+      "quality": 0.995373226633,
+      "validity": 1.0,
+      "reliability": null
+    },
+    "provenance": {
+      "model": "MicroMetTwin.fmu",
+      "model_version": "MicroMetTwin.fmu",
+      "formalism": "micromet_formalism_v2.md",
+      "semantic_schema_version": "1.0",
+      "tep_version": "2026-08-21-climate-sim-prior-v4",
+      "tep_maturity": "TEP_sim",
+      "terrain_source": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/terrain_obstacles.tif",
+      "source_count": 5,
+      "architectural_boundary": "Layer 2 only; no topology/coupling/CoC"
+    },
+    "last_seen": "2026-10-28T16:00:29.747000",
+    "observed_at": "2026-11-04T22:37:23.984081+00:00",
+    "packet_hash": "1e8afbc6b2c50cd99e88c398d022def3a97d9e6ed4fcd60f712221aa24a044bc",
+    "accepted": true
+  }
+}

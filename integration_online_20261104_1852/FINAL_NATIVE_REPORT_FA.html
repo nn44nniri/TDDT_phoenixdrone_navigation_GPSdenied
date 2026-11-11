@@ -1,0 +1,107 @@
+<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>گزارش تازهٔ اصلاح و اجرای Native — TDDT</title>
+<style>body{font:16px/1.9 Tahoma,Arial,sans-serif;background:#eef2f6;color:#172537;margin:0}main{max-width:1160px;margin:32px auto;background:white;padding:32px;border-radius:14px}h1,h2{color:#163958}h2{border-bottom:1px solid #ccd9e5;padding-top:20px}table{border-collapse:collapse;width:100%;margin:20px 0}th,td{border:1px solid #cbd5df;padding:9px;text-align:right;vertical-align:top}th{background:#e9f1f8}code,pre{font-family:monospace;overflow-wrap:anywhere}pre{direction:ltr;text-align:left;white-space:pre-wrap;background:#142539;color:#e8f0fa;padding:18px;border-radius:8px;max-height:600px;overflow:auto}.notice{background:#fff3dc;padding:16px;border-right:5px solid #cf8a00}.fail{background:#fde6e6;padding:18px;border-right:6px solid #bf3030}.ok{background:#e4f5eb;padding:16px}.gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px}img{width:100%;height:auto}figure{margin:12px 0}a{color:#065ea6}small{color:#526579}@media print{main{margin:0;padding:0}pre{max-height:none}}</style>
+<main><h1>گزارش اصلاح هماهنگ رابط و اجرای واقعی Native</h1><p>2026-11-04T14:21:36.946710-05:00 — منطقهٔ زمانی Toronto</p>
+<p class="fail"><strong>نتیجهٔ هدف مأموریتی: FAIL.</strong> بازشدن پنل‌ها و ARM مستقلِ لایه۶ تأیید شد؛ هدایت پهپاد با تصمیم‌های MPC از مبدأ تا مقصد و بسته‌شدن حلقهٔ اجرایی ۲ تا ۷ تأیید نشد.</p>
+<p>این گزارش فقط از سورس بررسی‌شده، اجرای تازه، telemetry، آزمون‌ها و تصاویر همین transaction ساخته شده است. گزارش‌های قبلی مبنای نتیجه نیستند. شاخهٔ شواهد: <code>/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/integration_online_20261104_1852</code>.</p>
+<h2>۱. چه چیزهایی واقعاً اصلاح شد</h2><ol>
+<li><strong>تأیید مبدأ:</strong> بررسی محل فیزیکی شروع از position ناوبری MESA جدا شد. مشاهدهٔ تازه، grounded و disarmed از همان Native session با مبدأ نقشه مقایسه می‌شود. مختصات FCU فقط مرجع validation است و موقعیت یا سرعت MESA را بازنویسی نمی‌کند. در اجرای اولیه، drift پیش از ARM باعث رد مبدأ با فاصلهٔ ۵۰۳٫۸ متر شده بود؛ اجرای اصلاح‌شده از این بررسی عبور کرد.</li>
+<li><strong>readiness بدون startup جانبی:</strong> callback تصمیم لایه۵ اکنون فقط نشست آماده‌شده را می‌خواند. preflight یا Offline نمی‌تواند با پرس‌وجوی readiness، پشتهٔ Native را ناخواسته راه‌اندازی کند.</li>
+<li><strong>ترتیب phaseها:</strong> آماده‌سازی phase آینده در phase کنترل‌شده به اجرای تأییدشدهٔ لایه۶ و تکمیل بازخورد لایه۷ مشروط شد. bootstrap آغازین از on_ground به vertical_takeoff همچنان مجاز است. صرف گذشت زمان به forecast مرحلهٔ بعد مجوز نمی‌دهد.</li>
+<li><strong>تاریخچهٔ IMU:</strong> timeout موقت transport با همان cursor، حداکثر سه بار پیاپی تکرار می‌شود. هیچ نمونه‌ای ساخته، interpolate یا تازه‌نمایی نمی‌شود. شکاف، تغییر session، دادهٔ معیوب و timeout تکرارشونده همچنان fail-closed هستند. علت خطای source نیز اکنون تا لایه۲ حفظ می‌شود.</li>
+<li><strong>اسکریپت کمکی bridge:</strong> حالت <code>--execute</code> به workflow اصلی و تصمیم‌های جاری L2→L5 تفویض می‌شود؛ packet آرشیوی لایه۵ replay نمی‌شود. اجرای لایه۷ و route بازخورد از مسیر مالک TDOC انجام می‌شود. بدون execute فقط input بررسی می‌شود.</li>
+<li><strong>تست‌های ناسازگار:</strong> ارجاع تست‌ها به دو فایل حذف‌شده با آزمون مسیر فعلی paging تاریخچهٔ خام و بررسی hashِ ورودی forcing جایگزین شد.</li></ol>
+<h2>۲. اعتبار prior، forcing و حفظ اطلاعات قبلی</h2>
+<p>runtime و reports قبلی در پوشه‌های <code>before</code>، <code>archived_before_fresh_prior</code> و <code>after_initial_fixes</code> حفظ شدند. KStore موجود طبق Single-Episode، آموزش دوم را با <code>offline episode limit=1 already consumed</code> رد کرد؛ این محدودیت دور زده نشد. workspace جاری پس از بایگانی ساخته شد و prior تازه با دستور استاندارد Offline و سقف سه cycle تولید شد.</p>
+<p class="notice">Offline محدود، مأموریت کامل مبدأ تا touchdown نیست. خروجی کلی آن به‌علت تکمیل‌نشدن مأموریت code=2 بود، اما SETD/handoff نهایی به‌عنوان prior توسط validator پذیرفته شد. این پذیرش به‌عنوان مجوز پرواز یا شاهد تکمیل مأموریت استفاده نشد.</p>
+<p>هیچ reset، refresh-external، دانلود مجدد، تغییر forcing یا برچسب‌گذاری مجدد handoff قبلی انجام نشد. گواهی تازه با سورس نهایی تطابق دارد. <a href="evidence/final_prior_and_binaries.json">شناسه و hashهای کامل prior و binaryها</a></p>
+<p>hash کامل KStore پیش و پس از Online برابر بود و پنج artifact کامپایل‌شده نیز با hashهای ثبت‌شدهٔ قبل از تغییرات یکسان‌اند. <a href="evidence/preservation_check.json">بررسی مستقل حفظ KStore و binaryها</a></p>
+<pre dir="ltr">{
+  &quot;handoff&quot;: {
+    &quot;ok&quot;: true,
+    &quot;status&quot;: &quot;READY&quot;,
+    &quot;reason&quot;: &quot;VALID_FINALIZED_SETD_PRIOR_READY&quot;
+  },
+  &quot;handoff_hash&quot;: &quot;8b187e7b4c1f7a39274bf09f1b907331f4631f401bdbccbbdb65fe977911ad6d&quot;,
+  &quot;model&quot;: {
+    &quot;ok&quot;: true,
+    &quot;reason&quot;: &quot;exact_model_dependencies_match&quot;,
+    &quot;revision&quot;: &quot;phoenix-fourfoot-certificates-r3.06-v1&quot;,
+    &quot;current_model_id&quot;: &quot;ca8cc9e2389af18b33fbcbfb2dc42fb809d485759dafd5e1ed5101e66fef7ccd&quot;,
+    &quot;certificate_model_id&quot;: &quot;ca8cc9e2389af18b33fbcbfb2dc42fb809d485759dafd5e1ed5101e66fef7ccd&quot;,
+    &quot;scope&quot;: &quot;MODEL_IDENTITY_ONLY&quot;,
+    &quot;flight_authority&quot;: false,
+    &quot;current_state_replaced&quot;: false
+  },
+  &quot;forcing_sha256&quot;: &quot;441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc&quot;
+}</pre>
+<h2>۳. آزمون مأموریت با دستور canonical</h2>
+<pre>source configs/environment_fixed.sh
+$PYTHON -m tddt_tdoc.cli --config configs/tdoc.yaml nav-online \
+  --reuse-existing-offline-knowledge --online-episodes 1 \
+  --online-max-cycles-per-episode-auto</pre>
+<p><a href="evidence/online_final.log">log اجرای نهایی</a> — <a href="evidence/FINAL_RESULT.json">نتیجهٔ ساختاریافتهٔ این بررسی</a></p>
+<pre dir="ltr">[
+  {
+    &quot;origin_verified&quot;: true,
+    &quot;origin_distance_m&quot;: 0.05409421190940646,
+    &quot;cycles_completed&quot;: 3,
+    &quot;termination_reason&quot;: &quot;rtmo_wait_plant_time&quot;,
+    &quot;terminal_reached&quot;: false,
+    &quot;rtmo_final_phase&quot;: &quot;vertical_takeoff&quot;,
+    &quot;final_goal_distance_m&quot;: 3367.7030939599977
+  }
+]</pre>
+<table><thead><tr><th>cycle</th><th>phase</th><th>زمان دیواری cycle (s)</th><th>L5 FINAL</th><th>وضعیت L6</th><th>وضعیت L7</th></tr></thead><tbody><tr><td>1</td><td>on_ground</td><td>9.661</td><td>None</td><td>HELD</td><td>NOT_INVOKED_UPSTREAM_EXECUTION</td></tr><tr><td>2</td><td>vertical_takeoff</td><td>3.673</td><td>None</td><td>HELD</td><td>NOT_INVOKED_UPSTREAM_EXECUTION</td></tr><tr><td>3</td><td>vertical_takeoff</td><td>8.223</td><td>None</td><td>HELD</td><td>NOT_INVOKED_UPSTREAM_EXECUTION</td></tr></tbody></table>
+<h2>۴. موانع باقی‌مانده و محل توقف</h2>
+<p>آمادگی package/API و Native transport به معنی آماده‌بودن prediction برای مصرف جاری نیست. در اجرای قبلی همین transaction، نخستین artifact مرحلهٔ takeoff با عمر <strong>۵۳٫۱۱۸ ثانیه</strong> در مقابل حد <strong>۳۰ ثانیه</strong> رد شد؛ refresh بعدی نیز <code>newer_refresh_unverified</code> بود. این‌ها به ارسال command معتبر و جاری به لایه۶ منجر نشدند. جزئیات اجرای نهایی، از رویدادهای همین اجرا:</p>
+<pre dir="ltr">[
+  {
+    &quot;transaction_id&quot;: &quot;workflow-online_jsbsim-e0001-c0002&quot;,
+    &quot;gate_reason&quot;: &quot;artifact_not_fresh&quot;,
+    &quot;artifact_age_s&quot;: 54.517,
+    &quot;artifact_phase&quot;: &quot;vertical_takeoff&quot;,
+    &quot;nearest_position_delta_m&quot;: null,
+    &quot;nearest_velocity_delta_m_s&quot;: null,
+    &quot;refresh&quot;: {
+      &quot;phase&quot;: &quot;vertical_takeoff&quot;,
+      &quot;reference_time_s&quot;: 71.926,
+      &quot;scheduled&quot;: true,
+      &quot;started_monotonic_s&quot;: 21638.196170541,
+      &quot;state&quot;: &quot;RUNNING&quot;,
+      &quot;trigger_reason&quot;: &quot;artifact_not_fresh&quot;
+    }
+  },
+  {
+    &quot;transaction_id&quot;: &quot;workflow-online_jsbsim-e0001-c0003&quot;,
+    &quot;layer&quot;: &quot;Layer2&quot;,
+    &quot;reason&quot;: &quot;late_output_discarded&quot;,
+    &quot;elapsed_s&quot;: 6.508470410997688,
+    &quot;deadline_s&quot;: 5.0,
+    &quot;deadline_key&quot;: &quot;deadlines.layer2_s&quot;
+  }
+]</pre>
+<p>ردیف‌های <code>HELD</code> بدون <code>actuation_executed=true</code> و بدون ExecutionEvidence، دلیل بسته‌نشدن مسیر لایه۷ هستند. هیچ ACK یا FINAL مربوط به pre-release به اجرای واقعی ارتقا داده نشد. pre-release یک تراکنش L2→L5 غیر اجرایی است.</p>
+<p class="notice">در اجرای نهایی، artifact مرحلهٔ takeoff با عمر <strong>۵۴٫۵۱۷ ثانیه</strong> رد شد. سپس پردازش لایه۲ در cycle سوم <strong>۶٫۵۰۸ ثانیه</strong> طول کشید و از deadline پنج‌ثانیه‌ای عبور کرد؛ خروجی آن طبق قرارداد کنار گذاشته شد. در نتیجه packet قابل مصرف MESA/Layer3 باقی نماند و پایان عمومی <code>rtmo_wait_plant_time</code> ثبت شد. این عنوان، علت اولیه را توضیح نمی‌دهد: telemetry فیزیکی همچنان موجود بود، اما خروجی دیررس لایه۲ برای کنترل پذیرفته نشد. خطای permanent تاریخچهٔ IMUِ اجرای پیشین در این اجرای نهایی مشاهده نشد.</p>
+<p>فاصلهٔ تخمینی MESA در زمان disarmed ماندن FCU تغییر قابل‌توجه داشت. در دادهٔ پیش از اصلاح نهایی، initialization زاویهٔ pitch برابر ۸۹ درجه بود، درحالی‌که IMU تازه <code>ax=9.7674234، ay=0، az=-1.04931155 m/s²</code> و gyro حول y برابر <code>-0.002 rad/s</code> گزارش می‌کرد. این مشاهده، ناسازگاری میان شرط اولیه و دادهٔ جاری را برای بررسی بعدی مطرح می‌کند؛ تشخیص قطعی علت مدل یا estimator نیست. مدل باد، مدل هواگرد و فرمالیسم MESA/WingMPET برای کاهش این اختلاف تغییر نکردند.</p>
+<figure><iframe style="width:100%;height:690px;border:0" src="evidence/navigation_vs_reference.html"></iframe><figcaption>مقایسهٔ تشخیصی موقعیت تخمینی MESA با مرجع FCU در یک نشست؛ مرجع FCU به ناوبری تزریق نشده است.</figcaption></figure>
+<p>کاهش horizon، تغییر solver، افزایش خودسرانهٔ TTL/envelope، تزریق GPS به MESA یا ساخت FINAL مصنوعی برای گذر از موانع انجام نشد. برای رسیدن به مأموریت واقعی، مسیر L4 باید prediction معتبر را در زمان و محدودهٔ state جاری تحویل دهد و مسیر L2 باید تاریخچهٔ واقعی قابل مصرف را حفظ کند؛ نتیجهٔ همین اجرا برای هرکدام در JSON بالا ثبت شده است.</p>
+<h2>۵. آزمون مستقل رابط ARM — موفق، با محدودهٔ روشن</h2>
+<p class="ok">پس از انتظار برای FCU prearm health، دستورهای خنثی با throttle صفر از <code>Layer6Client.submit_command()</code> ارسال شدند: QHOVER → ARM → DISARM. وضعیت armed از telemetry و COMMAND_ACK فرمان ۴۰۰ با result=0 تأیید شد. force-arm، direct PWM و پرواز انجام نشد.</p>
+<p>این آزمون از MPC لایه۵ صادر نشد و شاهد هدایت مأموریتی TDDT نیست. عنوان عمومی «TDDT Layer5-virtual» در GUI صرفاً نام کانال ورودی است؛ شناسهٔ واقعی این آزمون <code>interface-ready-arm</code> است. نخستین تلاشِ مستقل پیش از سلامت EKF متوقف شد؛ تلاش دوم با انتظار سلامت، موفق شد.</p>
+<table><thead><tr><th>مرحله</th><th>تأیید واقعی</th><th>MODE</th><th>ARM</th></tr></thead><tbody><tr><td>mode</td><td>True</td><td>QHOVER</td><td>False</td></tr><tr><td>arm</td><td>True</td><td>QHOVER</td><td>True</td></tr><tr><td>disarm</td><td>True</td><td>QHOVER</td><td>False</td></tr></tbody></table>
+<p><a href="evidence/layer6_arm_diagnostic_ready.json">telemetry و ACK کامل آزمون ARM</a> — <a href="evidence/layer6_arm_diagnostic_ready.log">log آزمون ARM</a></p>
+<h2>۶. تصاویر واقعی و اتصال هم‌زمان پنل‌ها</h2>
+<p>ناظر فقط‌خواندنی، سلامت processها، session ID، freshness پنل‌ها، اتصال Map/Console و وضعیت GUI را ثبت کرده است. JSBSim نمایشگر backend همان فرزند ArduPilot است و simulator دوم ساخته نشده است. نقشهٔ واقعی، marker هواگرد و MODE/ARM همان session را نمایش می‌دهد. هیچ تصویر ساخته‌شده با AI در این گزارش وجود ندارد.</p>
+<p class="notice">تصاویر این بخش متعلق به آزمون مستقل رابط با transaction برابر <code>interface-ready-arm</code> هستند؛ نتیجهٔ مأموریت MPC نیستند.</p><p>Native session: <code>f11d0e3964dc4e9487d63527b78e77c7</code> — <a href="evidence/armed_QHOVER_f11d0e39/manifest.json">manifest و شواهد اتصال</a></p><div class="gallery"><figure><a href="evidence/armed_QHOVER_f11d0e39/ardupilot.png"><img src="evidence/armed_QHOVER_f11d0e39/ardupilot.png"></a><figcaption>ardupilot</figcaption></figure><figure><a href="evidence/armed_QHOVER_f11d0e39/jsbsim.png"><img src="evidence/armed_QHOVER_f11d0e39/jsbsim.png"></a><figcaption>jsbsim</figcaption></figure><figure><a href="evidence/armed_QHOVER_f11d0e39/environment.png"><img src="evidence/armed_QHOVER_f11d0e39/environment.png"></a><figcaption>environment</figcaption></figure><figure><a href="evidence/armed_QHOVER_f11d0e39/gui.png"><img src="evidence/armed_QHOVER_f11d0e39/gui.png"></a><figcaption>gui</figcaption></figure><figure><a href="evidence/armed_QHOVER_f11d0e39/map.png"><img src="evidence/armed_QHOVER_f11d0e39/map.png"></a><figcaption>map</figcaption></figure><figure><a href="evidence/armed_QHOVER_f11d0e39/console.png"><img src="evidence/armed_QHOVER_f11d0e39/console.png"></a><figcaption>console</figcaption></figure></div>
+<p><a href="evidence/native_observations.jsonl">نمونه‌های telemetry و سلامت نشست‌ها</a> — تصاویر نشست مأموریت و آزمون مستقل در زیرپوشه‌های <code>evidence/disarmed_*</code> و <code>evidence/armed_*</code> جدا هستند. وجود تصاویر ARMED آزمون مستقل، به نتیجهٔ مأموریت منتقل نشده است.</p>
+<h2>۷. محدودهٔ ادعای GNSS-denied</h2>
+<p>در مسیر MESA، provenance ورودی IMU دارای <code>gnss_used=false</code> و <code>truth_position_used=false</code> بود. با این حال، STATUSTEXT مربوط به <code>EKF3 IMU0 is using GPS</code> در FCU مشاهده شد. بنابراین این گزارش، GNSS-denied بودن کل Flight Controller یا تکمیل پرواز GNSS-denied را تأیید نمی‌کند. position نقشه و تأیید مبدأ، مرجع validation هستند.</p>
+<h2>۸. تست، سورس، build و Reset</h2>
+<p><strong>۱۹۴ آزمون منتخب موفق شدند.</strong> آزمون‌ها شامل MPC واقعی در fixture، قراردادهای Native، correlation و segment، بازخورد لایه۷، سلامت پنل‌ها، origin validation، عدم startup در readiness، ترتیب phase و timeout محدود history هستند. این تست‌ها جای اجرای پرواز Native را نمی‌گیرند. <a href="evidence/regression_final.log">خروجی کامل آزمون‌ها</a></p>
+<p>تغییرات اجرایی در Python و orchestration ثبت شده‌اند. هیچ سورس FMU، C/C++، ArduPilot یا JSBSim اصلاح نشده و هیچ binary وصله نشده است؛ بنابراین rebuild جدیدی برای binaryها انجام نشد. hashهای binary/FMU:</p>
+<table><thead><tr><th>artifact</th><th>اندازهٔ bytes</th><th>SHA-256</th></tr></thead><tbody><tr><td>mesa_nav_fmu</td><td>280356</td><td><code>3cf10daa41be76b8ac19e663f76f6d417fb996478d8d0354826418c4264ecf37</code></td></tr><tr><td>wingmpet_fmu</td><td>461139</td><td><code>c838871e85f96987815795cea9a3c0ecd7d7c19c07c4e110bc436a2ac9986689</code></td></tr><tr><td>micromet_fmu</td><td>295567</td><td><code>db039dc85ac2a9802095094ecb506afa961bdf96449cee1a9ca6b3e252dbcac1</code></td></tr><tr><td>arduplane_binary</td><td>6037896</td><td><code>d98efe6d28c2add78eae55f00ea1b4b4d99e0dfaf7f61469504a6bcc0196341a</code></td></tr><tr><td>jsbsim_binary</td><td>3448568</td><td><code>114908b7cb323fc139736f46c344f2b0f06917ac4a0a6984125ea06e6cac06eb</code></td></tr></tbody></table>
+<p>پایداری پس از reset واقعی آزمایش نشد؛ اجرای reset در این مرحله knowledge جاری را حذف می‌کرد. هیچ PASS برای rebuild/Reset صادر نمی‌شود. اصلاحات در فایل‌های سورس استاندارد قرار دارند. <a href="source_changes.patch">diff سورس‌ها</a> — <a href="source_changes.json">hash قبل و بعد</a></p>
+<table><thead><tr><th>سورس تغییرکرده</th><th>SHA-256 نهایی</th></tr></thead><tbody><tr><td><a href="../TDOC_v20260911_2052/src/tddt_tdoc/online_mission.py">TDOC_v20260911_2052/src/tddt_tdoc/online_mission.py</a></td><td><code>eedf8b7619350607bb67b4b8bc3c9144af80e13c40f7a9ed70cc3158ebf907d8</code></td></tr><tr><td><a href="../TDOC_v20260911_2052/src/tddt_tdoc/orchestrator.py">TDOC_v20260911_2052/src/tddt_tdoc/orchestrator.py</a></td><td><code>74a6966f89d5655ee75f1e75a16dc1a2f8e875d016b1cfdea38be5a34e389b95</code></td></tr><tr><td><a href="../TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer2.py">TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer2.py</a></td><td><code>6f8a1084ca7984bd51205304266e865cd5fd28f1f60713cc1601749b92ad55e7</code></td></tr><tr><td><a href="../TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer6.py">TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer6.py</a></td><td><code>246094bd2ff7f920dd1b02b6c701b9a0b691fbacdb82ebecd4876ffa8130f833</code></td></tr><tr><td><a href="../TDOC_v20260911_2052/scripts/run_training_workflows.py">TDOC_v20260911_2052/scripts/run_training_workflows.py</a></td><td><code>660c25f46eff05fe637178bfb699b162d63a3b21d1bd8e27076bae0c17bc02d1</code></td></tr><tr><td><a href="../TDOC_v20260911_2052/scripts/bridge_layer5_layer6_layer7.py">TDOC_v20260911_2052/scripts/bridge_layer5_layer6_layer7.py</a></td><td><code>459122d25c86badb4ee35b348ea978286c506763d62ea06b98616b15204b0cfe</code></td></tr></tbody></table>
+<h2>۹. شرایط پذیرش هدف</h2>
+<p>پذیرش مأموریت به اجرای هم‌زمان و معتبر شش پنل، تصمیم تازه و مجاز لایه۵، ARM تأییدشده از همان مسیر، اجرای واقعی فرمان، خروجی پذیرفته‌شدهٔ لایه۷، مصرف feedback در چرخهٔ بعد و رسیدن واقعی به مقصد/touchdown وابسته است. در این transaction، کارکرد رابط ARM مستقل اثبات شد؛ زنجیرهٔ مأموریتی این شرایط را کامل نکرد. نتیجهٔ نهایی مأموریت <strong>FAIL</strong> باقی می‌ماند.</p>
+<p><small>گزارش خودبسنده است؛ فایل‌های JSON، log، diff و PNG پیوندشده برای بازبینی دقیق حفظ شده‌اند. نشست‌های ایجادشده پس از پایان آزمون با lifecycle رسمی بسته شدند.</small></p></main></html>

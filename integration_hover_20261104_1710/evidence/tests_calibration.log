@@ -1,0 +1,36 @@
+F....................................................................... [ 97%]
+..                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_static_wire_imu_initializes_existing_bias_inputs_without_altering_samples _
+
+    def test_static_wire_imu_initializes_existing_bias_inputs_without_altering_samples():
+        history,statuses=measured_calibration();original=deepcopy(history.samples)
+        cal=prepare_ground_calibration(history,statuses)
+        ingress={'source':'Layer6/GUI/MAVLink','gui_state':statuses[-1],
+            'state':{'runtime_ready':1.,**{k:statuses[-1]['imu'][k] for k in statuses[-1]['imu']},
+                     'imu_source':'MAVLink/SCALED_IMU','imu_frame':'BODY_FRD','imu_time_s':statuses[-1]['plant_time_s']},
+            'native_ground_calibration':cal}
+        # canonical_imu consumes the explicit public SI state names.
+        init={'pn':1.,'pe':2.,'pd':-3.,'vn':0.,'ve':0.,'vd':0.,'qw':1.,'qx':0.,'qy':0.,'qz':0.}
+>       aligned,evidence=initial_ground_attitude(ingress,init)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ground_imu_commissioning.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/tddt_tdoc/online_imu.py:348: in initial_ground_attitude
+    packet=canonical_imu(ingress,known_initialization)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+ingress = {'source': 'Layer6/GUI/MAVLink', 'gui_state': {'connected': True, 'now': 32679.189846947, 'domain': '178d6ee566c436c3a...: -9.80665, ...}, 'native_ground_calibration': <tddt_tdoc.online_imu.NativeGroundCalibration object at 0x7f0b4da77c40>}
+initialization = {'pn': 1.0, 'pe': 2.0, 'pd': -3.0, 'vn': 0.0, ...}
+
+    def canonical_imu(ingress: Mapping, initialization: Mapping | None=None) -> dict:
+        if ingress.get('ok') is not True:
+>           raise ValueError('Online IMU requires a valid PT_LIB ingress')
+E           ValueError: Online IMU requires a valid PT_LIB ingress
+
+src/tddt_tdoc/online_imu.py:298: ValueError
+=========================== short test summary info ============================
+FAILED tests/test_ground_imu_commissioning.py::test_static_wire_imu_initializes_existing_bias_inputs_without_altering_samples
+1 failed, 73 passed in 17.67s
