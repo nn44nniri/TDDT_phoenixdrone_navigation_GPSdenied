@@ -1,0 +1,137 @@
+{
+  "episode_id": "E-5bdd74d310604095",
+  "knowledge_quality": {
+    "closed_loop_effect_cycles": 1,
+    "control_knowledge_valid": false,
+    "control_knowledge_valid_inputs": {
+      "all_required_control_phases": false,
+      "contract": "Layer5-offline-control-validity-monotonic-v1",
+      "explicit_inputs_complete": true,
+      "false_to_true_upgrade_allowed": false,
+      "global_control_evidence": true,
+      "monotonic_input_ready": false,
+      "phase_control_coverage_present": true,
+      "supplied_tdoc_control_valid": false,
+      "supplied_tdoc_control_valid_present": true
+    },
+    "control_learning_cycles": 1,
+    "control_learning_semantics": "only same-cycle L4 verified + L5 FINAL + accepted Layer2 control effect counts; HOLD/state-propagation is excluded",
+    "control_readiness_semantics": "requires explicit TDOC control-validity=true + explicit complete required-phase same-cycle joint proof + global verified/FINAL/control-effect evidence with zero FF runtime errors; missing inputs and explicit false are fail-closed, and Layer5 may only downgrade true to false",
+    "final_authorized_cycles": 1,
+    "full_fidelity_runtime_error_cycles": 0,
+    "joint_control_proof_cycles": 1,
+    "live_capability_registry": {
+      "authority": "runtime transaction results; reports audit-only",
+      "episode_id": "OFFLINE_SE-001",
+      "mission_version": "RTMO-11PHASE-v2",
+      "path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/runtime/rtmo/capability_registry.json.gz",
+      "run_id": "offline-cfb500f438684978afedf133b8bd71ed",
+      "schema": "TDOC-RTMO-live-capability-registry-v1",
+      "sha256": "bcb4123e0c52d8ee3c35213dc9eea621d363541f156ab9825104887709f2c530"
+    },
+    "non_control_learning_cycles": 2,
+    "phase_control_coverage": {
+      "all_required_control_phases": false,
+      "coverage": {
+        "approach": {
+          "control_capable": false,
+          "control_effect_cycles": 0,
+          "cycles": 0,
+          "joint_proof_cycles": 0,
+          "l5_final_cycles": 0,
+          "verified_cycles": 0
+        },
+        "climb": {
+          "control_capable": false,
+          "control_effect_cycles": 0,
+          "cycles": 0,
+          "joint_proof_cycles": 0,
+          "l5_final_cycles": 0,
+          "verified_cycles": 0
+        },
+        "cruise": {
+          "control_capable": false,
+          "control_effect_cycles": 0,
+          "cycles": 0,
+          "joint_proof_cycles": 0,
+          "l5_final_cycles": 0,
+          "verified_cycles": 0
+        },
+        "hover": {
+          "control_capable": false,
+          "control_effect_cycles": 0,
+          "cycles": 0,
+          "joint_proof_cycles": 0,
+          "l5_final_cycles": 0,
+          "verified_cycles": 0
+        },
+        "transition_back": {
+          "control_capable": false,
+          "control_effect_cycles": 0,
+          "cycles": 0,
+          "joint_proof_cycles": 0,
+          "l5_final_cycles": 0,
+          "verified_cycles": 0
+        },
+        "transition_forward": {
+          "control_capable": false,
+          "control_effect_cycles": 0,
+          "cycles": 0,
+          "joint_proof_cycles": 0,
+          "l5_final_cycles": 0,
+          "verified_cycles": 0
+        },
+        "turn": {
+          "control_capable": false,
+          "control_effect_cycles": 0,
+          "cycles": 0,
+          "joint_proof_cycles": 0,
+          "l5_final_cycles": 0,
+          "verified_cycles": 0
+        },
+        "vertical_landing": {
+          "control_capable": false,
+          "control_effect_cycles": 0,
+          "cycles": 0,
+          "joint_proof_cycles": 0,
+          "l5_final_cycles": 0,
+          "verified_cycles": 0
+        },
+        "vertical_takeoff": {
+          "control_capable": true,
+          "control_effect_cycles": 1,
+          "cycles": 2,
+          "joint_proof_cycles": 1,
+          "l5_final_cycles": 1,
+          "verified_cycles": 1
+        }
+      },
+      "missing_control_phases": [
+        "hover",
+        "transition_forward",
+        "climb",
+        "cruise",
+        "turn",
+        "approach",
+        "transition_back",
+        "vertical_landing"
+      ],
+      "required_control_phases": [
+        "vertical_takeoff",
+        "hover",
+        "transition_forward",
+        "climb",
+        "cruise",
+        "turn",
+        "approach",
+        "transition_back",
+        "vertical_landing"
+      ],
+      "schema": "TDOC-offline-phase-control-coverage-v1"
+    },
+    "safety_hold_cycles": 2,
+    "safety_knowledge_valid": true,
+    "verified_candidate_cycles": 1
+  },
+  "manifest_sha256": "e96c9598227391238870e9082a45b99719062db583897fe1f5f84363c3d40e9a"
+}

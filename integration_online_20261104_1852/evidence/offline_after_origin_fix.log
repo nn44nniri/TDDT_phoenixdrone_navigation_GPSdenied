@@ -1,0 +1,46 @@
+
+=== OFFLINE_SE REALIZED MISSION: SARG prior S03_C024.csv, reference_cycles=200, safety_cycle_budget<=575 ===
+[0001] phase=on_ground            substate=-                    goal= 2370.08m AGL=  0.00m energy= 20.50Wh  budget<=0575
+[0002] phase=vertical_takeoff     substate=-                    goal= 2370.08m AGL=  0.00m energy= 20.50Wh  budget<=0575
+[0003] phase=vertical_takeoff     substate=-                    goal= 2370.08m AGL=  2.00m energy= 20.48Wh  budget<=0575
+[0004] phase=vertical_takeoff     substate=-                    goal= 2370.08m AGL=  4.00m energy= 20.45Wh  budget<=0575
+[0005] phase=vertical_takeoff     substate=-                    goal= 2370.08m AGL=  6.00m energy= 20.43Wh  budget<=0575
+[0006] phase=vertical_takeoff     substate=-                    goal= 2370.08m AGL=  8.00m energy= 20.40Wh  budget<=0575
+[0007] phase=vertical_takeoff     substate=-                    goal= 2370.08m AGL= 10.00m energy= 20.38Wh  budget<=0575
+[0008] phase=vertical_takeoff     substate=-                    goal= 2370.08m AGL= 12.00m energy= 20.35Wh  budget<=0575
+Traceback (most recent call last):
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/scripts/run_training_workflows.py", line 3649, in <module>
+    if __name__=='__main__': raise SystemExit(main())
+                                              ~~~~^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/scripts/run_training_workflows.py", line 3392, in main
+    if args.offline_driver=='mission':overall['modes']['OFFLINE_SE']=run_offline_mission(orch,cfg,req0,args,report_root)
+                                                                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/scripts/run_training_workflows.py", line 1885, in run_offline_mission
+    try:r=orch.run_cycle(req).to_dict()
+          ~~~~~~~~~~~~~~^^^^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/orchestrator.py", line 768, in run_cycle
+    o4=self._invoke(4,tx,"Layer3.3-snapshot",{"snapshot":snap,"request":request},snap_ver,boundary,r4)
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/orchestrator.py", line 339, in _invoke
+    out=self.adapters[layer].invoke(payload); elapsed=time.perf_counter()-started
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer4.py", line 1167, in invoke
+    result=self.engine.run(payload["snapshot"]); d=result.to_dict(); d=self._tdoc_full_fidelity(d,payload["snapshot"],request)
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer4_v20260907_0608/src/layer4/engine.py", line 473, in run
+    provenance={"layer":"4","formalism":"E4-1..E4-97","layer4_details":"TDDT_Dynamic_NTwin_Layer4_details_FA_v2","model_hash":self.model_hash,"parameter_hash":self.param_hash,"solver_hash":self.solver_hash,"knowledge":self.knowledge.snapshot_prior(snapshot),"explicit_pareto":self.explicit.status(),"optimization":"seven-objective robust chance-constrained bounded solver","formalism_v2":{"certified_multifidelity":True,"phase_capability_fail_closed":True,"uq_affine_default":bool(self.config.get("uq.affine_default",True)),"ff_capability_phases":self.mf.capability({self.mf.phase(snapshot):[snapshot.reference_time_s]}),"ff_certificate_reuse_stats":self.mf.reuse_stats()},"actuator_command":False,"network_commit":False,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer4_v20260907_0608/src/layer4/multifidelity.py", line 579, in capability
+    if not self._model_dependencies_match(c):continue
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer4_v20260907_0608/src/layer4/multifidelity.py", line 36, in _model_dependencies_match
+    current=self.model_dependencies_provider()
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer4.py", line 168, in <lambda>
+    self.engine.mf.model_dependencies_provider=lambda:capture_model_dependencies(self.config)
+                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/model_compatibility.py", line 104, in capture_model_dependencies
+    artifacts={name:{'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':stats[name][2]}
+                                             ~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 626, in read_bytes
+    return f.read()
+           ~~~~~~^^
+  File "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/scripts/run_training_workflows.py", line 3321, in on_signal
+    raise KeyboardInterrupt if signum==signal.SIGINT else SystemExit(128+int(signum))
+KeyboardInterrupt

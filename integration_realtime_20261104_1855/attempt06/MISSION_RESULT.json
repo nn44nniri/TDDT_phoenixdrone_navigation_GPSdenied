@@ -1,0 +1,113 @@
+{
+  "schema": "TDOC-realtime-mission-result-v1",
+  "status": "FAIL",
+  "run_id": "rt-9c9f9a6e44834c05a03acab2dc3e469f",
+  "navigation_sensors": [
+    "GYROSCOPE",
+    "ACCELEROMETER",
+    "MAGNETOMETER",
+    "BAROMETER",
+    "AIRSPEED"
+  ],
+  "ULTRASONIC_WIND": "MISSING",
+  "GNSS_used": false,
+  "odometry_used": false,
+  "vision_used": false,
+  "inner_FCU_attitude_backend": "AP_AHRS_SIM, simulation-only; never MESA observation",
+  "route_profile": "VTOL translation; no wing-borne phase certification",
+  "requested_hover_seconds": 60.0,
+  "native_session_id": "d29057cc42a142f9b31d20aac35cfc1c",
+  "binding_hash": "08c495906a30554c31ff2caa5438fdd7921ced7dc08f53cdfca9c8b37592903f",
+  "model_id": "6ef3f117e4e298c01929bd4ad5de890b7192fb1fa5baecc11fc4e184711ffefe",
+  "parameter_readbacks": {
+    "SIM_GPS1_ENABLE": {
+      "value": 0.0,
+      "wire_sha256": "fcf6763f953e77c0d92e5fbbb03abc9bd939ac53ac646a2531532b03576ea924"
+    },
+    "SIM_GPS2_ENABLE": {
+      "value": 0.0,
+      "wire_sha256": "2066cb61bf13d3deb6b713e034dd269559ac4ae9f60adf29f912142a493af5f5"
+    },
+    "SIM_GPS3_ENABLE": {
+      "value": 0.0,
+      "wire_sha256": "de3e2c4349c46fe4e3e416fab614fcd93637c5e11432814c2bf1392efea33521"
+    },
+    "SIM_GPS4_ENABLE": {
+      "value": 0.0,
+      "wire_sha256": "a7ce53a783e18f1502131e0400992efaf639f144f0732fb9aeb6f0d38242b7d2"
+    },
+    "GPS1_TYPE": {
+      "value": 0.0,
+      "wire_sha256": "5a9cb4d29ee90b7898ffad71be7defb835e642150808f234d47b93ac46f4a0c1"
+    },
+    "GPS2_TYPE": {
+      "value": 0.0,
+      "wire_sha256": "e2a13a8ba9335560c537292b035762a5f8e8c251db417cab4f1e6861e17878c8"
+    },
+    "AHRS_EKF_TYPE": {
+      "value": 10.0,
+      "wire_sha256": "7e194474d689d92df5c3b7e814ff0cb9ac996980f29f651e144375945e2c71db"
+    },
+    "Q_A_ANGLE_MAX": {
+      "value": 30.0,
+      "wire_sha256": "6720e6f08b75fb8cc29994752835c40be1f3d387fdc37ca21e8e12c61beb9f04"
+    },
+    "Q_PILOT_SPD_UP": {
+      "value": 2.5,
+      "wire_sha256": "baaccd9ff14299d651d6a81b451764e3178d6ae5b502aac5164d541c371d883d"
+    },
+    "Q_PILOT_SPD_DN": {
+      "value": 0.0,
+      "wire_sha256": "48ad4cc103b3d3f09596cc3e623ca12e20d4243a936e552473a9558574088174"
+    },
+    "Q_TAILSIT_INPUT": {
+      "value": 0.0,
+      "wire_sha256": "bf71b7a189ef9c6e98b3708074021eba2e72e886d81c3718aafa8e84cf21da02"
+    },
+    "RC1_DZ": {
+      "value": 30.0,
+      "wire_sha256": "622d5e3c46778913307767e9a7b70b7f08e27644ba660b3fbf7964ffe7c88561"
+    },
+    "RC2_DZ": {
+      "value": 30.0,
+      "wire_sha256": "b6060d2efc35eed0a6b9bfb63b41c4c36727cf6861f3369bce8af92f57f91975"
+    },
+    "RC3_DZ": {
+      "value": 30.0,
+      "wire_sha256": "f435581be43708161e9621c8813f15000aba5223b0f3c8677b34ca187c17f630"
+    }
+  },
+  "calibration": {
+    "gyro_bias_rad_s": [
+      -2.4639428009772224e-06,
+      -2.9931150857816612e-06,
+      4.876643939652802e-06
+    ],
+    "accel_bias_m_s2": [
+      -0.0048001531946790235,
+      -7.676059295545524e-09,
+      -6.434165123903439e-10
+    ],
+    "initial_q_wxyz": [
+      0.6518740348301809,
+      -0.27397219271354595,
+      0.6518736904675018,
+      0.2739711152844974
+    ],
+    "baro_initial_m": 1798.4432566425587,
+    "source": "stationary accelerometer + magnetometer + offline geomagnetic map (Wahba)",
+    "FCU_pose_used": false,
+    "GNSS_used": false
+  },
+  "goal_lonlat": [
+    -105.3,
+    40.01
+  ],
+  "route_distance_m": 0.0,
+  "cruise_height_above_launch_m": 3.0,
+  "error": "RuntimeError('Native six-panel health: native_component_missing')",
+  "traceback": "Traceback (most recent call last):\n  File \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/realtime.py\", line 144, in run_realtime_mission\n    if not health['ok']:raise RuntimeError('Native six-panel health: '+str(health['reason']))\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Native six-panel health: native_component_missing\n",
+  "cycles": 650,
+  "accepted_feedback": 278,
+  "consumed_feedback": 278
+}

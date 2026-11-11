@@ -1,0 +1,63 @@
+{
+  "schema": "TDOC-mission-fix-release-gate-v2",
+  "generated_at": "2026-11-05T01:00:28.252923+00:00",
+  "scope": "OFFLINE_SIMULATION_AUDIT_ONLY",
+  "online_actuation_authority": false,
+  "source_files": {
+    "timeline": {
+      "path": "reports/offline/mission/MISSION_TIMELINE.csv",
+      "sha256": "9d6a2fa3d206121efb4cd4531b72baab5aa8f633b7d421eddf1f63e17355130a"
+    },
+    "summary": {
+      "path": "reports/offline/mission/MISSION_SUMMARY.json",
+      "sha256": "d209f1b3c40b0b92b2c600b6182663a5a22f1be4127d0550c6937f2bed387c7f"
+    }
+  },
+  "checks": {
+    "starts_on_ground": true,
+    "required_phases": false,
+    "touchdown_final": false,
+    "goal_reached": false,
+    "no_teacher_forcing": true,
+    "sarg_reference_only": true,
+    "wind_causal_effect": true,
+    "realized_not_straight_chord": false,
+    "layer4_advisory_participation": true,
+    "fast_meso_slow": false,
+    "mission_summary_complete": false,
+    "summary_matches_timeline": true,
+    "control_ready": false,
+    "all_required_control_phases": false
+  },
+  "ok": false,
+  "cycles_completed": 3,
+  "final_goal_distance_m": 2370.0778437340336,
+  "final_agl_m": 4.0,
+  "max_cross_track_from_chord_m": 0.0,
+  "phases_seen": [
+    "on_ground",
+    "vertical_takeoff"
+  ],
+  "max_wind_counterfactual_displacement_m": 4.34638641288205,
+  "missing_control_phases": [
+    "vertical_takeoff",
+    "hover",
+    "transition_forward",
+    "climb",
+    "cruise",
+    "turn",
+    "approach",
+    "transition_back",
+    "vertical_landing"
+  ],
+  "failed_checks": [
+    "required_phases",
+    "touchdown_final",
+    "goal_reached",
+    "realized_not_straight_chord",
+    "fast_meso_slow",
+    "mission_summary_complete",
+    "control_ready",
+    "all_required_control_phases"
+  ]
+}

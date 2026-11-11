@@ -1,0 +1,265 @@
+--- integration_online_20261104_1852/before/src/tddt_tdoc/online_mission.py
++++ TDOC_v20260911_2052/src/tddt_tdoc/online_mission.py
+@@ -9,6 +9,44 @@
+ import math
+ from pathlib import Path
+ from typing import Any, Mapping
++
++
++def validate_native_origin(status, native_session, origin, tolerance_m):
++    """Validate the physical launch site without supplying a navigation state.
++
++    The FCU position is a commissioning reference only. MESA continues to own
++    navigation; estimator drift during cold prediction cannot move the launch
++    site or be hidden by copying this reference into the estimator.
++    """
++    from layer6.status import validate_observation_status
++    from .native_control_binding import ground_contact
++    result = {"verified": False, "distance_m": None, "position": None,
++              "source": "Layer6/GUI/MAVLink/GLOBAL_POSITION_INT",
++              "role": "launch_site_validation_only", "navigation_input": False}
++    try:
++        if not validate_observation_status(status)["ok"]:
++            raise ValueError("fresh Native launch observation required")
++        sid = (status.get("status_quality") or {}).get("native_session_id")
++        if not sid or sid != native_session.get("session_id") or native_session.get("session_ready") is not True:
++            raise ValueError("Native launch session mismatch or missing components")
++        if status.get("armed") is not False or not ground_contact(status):
++            raise ValueError("launch validation requires grounded disarmed FCU")
++        lat, lon = float(status["latitude_deg"]), float(status["longitude_deg"])
++        goal_lon, goal_lat = map(float, origin[:2])
++        tolerance = float(tolerance_m)
++        if (not all(math.isfinite(v) for v in (lat, lon, goal_lat, goal_lon, tolerance))
++                or abs(lat) > 90 or abs(goal_lat) > 90 or abs(lon) > 180 or abs(goal_lon) > 180 or tolerance <= 0):
++            raise ValueError("invalid launch coordinates/tolerance")
++        a, b = math.radians(lat), math.radians(goal_lat)
++        h = math.sin((b-a)/2)**2 + math.cos(a)*math.cos(b)*math.sin(math.radians(goal_lon-lon)/2)**2
++        distance = 2*6371008.8*math.asin(math.sqrt(min(1., max(0., h))))
++        result.update(verified=distance <= tolerance, distance_m=distance,
++                      position={"lat": lat, "lon": lon}, native_session_id=sid,
++                      plant_time_s=status["plant_time_s"],
++                      reason="surveyed_origin_confirmed" if distance <= tolerance else "physical_launch_site_mismatch")
++    except (ValueError, TypeError, KeyError) as exc:
++        result["reason"] = str(exc)
++    return result
+ 
+ 
+ def load_mission_prior(config, report_root: Path, origin, destination) -> dict[str, Any]:
+--- integration_online_20261104_1852/before/src/tddt_tdoc/orchestrator.py
++++ TDOC_v20260911_2052/src/tddt_tdoc/orchestrator.py
+@@ -245,7 +245,7 @@
+             # callback; the original climate timestamp remains unchanged.
+             self.adapters[2].native_observation_source=self.adapters[6].online_runtime_ingress
+             self.adapters[2].native_history_observation_source=self.adapters[6].online_history_ingress
+-            self.adapters[5].bind_native_mission(status_source=self.adapters[6]._status,
++            self.adapters[5].bind_native_mission(status_source=self.adapters[6].current_online_status,
+                 environment_validator=self.adapters[6].validated_environment_status)
+         from .model_compatibility import integrated_native,capture_model_dependencies
+         self.rtmo_l4_artifacts=RTMOL4ArtifactGate(
+--- integration_online_20261104_1852/before/src/tddt_tdoc/adapters/layer2.py
++++ TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer2.py
+@@ -39,7 +39,8 @@
+             fresh=(history_source(history_after_seq=cursor['sequence'],history_session_id=cursor['session_id'])
+                    if cursor is not None else history_source())
+             if not isinstance(fresh,Mapping) or fresh.get('ok') is not True:
+-                raise ValueError('Native retained IMU history source unavailable')
++                raise ValueError('Native retained IMU history source unavailable: '+str(
++                    (fresh or {}).get('error') if isinstance(fresh,Mapping) else 'no response'))
+             if cursor is not None and cursor['plant_time_s']!=getattr(self,'_online_mesa_last_time',None):
+                 raise ValueError('Native MESA history cursor differs from last integrated source time')
+             from ..online_imu import attach_native_imu_history
+--- integration_online_20261104_1852/before/src/tddt_tdoc/adapters/layer6.py
++++ TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer6.py
+@@ -93,14 +93,27 @@
+             after=self.cursor
+             page=self.client.telemetry_history(after_seq=after,limit=64,channels=['SCALED_IMU'],
+                 session_id=self.session,through_seq=through,timeout=.2)
++            if page is None:
++                raise TimeoutError('Native history transport response timed out')
+             through,more=self._accept_page(page,after,through)
+             if not more:return
+         raise ValueError('Native history acquisition exceeded bounded page budget')
+ 
+     def _run(self):
++        timeouts=0
+         try:
+             while not self.stopping.is_set():
+-                self.poll_once();self.stopping.wait(.1)
++                try:
++                    self.poll_once()
++                    timeouts=0
++                except TimeoutError:
++                    # Retry the original cursor. No sample, receipt or clock is
++                    # synthesized; the next actual page must still prove that
++                    # no source samples were evicted or changed in the interval.
++                    timeouts+=1
++                    if timeouts>=3:
++                        raise RuntimeError('Native history transport unavailable after 3 consecutive timeouts')
++                self.stopping.wait(.1)
+         except Exception as exc:
+             if not self.stopping.is_set():
+                 with self.condition:self.error=repr(exc);self.condition.notify_all()
+@@ -642,6 +655,16 @@
+                 if raw.get('reason')!='no_matching_latch':raise RuntimeError('Layer6 cancellation unconfirmed')
+         self._active_tx=None
+         return ack
++
++    def current_online_status(self):
++        """Decision/readiness observation; lifecycle startup is owned by TDOC.
++
++        Package preflight and Offline readiness inspection must never start the
++        Native stack as a side effect of querying the Layer5 status callback.
++        """
++        if not self._session_open:
++            raise RuntimeError("native_transport_not_prepared")
++        return self._status()
+ 
+     def _status(self, *, include_imu_samples=False):
+         if not self._session_open:
+--- integration_online_20261104_1852/before/scripts/run_training_workflows.py
++++ TDOC_v20260911_2052/scripts/run_training_workflows.py
+@@ -2617,6 +2617,14 @@
+     if mode=='ONLINE_JSBSIM':return _write_online_reports(orch,cfg,records,count,args,report_root,prefix=prefix)
+     return {'cycle_count_requested':count,'cycle_count_completed':len(records),'records':records}
+ 
++def _next_phase_bootstrap_allowed(phase, layer6_output, layer7_status):
++    # on_ground must qualify takeoff before any actuation. Controlled phases
++    # must first execute and close their feedback cycle; predicting a future
++    # phase early replaces the single current-phase artifact and starves control.
++    return phase=='on_ground' or bool(layer6_output.get('status')=='EXECUTED'
++        and layer6_output.get('actuation_executed') is True and layer7_status=='OK')
++
++
+ def run_online_episodes(orch,cfg,req0,args,report_root,online_forcing=None,online_climate_alignment=None, *, initial_rtmo_cap=None, rtmo_execution_overrides=None):
+     episodes=[]; all_records=[]
+     region_file=ROOT/'region'/'region_v1.geojson'
+@@ -2660,6 +2668,14 @@
+             episode_preparation=(orch.prepare_online_transport_session() if args.online_observation_only else orch.prepare_online_control_session())
+             diagnostic_event('online.episode.preparation',episode=ep,result=episode_preparation)
+             episode_preparation=dict(episode_preparation or {}); episode_preparation['elapsed_s']=time.perf_counter()-boot0
++            if episode_preparation.get('ok') and cfg.get('layers.layer6.online.execution_profile')=='closed_loop_sitl':
++                from tddt_tdoc.online_mission import validate_native_origin
++                native_session=orch.adapters[6]._get_client().native_session_status()
++                origin_check=validate_native_origin(orch.adapters[6]._status(),
++                    native_session,origin,args.online_origin_tolerance_m)
++                episode_preparation['origin_validation']=origin_check
++                if not origin_check['verified']:
++                    episode_preparation.update(ok=False,status='NOT_READY',reason=origin_check['reason'])
+             prep_label='OBSERVATION TRANSPORT' if args.online_observation_only else 'CONTROL / Layer6 DEMO-ALIGNED'
+             print(f"[E{ep:03d} PREP] {prep_label} status={episode_preparation.get('status')} ok={episode_preparation.get('ok')} elapsed={episode_preparation.get('elapsed_s',0.0):.3f}s",flush=True)
+             if not episode_preparation.get('ok'):
+@@ -2996,7 +3012,7 @@
+                             rec['terminal']=terminal
+                     if ci==1:
+                         p0=terminal.get('position')
+-                        if p0:
++                        if p0 and origin_check.get('source')!='Layer6/GUI/MAVLink/GLOBAL_POSITION_INT':
+                             od=_haversine_m(p0['lat'],p0['lon'],float(origin[1]),float(origin[0])); origin_check={'verified':bool(od<=float(args.online_origin_tolerance_m)),'distance_m':od,'position':p0}
+                         rec['origin_check']=origin_check
+                     ep_records.append(rec); all_records.append(rec)
+@@ -3131,10 +3147,11 @@
+                                 sim_now is not None and phase_mgr.entry_sim_time_s is not None
+                                 and float(sim_now)-float(phase_mgr.entry_sim_time_s) >= _phase_dwell_s
+                             )
+-                            if nxt not in ('on_ground','touchdown') and _phase_dwell_ready and (
++                            if (nxt not in ('on_ground','touchdown') and _phase_dwell_ready
++                                and _next_phase_bootstrap_allowed(phase_mgr.phase,_l6_output_from_cycle(r),rec.get('layer7_status')) and (
+                                 not orch.rtmo_l4_artifacts.phase_seeded(nxt)
+                                 or not _bootstrap_clock_aligned
+-                            ):
++                            )):
+                                 try:
+                                     pre_release_next,_pre_next_cycle=_run_pre_release_verify(
+                                         orch,req,phase=nxt,cycle_id=ci,
+--- integration_online_20261104_1852/before/scripts/bridge_layer5_layer6_layer7.py
++++ TDOC_v20260911_2052/scripts/bridge_layer5_layer6_layer7.py
+@@ -2,20 +2,21 @@
+ """Documented L5 -> Layer6Client -> L7 Python interface owned by TDOC.
+ 
+ Without --execute this only checks the input file. It never starts a flight,
+-re-trains, resets knowledge, or invents a Layer5 decision. The integrated online
+-workflow uses the same Layer6OnlineAdapter/Layer6Bridge exchange.
++re-trains, resets knowledge, or invents a Layer5 decision. With --execute it delegates to the canonical mission workflow, which generates
++fresh L2-L5 decisions, invokes Layer6 and processes/routes Layer7 feedback.
+ """
+ from __future__ import annotations
+ import argparse
+ import json
+ import sys
++import subprocess
++import tempfile
++import time
+ from pathlib import Path
+ 
+ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"src"))
+ from tddt_tdoc.config import TDOCConfig
+-from tddt_tdoc.adapters.layer5 import Layer5Adapter
+-from tddt_tdoc.adapters.layer6 import Layer6OnlineAdapter
+-from tddt_tdoc.adapters.layer7 import Layer7Adapter
++from tddt_tdoc.knowledge_handoff import OfflineKnowledgeHandoff
+ 
+ 
+ def main():
+@@ -23,7 +24,7 @@
+     parser.add_argument("--config",default="configs/tdoc.yaml")
+     parser.add_argument("--request",required=True,help="Complete TDOC transaction JSON; L5/L4/L3 artifacts required")
+     parser.add_argument("--output",help="Write the exchange result/Layer7Input as JSON")
+-    parser.add_argument("--execute",action="store_true",help="Submit the existing FINAL-authorized L5 packet to an already running native stack")
++    parser.add_argument("--execute",action="store_true",help="Run the canonical current-state L2-L7 mission; archived decisions are never replayed")
+     args=parser.parse_args()
+     payload=json.loads(Path(args.request).read_text())
+     for key in ("transaction_id","layer5_output","layer4_result","network_snapshot"):
+@@ -33,18 +34,41 @@
+                 "transaction_id":payload["transaction_id"],"route":"Layer5 -> Layer6Client -> GUI -> MAVLink -> Layer7Input"}
+     else:
+         cfg=TDOCConfig.from_yaml(args.config)
+-        l6=Layer6OnlineAdapter(cfg,Layer5Adapter(cfg))
+-        try:
+-            result=l6.invoke(payload)
+-            if result.get("execution_evidence"):
+-                result["Layer7Input"]=Layer7Adapter.build_input(
+-                    transaction_id=payload["transaction_id"],version=payload.get("version","TDOC-runtime-v1"),
+-                    reference_time_s=(payload.get("request") or {}).get("reference_time_s",0.),
+-                    execution_evidence=result["execution_evidence"],layer4_result=payload["layer4_result"],
+-                    layer5_result=payload["layer5_output"],network_snapshot=payload["network_snapshot"],
+-                    request=payload.get("request") or {},layer4_root=cfg.path_value("TDDT_LAYER4_ROOT"))
+-        finally:
+-            l6.close()
++        # A serialized packet cannot carry the process-local current-decision
++        # registration required by NativeMissionBinding. Use the normal mission
++        # owner so L2/L3, prediction, MPC, execution and L7 routing all run.
++        gate=OfflineKnowledgeHandoff(cfg.runtime_root).validate_online_start()
++        if not gate.get("ok"):
++            result={"ok":False,"status":"NOT_READY","reason":gate.get("reason"),
++                    "actuation_executed":False}
++        else:
++            request=payload.get("request")
++            if not isinstance(request,dict) or not request:
++                request=json.loads((cfg.package_root/"examples/runtime_request.json").read_text())
++            with tempfile.TemporaryDirectory(prefix="tdoc-live-bridge-") as folder:
++                request_path=Path(folder)/"request.json"
++                request_path.write_text(json.dumps(request,allow_nan=False))
++                summary=cfg.package_root/"reports/online/ONLINE_JSBSIM_SUMMARY.json"
++                previous=summary.stat() if summary.is_file() else None
++                started=time.time()
++                command=[sys.executable,str(cfg.package_root/"scripts/run_training_workflows.py"),
++                    "--config",str(cfg.path),"--request",str(request_path),
++                    "--skip-offline","--online-training","--online-episodes","1",
++                    "--online-max-cycles-per-episode-auto","--offline-knowledge-manifest",gate["manifest_path"]]
++                completed=subprocess.run(command,cwd=cfg.package_root)
++            # Filesystems may round mtimes slightly below time.time(). Require
++            # an actual write/replacement as well as a bounded wall-clock age.
++            current=summary.stat() if summary.is_file() else None
++            fresh=bool(current and current!=previous and current.st_mtime>=started-1.)
++            data=json.loads(summary.read_text()) if fresh else {}
++            contract=data.get("online_training_contract") or {}
++            result={"ok":completed.returncode==0 and contract.get("contract_ok") is True,
++                    "status":"CANONICAL_ONLINE_WORKFLOW_FINISHED",
++                    "workflow_exit_code":completed.returncode,"fresh_summary":fresh,
++                    "summary_path":str(summary) if fresh else None,
++                    "online_training_contract":contract,
++                    "archived_decision_replayed":False,
++                    "visual_acceptance_required":True}
+     rendered=json.dumps(result,ensure_ascii=False,indent=2,allow_nan=False)
+     if args.output: Path(args.output).write_text(rendered+"\n")
+     else: print(rendered)

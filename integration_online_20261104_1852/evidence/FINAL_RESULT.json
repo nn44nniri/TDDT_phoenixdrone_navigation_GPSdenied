@@ -1,0 +1,252 @@
+{
+  "generated_at": "2026-11-04T14:21:36.946710-05:00",
+  "mission_status": "FAIL",
+  "interface_ARM_only": true,
+  "interface_is_MPC_mission": false,
+  "mission_episodes": [
+    {
+      "origin_verified": true,
+      "origin_distance_m": 0.05409421190940646,
+      "cycles_completed": 3,
+      "termination_reason": "rtmo_wait_plant_time",
+      "terminal_reached": false,
+      "rtmo_final_phase": "vertical_takeoff",
+      "final_goal_distance_m": 3367.7030939599977
+    }
+  ],
+  "cycles": [
+    {
+      "cycle": 1,
+      "phase": "on_ground",
+      "wall_cycle_s": 9.661460805000388,
+      "L5_FINAL": null,
+      "L6_status": "HELD",
+      "actuation_executed": null,
+      "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+      "clock": {
+        "ok": true,
+        "state_fresh": true,
+        "plant_time_present": true,
+        "plant_time_authority": "Layer6/MAVLink/ArduPilot",
+        "simulation_time_s": 61.887,
+        "jump_s": 0.01999999999999602,
+        "advanced": true,
+        "bound_s": 0.15000000000000002,
+        "reason": null,
+        "buffered_sample_validation": true,
+        "measured_sample_count": 2224,
+        "decision_interval_s": 44.478,
+        "sample_contract": "PASSIVE_BOUNDARY_CURRENT_LAYER6:MESA_CONSUMED_MEASURED_ENDPOINT"
+      },
+      "error": null,
+      "mesa_position_n": 4428499.646981962,
+      "mesa_position_e": 473976.65278104047,
+      "mesa_velocity_n": -13.924043165929866,
+      "mesa_velocity_e": -14.215077413806574,
+      "plant_time_s": 61.887
+    },
+    {
+      "cycle": 2,
+      "phase": "vertical_takeoff",
+      "wall_cycle_s": 3.6725946299993666,
+      "L5_FINAL": null,
+      "L6_status": "HELD",
+      "actuation_executed": null,
+      "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+      "clock": {
+        "ok": true,
+        "state_fresh": true,
+        "plant_time_present": true,
+        "plant_time_authority": "Layer6/MAVLink/ArduPilot",
+        "simulation_time_s": 71.926,
+        "jump_s": 0.01999999999999602,
+        "advanced": true,
+        "bound_s": 0.15000000000000002,
+        "reason": null,
+        "buffered_sample_validation": true,
+        "measured_sample_count": 502,
+        "decision_interval_s": 10.039000000000001,
+        "sample_contract": "HELD_CURRENT_LAYER6_NON_ACTUATING:MESA_CONSUMED_MEASURED_ENDPOINT"
+      },
+      "error": null,
+      "mesa_position_n": 4428361.480900509,
+      "mesa_position_e": 473835.605916863,
+      "mesa_velocity_n": -13.408623514938071,
+      "mesa_velocity_e": -13.683707910048401,
+      "plant_time_s": 71.926
+    },
+    {
+      "cycle": 3,
+      "phase": "vertical_takeoff",
+      "wall_cycle_s": 8.22325605000151,
+      "L5_FINAL": null,
+      "L6_status": "HELD",
+      "actuation_executed": null,
+      "L7_status": "NOT_INVOKED_UPSTREAM_EXECUTION",
+      "clock": {
+        "ok": false,
+        "state_fresh": false,
+        "plant_time_present": true,
+        "reason": "invalid_consumed_native_clock",
+        "error": "MESA consumed IMU and Layer3 snapshot clocks differ",
+        "sample_contract": "HELD_CURRENT_LAYER6_NON_ACTUATING"
+      },
+      "error": null,
+      "mesa_position_n": 4428220.84966399,
+      "mesa_position_e": 473693.6229550486,
+      "mesa_velocity_n": -11.88703825860728,
+      "mesa_velocity_e": -11.641405943355862,
+      "plant_time_s": 83.009
+    }
+  ],
+  "blockers": [
+    {
+      "transaction_id": "workflow-online_jsbsim-e0001-c0002",
+      "gate_reason": "artifact_not_fresh",
+      "artifact_age_s": 54.517,
+      "artifact_phase": "vertical_takeoff",
+      "nearest_position_delta_m": null,
+      "nearest_velocity_delta_m_s": null,
+      "refresh": {
+        "phase": "vertical_takeoff",
+        "reference_time_s": 71.926,
+        "scheduled": true,
+        "started_monotonic_s": 21638.196170541,
+        "state": "RUNNING",
+        "trigger_reason": "artifact_not_fresh"
+      }
+    },
+    {
+      "transaction_id": "workflow-online_jsbsim-e0001-c0003",
+      "layer": "Layer2",
+      "reason": "late_output_discarded",
+      "elapsed_s": 6.508470410997688,
+      "deadline_s": 5.0,
+      "deadline_key": "deadlines.layer2_s"
+    }
+  ],
+  "prior": {
+    "gate": {
+      "ok": true,
+      "status": "READY",
+      "reason": "VALID_FINALIZED_SETD_PRIOR_READY"
+    },
+    "handoff_hash": "8b187e7b4c1f7a39274bf09f1b907331f4631f401bdbccbbdb65fe977911ad6d",
+    "model": {
+      "ok": true,
+      "reason": "exact_model_dependencies_match",
+      "revision": "phoenix-fourfoot-certificates-r3.06-v1",
+      "current_model_id": "ca8cc9e2389af18b33fbcbfb2dc42fb809d485759dafd5e1ed5101e66fef7ccd",
+      "certificate_model_id": "ca8cc9e2389af18b33fbcbfb2dc42fb809d485759dafd5e1ed5101e66fef7ccd",
+      "scope": "MODEL_IDENTITY_ONLY",
+      "flight_authority": false,
+      "current_state_replaced": false
+    },
+    "forcing": {
+      "basis": "active_offline_forcing_window_start",
+      "configured_layer3_epoch": "2026-08-24T11:00:00",
+      "effective_climate_epoch": "2026-10-28T16:00:00",
+      "forcing_start": "2026-10-28T16:00:00",
+      "forcing_end": "2026-10-29T15:00:00",
+      "epoch_rebased_to_forcing_start": true,
+      "elapsed_s": 0.0,
+      "safety_semantics": "offline_rebase_only_when_layer3_epoch_outside_forcing; no_end_clamp",
+      "forcing_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/internet_datasets/climate_twin/openmeteo_24h.csv",
+      "forcing_file_sha256": "441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc"
+    },
+    "forcing_sha256": "441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc",
+    "compiled_artifacts": {
+      "mesa_nav_fmu": {
+        "sha256": "3cf10daa41be76b8ac19e663f76f6d417fb996478d8d0354826418c4264ecf37",
+        "bytes": 280356
+      },
+      "wingmpet_fmu": {
+        "sha256": "c838871e85f96987815795cea9a3c0ecd7d7c19c07c4e110bc436a2ac9986689",
+        "bytes": 461139
+      },
+      "micromet_fmu": {
+        "sha256": "db039dc85ac2a9802095094ecb506afa961bdf96449cee1a9ca6b3e252dbcac1",
+        "bytes": 295567
+      },
+      "arduplane_binary": {
+        "sha256": "d98efe6d28c2add78eae55f00ea1b4b4d99e0dfaf7f61469504a6bcc0196341a",
+        "bytes": 6037896
+      },
+      "jsbsim_binary": {
+        "sha256": "114908b7cb323fc139736f46c344f2b0f06917ac4a0a6984125ea06e6cac06eb",
+        "bytes": 3448568
+      }
+    }
+  },
+  "changed_sources": [
+    {
+      "file": "TDOC_v20260911_2052/src/tddt_tdoc/online_mission.py",
+      "before_sha256": "d7f1dd61a095f6cf8871f2f01b1ce01662e048a155cd07c0409dd72eaccdba5b",
+      "after_sha256": "eedf8b7619350607bb67b4b8bc3c9144af80e13c40f7a9ed70cc3158ebf907d8"
+    },
+    {
+      "file": "TDOC_v20260911_2052/src/tddt_tdoc/orchestrator.py",
+      "before_sha256": "96c2136790bffaf84dbcb91491a60cde92d2a8d855a35d5e3dc6d8460fe40f07",
+      "after_sha256": "74a6966f89d5655ee75f1e75a16dc1a2f8e875d016b1cfdea38be5a34e389b95"
+    },
+    {
+      "file": "TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer2.py",
+      "before_sha256": "401a072c2142dd2d1cff62a780b321e9331aef6a3d6f6da7ce6e2c465eecd1a1",
+      "after_sha256": "6f8a1084ca7984bd51205304266e865cd5fd28f1f60713cc1601749b92ad55e7"
+    },
+    {
+      "file": "TDOC_v20260911_2052/src/tddt_tdoc/adapters/layer6.py",
+      "before_sha256": "8949aa9b868291a61948b122c2bd8f1353e4ea7a45c5be91a5c434ba03f24d4d",
+      "after_sha256": "246094bd2ff7f920dd1b02b6c701b9a0b691fbacdb82ebecd4876ffa8130f833"
+    },
+    {
+      "file": "TDOC_v20260911_2052/scripts/run_training_workflows.py",
+      "before_sha256": "ff54ea4435778e4805d6728b3c9de9238047b427521ec746bf58070c404540bb",
+      "after_sha256": "660c25f46eff05fe637178bfb699b162d63a3b21d1bd8e27076bae0c17bc02d1"
+    },
+    {
+      "file": "TDOC_v20260911_2052/scripts/bridge_layer5_layer6_layer7.py",
+      "before_sha256": "27893674255333bf314abf0f0481a5576deeba2ff7519e2adf1f59133810e5b3",
+      "after_sha256": "459122d25c86badb4ee35b348ea978286c506763d62ea06b98616b15204b0cfe"
+    }
+  ],
+  "tests": "194 selected tests passed; regression_final.log",
+  "compiled_sources_changed": false,
+  "compiled_rebuild_performed": false,
+  "reset_performed": false,
+  "preservation": {
+    "compiled_artifacts": {
+      "mesa_nav_fmu": {
+        "before": "3cf10daa41be76b8ac19e663f76f6d417fb996478d8d0354826418c4264ecf37",
+        "after": "3cf10daa41be76b8ac19e663f76f6d417fb996478d8d0354826418c4264ecf37",
+        "unchanged": true
+      },
+      "wingmpet_fmu": {
+        "before": "c838871e85f96987815795cea9a3c0ecd7d7c19c07c4e110bc436a2ac9986689",
+        "after": "c838871e85f96987815795cea9a3c0ecd7d7c19c07c4e110bc436a2ac9986689",
+        "unchanged": true
+      },
+      "micromet_fmu": {
+        "before": "db039dc85ac2a9802095094ecb506afa961bdf96449cee1a9ca6b3e252dbcac1",
+        "after": "db039dc85ac2a9802095094ecb506afa961bdf96449cee1a9ca6b3e252dbcac1",
+        "unchanged": true
+      },
+      "arduplane_binary": {
+        "before": "d98efe6d28c2add78eae55f00ea1b4b4d99e0dfaf7f61469504a6bcc0196341a",
+        "after": "d98efe6d28c2add78eae55f00ea1b4b4d99e0dfaf7f61469504a6bcc0196341a",
+        "unchanged": true
+      },
+      "jsbsim_binary": {
+        "before": "114908b7cb323fc139736f46c344f2b0f06917ac4a0a6984125ea06e6cac06eb",
+        "after": "114908b7cb323fc139736f46c344f2b0f06917ac4a0a6984125ea06e6cac06eb",
+        "unchanged": true
+      }
+    },
+    "all_compiled_unchanged": true,
+    "kstore_hash_before_online": "45c4e7a36eb38b6507f9550ec0d9265dd7dae5ac60a396351175cd0ec2ff9884",
+    "kstore_hash_after_online": "45c4e7a36eb38b6507f9550ec0d9265dd7dae5ac60a396351175cd0ec2ff9884",
+    "same_kstore": true,
+    "model_id_after_online": "ca8cc9e2389af18b33fbcbfb2dc42fb809d485759dafd5e1ed5101e66fef7ccd",
+    "handoff_ready_after_online": true
+  }
+}

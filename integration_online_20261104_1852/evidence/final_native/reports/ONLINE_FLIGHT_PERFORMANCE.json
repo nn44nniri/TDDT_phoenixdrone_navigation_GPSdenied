@@ -1,0 +1,2565 @@
+{
+  "schema": "TDOC-online-flight-performance-v2",
+  "status": "INCOMPLETE",
+  "mission": {
+    "origin_lon_lat": [
+      -105.3,
+      40.01
+    ],
+    "destination_lon_lat": [
+      -105.28,
+      40.025
+    ],
+    "direct_distance_m": 2383.8557916100126,
+    "destination_reached": false,
+    "episodes": [
+      {
+        "episode_index": 1,
+        "episode_id": "online-episode-0001",
+        "cycles_completed": 3,
+        "max_cycles": 2420,
+        "cycle_budget": {
+          "mode": "auto",
+          "resolved_cycles": 2420,
+          "source": "offline_elapsed_time_rescaled",
+          "margin_factor": 1.2,
+          "reserve_cycles": 20,
+          "minimum_cycles": 60,
+          "maximum_cycles": 3600,
+          "offline_cycles_completed": 3,
+          "offline_reference_cycles": 200,
+          "offline_safety_budget": 3,
+          "derived_with_margin": 260,
+          "offline_summary": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/reports/offline/mission/MISSION_SUMMARY.json",
+          "offline_flight_duration_s": 2.0,
+          "offline_step_estimate_s": 1.0,
+          "online_control_period_s": 0.1,
+          "time_scaled_required_cycles": 2420,
+          "budget_capped_below_time_scaled_requirement": false,
+          "mission_completion_authority": false
+        },
+        "origin_verified": true,
+        "origin_distance_m": 0.05409421190940646,
+        "terminal_reached": false,
+        "termination_reason": "rtmo_wait_plant_time",
+        "final_goal_distance_m": 3367.7030939599977,
+        "final_position": {
+          "lat": 40.00376743409717,
+          "lon": -105.30819931151466,
+          "altitude_msl_m": 1803.8772035530064,
+          "groundspeed_m_s": 16.63802905694044,
+          "velocity_d_m_s": -0.528048343329561,
+          "authority": "MESA_STD",
+          "source": "Layer2/MESA_NAV",
+          "relative_altitude_m": null,
+          "simulation_time_s": null,
+          "event_text": null
+        },
+        "ptlib_episode_preparation": {
+          "ok": true,
+          "status": "READY",
+          "transport": "Layer6Client_GUI_MAVLink",
+          "native_session": {
+            "schema": "Layer6-native-session-v1",
+            "session_id": "e8b2e55a222943b08759c1e342cef80e",
+            "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/e8b2e55a222943b08759c1e342cef80e",
+            "created": false,
+            "processes": [
+              {
+                "pid": 155428,
+                "start_ticks": 2237335,
+                "uid": 1000,
+                "session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "role": "terminal1",
+                "executable": "/usr/bin/python3.13",
+                "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/e8b2e55a222943b08759c1e342cef80e --terminal terminal1 "
+              },
+              {
+                "pid": 155440,
+                "start_ticks": 2237373,
+                "uid": 1000,
+                "session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "role": "arduplane",
+                "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane",
+                "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/build/sitl/bin/arduplane --model jsbsim:phoenix_v3 --home 40.01,-105.3,1798.5157833529418,45.59257145243172 --speedup 1 --base-port 5760 -I 0 --autotest-dir /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/e8b2e55a222943b08759c1e342cef80e/autotest --defaults /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/Tools/autotest/default_params/phoenix_v3.parm "
+              },
+              {
+                "pid": 155442,
+                "start_ticks": 2237374,
+                "uid": 1000,
+                "session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "role": "mavproxy",
+                "executable": "/usr/bin/python3.13",
+                "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+              },
+              {
+                "pid": 155455,
+                "start_ticks": 2237401,
+                "uid": 1000,
+                "session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "role": "JSBSim",
+                "executable": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/jsbsim/build/src/JSBSim",
+                "cmdline": "JSBSim --suspend --simulation-rate=1200.000000 --nice=0.00000001 --logdirectivefile=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/e8b2e55a222943b08759c1e342cef80e/autotest/jsbsim_fgout_0.xml --script=/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/e8b2e55a222943b08759c1e342cef80e/autotest/jsbsim_start_0.xml "
+              },
+              {
+                "pid": 155457,
+                "start_ticks": 2237405,
+                "uid": 1000,
+                "session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "role": "mavproxy",
+                "executable": "/usr/bin/python3.13",
+                "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+              },
+              {
+                "pid": 155470,
+                "start_ticks": 2237409,
+                "uid": 1000,
+                "session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "role": "mavproxy",
+                "executable": "/usr/bin/python3.13",
+                "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/arduPilot/Layer6/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/mavproxy.py --master=tcp:127.0.0.1:5760 --out=udp:127.0.0.1:14551 --out=tcpin:127.0.0.1:14552 --streamrate=20 --map --console --load-module=layer6.native_panels --non-interactive "
+              },
+              {
+                "pid": 155513,
+                "start_ticks": 2237544,
+                "uid": 1000,
+                "session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "role": "terminal2",
+                "executable": "/usr/bin/python3.13",
+                "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/e8b2e55a222943b08759c1e342cef80e --terminal terminal2 "
+              },
+              {
+                "pid": 155550,
+                "start_ticks": 2237641,
+                "uid": 1000,
+                "session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "role": "environment",
+                "executable": "/usr/bin/python3.13",
+                "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m phoenix_env_adapter.cli runtime --binding /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/e8b2e55a222943b08759c1e342cef80e/binding.json --state-file /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/e8b2e55a222943b08759c1e342cef80e/environment_state.json --mavlink udpin:127.0.0.1:14551 --update-hz 1 "
+              },
+              {
+                "pid": 155568,
+                "start_ticks": 2237754,
+                "uid": 1000,
+                "session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "role": "terminal3",
+                "executable": "/usr/bin/python3.13",
+                "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/e8b2e55a222943b08759c1e342cef80e --terminal terminal3 "
+              },
+              {
+                "pid": 155580,
+                "start_ticks": 2237795,
+                "uid": 1000,
+                "session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "role": "intake",
+                "executable": "/usr/bin/python3.13",
+                "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B -m layer6.service --listen 127.0.0.1:14661 --gui 127.0.0.1:14660 --rate-hz 30 "
+              },
+              {
+                "pid": 155582,
+                "start_ticks": 2237795,
+                "uid": 1000,
+                "session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "role": "gui",
+                "executable": "/usr/bin/python3.13",
+                "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack/ardupilot/venv-ardupilot-debian13/bin/python -B /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/src/gui/phoenix_f310_gui.py --connect tcp:127.0.0.1:14552 --no-gamepad "
+              },
+              {
+                "pid": 155624,
+                "start_ticks": 2237965,
+                "uid": 1000,
+                "session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "role": "terminal4",
+                "executable": "/usr/bin/python3.13",
+                "cmdline": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/.venv/bin/python -B -m layer6.native_session --session /media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/e8b2e55a222943b08759c1e342cef80e --terminal terminal4 "
+              }
+            ],
+            "roles": {
+              "arduplane": true,
+              "JSBSim": true,
+              "mavproxy": true,
+              "environment": true,
+              "intake": true,
+              "gui": true
+            },
+            "process_ready": true,
+            "alive": true,
+            "flight_ready": false,
+            "panels": {
+              "ready": true,
+              "reason": "live_native_panels",
+              "reasons": [],
+              "evidence": {
+                "schema": "Layer6-native-panels-v1",
+                "session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "producer_pid": 155442,
+                "master": "tcp:127.0.0.1:5760",
+                "recorded_monotonic_s": 21579.455491511,
+                "heartbeat": {
+                  "received_monotonic_s": 21578.636581744,
+                  "target_system": 1,
+                  "target_component": 1,
+                  "mode": "MANUAL",
+                  "armed": false
+                },
+                "position": {
+                  "received_monotonic_s": 21579.409154031,
+                  "target_system": 1,
+                  "target_component": 1,
+                  "time_boot_ms": 14802,
+                  "latitude_deg": 40.0099997,
+                  "longitude_deg": -105.2999995,
+                  "heading_deg": 48.45
+                },
+                "position_updates": 161,
+                "map": {
+                  "alive": true,
+                  "wx_ready": true,
+                  "child_pid": 155470,
+                  "position_matches": true,
+                  "position": [
+                    40.0099997,
+                    -105.2999995,
+                    48.45
+                  ]
+                },
+                "console": {
+                  "alive": true,
+                  "child_pid": 155457
+                },
+                "navigation_input": false,
+                "control_command_sent": false,
+                "visual_acceptance_verified": false
+              },
+              "visual_acceptance_verified": false
+            },
+            "panels_ready": true,
+            "jsbsim_window": {
+              "ready": true,
+              "reason": "live_owned_jsbsim_observer",
+              "evidence": {
+                "schema": "Layer6-JSBSim-window-v1",
+                "session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "producer_pid": 155624,
+                "producer_start_ticks": 2237965,
+                "recorded_monotonic_s": 21579.215755016,
+                "jsbsim_pid": 155455,
+                "jsbsim_start_ticks": 2237401,
+                "source_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/e8b2e55a222943b08759c1e342cef80e/arduplane.log",
+                "telemetry_master": "tcp:127.0.0.1:5760",
+                "plant_time_s": 14.402000000000001,
+                "mode": "MANUAL",
+                "armed": false,
+                "telemetry_ready": true,
+                "simulator_spawned": false,
+                "visual_acceptance_verified": false
+              },
+              "visual_acceptance_verified": false
+            },
+            "session_ready": true,
+            "visual_acceptance_verified": false,
+            "stop_requested": false,
+            "binding_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/e8b2e55a222943b08759c1e342cef80e/binding.json",
+            "environment_state_file": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/e8b2e55a222943b08759c1e342cef80e/environment_state.json",
+            "state": {
+              "schema": "Layer6-native-session-v1",
+              "session_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/sessions/e8b2e55a222943b08759c1e342cef80e",
+              "session_id": "e8b2e55a222943b08759c1e342cef80e",
+              "flightstack_dir": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/FlightStack",
+              "terminal": null,
+              "delay": 2.0,
+              "started_at": 1793819776.4014878,
+              "last_log": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer6_v20261007_1032/runtime/logs/run_flightstack_20261104_141616.log"
+            },
+            "display": ":0",
+            "wayland_display": null,
+            "dbus_session_bus": true,
+            "owned_by_client": true
+          },
+          "flight_ready": false,
+          "session_generation": 1,
+          "startup_actuation": false,
+          "live_channels_verified": true,
+          "ready": true,
+          "gnss_denied_validated": false,
+          "gps_role": "validation_reference_only",
+          "environment_contract": {
+            "UTC_mapping_verified": false,
+            "actuation_authority": false,
+            "application": {
+              "atomic_parameter_transaction": false,
+              "binding_hash": "103ce184abe21db63b3ef57384aaf5e724ac86bcebb005bd15495073fd27e5da",
+              "instantaneous_atmosphere_verified": false,
+              "minimum_smoothing_tc_s": 0.1,
+              "parameters": {
+                "SIM_WIND_DIR": {
+                  "attempt": 1,
+                  "message_type": "PARAM_VALUE",
+                  "read_received_monotonic": 21578.837578524,
+                  "read_requested_monotonic": 21578.745012311,
+                  "readback": 136.49331665039062,
+                  "requested": 136.4933137396687,
+                  "source_component": 1,
+                  "source_system": 1,
+                  "verified": true
+                },
+                "SIM_WIND_DIR_Z": {
+                  "attempt": 1,
+                  "message_type": "PARAM_VALUE",
+                  "read_received_monotonic": 21578.837419209,
+                  "read_requested_monotonic": 21578.744993383,
+                  "readback": 0.0,
+                  "requested": 0.0,
+                  "source_component": 1,
+                  "source_system": 1,
+                  "verified": true
+                },
+                "SIM_WIND_SPD": {
+                  "attempt": 1,
+                  "message_type": "PARAM_VALUE",
+                  "read_received_monotonic": 21578.940534792,
+                  "read_requested_monotonic": 21578.745031448,
+                  "readback": 1.9758962392807007,
+                  "requested": 1.9758962439808587,
+                  "source_component": 1,
+                  "source_system": 1,
+                  "verified": true
+                },
+                "SIM_WIND_T": {
+                  "attempt": 1,
+                  "message_type": "PARAM_VALUE",
+                  "read_received_monotonic": 21578.836829657,
+                  "read_requested_monotonic": 21578.744904961,
+                  "readback": 1.0,
+                  "requested": 1.0,
+                  "source_component": 1,
+                  "source_system": 1,
+                  "verified": true
+                },
+                "SIM_WIND_TC": {
+                  "attempt": 1,
+                  "message_type": "PARAM_VALUE",
+                  "read_received_monotonic": 21578.837260524,
+                  "read_requested_monotonic": 21578.744973338,
+                  "readback": 0.10000000149011612,
+                  "requested": 0.1,
+                  "source_component": 1,
+                  "source_system": 1,
+                  "verified": true
+                },
+                "SIM_WIND_TURB": {
+                  "attempt": 1,
+                  "message_type": "PARAM_VALUE",
+                  "read_received_monotonic": 21578.837090733,
+                  "read_requested_monotonic": 21578.744948474,
+                  "readback": 0.0,
+                  "requested": 0.0,
+                  "source_component": 1,
+                  "source_system": 1,
+                  "verified": true
+                }
+              },
+              "plant_time_s": 14.052,
+              "schema": "Layer6-native-wind-readback-v1",
+              "scope": "horizontal_wind_parameters_only",
+              "simulation_time_dataset": "2026-10-28T16:00:14.052000",
+              "startup_wind_delay_s": 5.0,
+              "target_component": 1,
+              "target_system": 1,
+              "verified": true
+            },
+            "application_pending": false,
+            "applied_fields": {
+              "SIM_WIND_DIR": {
+                "attempt": 1,
+                "message_type": "PARAM_VALUE",
+                "read_received_monotonic": 21578.837578524,
+                "read_requested_monotonic": 21578.745012311,
+                "readback": 136.49331665039062,
+                "requested": 136.4933137396687,
+                "source_component": 1,
+                "source_system": 1,
+                "verified": true
+              },
+              "SIM_WIND_DIR_Z": {
+                "attempt": 1,
+                "message_type": "PARAM_VALUE",
+                "read_received_monotonic": 21578.837419209,
+                "read_requested_monotonic": 21578.744993383,
+                "readback": 0.0,
+                "requested": 0.0,
+                "source_component": 1,
+                "source_system": 1,
+                "verified": true
+              },
+              "SIM_WIND_SPD": {
+                "attempt": 1,
+                "message_type": "PARAM_VALUE",
+                "read_received_monotonic": 21578.940534792,
+                "read_requested_monotonic": 21578.745031448,
+                "readback": 1.9758962392807007,
+                "requested": 1.9758962439808587,
+                "source_component": 1,
+                "source_system": 1,
+                "verified": true
+              },
+              "SIM_WIND_T": {
+                "attempt": 1,
+                "message_type": "PARAM_VALUE",
+                "read_received_monotonic": 21578.836829657,
+                "read_requested_monotonic": 21578.744904961,
+                "readback": 1.0,
+                "requested": 1.0,
+                "source_component": 1,
+                "source_system": 1,
+                "verified": true
+              },
+              "SIM_WIND_TC": {
+                "attempt": 1,
+                "message_type": "PARAM_VALUE",
+                "read_received_monotonic": 21578.837260524,
+                "read_requested_monotonic": 21578.744973338,
+                "readback": 0.10000000149011612,
+                "requested": 0.1,
+                "source_component": 1,
+                "source_system": 1,
+                "verified": true
+              },
+              "SIM_WIND_TURB": {
+                "attempt": 1,
+                "message_type": "PARAM_VALUE",
+                "read_received_monotonic": 21578.837090733,
+                "read_requested_monotonic": 21578.744948474,
+                "readback": 0.0,
+                "requested": 0.0,
+                "source_component": 1,
+                "source_system": 1,
+                "verified": true
+              }
+            },
+            "binding_consumed": true,
+            "binding_hash": "103ce184abe21db63b3ef57384aaf5e724ac86bcebb005bd15495073fd27e5da",
+            "binding_id": "1a673cf2f4114008a969ed9fa24b3260",
+            "clock_domain": "ACCEPTED_DATASET_NAIVE",
+            "clock_mapping": {
+              "UTC_conversion_performed": false,
+              "binding_hash": "103ce184abe21db63b3ef57384aaf5e724ac86bcebb005bd15495073fd27e5da",
+              "binding_id": "1a673cf2f4114008a969ed9fa24b3260",
+              "clock_rate_assumed": false,
+              "context_sha256": "972e34fd9f4d7549d699a295b20389ca585ca8a125c0b5de811542fdd5e489a4",
+              "dataset_equation": "accepted_effective_climate_epoch + mission_elapsed_s",
+              "declared_anchor_observed": false,
+              "effective_climate_epoch": "2026-10-28T16:00:00",
+              "first_packet_rebase": false,
+              "forcing_file_sha256": "441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc",
+              "handoff_hash": "8b187e7b4c1f7a39274bf09f1b907331f4631f401bdbccbbdb65fe977911ad6d",
+              "mapping_hash": "68c176a678c6827d3c763537bdd9c33af09f04142fb77a395e005b416c9a9f17",
+              "measured_rate_diagnostic": {
+                "delta_monotonic_s": 0.017968893000215758,
+                "delta_plant_s": 0.01699999999999946,
+                "plant_seconds_per_monotonic_second": 0.9460794273634628
+              },
+              "mission_elapsed_equation": "plant_time_s - declared_binding_plant_epoch_s",
+              "model_id": "ca8cc9e2389af18b33fbcbfb2dc42fb809d485759dafd5e1ed5101e66fef7ccd",
+              "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+              "monotonic_role": "local receipt/freshness/cadence only; no epoch or rate inference",
+              "observation": {
+                "forcing_timestamp": "2026-10-28T16:00:14.052000",
+                "message_type": "ATTITUDE",
+                "mission_elapsed_s": 14.052,
+                "plant_time_s": 14.052,
+                "raw_time_boot_ms": 14052,
+                "received_monotonic_s": 21578.658073356,
+                "sequence": 230,
+                "source_component": 1,
+                "source_system": 1
+              },
+              "plant_epoch_s": 0.0,
+              "previous_observation": {
+                "forcing_timestamp": "2026-10-28T16:00:14.035000",
+                "message_type": "SYSTEM_TIME",
+                "mission_elapsed_s": 14.035,
+                "plant_time_s": 14.035,
+                "raw_time_boot_ms": 14035,
+                "received_monotonic_s": 21578.640104463,
+                "sequence": 229,
+                "source_component": 1,
+                "source_system": 1
+              },
+              "schema": "Layer6-native-clock-mapping-r4.04-v1",
+              "scope": "observed-source-to-dataset-and-monotonic-receipt-only",
+              "session_id": "7cf238ea34ca48aca2532f0e7658cb3a",
+              "synchronized_absolute_clocks": false
+            },
+            "context_sha256": "972e34fd9f4d7549d699a295b20389ca585ca8a125c0b5de811542fdd5e489a4",
+            "effective_climate_epoch": "2026-10-28T16:00:00",
+            "environment_position_received_monotonic": 21578.60558926,
+            "environment_position_source": "MAVLink/GLOBAL_POSITION_INT",
+            "environment_position_time_s": 14.002,
+            "environment_query": {
+              "altitude_agl_m": 0.1153120680437496,
+              "altitude_msl_m": 1798.64,
+              "aspect_deg": 5.431459903717041,
+              "curvature_raw": 0.008344902510259076,
+              "curvature_scaled": 0.008344902510259076,
+              "ground_elevation_m": 1798.5246879319564,
+              "latitude": 40.0099998,
+              "longitude": -105.2999995,
+              "slope_deg": 25.910734176635742,
+              "terrain_aspect_band": 3,
+              "terrain_elevation_band": 1,
+              "terrain_slope_band": 2,
+              "terrain_source": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/terrain_obstacles.tif",
+              "time": "2026-10-28T16:00:14.052000",
+              "vertical_reference": "sea-level (MSL); ground=shared-DEM:/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/terrain_obstacles.tif"
+            },
+            "forcing_file_sha256": "441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc",
+            "forcing_path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/internet_datasets/climate_twin/openmeteo_24h.csv",
+            "handoff_hash": "8b187e7b4c1f7a39274bf09f1b907331f4631f401bdbccbbdb65fe977911ad6d",
+            "legacy_dataset_used": false,
+            "mission_elapsed_s": 14.052,
+            "model_id": "ca8cc9e2389af18b33fbcbfb2dc42fb809d485759dafd5e1ed5101e66fef7ccd",
+            "model_output_semantics": null,
+            "model_output_semantics_status": "unavailable; no fabricated metadata",
+            "model_outputs": {
+              "Du_Dt": 0.033709276530539886,
+              "Dv_Dt": -0.035607447909782965,
+              "Dw_Dt": 0.01562950035621387,
+              "actual_vapor_pressure": 385.68591324232216,
+              "actual_vapor_pressure_local": 386.667672097876,
+              "air_density": 0.9792979118355178,
+              "aspect_deg": 5.431459903717041,
+              "aspect_rad": 0.09479685850991657,
+              "atmospheric_emissivity": 0.6805029575123543,
+              "barnes_distance_m": 1191.9852679080766,
+              "barnes_second_pass_applied": 1.0,
+              "barnes_weight": 0.9964542289482567,
+              "cloud_fraction": 0.11679770769949273,
+              "coefficient_Xs": 0.44135085714285716,
+              "coefficient_Ys": 0.11712828571428571,
+              "coefficient_Zs": 0.724145942857143,
+              "continuity_residual": -0.024659417294827613,
+              "curvature_raw": 0.008394115013586608,
+              "curvature_scaled": 0.008344902510259076,
+              "dewpoint_lapse_rate": 0.0055072563135641645,
+              "dewpoint_local": -6.14336901138096,
+              "dewpoint_reference": 3.7622024844480886,
+              "dewpoint_source": -6.176604453223831,
+              "diagnostic_vertical_wind": -0.6322976872411424,
+              "diffuse_transmissivity": 0.0325469086437988,
+              "direct_transmissivity": 0.4922272001340509,
+              "du_dt": -7.327359266831097e-06,
+              "du_dx": 7.036614092033045e-06,
+              "du_dy": -6.978856990909055e-06,
+              "du_dz": -0.05335489565689846,
+              "dv_dt": -6.0243920085504157e-05,
+              "dv_dx": 3.8108983798101904e-06,
+              "dv_dy": 1.2924064504593602e-07,
+              "dv_dz": 0.05621118978690061,
+              "dw_dt": 2.9551382393033757e-05,
+              "dw_dx": -2.172106025210008e-06,
+              "dw_dy": 2.587486054306254e-07,
+              "dw_dz": -0.024666583149564693,
+              "enabled_source_count": 5.0,
+              "fmi_time_s": 3.0,
+              "formula_error_code": 0.0,
+              "formula_valid": 1.0,
+              "longwave_radiation": 277.775910931273,
+              "precipitation_local": 0.0,
+              "precipitation_reference": 0.0,
+              "raw_relative_humidity_local": 18.588088489685756,
+              "raw_shortwave_radiation": 0.0,
+              "raw_surface_pressure_pa": 82131.58070572575,
+              "raw_temperature_local": 18.13170410149559,
+              "raw_wind_direction_terrain_rad": 2.2509491386035108,
+              "raw_wind_speed_terrain": 2.4721994987849754,
+              "relative_humidity_local": 18.468966802765802,
+              "rh700_used": 18.32301774642454,
+              "saturation_vapor_pressure": 2080.59846365548,
+              "saturation_vapor_pressure_local": 2080.190614072189,
+              "saturation_vapor_pressure_source": 2080.59846365548,
+              "shortwave_radiation": 295.8763720073542,
+              "slope_deg": 25.910734176635742,
+              "slope_in_wind_direction": -0.21499513406838042,
+              "slope_in_wind_direction_raw": -0.21499513406838042,
+              "slope_rad": 0.4522276229913157,
+              "solar_azimuth": 1.0352980563189444,
+              "solar_declination": -0.24714159663950275,
+              "solar_hour_angle": 1.0482156599269272,
+              "solar_incidence": 1.6304989231736757,
+              "solar_zenith": 1.3557477229153407,
+              "source_elevation_barnes": 1807.0608673472825,
+              "surface_pressure_forecast_pa": 82045.17379675558,
+              "surface_pressure_pa": 82131.58070572575,
+              "temperature_local": 18.49301144917564,
+              "temperature_reference": 29.82286410149559,
+              "temporal_interp_t0_s": 0.0,
+              "temporal_interp_t1_s": 3600.0,
+              "terrain_dzdx_used": -0.046059069869351155,
+              "terrain_dzdy_used": -0.4849260369138704,
+              "vertical_interp_lower_level": 10.0,
+              "vertical_interp_upper_level": 10.0,
+              "wind_3dw_profile_mode": 0.0,
+              "wind_3dw_valid": 1.0,
+              "wind_direction_background_deg": 123.8177387400377,
+              "wind_direction_background_rad": 2.161027213387793,
+              "wind_direction_diversion": 0.08992192521571792,
+              "wind_direction_terrain_deg": 136.49249780454736,
+              "wind_direction_terrain_rad": 2.382243490960483,
+              "wind_speed_3d": 2.0746002825287,
+              "wind_speed_background": 2.813129142365896,
+              "wind_speed_terrain": 2.7464900331751685,
+              "wind_u": -2.337182013487717,
+              "wind_u_3dw": -1.3602844694144913,
+              "wind_u_terrain": -1.8908198243169863,
+              "wind_v": 1.5656550729511853,
+              "wind_v_3dw": 1.4331057634548126,
+              "wind_v_terrain": 1.9919859171943006,
+              "wind_weight": 0.8788076812946483
+            },
+            "navigation_truth_injection": false,
+            "ok": true,
+            "plant_epoch_s": 0.0,
+            "plant_time_s": 14.052,
+            "plant_time_source": "MAVLink/ATTITUDE.time_boot_ms",
+            "readback_verified": true,
+            "reason": "horizontal_wind_parameters_readback_verified",
+            "runtime_clock_mapping_verified": true,
+            "runtime_clock_synchronization_verified": false,
+            "sampled_monotonic": 21578.734206335,
+            "schema": "Layer6-bound-environment-consumption-v1",
+            "simulation_time_dataset": "2026-10-28T16:00:14.052000",
+            "terrain_path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/terrain_obstacles.tif",
+            "timezone_status": "unspecified",
+            "unsupported_fields": {
+              "density": {
+                "applied": false,
+                "reason": "not implemented by pinned ArduPilot SIM_JSBSim bridge",
+                "value": null,
+                "verified": false
+              },
+              "humidity": {
+                "applied": false,
+                "reason": "not implemented by pinned ArduPilot SIM_JSBSim bridge",
+                "value": null,
+                "verified": false
+              },
+              "precipitation": {
+                "applied": false,
+                "reason": "not implemented by pinned ArduPilot SIM_JSBSim bridge",
+                "value": null,
+                "verified": false
+              },
+              "pressure": {
+                "applied": false,
+                "reason": "not implemented by pinned ArduPilot SIM_JSBSim bridge",
+                "value": null,
+                "verified": false
+              },
+              "temperature": {
+                "applied": false,
+                "reason": "not implemented by pinned ArduPilot SIM_JSBSim bridge",
+                "value": null,
+                "verified": false
+              },
+              "vertical_wind": {
+                "applied": false,
+                "reason": "not implemented by pinned ArduPilot SIM_JSBSim bridge",
+                "value": null,
+                "verified": false
+              }
+            },
+            "updated_monotonic": 21578.987451278
+          },
+          "current_gui_state": {
+            "type": "status",
+            "schema": "Layer6-GUI-status-v1",
+            "schema_version": 1,
+            "request_id": "cf4be579109a4f1d81db08177cfa1134",
+            "ok": true,
+            "reason": "observations_reported",
+            "environment_contract": {
+              "UTC_mapping_verified": false,
+              "actuation_authority": false,
+              "application": {
+                "atomic_parameter_transaction": false,
+                "binding_hash": "103ce184abe21db63b3ef57384aaf5e724ac86bcebb005bd15495073fd27e5da",
+                "instantaneous_atmosphere_verified": false,
+                "minimum_smoothing_tc_s": 0.1,
+                "parameters": {
+                  "SIM_WIND_DIR": {
+                    "attempt": 1,
+                    "message_type": "PARAM_VALUE",
+                    "read_received_monotonic": 21578.837578524,
+                    "read_requested_monotonic": 21578.745012311,
+                    "readback": 136.49331665039062,
+                    "requested": 136.4933137396687,
+                    "source_component": 1,
+                    "source_system": 1,
+                    "verified": true
+                  },
+                  "SIM_WIND_DIR_Z": {
+                    "attempt": 1,
+                    "message_type": "PARAM_VALUE",
+                    "read_received_monotonic": 21578.837419209,
+                    "read_requested_monotonic": 21578.744993383,
+                    "readback": 0.0,
+                    "requested": 0.0,
+                    "source_component": 1,
+                    "source_system": 1,
+                    "verified": true
+                  },
+                  "SIM_WIND_SPD": {
+                    "attempt": 1,
+                    "message_type": "PARAM_VALUE",
+                    "read_received_monotonic": 21578.940534792,
+                    "read_requested_monotonic": 21578.745031448,
+                    "readback": 1.9758962392807007,
+                    "requested": 1.9758962439808587,
+                    "source_component": 1,
+                    "source_system": 1,
+                    "verified": true
+                  },
+                  "SIM_WIND_T": {
+                    "attempt": 1,
+                    "message_type": "PARAM_VALUE",
+                    "read_received_monotonic": 21578.836829657,
+                    "read_requested_monotonic": 21578.744904961,
+                    "readback": 1.0,
+                    "requested": 1.0,
+                    "source_component": 1,
+                    "source_system": 1,
+                    "verified": true
+                  },
+                  "SIM_WIND_TC": {
+                    "attempt": 1,
+                    "message_type": "PARAM_VALUE",
+                    "read_received_monotonic": 21578.837260524,
+                    "read_requested_monotonic": 21578.744973338,
+                    "readback": 0.10000000149011612,
+                    "requested": 0.1,
+                    "source_component": 1,
+                    "source_system": 1,
+                    "verified": true
+                  },
+                  "SIM_WIND_TURB": {
+                    "attempt": 1,
+                    "message_type": "PARAM_VALUE",
+                    "read_received_monotonic": 21578.837090733,
+                    "read_requested_monotonic": 21578.744948474,
+                    "readback": 0.0,
+                    "requested": 0.0,
+                    "source_component": 1,
+                    "source_system": 1,
+                    "verified": true
+                  }
+                },
+                "plant_time_s": 14.052,
+                "schema": "Layer6-native-wind-readback-v1",
+                "scope": "horizontal_wind_parameters_only",
+                "simulation_time_dataset": "2026-10-28T16:00:14.052000",
+                "startup_wind_delay_s": 5.0,
+                "target_component": 1,
+                "target_system": 1,
+                "verified": true
+              },
+              "application_pending": false,
+              "applied_fields": {
+                "SIM_WIND_DIR": {
+                  "attempt": 1,
+                  "message_type": "PARAM_VALUE",
+                  "read_received_monotonic": 21578.837578524,
+                  "read_requested_monotonic": 21578.745012311,
+                  "readback": 136.49331665039062,
+                  "requested": 136.4933137396687,
+                  "source_component": 1,
+                  "source_system": 1,
+                  "verified": true
+                },
+                "SIM_WIND_DIR_Z": {
+                  "attempt": 1,
+                  "message_type": "PARAM_VALUE",
+                  "read_received_monotonic": 21578.837419209,
+                  "read_requested_monotonic": 21578.744993383,
+                  "readback": 0.0,
+                  "requested": 0.0,
+                  "source_component": 1,
+                  "source_system": 1,
+                  "verified": true
+                },
+                "SIM_WIND_SPD": {
+                  "attempt": 1,
+                  "message_type": "PARAM_VALUE",
+                  "read_received_monotonic": 21578.940534792,
+                  "read_requested_monotonic": 21578.745031448,
+                  "readback": 1.9758962392807007,
+                  "requested": 1.9758962439808587,
+                  "source_component": 1,
+                  "source_system": 1,
+                  "verified": true
+                },
+                "SIM_WIND_T": {
+                  "attempt": 1,
+                  "message_type": "PARAM_VALUE",
+                  "read_received_monotonic": 21578.836829657,
+                  "read_requested_monotonic": 21578.744904961,
+                  "readback": 1.0,
+                  "requested": 1.0,
+                  "source_component": 1,
+                  "source_system": 1,
+                  "verified": true
+                },
+                "SIM_WIND_TC": {
+                  "attempt": 1,
+                  "message_type": "PARAM_VALUE",
+                  "read_received_monotonic": 21578.837260524,
+                  "read_requested_monotonic": 21578.744973338,
+                  "readback": 0.10000000149011612,
+                  "requested": 0.1,
+                  "source_component": 1,
+                  "source_system": 1,
+                  "verified": true
+                },
+                "SIM_WIND_TURB": {
+                  "attempt": 1,
+                  "message_type": "PARAM_VALUE",
+                  "read_received_monotonic": 21578.837090733,
+                  "read_requested_monotonic": 21578.744948474,
+                  "readback": 0.0,
+                  "requested": 0.0,
+                  "source_component": 1,
+                  "source_system": 1,
+                  "verified": true
+                }
+              },
+              "binding_consumed": true,
+              "binding_hash": "103ce184abe21db63b3ef57384aaf5e724ac86bcebb005bd15495073fd27e5da",
+              "binding_id": "1a673cf2f4114008a969ed9fa24b3260",
+              "clock_domain": "ACCEPTED_DATASET_NAIVE",
+              "clock_mapping": {
+                "UTC_conversion_performed": false,
+                "binding_hash": "103ce184abe21db63b3ef57384aaf5e724ac86bcebb005bd15495073fd27e5da",
+                "binding_id": "1a673cf2f4114008a969ed9fa24b3260",
+                "clock_rate_assumed": false,
+                "context_sha256": "972e34fd9f4d7549d699a295b20389ca585ca8a125c0b5de811542fdd5e489a4",
+                "dataset_equation": "accepted_effective_climate_epoch + mission_elapsed_s",
+                "declared_anchor_observed": false,
+                "effective_climate_epoch": "2026-10-28T16:00:00",
+                "first_packet_rebase": false,
+                "forcing_file_sha256": "441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc",
+                "handoff_hash": "8b187e7b4c1f7a39274bf09f1b907331f4631f401bdbccbbdb65fe977911ad6d",
+                "mapping_hash": "68c176a678c6827d3c763537bdd9c33af09f04142fb77a395e005b416c9a9f17",
+                "measured_rate_diagnostic": {
+                  "delta_monotonic_s": 0.017968893000215758,
+                  "delta_plant_s": 0.01699999999999946,
+                  "plant_seconds_per_monotonic_second": 0.9460794273634628
+                },
+                "mission_elapsed_equation": "plant_time_s - declared_binding_plant_epoch_s",
+                "model_id": "ca8cc9e2389af18b33fbcbfb2dc42fb809d485759dafd5e1ed5101e66fef7ccd",
+                "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                "monotonic_role": "local receipt/freshness/cadence only; no epoch or rate inference",
+                "observation": {
+                  "forcing_timestamp": "2026-10-28T16:00:14.052000",
+                  "message_type": "ATTITUDE",
+                  "mission_elapsed_s": 14.052,
+                  "plant_time_s": 14.052,
+                  "raw_time_boot_ms": 14052,
+                  "received_monotonic_s": 21578.658073356,
+                  "sequence": 230,
+                  "source_component": 1,
+                  "source_system": 1
+                },
+                "plant_epoch_s": 0.0,
+                "previous_observation": {
+                  "forcing_timestamp": "2026-10-28T16:00:14.035000",
+                  "message_type": "SYSTEM_TIME",
+                  "mission_elapsed_s": 14.035,
+                  "plant_time_s": 14.035,
+                  "raw_time_boot_ms": 14035,
+                  "received_monotonic_s": 21578.640104463,
+                  "sequence": 229,
+                  "source_component": 1,
+                  "source_system": 1
+                },
+                "schema": "Layer6-native-clock-mapping-r4.04-v1",
+                "scope": "observed-source-to-dataset-and-monotonic-receipt-only",
+                "session_id": "7cf238ea34ca48aca2532f0e7658cb3a",
+                "synchronized_absolute_clocks": false
+              },
+              "context_sha256": "972e34fd9f4d7549d699a295b20389ca585ca8a125c0b5de811542fdd5e489a4",
+              "effective_climate_epoch": "2026-10-28T16:00:00",
+              "environment_position_received_monotonic": 21578.60558926,
+              "environment_position_source": "MAVLink/GLOBAL_POSITION_INT",
+              "environment_position_time_s": 14.002,
+              "environment_query": {
+                "altitude_agl_m": 0.1153120680437496,
+                "altitude_msl_m": 1798.64,
+                "aspect_deg": 5.431459903717041,
+                "curvature_raw": 0.008344902510259076,
+                "curvature_scaled": 0.008344902510259076,
+                "ground_elevation_m": 1798.5246879319564,
+                "latitude": 40.0099998,
+                "longitude": -105.2999995,
+                "slope_deg": 25.910734176635742,
+                "terrain_aspect_band": 3,
+                "terrain_elevation_band": 1,
+                "terrain_slope_band": 2,
+                "terrain_source": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/terrain_obstacles.tif",
+                "time": "2026-10-28T16:00:14.052000",
+                "vertical_reference": "sea-level (MSL); ground=shared-DEM:/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/terrain_obstacles.tif"
+              },
+              "forcing_file_sha256": "441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc",
+              "forcing_path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/internet_datasets/climate_twin/openmeteo_24h.csv",
+              "handoff_hash": "8b187e7b4c1f7a39274bf09f1b907331f4631f401bdbccbbdb65fe977911ad6d",
+              "legacy_dataset_used": false,
+              "mission_elapsed_s": 14.052,
+              "model_id": "ca8cc9e2389af18b33fbcbfb2dc42fb809d485759dafd5e1ed5101e66fef7ccd",
+              "model_output_semantics": null,
+              "model_output_semantics_status": "unavailable; no fabricated metadata",
+              "model_outputs": {
+                "Du_Dt": 0.033709276530539886,
+                "Dv_Dt": -0.035607447909782965,
+                "Dw_Dt": 0.01562950035621387,
+                "actual_vapor_pressure": 385.68591324232216,
+                "actual_vapor_pressure_local": 386.667672097876,
+                "air_density": 0.9792979118355178,
+                "aspect_deg": 5.431459903717041,
+                "aspect_rad": 0.09479685850991657,
+                "atmospheric_emissivity": 0.6805029575123543,
+                "barnes_distance_m": 1191.9852679080766,
+                "barnes_second_pass_applied": 1.0,
+                "barnes_weight": 0.9964542289482567,
+                "cloud_fraction": 0.11679770769949273,
+                "coefficient_Xs": 0.44135085714285716,
+                "coefficient_Ys": 0.11712828571428571,
+                "coefficient_Zs": 0.724145942857143,
+                "continuity_residual": -0.024659417294827613,
+                "curvature_raw": 0.008394115013586608,
+                "curvature_scaled": 0.008344902510259076,
+                "dewpoint_lapse_rate": 0.0055072563135641645,
+                "dewpoint_local": -6.14336901138096,
+                "dewpoint_reference": 3.7622024844480886,
+                "dewpoint_source": -6.176604453223831,
+                "diagnostic_vertical_wind": -0.6322976872411424,
+                "diffuse_transmissivity": 0.0325469086437988,
+                "direct_transmissivity": 0.4922272001340509,
+                "du_dt": -7.327359266831097e-06,
+                "du_dx": 7.036614092033045e-06,
+                "du_dy": -6.978856990909055e-06,
+                "du_dz": -0.05335489565689846,
+                "dv_dt": -6.0243920085504157e-05,
+                "dv_dx": 3.8108983798101904e-06,
+                "dv_dy": 1.2924064504593602e-07,
+                "dv_dz": 0.05621118978690061,
+                "dw_dt": 2.9551382393033757e-05,
+                "dw_dx": -2.172106025210008e-06,
+                "dw_dy": 2.587486054306254e-07,
+                "dw_dz": -0.024666583149564693,
+                "enabled_source_count": 5.0,
+                "fmi_time_s": 3.0,
+                "formula_error_code": 0.0,
+                "formula_valid": 1.0,
+                "longwave_radiation": 277.775910931273,
+                "precipitation_local": 0.0,
+                "precipitation_reference": 0.0,
+                "raw_relative_humidity_local": 18.588088489685756,
+                "raw_shortwave_radiation": 0.0,
+                "raw_surface_pressure_pa": 82131.58070572575,
+                "raw_temperature_local": 18.13170410149559,
+                "raw_wind_direction_terrain_rad": 2.2509491386035108,
+                "raw_wind_speed_terrain": 2.4721994987849754,
+                "relative_humidity_local": 18.468966802765802,
+                "rh700_used": 18.32301774642454,
+                "saturation_vapor_pressure": 2080.59846365548,
+                "saturation_vapor_pressure_local": 2080.190614072189,
+                "saturation_vapor_pressure_source": 2080.59846365548,
+                "shortwave_radiation": 295.8763720073542,
+                "slope_deg": 25.910734176635742,
+                "slope_in_wind_direction": -0.21499513406838042,
+                "slope_in_wind_direction_raw": -0.21499513406838042,
+                "slope_rad": 0.4522276229913157,
+                "solar_azimuth": 1.0352980563189444,
+                "solar_declination": -0.24714159663950275,
+                "solar_hour_angle": 1.0482156599269272,
+                "solar_incidence": 1.6304989231736757,
+                "solar_zenith": 1.3557477229153407,
+                "source_elevation_barnes": 1807.0608673472825,
+                "surface_pressure_forecast_pa": 82045.17379675558,
+                "surface_pressure_pa": 82131.58070572575,
+                "temperature_local": 18.49301144917564,
+                "temperature_reference": 29.82286410149559,
+                "temporal_interp_t0_s": 0.0,
+                "temporal_interp_t1_s": 3600.0,
+                "terrain_dzdx_used": -0.046059069869351155,
+                "terrain_dzdy_used": -0.4849260369138704,
+                "vertical_interp_lower_level": 10.0,
+                "vertical_interp_upper_level": 10.0,
+                "wind_3dw_profile_mode": 0.0,
+                "wind_3dw_valid": 1.0,
+                "wind_direction_background_deg": 123.8177387400377,
+                "wind_direction_background_rad": 2.161027213387793,
+                "wind_direction_diversion": 0.08992192521571792,
+                "wind_direction_terrain_deg": 136.49249780454736,
+                "wind_direction_terrain_rad": 2.382243490960483,
+                "wind_speed_3d": 2.0746002825287,
+                "wind_speed_background": 2.813129142365896,
+                "wind_speed_terrain": 2.7464900331751685,
+                "wind_u": -2.337182013487717,
+                "wind_u_3dw": -1.3602844694144913,
+                "wind_u_terrain": -1.8908198243169863,
+                "wind_v": 1.5656550729511853,
+                "wind_v_3dw": 1.4331057634548126,
+                "wind_v_terrain": 1.9919859171943006,
+                "wind_weight": 0.8788076812946483
+              },
+              "navigation_truth_injection": false,
+              "ok": true,
+              "plant_epoch_s": 0.0,
+              "plant_time_s": 14.052,
+              "plant_time_source": "MAVLink/ATTITUDE.time_boot_ms",
+              "readback_verified": true,
+              "reason": "horizontal_wind_parameters_readback_verified",
+              "runtime_clock_mapping_verified": true,
+              "runtime_clock_synchronization_verified": false,
+              "sampled_monotonic": 21578.734206335,
+              "schema": "Layer6-bound-environment-consumption-v1",
+              "simulation_time_dataset": "2026-10-28T16:00:14.052000",
+              "terrain_path": "/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/boulder_multilayer_map_builder_v20260814_1215/outputs/region_v1_map/terrain_obstacles.tif",
+              "timezone_status": "unspecified",
+              "unsupported_fields": {
+                "density": {
+                  "applied": false,
+                  "reason": "not implemented by pinned ArduPilot SIM_JSBSim bridge",
+                  "value": null,
+                  "verified": false
+                },
+                "humidity": {
+                  "applied": false,
+                  "reason": "not implemented by pinned ArduPilot SIM_JSBSim bridge",
+                  "value": null,
+                  "verified": false
+                },
+                "precipitation": {
+                  "applied": false,
+                  "reason": "not implemented by pinned ArduPilot SIM_JSBSim bridge",
+                  "value": null,
+                  "verified": false
+                },
+                "pressure": {
+                  "applied": false,
+                  "reason": "not implemented by pinned ArduPilot SIM_JSBSim bridge",
+                  "value": null,
+                  "verified": false
+                },
+                "temperature": {
+                  "applied": false,
+                  "reason": "not implemented by pinned ArduPilot SIM_JSBSim bridge",
+                  "value": null,
+                  "verified": false
+                },
+                "vertical_wind": {
+                  "applied": false,
+                  "reason": "not implemented by pinned ArduPilot SIM_JSBSim bridge",
+                  "value": null,
+                  "verified": false
+                }
+              },
+              "updated_monotonic": 21578.987451278
+            },
+            "mavlink_connected": true,
+            "mavlink_endpoint": "tcp:127.0.0.1:14552",
+            "target_system": 1,
+            "target_component": 1,
+            "session_id": "753d3ec1327541408feece37aec5e411",
+            "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+            "mode": "MANUAL",
+            "armed": false,
+            "throttle": 0.0,
+            "landed_state": "ON_GROUND",
+            "groundspeed_m_s": 0.00446040416136384,
+            "relative_altitude_m": 0.0,
+            "vertical_speed_m_s": -1.3496942301571835e-05,
+            "last_statustext": "EKF3 IMU0 MAG0 initial yaw alignment complete",
+            "last_command_ack": {
+              "command": 410,
+              "result": 4
+            },
+            "attitude": {
+              "qw": 0.6692881519701321,
+              "qx": -0.26503225905722755,
+              "qy": 0.6343247829373941,
+              "qz": 0.28185695138288797,
+              "quaternion_wxyz": [
+                0.6692881519701321,
+                -0.26503225905722755,
+                0.6343247829373941,
+                0.28185695138288797
+              ],
+              "roll": 0.051283948656129244,
+              "pitch": 1.5159167248196141,
+              "yaw": 0.84572049706613,
+              "roll_rate": 0.00012951479584444314,
+              "pitch_rate": -0.0027433258946985006,
+              "yaw_rate": 0.00011062486737500876,
+              "source": "MAVLink/ATTITUDE_QUATERNION",
+              "frame": "BODY_FRD_TO_NED",
+              "unit_angle": "rad",
+              "unit_rate": "rad/s",
+              "plant_time_s": 14.802,
+              "display_offset_applied_to_body": false
+            },
+            "display_attitude": {
+              "time_boot_ms": 14802,
+              "roll": 0.051283858716487885,
+              "pitch": 1.5159169435501099,
+              "yaw": 0.8457205891609192,
+              "rollspeed": 0.00012951479584444314,
+              "pitchspeed": -0.0027433258946985006,
+              "yawspeed": 0.00011062486737500876
+            },
+            "imu": {
+              "accel_x_m_s2": 9.7674234,
+              "accel_y_m_s2": 0.0,
+              "accel_z_m_s2": -1.04931155,
+              "gyro_x_rad_s": 0.0,
+              "gyro_y_rad_s": -0.002,
+              "gyro_z_rad_s": 0.0,
+              "source": "MAVLink/SCALED_IMU",
+              "frame": "BODY_FRD",
+              "plant_time_s": 14.809000000000001,
+              "time_boot_ms": 14809,
+              "history_sequence": 779,
+              "timestamp_monotonic": 21579.420532658,
+              "wire_sha256": "120f69ad0768de913bb7ccbbf0947bc4c26646ef87fcc8686fc8d072f66299ed",
+              "session_id": "753d3ec1327541408feece37aec5e411",
+              "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+              "source_time_delta_ms": 20,
+              "source_time_relation": "forward"
+            },
+            "imu_samples": [],
+            "imu_history": {
+              "requested": false,
+              "max_samples": 64,
+              "capacity": 4096,
+              "retained_primary_count": 388,
+              "total_received_primary": 388,
+              "session_id": "753d3ec1327541408feece37aec5e411",
+              "oldest_available_time_boot_ms": 7066,
+              "newest_available_time_boot_ms": 14809,
+              "truncated_by_limit": false,
+              "truncated_by_bytes": false,
+              "excluded_invalid_samples": 0,
+              "returned_count": 0,
+              "oldest_returned_time_boot_ms": null,
+              "newest_returned_time_boot_ms": null
+            },
+            "telemetry_age_s": {
+              "HEARTBEAT": 0.7812195260012231,
+              "ATTITUDE": 0.0007450250013789628,
+              "GLOBAL_POSITION_INT": 0.0004592930017679464,
+              "VFR_HUD": 0.045444104998750845,
+              "EXTENDED_SYS_STATE": 0.14990390399907483,
+              "SYS_STATUS": 0.11014404800152988,
+              "SERVO_OUTPUT_RAW": 0.0003281960016465746,
+              "RAW_IMU": 0.7808351050007332,
+              "SCALED_IMU2": 0.7806391929989331,
+              "SCALED_IMU3": 0.7804535479990591,
+              "EKF_STATUS_REPORT": 0.15017769300175132,
+              "SCALED_IMU": 0.00012522999895736575,
+              "ATTITUDE_QUATERNION": 0.000625102999038063
+            },
+            "telemetry_metadata": {
+              "HEARTBEAT": {
+                "source": "MAVLink/HEARTBEAT",
+                "source_system": 1,
+                "source_component": 1,
+                "source_time": null,
+                "received_monotonic": 21578.639438362,
+                "wire_sha256": "1512499ef17c1e45fdf0f581b40c0d4e5cdd34869e09d78b1d96f25d86af87c5",
+                "history_sequence": null,
+                "valid": true,
+                "issues": {},
+                "freshness": {
+                  "fresh": true,
+                  "reason": "fresh_local_observation",
+                  "age_s": 0.7812195260012231,
+                  "receipt_age_s": 0.7812195260012231,
+                  "max_age_s": 2.0,
+                  "source_progress": "source_time_not_supplied",
+                  "source_age_s": null,
+                  "source_latency_verified": false,
+                  "clock_rate_assumed": false,
+                  "source_time_rebased": false,
+                  "basis": "local_monotonic_receipt_and_source_progress",
+                  "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                  "evaluated_monotonic": 21579.420657888
+                }
+              },
+              "ATTITUDE": {
+                "source": "MAVLink/ATTITUDE",
+                "source_system": 1,
+                "source_component": 1,
+                "source_time": {
+                  "field": "time_boot_ms",
+                  "value": 14802,
+                  "unit": "ms",
+                  "clock_domain": "FCU_BOOT"
+                },
+                "received_monotonic": 21579.419912863,
+                "wire_sha256": "7b44a704378399663285b32206ad7eab37078d5c360163fe44765bae823d94ce",
+                "history_sequence": null,
+                "valid": true,
+                "issues": {},
+                "freshness": {
+                  "fresh": true,
+                  "reason": "fresh_local_observation",
+                  "age_s": 0.0007450250013789628,
+                  "receipt_age_s": 0.0007450250013789628,
+                  "max_age_s": 0.2,
+                  "source_progress": "advanced",
+                  "source_age_s": null,
+                  "source_latency_verified": false,
+                  "clock_rate_assumed": false,
+                  "source_time_rebased": false,
+                  "basis": "local_monotonic_receipt_and_source_progress",
+                  "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                  "evaluated_monotonic": 21579.420657888
+                }
+              },
+              "GLOBAL_POSITION_INT": {
+                "source": "MAVLink/GLOBAL_POSITION_INT",
+                "source_system": 1,
+                "source_component": 1,
+                "source_time": {
+                  "field": "time_boot_ms",
+                  "value": 14802,
+                  "unit": "ms",
+                  "clock_domain": "FCU_BOOT"
+                },
+                "received_monotonic": 21579.420198595,
+                "wire_sha256": "687703caa356b874f6fae035c9a1b6f7f1845b4e0b0de4b576531b2f9440212d",
+                "history_sequence": null,
+                "valid": true,
+                "issues": {},
+                "freshness": {
+                  "fresh": true,
+                  "reason": "fresh_local_observation",
+                  "age_s": 0.0004592930017679464,
+                  "receipt_age_s": 0.0004592930017679464,
+                  "max_age_s": 0.2,
+                  "source_progress": "advanced",
+                  "source_age_s": null,
+                  "source_latency_verified": false,
+                  "clock_rate_assumed": false,
+                  "source_time_rebased": false,
+                  "basis": "local_monotonic_receipt_and_source_progress",
+                  "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                  "evaluated_monotonic": 21579.420657888
+                }
+              },
+              "VFR_HUD": {
+                "source": "MAVLink/VFR_HUD",
+                "source_system": 1,
+                "source_component": 1,
+                "source_time": null,
+                "received_monotonic": 21579.375213783,
+                "wire_sha256": "fa9073acabe240e89b0ebb6f8e0e1d77fb1101a8b3827423d7cee5159041ff36",
+                "history_sequence": null,
+                "valid": true,
+                "issues": {},
+                "freshness": {
+                  "fresh": true,
+                  "reason": "fresh_local_observation",
+                  "age_s": 0.045444104998750845,
+                  "receipt_age_s": 0.045444104998750845,
+                  "max_age_s": 0.2,
+                  "source_progress": "source_time_not_supplied",
+                  "source_age_s": null,
+                  "source_latency_verified": false,
+                  "clock_rate_assumed": false,
+                  "source_time_rebased": false,
+                  "basis": "local_monotonic_receipt_and_source_progress",
+                  "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                  "evaluated_monotonic": 21579.420657888
+                }
+              },
+              "EXTENDED_SYS_STATE": {
+                "source": "MAVLink/EXTENDED_SYS_STATE",
+                "source_system": 1,
+                "source_component": 1,
+                "source_time": null,
+                "received_monotonic": 21579.270753984,
+                "wire_sha256": "24d609bc365eeb503767ee7a3d7e9fdb00f0e01d26cbb303042668e028ad7c20",
+                "history_sequence": null,
+                "valid": true,
+                "issues": {},
+                "freshness": {
+                  "fresh": true,
+                  "reason": "fresh_local_observation",
+                  "age_s": 0.14990390399907483,
+                  "receipt_age_s": 0.14990390399907483,
+                  "max_age_s": 0.5,
+                  "source_progress": "source_time_not_supplied",
+                  "source_age_s": null,
+                  "source_latency_verified": false,
+                  "clock_rate_assumed": false,
+                  "source_time_rebased": false,
+                  "basis": "local_monotonic_receipt_and_source_progress",
+                  "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                  "evaluated_monotonic": 21579.420657888
+                }
+              },
+              "SYS_STATUS": {
+                "source": "MAVLink/SYS_STATUS",
+                "source_system": 1,
+                "source_component": 1,
+                "source_time": null,
+                "received_monotonic": 21579.31051384,
+                "wire_sha256": "f6219674f6d588e541a4b724a6b7ea515127e41caec6fa04a88b25a15685025b",
+                "history_sequence": 766,
+                "valid": true,
+                "issues": {},
+                "freshness": {
+                  "fresh": true,
+                  "reason": "fresh_local_observation",
+                  "age_s": 0.11014404800152988,
+                  "receipt_age_s": 0.11014404800152988,
+                  "max_age_s": 0.5,
+                  "source_progress": "source_time_not_supplied",
+                  "source_age_s": null,
+                  "source_latency_verified": false,
+                  "clock_rate_assumed": false,
+                  "source_time_rebased": false,
+                  "basis": "local_monotonic_receipt_and_source_progress",
+                  "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                  "evaluated_monotonic": 21579.420657888
+                }
+              },
+              "SERVO_OUTPUT_RAW": {
+                "source": "MAVLink/SERVO_OUTPUT_RAW",
+                "source_system": 1,
+                "source_component": 1,
+                "source_time": {
+                  "field": "time_usec",
+                  "value": 14802499,
+                  "unit": "us",
+                  "clock_domain": "message_native_origin_unqualified"
+                },
+                "received_monotonic": 21579.420329692,
+                "wire_sha256": "f0b20d5870ebc555ff608a657592fc55bb15d7b558c36e01ee3031def7ef244e",
+                "history_sequence": 778,
+                "valid": true,
+                "issues": {},
+                "freshness": {
+                  "fresh": true,
+                  "reason": "fresh_local_observation",
+                  "age_s": 0.0003281960016465746,
+                  "receipt_age_s": 0.0003281960016465746,
+                  "max_age_s": 0.2,
+                  "source_progress": "advanced",
+                  "source_age_s": null,
+                  "source_latency_verified": false,
+                  "clock_rate_assumed": false,
+                  "source_time_rebased": false,
+                  "basis": "local_monotonic_receipt_and_source_progress",
+                  "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                  "evaluated_monotonic": 21579.420657888
+                }
+              },
+              "RAW_IMU": {
+                "source": "MAVLink/RAW_IMU",
+                "source_system": 1,
+                "source_component": 1,
+                "source_time": {
+                  "field": "time_usec",
+                  "value": 14035833,
+                  "unit": "us",
+                  "clock_domain": "message_native_origin_unqualified"
+                },
+                "received_monotonic": 21578.639822783,
+                "wire_sha256": "cf45d79d3c37bb0abcddd054e6fa449c95572057d5acec5aed04d5c4f2f12f51",
+                "history_sequence": 700,
+                "valid": true,
+                "issues": {},
+                "freshness": {
+                  "fresh": false,
+                  "reason": "stale",
+                  "age_s": 0.7808351050007332,
+                  "receipt_age_s": 0.7808351050007332,
+                  "max_age_s": 0.15,
+                  "source_progress": "advanced",
+                  "source_age_s": null,
+                  "source_latency_verified": false,
+                  "clock_rate_assumed": false,
+                  "source_time_rebased": false,
+                  "basis": "local_monotonic_receipt_and_source_progress",
+                  "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                  "evaluated_monotonic": 21579.420657888
+                }
+              },
+              "SCALED_IMU2": {
+                "source": "MAVLink/SCALED_IMU2",
+                "source_system": 1,
+                "source_component": 1,
+                "source_time": {
+                  "field": "time_boot_ms",
+                  "value": 14035,
+                  "unit": "ms",
+                  "clock_domain": "FCU_BOOT"
+                },
+                "received_monotonic": 21578.640018695,
+                "wire_sha256": "2cec4e684b51737a0e4949ca1afcf82eeecdff8142094175288f27344f73605b",
+                "history_sequence": 701,
+                "valid": true,
+                "issues": {},
+                "freshness": {
+                  "fresh": false,
+                  "reason": "stale",
+                  "age_s": 0.7806391929989331,
+                  "receipt_age_s": 0.7806391929989331,
+                  "max_age_s": 0.15,
+                  "source_progress": "advanced",
+                  "source_age_s": null,
+                  "source_latency_verified": false,
+                  "clock_rate_assumed": false,
+                  "source_time_rebased": false,
+                  "basis": "local_monotonic_receipt_and_source_progress",
+                  "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                  "evaluated_monotonic": 21579.420657888
+                }
+              },
+              "SCALED_IMU3": {
+                "source": "MAVLink/SCALED_IMU3",
+                "source_system": 1,
+                "source_component": 1,
+                "source_time": {
+                  "field": "time_boot_ms",
+                  "value": 14035,
+                  "unit": "ms",
+                  "clock_domain": "FCU_BOOT"
+                },
+                "received_monotonic": 21578.64020434,
+                "wire_sha256": "73232d36f00444c8104f52d83829a9e007f8324c2f3a9a2a900c3db22fc30c9a",
+                "history_sequence": 702,
+                "valid": true,
+                "issues": {},
+                "freshness": {
+                  "fresh": false,
+                  "reason": "stale",
+                  "age_s": 0.7804535479990591,
+                  "receipt_age_s": 0.7804535479990591,
+                  "max_age_s": 0.15,
+                  "source_progress": "advanced",
+                  "source_age_s": null,
+                  "source_latency_verified": false,
+                  "clock_rate_assumed": false,
+                  "source_time_rebased": false,
+                  "basis": "local_monotonic_receipt_and_source_progress",
+                  "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                  "evaluated_monotonic": 21579.420657888
+                }
+              },
+              "EKF_STATUS_REPORT": {
+                "source": "MAVLink/EKF_STATUS_REPORT",
+                "source_system": 1,
+                "source_component": 1,
+                "source_time": null,
+                "received_monotonic": 21579.270480195,
+                "wire_sha256": "49183e57dcf176cb8b54dd1be1093db19ff4fe7039eabfb1a4af111499fe8ab2",
+                "history_sequence": 761,
+                "valid": true,
+                "issues": {},
+                "freshness": {
+                  "fresh": true,
+                  "reason": "fresh_local_observation",
+                  "age_s": 0.15017769300175132,
+                  "receipt_age_s": 0.15017769300175132,
+                  "max_age_s": 0.5,
+                  "source_progress": "source_time_not_supplied",
+                  "source_age_s": null,
+                  "source_latency_verified": false,
+                  "clock_rate_assumed": false,
+                  "source_time_rebased": false,
+                  "basis": "local_monotonic_receipt_and_source_progress",
+                  "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                  "evaluated_monotonic": 21579.420657888
+                }
+              },
+              "SCALED_IMU": {
+                "source": "MAVLink/SCALED_IMU",
+                "source_system": 1,
+                "source_component": 1,
+                "source_time": {
+                  "field": "time_boot_ms",
+                  "value": 14809,
+                  "unit": "ms",
+                  "clock_domain": "FCU_BOOT"
+                },
+                "received_monotonic": 21579.420532658,
+                "wire_sha256": "120f69ad0768de913bb7ccbbf0947bc4c26646ef87fcc8686fc8d072f66299ed",
+                "history_sequence": 779,
+                "valid": true,
+                "issues": {},
+                "freshness": {
+                  "fresh": true,
+                  "reason": "fresh_local_observation",
+                  "age_s": 0.00012522999895736575,
+                  "receipt_age_s": 0.00012522999895736575,
+                  "max_age_s": 0.15,
+                  "source_progress": "advanced",
+                  "source_age_s": null,
+                  "source_latency_verified": false,
+                  "clock_rate_assumed": false,
+                  "source_time_rebased": false,
+                  "basis": "local_monotonic_receipt_and_source_progress",
+                  "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                  "evaluated_monotonic": 21579.420657888
+                }
+              },
+              "ATTITUDE_QUATERNION": {
+                "source": "MAVLink/ATTITUDE_QUATERNION",
+                "source_system": 1,
+                "source_component": 1,
+                "source_time": {
+                  "field": "time_boot_ms",
+                  "value": 14802,
+                  "unit": "ms",
+                  "clock_domain": "FCU_BOOT"
+                },
+                "received_monotonic": 21579.420032785,
+                "wire_sha256": "4544bd471dbc37e74eda53480607fe95dd797f7775e4407839936d8e2c0a32f4",
+                "history_sequence": 777,
+                "valid": true,
+                "issues": {},
+                "freshness": {
+                  "fresh": true,
+                  "reason": "fresh_local_observation",
+                  "age_s": 0.000625102999038063,
+                  "receipt_age_s": 0.000625102999038063,
+                  "max_age_s": 0.2,
+                  "source_progress": "advanced",
+                  "source_age_s": null,
+                  "source_latency_verified": false,
+                  "clock_rate_assumed": false,
+                  "source_time_rebased": false,
+                  "basis": "local_monotonic_receipt_and_source_progress",
+                  "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                  "evaluated_monotonic": 21579.420657888
+                }
+              }
+            },
+            "telemetry_received_monotonic": {
+              "HEARTBEAT": 21578.639438362,
+              "ATTITUDE": 21579.419912863,
+              "GLOBAL_POSITION_INT": 21579.420198595,
+              "VFR_HUD": 21579.375213783,
+              "EXTENDED_SYS_STATE": 21579.270753984,
+              "SYS_STATUS": 21579.31051384,
+              "SERVO_OUTPUT_RAW": 21579.420329692,
+              "RAW_IMU": 21578.639822783,
+              "SCALED_IMU2": 21578.640018695,
+              "SCALED_IMU3": 21578.64020434,
+              "EKF_STATUS_REPORT": 21579.270480195,
+              "SCALED_IMU": 21579.420532658,
+              "ATTITUDE_QUATERNION": 21579.420032785
+            },
+            "plant_time_s": 14.809000000000001,
+            "plant_time_source": "MAVLink/SCALED_IMU.time_boot_ms",
+            "airspeed_m_s": 1.7946184873580933,
+            "heading_deg": 48,
+            "latitude_deg": 40.0099997,
+            "longitude_deg": -105.2999995,
+            "altitude_msl_m": 1798.64,
+            "velocity_n_m_s": 0.0,
+            "velocity_e_m_s": 0.0,
+            "velocity_d_m_s": 0.0,
+            "battery": {
+              "voltage_v": 12.6,
+              "current_a": 0.0,
+              "remaining_percent": 100
+            },
+            "fcu_health": {
+              "onboard_control_sensors_present": 320994367,
+              "onboard_control_sensors_enabled": 304185407,
+              "onboard_control_sensors_health": 322011199,
+              "load": 0,
+              "voltage_battery": 12600,
+              "current_battery": 0,
+              "battery_remaining": 100,
+              "drop_rate_comm": 0,
+              "errors_comm": 0,
+              "errors_count1": 0,
+              "errors_count2": 0,
+              "errors_count3": 0,
+              "errors_count4": 0,
+              "onboard_control_sensors_present_extended": null,
+              "onboard_control_sensors_enabled_extended": null,
+              "onboard_control_sensors_health_extended": null
+            },
+            "ekf_status": {
+              "flags": 895,
+              "velocity_variance": 0.0,
+              "pos_horiz_variance": 0.0,
+              "pos_vert_variance": 0.0,
+              "compass_variance": 0.0,
+              "terrain_alt_variance": 0.0,
+              "airspeed_variance": null
+            },
+            "servo_output_raw": {
+              "servo1_raw": 1500,
+              "servo2_raw": 1500,
+              "servo3_raw": 1000,
+              "servo4_raw": 1000,
+              "servo5_raw": 0,
+              "servo6_raw": 0,
+              "servo7_raw": 0,
+              "servo8_raw": 0,
+              "servo9_raw": null,
+              "servo10_raw": null,
+              "servo11_raw": null,
+              "servo12_raw": null,
+              "servo13_raw": null,
+              "servo14_raw": null,
+              "servo15_raw": null,
+              "servo16_raw": null
+            },
+            "applied_pilot_command": {
+              "aileron": 0.0,
+              "elevator": 0.0,
+              "throttle": 0.0,
+              "rudder": 0.0
+            },
+            "applied_transaction_id": null,
+            "command_first_sent_monotonic": null,
+            "manual_sent_monotonic": null,
+            "command_first_sent_plant_time_s": null,
+            "command_first_sent_plant_time_bounds": null,
+            "command_correlation": {
+              "schema": "Layer6-command-correlation-v1",
+              "available": false,
+              "reason": "no_matching_active_sent_command",
+              "manual_sent_monotonic": null,
+              "session_id": "753d3ec1327541408feece37aec5e411",
+              "record": null
+            },
+            "telemetry_buffer_samples": 1214,
+            "telemetry_latest_types": [
+              "ATTITUDE",
+              "ATTITUDE_QUATERNION",
+              "EKF_STATUS_REPORT",
+              "EXTENDED_SYS_STATE",
+              "GLOBAL_POSITION_INT",
+              "HEARTBEAT",
+              "RAW_IMU",
+              "SCALED_IMU",
+              "SCALED_IMU2",
+              "SCALED_IMU3",
+              "SERVO_OUTPUT_RAW",
+              "SYS_STATUS",
+              "VFR_HUD"
+            ],
+            "telemetry_channels": {
+              "SCALED_IMU": {
+                "received": true,
+                "available": true,
+                "reason": "converted",
+                "received_count": 388,
+                "sample": {
+                  "source": "MAVLink/SCALED_IMU",
+                  "source_time": {
+                    "field": "time_boot_ms",
+                    "value": 14809,
+                    "unit": "ms",
+                    "clock_domain": "FCU_BOOT"
+                  },
+                  "history_sequence": 779,
+                  "wire_sha256": "120f69ad0768de913bb7ccbbf0947bc4c26646ef87fcc8686fc8d072f66299ed"
+                },
+                "fresh": true
+              },
+              "SCALED_IMU2": {
+                "received": true,
+                "available": true,
+                "reason": "converted",
+                "received_count": 8,
+                "sample": {
+                  "source": "MAVLink/SCALED_IMU2",
+                  "source_time": {
+                    "field": "time_boot_ms",
+                    "value": 14035,
+                    "unit": "ms",
+                    "clock_domain": "FCU_BOOT"
+                  },
+                  "history_sequence": 701,
+                  "wire_sha256": "2cec4e684b51737a0e4949ca1afcf82eeecdff8142094175288f27344f73605b"
+                },
+                "fresh": false
+              },
+              "SCALED_IMU3": {
+                "received": true,
+                "available": true,
+                "reason": "converted",
+                "received_count": 8,
+                "sample": {
+                  "source": "MAVLink/SCALED_IMU3",
+                  "source_time": {
+                    "field": "time_boot_ms",
+                    "value": 14035,
+                    "unit": "ms",
+                    "clock_domain": "FCU_BOOT"
+                  },
+                  "history_sequence": 702,
+                  "wire_sha256": "73232d36f00444c8104f52d83829a9e007f8324c2f3a9a2a900c3db22fc30c9a"
+                },
+                "fresh": false
+              },
+              "RAW_IMU": {
+                "received": true,
+                "available": true,
+                "reason": "converted",
+                "received_count": 8,
+                "sample": {
+                  "source": "MAVLink/RAW_IMU",
+                  "source_time": {
+                    "field": "time_usec",
+                    "value": 14035833,
+                    "unit": "us",
+                    "clock_domain": "message_native_origin_unqualified"
+                  },
+                  "history_sequence": 700,
+                  "wire_sha256": "cf45d79d3c37bb0abcddd054e6fa449c95572057d5acec5aed04d5c4f2f12f51"
+                },
+                "fresh": false
+              },
+              "HIGHRES_IMU": {
+                "received": false,
+                "available": false,
+                "reason": "not_received",
+                "received_count": 0,
+                "sample": null,
+                "fresh": false
+              },
+              "ATTITUDE_QUATERNION": {
+                "received": true,
+                "available": true,
+                "reason": "converted",
+                "received_count": 155,
+                "sample": {
+                  "source": "MAVLink/ATTITUDE_QUATERNION",
+                  "source_time": {
+                    "field": "time_boot_ms",
+                    "value": 14802,
+                    "unit": "ms",
+                    "clock_domain": "FCU_BOOT"
+                  },
+                  "history_sequence": 777,
+                  "wire_sha256": "4544bd471dbc37e74eda53480607fe95dd797f7775e4407839936d8e2c0a32f4"
+                },
+                "fresh": true
+              },
+              "SYS_STATUS": {
+                "received": true,
+                "available": true,
+                "reason": "converted",
+                "received_count": 17,
+                "sample": {
+                  "source": "MAVLink/SYS_STATUS",
+                  "source_time": null,
+                  "history_sequence": 766,
+                  "wire_sha256": "f6219674f6d588e541a4b724a6b7ea515127e41caec6fa04a88b25a15685025b"
+                },
+                "fresh": true
+              },
+              "EKF_STATUS_REPORT": {
+                "received": true,
+                "available": true,
+                "reason": "converted",
+                "received_count": 39,
+                "sample": {
+                  "source": "MAVLink/EKF_STATUS_REPORT",
+                  "source_time": null,
+                  "history_sequence": 761,
+                  "wire_sha256": "49183e57dcf176cb8b54dd1be1093db19ff4fe7039eabfb1a4af111499fe8ab2"
+                },
+                "fresh": true
+              },
+              "SERVO_OUTPUT_RAW": {
+                "received": true,
+                "available": true,
+                "reason": "converted",
+                "received_count": 156,
+                "sample": {
+                  "source": "MAVLink/SERVO_OUTPUT_RAW",
+                  "source_time": {
+                    "field": "time_usec",
+                    "value": 14802499,
+                    "unit": "us",
+                    "clock_domain": "message_native_origin_unqualified"
+                  },
+                  "history_sequence": 778,
+                  "wire_sha256": "f0b20d5870ebc555ff608a657592fc55bb15d7b558c36e01ee3031def7ef244e"
+                },
+                "fresh": true
+              },
+              "ACTUATOR_OUTPUT_STATUS": {
+                "received": false,
+                "available": false,
+                "reason": "not_received",
+                "received_count": 0,
+                "sample": null,
+                "fresh": false
+              }
+            },
+            "digital_pilot_active": false,
+            "timestamp_monotonic": 21579.420657888,
+            "flight_ready": false,
+            "status_quality": {
+              "scope": "observations_only",
+              "absolute_source_age_verified": false,
+              "actuation_authority": false,
+              "execution_correlation_available": false,
+              "last_timeout_stop": null,
+              "native_session_id": "e8b2e55a222943b08759c1e342cef80e",
+              "native_GUI_pid": 155582,
+              "manual_output_inhibited": true,
+              "physical_HOLD_verified": false
+            }
+          },
+          "semantics": "Readiness only; ARM and other actuation require a current verified Layer5 D_exec through invoke",
+          "ground_arm": {
+            "ok": false,
+            "status": "DEFERRED_TO_CURRENT_D_EXEC",
+            "reason": "ground_arm_requires_current_verified_D_exec",
+            "actuation_executed": false
+          },
+          "layer5": {
+            "ok": true,
+            "status": "READY",
+            "nominal_control_ready": true,
+            "reason": null,
+            "flight_release_blockers": [],
+            "readiness_scope": "SITL_CLOSED_LOOP_INTERFACE_ONLY",
+            "current_native_qualification": {
+              "ok": true,
+              "scope": "SITL_CLOSED_LOOP",
+              "execution_profile": "closed_loop_sitl",
+              "identity": {
+                "binding_id": "1a673cf2f4114008a969ed9fa24b3260",
+                "binding_hash": "103ce184abe21db63b3ef57384aaf5e724ac86bcebb005bd15495073fd27e5da",
+                "context_sha256": "972e34fd9f4d7549d699a295b20389ca585ca8a125c0b5de811542fdd5e489a4",
+                "model_id": "ca8cc9e2389af18b33fbcbfb2dc42fb809d485759dafd5e1ed5101e66fef7ccd",
+                "handoff_hash": "8b187e7b4c1f7a39274bf09f1b907331f4631f401bdbccbbdb65fe977911ad6d",
+                "forcing_file_sha256": "441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc",
+                "effective_climate_epoch": "2026-10-28T16:00:00",
+                "plant_epoch_s": 0.0,
+                "session_id": "753d3ec1327541408feece37aec5e411",
+                "monotonic_domain_id": "178d6ee566c436c3a2a07b9d677b0fcbe2ab7d2a2b7ecf80f9c7213ae9409c34",
+                "native_session_id": "e8b2e55a222943b08759c1e342cef80e",
+                "target_system": 1,
+                "target_component": 1
+              },
+              "flight_certified": false,
+              "native_controller_certified": false,
+              "ARM_authorized": false,
+              "per_decision_verification_required": true
+            },
+            "startup_actuation": false,
+            "flight_certified": false,
+            "native_controller_certified": false,
+            "phase_execution_capability": {
+              "phase_supported": {
+                "vertical_takeoff": true,
+                "hover": true,
+                "transition_forward": true,
+                "climb": true,
+                "cruise": true,
+                "turn": true,
+                "approach": true,
+                "transition_back": true,
+                "vertical_landing": true
+              },
+              "scope": "SITL_CLOSED_LOOP",
+              "actuation_authority": false
+            },
+            "semantics": "Live interface readiness; each current MPC D_exec is verified independently"
+          },
+          "reason": "ready",
+          "elapsed_s": 17.182076383000094,
+          "origin_validation": {
+            "verified": true,
+            "distance_m": 0.05409421190940646,
+            "position": {
+              "lat": 40.0099997,
+              "lon": -105.2999995
+            },
+            "source": "Layer6/GUI/MAVLink/GLOBAL_POSITION_INT",
+            "role": "launch_site_validation_only",
+            "navigation_input": false,
+            "native_session_id": "e8b2e55a222943b08759c1e342cef80e",
+            "plant_time_s": 15.589,
+            "reason": "surveyed_origin_confirmed"
+          }
+        },
+        "rtmo_phase_history": [
+          {
+            "cycle": 1,
+            "phase": "on_ground",
+            "sim_time_s": null
+          },
+          {
+            "cycle": 2,
+            "phase": "vertical_takeoff",
+            "sim_time_s": 61.887
+          },
+          {
+            "cycle": 3,
+            "phase": "vertical_takeoff",
+            "sim_time_s": 71.926
+          }
+        ],
+        "rtmo_final_phase": "vertical_takeoff",
+        "rtmo_capability": {
+          "schema": "TDOC-RTMO-phase-capability-v7",
+          "ready_11phase": false,
+          "blocked_phases": [
+            "vertical_takeoff",
+            "hover",
+            "transition_forward",
+            "climb",
+            "cruise",
+            "turn",
+            "approach",
+            "transition_back",
+            "vertical_landing",
+            "touchdown"
+          ],
+          "phases": {
+            "on_ground": {
+              "semantic_role": "passive_boundary",
+              "requires_l4_l5_control_evidence": false,
+              "l4_verified": false,
+              "l4_feasible_seen": false,
+              "l5_admissible": false,
+              "execution_supported": true,
+              "boundary_state_supported": true,
+              "boundary_evidence": {
+                "supported": true,
+                "source": "online_native_layer6_current_operational_state",
+                "authority": "current GUI/MAVLink telemetry; no historical boundary evidence",
+                "checks": {
+                  "episode_preparation_ok": true,
+                  "native_connection_ready": true,
+                  "fresh_telemetry": true,
+                  "on_ground": true,
+                  "groundspeed_stationary": true,
+                  "relative_altitude_grounded": true,
+                  "reported_velocity_stationary": true
+                },
+                "simulation_only": true,
+                "not_field_evidence": true,
+                "reason": "current_ground_contact_state_valid"
+              },
+              "verified_cycles": [],
+              "verified_reference_times": [],
+              "l5_final_cycles": [],
+              "joint_control_proof_cycles": [],
+              "same_cycle_joint_control_proof": null,
+              "live_registry_evidence": {
+                "required": true,
+                "available": true,
+                "snapshot_versions": [],
+                "snapshot_hashes": [],
+                "model_hashes": [],
+                "parameter_hashes": [],
+                "effective_climate_epochs": [],
+                "effective_climate_fingerprints": [],
+                "l5_decision_ids": []
+              },
+              "certificate_guard": {
+                "certificate_contract_ready": false,
+                "reusable_certificate_count": 0,
+                "bank_entries_for_phase": 0,
+                "reasons": [
+                  "no_verified_ff_certificate_for_phase"
+                ],
+                "schemas": [],
+                "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+                "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+              },
+              "capability": true,
+              "blockers": [],
+              "evidence_type": "LIVE_RUNTIME_BOUNDARY+live_execution_profile"
+            },
+            "vertical_takeoff": {
+              "semantic_role": "controlled_phase",
+              "requires_l4_l5_control_evidence": true,
+              "l4_verified": true,
+              "l4_feasible_seen": true,
+              "l5_admissible": true,
+              "execution_supported": true,
+              "boundary_state_supported": null,
+              "boundary_evidence": null,
+              "verified_cycles": [
+                3
+              ],
+              "verified_reference_times": [
+                2.001
+              ],
+              "l5_final_cycles": [
+                3
+              ],
+              "joint_control_proof_cycles": [
+                3
+              ],
+              "same_cycle_joint_control_proof": true,
+              "live_registry_evidence": {
+                "required": true,
+                "available": true,
+                "snapshot_versions": [
+                  "L3-policy-v1"
+                ],
+                "snapshot_hashes": [
+                  "eccb3d5cb3adf61d6d4c34baa4013ac8d4c1269ea248725cf6b5befe02082998"
+                ],
+                "model_hashes": [
+                  "891afa795a69619a31be0f1a7a52231e0dfa4ea6d3ae8d46813877e755cc9b8b"
+                ],
+                "parameter_hashes": [
+                  "d470639b0157a05843928ce807313d35c9fac3a8f6b6faa9525ca051abfbc239"
+                ],
+                "effective_climate_epochs": [
+                  "2026-10-28T16:00:00"
+                ],
+                "effective_climate_fingerprints": [
+                  "441acf81ae9a153e46ca56fb9b045c2ca19bb97485f1649531361cd5c83a4afc"
+                ],
+                "l5_decision_ids": [
+                  "L5D-5bb4bba0fc9a445b"
+                ]
+              },
+              "certificate_guard": {
+                "certificate_contract_ready": false,
+                "reusable_certificate_count": 0,
+                "bank_entries_for_phase": 28,
+                "reasons": [
+                  "certificate_model_dependencies_missing_or_changed",
+                  "certificate_model_hash_not_current"
+                ],
+                "schemas": [
+                  "Layer4-FF-certificate-v4"
+                ],
+                "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+                "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+              },
+              "capability": false,
+              "blockers": [
+                "layer4_ff_certificate_not_reusable_for_phase"
+              ],
+              "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+            },
+            "hover": {
+              "semantic_role": "controlled_phase",
+              "requires_l4_l5_control_evidence": true,
+              "l4_verified": false,
+              "l4_feasible_seen": false,
+              "l5_admissible": false,
+              "execution_supported": true,
+              "boundary_state_supported": null,
+              "boundary_evidence": null,
+              "verified_cycles": [],
+              "verified_reference_times": [],
+              "l5_final_cycles": [],
+              "joint_control_proof_cycles": [],
+              "same_cycle_joint_control_proof": false,
+              "live_registry_evidence": {
+                "required": true,
+                "available": true,
+                "snapshot_versions": [],
+                "snapshot_hashes": [],
+                "model_hashes": [],
+                "parameter_hashes": [],
+                "effective_climate_epochs": [],
+                "effective_climate_fingerprints": [],
+                "l5_decision_ids": []
+              },
+              "certificate_guard": {
+                "certificate_contract_ready": false,
+                "reusable_certificate_count": 0,
+                "bank_entries_for_phase": 0,
+                "reasons": [
+                  "no_verified_ff_certificate_for_phase"
+                ],
+                "schemas": [],
+                "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+                "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+              },
+              "capability": false,
+              "blockers": [
+                "l4_not_full_fidelity_verified_for_phase",
+                "l5_not_final_admissible_for_phase",
+                "no_same_cycle_joint_control_proof_for_phase",
+                "layer4_ff_certificate_not_reusable_for_phase"
+              ],
+              "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+            },
+            "transition_forward": {
+              "semantic_role": "controlled_phase",
+              "requires_l4_l5_control_evidence": true,
+              "l4_verified": false,
+              "l4_feasible_seen": false,
+              "l5_admissible": false,
+              "execution_supported": true,
+              "boundary_state_supported": null,
+              "boundary_evidence": null,
+              "verified_cycles": [],
+              "verified_reference_times": [],
+              "l5_final_cycles": [],
+              "joint_control_proof_cycles": [],
+              "same_cycle_joint_control_proof": false,
+              "live_registry_evidence": {
+                "required": true,
+                "available": true,
+                "snapshot_versions": [],
+                "snapshot_hashes": [],
+                "model_hashes": [],
+                "parameter_hashes": [],
+                "effective_climate_epochs": [],
+                "effective_climate_fingerprints": [],
+                "l5_decision_ids": []
+              },
+              "certificate_guard": {
+                "certificate_contract_ready": false,
+                "reusable_certificate_count": 0,
+                "bank_entries_for_phase": 24,
+                "reasons": [
+                  "certificate_model_dependencies_missing_or_changed"
+                ],
+                "schemas": [
+                  "Layer4-FF-certificate-v4"
+                ],
+                "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+                "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+              },
+              "capability": false,
+              "blockers": [
+                "l4_not_full_fidelity_verified_for_phase",
+                "l5_not_final_admissible_for_phase",
+                "no_same_cycle_joint_control_proof_for_phase",
+                "layer4_ff_certificate_not_reusable_for_phase"
+              ],
+              "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+            },
+            "climb": {
+              "semantic_role": "controlled_phase",
+              "requires_l4_l5_control_evidence": true,
+              "l4_verified": false,
+              "l4_feasible_seen": false,
+              "l5_admissible": false,
+              "execution_supported": true,
+              "boundary_state_supported": null,
+              "boundary_evidence": null,
+              "verified_cycles": [],
+              "verified_reference_times": [],
+              "l5_final_cycles": [],
+              "joint_control_proof_cycles": [],
+              "same_cycle_joint_control_proof": false,
+              "live_registry_evidence": {
+                "required": true,
+                "available": true,
+                "snapshot_versions": [],
+                "snapshot_hashes": [],
+                "model_hashes": [],
+                "parameter_hashes": [],
+                "effective_climate_epochs": [],
+                "effective_climate_fingerprints": [],
+                "l5_decision_ids": []
+              },
+              "certificate_guard": {
+                "certificate_contract_ready": false,
+                "reusable_certificate_count": 0,
+                "bank_entries_for_phase": 44,
+                "reasons": [
+                  "certificate_model_dependencies_missing_or_changed"
+                ],
+                "schemas": [
+                  "Layer4-FF-certificate-v4"
+                ],
+                "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+                "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+              },
+              "capability": false,
+              "blockers": [
+                "l4_not_full_fidelity_verified_for_phase",
+                "l5_not_final_admissible_for_phase",
+                "no_same_cycle_joint_control_proof_for_phase",
+                "layer4_ff_certificate_not_reusable_for_phase"
+              ],
+              "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+            },
+            "cruise": {
+              "semantic_role": "controlled_phase",
+              "requires_l4_l5_control_evidence": true,
+              "l4_verified": false,
+              "l4_feasible_seen": false,
+              "l5_admissible": false,
+              "execution_supported": true,
+              "boundary_state_supported": null,
+              "boundary_evidence": null,
+              "verified_cycles": [],
+              "verified_reference_times": [],
+              "l5_final_cycles": [],
+              "joint_control_proof_cycles": [],
+              "same_cycle_joint_control_proof": false,
+              "live_registry_evidence": {
+                "required": true,
+                "available": true,
+                "snapshot_versions": [],
+                "snapshot_hashes": [],
+                "model_hashes": [],
+                "parameter_hashes": [],
+                "effective_climate_epochs": [],
+                "effective_climate_fingerprints": [],
+                "l5_decision_ids": []
+              },
+              "certificate_guard": {
+                "certificate_contract_ready": false,
+                "reusable_certificate_count": 0,
+                "bank_entries_for_phase": 140,
+                "reasons": [
+                  "certificate_model_dependencies_missing_or_changed"
+                ],
+                "schemas": [
+                  "Layer4-FF-certificate-v4"
+                ],
+                "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+                "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+              },
+              "capability": false,
+              "blockers": [
+                "l4_not_full_fidelity_verified_for_phase",
+                "l5_not_final_admissible_for_phase",
+                "no_same_cycle_joint_control_proof_for_phase",
+                "layer4_ff_certificate_not_reusable_for_phase"
+              ],
+              "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+            },
+            "turn": {
+              "semantic_role": "controlled_phase",
+              "requires_l4_l5_control_evidence": true,
+              "l4_verified": false,
+              "l4_feasible_seen": false,
+              "l5_admissible": false,
+              "execution_supported": true,
+              "boundary_state_supported": null,
+              "boundary_evidence": null,
+              "verified_cycles": [],
+              "verified_reference_times": [],
+              "l5_final_cycles": [],
+              "joint_control_proof_cycles": [],
+              "same_cycle_joint_control_proof": false,
+              "live_registry_evidence": {
+                "required": true,
+                "available": true,
+                "snapshot_versions": [],
+                "snapshot_hashes": [],
+                "model_hashes": [],
+                "parameter_hashes": [],
+                "effective_climate_epochs": [],
+                "effective_climate_fingerprints": [],
+                "l5_decision_ids": []
+              },
+              "certificate_guard": {
+                "certificate_contract_ready": false,
+                "reusable_certificate_count": 0,
+                "bank_entries_for_phase": 34,
+                "reasons": [
+                  "certificate_model_dependencies_missing_or_changed"
+                ],
+                "schemas": [
+                  "Layer4-FF-certificate-v4"
+                ],
+                "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+                "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+              },
+              "capability": false,
+              "blockers": [
+                "l4_not_full_fidelity_verified_for_phase",
+                "l5_not_final_admissible_for_phase",
+                "no_same_cycle_joint_control_proof_for_phase",
+                "layer4_ff_certificate_not_reusable_for_phase"
+              ],
+              "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+            },
+            "approach": {
+              "semantic_role": "controlled_phase",
+              "requires_l4_l5_control_evidence": true,
+              "l4_verified": false,
+              "l4_feasible_seen": false,
+              "l5_admissible": false,
+              "execution_supported": true,
+              "boundary_state_supported": null,
+              "boundary_evidence": null,
+              "verified_cycles": [],
+              "verified_reference_times": [],
+              "l5_final_cycles": [],
+              "joint_control_proof_cycles": [],
+              "same_cycle_joint_control_proof": false,
+              "live_registry_evidence": {
+                "required": true,
+                "available": true,
+                "snapshot_versions": [],
+                "snapshot_hashes": [],
+                "model_hashes": [],
+                "parameter_hashes": [],
+                "effective_climate_epochs": [],
+                "effective_climate_fingerprints": [],
+                "l5_decision_ids": []
+              },
+              "certificate_guard": {
+                "certificate_contract_ready": false,
+                "reusable_certificate_count": 0,
+                "bank_entries_for_phase": 32,
+                "reasons": [
+                  "certificate_model_dependencies_missing_or_changed"
+                ],
+                "schemas": [
+                  "Layer4-FF-certificate-v4"
+                ],
+                "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+                "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+              },
+              "capability": false,
+              "blockers": [
+                "l4_not_full_fidelity_verified_for_phase",
+                "l5_not_final_admissible_for_phase",
+                "no_same_cycle_joint_control_proof_for_phase",
+                "layer4_ff_certificate_not_reusable_for_phase"
+              ],
+              "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+            },
+            "transition_back": {
+              "semantic_role": "controlled_phase",
+              "requires_l4_l5_control_evidence": true,
+              "l4_verified": false,
+              "l4_feasible_seen": false,
+              "l5_admissible": false,
+              "execution_supported": true,
+              "boundary_state_supported": null,
+              "boundary_evidence": null,
+              "verified_cycles": [],
+              "verified_reference_times": [],
+              "l5_final_cycles": [],
+              "joint_control_proof_cycles": [],
+              "same_cycle_joint_control_proof": false,
+              "live_registry_evidence": {
+                "required": true,
+                "available": true,
+                "snapshot_versions": [],
+                "snapshot_hashes": [],
+                "model_hashes": [],
+                "parameter_hashes": [],
+                "effective_climate_epochs": [],
+                "effective_climate_fingerprints": [],
+                "l5_decision_ids": []
+              },
+              "certificate_guard": {
+                "certificate_contract_ready": false,
+                "reusable_certificate_count": 0,
+                "bank_entries_for_phase": 126,
+                "reasons": [
+                  "certificate_model_dependencies_missing_or_changed"
+                ],
+                "schemas": [
+                  "Layer4-FF-certificate-v4"
+                ],
+                "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+                "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+              },
+              "capability": false,
+              "blockers": [
+                "l4_not_full_fidelity_verified_for_phase",
+                "l5_not_final_admissible_for_phase",
+                "no_same_cycle_joint_control_proof_for_phase",
+                "layer4_ff_certificate_not_reusable_for_phase"
+              ],
+              "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+            },
+            "vertical_landing": {
+              "semantic_role": "controlled_phase",
+              "requires_l4_l5_control_evidence": true,
+              "l4_verified": false,
+              "l4_feasible_seen": false,
+              "l5_admissible": false,
+              "execution_supported": true,
+              "boundary_state_supported": null,
+              "boundary_evidence": null,
+              "verified_cycles": [],
+              "verified_reference_times": [],
+              "l5_final_cycles": [],
+              "joint_control_proof_cycles": [],
+              "same_cycle_joint_control_proof": false,
+              "live_registry_evidence": {
+                "required": true,
+                "available": true,
+                "snapshot_versions": [],
+                "snapshot_hashes": [],
+                "model_hashes": [],
+                "parameter_hashes": [],
+                "effective_climate_epochs": [],
+                "effective_climate_fingerprints": [],
+                "l5_decision_ids": []
+              },
+              "certificate_guard": {
+                "certificate_contract_ready": false,
+                "reusable_certificate_count": 0,
+                "bank_entries_for_phase": 0,
+                "reasons": [
+                  "no_verified_ff_certificate_for_phase"
+                ],
+                "schemas": [],
+                "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+                "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+              },
+              "capability": false,
+              "blockers": [
+                "l4_not_full_fidelity_verified_for_phase",
+                "l5_not_final_admissible_for_phase",
+                "no_same_cycle_joint_control_proof_for_phase",
+                "layer4_ff_certificate_not_reusable_for_phase"
+              ],
+              "evidence_type": "LIVE_RUNTIME_JOINT_CONTROL_PROOF+live_certificate_registry+live_execution_profile"
+            },
+            "touchdown": {
+              "semantic_role": "passive_boundary",
+              "requires_l4_l5_control_evidence": false,
+              "l4_verified": false,
+              "l4_feasible_seen": false,
+              "l5_admissible": false,
+              "execution_supported": true,
+              "boundary_state_supported": false,
+              "boundary_evidence": {},
+              "verified_cycles": [],
+              "verified_reference_times": [],
+              "l5_final_cycles": [],
+              "joint_control_proof_cycles": [],
+              "same_cycle_joint_control_proof": null,
+              "live_registry_evidence": {
+                "required": true,
+                "available": true,
+                "snapshot_versions": [],
+                "snapshot_hashes": [],
+                "model_hashes": [],
+                "parameter_hashes": [],
+                "effective_climate_epochs": [],
+                "effective_climate_fingerprints": [],
+                "l5_decision_ids": []
+              },
+              "certificate_guard": {
+                "certificate_contract_ready": false,
+                "reusable_certificate_count": 0,
+                "bank_entries_for_phase": 0,
+                "reasons": [
+                  "no_verified_ff_certificate_for_phase"
+                ],
+                "schemas": [],
+                "freshness_basis": "mission_reference_for_v4; legacy_wall_clock_not_promoted",
+                "envelope_check": "v4 envelope metadata required here; current state/action containment rechecked at Layer4 reuse time"
+              },
+              "capability": false,
+              "blockers": [
+                "passive_boundary_evidence_not_satisfied"
+              ],
+              "evidence_type": "LIVE_RUNTIME_BOUNDARY+live_execution_profile"
+            }
+          },
+          "source": "TDOC live capability registry + live Layer4 certificate bank + current execution profile",
+          "mission_certification": {
+            "schema": "TDOC-RTMO-mission-certification-v1",
+            "fully_certified": false,
+            "blocked_phases": [
+              "vertical_takeoff",
+              "hover",
+              "transition_forward",
+              "climb",
+              "cruise",
+              "turn",
+              "approach",
+              "transition_back",
+              "vertical_landing",
+              "touchdown"
+            ],
+            "admission_authority": false,
+            "runtime_release_policy": "CURRENT_PHASE_AND_TRANSITION_LOCAL"
+          },
+          "synthetic_final_forbidden": true
+        }
+      }
+    ]
+  },
+  "distance": {
+    "actual_path_m": 0.0,
+    "initial_goal_distance_m": 2970.488744214568,
+    "final_goal_distance_m": 3367.7030939599977,
+    "progress_m": -397.21434974542944,
+    "progress_ratio": -0.16662683671698034,
+    "distance_efficiency_direct_over_actual": null
+  },
+  "time": {
+    "wall_elapsed_s": 21.557311485001264,
+    "simulator_elapsed_s": null,
+    "average_ground_speed_m_s": null,
+    "real_time_factor": null,
+    "cycle_latency_s": {
+      "p50": 8.22325605000151,
+      "p95": 9.5176403295005,
+      "p99": 9.63269670990041,
+      "max": 9.661460805000388
+    },
+    "layer6_latency_s": {
+      "p50": null,
+      "p95": null,
+      "p99": null,
+      "max": null
+    },
+    "control_transaction": {
+      "schema": "TDOC-online-realtime-control-metrics-v1",
+      "measurement": "Layer3 atomic snapshot -> Layer6/GUI/MAVLink execution acknowledgement",
+      "sample_count": 0,
+      "deadline_s": 0.1,
+      "p50_s": null,
+      "p95_s": null,
+      "p99_s": null,
+      "max_s": null,
+      "deadline_miss_count": 0,
+      "min_samples_for_experimental_claim": 1000,
+      "experimentally_verified_p99_le_100ms": false,
+      "claim_status": "INSUFFICIENT_EXECUTED_SAMPLES",
+      "heavy_l4_in_fast_path": false,
+      "post_ack_persistence_in_hot_path": false
+    },
+    "fast_deadline_s": 0.1,
+    "wall_cycle_deadline_misses": 3
+  },
+  "energy": {
+    "source": "MAVLink BATTERY_STATUS current_consumed + measured voltage",
+    "initial_consumed_mah": null,
+    "final_consumed_mah": null,
+    "delta_consumed_mah": null,
+    "average_voltage_v": null,
+    "estimated_energy_used_wh": null,
+    "energy_efficiency_wh_per_km": null,
+    "useful_progress_m_per_wh": null
+  },
+  "actuator_vehicle_state": {
+    "motion_state_counts": {
+      "NO_ACTUATION_STATIONARY": 3
+    },
+    "layer5_hold_no_authorized_actuation_cycles": 0,
+    "servo_feedback_semantics": "SERVO_OUTPUT_RAW is observed ArduPilot output; elevon angle and motor speed estimates are derived and marked non-measured"
+  },
+  "interpretation": {
+    "energy_efficiency_valid": false,
+    "distance_efficiency_valid": false,
+    "note": "Efficiency ratios that require motion or destination completion remain null rather than fabricating a value. Zero progress is retained when live position is stationary and its authorization/motion cause is reported separately."
+  }
+}

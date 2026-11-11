@@ -1,0 +1,359 @@
+--- a/SETUP.md
++++ b/SETUP.md
+@@ -37,7 +37,9 @@
+ 
+ #Building a digital twin incorporating the ArduPilot flight controller and the JSBSim simulator:
+ 
+-The installer provided by this bundle is `install_flightstack_rev1.sh`.
++The installation entrypoint including Phoenix MAVProxy artwork is
++`install_flightstack_with_phoenix_icons.sh`. It runs the existing
++`install_flightstack_rev1.sh` first, then installs the presentation-only patch.
+ For a fresh installation, set `TDDT_FLIGHTSTACK_ASSETS` to the directory containing
+ the prerequisite, Phoenix model, Environment Adapter, controller and dataset
+ archives plus `region_v1.geojson`, as listed in the Layer-6 installation guide.
+@@ -47,12 +49,26 @@
+ 
+ ```bash
+ : "${TDDT_FLIGHTSTACK_ASSETS:?Set this to your existing FlightStack installation-assets directory}"
+-"$TDDT_LAYER6_ROOT/scripts/install_flightstack_rev1.sh" \
++"$TDDT_LAYER6_ROOT/scripts/install_flightstack_with_phoenix_icons.sh" \
+   --base-dir "$TDDT_LAYER6_ROOT" \
+   --assets-dir "$TDDT_FLIGHTSTACK_ASSETS"
+ ```
+ 
+ An existing installed FlightStack does not need reinstallation before Online.
++Install the Phoenix map icons once on that existing stack, without rebuilding
++or resetting the accepted Offline knowledge:
++
++```bash
++bash "$TDDT_LAYER6_ROOT/scripts/install_flightstack_with_phoenix_icons.sh" \
++  --base-dir "$TDDT_LAYER6_ROOT" --icons-only
++```
++
++The five supplied Phoenix colors replace aircraft icon aliases in this bundle's
++native MAVProxy only. Its relocated launcher is bound to the same local Python.
++Map markers and telemetry/control code are preserved. After reinstalling or
++upgrading MAVProxy, rerun the icon installation (the full installation entrypoint
++above already does this). See `presentation/phoenix_mavproxy_icons/README_FA.md`.
++
+ Its map/Console Python dependencies can be checked without starting a simulator:
+ 
+ ```bash
+--- /dev/null
++++ b/presentation/phoenix_mavproxy_icons/install.py
+@@ -0,0 +1,139 @@
++#!/usr/bin/env python3
++"""Install byte-identical Phoenix artwork in the bundle's MAVProxy resources.
++
++Presentation only: never import TDOC, send MAVLink, reset or modify flight models.
++Run with FlightStack/ardupilot/venv-ardupilot-debian13/bin/python.
++"""
++import argparse
++from datetime import datetime, timezone
++import hashlib
++import importlib.metadata
++import json
++import os
++from pathlib import Path
++import sys
++import tempfile
++
++ROOT = Path(__file__).resolve().parent
++COLORS = {"red": "redphoniex.png", "green": "greenphoniex.png",
++          "blue": "bluephoniex.png", "purple": "purplephoniex.png",
++          "orange": "orengephoniex.png"}
++AIRCRAFT = ("plane", "copter", "heli", "singlecopter", "blimp")
++
++
++def sha(data):
++    return hashlib.sha256(data).hexdigest()
++
++
++def atomic_write(path, data, mode=0o644):
++    fd, name = tempfile.mkstemp(prefix=".phoenix-", dir=path.parent)
++    try:
++        with os.fdopen(fd, "wb") as stream:
++            stream.write(data)
++        os.chmod(name, mode)
++        os.replace(name, path)
++    finally:
++        if os.path.exists(name):
++            os.unlink(name)
++
++
++def install(flightstack, *, check=False):
++    flightstack = Path(flightstack).resolve(strict=True)
++    venv = flightstack / "ardupilot/venv-ardupilot-debian13"
++    if Path(sys.prefix).resolve() != venv.resolve():
++        raise ValueError("Run with this FlightStack's native venv Python")
++    from MAVProxy.modules import mavproxy_map
++    from MAVProxy.modules.mavproxy_map import mp_tile
++    from PIL import Image
++    import cv2
++    import numpy as np
++
++    module = Path(mavproxy_map.__file__).resolve()
++    if not module.is_relative_to(venv.resolve()):
++        raise ValueError("MAVProxy imported from outside this bundle")
++    data_root = module.parent / "data"
++    manifest = json.loads((ROOT / "assets_manifest.json").read_text())
++    expected = {row["name"]: row["sha256"] for row in manifest["assets"]}
++    targets = {}
++    for color, name in COLORS.items():
++        raw = (ROOT / "assets" / name).read_bytes()
++        if sha(raw) != expected[name]:
++            raise ValueError("Phoenix asset hash mismatch: " + name)
++        with Image.open(ROOT / "assets" / name) as im:
++            im.verify()
++        for kind in AIRCRAFT:
++            targets[data_root / (color + kind + ".png")] = raw
++        targets[data_root / (color + "phoenix.png")] = raw
++
++    # Relocated console scripts may otherwise run an unrelated external venv.
++    launcher = venv / "bin/mavproxy.py"
++    original = launcher.read_bytes()
++    first, separator, body = original.partition(b"\n")
++    if not first.startswith(b"#!") or not separator:
++        raise ValueError("Unexpected MAVProxy launcher format")
++    python = str(venv / "bin/python")
++    if any(c.isspace() for c in python) or len(python.encode()) > 240:
++        raise ValueError("Native Python path cannot be used as a kernel shebang")
++    targets[launcher] = ("#!" + python + "\n").encode() + body
++    state = flightstack / "runtime/phoenix_map_icons"
++    backup = state / "backups"
++    changed = []
++    if not check:
++        backup.mkdir(parents=True, exist_ok=True)
++        for path, raw in targets.items():
++            current = path.read_bytes() if path.exists() else None
++            if current == raw:
++                continue
++            if current is not None:
++                saved = backup / (sha(current) + ".bin")
++                if not saved.exists():
++                    atomic_write(saved, current)
++            mode = path.stat().st_mode & 0o777 if path.exists() else 0o644
++            atomic_write(path, raw, mode)
++            changed.append(str(path.relative_to(flightstack)))
++
++    records = []
++    for path, raw in targets.items():
++        actual = path.read_bytes()
++        if actual != raw:
++            raise ValueError("Installed presentation differs: " + str(path))
++        records.append({"path": str(path), "sha256": sha(actual), "bytes": len(actual)})
++    decoded = []
++    for color, name in COLORS.items():
++        source = cv2.imread(str(ROOT / "assets" / name), cv2.IMREAD_COLOR)
++        for kind in AIRCRAFT:
++            alias = color + kind + ".png"
++            image = mp_tile.mp_icon(alias)
++            if image is None or not np.array_equal(image, source):
++                raise ValueError("MAVProxy decoded icon mismatch: " + alias)
++            decoded.append(alias)
++    result = {"schema": "TDDT-Phoenix-map-icon-install-v1", "status": "PASS",
++              "checked_at_utc": datetime.now(timezone.utc).isoformat(),
++              "check_only": check, "flightstack": str(flightstack),
++              "mavproxy_module": str(module), "mavproxy_version": importlib.metadata.version("MAVProxy"),
++              "native_python": python, "source_manifest_sha256": sha((ROOT / "assets_manifest.json").read_bytes()),
++              "aircraft_aliases": len(decoded), "decoded_pixel_matches": decoded,
++              "changed_files": changed, "installed_files": records,
++              "control_source_changed": False, "compiled_components_changed": False,
++              "knowledge_modified": False, "non_aircraft_markers_changed": False}
++    if not check:
++        atomic_write(state / "INSTALL_MANIFEST.json", (json.dumps(result, indent=2) + "\n").encode())
++    return result
++
++
++def main():
++    ap = argparse.ArgumentParser(description=__doc__)
++    ap.add_argument("--flightstack-dir", type=Path, required=True)
++    ap.add_argument("--check", action="store_true")
++    ap.add_argument("--output", type=Path)
++    args = ap.parse_args()
++    result = install(args.flightstack_dir, check=args.check)
++    if args.output:
++        args.output.parent.mkdir(parents=True, exist_ok=True)
++        args.output.write_text(json.dumps(result, indent=2) + "\n")
++    print(json.dumps({k: result[k] for k in ("status", "check_only", "mavproxy_version", "aircraft_aliases", "changed_files")}, indent=2))
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+--- /dev/null
++++ b/presentation/phoenix_mavproxy_icons/README_FA.md
+@@ -0,0 +1,96 @@
++# وصلهٔ نمایش VTOL فونیکس در نقشهٔ MAVProxy
++
++این وصله فقط نصب و نمایش را تغییر می‌دهد. پنج PNG اصلی کاربر بدون تغییر بایت‌ها
++در `assets/` حفظ شده‌اند؛ شناسهٔ Drive، اندازه و SHA-256 در
++`assets_manifest.json` ثبت شده‌اند. نام اصلی `orengephoniex.png` حفظ شده و به
++رنگ `orange` نگاشت می‌شود.
++
++## نصب کامل
++
++پس از بارگذاری محیط TDOC و تعیین مسیر آرشیوهای نصب:
++
++```bash
++bash "$TDDT_LAYER6_ROOT/scripts/install_flightstack_with_phoenix_icons.sh" \
++  --base-dir "$TDDT_LAYER6_ROOT" --assets-dir "$TDDT_FLIGHTSTACK_ASSETS"
++```
++
++این ورودی ابتدا نصب‌کنندهٔ موجود `install_flightstack_rev1.sh` را با همان
++آرگومان‌ها اجرا می‌کند و پس از موفقیت، تصاویر را نصب می‌کند. نصب‌کنندهٔ اصلی
++و منابع مدل مقید به hash تغییر نکرده‌اند.
++
++## افزودن وصله روی نصب موجود PASS
++
++```bash
++bash "$TDDT_LAYER6_ROOT/scripts/install_flightstack_with_phoenix_icons.sh" \
++  --base-dir "$TDDT_LAYER6_ROOT" --icons-only
++```
++
++این حالت ابتدا وابستگی‌های Map/Console را با ابزار قبلی بررسی می‌کند؛ سپس
++تصاویر را نصب می‌کند. reset، آموزش، دانلود، build یا تغییر KStore ندارد.
++اجرای مجدد idempotent است و فایل همسان دوباره نوشته نمی‌شود.
++
++## نگاشت و دامنهٔ نمایش
++
++| رنگ MAVProxy | فایل اصلی فونیکس |
++| --- | --- |
++| red | redphoniex.png |
++| green | greenphoniex.png |
++| blue | bluephoniex.png |
++| purple | purplephoniex.png |
++| orange | orengephoniex.png |
++
++برای هر رنگ، aliasهای هواگرد `plane`، `copter`، `heli`، `singlecopter` و
++`blimp` با همان تصویر نصب می‌شوند: ۲۵ alias هواگرد و پنج نام صریح
++`COLORphoenix.png`. بنابراین انتخاب نوع هواگرد از HEARTBEAT یا fallback
++نمایش موقعیت، شکل عمومی هواپیما/کوادکوپتر را برنمی‌گرداند. scope همین MAVProxy
++باندل است؛ سایر هواگردهای یک نشست چندوسیله‌ای نیز همین artwork را خواهند داشت.
++آیکن HOME، waypoint، نشانگرها، خودرو و قایق تغییر نمی‌کنند.
++
++مسیر موجود `layer6.native_panels` موقعیت فیزیکی را با آیکن سبز نمایش می‌دهد؛
++`greenplane.png` یا alias نوع هواگرد به تصویر سبز فونیکس می‌رسد. مختصات، چرخش
++heading، trail، follow و معنای رنگ‌ها حفظ می‌شوند. SIM_STATE همچنان برای نمایش
++و ارزیابی است و به ناوبری MESA وارد نمی‌شود.
++
++## محیط نصب و بررسی
++
++در نصب جابه‌جاشده، shebang فایل `bin/mavproxy.py` به محیط قدیمی خارج از باندل
++اشاره می‌کرد. نصب‌کننده فقط خط shebang را به Python همین محیط Native متصل
++می‌کند؛ بدنهٔ launcher و سورس MAVProxy تغییر نمی‌کنند. نصب‌کننده خارج از محیط
++Native تعیین‌شده یا با import خارجی MAVProxy متوقف می‌شود.
++
++بررسی بدون نوشتن:
++
++```bash
++bash "$TDDT_LAYER6_ROOT/scripts/install_flightstack_with_phoenix_icons.sh" \
++  --base-dir "$TDDT_LAYER6_ROOT" --check-icons
++```
++
++علاوه بر hash تصاویر، پیکسل‌های خروجی فراخوانی واقعی `mp_tile.mp_icon` برای
++هر ۲۵ alias با منبع تطبیق داده می‌شوند. hook یا ماژول ارسال فرمان جدیدی وجود
++ندارد. manifest نصب در `FlightStack/runtime/phoenix_map_icons/INSTALL_MANIFEST.json`
++و بایت‌های قبلی فایل‌های جایگزین‌شده در `backups/` همان پوشه حفظ می‌شوند.
++
++## پایداری و بازنصب
++
++منابع اصلی و نصب‌کننده داخل باندل‌اند. reset عادی TDOC که محیط نصب‌شدهٔ MAVProxy
++را حذف نمی‌کند، تصاویر را بازنمی‌گرداند. اگر محیط Native حذف یا MAVProxy
++بازنصب/upgrade شود، مرحلهٔ نصب تصاویر را تکرار کنید. ورودی نصب کامل بالا این
++مرحله را خودکار انجام می‌دهد؛ فراخوانی مستقیم نصب‌کنندهٔ قدیمی چنین کاری نمی‌کند.
++
++برای حفظ prior پذیرفته‌شده، آزمون این وصله reset یا بازسازی مدل انجام نمی‌دهد؛
++ادعای اجرای تازهٔ reset مطرح نیست. هیچ جزء کامپایل‌شونده‌ای تغییر نکرده و rebuild
++برای این وصله لازم نیست.
++
++## اجرای آنلاین و شواهد
++
++از شاخهٔ TDOC:
++
++```bash
++source configs/environment_fixed.sh
++"$PYTHON" scripts/run_online_with_reports.py --config configs/tdoc.yaml
++```
++
++این ورودی فرمان canonical را بدون تغییر مسیر/مقصد اجرا می‌کند. گزارش‌ها و
++تصاویر شش پنل در `reports/online/runs/<run-id>/` ثبت می‌شوند. بررسی PNG یا
++بازشدن پنجره، به‌تنهایی PASS پرواز نیست؛ نتیجهٔ Native و ارزیابی مستقل جدا ثبت
++می‌شوند. شواهد آزمون وصله در `integration_phoenix_icons_20261106/` هستند.
+--- /dev/null
++++ b/presentation/phoenix_mavproxy_icons/assets_manifest.json
+@@ -0,0 +1,36 @@
++{
++  "schema": "TDDT-Phoenix-map-assets-v1",
++  "drive_folder_id": "1Khw8Ef2olCtk50jb3seKCcq4IgIsxtL-",
++  "assets": [
++    {
++      "name": "redphoniex.png",
++      "drive_id": "1gLGN_7RLMAE8EGXT1eGa9gElRRaSbPBZ",
++      "bytes": 891,
++      "sha256": "0ec244c5a5acb604419d9dce7780e3846078ea1cc77f08b94f9f0c3fc530817a"
++    },
++    {
++      "name": "purplephoniex.png",
++      "drive_id": "1Rri12a5KDwKhZs0UKJsVcLsC3ZlGMrul",
++      "bytes": 896,
++      "sha256": "de26211101a1e1af4803c4b423715cea87dff00ff50604810bfb65794a4ebf9a"
++    },
++    {
++      "name": "orengephoniex.png",
++      "drive_id": "1gcLnu1ToYguMGTqAzYJr6efSgGR_9p-l",
++      "bytes": 904,
++      "sha256": "c80022343081b49ed841a7e01fa4bd5fb987f01666908220f7171ff8b5b6ac11"
++    },
++    {
++      "name": "greenphoniex.png",
++      "drive_id": "1v5kOrAKRWahtgd7LsbcD1XpmoDcN89Cn",
++      "bytes": 907,
++      "sha256": "4f3b6ff2d102b8143ecd28b63be9adc579598de1daf58e35fea35c68b38d76c1"
++    },
++    {
++      "name": "bluephoniex.png",
++      "drive_id": "13C7CIhQd8Z8ImIwtvc7N7J8LDaQ3m6jv",
++      "bytes": 921,
++      "sha256": "a4050d4a27b06b0769b6bcf0e4b17ede7159a1906579c29d4bedd3627a495ec4"
++    }
++  ]
++}
+--- /dev/null
++++ b/layer6_v20261007_1032/scripts/install_flightstack_with_phoenix_icons.sh
+@@ -0,0 +1,35 @@
++#!/usr/bin/env bash
++# Standard FlightStack installation followed by bundle-local presentation assets.
++set -Eeuo pipefail
++script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
++bundle_root="$(cd "$script_dir/../.." && pwd)"
++base_dir="$PWD"
++icons_only=0
++check_only=0
++forward=()
++while [[ $# -gt 0 ]]; do
++  case "$1" in
++    --base-dir) base_dir="${2:?missing --base-dir}"; forward+=("$1" "$2"); shift 2 ;;
++    --assets-dir) forward+=("$1" "${2:?missing --assets-dir}"); shift 2 ;;
++    --icons-only) icons_only=1; shift ;;
++    --check-icons) check_only=1; shift ;;
++    -h|--help)
++      echo 'Usage: install_flightstack_with_phoenix_icons.sh --base-dir LAYER6 [standard installer options] [--icons-only | --check-icons]'
++      echo '--icons-only installs the visual patch on an existing stack without rebuild/reset.'
++      echo '--check-icons verifies installed resources without writing.'
++      exit 0 ;;
++    *) forward+=("$1"); shift ;;
++  esac
++done
++[[ "$icons_only" == 0 || "$check_only" == 0 ]] || { echo 'Choose one icons mode' >&2; exit 2; }
++flightstack="$(cd "$base_dir" && pwd)/FlightStack"
++native_python="$flightstack/ardupilot/venv-ardupilot-debian13/bin/python"
++if [[ "$check_only" == 1 ]]; then
++  exec "$native_python" "$bundle_root/presentation/phoenix_mavproxy_icons/install.py" --flightstack-dir "$flightstack" --check
++fi
++if [[ "$icons_only" == 0 ]]; then
++  bash "$script_dir/install_flightstack_rev1.sh" "${forward[@]}"
++else
++  bash "$script_dir/install_flightstack_rev1.sh" --base-dir "$base_dir" --check-replay-map
++fi
++"$native_python" "$bundle_root/presentation/phoenix_mavproxy_icons/install.py" --flightstack-dir "$flightstack"
