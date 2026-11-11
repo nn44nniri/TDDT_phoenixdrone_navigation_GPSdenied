@@ -1,0 +1,24 @@
+{
+  "schema": "TDOC-realtime-mission-result-v1",
+  "status": "FAIL",
+  "run_id": "rt-4f2aeb2d8af749b28c8e1e60516e35b2",
+  "navigation_sensors": [
+    "GYROSCOPE",
+    "ACCELEROMETER",
+    "MAGNETOMETER",
+    "BAROMETER",
+    "AIRSPEED"
+  ],
+  "ULTRASONIC_WIND": "MISSING",
+  "GNSS_used": false,
+  "odometry_used": false,
+  "vision_used": false,
+  "inner_FCU_attitude_backend": "AP_NavEKF3 with IMU/mag/baro; never MESA observation",
+  "route_profile": "VTOL translation; no wing-borne phase certification",
+  "requested_hover_seconds": 1.0,
+  "error": "RuntimeError('Native startup: {\\'stage\\': \\'stack_start\\', \\'error\\': \\'RuntimeError(\\\\\\'native terminal failed: [{\\\\\\\\\\\\\\'error\\\\\\\\\\\\\\': \\\\\\\\\\\\\\'RuntimeError(\"native component exited: [(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'environment\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\', 1)]\")\\\\\\\\\\\\\\', \\\\\\\\\\\\\\'monotonic\\\\\\\\\\\\\\': 44042.601475466}]\\\\\\')\\'}')",
+  "traceback": "Traceback (most recent call last):\n  File \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/realtime.py\", line 69, in run_realtime_mission\n    if not ready.get('ok'):raise RuntimeError('Native startup: '+str({k:ready.get(k) for k in ('stage','error')}))\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Native startup: {'stage': 'stack_start', 'error': 'RuntimeError(\\'native terminal failed: [{\\\\\\'error\\\\\\': \\\\\\'RuntimeError(\"native component exited: [(\\\\\\\\\\\\\\'environment\\\\\\\\\\\\\\', 1)]\")\\\\\\', \\\\\\'monotonic\\\\\\': 44042.601475466}]\\')'}\n",
+  "cycles": 0,
+  "accepted_feedback": 0,
+  "consumed_feedback": 0
+}

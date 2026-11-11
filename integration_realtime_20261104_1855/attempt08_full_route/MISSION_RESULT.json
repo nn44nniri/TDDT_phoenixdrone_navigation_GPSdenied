@@ -1,0 +1,113 @@
+{
+  "schema": "TDOC-realtime-mission-result-v1",
+  "status": "FAIL",
+  "run_id": "rt-6aee8c316a9c4a84bc73db3432dd931c",
+  "navigation_sensors": [
+    "GYROSCOPE",
+    "ACCELEROMETER",
+    "MAGNETOMETER",
+    "BAROMETER",
+    "AIRSPEED"
+  ],
+  "ULTRASONIC_WIND": "MISSING",
+  "GNSS_used": false,
+  "odometry_used": false,
+  "vision_used": false,
+  "inner_FCU_attitude_backend": "AP_AHRS_SIM, simulation-only; never MESA observation",
+  "route_profile": "VTOL translation; no wing-borne phase certification",
+  "requested_hover_seconds": null,
+  "native_session_id": "d9fd3fdb04ea4a01a0980949cddd000b",
+  "binding_hash": "80614c1cafb83161909d318153ac26ecd7f47d768347349ce169d8850d7d5e51",
+  "model_id": "c256fa2435e362c29f8ef83e1b6a21818fcfebf5dfa90d85a15676213df2a5ca",
+  "parameter_readbacks": {
+    "SIM_GPS1_ENABLE": {
+      "value": 0.0,
+      "wire_sha256": "c0c3adca6661775dfdc0bef758d93b709ab95b55a4866ad68b596cbb350be48d"
+    },
+    "SIM_GPS2_ENABLE": {
+      "value": 0.0,
+      "wire_sha256": "e827bba5583873c8c78221505b4732b5fc197eaab6db8a9ce45d7c99a59da7a4"
+    },
+    "SIM_GPS3_ENABLE": {
+      "value": 0.0,
+      "wire_sha256": "2b0a62d57c79bf66acda9f2bcdce07baf743b2f95a512304ae8f99ada8ce70e4"
+    },
+    "SIM_GPS4_ENABLE": {
+      "value": 0.0,
+      "wire_sha256": "4bd29d9a8cc3c4b0d95bec42f050501f543425def6283c71d7d965833f3d1610"
+    },
+    "GPS1_TYPE": {
+      "value": 0.0,
+      "wire_sha256": "2b92a0ee370dc0e7e1d59a1f64ce81bb6dbc255b4d34ac239fa40f14976f25a3"
+    },
+    "GPS2_TYPE": {
+      "value": 0.0,
+      "wire_sha256": "5cde1ef9e74d312ba561440bab0c1cad1884b9e7d5ad75356e0716d5e3d576dc"
+    },
+    "AHRS_EKF_TYPE": {
+      "value": 10.0,
+      "wire_sha256": "aaf22ac5a2a828fedbc16f7a5dd15dee1a6581a6c3d948bdd750366678f1b0cb"
+    },
+    "Q_A_ANGLE_MAX": {
+      "value": 30.0,
+      "wire_sha256": "c48472061d446fc0de6f4dbfa7d07b9aa55128d5bbe4999c7651dfd446ba29ea"
+    },
+    "Q_PILOT_SPD_UP": {
+      "value": 2.5,
+      "wire_sha256": "4659424a1b6ef82097d038c034420eefde2cbaf1212bb52cdddc29d6b4f95826"
+    },
+    "Q_PILOT_SPD_DN": {
+      "value": 0.0,
+      "wire_sha256": "7e2bb6f415256411d82e824b8708fe19c63d4db97cd8b0a150a912b445075b94"
+    },
+    "Q_TAILSIT_INPUT": {
+      "value": 0.0,
+      "wire_sha256": "6836e0d780502badd2648fd9ee55b5b69ba60da938312f247fb0564c1b675ce5"
+    },
+    "RC1_DZ": {
+      "value": 30.0,
+      "wire_sha256": "77558b913c207cc3c4a3be99cd03566ddbd28a65b1bd7ffb9600c5793346f83a"
+    },
+    "RC2_DZ": {
+      "value": 30.0,
+      "wire_sha256": "50731a1ac838f7010674ff903eee5cf3d2e47fca3bec28c51e4d750bf39eed40"
+    },
+    "RC3_DZ": {
+      "value": 30.0,
+      "wire_sha256": "a3dae629e88ced8d6369653d371b29092699c297cc5ee6e19e3001717d022d1a"
+    }
+  },
+  "calibration": {
+    "gyro_bias_rad_s": [
+      -2.2869936659238496e-06,
+      -2.8912110103836617e-06,
+      4.314110410064132e-06
+    ],
+    "accel_bias_m_s2": [
+      -0.004802418114753336,
+      -9.244832393834901e-09,
+      4.155134172214865e-09
+    ],
+    "initial_q_wxyz": [
+      0.651874291356009,
+      -0.27397242400707567,
+      0.6518732129937,
+      0.2739714097019219
+    ],
+    "baro_initial_m": 1798.4392358398438,
+    "source": "stationary accelerometer + magnetometer + offline geomagnetic map (Wahba)",
+    "FCU_pose_used": false,
+    "GNSS_used": false
+  },
+  "goal_lonlat": [
+    -105.28,
+    40.025
+  ],
+  "route_distance_m": 2385.2310013602178,
+  "cruise_height_above_launch_m": 40.0,
+  "error": "ValueError('RTA measured airspeed envelope exceeded')",
+  "traceback": "Traceback (most recent call last):\n  File \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/TDOC_v20260911_2052/src/tddt_tdoc/realtime.py\", line 175, in run_realtime_mission\n    forecast=predict(snapshot);decision=decide(snapshot,forecast,parameters,\n                                        ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        heading_reference=math.radians(origin['heading_deg']))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/media/p1/DigitalTwin/TDDT_navigation/TDOC/code/chatgpg/reference_v4/TDDT_integrated_fix_v4/layer5_v20260911_1510/src/layer5/realtime.py\", line 16, in decide\n    raise ValueError('RTA measured airspeed envelope exceeded')\nValueError: RTA measured airspeed envelope exceeded\n",
+  "cycles": 1419,
+  "accepted_feedback": 501,
+  "consumed_feedback": 501
+}
