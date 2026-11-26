@@ -8,6 +8,16 @@ The immediate engineering objective is to close the online loop:
 
 This repository contains the integrated `TDDT_integrated_fix_v4` bundle snapshot imported on **2026-11-11**: source code, three primary FMUs, the native FlightStack, datasets, existing Python environments, build products, and recorded experiment evidence. It is an experimental integration bundle. A historical Native PASS is evidence for the particular recorded mission; it is not a guarantee that every new run passes or that all original TDDT formalisms have been implemented.
 
+The following animations show the execution of TDDT.
+
+<img src="1.gif" alt="TDDT execution animation 1" width="100%">
+
+<img src="2.gif" alt="TDDT execution animation 2" width="100%">
+
+<img src="3.gif" alt="TDDT execution animation 3" width="100%">
+
+<img src="4.gif" alt="TDDT execution animation 4" width="100%">
+
 ## Contents
 
 - [Project goals and current scope](#project-goals-and-current-scope)
